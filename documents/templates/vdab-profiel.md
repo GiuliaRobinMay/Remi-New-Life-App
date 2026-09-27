@@ -24,7 +24,7 @@ Cultuur en erfgoed; bouw en restauratie; metaal; onderwijs en opleiding; sociale
 - Plooien op de kantbank, MIG/MAG-lassen (135) en elektrodelassen (111) [TIG bevestigen]
 - Plaatwerk: snijden, plooien, afwerken, kwaliteitscontrole
 - Opmeten en uittekenen op maat, montage
-- Meubelontwerp en -bouw in metaal en hout
+- Meubelontwerp en -bouw [in metaal en hout, materiaal bevestigen]
 - Fietsbouw en -herstel
 - Archiveren en digitaliseren van beeldmateriaal
 - Veiligheid: VCA-basis [geldig tot]

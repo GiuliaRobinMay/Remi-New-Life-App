@@ -1,10 +1,10 @@
 Aan: [e-mailadres of formulier via job.antwerpen.be]
 
-Onderwerp: Spontane sollicitatie - technisch assistent (niveau C1) musea en erfgoed - Remi [Achternaam]
+Onderwerp: Spontane sollicitatie - technisch assistent (niveau C1) Musea en Erfgoed - Remi [Achternaam]
 
 Geachte mevrouw, geachte heer,
 
-Ik ben technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal, met een opleiding in halfautomaat- en elektrodelassen, en ik volg avondonderwijs interieurvormgeving aan de Academie in Antwerpen. Eerder bouwde ik een fotoarchief op. Ik wil mijn vakmanschap inzetten voor erfgoed en ontwerp, en stel mij daarom spontaan kandidaat als technisch assistent voor tentoonstellingsbouw, depot of collectiezorg bij Musea en Erfgoed.
+Ik ben technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal, met een opleiding in halfautomaat- en elektrodelassen, en ik volg avondonderwijs interieurvormgeving aan de Academie in Antwerpen. Eerder bouwde ik een fotoarchief op voor Willy Van de Perre. Ik wil mijn vakmanschap inzetten voor erfgoed en ontwerp, en stel mij daarom spontaan kandidaat als technisch assistent voor tentoonstellingsbouw, depot of collectiezorg bij Musea en Erfgoed van Stad Antwerpen.
 
 Ik heb een diploma secundair onderwijs. Ik zou het op prijs stellen als u mijn cv bijhoudt en mij op de hoogte brengt van toekomstige selecties voor technisch assistent of een gelijkaardige functie op niveau C.
 

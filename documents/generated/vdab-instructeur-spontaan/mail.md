@@ -1,4 +1,4 @@
-Aan: [e-mailadres of sollicitatieformulier uit de vacature op vdab.be]
+Aan: [e-mailadres van het competentiecentrum of van de dienst werving van VDAB; bij een openstaande vacature solliciteert Remi via het online sollicitatieformulier bij de vacature (vdab.be of werkenvoorvlaanderen.be) en niet met deze mail]
 
 Onderwerp: Spontane sollicitatie - instructeur lassen en metaal (niveau C) - Remi [Achternaam]
 

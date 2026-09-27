@@ -65,6 +65,16 @@ try {
       await page.goto(`${base}#/sollicitaties`, { waitUntil: 'networkidle' });
       const kls = await page.$eval('.grid2__table select.status', e => e.className).catch(() => 'geen');
       check('statuskleur verstuurd is oranje', /status--orange/.test(kls), kls);
+      // Concepten van spontane sollicitaties: zichtbaar en gekoppeld aan documenten
+      await page.goto(`${base}#/sollicitaties`, { waitUntil: 'networkidle' });
+      const voorbereid = await page.locator('.grid2__table tbody tr:not(.grid2__fold)').count();
+      check('concepten staan in sollicitaties', voorbereid >= 12, String(voorbereid));
+      await page.fill('.zonesearch input', 'KMSKA');
+      await page.click('.grid2__open >> nth=0');
+      const docs = await page.textContent('.peek__body');
+      check('concept KMSKA heeft cv-versie, brief en mail', /Cv-variant/.test(docs) && /Brief kopi/.test(docs) && /Mail kopi/.test(docs), docs.slice(0, 120));
+      await page.goto(`${base}cv.html?variant=kmska-spontaan`, { waitUntil: 'networkidle' });
+      check('cv-versie KMSKA laadt', /versie kmska-spontaan/.test(await page.textContent('#barTitle')));
       // Cv-atelier: gegevens bewaren en tonen
       await page.goto(`${base}#/cv?tab=gegevens`, { waitUntil: 'networkidle' });
       const naamVeld = page.locator('[data-fk="cv-naam"]');

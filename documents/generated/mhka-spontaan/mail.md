@@ -4,9 +4,9 @@ Onderwerp: Spontane sollicitatie - technisch medewerker productie - Remi [Achter
 
 Geachte mevrouw Geets,
 
-Ik ben technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal, met een opleiding in halfautomaat- en elektrodelassen, en ik volg avondonderwijs interieurvormgeving aan de Academie in Antwerpen. De opbouw van tentoonstellingen in het M HKA sluit aan bij wat ik wil doen: tekenen, maken en zorgvuldig werken in dienst van kunst. Daarom stel ik mij spontaan kandidaat als technisch medewerker productie.
+Ik ben technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal, met een opleiding in halfautomaat- en elektrodelassen, en ik volg avondonderwijs interieurvormgeving aan de Academie in Antwerpen. De opbouw van tentoonstellingen in het M HKA sluit aan bij wat ik wil doen: tekenen, maken en zorgvuldig werken in dienst van de kunst. Daarom stel ik mij spontaan kandidaat als technisch medewerker productie.
 
-In bijlage vindt u mijn motivatiebrief en mijn cv [en een beknopt portfolio, indien klaar]. Ik kom graag kennismaken tijdens een kort werkbezoek, of help enkele dagen mee bij een opbouw via een beroepsverkennende stage van VDAB. Een start in januari of februari 2027 is voor mij mogelijk.
+In bijlage vindt u mijn motivatiebrief en mijn cv [en een beknopt portfolio, indien klaar]. Graag kom ik kennismaken tijdens een kort werkbezoek, of help ik enkele dagen mee bij de opbouw van een tentoonstelling via een beroepsverkennende stage van VDAB. Een start in januari of februari 2027 is voor mij mogelijk.
 
 Met vriendelijke groeten
 Remi [Achternaam]

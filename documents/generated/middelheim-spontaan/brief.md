@@ -10,13 +10,13 @@ Middelheimlaan 61
 
 Antwerpen, [dag maand jaar]
 
-Betreft: spontane sollicitatie als technisch assistent sculptuuronderhoud (niveau C)
+Betreft: spontane sollicitatie als technisch assistent (niveau C) voor het onderhoud van de sculpturen
 
 Geachte mevrouw, geachte heer,
 
-Het Middelheimmuseum toont beeldhouwkunst in de open lucht. [Concreet beeld of tentoonstelling in het park dat Remi zag, en wat hem daarin aansprak.] Metalen sculpturen die buiten staan, vragen voortdurend onderhoud en conservatie. Dat is werk waarin ik mijn vakmanschap wil inzetten, en daarom schrijf ik u spontaan aan.
+Het Middelheimmuseum toont beeldhouwkunst in de open lucht. [Concreet beeld of tentoonstelling in het park dat Remi zag, en wat hem daarin aansprak.] Metalen sculpturen die buiten staan, vragen voortdurend onderhoud en conservatie. Aan dat technische onderhoud wil ik mijn vakmanschap bijdragen, en daarom schrijf ik u spontaan aan.
 
-Als technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal ken ik metaal van tekening tot afwerking. Ik begon er in 2021 als tekenaar en plooi- en lasoperator, met een opleiding in halfautomaat- en elektrodelassen [TIG bevestigen], en stuur nu het atelier aan. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen: drie jaar meubel en interieur, een jaar grafiek en nu interieurvormgeving. Met mijn broer bouw ik meubels.
+Als technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal ken ik metaal van tekening tot afwerking. Ik begon er in 2021 als tekenaar en plooi- en lasoperator, met een opleiding in halfautomaat- en elektrodelassen [TIG bevestigen]; nu stuur ik het atelier aan. Naast mijn werk studeer ik in het avondonderwijs aan de Academie in Antwerpen: na drie jaar meubel en interieur en een jaar grafiek volg ik nu interieurvormgeving. Met mijn broer bouw ik meubels.
 
 Voor uw collectie- of technische ploeg breng ik drie troeven mee. Materiaalkennis: ik weet hoe metaal zich gedraagt bij plooien en lassen en welke afwerking het vraagt, bijvoorbeeld bij [concreet project en wat daar precies moest kloppen]. Zorgvuldigheid: ik sta in voor afwerking en kwaliteitscontrole en werk graag aan stukken die lang moeten meegaan. Ordening: voor Willy Van de Perre bouwde ik een fotoarchief op, en als tekenaar werk ik dagelijks met precieze tekeningen en maten.
 

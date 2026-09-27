@@ -6,7 +6,7 @@ Geachte mevrouw, geachte heer,
 
 Ik ben technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal, met een opleiding in halfautomaat- en elektrodelassen, en ik volg avondonderwijs interieurvormgeving aan de Academie in Antwerpen. Omdat Opera Ballet Vlaanderen zijn decors in een eigen decoratelier in Zele bouwt, schrijf ik u spontaan aan voor een functie als decorbouwer metaal.
 
-In bijlage vindt u mijn motivatiebrief en mijn cv [en een beknopt portfolio, indien klaar]. Ik kom graag kennismaken tijdens een kort werkbezoek aan het decoratelier, of via een beroepsverkennende stage van enkele dagen via VDAB.
+In bijlage vindt u mijn motivatiebrief en mijn cv [en een beknopt portfolio, indien klaar]. Ik kom graag kennismaken tijdens een kort werkbezoek aan het decoratelier, of vanaf januari 2027 tijdens een beroepsverkennende stage van enkele dagen via VDAB.
 
 Met vriendelijke groeten
 Remi [Achternaam]

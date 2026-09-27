@@ -93,7 +93,7 @@
     "id": "s10",
     "groep": "VDAB",
     "titel": "Loopbaangesprek met een VDAB-bemiddelaar aanvragen",
-    "wat": "Al in het najaar, zodra het ontslag vaststaat. Schriftelijk navragen: vrijstelling voor studies (welke opleidingen, wachttijd), OKOT-lijst 2026-2027 (educatief graduaat secundair onderwijs, graduaat bouwkundig tekenen), verlenging van de 24 maanden bij een opleiding, beroepsverkennende stage, IBO.",
+    "wat": "Al in het najaar, zodra het ontslag vaststaat. Vraag schriftelijk: (1) welke voltijdse VDAB-beroepsopleidingen van minstens 3 maanden passen (tekenaar CAD/BIM, podiumtechniek, lasinspectie), want alleen die verlengen de uitkering, met maximaal 12 maanden; (2) of het educatief graduaat secundair onderwijs in Antwerpen als OKOT loopt; (3) of een vrijstelling voor Conservatie-Restauratie kan; (4) beroepsverkennende stage en IBO. Onthoud: gewone studies verlengen de 24 maanden niet meer.",
     "wie": "Remi (Giulia bereidt de vragen voor)",
     "deadline": "2026-11-15",
     "status": "open",
@@ -113,10 +113,10 @@
     "id": "s12",
     "groep": "VDAB",
     "titel": "Knelpuntberoepenlijst 2026 nakijken",
-    "wat": "Open de pdf Knelpuntberoepen2026 en zoek op lasser, podiumtechnicus, leerkracht secundair onderwijs, bouwkundig tekenaar. Dit bepaalt welke opleidingen gratis zijn en het uitkeringsrecht verlengen.",
+    "wat": "Nagekeken op 27 september 2026: lasser staat op de lijst (VDAB-fiche Manueel lasser: knelpuntberoep); het graduaat bouwkundig tekenen is erkend als OKOT. Zie research/10.",
     "wie": "Giulia",
     "deadline": "2026-10-11",
-    "status": "open",
+    "status": "klaar",
     "bron": "vdab"
   },
   {
@@ -303,9 +303,19 @@
     "id": "s31",
     "groep": "Opleiding",
     "titel": "Beslissing over het opleidingstraject",
-    "wat": "Kies uiterlijk in juni 2027 tussen: educatief graduaat (lesgeven, OKOT), graduaat Bouwkundig tekenen (OKOT), Conservatie-Restauratie (langer, via ziekenfonds of deeltijds werk), Se-n-Se of RITCS Podiumtechnieken.",
+    "wat": "Kies uiterlijk in juni 2027. Let op de 24 maanden: een VDAB-beroepsopleiding van minstens 3 maanden verlengt ze, een graduaat of bachelor niet. Opties: VDAB-opleiding (tekenaar, podiumtechniek), educatief graduaat (lesgeven, OKOT), graduaat bouwkundig tekenen (OKOT), Conservatie-Restauratie (langer; via deeltijds werk of het medische spoor).",
     "wie": "Remi en Giulia",
     "deadline": "2027-06-30",
+    "status": "open",
+    "bron": "opleiding"
+  },
+  {
+    "id": "s32",
+    "groep": "Opleiding",
+    "titel": "Erkenning metaaldetectorist aanvragen (optioneel)",
+    "wat": "Gratis, via het e-loket van Onroerend Erfgoed met je eID en een uittreksel uit het strafregister. Binnen 90 dagen krijg je een legitimatiebewijs. Een kleine plus voor werk in archeologie en vondstverwerking.",
+    "wie": "Remi",
+    "deadline": "",
     "status": "open",
     "bron": "opleiding"
   }

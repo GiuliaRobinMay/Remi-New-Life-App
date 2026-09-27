@@ -104,10 +104,11 @@
   "werkloosheid2026": [
     "Toelaatbaarheid: 312 arbeidsdagen in de laatste 36 maanden, ongeacht leeftijd. Remi voldoet ruim.",
     "Duur: 12 maanden plus 1 maand per 4 extra maanden loopbaan, maximum 24 maanden. Met vijf jaar werk zit je aan het maximum.",
-    "Bedrag: 65 procent van het begrensde brutoloon in maand 1 tot 3, 60 procent in maand 4 tot 6, daarna degressief. Loonplafond te verifiëren (€3.571 of €4.182 per maand naargelang de bron).",
-    "Een voltijdse VDAB-erkende beroepsopleiding van minstens 3 maanden, gestart na 1 januari 2026, verlengt het recht met maximaal 12 maanden.",
+    "Bedrag: 65 procent van het begrensde brutoloon in maand 1 tot 3, 60 procent in maand 4 tot 6, daarna degressief. Het hoogste loonplafond is €4.182 bruto per maand, dus maximaal ongeveer €2.718 bruto per maand in de eerste drie maanden (bron: vakblad, RVA-bedrag nakijken).",
+    "Verlenging (bevestigd, RVA): voor een opleiding gestart na 1 januari 2026 verlengt alleen een voltijdse beroepsopleiding van minstens 3 maanden onder overeenkomst met VDAB het recht, met maximaal 12 maanden en niet later dan 30 juni 2030. Gewone studies (graduaat, bachelor) verlengen de duur niet.",
+    "Gevolg: een studie van twee of drie jaar moet binnen de 24 maanden passen of gecombineerd worden met werk. Start een lange opleiding dus vroeg, of kies eerst een VDAB-beroepsopleiding die het recht verlengt.",
     "Inschrijven bij VDAB binnen 8 dagen na het einde van de opzegtermijn. Uitbetalingsinstelling: ACV.",
-    "Vrijstelling voor studies: minstens 20 uur per week overdag, minstens 27 nieuwe studiepunten. Een avondopleiding geeft geen vrijstelling maar mag wel, met melding aan VDAB."
+    "Vrijstelling voor studies: minstens 20 uur per week overdag, minstens 27 nieuwe studiepunten, passend in je traject naar werk. Een avondopleiding geeft geen vrijstelling maar mag wel, met melding aan VDAB."
   ],
   "acv": [
     "ACV-CSC METEA is de centrale voor metaal en metaalbouw.",
@@ -119,7 +120,7 @@
     "Beroepsverkennende stage: maximaal 30 dagen bij een werkgever met behoud van uitkering. Ideaal om een museumatelier of restauratiebedrijf van binnen te zien.",
     "IBO: 4 tot 26 weken opleiding op de werkvloer met aanwervingsengagement. Niet mogelijk na zelf opzeggen.",
     "Werkervaringsstage: tot 6 maanden met een premie van €200 per maand plus vervoer.",
-    "OKOT: graduaat of bachelor voor een knelpuntberoep met behoud van uitkering en betaald inschrijvingsgeld (educatieve opleidingen, bouwkundig tekenen, te bevestigen).",
+    "OKOT: graduaat of bachelor voor een knelpuntberoep met behoud van uitkering en betaald inschrijvingsgeld. Bevestigd voor het graduaat bouwkundig tekenen; het educatief graduaat secundair onderwijs wordt als OKOT aangeboden (onder meer Erasmushogeschool). Wie na 2025 start, valt wel onder de beperking van 24 maanden.",
     "Knelpuntopleidingen zijn gratis met terugbetaling van vervoer.",
     "Loopbaancheques vragen zeven jaar werkervaring: nog niet. Als werkzoekende krijg je gratis loopbaanoriëntatie."
   ],
@@ -128,10 +129,7 @@
     "Statuut: arbeider of bediende (zie loonfiche). De pagina gaat uit van arbeider (PC 111). Als bediende: gewaarborgd loon een volledige maand aan 100 procent, vakantiegeld en vertrekvakantiegeld door de werkgever, eindejaarspremie volgens PC 200 of 209. De opzegtermijnen zijn dezelfde.",
     "Exacte anciënniteit en dus de rij in de opzegtabel (startdatum, leerovereenkomst).",
     "Eindejaarspremie PC 111 provincie Antwerpen bij ontslagname versus ontslag.",
-    "Loonplafond werkloosheid 2026 en het bedrag van de uitkering voor Remi.",
-    "Verlenging van de 24 maanden bij een opleiding gestart na 1 januari 2026 (exacte regel).",
-    "Staat lasser op de knelpuntberoepenlijst 2026.",
-    "OKOT-lijst 2026-2027: educatief graduaat secundair onderwijs, graduaat bouwkundig tekenen.",
+    "OKOT: of het educatief graduaat ook in Antwerpen (AP, KdG) als OKOT loopt, en of een OKOT meetelt als beroepsopleiding voor de verlenging met 12 maanden.",
     "Premies herscholing via het ziekenfonds in 2026.",
     "Of sollicitatieverlof ook geldt bij opzeg door de werknemer."
   ]

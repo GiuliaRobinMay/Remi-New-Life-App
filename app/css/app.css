@@ -25,12 +25,13 @@ a:hover { color: var(--brand-violet-deep); }
 
 /* Inhoud */
 .content--wide { max-width: none; }
+.content, .peek__body { overflow-wrap: anywhere; }
 .intro > * + * { margin-top: 4px; }
 .card--pad { padding: 20px; }
 .card--pad > * + * { margin-top: 10px; }
 .callout__head { display: flex; align-items: center; gap: 10px; }
-.grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-.grid-cards--wide { grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); }
+.grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); gap: 16px; }
+.grid-cards--wide { grid-template-columns: repeat(auto-fill, minmax(min(360px, 100%), 1fr)); }
 .grid-cards > * + *, .two-col > * + * { margin-top: 0; }
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .kpi { padding: 20px; }

@@ -1,4 +1,4 @@
-// Gegenereerd door scripts/build-data.mjs op 2026-09-27T11:19:56.302Z. Niet met de hand bewerken: pas data/*.json aan en draai npm run build:data.
+// Gegenereerd door scripts/build-data.mjs op 2026-09-27T11:23:22.122Z. Niet met de hand bewerken: pas data/*.json aan en draai npm run build:data.
 export const seed = {
  "competenties": {
   "inleiding": "Deze scan is voor jou, niet voor een werkgever: hij helpt je zien waar je sterk staat en voor welke competenties je al een goed voorbeeld hebt. Lees per competentie de vier gedragsindicatoren en geef jezelf een score van 1 tot 5, eerlijk en zonder je met anderen te vergelijken. Schrijf daarna één concreet voorbeeld volgens STARR: situatie, taak, actie, resultaat en reflectie. Het voorbeeld dat al klaarstaat is een aanzet op basis van je eigen loopbaan; vervang alles tussen vierkante haakjes door wat echt gebeurde, of schrijf een ander voorbeeld.",
@@ -2433,7 +2433,7 @@ export const seed = {
    "duur": "90 studiepunten, 1,5 jaar voltijds of 2 tot 3 jaar avond en werkplekleren",
    "formaat": "Avond, gecombineerd",
    "kost": "Ongeveer €1.240 per 60 studiepunten (te verifiëren)",
-   "financiering": "OKOT met behoud van uitkering (te bevestigen bij VDAB); LIO-baan: betaald deeltijds lesgeven tijdens de opleiding",
+   "financiering": "Aangeboden als OKOT (onder meer Erasmushogeschool Brussel); voor AP en KdG navragen bij VDAB. LIO-baan: betaald deeltijds lesgeven tijdens de opleiding. Verlengt de 24 maanden niet.",
    "knelpunt": "Leraar secundair onderwijs is knelpunt",
    "okot": true,
    "spoor": "onderwijs",
@@ -2449,7 +2449,7 @@ export const seed = {
    "duur": "120 studiepunten, 2 jaar",
    "formaat": "Dag, met avond- of werktraject (te verifiëren)",
    "kost": "Ongeveer €1.240 per jaar",
-   "financiering": "OKOT vermoedelijk (te bevestigen)",
+   "financiering": "OKOT bevestigd (VDAB-opleiding O-AMI-134150): inschrijvingsgeld betaald, uitkering behouden; valt wel onder de beperking van 24 maanden.",
    "knelpunt": "Bouwkundig tekenaar is knelpunt",
    "okot": true,
    "spoor": "reserve",
@@ -2465,12 +2465,12 @@ export const seed = {
    "duur": "3 jaar bachelor plus 1 tot 2 jaar master",
    "formaat": "Voltijds overdag; werkstudent moeilijk in atelieropleiding",
    "kost": "Ongeveer €1.240 per jaar",
-   "financiering": "Niet OKOT. Via VDAB-vrijstelling voor voltijdse studies (wachttijd te bevestigen), via herscholing ziekenfonds, of via progressieve werkhervatting",
+   "financiering": "Niet OKOT. Vrijstelling voor voltijdse studies mogelijk als VDAB oordeelt dat ze in je traject passen, maar studies verlengen de uitkering niet. Realistisch via deeltijds werk, het medische spoor of eerst een jaar werken.",
    "knelpunt": "Niet",
    "okot": false,
    "spoor": "erfgoed",
    "fit": 5,
-   "toelichting": "De echte restauratorroute; specialisaties glas, keramiek, hout, metaal, steen, textiel, papier. Toelating: een bron zegt open met diploma secundair, een andere noemt een toelatingsproef. Rechtstreeks navragen. Zelfde campus als de Academie; studiepunten interieurvormgeving mogelijk als vrijstelling.",
+   "toelichting": "De echte restauratorroute; specialisaties glas, keramiek, hout, metaal, steen, textiel, papier. Toelating bevestigd: iedereen met een diploma secundair kan inschrijven, geen toelatingsproef vermeld. Zelfde campus als de Academie; studiepunten van de academie mogelijk als vrijstelling. Past niet volledig binnen 24 maanden uitkering.",
    "url": "https://www.uantwerpen.be/nl/studeren/aanbod/alle-opleidingen/conservatie-restauratie/bachelor/",
    "status": "langere termijn"
   },
@@ -2541,17 +2541,17 @@ export const seed = {
   {
    "id": "informatiebeheer",
    "naam": "Graduaat Informatiebeheer: bibliotheek en archief",
-   "instelling": "Te bevestigen (AP, Erasmushogeschool, Artevelde)",
+   "instelling": "Arteveldehogeschool Gent (minstens 2 jaar, ook eenjarige versie) en Erasmushogeschool Brussel (les dinsdag tot donderdag, namiddag en avond). Niet in Antwerpen.",
    "duur": "120 studiepunten, 2 jaar",
-   "formaat": "Vaak avond of afstand",
+   "formaat": "Namiddag en avond (EhB) of dag (Artevelde); avondlessen tellen niet voor de vrijstelling",
    "kost": "Ongeveer €1.240 per jaar",
    "financiering": "Vermoedelijk niet OKOT",
    "knelpunt": "Niet",
    "okot": false,
    "spoor": "geschiedenis",
    "fit": 3,
-   "toelichting": "Opent archief- en depotwerk. Onderzoek 9 loopt.",
-   "url": "https://www.onderwijskiezer.be/",
+   "toelichting": "Opent archief- en depotwerk op niveau B (FelixArchief, ADVN, Letterenhuis, Rijksarchief). Combineerbaar met werk dankzij de namiddag- en avondlessen.",
+   "url": "https://www.arteveldehogeschool.be/nl/opleidingen/graduaat/informatiebeheer-bibliotheek-en-archief",
    "status": "verkennen"
   },
   {
@@ -2593,12 +2593,12 @@ export const seed = {
    "duur": "3 tot 12 maanden",
    "formaat": "Dag, gratis",
    "kost": "Gratis met behoud van uitkering",
-   "financiering": "VDAB; verlengt het uitkeringsrecht bij minstens 3 maanden voltijds",
+   "financiering": "VDAB, gratis. Bevestigd: een voltijdse VDAB-beroepsopleiding van minstens 3 maanden verlengt het uitkeringsrecht met maximaal 12 maanden (tot uiterlijk 30 juni 2030).",
    "knelpunt": "Ja",
    "okot": false,
    "spoor": "reserve",
-   "fit": 4,
-   "toelichting": "Snelle, gefinancierde route naar minder fysiek werk. Vereist inschrijving als werkzoekende.",
+   "fit": 5,
+   "toelichting": "Snelle, gefinancierde route naar minder fysiek werk, en de enige soort opleiding die de uitkering verlengt. Vereist inschrijving als werkzoekende.",
    "url": "https://www.vdab.be/vindeenopleiding",
    "status": "kandidaat"
   }
@@ -3029,10 +3029,11 @@ export const seed = {
   "werkloosheid2026": [
    "Toelaatbaarheid: 312 arbeidsdagen in de laatste 36 maanden, ongeacht leeftijd. Remi voldoet ruim.",
    "Duur: 12 maanden plus 1 maand per 4 extra maanden loopbaan, maximum 24 maanden. Met vijf jaar werk zit je aan het maximum.",
-   "Bedrag: 65 procent van het begrensde brutoloon in maand 1 tot 3, 60 procent in maand 4 tot 6, daarna degressief. Loonplafond te verifiëren (€3.571 of €4.182 per maand naargelang de bron).",
-   "Een voltijdse VDAB-erkende beroepsopleiding van minstens 3 maanden, gestart na 1 januari 2026, verlengt het recht met maximaal 12 maanden.",
+   "Bedrag: 65 procent van het begrensde brutoloon in maand 1 tot 3, 60 procent in maand 4 tot 6, daarna degressief. Het hoogste loonplafond is €4.182 bruto per maand, dus maximaal ongeveer €2.718 bruto per maand in de eerste drie maanden (bron: vakblad, RVA-bedrag nakijken).",
+   "Verlenging (bevestigd, RVA): voor een opleiding gestart na 1 januari 2026 verlengt alleen een voltijdse beroepsopleiding van minstens 3 maanden onder overeenkomst met VDAB het recht, met maximaal 12 maanden en niet later dan 30 juni 2030. Gewone studies (graduaat, bachelor) verlengen de duur niet.",
+   "Gevolg: een studie van twee of drie jaar moet binnen de 24 maanden passen of gecombineerd worden met werk. Start een lange opleiding dus vroeg, of kies eerst een VDAB-beroepsopleiding die het recht verlengt.",
    "Inschrijven bij VDAB binnen 8 dagen na het einde van de opzegtermijn. Uitbetalingsinstelling: ACV.",
-   "Vrijstelling voor studies: minstens 20 uur per week overdag, minstens 27 nieuwe studiepunten. Een avondopleiding geeft geen vrijstelling maar mag wel, met melding aan VDAB."
+   "Vrijstelling voor studies: minstens 20 uur per week overdag, minstens 27 nieuwe studiepunten, passend in je traject naar werk. Een avondopleiding geeft geen vrijstelling maar mag wel, met melding aan VDAB."
   ],
   "acv": [
    "ACV-CSC METEA is de centrale voor metaal en metaalbouw.",
@@ -3044,7 +3045,7 @@ export const seed = {
    "Beroepsverkennende stage: maximaal 30 dagen bij een werkgever met behoud van uitkering. Ideaal om een museumatelier of restauratiebedrijf van binnen te zien.",
    "IBO: 4 tot 26 weken opleiding op de werkvloer met aanwervingsengagement. Niet mogelijk na zelf opzeggen.",
    "Werkervaringsstage: tot 6 maanden met een premie van €200 per maand plus vervoer.",
-   "OKOT: graduaat of bachelor voor een knelpuntberoep met behoud van uitkering en betaald inschrijvingsgeld (educatieve opleidingen, bouwkundig tekenen, te bevestigen).",
+   "OKOT: graduaat of bachelor voor een knelpuntberoep met behoud van uitkering en betaald inschrijvingsgeld. Bevestigd voor het graduaat bouwkundig tekenen; het educatief graduaat secundair onderwijs wordt als OKOT aangeboden (onder meer Erasmushogeschool). Wie na 2025 start, valt wel onder de beperking van 24 maanden.",
    "Knelpuntopleidingen zijn gratis met terugbetaling van vervoer.",
    "Loopbaancheques vragen zeven jaar werkervaring: nog niet. Als werkzoekende krijg je gratis loopbaanoriëntatie."
   ],
@@ -3053,10 +3054,7 @@ export const seed = {
    "Statuut: arbeider of bediende (zie loonfiche). De pagina gaat uit van arbeider (PC 111). Als bediende: gewaarborgd loon een volledige maand aan 100 procent, vakantiegeld en vertrekvakantiegeld door de werkgever, eindejaarspremie volgens PC 200 of 209. De opzegtermijnen zijn dezelfde.",
    "Exacte anciënniteit en dus de rij in de opzegtabel (startdatum, leerovereenkomst).",
    "Eindejaarspremie PC 111 provincie Antwerpen bij ontslagname versus ontslag.",
-   "Loonplafond werkloosheid 2026 en het bedrag van de uitkering voor Remi.",
-   "Verlenging van de 24 maanden bij een opleiding gestart na 1 januari 2026 (exacte regel).",
-   "Staat lasser op de knelpuntberoepenlijst 2026.",
-   "OKOT-lijst 2026-2027: educatief graduaat secundair onderwijs, graduaat bouwkundig tekenen.",
+   "OKOT: of het educatief graduaat ook in Antwerpen (AP, KdG) als OKOT loopt, en of een OKOT meetelt als beroepsopleiding voor de verlenging met 12 maanden.",
    "Premies herscholing via het ziekenfonds in 2026.",
    "Of sollicitatieverlof ook geldt bij opzeg door de werknemer."
   ]
@@ -3157,7 +3155,7 @@ export const seed = {
    "id": "s10",
    "groep": "VDAB",
    "titel": "Loopbaangesprek met een VDAB-bemiddelaar aanvragen",
-   "wat": "Al in het najaar, zodra het ontslag vaststaat. Schriftelijk navragen: vrijstelling voor studies (welke opleidingen, wachttijd), OKOT-lijst 2026-2027 (educatief graduaat secundair onderwijs, graduaat bouwkundig tekenen), verlenging van de 24 maanden bij een opleiding, beroepsverkennende stage, IBO.",
+   "wat": "Al in het najaar, zodra het ontslag vaststaat. Vraag schriftelijk: (1) welke voltijdse VDAB-beroepsopleidingen van minstens 3 maanden passen (tekenaar CAD/BIM, podiumtechniek, lasinspectie), want alleen die verlengen de uitkering, met maximaal 12 maanden; (2) of het educatief graduaat secundair onderwijs in Antwerpen als OKOT loopt; (3) of een vrijstelling voor Conservatie-Restauratie kan; (4) beroepsverkennende stage en IBO. Onthoud: gewone studies verlengen de 24 maanden niet meer.",
    "wie": "Remi (Giulia bereidt de vragen voor)",
    "deadline": "2026-11-15",
    "status": "open",
@@ -3177,10 +3175,10 @@ export const seed = {
    "id": "s12",
    "groep": "VDAB",
    "titel": "Knelpuntberoepenlijst 2026 nakijken",
-   "wat": "Open de pdf Knelpuntberoepen2026 en zoek op lasser, podiumtechnicus, leerkracht secundair onderwijs, bouwkundig tekenaar. Dit bepaalt welke opleidingen gratis zijn en het uitkeringsrecht verlengen.",
+   "wat": "Nagekeken op 27 september 2026: lasser staat op de lijst (VDAB-fiche Manueel lasser: knelpuntberoep); het graduaat bouwkundig tekenen is erkend als OKOT. Zie research/10.",
    "wie": "Giulia",
    "deadline": "2026-10-11",
-   "status": "open",
+   "status": "klaar",
    "bron": "vdab"
   },
   {
@@ -3367,9 +3365,19 @@ export const seed = {
    "id": "s31",
    "groep": "Opleiding",
    "titel": "Beslissing over het opleidingstraject",
-   "wat": "Kies uiterlijk in juni 2027 tussen: educatief graduaat (lesgeven, OKOT), graduaat Bouwkundig tekenen (OKOT), Conservatie-Restauratie (langer, via ziekenfonds of deeltijds werk), Se-n-Se of RITCS Podiumtechnieken.",
+   "wat": "Kies uiterlijk in juni 2027. Let op de 24 maanden: een VDAB-beroepsopleiding van minstens 3 maanden verlengt ze, een graduaat of bachelor niet. Opties: VDAB-opleiding (tekenaar, podiumtechniek), educatief graduaat (lesgeven, OKOT), graduaat bouwkundig tekenen (OKOT), Conservatie-Restauratie (langer; via deeltijds werk of het medische spoor).",
    "wie": "Remi en Giulia",
    "deadline": "2027-06-30",
+   "status": "open",
+   "bron": "opleiding"
+  },
+  {
+   "id": "s32",
+   "groep": "Opleiding",
+   "titel": "Erkenning metaaldetectorist aanvragen (optioneel)",
+   "wat": "Gratis, via het e-loket van Onroerend Erfgoed met je eID en een uittreksel uit het strafregister. Binnen 90 dagen krijg je een legitimatiebewijs. Een kleine plus voor werk in archeologie en vondstverwerking.",
+   "wie": "Remi",
+   "deadline": "",
    "status": "open",
    "bron": "opleiding"
   }
@@ -3662,7 +3670,7 @@ export const seed = {
     "Onroerend Erfgoed depot",
     "Intergemeentelijke erfgoeddiensten"
    ],
-   "vereisten": "Veldtechnicus meestal zonder master; bachelor Archeologie (UGent, KU Leuven, VUB) staat open met diploma secundair.",
+   "vereisten": "Veldtechnicus meestal zonder master; bachelor Archeologie (UGent, KU Leuven, VUB) staat open met diploma secundair. Erkenning metaaldetectorist (bevestigd): 18 jaar, geen erfgoedveroordeling in 5 jaar, aanvraag via het e-loket met eID en uittreksel strafregister, legitimatiebewijs binnen 90 dagen.",
    "knelpunt": "Niet",
    "loon": "Te verifiëren",
    "fit": 4,
@@ -3921,6 +3929,324 @@ export const seed = {
    "status": "laag"
   }
  ],
+ "voorbeelden": {
+  "inleiding": "Hier vind je voorbeelden van hoe mensen zichzelf beschrijven op een cv, op LinkedIn en in een gesprek. Het zijn voorbeelden om van te leren, geen teksten om over te nemen: de sterkste versie gebruikt je eigen woorden en je eigen feiten. Vervang alles tussen vierkante haakjes door wat echt gebeurde, en schrap wat niet klopt.",
+  "profielen": [
+   {
+    "id": "restauratie",
+    "doel": "Restauratie en monumentenzorg",
+    "stijl": "ik-vorm",
+    "tekst": "Sinds 2021 teken en maak ik maatwerk in plaatmateriaal, eerst als technisch tekenaar en plooi- en lasoperator, nu als verantwoordelijke van het atelier. Ik ben opgeleid in halfautomaat- en elektrodelassen en volg avondonderwijs aan de Academie in Antwerpen, eerst meubel en interieur, nu interieurvormgeving. Voor Willy Van de Perre bouwde ik een fotoarchief op, en daar leerde ik ordenen, beschrijven en zorgvuldig omgaan met wat niet te vervangen is. In restauratie wil ik die combinatie inzetten: begrijpen hoe iets gemaakt is, het nauwkeurig documenteren en pas dan ingrijpen, met respect voor [type erfgoed, bijvoorbeeld historisch metaalwerk of interieurerfgoed].",
+    "waarom": "Het verbindt je drie sporen, metaal, academie en archief, met wat restauratie vraagt: eerst begrijpen en documenteren, dan pas handelen."
+   },
+   {
+    "id": "museumtechniek",
+    "doel": "Museumtechniek en tentoonstellingsbouw",
+    "stijl": "zonder onderwerp",
+    "tekst": "Technisch tekenaar en verantwoordelijke atelier in de metaalbewerking, sinds 2021 actief in maatwerk in plaatmateriaal. Tekent werkstukken uit in [CAD-programma], plooit op de kantbank, last halfautomaat en elektrode en stuurt [aantal] collega's aan. Ontwerpt en bouwt daarnaast meubels in metaal en hout, samen met [naam broer], en volgt avondonderwijs interieurvormgeving aan de Academie in Antwerpen. Brengt technische precisie en gevoel voor ruimte en vorm samen, precies wat sokkels, vitrines en tentoonstellingsopbouw vragen.",
+    "waarom": "Het noemt de concrete technieken die een museumatelier zoekt en koppelt ze aan de objecten die daar gemaakt worden, zoals sokkels en vitrines."
+   },
+   {
+    "id": "decoratelier",
+    "doel": "Decoratelier theater of opera",
+    "stijl": "ik-vorm",
+    "tekst": "Ik teken, plooi en las maatwerk in plaatmateriaal en stuur sinds [jaar] het atelier aan waar ik in 2021 begon. Ik ben het gewend om een ontwerp om te zetten in een tekening, een plooivolgorde en een stuk dat past. Naast mijn werk bouw ik meubels in metaal en hout en volg ik avondonderwijs aan de Academie in Antwerpen, waar ik na meubel en interieur en grafiek nu interieurvormgeving volg. In een decoratelier wil ik die mix van techniek en vormgeving inzetten, in een ploeg die samen naar een première toewerkt.",
+    "waarom": "Het laat zien dat je van ontwerp naar afgewerkt stuk kunt gaan en dat je naast metaal ook hout en vormgeving meebrengt, wat een decoratelier nodig heeft."
+   },
+   {
+    "id": "archief",
+    "doel": "Archief en collectiezorg",
+    "stijl": "ik-vorm",
+    "tekst": "In 2017 en 2018 bouwde ik een fotoarchief op voor Willy Van de Perre: [aantal] beelden ordenen, digitaliseren en beschrijven zodat ze terug te vinden zijn. Sinds 2021 ben ik technisch tekenaar en nu verantwoordelijke atelier bij een bedrijf in maatwerk in plaatmateriaal, waar ik elk werkstuk op maat en afwerking controleer voor het vertrekt. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen, waar ik ook een jaar grafiek volgde. In archief- of collectiezorg wil ik die zorg voor ordening en detail inzetten voor stukken die bewaard moeten blijven.",
+    "waarom": "Het opent met je meest relevante ervaring voor dit werkveld, ook al is die niet de recentste, en toont met één concreet detail hoe zorgvuldig je werkt."
+   },
+   {
+    "id": "instructeur",
+    "doel": "Instructeur of praktijkleraar",
+    "stijl": "zonder onderwerp",
+    "tekst": "Technisch tekenaar en verantwoordelijke atelier met ervaring in plooien op de kantbank, halfautomaat- en elektrodelassen en werkvoorbereiding, sinds 2021 in maatwerk in plaatmateriaal. Stuurt [aantal] collega's aan en [werkt nieuwe collega's in op de kantbank en aan de lastafel]. Kent het vak van tekening tot afgewerkt stuk en kan uitleggen waarom een bewerking in een bepaalde volgorde gebeurt. Volgt zelf al enkele jaren avondonderwijs aan de Academie in Antwerpen en weet daardoor hoe het is om naast het werk te leren. Wil het vak doorgeven aan [cursisten, leerlingen in duaal leren of werkzoekenden].",
+    "waarom": "Het koppelt je vakkennis aan het overdragen ervan en gebruikt je eigen ervaring als avondstudent als troef om cursisten te begrijpen."
+   },
+   {
+    "id": "tekenaar-erfgoed",
+    "doel": "Technisch tekenaar in een erfgoed- of architectenbureau",
+    "stijl": "ik-vorm",
+    "tekst": "Ik ben technisch tekenaar in de plaatbewerking: sinds 2021 teken ik maatwerk uit in [CAD-programma] en maak ik het klaar voor productie. Als verantwoordelijke atelier zie ik elke dag hoe een tekening in de werkplaats wordt uitgevoerd, en die kennis neem ik mee naar het tekenwerk: ik teken wat maakbaar is. Aan de Academie in Antwerpen volgde ik drie jaar meubel en interieur en volg ik nu interieurvormgeving, in avondonderwijs. In een erfgoed- of architectenbureau wil ik [opmetingen, detailtekeningen of uitvoeringstekeningen] maken met oog voor het bestaande gebouw.",
+    "waarom": "Het maakt van je ervaring in de werkplaats een troef voor tekenwerk: een tekenaar die de uitvoering kent, maakt minder fouten op papier."
+   }
+  ],
+  "anderen": [
+   {
+    "wie": "Fictief voorbeeld: een lasser uit de staalbouw die na tien jaar decorbouwer werd in een theaterwerkplaats.",
+    "tekst": "Tien jaar lang laste ik stalen constructies voor loodsen en bruggen, waar alles op de millimeter moest kloppen. In de decorwerkplaats bouw ik nu frames voor decors die elke avond opgebouwd en afgebroken worden, en die dus sterk en licht tegelijk moeten zijn. Ik vertaal de schetsen van de decorontwerper naar iets wat veilig op een scène staat. Uit de staalbouw bracht ik het rekenen aan belasting mee; hier leerde ik snel schakelen als een ontwerp de dag voor de première nog verandert.",
+    "watWerkt": "Hij noemt wat hij meebracht en wat hij bijleerde, zodat de overstap logisch klinkt in plaats van toevallig."
+   },
+   {
+    "wie": "Fictief voorbeeld: een technisch tekenaar uit een studiebureau die restauratiemedewerker werd in een atelier voor historisch schrijnwerk.",
+    "tekst": "Acht jaar tekende ik technische installaties voor kantoorgebouwen in AutoCAD. Via een avondopleiding leerde ik oude houten ramen en deuren herstellen, en sinds twee jaar werk ik in een restauratieatelier voor historisch schrijnwerk. Ik meet elk raam op, teken de profielen en de schade uit en stel een behandelvoorstel op voor er iets vervangen wordt. Omdat tekenen mijn eerste vak was, maak ik in het atelier de opmetingen en de documentatie waarmee de architect en de erfgoedconsulent verder kunnen.",
+    "watWerkt": "Ze laat zien hoe een oude vaardigheid, tekenen, in het nieuwe werk een eigen en herkenbare plaats krijgt."
+   },
+   {
+    "wie": "Fictief voorbeeld: een schrijnwerker uit de interieurbouw die museumtechnicus werd.",
+    "tekst": "Ik was twaalf jaar schrijnwerker in de interieurbouw, van keukens tot winkelinrichting. Nu bouw ik als museumtechnicus sokkels, vitrines en wanden voor tijdelijke tentoonstellingen, en help ik kunstwerken installeren onder begeleiding van de registrar. Ik ben gewend om met plannen te werken en op tijd op te leveren, en ik heb geleerd dat in een museum het object altijd voorgaat op het tempo. Wat ik bijleerde: klimaat, lichtsterkte en welke materialen niet in een vitrine mogen.",
+    "watWerkt": "Hij toont dat hij de regels van het nieuwe werkveld kent, zoals klimaat en veilige materialen, en niet alleen zijn oude vak meebrengt."
+   },
+   {
+    "wie": "Fictief voorbeeld: een onderhoudsmonteur uit de haven die instructeur werd in een opleidingscentrum voor technische beroepen.",
+    "tekst": "Vijftien jaar onderhield ik pompen en kleppen in de haven, meestal in ploegen van drie of vier. Ik merkte dat ik het graag deed als er een nieuwe collega bij kwam, en de ploegbaas vroeg mij daar steeds vaker voor. Nu geef ik les aan werkzoekenden die monteur willen worden, met korte uitleg en veel oefenen aan echte installaties. Ik weet uit ervaring waar beginners vastlopen, en daar bouw ik mijn lessen rond op.",
+    "watWerkt": "Hij bewijst zijn talent voor lesgeven met een gewoonte uit zijn vorige job, in plaats van te zeggen dat hij graag met mensen werkt."
+   },
+   {
+    "wie": "Fictief voorbeeld: een archiefmedewerker in een stadsarchief die vroeger boekbinder was.",
+    "tekst": "Ik ben opgeleid als boekbinder en werkte zes jaar in een binderij voor bibliotheken. Sinds vier jaar werk ik in een stadsarchief, waar ik registers en kaarten inventariseer, verpak en klaarmaak voor digitalisering. Omdat ik weet hoe een boek gemaakt is, zie ik snel welke band nog een scan verdraagt en welke eerst naar de restaurator moet. Ik werk graag lang aan één reeks, en elke week stem ik af met de collega's van de leeszaal zodat bezoekers weten wat beschikbaar is.",
+    "watWerkt": "Ze maakt duidelijk wat haar ambacht toevoegt aan het archief, met één precies voorbeeld dat een collega zonder die achtergrond niet zou zien."
+   }
+  ],
+  "zinnen": [
+   {
+    "thema": "Nauwkeurigheid",
+    "sterk": [
+     "Ik controleer elk plooistuk op maat en haaksheid voor het naar het lassen gaat.",
+     "Bij het uittekenen in [CAD-programma] reken ik de uitslag en de plooivolgorde na voor er iets gesneden wordt.",
+     "In het fotoarchief voor Willy Van de Perre beschreef ik elk beeld volgens [een vast systeem, bijvoorbeeld jaar, plaats en onderwerp], zodat [aantal] foto's terug te vinden zijn."
+    ],
+    "cliche": [
+     "Ik ben zeer nauwkeurig en heb oog voor detail.",
+     "Ik ben een perfectionist."
+    ]
+   },
+   {
+    "thema": "Samenwerken",
+    "sterk": [
+     "Met mijn broer ontwerp en bouw ik meubels: [hij neemt ... voor zijn rekening, ik ...], en over het ontwerp beslissen we samen.",
+     "Wanneer een stuk in het atelier niet past zoals getekend, zoek ik met de collega aan de machine naar de oorzaak voor we iets aanpassen.",
+     "Ik werk het liefst in een kleine ploeg waarin de afspraken duidelijk zijn en iedereen elkaar iets durft te vragen."
+    ],
+    "cliche": [
+     "Ik ben een echte teamplayer.",
+     "Ik kan met iedereen overweg."
+    ]
+   },
+   {
+    "thema": "Leren",
+    "sterk": [
+     "Naast mijn job volg ik sinds [jaar] avondonderwijs aan de Academie in Antwerpen: drie jaar meubel en interieur, een jaar grafiek en nu interieurvormgeving.",
+     "Ik begon in 2021 als tekenaar en plooi- en lasoperator en groeide door tot verantwoordelijke van het atelier.",
+     "Rond 2020 volgde ik een lasopleiding halfautomaat en elektrode, en die technieken gebruik ik sindsdien in mijn job."
+    ],
+    "cliche": [
+     "Ik ben leergierig.",
+     "Ik sta open voor nieuwe uitdagingen."
+    ]
+   },
+   {
+    "thema": "Een ploeg aansturen",
+    "sterk": [
+     "Als verantwoordelijke atelier maak ik de planning voor [aantal] collega's en verdeel ik het werk volgens wat ieder het best kan.",
+     "Bij een nieuw of moeilijk stuk overloop ik de tekening eerst met de collega die het zal maken.",
+     "Als iets misloopt, bespreek ik dat apart met de betrokken collega en spreken we af hoe we het de volgende keer aanpakken."
+    ],
+    "cliche": [
+     "Ik ben een geboren leider.",
+     "Ik kan mensen goed motiveren."
+    ]
+   },
+   {
+    "thema": "Creativiteit",
+    "sterk": [
+     "Voor [meubelstuk] ontwierp ik [een onderstel of verbinding] in plaatstaal die [wat het oplost, bijvoorbeeld het meubel demonteerbaar maakt].",
+     "In het fietsatelier maakte ik [voorbeeld van een fiets of onderdeel op maat] toen er geen standaardoplossing bestond.",
+     "Aan de Academie leerde ik in meubel en interieur en in grafiek om van een idee naar een uitgewerkt ontwerp te gaan."
+    ],
+    "cliche": [
+     "Ik ben heel creatief en denk out of the box.",
+     "Ik zit vol ideeën."
+    ]
+   },
+   {
+    "thema": "Betrouwbaarheid",
+    "sterk": [
+     "Ik werk sinds 2021 bij dezelfde werkgever en kreeg er in [jaar] de verantwoordelijkheid over het atelier.",
+     "Als een leverdatum in gevaar komt, laat ik dat weten zodra ik het zie, niet op de dag zelf.",
+     "Afspraken met klanten of collega's zet ik meteen [in de planning], zodat niets afhangt van mijn geheugen."
+    ],
+    "cliche": [
+     "Ik ben honderd procent betrouwbaar.",
+     "U kunt altijd op mij rekenen."
+    ]
+   },
+   {
+    "thema": "Rust onder druk",
+    "sterk": [
+     "Wanneer een dringende bestelling de planning omgooit, herschik ik eerst het werk in het atelier en overleg ik daarna met [de zaakvoerder] wat kan schuiven.",
+     "Bij een fout in een reeks stop ik eerst en zoek ik de oorzaak, in plaats van sneller verder te werken.",
+     "Als er veel tegelijk gebeurt, blijf ik kalm, en collega's komen dan vaak bij mij met [welke vragen]."
+    ],
+    "cliche": [
+     "Ik ben stressbestendig.",
+     "Ik werk het best onder druk."
+    ]
+   },
+   {
+    "thema": "Motivatie voor erfgoed",
+    "sterk": [
+     "Wat mij aantrekt in erfgoed, is dat ik eerst moet begrijpen hoe iets gemaakt is voor ik eraan mag werken.",
+     "Door het fotoarchief voor Willy Van de Perre zag ik wat het betekent om iets zorgvuldig te bewaren en te beschrijven voor wie na mij komt.",
+     "[Gebouw, object of museum] raakte mij omdat [reden], en aan dat soort werk wil ik bijdragen."
+    ],
+    "cliche": [
+     "Ik heb altijd al een passie gehad voor geschiedenis.",
+     "Werken in erfgoed is mijn droom."
+    ]
+   },
+   {
+    "thema": "Uitleggen aan anderen",
+    "sterk": [
+     "Wanneer een nieuwe collega op de kantbank begint, doe ik een stuk voor en laat ik het daarna zelf doen terwijl ik meekijk.",
+     "Ik leg een tekening het liefst uit met het stuk zelf erbij, niet alleen op het scherm.",
+     "Omdat ik zelf avondonderwijs volg, weet ik hoe het is om na een werkdag iets nieuws te leren, en daar houd ik rekening mee."
+    ],
+    "cliche": [
+     "Ik ben een geboren leraar.",
+     "Ik werk graag met mensen."
+    ]
+   }
+  ],
+  "pitch": [
+   {
+    "duur": "30 seconden",
+    "context": "Op een opendeurdag, een jobbeurs of wanneer je spontaan binnenloopt in een atelier en iemand vraagt wie je bent.",
+    "tekst": "Ik ben Remi. Sinds 2021 werk ik in een bedrijf voor maatwerk in plaatmateriaal, eerst als tekenaar en plooi- en lasoperator, nu als verantwoordelijke van het atelier. 's Avonds volg ik interieurvormgeving aan de Academie in Antwerpen, en met mijn broer bouw ik meubels in metaal en hout. Ik zoek werk waarin ik dat vakmanschap kan inzetten voor erfgoed of een museumatelier, en ik ben benieuwd hoe uw atelier werkt."
+   },
+   {
+    "duur": "60 seconden",
+    "context": "Bij de openingsvraag van een sollicitatiegesprek voor restauratie, een museumatelier of een decoratelier.",
+    "tekst": "Ik ben technisch tekenaar en verantwoordelijke atelier bij een bedrijf in maatwerk in plaatmateriaal. Ik begon daar in 2021 als tekenaar en plooi- en lasoperator, dus ik ken het werk van tekening tot afgewerkt stuk. Sinds [jaar] stuur ik het atelier aan: ik maak de planning, verdeel het werk over [aantal] collega's en controleer de kwaliteit. Daarvoor bouwde ik een fotoarchief op voor Willy Van de Perre en werkte ik in een creatief fietsatelier. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen: drie jaar meubel en interieur, een jaar grafiek en nu interieurvormgeving. Samen met mijn broer ontwerp en bouw ik meubels in metaal en hout. Wat al die dingen verbindt, is dat ik graag begrijp hoe iets gemaakt is en het dan zorgvuldig maak of bewaar. Daarom solliciteer ik bij [organisatie]: hier kan ik dat vakmanschap inzetten voor [de collectie, de gebouwen of de decors]."
+   },
+   {
+    "duur": "60 seconden",
+    "context": "In een gesprek voor een job als instructeur, praktijkleraar of begeleider in een opleidingscentrum.",
+    "tekst": "Ik werk sinds 2021 in de plaatbewerking. Ik begon als technisch tekenaar en plooi- en lasoperator en ben nu verantwoordelijke van het atelier, waar ik [aantal] collega's aanstuur. Ik volgde zelf een lasopleiding halfautomaat en elektrode, dus ik weet hoe het is om het vak van nul te leren. In het atelier haal ik de meeste voldoening uit de momenten waarop ik [een nieuwe collega iets aanleer of een moeilijk stuk uitleg]. Daarnaast volg ik al enkele jaren avondonderwijs aan de Academie in Antwerpen, dus ik ken ook de kant van de cursist die na een werkdag nog iets nieuws leert. Die twee wil ik graag samenbrengen: het vak doorgeven, met geduld en met oog voor waar iemand vastloopt. Bij [organisatie] spreekt mij vooral [doelgroep of werking] aan."
+   }
+  ],
+  "sterkteZwakte": [
+   {
+    "vraag": "Wat is uw grootste sterkte?",
+    "antwoord": "Mijn grootste sterkte is zorgvuldigheid, gecombineerd met technisch inzicht. Als tekenaar en verantwoordelijke atelier ken ik een werkstuk van de tekening tot de afwerking, en ik controleer elk stuk voor het vertrekt. Een voorbeeld is [maatwerkstuk], waar [wat er moeilijk was] en waar ik [wat ik deed]. Het stuk werd [resultaat, bijvoorbeeld in één keer goedgekeurd door de klant].",
+    "waarom": "Je noemt één sterkte, koppelt die aan je echte functie en bewijst ze met een voorbeeld in plaats van met extra bijvoeglijke naamwoorden."
+   },
+   {
+    "vraag": "Wat is een werkpunt voor u?",
+    "antwoord": "Ik ben van nature bescheiden en neem in een groep niet snel als eerste het woord. Vroeger betekende dat soms dat ik een goed idee of een bedenking voor mij hield. Nu bereid ik mij voor: voor een overleg noteer ik de twee of drie punten die ik zeker wil aankaarten, en als iets mij dwarszit, spreek ik de persoon nadien apart aan. Als verantwoordelijke atelier heb ik ook geleerd om duidelijk te zeggen wat er moet gebeuren, bijvoorbeeld [bij de planning of bij een kwaliteitsprobleem].",
+    "waarom": "Het is een eerlijk werkpunt dat bij je testresultaten past (lage assertiviteit), en je eindigt bij wat je eraan doet in plaats van bij het probleem."
+   },
+   {
+    "vraag": "Hoe zouden uw collega's u omschrijven?",
+    "antwoord": "Ik denk dat ze zouden zeggen dat ik rustig blijf en dat ze met een vraag over een tekening of een moeilijk stuk bij mij terechtkunnen. [Een collega zei eens: ...] Ze weten ook dat wat ik afspreek, gebeurt. Misschien zouden ze erbij zeggen dat ik niet de luidste ben in de refter.",
+    "waarom": "Je laat anderen spreken, verwijst naar een echte uitspraak als je die hebt, en eindigt met een lichte, eerlijke noot die past bij wie je bent."
+   },
+   {
+    "vraag": "U hebt nog geen ervaring in [erfgoed, een museum of een theater]. Waarom zouden wij u kiezen?",
+    "antwoord": "Het klopt dat ik nog niet in [sector] gewerkt heb. Wat ik wel meebreng, is vijf jaar ervaring met tekenen, plooien en lassen van maatwerk, en de gewoonte om een stuk eerst te begrijpen voor ik eraan begin. Het fotoarchief voor Willy Van de Perre leerde mij zorgvuldig ordenen en beschrijven, en aan de Academie werk ik al jaren met ontwerp en materiaal. Wat ik nog moet leren over [bijvoorbeeld conservatienormen of het werken met collectiestukken], leer ik graag van ervaren collega's, en ik ben gewend om naast mijn werk te studeren.",
+    "waarom": "Je erkent het gat zonder je te verontschuldigen, zet er drie concrete troeven tegenover en toont dat je weet wat je nog moet leren."
+   }
+  ],
+  "starr": [
+   {
+    "titel": "Het atelier aansturen",
+    "situatie": "In [jaar] werd ik verantwoordelijke van het atelier bij [naam bedrijf], een bedrijf in maatwerk in plaatmateriaal. Tot dan was ik zelf tekenaar en plooi- en lasoperator, naast de collega's die ik voortaan zou aansturen.",
+    "taak": "Ik moest de planning en de werkverdeling voor [aantal] collega's op mij nemen en ervoor zorgen dat het werk op tijd en in orde vertrok, zonder dat de sfeer in de ploeg eronder leed.",
+    "actie": "Ik [voerde een vaste werkwijze in, bijvoorbeeld een planningsbord of een korte ochtendbespreking]. Ik verdeelde het werk volgens wat ieder het best kan en overliep bij moeilijke stukken de tekening samen met de collega die het zou maken. Wanneer iets misliep, besprak ik dat apart met de betrokken collega in plaats van in de groep.",
+    "resultaat": "[Meetbaar resultaat, bijvoorbeeld minder herwerk, leveringen op tijd of een nieuwe collega die sneller zelfstandig werkte.]",
+    "reflectie": "Ik leerde dat ik geen luide leidinggevende moet zijn om een ploeg goed te laten draaien: duidelijke afspraken en rust werken voor mij beter. Wat ik nog verder wil oefenen, is sneller zeggen wanneer iets niet goed gaat.",
+    "competenties": [
+     "leidinggeven-aan-een-klein-team",
+     "plannen-en-organiseren",
+     "communiceren",
+     "verantwoordelijkheid-nemen"
+    ]
+   },
+   {
+    "titel": "Een moeilijk maatwerkstuk in plaat",
+    "situatie": "[Klant of type opdracht] vroeg [welk stuk, bijvoorbeeld een behuizing of een trap in plaatstaal] met [wat het moeilijk maakte, bijvoorbeeld krappe maattoleranties, een ongewone plooivolgorde of dun materiaal dat vervormt bij het lassen].",
+    "taak": "Ik moest het stuk uittekenen, de productie voorbereiden en het [zelf of met een collega] maken, zodat het in één keer zou passen bij [de klant of de montage].",
+    "actie": "Ik tekende het stuk uit in [CAD-programma] en rekende de uitslag en de plooivolgorde na voor ik iets liet snijden. Ik maakte eerst [een proefstuk of één deel] om de plooien te controleren en paste de tekening aan waar nodig. Bij het lassen werkte ik [in korte stukken of met hechtpunten] om vervorming te beperken en controleerde ik de maten na elke stap.",
+    "resultaat": "[Resultaat, bijvoorbeeld: het stuk paste bij de eerste montage, de klant bestelde opnieuw, of de werkwijze werd de standaard voor gelijkaardige stukken.]",
+    "reflectie": "Een stuk vooraf goed doordenken spaart meer tijd dan het achteraf rechtzetten. Die gewoonte om eerst te begrijpen en pas dan te maken, neem ik mee naar [restauratie, een museumatelier of een decoratelier].",
+    "competenties": [
+     "technisch-inzicht",
+     "ruimtelijk-inzicht",
+     "nauwkeurigheid",
+     "probleemoplossend-denken",
+     "kwaliteitsgericht-werken"
+    ]
+   },
+   {
+    "titel": "Het fotoarchief voor Willy Van de Perre",
+    "situatie": "In 2017 en 2018 bouwde ik een fotoarchief op voor Willy Van de Perre. Er waren [aantal] beelden, [in welke vorm, bijvoorbeeld negatieven, afdrukken of digitale bestanden], en [hoe ze bij de start bewaard werden].",
+    "taak": "Ik moest de beelden ordenen, digitaliseren en beschrijven, zodat ze terug te vinden en bruikbaar zouden zijn [voor wie of waarvoor].",
+    "actie": "Ik bedacht [een ordening, bijvoorbeeld per jaar en onderwerp] en hield die consequent aan. Ik [scande of fotografeerde] de beelden met [toestel of software] en gaf elk beeld een beschrijving met [welke gegevens, bijvoorbeeld datum, plaats en onderwerp]. Kwetsbare stukken behandelde ik [hoe, bijvoorbeeld met handschoenen of in aangepaste hoezen].",
+    "resultaat": "[Resultaat, bijvoorbeeld een doorzoekbaar archief van zoveel beelden, gebruikt voor een publicatie, een tentoonstelling of verder beheer.]",
+    "reflectie": "Ik ontdekte dat ik rustig en lang aan één systeem kan werken als ik weet waarvoor het dient. Dat is de houding die archief- en collectiewerk vraagt.",
+    "competenties": [
+     "documenteren-en-registreren",
+     "nauwkeurigheid",
+     "respect-voor-het-object",
+     "zelfstandig-werken"
+    ]
+   },
+   {
+    "titel": "Het creatief fietsatelier",
+    "situatie": "In 2019 werkte ik in [naam atelier], een creatief fietsatelier in Antwerpen, waar fietsen gebouwd, hersteld en op maat gemaakt werden.",
+    "taak": "[Een klant of het atelier] vroeg [welke opdracht, bijvoorbeeld een fiets op maat of een herstelling waarvoor geen standaardonderdeel bestond].",
+    "actie": "Ik zocht uit [hoe het probleem in elkaar zat] en maakte [welke oplossing, bijvoorbeeld een aangepast onderdeel, een ombouw of een frame]. Ik overlegde met [de klant of de collega's] over [wat], en testte het resultaat voor de fiets terugging.",
+    "resultaat": "[Resultaat: wat de klant ermee kon, of wat het atelier eraan had.]",
+    "reflectie": "In het fietsatelier leerde ik oplossingen zoeken wanneer er geen standaardantwoord bestaat, en een klant uitleggen wat mogelijk is. Beide komen terug in maatwerk en in restauratie.",
+    "competenties": [
+     "probleemoplossend-denken",
+     "creativiteit-en-vormgeving",
+     "dienstverlening",
+     "technisch-inzicht"
+    ]
+   },
+   {
+    "titel": "Een meubel met mijn broer",
+    "situatie": "Samen met mijn broer ontwerp en bouw ik meubels in metaal en hout. Voor [voor wie, bijvoorbeeld onszelf, een familielid of een klant] maakten we [welk meubel].",
+    "taak": "We moesten een ontwerp maken dat [functie en eisen, bijvoorbeeld stevig, demonteerbaar of binnen een bepaalde maat] was, en het met onze eigen middelen bouwen.",
+    "actie": "Ik [maakte de technische tekening of deed het metaalwerk], mijn broer [deed ...]. We bespraken het ontwerp stap voor stap en [pasten het aan toen bleek dat ...]. Ik gebruikte wat ik aan de Academie leerde over [proportie, materiaal of afwerking].",
+    "resultaat": "[Resultaat: het meubel, waar het nu staat, wat anderen ervan vonden, een foto voor het portfolio.]",
+    "reflectie": "Samenwerken met iemand die ik goed ken, leerde mij dat een verschil van mening over een ontwerp meestal een beter stuk oplevert, als we het uitpraten. Dit meubel is ook een van de stukken voor mijn portfolio.",
+    "competenties": [
+     "creativiteit-en-vormgeving",
+     "samenwerken",
+     "ruimtelijk-inzicht",
+     "resultaatgericht-werken"
+    ]
+   }
+  ],
+  "vertrekreden": [
+   {
+    "tekst": "Na vijf jaar maatwerk in plaatmateriaal ken ik het vak van tekening tot afgewerkt stuk. Ik wil die ervaring nu inzetten voor werk dat blijft, zoals erfgoed, collecties of een museumatelier. Mijn opleiding interieurvormgeving aan de Academie sluit daar ook beter bij aan.",
+    "wanneer": "Als je solliciteert in erfgoed, restauratie of een museum en de vraag komt waarom je van job verandert."
+   },
+   {
+    "tekst": "Als verantwoordelijke atelier merk ik dat [een nieuwe collega iets aanleren] mij het meeste voldoening geeft. Dat wil ik nu een grotere plaats geven in mijn job, als [instructeur of praktijkleraar].",
+    "wanneer": "Bij een sollicitatie voor lesgeven, instructie of begeleiding in een opleidingscentrum of een school."
+   },
+   {
+    "tekst": "Ik heb in mijn huidige job veel geleerd en ben er doorgegroeid van tekenaar tot verantwoordelijke atelier. Ik zoek nu een omgeving waarin mijn technische achtergrond en mijn opleiding aan de Academie samenkomen, en waar ik op lange termijn kan blijven leren.",
+    "wanneer": "Als kort, algemeen antwoord, bijvoorbeeld wanneer iemand doorvraagt over je huidige werkgever. Spreek nooit negatief over je huidige job en houd het bij wat je zoekt, niet bij wat je achterlaat."
+   }
+  ],
+  "linkedin": {
+   "headlines": [
+    "Technisch tekenaar en verantwoordelijke atelier | maatwerk in plaatmateriaal | student interieurvormgeving | Antwerpen",
+    "Tekenen, plooien, lassen en meubelbouw in metaal en hout | op weg naar erfgoed en museumateliers",
+    "Van tekening tot afgewerkt stuk | plaatbewerking, meubelontwerp en archief | interesse in restauratie en collectiezorg"
+   ],
+   "info": "Sinds 2021 werk ik bij een bedrijf in maatwerk in plaatmateriaal, waar ik begon als technisch tekenaar en plooi- en lasoperator en nu verantwoordelijke atelier ben. Ik teken werkstukken uit in [CAD-programma], bereid de productie voor en stuur [aantal] collega's aan. Daarvoor bouwde ik een fotoarchief op voor Willy Van de Perre en werkte ik in een creatief fietsatelier in Antwerpen. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen, nu interieurvormgeving na meubel en interieur en grafiek, en ontwerp en bouw ik meubels met mijn broer. Ik zoek werk waarin vakmanschap, zorgvuldigheid en betekenis samenkomen: restauratie en erfgoed, museum- en theaterateliers, archief en collecties, of het vak doorgeven. Een selectie van mijn werk staat op [link naar portfolio]."
+  }
+ },
  "vragenlijst": {
   "inleiding": "Deze vragen zijn voor jou, Remi. Niets hoeft in één keer. Korte antwoorden zijn goed; een voorbeeld is beter dan een omschrijving. Alles wat je invult blijft op dit toestel tot je het exporteert of kopieert voor Giulia. Uit je antwoorden komen het cv, de brieven, de tekst voor VDAB en de keuzes voor de volgende stap.",
   "secties": [
@@ -4733,5 +5059,5 @@ export const seed = {
   "vdab-profiel.md": "# VDAB-profiel (Mijn Loopbaan): tekst voor Remi\n\nDoel: gevonden worden door werkgevers en bemiddelaars die zoeken op erfgoed, restauratie, museum, decor, atelier, instructeur en lassen. VDAB-profielen zijn kort en zakelijk. Zet het profiel op zichtbaar voor werkgevers en vul de rubrieken hieronder letterlijk over.\n\n## Titel (functietitel bovenaan)\nTechnisch tekenaar en atelierverantwoordelijke plaatbewerking, lasser en meubelmaker, op zoek naar werk in erfgoed, restauratie, archief en cultuurateliers\n\n## Korte voorstelling (maximaal 5 zinnen)\nTechnisch tekenaar en verantwoordelijke atelier bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal, sinds 2021. Ik teken werkstukken uit, bereid het werk voor, plooi en las zelf (halfautomaat en elektrode) en stuur het atelier aan. Daarvoor werkte ik in een creatief fietsatelier en bouwde ik een fotoarchief op; daarnaast volg ik interieurvormgeving aan de Academie in Antwerpen en bouw ik meubels. Ik zoek werk waarin vakmanschap en zorgvuldigheid ergens toe dienen: restauratie van historisch metaalwerk, museum- of theaterateliers, archief en collectiezorg, tentoonstellingsbouw, of het doorgeven van het vak. Ik werk het best in een klein team en ben beschikbaar vanaf [datum].\n\n## Gewenste functies (kies er tot vijf in de VDAB-lijst)\n- Technisch tekenaar of werkvoorbereider metaal en plaatbewerking\n- Decorbouwer, ateliermedewerker metaal of vitrinebouwer\n- Technisch medewerker museum, depot of tentoonstellingsbouw\n- Restauratiemedewerker metaal (monumentenzorg)\n- Instructeur of praktijkbegeleider lassen en metaal\n\n## Gewenste sectoren\nCultuur en erfgoed; bouw en restauratie; metaal; onderwijs en opleiding; sociale economie\n\n## Competenties (vinkjes en vrije tekst)\n- Technisch tekenen van maatwerk in plaatmateriaal ([CAD-programma])\n- Werkvoorbereiding, planning en aansturing van een atelier\n- Plooien op de kantbank, MIG/MAG-lassen (135) en elektrodelassen (111) [TIG bevestigen]\n- Plaatwerk: snijden, plooien, afwerken, kwaliteitscontrole\n- Opmeten en uittekenen op maat, montage\n- Meubelontwerp en -bouw in metaal en hout\n- Fietsbouw en -herstel\n- Archiveren en digitaliseren van beeldmateriaal\n- Veiligheid: VCA-basis [geldig tot]\n- Rijbewijs B [indien van toepassing]\n\n## Talen\nNederlands moedertaal; Engels goed; Frans [niveau]\n\n## Opleiding\n- Interieurvormgeving, avondonderwijs aan de Academie in Antwerpen, lopend [precieze opleiding bevestigen]\n- Meubel en interieur (drie jaar) en grafiek (een jaar), avondonderwijs aan de Academie in Antwerpen\n- Lasopleiding halfautomaat en elektrodelassen, [instelling], [jaar]\n- Diploma secundair onderwijs Wetenschappen-Wiskunde, Sint-Lutgardis, 2017\n\n## Werkervaring\n2021 tot heden: technisch tekenaar en verantwoordelijke atelier, [bedrijf], [gemeente]. Gestart als tekenaar en plooi- en lasoperator. Maatwerk in plaatmateriaal van tekening tot afwerking.\n2019: medewerker creatief fietsatelier, Antwerpen.\n2017 tot 2018: opbouw van een fotoarchief voor Willy Van de Perre.\n2017 tot 2018: [functie], Katoen Natie, Antwerpen.\n[jaar] tot heden: meubelmaker in eigen beheer, samen met mijn broer, Antwerpen.\n\n## Mobiliteit en beschikbaarheid\nAntwerpen en omgeving, bereikbaar met openbaar vervoer [en fiets/wagen]. Voltijds of deeltijds. Beschikbaar vanaf [datum]. Open voor een individuele beroepsopleiding (IBO) of een beroepsverkennende stage.\n\n## Trefwoorden om zeker in de vrije tekst te zetten\nerfgoed, restauratie, monumentenzorg, museum, depot, archief, decoratelier, decorbouw, tentoonstellingsbouw, atelier, technisch tekenaar, werkvoorbereider, plaatbewerking, plooien, kantbank, MIG/MAG, elektrodelassen, plannen lezen, meubelmaker, interieurvormgeving, instructeur lassen\n",
   "vragenlijst-remi.md": "# Vragenlijst voor Remi\n\nDeze vragen zijn voor jou, Remi. Niets hoeft in één keer. Korte antwoorden zijn goed; een voorbeeld is beter dan een omschrijving. Alles wat je invult blijft op dit toestel tot je het exporteert of kopieert voor Giulia. Uit je antwoorden komen het cv, de brieven, de tekst voor VDAB en de keuzes voor de volgende stap.\n\n## Praktisch, voor het cv\n\nFeiten die op een cv of in een dossier moeten kloppen.\n\n- Volledige naam, geboortedatum en geboorteplaats\n  \n\n- Adres, gsm-nummer en e-mailadres dat je voor sollicitaties wil gebruiken\n  \n\n- Rijbewijs (B, ja of nee) en hoe je je verplaatst: fiets, openbaar vervoer, auto. Tot hoeveel minuten pendelen is haalbaar?\n  \n\n- Talen en niveau: Nederlands, Frans, Engels, andere\n  \n\n- Naam van je huidige werkgever, gemeente, en de startdatum van je contract (staat op het contract of de eerste loonfiche)\n  \n\n- Wat staat er op je loonfiche: arbeider of bediende, en welk paritair comité (bijvoorbeeld 111, 200, 209)?  \n  (Dit bepaalt gewaarborgd loon, vakantiegeld en eindejaarspremie.)\n  \n\n- Je functietitel volgens het contract, en wat je vandaag echt doet (tekenen, plooien, lassen, atelier aansturen, hoeveel collega's)\n  \n\n- Welk tekenprogramma gebruik je (bijvoorbeeld SolidWorks, AutoCAD, Inventor, Tekla) en hoe goed?\n  \n\n- Welke lasprocessen beheers je: halfautomaat (MIG/MAG), elektrode, TIG? Welke certificaten heb je, met norm en geldigheid?\n  \n\n- Andere attesten: VCA, heftruck, hoogtewerker, EHBO, kantbank, andere\n  \n\n- Je opleidingen precies: secundair (richting, school, jaar), lasopleiding (waar, wanneer), academie (welke richtingen, welke jaren, getuigschrift of diploma)\n  \n\n- Katoen Natie: welke functie, welke afdeling, hoelang?\n  \n\n- Het creatief fietsatelier: naam, wat je daar maakte of herstelde, een voorbeeld\n  \n\n- Het fotoarchief voor Willy Van de Perre: wie is hij, hoeveel beelden, hoe heb je het aangepakt (ordenen, scannen, beschrijven, software)?\n  \n\n- Welke werkstukken bestaan er in foto's: meubels, constructies, fietsen, tekeningen? Waar staan die foto's?  \n  (Voor het portfolio: 6 tot 10 stukken met titel, jaar, materiaal, techniek.)\n  \n\n- Vanaf wanneer ben je beschikbaar, voltijds of deeltijds, en welke dagen of avonden zijn bezet door de academie?\n  \n\n- Wat is je huidige brutoloon per maand, en wat heb je netto minimaal nodig om rond te komen?  \n  (Dit is voor de keuze tussen uitkering, opleiding en werk, niet voor een cv.)\n  \n\n## Werk dat bij je past\n\nConcrete momenten zeggen meer dan eigenschappen.\n\n- Drie momenten op het werk waarop je dacht: dit is goed. Wat deed je precies?\n  \n\n- Drie momenten waarop het echt niet ging. Wat gebeurde er?\n  \n\n- Een project waar je trots op bent: wat, voor wie, wat was moeilijk, hoe heb je het opgelost?  \n  (Dit wordt een regel op het cv en een voorbeeld in het gesprek.)\n  \n\n- Nog een project, liefst iets helemaal anders\n  \n\n- Wat doe je het liefst in het atelier: tekenen, plooien, lassen, organiseren, uitleggen aan anderen? Zet ze in volgorde.\n  \n\n- Wat is fysiek het zwaarst, en waar voel je dat (rug, schouders, handen, ogen, ademhaling)?  \n  (Ook voor de huisarts.)\n  \n\n- Werk je liever alleen, met twee of drie, of in een grotere ploeg? Waarom?\n  \n\n- Liever een klein bedrijf, een grote organisatie, een overheid, een vzw? Wat trekt je aan en wat schrikt af?\n  \n\n- Wat zouden je collega's zeggen als iemand vraagt hoe het is om met jou te werken?\n  \n\n- Wat heb je nodig van een baas of ploegbaas om goed te werken? En wat verdraag je niet?\n  \n\n## Sterktes en werkpunten\n\nEerlijk en met een voorbeeld; dit is geen sollicitatiegesprek.\n\n- Drie dingen waar je goed in bent, telkens met een voorbeeld\n  \n\n- Drie dingen die je wil verbeteren of die je moeilijk vindt\n  \n\n- Waarvoor komen mensen bij jou om hulp?\n  \n\n- Hoe leer je het liefst: door te doen, te kijken, te lezen, uitleg te krijgen?\n  \n\n- Hoe reageer je als er druk of stress is? Wat helpt dan?\n  \n\n- Wanneer zeg je te weinig, en wanneer had je liever iets gezegd?  \n  (De tests zeggen dat je niet snel op de voorgrond treedt; dit is om te weten waar dat je iets kost.)\n  \n\n- Wat weet je over jezelf dat niet in een test staat?\n  \n\n## Passies en interesses\n\nWat je doet als niemand het vraagt.\n\n- Waar gaat je aandacht naartoe buiten het werk: maken, lezen, kijken, sporten, mensen, plekken?\n  \n\n- Welke gebouwen, objecten, musea of ateliers hebben je ooit geraakt, en waarom?\n  \n\n- Als geld geen rol speelde: wat zou je een jaar lang maken of leren?\n  \n\n- Van de sporen in de app (erfgoed en restauratie, culturele instellingen, lesgeven, sociaal en ecologisch, archief en archeologie): welke trekt het meest, welke het minst, en waarom?\n  \n\n- Welk werkveld in de Verkenning verraste je positief, en welk zou je meteen schrappen?\n  \n\n- Heb je ooit vrijwilligerswerk gedaan of iemand iets aangeleerd? Hoe was dat?\n  \n\n- Wat zou je op de academie het liefst verder doen: meubel, interieur, grafiek, iets anders?\n  \n\n## De overstap\n\nHier gaat het om keuzes voor de komende maanden.\n\n- Drie dingen die de volgende job zeker moet hebben\n  \n\n- Drie dingen die je in de volgende job wil vermijden\n  \n\n- Wil je opnieuw studeren? Zo ja: hoelang zou je dat volhouden (een jaar, twee, drie), overdag of in de avond, en wat trekt je: restauratie, tekenen, lesgeven, archief, iets anders?\n  \n\n- Hoe voel je je nu: energie van 1 tot 10, slaap, zin om dingen te doen? Wat helpt je herstellen?\n  \n\n- Hoeveel weken rust denk je nodig te hebben voor je ergens nieuw kunt beginnen?\n  \n\n- Wat wil je dat Giulia doet in dit traject, en wat wil je liever zelf doen?\n  \n\n- Wat houdt je tegen om iets te tekenen bij je werkgever, en wat zou je willen dat er in de plaats gebeurt?\n  \n\n## Voor het gesprek\n\nTwee zinnen die je paraat wil hebben.\n\n- Hoe zeg je in twee zinnen waarom je weggaat, zonder het over vermoeidheid of je werkgever te hebben?  \n  (Bijvoorbeeld: na vijf jaar plaatbewerking wil ik mijn vakmanschap inzetten voor werk dat blijft, zoals erfgoed of museumateliers.)\n  \n\n- Welke vraag zou jij aan een werkgever stellen om te weten of je er past?\n  \n\n- Wie kan als referentie dienen (een collega, een klant, een docent) en mag je die naam gebruiken?\n  \n"
  },
- "gebouwdOp": "2026-09-27T11:19:56.302Z"
+ "gebouwdOp": "2026-09-27T11:23:22.122Z"
 };

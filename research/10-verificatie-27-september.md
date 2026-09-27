@@ -1,0 +1,28 @@
+# Onderzoek 10: Verificatie van open punten (27 september 2026)
+
+Nagekeken via zoekresultaten van de officiële bronnen. Bevestigd betekent: de bronpagina zegt het zo in de zoekresultaten; de pagina zelf kon in deze omgeving niet geladen worden.
+
+## Bevestigd
+
+| Punt | Uitkomst | Bron |
+|---|---|---|
+| Lasser op de knelpuntberoepenlijst 2026 | Ja. De VDAB-beroepsfiche "Manueel lasser" draagt het label Knelpuntberoep. De lijst 2026 telt 227 knelpuntberoepen. | https://www.vdab.be/beroep/4a95fd9c-8dd5-4e5f-a7cf-4a836cd4691d/manueel-lasser ; https://www.vdab.be/sites/default/files/media/files/Knelpuntberoepen2026.pdf |
+| Verlenging van de uitkering door een opleiding | Voor een opleiding gestart na 1 januari 2026: alleen een voltijdse beroepsopleiding van minstens 3 maanden, onder een overeenkomst met VDAB, verlengt het recht, met maximaal 12 maanden na de einddatum en niet later dan 30 juni 2030. Andere opleidingen en studies verlengen de duur niet. Wie voor 1 januari 2026 startte met een knelpuntopleiding, behoudt de uitkering tot het einde, uiterlijk 30 juni 2030. | https://www.rva.be/burgers/volledige-werkloosheid/kunt-u-van-bepaalde-verplichtingen-vrijgesteld-worden/u-bent-een-uitkeringsgerechtigd-werkloze-en-u-wenst-studies-een-opleiding-of-een-stage-te-volgen |
+| OKOT en de beperking in de tijd | Wie zich tot eind 2025 inschreef voor 2025-2026 valt onder de overgangsregeling; voor wie later start, geldt de beperking in de tijd. | https://www.odisee.be/wat-met-je-werkloosheidsuitkering-als-je-een-okot-opleiding-volgt ; https://exploratio.odisee.be/studeren-als-werkzoekende-met-een-uitkering |
+| Vrijstelling voor studies | Minstens 4 weken, minstens 20 uur per week, overdag (niet op zaterdag, niet na 17 uur), in hoger onderwijs minstens 27 nieuwe studiepunten; de studie moet passen in je traject naar werk; ruime keuze in studies die voorbereiden op een knelpuntberoep. | https://www.vdab.be/opleidingen/gratis-en-voordelig-leren/geen-werk/erkend/vrijstelling ; https://www.rva.be/bladzijde/u-bent-een-uitkeringsgerechtigd-werkloze-uitkeringsaanvraag-vanaf-01.03.2026-en-u-wenst-studies-een-opleiding-of-een-stage-te-volgen |
+| Graduaat bouwkundig tekenen als OKOT | Ja, VDAB erkent het graduaat als OKOT (VDAB-opleiding "Graduaat bouwkundig tekenaar - 1ste jaar", O-AMI-134150). | https://www.vdab.be/vindeenopleiding/opleidingen/graduaat-bouwkundig-tekenen ; https://www.vdab.be/opleidingen/aanbod/O-AMI-134150/graduaat-bouwkundig-tekenaar-1ste-jaar |
+| Educatief graduaat secundair onderwijs als OKOT | Aangeboden als OKOT, onder meer op de Brusselse campus van de Erasmushogeschool, voor wie les wil geven in knelpuntvakken. Voor AP en KdG in Antwerpen: navragen bij VDAB. | https://www.erasmushogeschool.be/nl/opleidingskwalificerend-opleidingstraject-okot ; https://www.vdab.be/vindeenopleiding/opleidingen/educatief-graduaat-secundair-onderwijs |
+| Toelating Conservatie-Restauratie (UAntwerpen) | Iedereen met een diploma secundair onderwijs kan inschrijven; geen toelatingsproef vermeld. | https://www.uantwerpen.be/nl/studeren/aanbod/alle-opleidingen/conservatie-restauratie/bachelor/ |
+| Graduaat Informatiebeheer: bibliotheek en archief | Twee aanbieders in Vlaanderen: Arteveldehogeschool (Gent, minstens 2 jaar, ook een eenjarige versie) en Erasmushogeschool Brussel (les op dinsdag, woensdag en donderdag, namiddag en avond, 120 studiepunten). Geen aanbod in Antwerpen. | https://www.arteveldehogeschool.be/nl/opleidingen/graduaat/informatiebeheer-bibliotheek-en-archief ; https://www.erasmushogeschool.be/nl/opleidingen/graduaat-informatiebeheer |
+| Loonplafond werkloosheid 2026 | Het hoogste plafond steeg van €3.432,38 naar €4.182 bruto per maand; aan 65 procent in maand 1 tot 3 is dat maximaal ongeveer €2.718 bruto per maand. Eén bron (vakblad), RVA-bedrag nakijken. | https://blog.oeccbb.be/nl/article/werkloosheid-een-ingrijpende-hervorming-vanaf-2026-wat-moeten-accountants-en-belastingadviseurs-weten/26890 |
+| Erkenning metaaldetectorist | Minstens 18 jaar; geen veroordeling voor een erfgoedinbreuk in de laatste 5 jaar; basiskennis van de Code van Goede Praktijk; aanvraag via het e-loket met eID en een uittreksel uit het strafregister; legitimatiebewijs met QR-code binnen maximaal 90 dagen. | https://www.onroerenderfgoed.be/erkenningsvoorwaarden-metaaldetectorist ; https://www.onroerenderfgoed.be/een-erkenning-aanvragen-metaaldetectorist |
+
+## Nog niet bevestigd
+- Eindejaarspremie PC 111, provincie Antwerpen, bij ontslagname versus ontslag: de zoekresultaten geven alleen de algemene regel (pro rata, afhankelijk van de provinciale cao). Navragen bij ACV-CSC METEA.
+- Statuut arbeider of bediende, en dus welk paritair comité: staat op de loonfiche.
+- Of een OKOT als "beroepsopleiding onder overeenkomst met VDAB" telt voor de verlenging met 12 maanden: navragen bij VDAB.
+
+## Gevolgen voor de planning
+1. Een studie van twee tot drie jaar (graduaat, bachelor) verlengt de uitkering niet meer. Met 24 maanden recht vanaf ongeveer januari tot mei 2027 (na de opzegperiode) loopt de uitkering af rond eind 2028 tot voorjaar 2029. Een opleiding die in september 2027 start, moet dus binnen die periode passen of gecombineerd worden met werk.
+2. Een voltijdse VDAB-beroepsopleiding van minstens 3 maanden (bijvoorbeeld tekenaar CAD/BIM, lasinspectie, podiumtechniek) verlengt het recht wel, met maximaal 12 maanden. Dat pleit voor zo'n opleiding vroeg in de uitkeringsperiode.
+3. De restauratorroute (Conservatie-Restauratie, 3 plus 1 jaar) past niet volledig binnen een uitkering; haalbaar via deeltijds werk, het medische spoor of een jaar werken eerst.

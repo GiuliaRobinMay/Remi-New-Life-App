@@ -13,5 +13,6 @@ Negen werkdocumenten van 27 september 2026. Onderzoek 1 (arbeidsrecht) en 3 (job
 | 7 | 07-culturele-sector-rollen-en-opleidingen.md | Engels | Rollen, werkgevers en opleidingen in theater, opera, musea |
 | 8 | 08-sociaal-en-ecologisch-domein.md | Engels | Jongerenwerk, sociale economie, ecologisch en circulair, zorgateliers |
 | 9 | 09-archeologie-archief-objectrestauratie.md | Engels | Archeologie, archieven, objectrestauratie, collectiewerk |
+| 10 | 10-verificatie-27-september.md | Nederlands | Verificatie van open punten: knelpuntlijst, verlenging uitkering, OKOT, toelating, loonplafond, metaaldetectie |
 
 Openstaande vragen met de hoogste waarde staan onderaan onderzoek 1, 4, 5 en 9 en in data/rechten.json onder "teverifieren".

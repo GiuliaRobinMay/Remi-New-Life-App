@@ -54,6 +54,8 @@ export const icons = {
   print: '<path d="M4.5 5.5V2.5h7v3M3 5.5h10a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-1.5M3 11.5A1 1 0 0 1 2 10.5v-4a1 1 0 0 1 1-1M4.5 9.5h7v4h-7z"/>',
   clock: '<circle cx="8" cy="8" r="5.5"/><path d="M8 5v3.2l2 1.3"/>',
   leaf: '<path d="M3 13c0-6 4-9 10-10-1 6-4 10-10 10z"/><path d="M3 13c2-3 4-5 7-7"/>',
+  up: '<path d="M8 13V3M4 7l4-4 4 4"/>',
+  down: '<path d="M8 3v10M4 9l4 4 4-4"/>',
 };
 export function icon(name, size = 16) { return svg(icons[name] || icons.circle, size); }
 export function badge(text, variant) { return h('span', { class: 'badge' + (variant ? ` badge--${variant}` : '') }, text); }

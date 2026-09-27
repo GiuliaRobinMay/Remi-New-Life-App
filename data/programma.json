@@ -1,0 +1,18 @@
+{
+  "einddatum_contract":"2026-12-31",
+  "fasen":[
+    {"id":"f1","naam":"Fase 1: Beschermen en beslissen","periode":"28 september tot 31 oktober 2026","doel":"Rechten veiligstellen, gezondheid documenteren, uitstapscenario kiezen.","acties":["ACV-afspraak en huisarts","Startdatum en opzegtermijn vaststellen","Gesprek met de werkgever met ACV","Beslissing scenario A, B of C","Master-cv, portfolio en VDAB-profiel klaar","Hotlist prioriteren, jobalerts instellen"]},
+    {"id":"f2","naam":"Fase 2: Zaaien","periode":"1 november tot 31 december 2026","doel":"Spontane sollicitaties en contacten leggen terwijl er nog loon is, zonder te forceren.","acties":["Zes tot tien spontane sollicitaties naar prioriteit 1 (erfgoed, musea, decorateliers)","Twee netwerkmomenten (Dag van de Ambachten, Open restauratieatelier)","VDAB-loopbaangesprek en schriftelijke antwoorden over vrijstelling en OKOT","Sollicitatieverlof gebruiken voor bezoeken","C4 en einde contract correct afhandelen"]},
+    {"id":"f3","naam":"Fase 3: Herstellen","periode":"1 januari tot 28 februari 2027","doel":"Rust met inkomen (opzegvergoeding, uitkering of ziekte-uitkering). Eén trajectdag per week.","acties":["Inschrijving VDAB binnen 8 dagen","Uitkeringsdossier via ACV","Opvolging van verstuurde sollicitaties op de trajectdag","Eventueel korte certificaten (VCA, IPAF)","Infomomenten opleidingen noteren"]},
+    {"id":"f4","naam":"Fase 4: Proeven","periode":"1 maart tot 30 juni 2027","doel":"Van binnen kijken via beroepsverkennende stage, IBO of vrijwilligerswerk, en het opleidingstraject kiezen.","acties":["Beroepsverkennende stage bij een museumatelier, decoratelier of restauratiebedrijf","Gerichte sollicitaties op vacatures","Erfgoeddag 18 april en Antwerp Art Weekend 6 tot 9 mei","FARO basiscursus","Beslissing opleiding uiterlijk 30 juni"]},
+    {"id":"f5","naam":"Fase 5: Starten","periode":"vanaf september 2027","doel":"Eerste contract in de nieuwe richting, of start van de opleiding met behoud van inkomen.","acties":["Contract als technisch medewerker, decorbouwer of restauratiemedewerker, of OKOT-opleiding","Avondstudie verder","Conservatie-Restauratie opnieuw bekijken zodra de inkomensbasis er is"]}
+  ],
+  "ritme":"Eén trajectdag per week. Per spoor één actie per drie tot vier weken. Nooit meer dan twee sollicitaties tegelijk in voorbereiding.",
+  "sporen":[
+    {"id":"erfgoed","naam":"Erfgoed en restauratie","kleur":"orange","status":"hoofdspoor","toelichting":"Metaalrestauratie, monumentenzorg, restauratieaannemers, depotwerk. Past op alle vier de lenzen."},
+    {"id":"cultuur","naam":"Culturele instellingen","kleur":"violet","status":"hoofdspoor","toelichting":"Museumateliers, decorateliers, tentoonstellingsbouw, podiumtechniek, collectiezorg."},
+    {"id":"onderwijs","naam":"Deeltijds lesgeven","kleur":"green","status":"nu al testen","toelichting":"SYNTRA, CVO, VDAB-instructeur. Twee avonden per week naast een dagjob."},
+    {"id":"sociaal","naam":"Sociaal en ecologisch","kleur":"red","status":"verkennen","toelichting":"Jongerenwerk met ateliers, sociale economie, circulaire en ecologische organisaties, archieven en archeologie."},
+    {"id":"reserve","naam":"Reserve","kleur":"grey","status":"reserve","toelichting":"Lasinspectie, universiteitswerkplaatsen, tekenwerk, orthopedie, fietsbouw. Vangnet met inkomen en minder fysieke belasting."}
+  ]
+}

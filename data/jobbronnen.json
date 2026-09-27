@@ -1,0 +1,46 @@
+{
+  "zoektermen": ["lasser", "aluminium lasser", "TIG lasser", "decorbouwer", "podiumtechnicus", "technisch medewerker museum", "tentoonstellingsbouw", "art handler", "depotmedewerker", "restauratie", "erfgoed", "monumentenwacht", "instructeur lassen", "docent lassen", "praktijkleraar metaal", "meubelmaker", "constructiebankwerker"],
+  "bronnen": [
+    {"id":"vdab","naam":"VDAB, Vind een job","type":"primair","url":"https://www.vdab.be/vindeenjob","zoeklinks":[
+      {"label":"Lasser, provincie Antwerpen","url":"https://www.vdab.be/vindeenjob/jobs/lasser-antwerpen-provincie"},
+      {"label":"Aluminium lasser, provincie Antwerpen","url":"https://www.vdab.be/vindeenjob/jobs/aluminium-lasser?f=provincie:antwerpen-provincie"},
+      {"label":"Restauratie","url":"https://www.vdab.be/vindeenjob/jobs/restauratie"},
+      {"label":"Erfgoed","url":"https://www.vdab.be/vindeenjob/jobs/erfgoed"},
+      {"label":"Culturele sector","url":"https://www.vdab.be/vindeenjob/jobs/jobs-culturele-sector"},
+      {"label":"Cultuur","url":"https://www.vdab.be/vindeenjob/jobs/cultuur"},
+      {"label":"Museum","url":"https://www.vdab.be/vindeenjob/jobs/museum-antwerpen-provincie"},
+      {"label":"Decorbouwer","url":"https://www.vdab.be/vindeenjob/jobs/decorbouwer"},
+      {"label":"Podiumtechnicus","url":"https://www.vdab.be/vindeenjob/jobs/podiumtechnicus"},
+      {"label":"Onderwijs","url":"https://www.vdab.be/vindeenjob/jobs/onderwijs"},
+      {"label":"Werken voor Vlaanderen (spiegel)","url":"https://www.vdab.be/vindeenjob/jobs/werken-voor-vlaanderen-vacatures"},
+      {"label":"Stad Antwerpen (spiegel)","url":"https://www.vdab.be/vindeenjob/jobs/stad-antwerpen-medewerker"}
+    ],"api":"Open Services API, product Vacatures v3.2.2 (developer.vdab.be/openservices/product/756): gratis basisniveau, zoeken met filters, tot 2.000 oproepen per minuut.","opmerking":"Ook Mijn Loopbaan-profiel en jobs op maat per mail na inloggen. Serverzijde ophaalbaar."},
+    {"id":"cultuurjobs","naam":"Cultuurjobs.be","type":"cultuur","url":"https://www.cultuurjobs.be/","zoeklinks":[
+      {"label":"Antwerpen","url":"https://www.cultuurjobs.be/plaats/antwerpen/"},
+      {"label":"Productie","url":"https://www.cultuurjobs.be/categorie/productie/"},
+      {"label":"M HKA","url":"https://www.cultuurjobs.be/organisatie/m-hka/"},
+      {"label":"MAS","url":"https://www.cultuurjobs.be/organisatie/mas/"},
+      {"label":"Toneelhuis","url":"https://www.cultuurjobs.be/organisatie/toneelhuis/"},
+      {"label":"Opera Ballet Vlaanderen","url":"https://www.cultuurjobs.be/organisatie/opera-ballet-vlaanderen/"}
+    ],"api":"WordPress; /feed/ vermoedelijk beschikbaar (te verifiëren).","opmerking":"Beste enkele cultuurbron."},
+    {"id":"faro","naam":"FARO, vacatures cultureel erfgoed","type":"erfgoed","url":"https://faro.be/vacatures","zoeklinks":[],"api":"","opmerking":"Hoofdbron voor het erfgoedspoor."},
+    {"id":"herita","naam":"Herita","type":"erfgoed","url":"https://www.herita.be/nl/vacatures","zoeklinks":[],"api":"","opmerking":"Personeel en vrijwilligers; Open Monumentendag."},
+    {"id":"publiq","naam":"publiq vacaturebank","type":"cultuur","url":"https://www.publiq.be/nl/vacaturebank","zoeklinks":[],"api":"","opmerking":"Cultuur en vrije tijd; deSingel en KASK plaatsen hier."},
+    {"id":"sociare","naam":"Sociare vacatures","type":"sociaal","url":"https://www.sociare.be/nl/vacatures","zoeklinks":[],"api":"","opmerking":"Socioculturele sector; verwijst ook naar socius.be, 11.be, jeugdwerkjobs.be."},
+    {"id":"stepp","naam":"STEPP (podiumtechniek)","type":"cultuur","url":"https://www.stepp.be/","zoeklinks":[],"api":"","opmerking":"Netwerk en vacatures voor podiumtechnici. Te verifiëren."},
+    {"id":"werkenvoorvlaanderen","naam":"Werken voor Vlaanderen","type":"overheid","url":"https://www.werkenvoorvlaanderen.be/","zoeklinks":[],"api":"","opmerking":"Onroerend Erfgoed, Het Facilitair Bedrijf, KMSKA, M HKA. Alleen via online formulier in het Nederlands."},
+    {"id":"werkenvoor","naam":"werkenvoor.be (federaal)","type":"overheid","url":"https://werkenvoor.be/nl/jobs","zoeklinks":[],"api":"","opmerking":"KIK-IRPA, FOD Justitie (penitentiair technisch assistent), Rijksarchief, Bozar."},
+    {"id":"stad-antwerpen","naam":"Jobs bij Stad Antwerpen","type":"overheid","url":"https://job.antwerpen.be/","zoeklinks":[{"label":"Alle vacatures","url":"https://job.antwerpen.be/go/Alle-vacatures/4474301/"}],"api":"","opmerking":"Musea en Erfgoed, technische diensten, Kunstenlab. Werfreserve blijft een jaar geldig."},
+    {"id":"provincie-antwerpen","naam":"Jobs bij Provincie Antwerpen","type":"overheid","url":"https://jobs.provincieantwerpen.be/","zoeklinks":[],"api":"","opmerking":"Monumentenwacht Antwerpen, CVO Vitant, provinciale domeinen. Jobalert mogelijk."},
+    {"id":"stedelijk-onderwijs","naam":"Jobs Stedelijk Onderwijs Antwerpen","type":"onderwijs","url":"https://jobs.stedelijkonderwijs.be/","zoeklinks":[{"label":"Jobalert","url":"https://stedelijkonderwijs.career.emply.com/job-alert"}],"api":"","opmerking":"CVO Encora en secundaire scholen van de stad."},
+    {"id":"onderwijsvacatures","naam":"Onderwijsvacatures.be","type":"onderwijs","url":"https://www.onderwijsvacatures.be/","zoeklinks":[],"api":"","opmerking":"Ook onderwijswerkt.be en g-o.be/jobs."},
+    {"id":"syntra-ab","naam":"SYNTRA AB jobs","type":"onderwijs","url":"https://jobs.syntra-ab.be/","zoeklinks":[{"label":"Docent worden","url":"https://www.syntra-ab.be/docenten"}],"api":"","opmerking":"Spontane sollicitatie als docent altijd mogelijk."},
+    {"id":"flandersdc","naam":"Flanders DC vacatures","type":"design","url":"https://www.flandersdc.be/nl/vacatures/overzicht","zoeklinks":[],"api":"","opmerking":"Design en mode."},
+    {"id":"stepstone","naam":"StepStone","type":"algemeen","url":"https://www.stepstone.be/vacatures/lasser","zoeklinks":[],"api":"","opmerking":"Secundair. Botbescherming waarschijnlijk."},
+    {"id":"indeed","naam":"Indeed","type":"algemeen","url":"https://be.indeed.com/q-lasser-l-antwerpen-vacatures.html","zoeklinks":[{"label":"Restauratie","url":"https://be.indeed.com/Restauratie-jobs"}],"api":"","opmerking":"Alleen als doorkliklink; niet automatisch ophalen."},
+    {"id":"linkedin","naam":"LinkedIn Jobs","type":"algemeen","url":"https://be.linkedin.com/jobs/lasser-jobs","zoeklinks":[],"api":"","opmerking":"Netwerken; niet automatisch ophalen."},
+    {"id":"randstad","naam":"Randstad (interim, vangnet)","type":"interim","url":"https://www.randstad.be/werknemers/jobs/s-metaal/s2-lassers/r-lasser/re-antwerpen/ci-antwerpen/","zoeklinks":[],"api":"","opmerking":"Vangnet voor inkomen; serverzijde ophaalbaar."},
+    {"id":"accent","naam":"Accent Jobs (interim, vangnet)","type":"interim","url":"https://accentjobs.be/nl/vacatures/antwerpen/techniek-productie/lasser","zoeklinks":[],"api":"","opmerking":"Vangnet."},
+    {"id":"jooble","naam":"Jooble (aggregator)","type":"algemeen","url":"https://be.jooble.org/vacatures-lasser/Antwerpen","zoeklinks":[{"label":"Kunst en cultuur Antwerpen","url":"https://be.jooble.org/vacatures-kunst-cultuur/Antwerpen"}],"api":"","opmerking":"Dekking."}
+  ]
+}

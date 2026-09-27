@@ -1,0 +1,91 @@
+{
+  "naam": "Remi",
+  "leeftijd": 20,
+  "woonplaats": "Antwerpen",
+  "situatie": "Woont alleen in Antwerpen. Heeft een inkomen nodig.",
+  "beroep": "Lasser, vijf jaar ervaring met aluminium en metaalconstructies op maat voor gebouwen en horeca",
+  "vaardigheden": [
+    "Plannen lezen en technische tekeningen interpreteren",
+    "TIG- en MIG-lassen, staal en aluminium",
+    "Aluminiumconstructie en plaatwerk op maat",
+    "Metaal snijden, plooien en afwerken",
+    "Meubels ontwerpen en bouwen (met zijn broer)",
+    "Ruimtelijk en structureel denken, sterk in wiskunde"
+  ],
+  "studies": "Bachelor Interieurvormgeving aan de Koninklijke Academie voor Schone Kunsten Antwerpen (KASKA, AP Hogeschool), lopend",
+  "talen": [
+    { "taal": "Nederlands", "niveau": "moedertaal" },
+    { "taal": "Engels", "niveau": "functioneel" }
+  ],
+  "vakbond": "ACV (Algemeen Christelijk Vakverbond), sector metaal: ACV-CSC METEA",
+  "randvoorwaarden": [
+    "Wil kunnen blijven studeren naast het werk",
+    "Zoekt werk dat tegelijk moeilijk is en er echt toe doet",
+    "Werkt het best in kleine, vertrouwde teams binnen een stabiele organisatie",
+    "Het huidige werk is fysiek te zwaar om op lange termijn vol te houden",
+    "Heeft na 31 december 2026 een of twee maanden herstel nodig voor een goede start"
+  ],
+  "tests": {
+    "mbti": {
+      "type": "INFJ",
+      "toelichting": "Ziet patronen en richting voor anderen die zien (Ni), leest de emotionele temperatuur van een groep (Fe), zoekt logische samenhang (Ti), waardeert materiaal en ambacht (Se)."
+    },
+    "loopbaanankers": [
+      { "anker": "Zuivere uitdaging", "score": 83, "niveau": "zeer hoog", "rol": "dominant" },
+      { "anker": "Dienstbaarheid en toewijding aan een zaak", "score": 80, "niveau": "zeer hoog", "rol": "dominant" },
+      { "anker": "Levensstijl", "score": 70, "niveau": "hoog", "rol": "ondersteunend" },
+      { "anker": "Technische en functionele competentie", "score": 66, "niveau": "hoog", "rol": "ondersteunend" },
+      { "anker": "Zekerheid en stabiliteit", "score": 63, "niveau": "hoog", "rol": "ondersteunend" },
+      { "anker": "Ondernemende creativiteit", "score": 60, "niveau": "hoog", "rol": "ondersteunend" },
+      { "anker": "Algemeen management", "score": 43, "niveau": "gemiddeld", "rol": "geen trekkracht" },
+      { "anker": "Autonomie en onafhankelijkheid", "score": 40, "niveau": "gemiddeld", "rol": "geen trekkracht" }
+    ],
+    "bigfive": [
+      { "domein": "Neuroticisme", "niveau": "laag", "toelichting": "Uitzonderlijk kalm en onverstoorbaar. Enige nuance: Onmatigheid 14 (hoog)." },
+      { "domein": "Extraversie", "niveau": "laag", "toelichting": "Gereserveerd en rustig. Assertiviteit 7 en Spanningsbehoefte 7 zijn zeer laag." },
+      { "domein": "Openheid", "niveau": "hoog", "toelichting": "Verbeelding 16, Artistieke interesse 19, Intellect 18." },
+      { "domein": "Vriendelijkheid", "niveau": "hoog", "toelichting": "Vertrouwen 18, Moraliteit 18, Samenwerking 17, Altruïsme 16." },
+      { "domein": "Zorgvuldigheid", "niveau": "hoog", "toelichting": "Plichtsbesef 20 en Behoedzaamheid 20 zijn maximaal. Ordelijkheid 9 is laag." }
+    ],
+    "holland": {
+      "code": "ISA",
+      "scores": [
+        { "type": "Onderzoekend (Investigative)", "score": 23 },
+        { "type": "Sociaal (Social)", "score": 19 },
+        { "type": "Artistiek (Artistic)", "score": 17 },
+        { "type": "Realistisch (Realistic)", "score": 13 },
+        { "type": "Conventioneel (Conventional)", "score": 10 },
+        { "type": "Ondernemend (Enterprising)", "score": 7 }
+      ],
+      "max": 32
+    }
+  },
+  "synthese": "Remi bloeit op bij echt moeilijke problemen die ondubbelzinnig van belang zijn voor echte mensen, aangepakt via diep vakmanschap, vanuit een stabiele en gestructureerde omgeving die ruimte laat voor een volwaardig persoonlijk leven, met op lange termijn de mogelijkheid om iets eigen en zinvol op te bouwen. Hij werkt het best in kleine vertrouwde teams, met betekenis als kompas en intuïtie als motor.",
+  "herzieningen": [
+    {
+      "onderwerp": "Brandweer",
+      "status": "definitief niet",
+      "toelichting": "Op basis van de loopbaanankers leek brandweer een sterke match. De Big Five (zeer lage assertiviteit en spanningsbehoefte, maximale behoedzaamheid) en de Holland-code (onderzoekend, niet situationeel) wijzen ervan weg. Beslissing september 2026: deze piste is gesloten."
+    },
+    {
+      "onderwerp": "Zelfstandig ontwerper-maker",
+      "status": "geparkeerd, tien tot vijftien jaar",
+      "toelichting": "Vijf onafhankelijke signalen wijzen weg van het solo-ondernemerschap als volgende stap: Ondernemend 7, Assertiviteit 7, Autonomie 40 procent, Zekerheid 63 procent en de INFJ-afkeer van zelfpromotie."
+    },
+    {
+      "onderwerp": "Onderwijs",
+      "status": "nu al, deeltijds",
+      "toelichting": "Sociaal 19, Altruïsme 16, Plichtsbesef 20 en het dienstbaarheidsanker van 80 procent maken lesgeven een piste om nu al deeltijds te testen, niet pas op 35 of 40."
+    },
+    {
+      "onderwerp": "Erfgoed en restauratie",
+      "status": "hoofdspoor",
+      "toelichting": "Past op alle vier de lenzen: onderzoekend, dienstbaar aan cultureel erfgoed, esthetisch, behoedzaam en plichtsbewust, en institutioneel stabiel. Sinds september 2026 het eerste spoor."
+    },
+    {
+      "onderwerp": "Culturele instellingen",
+      "status": "hoofdspoor",
+      "toelichting": "Museumateliers, theaterwerkplaatsen en tentoonstellingsbouw combineren onderzoekend, artistiek, sociaal en realistisch werk met betekenis en stabiliteit."
+    }
+  ]
+}

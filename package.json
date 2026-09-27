@@ -1,0 +1,15 @@
+{
+  "name": "remi-nieuwe-start",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Private app for Remi and Giulia: job search, tailored applications, follow-up, rights and planning for the transition out of the current job.",
+  "type": "module",
+  "scripts": {
+    "build:data": "node scripts/build-data.mjs",
+    "serve": "node scripts/serve.mjs",
+    "start": "npm run build:data && npm run serve",
+    "pdf": "node scripts/render-pdf.mjs",
+    "screenshots": "node scripts/screenshots.mjs"
+  },
+  "engines": { "node": ">=20" }
+}

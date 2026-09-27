@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="nl-BE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cv Remi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400&family=Poppins:ital,wght@0,300;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+/* Documentidentiteit van de eerdere pdf's: Caladea voor koppen, Poppins voor tekst, koper als accent, cream band bovenaan. */
+:root { --ink:#1F1B17; --graphite:#3A3530; --warm:#7A726B; --copper:#B5503C; --copper-lt:#E8C8B8; --cream:#FAF6F0; --rule:#D9D2C8; }
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: #e9e5df; }
+body { font-family: "Poppins", system-ui, sans-serif; font-weight: 300; color: var(--ink); font-size: 10pt; line-height: 1.55; }
+.page { width: 210mm; min-height: 297mm; margin: 16px auto; background: #fff; position: relative; padding: 0 22mm 20mm; box-shadow: 0 10px 40px rgba(0,0,0,.12); }
+.band { background: var(--cream); height: 36mm; margin: 0 -22mm; padding: 12mm 22mm 0; position: relative; }
+.dot { position: absolute; top: 10mm; right: 14mm; width: 9px; height: 9px; border-radius: 50%; background: var(--copper); }
+h1 { font-family: "Caladea", Georgia, serif; font-weight: 700; font-size: 26pt; margin: 0; letter-spacing: -0.01em; }
+.sub { font-family: "Caladea", Georgia, serif; font-style: italic; color: var(--copper); font-size: 12pt; margin-top: 2px; }
+.contact { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 8.5pt; color: var(--graphite); margin: 10mm 0 0; }
+.label { font-family: "Poppins"; font-weight: 500; font-size: 8pt; letter-spacing: .12em; text-transform: uppercase; color: var(--copper); margin: 9mm 0 0; }
+.label::after { content: ""; display: block; width: 30px; height: 2.5px; background: var(--copper); margin-top: 4px; }
+.profiel { font-family: "Caladea", Georgia, serif; font-style: italic; font-size: 11pt; color: var(--graphite); margin: 3mm 0 0; line-height: 1.5; }
+.item { margin-top: 3.5mm; page-break-inside: avoid; }
+.item h3 { font-family: "Poppins"; font-weight: 500; font-size: 10.5pt; margin: 0; }
+.item .waar { color: var(--warm); font-size: 8.5pt; }
+ul { margin: 1.5mm 0 0; padding-left: 4mm; }
+li { margin: .8mm 0; text-align: left; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10mm; }
+.rule { border: 0; border-top: 1px solid var(--rule); margin: 6mm 0 0; }
+.tag { display: inline-block; border: 1px solid var(--rule); border-radius: 3px; padding: 0 6px; margin: 1px 3px 1px 0; font-size: 8.5pt; }
+.foot { position: absolute; bottom: 8mm; left: 22mm; right: 22mm; font-size: 7.5pt; color: var(--warm); display: flex; justify-content: space-between; }
+.bar { position: fixed; top: 0; left: 0; right: 0; background: #1c1917; color: #fff; padding: 8px 16px; font-size: 13px; display: flex; gap: 12px; align-items: center; z-index: 5; }
+.bar button { background: var(--copper); color: #fff; border: 0; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+.bar a { color: #fff; }
+.spacer { height: 44px; }
+@media print { body { background: #fff; } .page { margin: 0; box-shadow: none; width: auto; min-height: auto; } .bar, .spacer { display: none; } }
+</style>
+</head>
+<body>
+<div class="bar"><span id="barTitle">Cv Remi</span><span style="flex:1"></span><a href="index.html#/documenten">Terug naar de app</a><button onclick="window.print()">Afdrukken of bewaren als pdf</button></div>
+<div class="spacer"></div>
+<div class="page" id="page"></div>
+<script type="module">
+import { seed } from './js/seed.js';
+const params = new URLSearchParams(location.search);
+const variant = params.get('variant');
+let cv = structuredClone(seed.cvMaster);
+if (variant) {
+  const g = (seed.gegenereerd || []).find(x => x.slug === variant);
+  if (g?.cv) { cv = deepMerge(cv, g.cv); document.getElementById('barTitle').textContent = `Cv Remi, versie ${variant}`; }
+  else document.getElementById('barTitle').textContent = `Variant "${variant}" niet gevonden, master-cv getoond`;
+}
+function deepMerge(a, b) { const o = { ...a }; for (const [k, v] of Object.entries(b)) o[k] = v && typeof v === 'object' && !Array.isArray(v) && a[k] && typeof a[k] === 'object' && !Array.isArray(a[k]) ? deepMerge(a[k], v) : v; return o; }
+const esc = s => String(s ?? '').replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+const p = cv.persoonlijk;
+document.getElementById('page').innerHTML = `
+  <div class="band"><span class="dot"></span><h1>${esc(p.naam)}</h1><div class="sub">${esc(cv.titel || 'Lasser en metaalconstructeur, student interieurvormgeving')}</div></div>
+  <div class="contact">${[p.adres, p.gsm, p.email, p.geboortedatum && 'geboren ' + p.geboortedatum, p.nationaliteit, p.rijbewijs, p.portfolio && 'Portfolio: ' + p.portfolio].filter(Boolean).map(esc).map(x => `<span>${x}</span>`).join('')}</div>
+  <div class="label">Profiel</div><p class="profiel">${esc(cv.profiel)}</p>
+  <div class="label">Werkervaring</div>
+  ${cv.werkervaring.map(w => `<div class="item"><h3>${esc(w.functie)}</h3><div class="waar">${esc(w.werkgever)} · ${esc(w.periode)}</div><ul>${w.taken.map(t => `<li>${esc(t)}</li>`).join('')}</ul></div>`).join('')}
+  <div class="cols">
+    <div><div class="label">Opleiding</div>${cv.opleiding.map(o => `<div class="item"><h3>${esc(o.titel)}</h3><div class="waar">${esc(o.instelling)} · ${esc(o.periode)}</div></div>`).join('')}
+      <div class="label">Certificaten</div><ul>${cv.certificaten.map(c => `<li>${esc(c)}</li>`).join('')}</ul></div>
+    <div><div class="label">Vaardigheden</div><ul>${cv.vaardigheden.map(c => `<li>${esc(c)}</li>`).join('')}</ul>
+      <div class="label">Talen</div><div>${cv.talen.map(t => `<span class="tag">${esc(t.taal)}: ${esc(t.niveau)}</span>`).join('')}</div>
+      ${cv.interesses ? `<div class="label">Interesses</div><p>${esc(cv.interesses)}</p>` : ''}</div>
+  </div>
+  <div class="foot"><span>${esc(p.naam)}</span><span>Cv, ${new Date().toLocaleDateString('nl-BE', { month: 'long', year: 'numeric' })}</span></div>`;
+</script>
+</body>
+</html>

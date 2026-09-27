@@ -1,0 +1,59 @@
+{
+  "persoonlijk": {
+    "naam": "Remi [Achternaam]",
+    "adres": "[Straat nummer], [postcode] Antwerpen",
+    "gsm": "[gsm-nummer]",
+    "email": "[e-mailadres]",
+    "geboortedatum": "[dag maand jaar], Antwerpen",
+    "nationaliteit": "Belg",
+    "rijbewijs": "[Rijbewijs B, ja of nee]",
+    "portfolio": "[link naar portfolio-pdf of pagina]"
+  },
+  "profiel": "Lasser met vijf jaar ervaring in aluminium- en staalconstructies op maat voor gebouwen en horeca. Sterk in plannen lezen, TIG- en MIG-lassen en nauwkeurige afwerking. Volgt daarnaast een opleiding interieurvormgeving aan de Academie in Antwerpen en bouwt meubels. Zoekt werk waarin vakmanschap, zorgvuldigheid en betekenis samenkomen: erfgoed en restauratie, museum- en theaterateliers, of het doorgeven van het vak.",
+  "werkervaring": [
+    {
+      "periode": "[maand jaar] tot heden",
+      "functie": "Lasser en constructiebankwerker",
+      "werkgever": "[Naam bedrijf], [gemeente]",
+      "taken": [
+        "Aluminium- en staalconstructies op maat voor gebouwen en horecazaken: van plan tot montage",
+        "TIG- en MIG-lassen van aluminium en staal, plaatwerk, snijden en plooien",
+        "Technische tekeningen lezen en vertalen naar werkstukken",
+        "Afwerking en kwaliteitscontrole van zichtwerk",
+        "[Concreet project 1: wat, voor wie, welke moeilijkheid opgelost]",
+        "[Concreet project 2]"
+      ]
+    },
+    {
+      "periode": "[jaar] tot heden",
+      "functie": "Meubelmaker (eigen werk)",
+      "werkgever": "Met zijn broer, Antwerpen",
+      "taken": [
+        "Ontwerp en bouw van meubels op maat in metaal en hout",
+        "[Twee of drie voorbeelden met materiaal en techniek]"
+      ]
+    }
+  ],
+  "opleiding": [
+    {"periode": "[jaar] tot heden", "titel": "Interieurvormgeving", "instelling": "Koninklijke Academie voor Schone Kunsten Antwerpen [precieze opleiding en instelling bevestigen]"},
+    {"periode": "[jaar] tot [jaar]", "titel": "Diploma secundair onderwijs, [BSO Lassen-constructie of TSO Mechanische technieken]", "instelling": "[School], [gemeente]"}
+  ],
+  "certificaten": [
+    "Lascertificaten EN ISO 9606-1 [processen 141 TIG, 131/135 MIG/MAG] en EN ISO 9606-2 aluminium [geldigheid aanvullen]",
+    "VCA-basis [geldig tot]",
+    "[Andere attesten: heftruck, hoogtewerker, EHBO]"
+  ],
+  "vaardigheden": [
+    "TIG- en MIG-lassen, staal en aluminium",
+    "Aluminiumconstructie en plaatwerk",
+    "Technische tekeningen lezen, opmeten, uittekenen",
+    "Meubelontwerp en -bouw",
+    "Nauwkeurig, geduldig en betrouwbaar; werkt graag in een klein team"
+  ],
+  "talen": [
+    {"taal": "Nederlands", "niveau": "moedertaal"},
+    {"taal": "Engels", "niveau": "goed"},
+    {"taal": "Frans", "niveau": "[basis of beter]"}
+  ],
+  "interesses": "Erfgoed en ambacht, architectuur en interieur, muziek, [aanvullen]"
+}

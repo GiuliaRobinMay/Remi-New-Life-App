@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="nl-BE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Remi, nieuwe start</title>
+<meta name="description" content="Privé-app voor Remi en Giulia: jobs zoeken, sollicitaties opvolgen, rechten kennen en de overstap plannen.">
+<meta name="theme-color" content="#1c1917">
+<link rel="stylesheet" href="css/studiolo-theme.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div class="shell" id="shell">
+  <div class="nav-backdrop" id="navBackdrop"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__brand">
+      <span class="sidebar__mark">R</span>
+      <div class="sidebar__brandtext"><div class="sidebar__wordmark">Nieuwe start</div><p class="muted">Remi en Giulia</p></div>
+      <button class="sidebar__toggle" id="navClose" aria-label="Sluiten"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m9.5 4.5-3.5 3.5 3.5 3.5"/></svg></button>
+    </div>
+    <div class="sidebar__scroll" id="nav"></div>
+    <div class="sidebar__foot" id="navFoot"></div>
+  </aside>
+  <div class="shell__main">
+    <header class="chrome accent-orange" id="chrome"></header>
+    <main class="portal" id="portal"></main>
+  </div>
+</div>
+<div class="peek__backdrop" id="peekBackdrop"></div>
+<aside class="peek" id="peek" aria-live="polite">
+  <div class="peek__bar">
+    <button class="peek__btn" id="peekClose" aria-label="Sluiten"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="m4 4 8 8M12 4l-8 8"/></svg></button>
+    <span class="peek__title" id="peekTitle"></span>
+  </div>
+  <div class="peek__body stack" id="peekBody"></div>
+</aside>
+<div class="toast" id="toast"></div>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

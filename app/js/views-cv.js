@@ -121,7 +121,7 @@ export function controle(cv = getCv()) {
   const regels = cv.werkervaring.flatMap(w => [...w.realisaties, ...w.taken]).filter(t => !placeholders(t).length);
   const metGetal = regels.filter(t => /\d/.test(t)).length;
   zet('cijfers', metGetal >= 3 ? 'ok' : 'let', `${metGetal} van de 3 regels met een getal.`);
-  const lijstWw = new Set([...(ref.cvGids?.actiewerkwoorden || []).flatMap(g => g.woorden.map(w => w.toLowerCase())), ...WERKWOORDEN]);
+  const lijstWw = new Set([...(ref.cvGids?.actiewerkwoorden || []).flatMap(g => g.woorden.map(w => w.toLowerCase().split(/\s+/)[0])), ...WERKWOORDEN]);
   const startMetWw = regels.filter(t => lijstWw.has(t.split(/[\s,:]/)[0].toLowerCase())).length;
   const verantw = regels.filter(t => /^verantwoordelijk voor/i.test(t)).length;
   zet('actiewerkwoorden', regels.length && startMetWw / regels.length >= 0.4 && !verantw ? 'ok' : 'let', regels.length ? `${startMetWw} van ${regels.length} regels beginnen met een werkwoord${verantw ? `; ${verantw} beginnen met "verantwoordelijk voor"` : ''}.` : 'Nog geen regels.');

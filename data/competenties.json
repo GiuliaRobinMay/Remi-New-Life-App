@@ -1,6 +1,6 @@
 {
-  "inleiding": "Deze scan is voor jou, niet voor een werkgever: hij helpt je zien waar je sterk staat en voor welke competenties je al een goed voorbeeld hebt. Lees per competentie de vier gedragsindicatoren en geef jezelf een score van 1 tot 5, eerlijk en zonder je met anderen te vergelijken. Schrijf daarna één concreet voorbeeld volgens STARR: situatie, taak, actie, resultaat en reflectie. Het voorbeeld dat al klaarstaat is een aanzet op basis van je eigen loopbaan; vervang alles tussen vierkante haakjes door wat echt gebeurde, of schrijf een ander voorbeeld.",
-  "bron": "Gebaseerd op algemene competentiekaders die in Vlaanderen gebruikt worden, zoals het competentiewoordenboek van de Vlaamse overheid en de beroepskwalificaties waarop de beroepsprofielen van VDAB steunen, sterk vereenvoudigd. Dit is geen officiële test en levert geen attest op.",
+  "inleiding": "Deze scan is voor jou, niet voor een werkgever: hij helpt je zien waar je sterk staat en voor welke competenties je al een goed voorbeeld hebt. Lees per competentie de vier gedragsindicatoren en geef jezelf een score van 1 tot 5, eerlijk en zonder je met anderen te vergelijken. Schrijf daarna één concreet voorbeeld volgens STARR: situatie, taak, actie, resultaat en reflectie. Het voorbeeld dat klaarstaat is een mogelijke situatie uit je loopbaan, geen verslag van wat echt gebeurde: gebruik het alleen als het zo gebeurd is, vul alles tussen vierkante haakjes in of schrijf een eigen voorbeeld, en lees de voorgestelde cv-zin na voordat je hem op je cv zet.",
+  "bron": "Gebaseerd op algemene competentiekaders die in Vlaanderen gebruikt worden, zoals het competentiewoordenboek van de Vlaamse overheid en de beroepsprofielen van VDAB, waarop ook de beroepskwalificaties steunen, sterk vereenvoudigd. Dit is geen officiële test en levert geen attest op.",
   "schaal": [
     {
       "waarde": 1,
@@ -57,14 +57,14 @@
             "resultaat": "De klant ging akkoord en het nieuwe stuk is sinds [periode] in gebruik zonder nieuwe breuk.",
             "reflectie": "Een stuk identiek namaken is soms de verkeerde opdracht. Ik vraag nu eerst waarom iets vervangen moet worden."
           },
-          "cvZin": "Analyse van breuk en slijtage bij bestaande onderdelen en herontwerp van [aantal] vervangstukken in plaatmateriaal.",
-          "gesprekVraag": "Kunt u een voorbeeld geven van een technisch probleem dat u pas kon oplossen nadat u goed begreep hoe iets in elkaar zat?",
-          "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "reserve"]
+          "cvZin": "Uittekenen en maakbaar maken van maatwerk in plaatmateriaal: keuze van plaatdikte, plooivolgorde en lasnaden[, bijvoorbeeld herontwerp van een vervangstuk dat telkens brak: enkel vermelden als dit zo gebeurde].",
+          "gesprekVraag": "Hoe kiest u materiaal, plaatdikte en bewerking voor een werkstuk dat u nog niet eerder hebt gemaakt? Kunt u een voorbeeld geven?",
+          "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "sociaal", "reserve"]
         },
         {
           "id": "ruimtelijk-inzicht",
           "naam": "Ruimtelijk inzicht",
-          "definitie": "Een object of ruimte in drie dimensies voor je zien, vertrekkend van een tekening, een schets of een bestaand stuk.",
+          "definitie": "Een object of ruimte in drie dimensies voor je zien, op basis van een tekening, een schets of een bestaand stuk.",
           "indicatoren": [
             "Zet een tekening in twee dimensies om in een beeld van het afgewerkte object.",
             "Maakt aanzichten, doorsneden en uitslagen van een driedimensionale vorm.",
@@ -78,7 +78,7 @@
           },
           "vraag": "Beschrijf een moment waarop je een object of ruimte in je hoofd moest opbouwen voor het bestond, bijvoorbeeld een meubel, een plaatwerkstuk of een ontwerp aan de academie. Wat deed je en hoe liep het af?",
           "voorbeeld": {
-            "situatie": "Mijn broer en ik kregen de vraag om een [meubel, bijvoorbeeld een kast] te maken voor een [smalle of schuine] ruimte bij [klant].",
+            "situatie": "Mijn broer en ik maakten een [meubel, bijvoorbeeld een kast] voor een [smalle of schuine] ruimte [bij wie: familie, vrienden, bij ons thuis of bij een klant].",
             "taak": "Ik moest een ontwerp maken dat in de ruimte paste en dat in delen door de deur en langs de trap naar binnen kon.",
             "actie": "Ik mat de ruimte op, tekende het meubel in aanzichten en doorsnede en verdeelde het in modules die ter plaatse samengezet konden worden. De verbindingen tekende ik op ware grootte uit.",
             "resultaat": "Het meubel ging in [aantal] delen naar binnen en paste bij de eerste montage, met een speling van [aantal] mm.",
@@ -91,7 +91,7 @@
         {
           "id": "nauwkeurigheid",
           "naam": "Nauwkeurigheid",
-          "definitie": "Werk precies en foutloos uitvoeren, ook bij kleine details en herhaalde handelingen.",
+          "definitie": "Werk precies en foutloos uitvoeren, ook bij kleine details en herhaalde handelingen; in selecties van de overheid heet dit zorgvuldigheid.",
           "indicatoren": [
             "Controleert maten en gegevens voor, tijdens en na een bewerking.",
             "Merkt kleine afwijkingen op en meldt of corrigeert ze meteen.",
@@ -138,8 +138,8 @@
             "resultaat": "Het aantal stukken dat bijgewerkt moest worden daalde van [aantal] naar [aantal] per [week of maand].",
             "reflectie": "De oorzaak lag niet bij één persoon maar bij een onduidelijke afspraak. Ik kijk nu eerst naar het proces voor ik naar mensen kijk."
           },
-          "cvZin": "Invoering van een vaste naadvoorbereiding en controle voor het lassen, waardoor het herwerk in het atelier daalde met [percentage].",
-          "gesprekVraag": "Hoe bewaakt u de kwaliteit van uw werk wanneer de tijdsdruk hoog is? Kunt u een concreet voorbeeld geven?",
+          "cvZin": "Kwaliteitscontrole van plooi- en laswerk voor levering[, met een verbetering in de werkwijze, bijvoorbeeld een vaste naadvoorbereiding, en het effect op het herwerk in percentage: enkel vermelden als dit zo gebeurde].",
+          "gesprekVraag": "Kunt u een voorbeeld geven van een kwaliteitsprobleem dat telkens terugkwam? Hoe hebt u de oorzaak aangepakt?",
           "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "reserve"]
         },
         {
@@ -165,9 +165,9 @@
             "resultaat": "De afspraak staat nu in de werkinstructie en [resultaat, bijvoorbeeld geen bijna-ongevallen meer aan de kantbank sinds datum].",
             "reflectie": "Ik zeg zulke dingen nu meteen, ook als het werk even moet stoppen. Een korte onderbreking weegt niet op tegen een ongeval."
           },
-          "cvZin": "Invoering van veiligheidsafspraken aan de kantbank en in de laszone voor een ploeg van [aantal] collega's.",
+          "cvZin": "Veilig werken aan de kantbank en in de laszone als verantwoordelijke atelier voor een ploeg van [aantal] collega's[, met een veiligheidsafspraak die je invoerde, bijvoorbeeld een vrije zone rond de kantbank: enkel vermelden als dit zo gebeurde][; VCA-basis, geldig tot datum: enkel vermelden als je het attest hebt].",
           "gesprekVraag": "Vertel eens over een keer dat u een collega moest aanspreken op onveilig werken. Hoe hebt u dat aangepakt?",
-          "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "reserve"]
+          "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "sociaal", "reserve"]
         },
         {
           "id": "creativiteit-en-vormgeving",
@@ -189,10 +189,10 @@
             "situatie": "In de opleiding meubel en interieur aan de academie kregen we de opdracht om [een zitmeubel, een kast of een ander object] te ontwerpen rond [thema van de opdracht].",
             "taak": "Ik wilde een ontwerp maken dat mijn ervaring met plaatmateriaal combineerde met hout en dat ik ook zelf kon bouwen.",
             "actie": "Ik maakte [aantal] schetsen en maquettes, koos voor een frame in geplooid staal met een [houten] zitting of blad en tekende de verbindingen zo dat het meubel demonteerbaar bleef.",
-            "resultaat": "Het meubel werd gebouwd en [beoordeling of plaats waar het getoond werd]. Het staat in mijn portfolio.",
+            "resultaat": "Het meubel werd gebouwd en [beoordeling of plaats waar het getoond werd]. [Het staat in mijn portfolio: alleen laten staan als dat zo is.]",
             "reflectie": "Mijn technische achtergrond maakt me vrij in het ontwerpen: ik weet wat maakbaar is en durf daardoor verder te gaan in de vorm."
           },
-          "cvZin": "Ontwerp en realisatie van [aantal] meubels in staal en hout, opgenomen in portfolio [link].",
+          "cvZin": "Ontwerp van [object] in [materialen, bijvoorbeeld geplooid staal en hout] in de opleiding meubel en interieur aan de Academie, van schets en maquette tot uitvoering (portfolio: [link]).",
           "gesprekVraag": "Kunt u een ontwerp toelichten dat u zelf hebt bedacht en gerealiseerd? Welke keuzes hebt u gemaakt en waarom?",
           "relevantVoor": ["erfgoed", "cultuur", "onderwijs"]
         }
@@ -220,13 +220,13 @@
           },
           "vraag": "Denk aan een moment waarop je iets moest herstellen of behandelen dat oud, fragiel of waardevol was voor iemand. Hoe benaderde je het, wat deed je wel en niet, en waarom?",
           "voorbeeld": {
-            "situatie": "In het creatief fietsatelier kwam een [oude fiets of frame] binnen die de eigenaar wilde laten herstellen met zoveel mogelijk originele onderdelen.",
+            "situatie": "In het creatieve fietsatelier bracht een klant [een oude fiets of een oud frame] binnen om te laten herstellen met zoveel mogelijk originele onderdelen.",
             "taak": "Ik moest de fiets opnieuw bruikbaar maken zonder het karakter en de originele onderdelen te verliezen.",
-            "actie": "Ik fotografeerde de fiets voor ik iets demonteerde, bekeek per onderdeel of reinigen en herstellen volstond, en verving alleen wat niet meer veilig was. De vervangen onderdelen gaf ik mee aan de eigenaar.",
+            "actie": "Ik [fotografeerde de fiets voor ik iets demonteerde: enkel als dit zo gebeurde], bekeek per onderdeel of reinigen en herstellen volstond, en verving alleen wat niet meer veilig was. De vervangen onderdelen gaf ik mee aan de eigenaar.",
             "resultaat": "De fiets reed opnieuw met [aantal of deel] van de originele onderdelen, en de eigenaar [reactie of vervolg].",
-            "reflectie": "Herstellen betekent ook kiezen wat je niet doet. Dat principe wil ik verder uitdiepen in erfgoed en restauratie."
+            "reflectie": "Herstellen betekent ook bewust kiezen wat ik niet doe. Dat principe wil ik verder uitdiepen in erfgoed en restauratie."
           },
-          "cvZin": "Herstel van [oude fietsen of frames] met behoud van originele onderdelen en fotografische registratie voor en na de ingreep.",
+          "cvZin": "Herstel van [soort fietsen of frames] in een creatief fietsatelier (2019)[, met behoud van originele onderdelen en foto's voor en na de ingreep: enkel vermelden als dit zo gebeurde].",
           "gesprekVraag": "Hoe gaat u te werk wanneer u aan een object moet werken dat niet vervangen kan worden?",
           "relevantVoor": ["erfgoed", "cultuur", "geschiedenis"]
         },
@@ -255,7 +255,7 @@
           },
           "cvZin": "Ordening, digitalisering en beschrijving van een fotoarchief van [aantal] beelden voor Willy Van de Perre (2017 tot 2018).",
           "gesprekVraag": "Hoe zorgt u ervoor dat de informatie die u vastlegt ook voor collega's bruikbaar en terugvindbaar is?",
-          "relevantVoor": ["erfgoed", "cultuur", "geschiedenis"]
+          "relevantVoor": ["erfgoed", "cultuur", "geschiedenis", "reserve"]
         },
         {
           "id": "onderzoekend-werken",
@@ -280,7 +280,7 @@
             "resultaat": "Met [een aangepaste lasvolgorde en klemming] daalde het richtwerk van [tijd] naar [tijd] per stuk.",
             "reflectie": "Ik werk graag zo: eerst begrijpen, dan proberen, dan vastleggen. Die houding wil ik meenemen naar onderzoek naar historische materialen en technieken."
           },
-          "cvZin": "Proeven naar lasvervorming bij dunne plaat, met een aangepaste werkwijze die het richtwerk verminderde met [percentage].",
+          "cvZin": "Proeven op restmateriaal om [een technisch probleem, bijvoorbeeld lasvervorming bij dunne plaat] te begrijpen en op te lossen, met [resultaat].",
           "gesprekVraag": "Kunt u een voorbeeld geven van een situatie waarin u eerst grondig onderzoek deed voor u een beslissing nam?",
           "relevantVoor": ["erfgoed", "cultuur", "geschiedenis", "reserve"]
         }
@@ -310,11 +310,11 @@
           "voorbeeld": {
             "situatie": "Met mijn broer bouw ik meubels op maat. Voor [klant of project] moesten we [meubel] maken binnen [termijn], naast ons gewone werk.",
             "taak": "Ik wilde het werk zo verdelen dat ieder deed waar hij het sterkst in is, zonder dat we elkaar in de weg liepen.",
-            "actie": "Ik nam het ontwerp, de werktekeningen en het metaalwerk op mij, mijn broer [zijn deel, bijvoorbeeld het houtwerk en de afwerking]. We spraken vaste momenten af om de stand van zaken te bekijken en beslisten samen over wijzigingen.",
+            "actie": "Ik nam [mijn deel, bijvoorbeeld het ontwerp, de werktekeningen en het metaalwerk] op mij, mijn broer [zijn deel, bijvoorbeeld het houtwerk en de afwerking]. We spraken vaste momenten af om de stand van zaken te bekijken en beslisten samen over wijzigingen. Toen we het oneens waren over [een ontwerpkeuze of de planning], [hoe jullie dat bespraken en wie uiteindelijk besliste].",
             "resultaat": "Het meubel werd op tijd geleverd en [reactie van de klant of vervolgopdracht].",
             "reflectie": "Duidelijke afspraken over wie wat beslist leveren meer op dan veel overleg. Dat pas ik nu ook toe in het atelier."
           },
-          "cvZin": "Ontwerp en bouw van meubels op maat in duo, met een vaste verdeling van ontwerp, metaalwerk en afwerking over [aantal] projecten.",
+          "cvZin": "[Aantal] meubelprojecten samen met mijn broer, met een vaste taakverdeling: [mijn deel] tegenover [zijn deel].",
           "gesprekVraag": "Kunt u een situatie beschrijven waarin de samenwerking met een collega moeizaam verliep? Wat hebt u toen gedaan?",
           "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "sociaal", "geschiedenis", "reserve"]
         },
@@ -324,7 +324,7 @@
           "definitie": "Informatie helder en afgestemd op de ander overbrengen, mondeling en schriftelijk, en goed luisteren.",
           "indicatoren": [
             "Luistert tot de ander uitgesproken is en vat samen wat er gezegd is.",
-            "Past woordkeuze en detail aan aan de persoon, van collega tot klant.",
+            "Stemt woordkeuze en detail af op de persoon, van collega tot klant.",
             "Gebruikt schetsen, tekeningen of voorbeelden om iets duidelijk te maken.",
             "Bevestigt belangrijke afspraken schriftelijk."
           ],
@@ -365,17 +365,17 @@
             "situatie": "In het atelier begon [een nieuwe collega of jobstudent] zonder ervaring op de kantbank.",
             "taak": "Als verantwoordelijke atelier moest ik ervoor zorgen dat die persoon binnen [aantal] weken zelfstandig en veilig eenvoudige stukken kon plooien.",
             "actie": "Ik deelde het werk op in stappen: tekening lezen, gereedschap kiezen, machine instellen, proefplooi, meten. Ik deed elke stap eerst voor, liet ze daarna zelf uitvoeren en gaf na elke reeks korte feedback. De stappen zette ik op een fiche bij de machine.",
-            "resultaat": "Na [aantal] weken plooide mijn collega eenvoudige reeksen zelfstandig, en de fiche wordt nu gebruikt voor elke nieuwe collega.",
+            "resultaat": "Na [aantal] weken plooide mijn collega eenvoudige reeksen zelfstandig, en [wat er met de uitleg of de fiche gebeurde].",
             "reflectie": "Ik doe dit graag en geduld is hier een sterkte van mij. Ik wil het verder ontwikkelen, bijvoorbeeld in het onderwijs."
           },
-          "cvZin": "Opleiding en begeleiding van [aantal] nieuwe collega's aan de kantbank en in de laszone, met een eigen stappenfiche per machine.",
+          "cvZin": "Inwerken van [aantal] nieuwe collega's [of jobstudenten] aan de kantbank en in de laszone[, met een stappenfiche bij de machine: enkel vermelden als die bestaat].",
           "gesprekVraag": "Hoe zou u een leerling of een nieuwe collega een vaardigheid aanleren die u zelf al jaren beheerst?",
           "relevantVoor": ["onderwijs", "erfgoed", "cultuur", "sociaal"]
         },
         {
           "id": "dienstverlening",
           "naam": "Dienstverlening",
-          "definitie": "Werken vanuit de vraag en de behoefte van klanten, bezoekers of gebruikers en hen goed verder helpen.",
+          "definitie": "Werken vanuit de vraag en de behoefte van klanten, bezoekers of gebruikers en hen goed verder helpen; bij de overheid heet dit klantgerichtheid.",
           "indicatoren": [
             "Vraagt door tot de echte behoefte duidelijk is.",
             "Komt beloftes na of meldt tijdig wanneer dat niet lukt.",
@@ -389,13 +389,13 @@
           },
           "vraag": "Denk aan een klant, bezoeker of iemand die je hielp en die niet tevreden was of iets anders nodig had dan gevraagd. Wat deed je en hoe liep het af?",
           "voorbeeld": {
-            "situatie": "In het creatief fietsatelier kwam een klant met de vraag om [een onderdeel] te vervangen, maar het eigenlijke probleem zat bij [ander onderdeel of de afstelling].",
+            "situatie": "In het creatieve fietsatelier kwam een klant met de vraag om [een onderdeel] te vervangen, maar het eigenlijke probleem zat bij [ander onderdeel of de afstelling].",
             "taak": "Ik moest de klant helpen met wat hij echt nodig had, zonder hem iets op te dringen.",
             "actie": "Ik liet het probleem zien, legde de twee mogelijkheden en hun kostprijs uit en liet de klant kiezen. Na de herstelling liet ik hem de fiets meteen testen.",
             "resultaat": "De klant koos voor [oplossing] en [kwam later terug of stuurde anderen door].",
             "reflectie": "Goede dienstverlening is voor mij eerlijk uitleggen wat er aan de hand is. Dat wil ik ook doen voor bezoekers en gebruikers van een culturele organisatie."
           },
-          "cvZin": "Advies en herstelling op maat voor [aantal] klanten per week in een creatief fietsatelier, met duidelijke uitleg van opties en kostprijs.",
+          "cvZin": "[Klantcontact: wat je precies deed, bevestigen] in een creatief fietsatelier (2019), met duidelijke uitleg van de mogelijke herstellingen.",
           "gesprekVraag": "Kunt u een situatie beschrijven waarin u een klant of bezoeker verder hielp dan strikt gevraagd was?",
           "relevantVoor": ["cultuur", "sociaal", "erfgoed", "onderwijs"]
         }
@@ -439,7 +439,7 @@
           "definitie": "Een probleem analyseren, de oorzaak vinden en een werkbare oplossing uitvoeren.",
           "indicatoren": [
             "Verzamelt eerst feiten en kiest pas dan een oplossing.",
-            "Maakt onderscheid tussen oorzaak en gevolg.",
+            "Deelt een groot probleem op in deelproblemen die afzonderlijk aan te pakken zijn.",
             "Bedenkt meer dan één oplossing en weegt ze tegen elkaar af.",
             "Controleert achteraf of de oplossing werkt."
           ],
@@ -454,7 +454,7 @@
             "taak": "Ik moest een oplossing vinden die het uitzicht en de sterkte behield en toch maakbaar was in ons atelier.",
             "actie": "Ik tekende drie varianten uit: het stuk in twee delen maken en lassen, de plooivolgorde omkeren met ander gereedschap, of de vorm licht aanpassen. Ik besprak de voor- en nadelen met [collega of klant] en we kozen voor [gekozen variant].",
             "resultaat": "Het stuk werd gemaakt binnen [termijn] en [vervolg, bijvoorbeeld een nieuwe reeks of hergebruik van de oplossing].",
-            "reflectie": "Ik zoek nu altijd minstens twee oplossingen voor ik er een voorstel. Het eerste idee is zelden het beste."
+            "reflectie": "Ik werk nu altijd minstens twee oplossingen uit voor ik een voorstel doe. Het eerste idee is zelden het beste."
           },
           "cvZin": "Uitwerking van maakbare alternatieven voor [aantal] ontwerpen die in hun oorspronkelijke vorm niet te produceren waren.",
           "gesprekVraag": "Kunt u een probleem beschrijven waarvoor u geen kant-en-klare oplossing had? Hoe bent u tot een oplossing gekomen?",
@@ -475,7 +475,7 @@
             "gevorderd": "Stuurt het eigen werk en dat van anderen bij om een gezamenlijk doel te halen.",
             "expert": "Stelt haalbare doelen voor een team of project en bewaakt ze tot het einde."
           },
-          "vraag": "Vertel over een opdracht met een harde deadline of een duidelijk doel, in het atelier of aan de academie. Wat deed je om het te halen en wat was het resultaat?",
+          "vraag": "Vertel over een opdracht met een vaste einddatum of een duidelijk doel, in het atelier of aan de academie. Wat deed je om het te halen en wat was het resultaat?",
           "voorbeeld": {
             "situatie": "In het jaar grafiek aan de academie moest ik een reeks van [aantal] [prenten] afwerken voor [de beoordeling of een tentoonstelling]. De lessen waren 's avonds, dus de tijd om eraan te werken was beperkt.",
             "taak": "Ik moest de reeks op tijd en op het gevraagde niveau klaar hebben.",
@@ -483,7 +483,7 @@
             "resultaat": "De reeks was op tijd klaar en [beoordeling of plaats waar ze getoond werd].",
             "reflectie": "Vroeg testen en bewust schrappen hielpen me meer dan harder werken op het einde. Zo combineer ik nu ook werk en opleiding."
           },
-          "cvZin": "Afwerking van [aantal] projecten in de avondopleiding aan de academie (meubel en interieur, grafiek, interieurvormgeving), naast het werk in het atelier.",
+          "cvZin": "Reeks van [aantal] [prenten] in [techniek] afgewerkt voor [beoordeling of tentoonstelling] in het jaar grafiek van de avondopleiding aan de Academie.",
           "gesprekVraag": "Kunt u een voorbeeld geven van een doel dat u hebt gehaald ondanks tegenslag of weinig tijd?",
           "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "sociaal", "reserve"]
         },
@@ -510,7 +510,7 @@
             "resultaat": "[Resultaat, bijvoorbeeld minder fouten, een vlottere doorstroming of een collega die doorgroeide naar een nieuwe taak.]",
             "reflectie": "Ik stuur vooral aan door voorbereiding, voorbeeld en rust. Ik leer nog om moeilijke punten sneller op tafel te leggen."
           },
-          "cvZin": "Dagelijkse aansturing van een atelier met [aantal] collega's: werkverdeling, opvolging, kwaliteitscontrole en inwerken van nieuwe collega's.",
+          "cvZin": "Dagelijkse aansturing van een atelier met [aantal] collega's: werkverdeling en opvolging van afspraken[, met een korte opstart bij het begin van de dag: enkel vermelden als dit zo gebeurt].",
           "gesprekVraag": "Hoe zou uw team uw manier van leidinggeven omschrijven? Kunt u een voorbeeld geven van een moeilijk moment?",
           "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "sociaal", "reserve"]
         }
@@ -544,7 +544,7 @@
             "resultaat": "De klant kreeg de volledige reeks [aantal] dagen later dan gepland, met een eerlijke uitleg, en [reactie van de klant].",
             "reflectie": "Sindsdien laat ik de tekeningen voor een nieuwe reeks door een tweede persoon nakijken, of controleer ik ze zelf de volgende dag opnieuw."
           },
-          "cvZin": "Eindverantwoordelijkheid voor tekeningen en werkvoorbereiding van [aantal] projecten per jaar, met een dubbele controle voor elke nieuwe reeks.",
+          "cvZin": "Verantwoordelijkheid voor de werkvoorbereiding van het atelier sinds [jaar][, met een afspraak die fouten voorkomt, bijvoorbeeld een tweede controle van elke nieuwe tekening: enkel vermelden als dit zo gebeurde].",
           "gesprekVraag": "Vertel eens over een fout die u zelf gemaakt hebt. Hoe bent u daarmee omgegaan?",
           "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "sociaal", "geschiedenis", "reserve"]
         },
@@ -593,13 +593,13 @@
           "vraag": "Beschrijf iets wat je in korte tijd moest leren, bijvoorbeeld lassen, plooien of een tekenprogramma. Hoe leerde je het, hoe lang duurde het en hoe gebruik je het vandaag?",
           "voorbeeld": {
             "situatie": "Rond 2020 volgde ik een lasopleiding halfautomaat (MIG/MAG) en elektrode. In 2021 begon ik als technisch tekenaar en plooi- en lasoperator bij een bedrijf in maatwerk in plaatmateriaal.",
-            "taak": "Ik moest in korte tijd lassen, plooien op de kantbank en tekenen in [CAD-programma] onder de knie krijgen, op het niveau dat het atelier vraagt.",
+            "taak": "Ik moest in korte tijd plooien op de kantbank en tekenen in [CAD-programma] onder de knie krijgen en mijn laswerk op het niveau brengen dat het atelier vraagt.",
             "actie": "Ik oefende op restmateriaal, vroeg ervaren collega's om mijn lassen te beoordelen, leerde het tekenprogramma via [cursus, handleiding of zelfstudie] en hield bij wat ik fout deed en waarom.",
             "resultaat": "Na [aantal] maanden werkte ik zelfstandig, en sinds [jaar] ben ik verantwoordelijke van het atelier.",
             "reflectie": "Ik leer het best door te doen en te begrijpen waarom iets werkt. Daarom combineer ik werk altijd met een opleiding, nu interieurvormgeving aan de academie."
           },
           "cvZin": "Doorgroei van technisch tekenaar en plooi- en lasoperator naar verantwoordelijke atelier in [aantal] jaar, naast een avondopleiding aan de academie.",
-          "gesprekVraag": "Wat hebt u het afgelopen jaar bijgeleerd, en hoe gebruikt u dat vandaag in uw werk?",
+          "gesprekVraag": "Kunt u een voorbeeld geven van iets wat u in korte tijd onder de knie moest krijgen? Hoe hebt u dat aangepakt?",
           "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "sociaal", "geschiedenis", "reserve"]
         },
         {
@@ -625,8 +625,8 @@
             "resultaat": "[Het grootste deel] van de levering vertrok op tijd, de rest volgde [termijn] later in overleg met de klant.",
             "reflectie": "Onder druk word ik stiller en werk ik stap voor stap. Ik let er nu op dat ik de ploeg en de klant sneller informeer, zodat niemand hoeft te raden."
           },
-          "cvZin": "Bijsturing van planning en ploeg bij machinepannes en dringende leveringen, met [percentage] van de leveringen toch op tijd.",
-          "gesprekVraag": "Hoe gaat u om met tijdsdruk? Kunt u een situatie beschrijven waarin veel tegelijk moest gebeuren?",
+          "cvZin": "Aanspreekpunt voor ploeg en klant bij machinestoringen en spoedleveringen: prioriteiten bepalen, werk herverdelen en de klant tijdig informeren.",
+          "gesprekVraag": "Vertel over een moment waarop er vlak voor een deadline onverwacht iets misliep. Wat deed u eerst?",
           "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "sociaal", "reserve"]
         },
         {
@@ -646,10 +646,10 @@
           },
           "vraag": "Beschrijf een situatie waarin een opdracht, een plan of je rol plots veranderde, bijvoorbeeld van operator naar verantwoordelijke, of een klant die halverwege iets anders wilde. Hoe pakte je dat aan?",
           "voorbeeld": {
-            "situatie": "Halverwege de bouw van [een meubel] voor [klant] besliste de klant om [de afmetingen of het materiaal] te wijzigen, terwijl het frame al gelast was.",
+            "situatie": "In het atelier wijzigde een klant halverwege de productie van [werkstuk] [de afmetingen of het materiaal], terwijl [een deel] al geplooid en gelast was.",
             "taak": "Ik moest de wijziging mogelijk maken zonder helemaal opnieuw te beginnen en zonder de afgesproken termijn ver te overschrijden.",
-            "actie": "Ik bekeek wat van het bestaande werk bruikbaar bleef, tekende een aangepaste versie waarin het frame hergebruikt kon worden en legde de gevolgen voor tijd en kost aan de klant voor we verder werkten.",
-            "resultaat": "De klant koos voor [de aangepaste versie], en het meubel werd geleverd met [aantal] dagen vertraging, met hergebruik van het gelaste frame.",
+            "actie": "Ik bekeek wat van het bestaande werk bruikbaar bleef, tekende een aangepaste versie waarin [wat al klaar was] hergebruikt kon worden en besprak de gevolgen voor tijd en kost met de klant voor we verder werkten.",
+            "resultaat": "De klant koos voor [de aangepaste versie], en het stuk werd geleverd met [aantal] dagen vertraging, met hergebruik van [wat al klaar was].",
             "reflectie": "Ik spreek nu vooraf af tot welk moment een klant nog kan wijzigen. Dat maakt flexibel zijn makkelijker voor beide kanten."
           },
           "cvZin": "Aanpassing van [aantal] lopende maatwerkprojecten aan gewijzigde klantvragen, met hergebruik van bestaand werk en duidelijke afspraken over termijn en kost.",

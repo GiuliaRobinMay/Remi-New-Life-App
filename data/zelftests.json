@@ -4,17 +4,17 @@
     "instructie": "Kies eerst de vijf waarden die voor jou het zwaarst wegen en daarna de drie die je het minst belangrijk vindt; de rest laat je open.",
     "kies": { "top": 5, "minst": 3 },
     "waarden": [
-      { "id": "zekerheid", "naam": "Zekerheid", "uitleg": "Een vast contract, een stabiel loon en weten waar je over een jaar staat." },
+      { "id": "zekerheid", "naam": "Zekerheid", "uitleg": "Een vast contract bij een stabiele werkgever en weten waar je over een jaar staat." },
       { "id": "betekenis", "naam": "Betekenis", "uitleg": "Werk dat ertoe doet voor mensen of voor iets dat groter is dan het bedrijf." },
-      { "id": "vakmanschap", "naam": "Vakmanschap", "uitleg": "Iets heel goed leren doen en die kennis steeds verder verdiepen." },
+      { "id": "vakmanschap", "naam": "Vakmanschap", "uitleg": "Een vak tot in de details beheersen en werk afleveren dat technisch klopt en lang meegaat." },
       { "id": "creativiteit", "naam": "Creativiteit", "uitleg": "Zelf oplossingen, vormen of ontwerpen bedenken in plaats van alleen uit te voeren." },
       { "id": "rust", "naam": "Rust", "uitleg": "Een kalme werkplek zonder constante drukte, lawaai of haast." },
-      { "id": "afwisseling", "naam": "Afwisseling", "uitleg": "Verschillende taken en projecten, zodat geen twee weken hetzelfde zijn." },
+      { "id": "afwisseling", "naam": "Afwisseling", "uitleg": "Verschillende taken en projecten, zodat de ene week niet op de andere lijkt." },
       { "id": "leren", "naam": "Leren", "uitleg": "Blijven bijleren op het werk, via collega's, opleidingen of nieuwe opdrachten." },
       { "id": "autonomie", "naam": "Autonomie", "uitleg": "Zelf bepalen hoe je je werk aanpakt en in welke volgorde." },
       { "id": "teamgevoel", "naam": "Teamgevoel", "uitleg": "Een kleine ploeg die elkaar kent, vertrouwt en helpt." },
       { "id": "erkenning", "naam": "Erkenning", "uitleg": "Merken dat anderen zien en waarderen wat je doet." },
-      { "id": "loon", "naam": "Loon", "uitleg": "Een brutoloon en extralegale voordelen waarmee je comfortabel rondkomt." },
+      { "id": "loon", "naam": "Loon", "uitleg": "Een goed loon en extralegale voordelen, zoals maaltijdcheques en een hospitalisatieverzekering, waarmee je netto comfortabel rondkomt." },
       { "id": "fysiek-licht", "naam": "Fysiek licht werk", "uitleg": "Werk dat je lichaam niet elke dag zwaar belast." },
       { "id": "tastbaar", "naam": "Iets tastbaars maken", "uitleg": "Aan het eind van de dag iets zien of vastnemen dat er 's morgens nog niet was." },
       { "id": "helpen", "naam": "Anderen helpen", "uitleg": "Mensen vooruithelpen, hun iets aanleren of een probleem voor hen oplossen." },
@@ -27,20 +27,20 @@
     ]
   },
   "kernkwadranten": {
-    "inleiding": "Het kernkwadrant is een model van de Nederlandse organisatieadviseur Daniel Ofman. Het vertrekt van een kernkwaliteit: iets wat zo vanzelf bij je hoort dat je het zelf nauwelijks opmerkt, maar dat anderen wel in je zien. Elke kwaliteit heeft een keerzijde als je ze overdrijft, en de vier hoeken samen tonen waar je sterk bent, waar je in doorslaat, waar je kunt groeien en wat je bij anderen stoort. De drie voorbeelden hieronder zijn vermoedens op basis van je testen; jij beslist of ze kloppen, en je past ze aan of vervangt ze door je eigen kwadranten.",
+    "inleiding": "Het kernkwadrant is een model van de Nederlandse organisatieadviseur Daniel Ofman. Het vertrekt van een kernkwaliteit: iets wat zo vanzelf bij je hoort dat je het zelf nauwelijks opmerkt, maar dat anderen wel in je zien. Elke kwaliteit heeft een keerzijde als je ze overdrijft, en de vier hoeken samen tonen waar je sterk bent, waarin je doorslaat, waarin je kunt groeien en wat je bij anderen stoort. De drie voorbeelden hieronder zijn vermoedens op basis van je tests; jij beslist of ze kloppen, en je past ze aan of vervangt ze door je eigen kwadranten.",
     "uitleg": {
       "kwaliteit": "Een eigenschap die typisch voor jou is en die anderen in je waarderen, bijvoorbeeld zorgvuldigheid.",
       "valkuil": "Wat er gebeurt als je die kwaliteit overdrijft, te veel van het goede, bijvoorbeeld perfectionisme.",
       "uitdaging": "Het positieve tegenovergestelde van je valkuil, iets wat je kunt bijleren zonder je kwaliteit te verliezen, bijvoorbeeld flexibiliteit.",
-      "allergie": "Het te veel van je uitdaging en tegelijk het omgekeerde van je kwaliteit, wat je bij anderen snel stoort, bijvoorbeeld slordigheid."
+      "allergie": "Het teveel van je uitdaging en tegelijk het omgekeerde van je kwaliteit, wat je bij anderen snel stoort, bijvoorbeeld slordigheid."
     },
     "voorbeelden": [
       {
         "kwaliteit": "Zorgvuldigheid",
         "valkuil": "Perfectionisme, blijven nakijken en lang twijfelen voor je iets vrijgeeft",
-        "uitdaging": "Flexibiliteit: op tijd beslissen met wat je weet en goed genoeg soms goed genoeg laten zijn",
+        "uitdaging": "Flexibiliteit: op tijd beslissen met wat je weet en aanvaarden dat goed genoeg soms volstaat",
         "allergie": "Slordigheid en afgeraffeld werk",
-        "toelichting": "Hypothese, na te gaan door jou: in je Big Five staan plichtsbesef en behoedzaamheid op het maximum (20). Je ordelijkheid is laag (9), dus je zorgvuldigheid zit waarschijnlijk in het werkstuk zelf en niet in een opgeruimde werkbank. Herken je dat je een stuk liever nog eens nakijkt dan het te vroeg door te geven, en dat werk dat half af is je stoort?"
+        "toelichting": "Hypothese, na te gaan door jou: in je Big Five staan plichtsbesef en behoedzaamheid op het maximum (20). Je ordelijkheid is laag (9), dus je zorgvuldigheid zit waarschijnlijk in het werkstuk zelf en niet in een opgeruimde werkbank. Herken je dat je een stuk liever nog eens nakijkt dan dat je het te vroeg doorgeeft, en dat werk dat half af is je stoort?"
       },
       {
         "kwaliteit": "Bescheidenheid",
@@ -51,17 +51,17 @@
       },
       {
         "kwaliteit": "Verbeeldingskracht",
-        "valkuil": "Blijven dromen over wat kan, een ontwerp eindeloos herwerken zonder het af te maken",
-        "uitdaging": "Realiteitszin: een idee concreet maken met een plan, een deadline en een eerste versie",
+        "valkuil": "Zweverigheid: in je hoofd al verder zijn dan anderen kunnen volgen, zodat een idee vaag blijft voor wie mee moet werken",
+        "uitdaging": "Realiteitszin: een idee vroeg concreet maken in een schets, tekening of maquette, zodat anderen kunnen meedenken",
         "allergie": "Bekrompenheid, 'dat hebben we altijd zo gedaan'",
-        "toelichting": "Hypothese, na te gaan door jou: je openheid is hoog (artistieke interesse 19, intellect 18, verbeelding 16) en je INFJ-uitslag wijst op iemand die mogelijkheden en patronen ziet. Herken je dat ideeën sneller komen dan ze af raken, en dat vastgeroeste gewoontes je storen?"
+        "toelichting": "Hypothese, na te gaan door jou: je openheid is hoog (artistieke interesse 19, intellect 18, verbeelding 16) en je INFJ-uitslag wijst op iemand die mogelijkheden en patronen ziet. Herken je dat je een idee al helemaal ziet voordat je het met iemand deelt, en dat vastgeroeste gewoontes je storen?"
       }
     ],
     "aantalInvullen": 3,
-    "gesprekTip": "Op de vraag naar een werkpunt noem je je valkuil, met een concreet voorbeeld en wat je eraan doet: dat is eerlijk en toont meteen de kwaliteit erachter, bijvoorbeeld 'ik ben nauwkeurig en controleer soms langer dan nodig, daarom spreek ik vooraf af wat goed genoeg is en laat ik een collega meekijken'. Kies een valkuil die geen kernvereiste van de functie raakt, en vermijd een schijnwerkpunt zonder voorbeeld."
+    "gesprekTip": "Op de vraag naar een werkpunt noem je een echte valkuil met een concreet voorbeeld en wat je eraan doet, bijvoorbeeld uit je kwadrant over bescheidenheid: 'Ik neem in een overleg niet snel als eerste het woord. Daarom noteer ik vooraf de twee of drie punten die ik zeker wil aankaarten.' Kies een valkuil die geen kernvereiste van de functie raakt, en vermijd perfectionisme als werkpunt: veel werkgevers horen daarin een verkapte sterkte."
   },
   "energie": {
-    "inleiding": "Niet alles wat je goed kunt, geeft je ook energie. Geef bij elke activiteit aan wat ze met je doet: kost ze energie of krijg je er net energie van. Denk aan echte werkdagen en avonden, niet aan hoe het zou moeten zijn; het resultaat helpt kiezen welke taken in je volgende job de hoofdmoot mogen zijn en welke hooguit een klein deel.",
+    "inleiding": "Niet alles wat je goed kunt, geeft je ook energie. Geef bij elke activiteit aan wat ze met je doet: kost ze energie of krijg je er net energie van? Denk aan echte werkdagen en avonden, niet aan hoe het zou moeten zijn. Het resultaat helpt je kiezen welke taken in je volgende job de hoofdmoot mogen zijn en welke hooguit een klein deel.",
     "schaal": [
       { "waarde": -2, "label": "Kost veel energie" },
       { "waarde": -1, "label": "Kost wat energie" },
@@ -93,7 +93,7 @@
     ]
   },
   "feedback": {
-    "inleiding": "Anderen zien vaak sterktes die je zelf gewoon vindt. Vraag drie tot vijf mensen die je in verschillende situaties kennen, bijvoorbeeld een collega, een vriend, je broer en een docent van de academie. Wat meerdere mensen los van elkaar zeggen, kun je naast je eigen beeld en je tests leggen en gebruiken voor je cv en je gesprekken.",
+    "inleiding": "Anderen zien vaak sterktes die je zelf vanzelfsprekend vindt. Vraag drie tot vijf mensen die je in verschillende situaties kennen om feedback, bijvoorbeeld een oud-collega of een collega die je vertrouwt, een vriend, je broer en een docent van de academie. Wat meerdere mensen los van elkaar zeggen, kun je naast je eigen beeld en je tests leggen en gebruiken voor je cv en je gesprekken.",
     "bericht": "Hoi [naam], ik ben bezig met de volgende stap in mijn loopbaan en werk aan een nieuw cv. Daarvoor vraag ik aan een paar mensen die me goed kennen hoe zij mij zien. Zou je kort en eerlijk willen antwoorden op de vijf vragen hieronder? Een paar zinnen per vraag is genoeg, en een concreet voorbeeld helpt het meest. Wat minder goed gaat mag je ook zeggen, daar heb ik het meeste aan. Als het lukt graag tegen [datum]. Alvast bedankt, Remi",
     "vragen": [
       "Waarin ben ik volgens jou echt goed? Geef als het kan een moment waarop je dat zag.",
@@ -102,17 +102,17 @@
       "Wat zou ik beter kunnen doen of meer mogen durven?",
       "Welke drie woorden passen volgens jou het best bij mij?"
     ],
-    "tip": "Stuur het bericht apart naar elke persoon en niet in een groep, zodat niemand de antwoorden van een ander leest. Noteer wat bij meerdere mensen terugkomt: dat zijn de sterktes die je met een gerust hart op je cv zet."
+    "tip": "Stuur het bericht apart naar elke persoon en niet in een groep, zodat niemand de antwoorden van een ander leest. Aan een collega van je huidige werk stuur je het pas als je vertrek bekend is, of je kiest een oud-collega of iemand die je volledig vertrouwt; wat bij meerdere mensen terugkomt, zijn de sterktes die je met een gerust hart op je cv zet."
   },
   "talen": {
-    "inleiding": "Het Europees Referentiekader (ERK) is de Europese standaard om taalniveaus te beschrijven, van A1 voor een beginner tot C2 voor iemand die een taal bijna als moedertaal beheerst. Werkgevers, VDAB en Europass gebruiken dezelfde codes, dus een niveau als B1 of B2 zegt meer dan 'goed' of 'basis'. Schat voor elke taal de vijf vaardigheden apart in: vaak lees je een taal beter dan je ze spreekt, en op je cv mag je dat verschil tonen.",
+    "inleiding": "Het Europees Referentiekader (ERK) is de Europese standaard om taalniveaus te beschrijven, van A1 voor een beginner tot C2 voor iemand die een taal volledig beheerst. Werkgevers, VDAB en Europass gebruiken dezelfde codes, dus een niveau als B1 of B2 zegt meer dan 'goed' of 'basis'. Schat voor elke taal de vijf vaardigheden apart in: vaak lees je een taal beter dan je ze spreekt, en op je cv mag je dat verschil tonen.",
     "niveaus": [
       { "code": "A1", "label": "Basisgebruiker, beginner", "kort": "Je begrijpt en gebruikt vertrouwde woorden en heel eenvoudige zinnen." },
       { "code": "A2", "label": "Basisgebruiker, elementair", "kort": "Je redt je in eenvoudige, dagelijkse situaties met korte zinnen." },
-      { "code": "B1", "label": "Onafhankelijke gebruiker, drempel", "kort": "Je volgt en vertelt over vertrouwde onderwerpen van werk, school en vrije tijd." },
+      { "code": "B1", "label": "Onafhankelijke gebruiker, drempel", "kort": "Je begrijpt en bespreekt vertrouwde onderwerpen uit werk, school en vrije tijd." },
       { "code": "B2", "label": "Onafhankelijke gebruiker, gevorderd", "kort": "Je praat vlot met moedertaalsprekers en volgt ook complexere teksten over je vak." },
       { "code": "C1", "label": "Vaardige gebruiker, zeer goed", "kort": "Je gebruikt de taal soepel en precies, ook op het werk en in een opleiding." },
-      { "code": "C2", "label": "Vaardige gebruiker, bijna moedertaal", "kort": "Je begrijpt vrijwel alles moeiteloos en drukt je heel nauwkeurig uit." }
+      { "code": "C2", "label": "Vaardige gebruiker, beheersing", "kort": "Je begrijpt vrijwel alles moeiteloos en drukt je heel nauwkeurig uit." }
     ],
     "vaardigheden": [
       {
@@ -187,15 +187,15 @@
       "url": "https://www.16personalities.com/",
       "status": "gedaan",
       "verificatie": "bevestigd",
-      "waarom": "Je uitslag INFJ geeft woorden voor hoe je patronen ziet en aanvoelt wat een groep nodig heeft; gebruik het als taal voor jezelf, niet als argument op een cv."
+      "waarom": "Je uitslag INFJ geeft woorden voor hoe je patronen ziet en aanvoelt wat een groep nodig heeft; gebruik die uitslag als taal voor jezelf, niet als argument op een cv."
     },
     {
       "id": "schein",
       "naam": "Loopbaanankers van Schein",
       "wat": "Een vragenlijst over acht drijfveren in je loopbaan, zoals uitdaging, dienstbaarheid, levensstijl en zekerheid.",
-      "duur": "ongeveer 15 tot 20 minuten",
-      "kost": "gratis versies bestaan; welke versie je deed is niet bekend",
-      "url": "https://www.123test.com/nl/schein/",
+      "duur": "[afhankelijk van de versie]",
+      "kost": "[afhankelijk van de site of begeleider waar je de test deed]",
+      "url": "",
       "status": "gedaan",
       "verificatie": "te verifiëren",
       "waarom": "Je dominante ankers, zuivere uitdaging (83) en dienstbaarheid (80), zijn het kompas om vacatures te schiften: moeilijk werk dat er echt toe doet."
@@ -231,18 +231,18 @@
       "url": "https://www.viacharacter.org/",
       "status": "aanbevolen",
       "verificatie": "bevestigd",
-      "waarom": "Het geeft je positieve, concrete woorden voor je sterktes, die je rechtstreeks kunt gebruiken in je profieltekst en in gesprekken."
+      "waarom": "Je ziet of voorzichtigheid, liefde voor leren en oog voor schoonheid bovenaan staan, zoals je Big Five doet vermoeden, en die woorden kun je gebruiken voor je kernkwadranten en je profieltekst."
     },
     {
       "id": "vdab-interessetest",
-      "naam": "VDAB Interessetest (Oriënt)",
+      "naam": "VDAB-interessetest (Oriënt)",
       "wat": "Een test van VDAB die je vragen en beroepen voorlegt en op basis van je antwoorden passende beroepen voorstelt.",
       "duur": "ongeveer 10 minuten",
       "kost": "gratis",
       "url": "https://orientatie.vdab.be/",
       "status": "aanbevolen",
       "verificatie": "bevestigd",
-      "waarom": "Het vertaalt je interesses naar beroepsnamen zoals VDAB ze gebruikt, en dat zijn precies de zoektermen voor vacatures en opleidingen in Vlaanderen."
+      "waarom": "De test vertaalt je interesses naar beroepsnamen zoals VDAB ze gebruikt, en dat zijn precies de zoektermen voor vacatures en opleidingen in Vlaanderen."
     },
     {
       "id": "vdab-jobbereik",
@@ -264,7 +264,7 @@
       "url": "https://www.vdab.be/opleidingen/test-je-vaardigheden/taaltesten",
       "status": "aanbevolen",
       "verificatie": "bevestigd",
-      "waarom": "Op je cv staat Frans nog als [basis of beter]; met deze test vul je een echt niveau in, wat telt bij federale instellingen zoals het KIK-IRPA en in Brussel."
+      "waarom": "Op je cv staat Frans nog als [basis of beter]; met deze test ken je je echte niveau, handig voor jobs in Brussel of bij het KIK-IRPA, al werkt de federale overheid voor een officieel taalattest met haar eigen taaltests via werkenvoor.be."
     },
     {
       "id": "europass-erk",
@@ -279,14 +279,14 @@
     },
     {
       "id": "werkenvoor-demo",
-      "naam": "Demotesten van werkenvoor.be (federale overheid)",
+      "naam": "Demotests van werkenvoor.be (federale overheid)",
       "wat": "Oefenversies van de computertests die de federale overheid bij selecties gebruikt, zoals abstract redeneren en situationeel beoordelen.",
       "duur": "10 tot 20 minuten per demo (schatting)",
       "kost": "gratis",
       "url": "https://werkenvoor.be/nl/solliciteren/selectietesten/testinhoud",
       "status": "optioneel",
       "verificatie": "bevestigd",
-      "waarom": "Wie solliciteert bij het KIK-IRPA of een andere overheidsinstelling krijgt zulke tests, en wie vooraf oefent, weet wat hem in de eerste ronde te wachten staat."
+      "waarom": "Solliciteer je bij het KIK-IRPA of een andere federale instelling, dan krijg je zulke tests meestal in de eerste ronde, en met je diploma secundair oefen je best de demo's voor niveau C."
     },
     {
       "id": "onderwijskiezer-iprefer",
@@ -297,18 +297,18 @@
       "url": "https://www.onderwijskiezer.be/iprefer/",
       "status": "optioneel",
       "verificatie": "bevestigd",
-      "waarom": "De test is gemaakt voor laatstejaars secundair, maar helpt als je overweegt om een bachelor te volgen, bijvoorbeeld in conservatie-restauratie of een lerarenopleiding."
+      "waarom": "De test is gemaakt voor laatstejaars secundair, maar helpt als je een graduaat of bachelor overweegt, bijvoorbeeld de bachelor conservatie-restauratie, het graduaat bouwkundig tekenen of het educatief graduaat secundair onderwijs om les te geven."
     },
     {
       "id": "loopbaancheque",
       "naam": "Loopbaanbegeleiding met een VDAB-loopbaancheque",
       "wat": "Vier uur begeleiding door een erkende loopbaanbegeleider, die tests met je afneemt of je bestaande uitslagen samen met jou duidt.",
-      "duur": "4 uur per cheque; starten binnen 3 maanden na de bestelling",
-      "kost": "€90 per cheque",
+      "duur": "vier uur, één cheque; volledig op te nemen binnen zes maanden na toekenning",
+      "kost": "€90, eenmalig; alleen als je nog nooit een loopbaancheque gebruikte",
       "url": "https://www.vdab.be/orienteren/loopbaanbegeleiding/alles-over-je-loopbaancheque",
       "status": "optioneel",
-      "verificatie": "te verifiëren",
-      "waarom": "Een begeleider kan al je uitslagen samenleggen tot één richting, maar je vraagt de cheque aan terwijl je nog werkt en je hebt minstens zeven jaar werkervaring nodig, wat voor jou na te gaan is."
+      "verificatie": "bevestigd",
+      "waarom": "Een erkende begeleider kan al je uitslagen samenleggen tot één richting, maar je moet de cheque aanvragen zolang je nog werkt, en VDAB toont bij de aanvraag of je de zeven jaar werkervaring haalt, wat bij jou nipt is; lukt dat niet, dan krijg je als werkzoekende gratis loopbaanoriëntatie bij VDAB."
     }
   ]
 }

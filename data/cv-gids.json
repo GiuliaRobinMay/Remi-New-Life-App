@@ -1,9 +1,9 @@
 {
-  "inleiding": "Hier staat naast elke rubriek van je cv wat erin hoort, wat werkt en wat je beter laat, telkens met een voorbeeld op basis van je eigen loopbaan. De regels volgen wat VDAB en Vlaamse werkgevers verwachten, met extra aandacht voor je overstap van de metaalsector naar erfgoed, cultuur of onderwijs. Alles tussen vierkante haken is nog niet bekend en vul je aan met je antwoorden uit de vragenlijst.",
+  "inleiding": "Hier staat bij elke rubriek van je cv wat erin hoort, wat werkt en wat je beter weglaat, telkens met een voorbeeld op basis van je eigen loopbaan. De regels volgen wat VDAB en Vlaamse werkgevers verwachten, met extra aandacht voor je overstap van de metaalsector naar erfgoed, cultuur of onderwijs. Alles tussen vierkante haken is nog niet bekend; dat vul je aan met je antwoorden uit de vragenlijst.",
   "principes": [
     {
       "titel": "Eén tot twee pagina's",
-      "uitleg": "Een Vlaamse werkgever leest een cv meestal in minder dan een minuut. Houd het op één tot twee A4-pagina's, met korte, eenvoudige zinnen en zonder jargon of onverklaarde afkortingen."
+      "uitleg": "Houd je cv op één tot twee A4-pagina's, zoals VDAB aanraadt, met korte, eenvoudige zinnen. Vermijd jargon en onverklaarde afkortingen, zeker als je solliciteert buiten de metaalsector."
     },
     {
       "titel": "Meest recent eerst",
@@ -30,8 +30,8 @@
       "uitleg": "Verstuur je cv als PDF, zodat de opmaak bij elke lezer gelijk blijft. Noem het bestand Voornaam_Achternaam_CV.pdf, niet cv-definitief-2.pdf."
     },
     {
-      "titel": "Geboortedatum wel, foto alleen als gevraagd",
-      "uitleg": "Geboortedatum en -plaats horen in Vlaanderen gewoon bij de persoonlijke gegevens. Een foto is niet nodig; voeg er alleen een toe als de werkgever erom vraagt, dan met een neutrale achtergrond."
+      "titel": "Geboortedatum wel, foto optioneel",
+      "uitleg": "Geboortedatum en -plaats horen in Vlaanderen gewoon bij de persoonlijke gegevens. Een foto is optioneel: voeg er een toe als de werkgever erom vraagt of voor een jobbeurs, met een neutrale achtergrond, en laat hem weg in online overheidsformulieren."
     },
     {
       "titel": "Een link naar je portfolio",
@@ -39,7 +39,7 @@
     },
     {
       "titel": "Geen gezondheid, vakbond of reden van vertrek",
-      "uitleg": "Gezondheid, ziekteverlof, vakbondslidmaatschap en de reden waarom je vertrekt horen niet op een cv, en een werkgever mag er ook niet naar vragen. Je cv gaat over wat je kunt en wat je wil doen."
+      "uitleg": "Gezondheid, ziekteverlof en vakbondslidmaatschap horen niet op een cv, en een werkgever mag er ook niet naar vragen. De reden waarom je vertrekt laat je ook weg, maar in het gesprek wordt er wel naar gevraagd, dus werk in de vragenlijst een antwoord van twee zinnen uit dat over je nieuwe richting gaat."
     }
   ],
   "secties": [
@@ -49,14 +49,14 @@
       "doel": "Zorgen dat een werkgever je binnen tien seconden kan bereiken en weet waar je woont.",
       "inhoud": [
         "Voornaam en achternaam, groot bovenaan, zonder het woord cv en zonder labels zoals Naam:",
-        "Adres (straat, nummer, postcode, gemeente), gsm-nummer en e-mailadres, samen gegroepeerd",
+        "Adres (straat, nummer, postcode, gemeente), gsm-nummer en e-mailadres, bij elkaar in één blok",
         "Geboortedatum en -plaats en nationaliteit, zoals in Vlaanderen gebruikelijk",
         "Rijbewijs, als het voor de job relevant is",
         "Link naar je portfolio"
       ],
       "doen": [
         "Gebruik een zakelijk e-mailadres met je voornaam en achternaam.",
-        "Controleer je gsm-nummer en e-mailadres cijfer per cijfer; één fout en niemand kan je bereiken.",
+        "Controleer je gsm-nummer en e-mailadres teken per teken; één fout en niemand kan je bereiken.",
         "Schrijf je gsm-nummer in groepjes, zodat het makkelijk over te nemen is: +32 4xx xx xx xx.",
         "Zet de portfoliolink voluit en test of ze opent zonder in te loggen, ook op een gsm."
       ],
@@ -65,7 +65,7 @@
         "Labels zoals Naam:, Adres: en Tel.: voor elk gegeven",
         "Rijksregisternummer, burgerlijke staat, gezondheid of vakbond"
       ],
-      "voorbeeldGoed": "Remi [Achternaam]\n[Straat nummer], [postcode] Antwerpen\n[gsm-nummer] | [voornaam.achternaam@provider.be]\n°[dag maand jaar], [geboorteplaats] | [nationaliteit] | Rijbewijs [B, ja of nee]\nPortfolio: [link naar portfolio-PDF of pagina]",
+      "voorbeeldGoed": "Remi [Achternaam]\n[Straat nummer], [postcode] Antwerpen\n[gsm-nummer] | [voornaam.achternaam@provider.be]\n°[dag maand jaar], [geboorteplaats] | [nationaliteit] | [Rijbewijs B, alleen vermelden als je het hebt]\nPortfolio: [link naar portfolio-PDF of pagina]",
       "voorbeeldZwak": "CURRICULUM VITAE\nNaam: Remi\nAdres: Antwerpen\nTel.: [gsm-nummer]\nE-mail: [bijnaam]@hotmail.com",
       "vragenlijstIds": ["p01", "p02", "p03"]
     },
@@ -91,7 +91,7 @@
         "Uitleg over waarom je je huidige job verlaat",
         "Testresultaten zoals je MBTI-type of Holland-code; die helpen jou kiezen, maar zeggen een werkgever weinig"
       ],
-      "voorbeeldGoed": "Sinds 2021 werk ik in een bedrijf voor maatwerk in plaatmateriaal, eerst als technisch tekenaar en plooi- en lasoperator, nu als tekenaar en verantwoordelijke atelier. Ik teken werkstukken uit, bereid het werk voor en zorg voor de planning en de kwaliteit in een atelier met [aantal] collega's. Daarnaast volg ik interieurvormgeving in het avondonderwijs aan de Academie in Antwerpen, na drie jaar meubel en interieur en een jaar grafiek. Eerder bouwde ik een fotoarchief op voor Willy Van de Perre, en samen met mijn broer ontwerp en bouw ik meubels. Ik wil mijn vakmanschap en nauwkeurigheid inzetten voor [werk dat blijft, bijvoorbeeld de restauratie van erfgoed of het atelier van uw museum].",
+      "voorbeeldGoed": "Sinds 2021 werk ik in een bedrijf voor maatwerk in plaatmateriaal, eerst als technisch tekenaar en plooi- en lasoperator, nu als tekenaar en verantwoordelijke atelier. Ik teken werkstukken uit, plan het werk voor [aantal] collega's en controleer de maatvoering en de afwerking voordat een stuk het atelier verlaat. Daarnaast volg ik interieurvormgeving in het avondonderwijs aan de Academie in Antwerpen, na drie jaar meubel en interieur en een jaar grafiek. Samen met mijn broer ontwerp en bouw ik meubels, en eerder bouwde ik een fotoarchief op voor Willy Van de Perre. Die nauwkeurigheid en mijn ervaring met [materiaal of techniek uit de vacature] wil ik inzetten voor [werk dat blijft, bijvoorbeeld de restauratie van erfgoed of het atelier van uw museum].",
       "voorbeeldZwak": "Gemotiveerde en flexibele teamplayer met een passie voor techniek en design. Ik ben stressbestendig, leergierig en heb oog voor detail. Op zoek naar een nieuwe uitdaging in een dynamische omgeving.",
       "vragenlijstIds": ["p07", "w03", "w09", "s01", "i04", "o01", "g01"]
     },
@@ -104,11 +104,11 @@
         "Een halve regel over het bedrijf als de naam niets zegt, bijvoorbeeld maatwerk in plaatmateriaal",
         "Drie tot vijf regels per job: taken, en vooral realisaties",
         "Doorgroei binnen hetzelfde bedrijf, zoals van operator naar verantwoordelijke atelier",
-        "Kortere opdrachten die iets bijdragen, zoals het fotoarchief, het fietsatelier en je meubelwerk"
+        "Oudere en kortere ervaring in één of twee regels: Katoen Natie (2017 tot 2018, [functie]), het fotoarchief, het fietsatelier en je meubelwerk"
       ],
       "doen": [
-        "Begin elke regel met een actiewerkwoord.",
-        "Geef in minstens de helft van de regels een cijfer: collega's, werkstukken, beelden of jaren.",
+        "Begin elke regel met een actiewerkwoord: in de tegenwoordige tijd voor je huidige job (plan, teken uit), in de verleden tijd voor vroegere jobs (bouwde, ordende).",
+        "Geef waar het kan een cijfer, in minstens drie regels: collega's, werkstukken, beelden of jaren; noteer alleen cijfers die je kunt staven.",
         "Noem technieken, materialen en programma's bij naam; werkgevers zoeken daarop.",
         "Zet per vacature de regels die het meest tellen bovenaan.",
         "Neem het fotoarchief en het meubelwerk ernstig: voor erfgoed en musea zijn dat sterke bewijzen."
@@ -119,7 +119,7 @@
         "De reden waarom je bij een werkgever vertrok",
         "Onverklaarde gaten in de tijdlijn; een opleiding of eigen project mag een periode vullen"
       ],
-      "voorbeeldGoed": "2021 tot heden\nTekenaar en verantwoordelijke atelier, [Naam bedrijf], [gemeente]\nMetaalbewerking, maatwerk in plaatmateriaal\n- Groeide in [jaar] door van technisch tekenaar en plooi- en lasoperator naar verantwoordelijke atelier\n- Teken maatwerk uit in [CAD-programma] en maak het productieklaar: [aantal] werkstukken per [week of maand]\n- Plan en verdeel het werk voor [aantal] collega's en controleer de kwaliteit voor levering\n- Plooi op de kantbank en las halfautomaat (MIG/MAG) en elektrode\n- [Realisatie met een cijfer, bijvoorbeeld een aanpassing in de werkvoorbereiding en hoeveel herwerk of tijd die bespaarde]",
+      "voorbeeldGoed": "2021 tot heden\nTekenaar en verantwoordelijke atelier, [Naam bedrijf], [gemeente]\nMetaalbewerking, maatwerk in plaatmateriaal\n- Groeide in [jaar] door van technisch tekenaar en plooi- en lasoperator naar verantwoordelijke atelier\n- Teken maatwerk uit in [CAD-programma] en maak het productieklaar: [aantal] werkstukken per [week of maand]\n- Plan en verdeel het werk voor [aantal] collega's en controleer de kwaliteit vóór levering\n- Plooi op de kantbank en las halfautomaat (MIG/MAG) en elektrode\n- [Realisatie met een cijfer, bijvoorbeeld een aanpassing in de werkvoorbereiding en hoeveel herwerk of tijd die bespaarde]",
       "voorbeeldZwak": "2021 - nu\nFirma [Naam]\nLasser\n- Verantwoordelijk voor lassen, plooien en tekenen\n- Verantwoordelijk voor het atelier\n- Andere taken",
       "vragenlijstIds": ["p05", "p07", "p08", "p12", "p13", "p14", "w01", "w03", "w04"]
     },
@@ -138,14 +138,15 @@
         "Zet de opleiding die je nu volgt bovenaan, met tot heden of het verwachte einde.",
         "Noem avondonderwijs ook zo; het toont dat je werk en studie al jaren combineert.",
         "Gebruik de officiële naam van de opleiding en de instelling, zoals op je getuigschrift.",
-        "Voor overheidsjobs: kijk welk niveau je diploma geeft; een diploma secundair onderwijs geeft toegang tot niveau C."
+        "Voor overheidsjobs: kijk welk niveau je diploma geeft; een diploma secundair onderwijs geeft toegang tot niveau C.",
+        "Zet de regels pas definitief in volgorde als de jaren van de academie en de lasopleiding bevestigd zijn; de volgorde in het voorbeeld is voorlopig."
       ],
       "vermijden": [
-        "Nederlandse termen zoals middelbare school, mbo of havo",
+        "Termen uit Nederland, zoals middelbare school, mbo of havo",
         "Een getuigschrift of diploma dat je niet behaald hebt of niet kunt voorleggen",
         "Punten, graden of vakkenlijsten, tenzij de vacature erom vraagt"
       ],
-      "voorbeeldGoed": "[jaar] tot heden | Interieurvormgeving, avondonderwijs | [Academie, volledige naam], Antwerpen\n[jaar] | Grafiek, een jaar avondonderwijs | [Academie, volledige naam], Antwerpen\n[jaar] tot [jaar] | Meubel en interieur, drie jaar avondonderwijs, [getuigschrift ja of nee] | [Academie, volledige naam], Antwerpen\n[jaar, rond 2020] | Lasopleiding halfautomaat (MIG/MAG) en elektrode | [VDAB, SYNTRA of school], [gemeente]\n2017 | Diploma secundair onderwijs, Wetenschappen-Wiskunde | Sint-Lutgardis, [Merksem of Antwerpen]",
+      "voorbeeldGoed": "[jaar] tot heden | Interieurvormgeving, avondonderwijs | [Academie, volledige naam], Antwerpen\n[jaar] | Grafiek, een jaar avondonderwijs | [Academie, volledige naam], Antwerpen\n[jaar] tot [jaar] | Meubel en interieur, drie jaar avondonderwijs, [getuigschrift ja of nee] | [Academie, volledige naam], Antwerpen\n[jaar, rond 2020] | Lasopleiding halfautomaat (MIG/MAG) en elektrode | [VDAB, SYNTRA of school], [gemeente]\n2017 | Diploma secundair onderwijs, ASO Wetenschappen-Wiskunde | Sint-Lutgardis, [Merksem of Antwerpen]",
       "voorbeeldZwak": "Middelbare school: Sint-Lutgardis\nAcademie: meubels, grafiek, interieur\nLassen (cursus)",
       "vragenlijstIds": ["p11", "p16"]
     },
@@ -162,7 +163,7 @@
       "doen": [
         "Vermeld alleen certificaten die je kunt voorleggen, en noteer tot wanneer ze geldig zijn.",
         "Schrijf de norm en het procesnummer voluit; technische werkgevers zoeken daarop.",
-        "Houd een scan van elk certificaat klaar voor als een werkgever erom vraagt.",
+        "Houd van elk certificaat een scan klaar voor het geval een werkgever erom vraagt.",
         "Voor een job in erfgoed of een museum volstaat een korte regel; voor een technische job geef je alle details."
       ],
       "vermijden": [
@@ -170,7 +171,7 @@
         "Vage regels zoals lasdiploma of veiligheidscursus, zonder naam, norm of jaar",
         "Verlopen attesten zonder te vermelden dat ze verlopen zijn"
       ],
-      "voorbeeldGoed": "Lascertificaat EN ISO 9606-1, [proces 131, 135 of 111], [materiaal en positie], geldig tot [datum]\nVCA-basis (Basisveiligheid), [jaar], geldig tot [datum]\n[Ander attest, bijvoorbeeld EHBO of heftruck], [instelling], [jaar]",
+      "voorbeeldGoed": "[Alleen als je het kunt voorleggen: Lascertificaat EN ISO 9606-1, proces 131 (MIG), 135 (MAG) of 111 (elektrode), materiaal en positie, geldig tot datum]\n[Alleen als je het hebt: VCA-basis (Basisveiligheid), jaar, geldig tot datum]\n[Ander attest, bijvoorbeeld EHBO of heftruck], [instelling], [jaar]",
       "voorbeeldZwak": "Lasdiploma\nVeiligheidscursus\nAlle lasprocessen",
       "vragenlijstIds": ["p09", "p10"]
     },
@@ -196,7 +197,7 @@
         "Balkjes, sterren of percentages voor je niveau; ze zeggen weinig en online systemen lezen ze slecht",
         "Een programma of techniek noemen die je niet kunt tonen"
       ],
-      "voorbeeldGoed": "Tekenen en ontwerpen: technisch tekenen van maatwerk in plaatmateriaal ([CAD-programma], [niveau]), meubelontwerp, grafiek\nMaken: plooien op de kantbank, halfautomaat- (MIG/MAG) en elektrodelassen, plaatwerk, meubelbouw\nOrganiseren: werkvoorbereiding, planning en kwaliteitscontrole in een atelier met [aantal] collega's\nDocumenteren: een fotoarchief ordenen en digitaliseren ([software of methode])",
+      "voorbeeldGoed": "Tekenen en ontwerpen: technisch tekenen van maatwerk in plaatmateriaal ([CAD-programma], [niveau]), meubelontwerp, grafiek\nMaken: plooien op de kantbank, halfautomaatlassen (MIG/MAG) en elektrodelassen, plaatwerk, meubelbouw\nOrganiseren: werkvoorbereiding, planning en kwaliteitscontrole in een atelier met [aantal] collega's\nDocumenteren: een fotoarchief ordenen en digitaliseren ([software of methode])",
       "voorbeeldZwak": "Lassen (4/5)\nTekenen (3/5)\nComputer: 80 %\nHandig\nMicrosoft Word",
       "vragenlijstIds": ["p07", "p08", "p09", "w05", "s01", "s03"]
     },
@@ -211,9 +212,9 @@
         "Een verwijzing naar een project in je werkervaring of portfolio waar de competentie zichtbaar is"
       ],
       "doen": [
-        "Kies competenties die zowel je werk als je tests ondersteunen: zorgvuldigheid, betrouwbaarheid, samenwerken en kennis doorgeven passen bij je scores op plichtsbesef, behoedzaamheid en sociaal.",
+        "Kies competenties die door je werk gestaafd worden en die bij je testresultaten passen: zorgvuldigheid, betrouwbaarheid, samenwerken en kennis doorgeven sluiten aan bij je hoge scores op plichtsbesef en behoedzaamheid en bij de S (Sociaal) in je Holland-code.",
         "Geef bij elke competentie een bewijs uit je werk, je opleiding of je meubelwerk.",
-        "Bereid voor elke competentie op je cv een STARR-voorbeeld voor het gesprek voor: Situatie, Taak, Actie, Resultaat, Reflectie.",
+        "Werk voor elke competentie op je cv een STARR-voorbeeld uit dat je in het gesprek kunt vertellen: Situatie, Taak, Actie, Resultaat, Reflectie.",
         "Neem de woorden van de vacature over; een selectiecommissie scoort letterlijk op die competenties."
       ],
       "vermijden": [
@@ -221,7 +222,7 @@
         "Competenties die goed klinken maar die je in een gesprek niet met een voorbeeld kunt staven",
         "Testresultaten als bewijs; een test is geen competentie"
       ],
-      "voorbeeldGoed": "Zorgvuldigheid: controleer als verantwoordelijke atelier de maatvoering en afwerking voor een werkstuk vertrekt [hoe precies]\nPlannen en organiseren: plan het werk van [aantal] collega's per [dag of week] en zorg voor de werkvoorbereiding\nKennis doorgeven: [wie je wat aanleerde, bijvoorbeeld een nieuwe collega op de kantbank, en hoelang]\nSamenwerken: ontwerp en bouw meubels samen met mijn broer, van schets tot afgewerkt stuk",
+      "voorbeeldGoed": "Zorgvuldigheid: controleer als verantwoordelijke atelier de maatvoering en de afwerking voordat een werkstuk het atelier verlaat [hoe, bijvoorbeeld met welke meetmiddelen of controlelijst]\nPlannen en organiseren: plan het werk van [aantal] collega's per [dag of week] en zorg voor de werkvoorbereiding\nKennis doorgeven: leerde [wie, bijvoorbeeld een nieuwe collega] [wat, bijvoorbeeld plooien op de kantbank] aan in [aantal weken of maanden]\nVerantwoordelijkheid nemen: groeide in [jaar] door van technisch tekenaar en plooi- en lasoperator naar verantwoordelijke atelier en sta sindsdien in voor het atelier en [aantal] collega's",
       "voorbeeldZwak": "Communicatief, flexibel, stressbestendig, leergierig, teamplayer, oog voor detail",
       "vragenlijstIds": ["w01", "w09", "s01", "s03", "s05", "i06"]
     },
@@ -243,7 +244,7 @@
         "Een niveau dat je in een gesprek niet waarmaakt",
         "Vage woorden zoals een beetje of schoolfrans, zonder niveau"
       ],
-      "voorbeeldGoed": "Nederlands: moedertaal\nEngels: [goed of zeer goed] in spreken en lezen, [niveau] in schrijven\nFrans: [basis, goed of zeer goed]",
+      "voorbeeldGoed": "Nederlands: moedertaal\nEngels: [basis, goed of zeer goed] in spreken en lezen, [niveau] in schrijven\nFrans: [basis, goed of zeer goed]",
       "voorbeeldZwak": "Talen: Nederlands, Engels, een beetje Frans",
       "vragenlijstIds": ["p04"]
     },
@@ -262,7 +263,7 @@
         "Kies per vacature de volgorde: voor restauratie eerst precisiewerk en afwerking, voor tentoonstellingsbouw eerst constructies, voor lesgeven eerst tekeningen en werkvoorbereiding.",
         "Noem in je motivatiebrief één of twee stukken bij naam.",
         "Neem een geprinte versie mee naar het gesprek.",
-        "Vraag toestemming aan je werkgever of klant voor je foto's van hun werk toont."
+        "Vraag toestemming aan je werkgever, een klant of Willy Van de Perre voordat je foto's van hun werk of beelden uit het archief toont."
       ],
       "vermijden": [
         "Een link die vraagt om in te loggen, of een map losse foto's zonder uitleg",
@@ -302,7 +303,7 @@
       "titel": "Referenties",
       "doel": "Een werkgever de kans geven om bij iemand na te gaan hoe je werkt, zonder dat je die persoon overvalt.",
       "inhoud": [
-        "Een of twee mensen die je werk kennen: een collega, een klant, een docent van de Academie of de opdrachtgever van het fotoarchief",
+        "Eén of twee mensen die je werk kennen: een collega, een klant, een docent van de Academie of de opdrachtgever van het fotoarchief",
         "Per persoon: naam, functie, organisatie, hoe die je kent en een gsm-nummer of e-mailadres",
         "Of de korte zin Referenties op aanvraag, als je de namen nog niet wil geven"
       ],
@@ -316,7 +317,7 @@
         "Familie of vrienden als referentie",
         "Namen zonder toestemming, of iemand die je werk niet goed kent"
       ],
-      "voorbeeldGoed": "[Voornaam Achternaam], [functie], [organisatie]\nKent mij als [rol, bijvoorbeeld docent meubel en interieur of opdrachtgever van het fotoarchief], [jaar] tot [jaar]\n[gsm-nummer] of [e-mailadres]",
+      "voorbeeldGoed": "[Voornaam Achternaam], [functie], [organisatie]\nKent mij via [de lessen meubel en interieur aan de Academie, of de opbouw van het fotoarchief], [jaar] tot [jaar]\n[gsm-nummer] of [e-mailadres]",
       "voorbeeldZwak": "Referenties: mijn baas, [gsm-nummer]",
       "vragenlijstIds": ["g03"]
     }
@@ -344,7 +345,7 @@
     },
     {
       "groep": "Overdragen en helpen",
-      "woorden": ["leerde aan", "legde uit", "werkte in", "begeleidde", "instrueerde", "toonde voor", "ondersteunde", "adviseerde", "hielp", "gaf door"]
+      "woorden": ["leerde aan", "legde uit", "leidde op", "begeleidde", "instrueerde", "deed voor", "ondersteunde", "adviseerde", "hielp", "gaf door"]
     }
   ],
   "vlaamsNederlands": [
@@ -360,7 +361,7 @@
     { "gebruik": "eindejaarspremie", "niet": "dertiende maand" },
     { "gebruik": "voltijds, deeltijds", "niet": "fulltime, parttime" },
     { "gebruik": "zelfstandige", "niet": "zzp'er" },
-    { "gebruik": "Geachte mevrouw, geachte heer", "niet": "Geachte heer/mevrouw" }
+    { "gebruik": "hogeschool, graduaat, professionele bachelor", "niet": "hbo" }
   ],
   "checklist": [
     {
@@ -371,7 +372,7 @@
     {
       "id": "profiel-lengte",
       "regel": "Het profiel telt hoogstens vijf zinnen.",
-      "waarom": "VDAB raadt een korte voorstelling van maximaal vijf regels aan, en langere blokken worden overgeslagen."
+      "waarom": "VDAB raadt bij een carrièreswitch een korte voorstelling van hoogstens vijf zinnen aan, zodat de lezer meteen ziet waarom je deze overstap maakt."
     },
     {
       "id": "placeholders",
@@ -395,7 +396,7 @@
     },
     {
       "id": "actiewerkwoorden",
-      "regel": "Regels onder werkervaring beginnen met een actiewerkwoord, niet met verantwoordelijk voor.",
+      "regel": "Regels onder werkervaring beginnen zoveel mogelijk met een actiewerkwoord, en geen enkele met verantwoordelijk voor.",
       "waarom": "Een werkwoord zegt wat je zelf deed en leest sneller."
     },
     {
@@ -415,8 +416,8 @@
     },
     {
       "id": "verboden-woorden",
-      "regel": "Het cv bevat niets over gezondheid, vermoeidheid, burn-out, ziekteverlof of vakbond (ook niet ACV), en geen Nederlandse woorden zoals baan, salaris of middelbare school.",
-      "waarom": "Een werkgever mag niet naar gezondheid of vakbond vragen, dus het hoort niet op je cv, en Nederlandse termen klinken vreemd voor een Vlaamse lezer."
+      "regel": "Het cv bevat niets over gezondheid, vermoeidheid, burn-out, ziekteverlof of vakbond (ook niet ACV), geen uitroeptekens of emoji, en geen woorden uit Nederland zoals baan, salaris of middelbare school.",
+      "waarom": "Een werkgever mag niet naar gezondheid of vakbond vragen, dus het hoort niet op je cv; woorden uit Nederland klinken vreemd voor een Vlaamse lezer, en uitroeptekens en emoji passen niet in een zakelijk document."
     },
     {
       "id": "spelling-naam",
@@ -439,7 +440,7 @@
     "Vlaamse overheid (werkenvoorvlaanderen.be): je solliciteert alleen via het online formulier en in het Nederlands; houd je cv-tekst, je motivatie en per standaardcompetentie een kort STARR-voorbeeld klaar om in te vullen.",
     "Stad Antwerpen (job.antwerpen.be): de cv-screening kijkt naar je cv en je motivatie samen, en daarna volgt altijd een competentiegericht gesprek, vaak met een praktische proef; schrijf de motivatie dus per vacature opnieuw.",
     "Online sollicitatiesystemen (ATS) lezen je cv automatisch: gebruik een eenvoudige opmaak zonder tabellen, tekstvakken of tekst in afbeeldingen, en standaardkoppen zoals Werkervaring en Opleiding.",
-    "Neem de functietitel en de belangrijkste woorden uit de vacature letterlijk over waar ze kloppen, want zowel die systemen als selectiecommissies zoeken daarop.",
-    "Lees na het plakken alles na in het formulier: opsommingstekens, datums en speciale tekens verspringen vaak; bewaar daarna een kopie of schermafbeelding van wat je indiende en noteer de sollicitatie in de app."
+    "Federale instellingen zoals het KIK-IRPA werven via werkenvoor.be: je maakt daar een online cv aan, en de selectie bestaat meestal uit een algemene test (abstract redeneren, situaties beoordelen), een functiegerichte screening en een gesprek; wie slaagt, komt vaak in een reserve.",
+    "Controleer na het plakken alles in het formulier: opsommingstekens, datums en speciale tekens verspringen vaak; bewaar daarna een kopie of schermafbeelding van wat je indiende en noteer de sollicitatie in de app."
   ]
 }

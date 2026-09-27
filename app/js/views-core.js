@@ -5,8 +5,10 @@ import { openPeek, closePeek, go } from './app.js';
 
 const SPOORKLEUR = { erfgoed: 'orange', cultuur: 'violet', onderwijs: 'green', overheid: 'grey', sociaal: 'red', ecologisch: 'green', geschiedenis: 'orange', reserve: 'grey' };
 export const spoorBadge = (s) => badge(s || 'algemeen', SPOORKLEUR[s] || 'grey');
-const card = (...c) => h('section', { class: 'card card--pad stack-sm' }, ...c);
-const titled = (title, ...c) => h('section', { class: 'card card--pad stack-sm' }, h('p', { class: 'eyebrow' }, title), ...c);
+const card = (...c) => h('section', { class: 'card card--pad' }, ...c);
+const titled = (title, ...c) => h('section', { class: 'card card--pad' }, h('p', { class: 'eyebrow' }, title), ...c);
+export const content = (...c) => h('div', { class: 'content stack stack--tight' }, ...c);
+export const intro = (title, sub) => h('div', { class: 'intro' }, h('h1', { class: 'page-title' }, title), sub && h('p', { class: 'muted' }, sub));
 const link = (href, label) => h('a', { href, target: '_blank', rel: 'noopener' }, label || href.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''), icon('external', 12));
 
 function huidigeFase() {
@@ -25,8 +27,8 @@ export function overzicht() {
   const gesprekken = soll.filter(s => s.status === 'gesprek' && s.gesprekDatum && daysUntil(s.gesprekDatum) >= 0);
   const telling = (st) => soll.filter(s => s.status === st).length;
   const fase = huidigeFase();
-  const body = h('div', { class: 'stack' },
-    h('div', null, h('h1', { class: 'page-title' }, 'Overzicht'), h('p', { class: 'muted' }, `Vandaag ${fmtDate(t)}. ${daysUntil(ref.programma.einddatum_contract)} dagen tot 31 december 2026.`)),
+  const body = content(
+    intro('Overzicht', `Vandaag ${fmtDate(t)}. ${daysUntil(ref.programma.einddatum_contract)} dagen tot 31 december 2026.`),
     h('div', { class: 'callout callout--red' }, h('p', { class: 'row-title' }, 'Eerst dit'), h('p', null, ref.rechten.kern[0]), h('p', { class: 'small', style: 'margin-top:6px' }, h('a', { href: '#/rechten' }, 'Alle rechten en scenario\'s'))),
     h('div', { class: 'grid-cards' },
       h('div', { class: 'card kpi accent-green' }, h('p', { class: 'eyebrow' }, 'Open stappen'), h('p', { class: 'kpi__num' }, String(stappen.length)), h('a', { href: '#/stappenplan', class: 'small' }, 'Naar het stappenplan')),
@@ -44,7 +46,7 @@ export function overzicht() {
     titled('Sporen', h('div', { class: 'grid-cards' }, ref.programma.sporen.map(sp => h('div', { class: `card card--pad accent-${sp.kleur}` }, h('p', { class: 'row-title' }, sp.naam), h('p', { class: 'small muted' }, sp.status), h('p', { class: 'small', style: 'margin-top:6px' }, sp.toelichting))))),
     titled('Ritme', h('p', null, ref.programma.ritme)),
   );
-  return { chrome: { where: 'Wat nu telt', accent: 'violet' }, body };
+  return { chrome: { where: 'Wat nu telt', accent: 'violet', tabLabel: 'Vandaag', viewIcon: 'home' }, body };
 }
 
 // ---------- Stappenplan ----------
@@ -52,8 +54,8 @@ export function stappenplan(r) {
   const filter = r.tab || 'open';
   const items = all('stappenplan').filter(s => filter === 'alles' || (filter === 'open' ? s.status !== 'klaar' : s.status === 'klaar'));
   const groepen = [...new Set(all('stappenplan').map(s => s.groep))];
-  const body = h('div', { class: 'stack' },
-    h('div', null, h('h1', { class: 'page-title' }, 'Stappenplan'), h('p', { class: 'muted' }, 'Alles wat te doen is, van de dokter en ACV tot VDAB, cv en hotlist. Vink af wat klaar is; voeg eigen stappen toe.')),
+  const body = content(
+    intro('Stappenplan', 'Alles wat te doen is, van de dokter en ACV tot VDAB, cv en hotlist. Vink af wat klaar is; voeg eigen stappen toe.'),
     groepen.map(g => { const list = items.filter(s => s.groep === g); if (!list.length) return null; return titled(g, h('ul', { class: 'list' }, list.map(s => h('li', null,
       h('input', { type: 'checkbox', class: 'check', checked: s.status === 'klaar', onChange: (e) => upsert('stappenplan', { id: s.id, status: e.target.checked ? 'klaar' : 'open' }) }),
       h('div', { style: 'flex:1;min-width:0' },
@@ -62,8 +64,8 @@ export function stappenplan(r) {
         h('p', { class: 'meta', style: 'margin-top:4px' }, s.wie && h('span', null, s.wie), s.deadline && h('span', { class: s.status !== 'klaar' && daysUntil(s.deadline) < 0 ? 'overdue' : '' }, `deadline ${fmtDate(s.deadline)}`), s.bron && badge(s.bron, 'grey'), h('button', { class: 'btn btn--quiet btn--sm', onClick: () => stapForm(s) }, 'Bewerken'))))))); }),
   );
   const tabs = [['open', 'Open'], ['klaar', 'Klaar'], ['alles', 'Alles']].map(([k, l]) => ({ label: l, href: `#/stappenplan?tab=${k}`, active: filter === k }));
-  const tool = [h('span', { class: 'chrome__view' }, `${items.length} stappen`), h('div', { class: 'chrome__spacer' }), h('button', { class: 'btn btn--primary', onClick: () => stapForm() }, icon('plus', 14), 'Stap toevoegen')];
-  return { chrome: { where: 'Te doen', tabs, tool }, body };
+  const tool = [h('button', { class: 'btn btn--primary', onClick: () => stapForm() }, icon('plus', 14), 'Stap toevoegen')];
+  return { chrome: { where: 'Te doen', tabs, tool, view: `${items.length} stappen`, viewIcon: 'check' }, body };
 }
 function stapForm(s = {}) {
   openPeek(s.id ? 'Stap bewerken' : 'Nieuwe stap', () => {
@@ -92,8 +94,8 @@ export function planning() {
     ...EVENEMENTEN.map(e => ({ ...e, soort: 'evenement' })),
   ].filter(x => x.datum >= addDays(t, -7)).sort((a, b) => a.datum.localeCompare(b.datum));
   const kleur = { stap: 'green', sollicitatie: 'orange', gesprek: 'violet', vacature: 'orange', evenement: 'grey' };
-  const body = h('div', { class: 'stack' },
-    h('div', null, h('h1', { class: 'page-title' }, 'Planning'), h('p', { class: 'muted' }, `Vijf fasen van hier tot september 2027. Nu: ${fase.naam}.`)),
+  const body = content(
+    intro('Planning', `Vijf fasen van hier tot september 2027. Nu: ${fase.naam}.`),
     h('div', { class: 'two-col' },
       h('div', { class: 'timeline' }, ref.programma.fasen.map(f => h('div', { class: 'timeline__item' + (f.id === fase.id ? ' timeline__item--now' : '') },
         h('p', { class: 'eyebrow' }, f.periode), h('p', { class: 'row-title' }, f.naam), h('p', { class: 'small', style: 'margin:4px 0' }, f.doel), h('ul', { class: 'bullets small' }, f.acties.map(a => h('li', null, a)))))),
@@ -104,24 +106,24 @@ export function planning() {
       ),
     ),
   );
-  return { chrome: { where: 'Fasen en agenda' }, body };
+  return { chrome: { where: 'Fasen en agenda', tabLabel: 'Fasen en agenda', viewIcon: 'calendar' }, body };
 }
 
 // ---------- Rechten ----------
 export function rechten(r) {
   const R = ref.rechten; const tab = r.tab || 'kern';
   const tabs = [['kern', 'Kern'], ['scenarios', 'Scenario\'s'], ['opzeg', 'Opzegtermijn'], ['werkloosheid', 'Werkloosheid 2026'], ['steun', 'ACV en VDAB'], ['check', 'Te verifiëren']].map(([k, l]) => ({ label: l, href: `#/rechten?tab=${k}`, active: tab === k }));
-  let content;
-  if (tab === 'kern') content = h('div', { class: 'stack' }, h('div', { class: 'callout callout--red' }, h('p', { class: 'row-title' }, 'Wat je meteen moet weten'), h('ul', { class: 'bullets' }, R.kern.map(k => h('li', null, k)))), h('p', { class: 'small muted' }, R.disclaimer));
-  else if (tab === 'scenarios') content = h('div', { class: 'grid-cards grid-cards--wide' }, R.scenarios.map(s => h('div', { class: `card card--pad accent-${s.kleur}` }, h('p', { class: 'eyebrow' }, `Scenario ${s.id}`), h('p', { class: 'section-title' }, s.naam), badge(s.oordeel, s.kleur), h('ul', { class: 'bullets small', style: 'margin-top:8px' }, s.punten.map(p => h('li', null, p))))));
-  else if (tab === 'opzeg') content = h('div', { class: 'stack' },
+  let inhoud;
+  if (tab === 'kern') inhoud = h('div', { class: 'stack stack--tight' }, h('div', { class: 'callout callout--red' }, h('p', { class: 'row-title' }, 'Wat je meteen moet weten'), h('ul', { class: 'bullets' }, R.kern.map(k => h('li', null, k)))), h('p', { class: 'small muted' }, R.disclaimer));
+  else if (tab === 'scenarios') inhoud = h('div', { class: 'grid-cards grid-cards--wide' }, R.scenarios.map(s => h('div', { class: `card card--pad accent-${s.kleur}` }, h('p', { class: 'eyebrow' }, `Scenario ${s.id}`), h('p', { class: 'row-title' }, s.naam), badge(s.oordeel, s.kleur), h('ul', { class: 'bullets small', style: 'margin-top:8px' }, s.punten.map(p => h('li', null, p))))));
+  else if (tab === 'opzeg') inhoud = h('div', { class: 'stack stack--tight' },
     titled('Opzegtermijnen in weken', h('p', { class: 'small muted' }, R.opzegtabel.toelichting), h('table', { class: 'table' }, h('thead', null, h('tr', null, h('th', null, 'Anciënniteit'), h('th', null, 'Werkgever zegt op'), h('th', null, 'Werknemer zegt op'))), h('tbody', null, R.opzegtabel.rijen.map(x => h('tr', null, h('td', null, x.ancienniteit), h('td', null, `${x.werkgever} weken`), h('td', null, `${x.werknemer} weken`)))))),
     opzegCalculator(R.opzegtabel.rijen));
-  else if (tab === 'werkloosheid') content = h('div', { class: 'stack' }, titled('Regels sinds 1 maart 2026', h('ul', { class: 'bullets' }, R.werkloosheid2026.map(k => h('li', null, k)))), titled('Vakantiegeld en eindejaarspremie', h('p', null, R.vakantiegeld)));
-  else if (tab === 'steun') content = h('div', { class: 'two-col' }, titled('Wat ACV-CSC METEA doet', h('ul', { class: 'bullets' }, R.acv.map(k => h('li', null, k)))), titled('Wat VDAB biedt', h('ul', { class: 'bullets' }, R.vdabsteun.map(k => h('li', null, k)))));
-  else content = titled('Nog te bevestigen bij ACV, VDAB of de bron', h('ul', { class: 'bullets' }, R.teverifieren.map(k => h('li', null, k))), h('p', { class: 'small muted' }, `Peildatum ${fmtDate(R.peildatum)}. Bronnen in research/01-arbeidsrecht-uitstap.md.`));
-  const body = h('div', { class: 'stack' }, h('div', null, h('h1', { class: 'page-title' }, 'Rechten'), h('p', { class: 'muted' }, 'Belgisch arbeidsrecht toegepast op de uitstap van Remi. Informatie, geen juridisch advies.')), content);
-  return { chrome: { where: 'Uitstap, uitkering, herstel', tabs, accent: 'red' }, body };
+  else if (tab === 'werkloosheid') inhoud = h('div', { class: 'stack stack--tight' }, titled('Regels sinds 1 maart 2026', h('ul', { class: 'bullets' }, R.werkloosheid2026.map(k => h('li', null, k)))), titled('Vakantiegeld en eindejaarspremie', h('p', null, R.vakantiegeld)));
+  else if (tab === 'steun') inhoud = h('div', { class: 'two-col' }, titled('Wat ACV-CSC METEA doet', h('ul', { class: 'bullets' }, R.acv.map(k => h('li', null, k)))), titled('Wat VDAB biedt', h('ul', { class: 'bullets' }, R.vdabsteun.map(k => h('li', null, k)))));
+  else inhoud = titled('Nog te bevestigen bij ACV, VDAB of de bron', h('ul', { class: 'bullets' }, R.teverifieren.map(k => h('li', null, k))), h('p', { class: 'small muted' }, `Peildatum ${fmtDate(R.peildatum)}. Bronnen in research/01-arbeidsrecht-uitstap.md.`));
+  const body = content(intro('Rechten', 'Belgisch arbeidsrecht toegepast op de uitstap van Remi. Informatie, geen juridisch advies.'), inhoud);
+  return { chrome: { where: 'Uitstap, uitkering, herstel', tabs, accent: 'red', viewIcon: 'shield' }, body };
 }
 function opzegCalculator(rijen) {
   const st = { rij: 2, wie: 'werkgever', datum: todayIso(), aangetekend: true };
@@ -148,8 +150,8 @@ export function profiel(r) {
   const P = ref.profiel; const tab = r.tab || 'samenvatting';
   const tabs = [['samenvatting', 'Samenvatting'], ['tests', 'Testresultaten'], ['herzieningen', 'Herzieningen']].map(([k, l]) => ({ label: l, href: `#/profiel?tab=${k}`, active: tab === k }));
   const bar = (naam, val, max, primair) => h('div', { class: 'score' }, h('span', null, naam), h('span', { class: 'progress' }, h('span', { style: `width:${Math.round(val / max * 100)}%;${primair ? '' : 'opacity:.45'}` })), h('span', { class: 'score__val' }, String(val)));
-  let content;
-  if (tab === 'samenvatting') content = h('div', { class: 'stack' },
+  let inhoud;
+  if (tab === 'samenvatting') inhoud = h('div', { class: 'stack stack--tight' },
     h('blockquote', { class: 'quote' }, P.synthese),
     h('div', { class: 'two-col' },
       titled('Wie', h('p', null, `${P.naam}, ${P.leeftijd}, ${P.woonplaats}.`), h('p', null, P.beroep), h('p', null, P.studies), h('p', { class: 'small muted' }, P.situatie), h('p', { class: 'small muted' }, P.vakbond)),
@@ -157,39 +159,39 @@ export function profiel(r) {
     ),
     titled('Randvoorwaarden', h('ul', { class: 'bullets' }, P.randvoorwaarden.map(v => h('li', null, v)))),
     h('div', { class: 'callout callout--orange' }, h('p', { class: 'row-title' }, 'Te bevestigen'), h('p', null, 'Welke opleiding volgt Remi precies: een hogeschoolbachelor, een opleiding aan de stedelijke academie (deeltijds kunstonderwijs) of iets anders? Dat bepaalt studiepunten, vrijstellingen en opleidingsverlof. Zie stap "Studie bevestigen" in het stappenplan.')));
-  else if (tab === 'tests') content = h('div', { class: 'stack' },
+  else if (tab === 'tests') inhoud = h('div', { class: 'stack stack--tight' },
     titled('Loopbaanankers (Schein)', P.tests.loopbaanankers.map(a => bar(a.anker, a.score, 100, a.rol === 'dominant')), h('p', { class: 'small muted' }, 'Zuivere uitdaging en dienstbaarheid vormen het dominante paar: werk moet echt moeilijk zijn en er echt toe doen.')),
     h('div', { class: 'two-col' },
       titled('Holland-code: ' + P.tests.holland.code, P.tests.holland.scores.map((s, i) => bar(s.type, s.score, P.tests.holland.max, i < 3))),
       titled('Big Five', h('ul', { class: 'list list--tight' }, P.tests.bigfive.map(b => h('li', null, h('div', null, h('p', { class: 'row-title' }, `${b.domein}: ${b.niveau}`), h('p', { class: 'small muted' }, b.toelichting)))))),
     ),
     titled('MBTI: ' + P.tests.mbti.type, h('p', null, P.tests.mbti.toelichting)));
-  else content = h('div', { class: 'grid-cards grid-cards--wide' }, P.herzieningen.map(x => h('div', { class: 'card card--pad' }, h('p', { class: 'row-title' }, x.onderwerp), badge(x.status, x.status.includes('niet') ? 'red' : x.status.includes('hoofd') ? 'orange' : 'grey'), h('p', { class: 'small', style: 'margin-top:8px' }, x.toelichting))));
-  const body = h('div', { class: 'stack' }, h('div', null, h('h1', { class: 'page-title' }, 'Profiel'), h('p', { class: 'muted' }, 'Wie Remi is volgens vier tests en de gesprekken tot nu toe.')), content);
-  return { chrome: { where: 'Wie Remi is', tabs, accent: 'grey' }, body };
+  else inhoud = h('div', { class: 'grid-cards grid-cards--wide' }, P.herzieningen.map(x => h('div', { class: 'card card--pad' }, h('p', { class: 'row-title' }, x.onderwerp), badge(x.status, x.status.includes('niet') ? 'red' : x.status.includes('hoofd') ? 'orange' : 'grey'), h('p', { class: 'small', style: 'margin-top:8px' }, x.toelichting))));
+  const body = content(intro('Profiel', 'Wie Remi is volgens vier tests en de gesprekken tot nu toe.'), inhoud);
+  return { chrome: { where: 'Wie Remi is', tabs, accent: 'green', viewIcon: 'user' }, body };
 }
 
 // ---------- Documenten ----------
 export function documenten(r) {
   const tab = r.tab || 'cv';
   const tabs = [['cv', 'Cv'], ['sjablonen', 'Sjablonen'], ['vdab', 'VDAB-profiel'], ['gegenereerd', 'Per sollicitatie']].map(([k, l]) => ({ label: l, href: `#/documenten?tab=${k}`, active: tab === k }));
-  const S = ref.sjablonen; let content;
-  if (tab === 'cv') { const cv = ref.cvMaster; content = h('div', { class: 'stack' },
+  const S = ref.sjablonen; let inhoud;
+  if (tab === 'cv') { const cv = ref.cvMaster; inhoud = h('div', { class: 'stack stack--tight' },
     h('div', { class: 'toolbar' }, h('a', { class: 'btn btn--primary', href: 'cv.html', target: '_blank' }, icon('print', 14), 'Afdrukversie openen (pdf)'), h('button', { class: 'btn btn--ghost', onClick: () => copyText(JSON.stringify(cv, null, 2)) }, icon('copy', 14), 'Kopieer cv-gegevens')),
     h('div', { class: 'callout' }, h('p', null, 'Het master-cv staat in data/cv-master.json. Tekst tussen vierkante haken moet nog ingevuld worden. Per sollicitatie maakt Claude een aangepaste versie in documents/generated.')),
     titled('Profiel', h('p', null, cv.profiel)),
     titled('Werkervaring', cv.werkervaring.map(w => h('div', { style: 'margin-bottom:10px' }, h('p', { class: 'row-title' }, `${w.functie}, ${w.werkgever}`), h('p', { class: 'small muted' }, w.periode), h('ul', { class: 'bullets small' }, w.taken.map(t => h('li', null, t)))))),
     h('div', { class: 'two-col' }, titled('Opleiding', h('ul', { class: 'list list--tight' }, cv.opleiding.map(o => h('li', null, h('div', null, h('p', { class: 'row-title' }, o.titel), h('p', { class: 'small muted' }, `${o.instelling}, ${o.periode}`)))))), titled('Certificaten en vaardigheden', h('ul', { class: 'bullets small' }, [...cv.certificaten, ...cv.vaardigheden].map(c => h('li', null, c))))));
-  } else if (tab === 'sjablonen') content = h('div', { class: 'stack' }, ['motivatiebrief-basis.md', 'mails.md'].filter(k => S[k]).map(k => titled(k.replace('.md', '').replace(/-/g, ' '), h('div', { class: 'toolbar' }, h('button', { class: 'btn btn--ghost btn--sm', onClick: () => copyText(S[k]) }, icon('copy', 12), 'Kopieer tekst')), md(S[k]))));
-  else if (tab === 'vdab') content = h('div', { class: 'stack' }, h('div', { class: 'toolbar' }, h('button', { class: 'btn btn--primary', onClick: () => copyText(S['vdab-profiel.md'] || '') }, icon('copy', 14), 'Kopieer volledige tekst'), h('a', { class: 'btn btn--ghost', href: 'https://www.vdab.be/mijnloopbaan', target: '_blank' }, icon('external', 14), 'Mijn Loopbaan openen')), card(md(S['vdab-profiel.md'] || 'Nog niet beschikbaar.')));
-  else content = ref.gegenereerd.length ? h('div', { class: 'stack' }, ref.gegenereerd.map(g => titled(g.slug, g.meta && h('p', { class: 'small muted' }, `${g.meta.organisatie || ''} ${g.meta.functie ? ', ' + g.meta.functie : ''} ${g.meta.datum ? ', ' + fmtDate(g.meta.datum) : ''}`), h('div', { class: 'toolbar' }, g.cv && h('a', { class: 'btn btn--ghost btn--sm', href: `cv.html?variant=${encodeURIComponent(g.slug)}`, target: '_blank' }, icon('print', 12), 'Cv-variant'), g.brief && h('button', { class: 'btn btn--ghost btn--sm', onClick: () => copyText(g.brief) }, icon('copy', 12), 'Kopieer brief'), g.mail && h('button', { class: 'btn btn--ghost btn--sm', onClick: () => copyText(g.mail) }, icon('copy', 12), 'Kopieer mail')), g.brief && md(g.brief), g.mail && md(g.mail)))) : h('div', { class: 'empty' }, 'Nog geen aangepaste documenten. Geef een vacature aan Claude met de werkwijze in .claude/skills/sollicitatie en de map documents/generated vult zich.');
-  const body = h('div', { class: 'stack' }, h('div', null, h('h1', { class: 'page-title' }, 'Documenten'), h('p', { class: 'muted' }, 'Master-cv, brieven, mails en de tekst voor het VDAB-profiel. Alles in het Nederlands, met "u" tegenover werkgevers.')), content);
-  return { chrome: { where: 'Cv, brieven, mails', tabs, accent: 'grey' }, body };
+  } else if (tab === 'sjablonen') inhoud = h('div', { class: 'stack stack--tight' }, ['motivatiebrief-basis.md', 'mails.md'].filter(k => S[k]).map(k => titled(k.replace('.md', '').replace(/-/g, ' '), h('div', { class: 'toolbar' }, h('button', { class: 'btn btn--ghost btn--sm', onClick: () => copyText(S[k]) }, icon('copy', 12), 'Kopieer tekst')), md(S[k]))));
+  else if (tab === 'vdab') inhoud = h('div', { class: 'stack stack--tight' }, h('div', { class: 'toolbar' }, h('button', { class: 'btn btn--primary', onClick: () => copyText(S['vdab-profiel.md'] || '') }, icon('copy', 14), 'Kopieer volledige tekst'), h('a', { class: 'btn btn--ghost', href: 'https://www.vdab.be/mijnloopbaan', target: '_blank' }, icon('external', 14), 'Mijn Loopbaan openen')), card(md(S['vdab-profiel.md'] || 'Nog niet beschikbaar.')));
+  else inhoud = ref.gegenereerd.length ? h('div', { class: 'stack stack--tight' }, ref.gegenereerd.map(g => titled(g.slug, g.meta && h('p', { class: 'small muted' }, `${g.meta.organisatie || ''} ${g.meta.functie ? ', ' + g.meta.functie : ''} ${g.meta.datum ? ', ' + fmtDate(g.meta.datum) : ''}`), h('div', { class: 'toolbar' }, g.cv && h('a', { class: 'btn btn--ghost btn--sm', href: `cv.html?variant=${encodeURIComponent(g.slug)}`, target: '_blank' }, icon('print', 12), 'Cv-variant'), g.brief && h('button', { class: 'btn btn--ghost btn--sm', onClick: () => copyText(g.brief) }, icon('copy', 12), 'Kopieer brief'), g.mail && h('button', { class: 'btn btn--ghost btn--sm', onClick: () => copyText(g.mail) }, icon('copy', 12), 'Kopieer mail')), g.brief && md(g.brief), g.mail && md(g.mail)))) : h('div', { class: 'empty' }, 'Nog geen aangepaste documenten. Geef een vacature aan Claude met de werkwijze in .claude/skills/sollicitatie en de map documents/generated vult zich.');
+  const body = content(intro('Documenten', 'Master-cv, brieven, mails en de tekst voor het VDAB-profiel. Alles in het Nederlands, met "u" tegenover werkgevers.'), inhoud);
+  return { chrome: { where: 'Cv, brieven, mails', tabs, accent: 'orange', viewIcon: 'doc' }, body };
 }
 
 // ---------- Instellingen (peek) ----------
 export function instellingenPeek() {
-  openPeek('Instellingen en synchronisatie', () => h('div', { class: 'stack' },
+  openPeek('Instellingen en synchronisatie', () => h('div', { class: 'stack stack--tight' },
     h('p', { class: 'small' }, `Alles wat je invult staat in deze browser (${Math.round(localSize() / 1024)} kB). Om te delen tussen Giulia en Remi: exporteer hier en importeer op het andere toestel, of geef het bestand aan Claude om in data/ vast te leggen.`),
     h('div', { class: 'form__actions' },
       h('button', { class: 'btn btn--primary', onClick: () => download(`remi-app-${todayIso()}.json`, exportJson()) }, icon('download', 14), 'Exporteer gegevens'),

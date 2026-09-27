@@ -41,7 +41,7 @@ function renderNav(active) {
   navEl.replaceChildren(...NAV.map(g => h('div', { class: 'sidebar__group' },
     g.group && h('p', { class: 'eyebrow' }, g.group),
     g.items.map(it => h('a', { class: 'sidebar__item' + (it.id === active ? ' sidebar__item--active' : ''), href: '#/' + it.id, onClick: () => shell.classList.remove('shell--nav-open') },
-      h('span', { class: `icon-chip icon-chip--sm accent-${it.accent}` }, icon(it.icon, 14)),
+      h('span', { class: `icon-chip icon-chip--sm accent-${['violet','red','green','orange'][flat.indexOf(it) % 4]}` }, icon(it.icon, 14)),
       h('span', { class: 'sidebar__label' }, it.label),
       it.count ? h('span', { class: 'sidebar__count' }, String(it.count())) : null,
     )),
@@ -52,19 +52,25 @@ function renderNav(active) {
 function renderChrome(cfg, active) {
   const nav = flat.find(x => x.id === active);
   chrome.className = `chrome accent-${cfg.accent || nav.accent}`;
-  const tabs = (cfg.tabs || []).map((t, i) => h('span', { class: 'tabs__slot' },
+  const tabDefs = cfg.tabs && cfg.tabs.length ? cfg.tabs : [{ label: cfg.tabLabel || 'Alles', href: '#/' + active, active: true }];
+  const tabs = tabDefs.map(t => h('span', { class: 'tabs__slot' },
     t.divider ? h('span', { class: 'tabs__divider' }) : null,
     h('a', { class: 'tabs__item' + (t.active ? ' tabs__item--active' : ''), href: t.href }, t.label)));
-  chrome.replaceChildren(...[
+  chrome.replaceChildren(
     h('div', { class: 'chrome__top' },
-      h('button', { class: 'chrome__burger', 'aria-label': 'Menu', onClick: () => shell.classList.toggle('shell--nav-open') }, icon('burger')),
-      h('div', { class: 'chrome__id' }, h('span', { class: 'chrome__mark' }, icon(nav.icon, 15)), h('span', { class: 'chrome__name' }, cfg.title || nav.label)),
+      h('div', { class: 'chrome__id' }, h('span', { class: 'chrome__mark' }, icon(nav.icon, 22)), h('span', { class: 'chrome__name' }, cfg.title || nav.label)),
       h('div', { class: 'chrome__where' }, cfg.where || ''),
       h('div', { class: 'chrome__actions' }, h('button', { class: 'chrome__iconbtn', 'aria-label': 'Instellingen', title: 'Instellingen en synchronisatie', onClick: () => views.instellingenPeek() }, icon('gear'))),
     ),
-    tabs.length ? h('div', { class: 'chrome__tabs' }, h('nav', { class: 'tabs' }, tabs)) : null,
-    cfg.tool ? h('div', { class: 'chrome__tool' }, cfg.tool) : null,
-  ].filter(Boolean));
+    h('div', { class: 'chrome__tabs' }, h('nav', { class: 'tabs' }, tabs)),
+    h('div', { class: 'chrome__tool' },
+      h('button', { class: 'chrome__burger', 'aria-label': 'Menu', onClick: () => shell.classList.toggle('shell--nav-open') }, icon('burger')),
+      h('span', { class: 'chrome__viewicon' }, icon(cfg.viewIcon || 'list', 16)),
+      h('span', { class: 'chrome__view' }, cfg.view || (tabDefs.find(t => t.active) || tabDefs[0]).label),
+      h('div', { class: 'chrome__spacer' }),
+      ...(cfg.tool || []),
+    ),
+  );
 }
 
 let current = null;

@@ -2,12 +2,12 @@
 import { h, icon, badge, fit, fmtDate, todayIso, addDays, daysUntil, uid, slugify, copyText, toast } from './ui.js';
 import { all, get, upsert, remove, ref } from './store.js';
 import { openPeek, closePeek, go } from './app.js';
-import { spoorBadge } from './views-core.js';
+import { spoorBadge, content, intro } from './views-core.js';
 
 const STATUSSEN = [['te doen', 'Te doen'], ['in voorbereiding', 'In voorbereiding'], ['verstuurd', 'Verstuurd'], ['opgevolgd', 'Opgevolgd'], ['gesprek', 'Gesprek'], ['aanbod', 'Aanbod'], ['afgewezen', 'Afgewezen'], ['gearchiveerd', 'Gearchiveerd']];
 const STATUSKLEUR = { 'te doen': 'grey', 'in voorbereiding': 'grey', verstuurd: 'orange', opgevolgd: 'orange', gesprek: 'violet', aanbod: 'green', afgewezen: 'red', gearchiveerd: 'grey' };
 const SPOREN = [['erfgoed', 'Erfgoed en restauratie'], ['cultuur', 'Culturele instellingen'], ['onderwijs', 'Onderwijs'], ['overheid', 'Overheid'], ['sociaal', 'Sociaal en ecologisch'], ['geschiedenis', 'Geschiedenis en archief'], ['reserve', 'Reserve']];
-const titled = (title, ...c) => h('section', { class: 'card card--pad stack-sm' }, h('p', { class: 'eyebrow' }, title), ...c);
+const titled = (title, ...c) => h('section', { class: 'card card--pad' }, h('p', { class: 'eyebrow' }, title), ...c);
 const ext = (href, label) => href ? h('a', { href, target: '_blank', rel: 'noopener' }, label || href.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, ''), ' ', icon('external', 12)) : null;
 const sel = (opts, value, onChange, cls = 'field') => h('select', { class: cls, onChange: e => onChange(e.target.value) }, opts.map(([v, l]) => h('option', { value: v, selected: value === v }, l)));
 
@@ -18,7 +18,7 @@ function grid(columns, groups, onOpen) {
   for (const g of groups) {
     if (!g.rows.length && g.hideEmpty) continue;
     const closed = open.has(g.key);
-    const fold = h('tr', { class: 'grid2__fold' + (closed ? ' grid2__fold--closed' : '') }, h('td', { colspan: columns.length + 1 }, h('button', { class: 'grid2__foldbtn', onClick: () => { closed ? open.delete(g.key) : open.add(g.key); sessionStorage.setItem('folds-closed', JSON.stringify([...open])); tbody.replaceWith(grid(columns, groups, onOpen).querySelector('tbody')); } }, h('span', { class: 'grid2__caret' }, '▾'), h('span', { class: `status status--${g.tone || 'archived'}` }, g.label), h('span', { class: 'grid2__count' }, String(g.rows.length)))));
+    const fold = h('tr', { class: 'grid2__fold grid2__fold--' + (g.tone || 'archived') + (closed ? ' grid2__fold--closed' : '') }, h('td', { colspan: columns.length + 1 }, h('button', { class: 'grid2__foldbtn', onClick: () => { closed ? open.delete(g.key) : open.add(g.key); sessionStorage.setItem('folds-closed', JSON.stringify([...open])); tbody.replaceWith(grid(columns, groups, onOpen).querySelector('tbody')); } }, h('span', { class: 'grid2__caret' }, '▾'), h('span', { class: 'grid2__foldname' }, g.label), h('span', { class: 'grid2__count' }, String(g.rows.length)))));
     tbody.append(fold);
     if (closed) continue;
     g.rows.forEach((row, i) => tbody.append(h('tr', null, columns.map((c, ci) => h('td', null, ci === 0 ? h('span', { class: 'cell cell--lead' }, h('span', { class: 'grid2__rownum' }, String(i + 1)), h('a', { class: 'grid2__open', href: '#', title: 'Openen', onClick: e => { e.preventDefault(); onOpen(row); } }, icon('arrow', 12)), h('span', { class: 'cell__text' }, c.render(row))) : c.render(row))), h('td', { class: 'grid2__filler' }))));
@@ -43,12 +43,9 @@ export function sollicitaties(r) {
     { label: 'Opvolgen', width: 120, render: s => s.opvolgdatum && ['verstuurd', 'opgevolgd'].includes(s.status) ? h('span', { class: daysUntil(s.opvolgdatum) <= 0 ? 'overdue' : '' }, fmtDate(s.opvolgdatum)) : h('span', { class: 'grid2__dash' }, '—') },
     { label: 'Status', width: 150, render: s => sel(STATUSSEN, s.status, v => zetStatus(s, v), `status status--${STATUSKLEUR[s.status] === 'green' ? 'active' : STATUSKLEUR[s.status] === 'orange' ? 'contact' : 'archived'} status--select`) },
   ];
-  const body = h('div', { class: 'stack' },
-    h('div', null, h('h1', { class: 'page-title' }, 'Sollicitaties'), h('p', { class: 'muted' }, 'Elke sollicitatie met status, opvolgdatum, contact en documenten. Opvolgen gebeurt 10 tot 14 dagen na verzending, één keer.')),
-    items.length ? grid(cols, groups, s => sollicitatiePeek(s.id)) : h('div', { class: 'card empty' }, 'Nog geen sollicitaties. Start vanuit een vacature, vanuit de hotlist (spontaan) of met de knop hierboven.'),
-  );
-  const tool = [h('label', { class: 'zonesearch' }, icon('search', 14), h('input', { placeholder: 'Zoek organisatie of functie', value: r.tab || '', onInput: e => { location.hash = `#/sollicitaties?tab=${encodeURIComponent(e.target.value)}`; } })), h('div', { class: 'chrome__spacer' }), h('button', { class: 'btn btn--primary', onClick: () => sollicitatieForm() }, icon('plus', 14), 'Nieuwe sollicitatie')];
-  return { chrome: { where: `${items.length} in totaal`, tool }, body };
+  const body = items.length ? grid(cols, groups, s => sollicitatiePeek(s.id)) : content(intro('Sollicitaties', 'Elke sollicitatie met status, opvolgdatum, contact en documenten. Opvolgen gebeurt 10 tot 14 dagen na verzending, één keer.'), h('div', { class: 'card empty' }, 'Nog geen sollicitaties. Start vanuit een vacature, vanuit de hotlist (spontaan) of met de knop in de werkbalk.'));
+  const tool = [h('label', { class: 'zonesearch' }, icon('search', 14), h('input', { placeholder: 'Zoek organisatie of functie', value: r.tab || '', onInput: e => { location.hash = `#/sollicitaties?tab=${encodeURIComponent(e.target.value)}`; } })), h('button', { class: 'btn btn--primary', onClick: () => sollicitatieForm() }, icon('plus', 14), 'Nieuwe sollicitatie')];
+  return { chrome: { where: 'Alle sollicitaties', tool, tabLabel: 'Alle sollicitaties', view: `${items.length} sollicitaties`, viewIcon: 'mail' }, body };
 }
 function zetStatus(s, status) {
   const patch = { id: s.id, status };
@@ -80,7 +77,7 @@ function sollicitatiePeek(id) {
     const hot = s.hotlistId && get('hotlist', s.hotlistId);
     const logInput = h('input', { class: 'field', placeholder: 'Wat gebeurde er (bijvoorbeeld: gebeld, geen antwoord)' });
     const opvolgTekst = (ref.sjablonen['mails.md'] || '').split('## Opvolgmail')[1]?.split('## ')[0] || '';
-    return h('div', { class: 'stack' },
+    return h('div', { class: 'stack stack--tight' },
       h('div', null, h('p', { class: 'muted small' }, `${s.type} · ${fmtDate(s.aangemaakt)}`), h('h1', { class: 'page-title', style: 'font-size:22px' }, s.organisatie), h('p', null, s.functie), h('div', { class: 'meta', style: 'margin-top:6px' }, spoorBadge(s.spoor), badge(s.status, STATUSKLEUR[s.status]))),
       titled('Status', h('div', { class: 'form__actions' }, ...[['verstuurd', 'Verstuurd'], ['opgevolgd', 'Opgevolgd'], ['gesprek', 'Gesprek'], ['aanbod', 'Aanbod'], ['afgewezen', 'Afgewezen']].map(([v, l]) => h('button', { class: 'btn btn--ghost btn--sm' + (s.status === v ? ' chip--active' : ''), onClick: () => zetStatus(s, v) }, l))),
         s.datumVerstuurd && h('p', { class: 'small' }, `Verstuurd ${fmtDate(s.datumVerstuurd)}.`), s.opvolgdatum && ['verstuurd', 'opgevolgd'].includes(s.status) && h('p', { class: 'small ' + (daysUntil(s.opvolgdatum) <= 0 ? 'overdue' : '') }, `Opvolgen op ${fmtDate(s.opvolgdatum)} (${daysUntil(s.opvolgdatum)} dagen).`), s.gesprekDatum && h('p', { class: 'small' }, `Gesprek: ${s.gesprekDatum.replace('T', ' om ')}.`)),
@@ -98,21 +95,21 @@ function sollicitatiePeek(id) {
 export function vacatures(r) {
   const tab = r.tab || 'bewaard'; const J = ref.jobbronnen;
   const tabs = [['bewaard', 'Bewaard'], ['zoeken', 'Zoeken'], ['bronnen', 'Bronnen']].map(([k, l]) => ({ label: l, href: `#/vacatures?tab=${k}`, active: tab === k }));
-  let content;
+  let inhoud;
   if (tab === 'bewaard') { const items = all('vacatures').sort((a, b) => (b.toegevoegd || '').localeCompare(a.toegevoegd || ''));
-    content = items.length ? h('div', { class: 'grid-cards grid-cards--wide' }, items.map(v => h('div', { class: 'card card--pad stack-sm' + (v.status === 'niet' ? ' muted' : '') },
+    inhoud = items.length ? h('div', { class: 'grid-cards grid-cards--wide' }, items.map(v => h('div', { class: 'card card--pad' + (v.status === 'niet' ? ' muted' : '') },
       h('div', { class: 'meta' }, badge(v.status, v.status === 'omgezet' ? 'green' : v.status === 'interessant' ? 'orange' : 'grey'), v.bron && h('span', null, v.bron), v.deadline && h('span', { class: daysUntil(v.deadline) < 3 ? 'overdue' : '' }, `deadline ${fmtDate(v.deadline)}`)),
       h('p', { class: 'row-title' }, v.titel), h('p', null, v.organisatie, v.plaats ? `, ${v.plaats}` : ''), v.url && h('p', { class: 'small' }, ext(v.url)), v.tekst && h('p', { class: 'small muted', style: 'max-height:80px;overflow:hidden' }, v.tekst.slice(0, 260) + (v.tekst.length > 260 ? '…' : '')),
-      h('div', { class: 'form__actions' }, v.status !== 'omgezet' && h('button', { class: 'btn btn--primary btn--sm', onClick: () => sollicitatieForm({ organisatie: v.organisatie, functie: v.titel, bronUrl: v.url, spoor: v.spoor || 'erfgoed', vacatureId: v.id, notities: v.tekst ? v.tekst.slice(0, 500) : '' }) }, 'Maak sollicitatie'), h('button', { class: 'btn btn--ghost btn--sm', onClick: () => vacatureForm(v) }, 'Bewerken'), v.status !== 'niet' && h('button', { class: 'btn btn--quiet btn--sm', onClick: () => upsert('vacatures', { id: v.id, status: 'niet' }) }, 'Niet interessant'))))) : h('div', { class: 'card empty' }, 'Nog geen bewaarde vacatures. Zoek via de bronnen en plak een vacature met de knop hierboven.');
-  } else if (tab === 'zoeken') content = h('div', { class: 'stack' },
+      h('div', { class: 'form__actions' }, v.status !== 'omgezet' && h('button', { class: 'btn btn--primary btn--sm', onClick: () => sollicitatieForm({ organisatie: v.organisatie, functie: v.titel, bronUrl: v.url, spoor: v.spoor || 'erfgoed', vacatureId: v.id, notities: v.tekst ? v.tekst.slice(0, 500) : '' }) }, 'Maak sollicitatie'), h('button', { class: 'btn btn--ghost btn--sm', onClick: () => vacatureForm(v) }, 'Bewerken'), v.status !== 'niet' && h('button', { class: 'btn btn--quiet btn--sm', onClick: () => upsert('vacatures', { id: v.id, status: 'niet' }) }, 'Niet interessant'))))) : h('div', { class: 'card empty' }, 'Nog geen bewaarde vacatures. Zoek via het tabblad Zoeken en plak een vacature met de knop in de werkbalk.');
+  } else if (tab === 'zoeken') inhoud = h('div', { class: 'stack stack--tight' },
     h('div', { class: 'callout' }, h('p', null, 'De sites zelf kunnen vanuit deze app niet automatisch gelezen worden (dat vraagt een server met netwerktoegang, zie README). Deze knoppen openen de juiste zoekopdracht; wat interessant is, plak je hier terug als vacature.')),
     titled('VDAB, zoekopdrachten', h('div', { class: 'link-list' }, J.zoektermen.map(t => h('a', { class: 'btn btn--ghost btn--sm', href: `https://www.vdab.be/vindeenjob/jobs/${slugify(t)}-antwerpen-provincie`, target: '_blank', rel: 'noopener' }, t, icon('external', 12))))),
     ...J.bronnen.filter(b => b.zoeklinks?.length).map(b => titled(b.naam, h('div', { class: 'link-list' }, b.zoeklinks.map(z => h('a', { class: 'btn btn--ghost btn--sm', href: z.url, target: '_blank', rel: 'noopener' }, z.label, icon('external', 12)))))),
   );
-  else content = h('div', { class: 'grid-cards' }, J.bronnen.map(b => h('div', { class: 'card card--pad stack-sm' }, h('div', { class: 'meta' }, badge(b.type, b.type === 'primair' ? 'green' : b.type === 'cultuur' || b.type === 'erfgoed' ? 'orange' : 'grey')), h('p', { class: 'row-title' }, b.naam), h('p', { class: 'small' }, ext(b.url)), b.opmerking && h('p', { class: 'small muted' }, b.opmerking), b.api && h('p', { class: 'small muted' }, b.api))));
-  const body = h('div', { class: 'stack' }, h('div', null, h('h1', { class: 'page-title' }, 'Vacatures'), h('p', { class: 'muted' }, 'Zoeken op de Vlaamse jobsites, bewaren wat past, omzetten naar een sollicitatie.')), content);
-  const tool = [h('span', { class: 'chrome__view' }, `${all('vacatures').filter(v => v.status !== 'niet').length} bewaard`), h('div', { class: 'chrome__spacer' }), h('button', { class: 'btn btn--primary', onClick: () => vacatureForm() }, icon('plus', 14), 'Vacature toevoegen')];
-  return { chrome: { where: 'Zoeken en bewaren', tabs, tool }, body };
+  else inhoud = h('div', { class: 'grid-cards' }, J.bronnen.map(b => h('div', { class: 'card card--pad' }, h('div', { class: 'meta' }, badge(b.type, b.type === 'primair' ? 'green' : b.type === 'cultuur' || b.type === 'erfgoed' ? 'orange' : 'grey')), h('p', { class: 'row-title' }, b.naam), h('p', { class: 'small' }, ext(b.url)), b.opmerking && h('p', { class: 'small muted' }, b.opmerking), b.api && h('p', { class: 'small muted' }, b.api))));
+  const body = content(intro('Vacatures', 'Zoeken op de Vlaamse jobsites, bewaren wat past, omzetten naar een sollicitatie.'), inhoud);
+  const tool = [h('button', { class: 'btn btn--primary', onClick: () => vacatureForm() }, icon('plus', 14), 'Vacature toevoegen')];
+  return { chrome: { where: 'Zoeken en bewaren', tabs, tool, view: `${all('vacatures').filter(v => v.status !== 'niet').length} bewaard`, viewIcon: 'search' }, body };
 }
 function vacatureForm(init = {}) {
   const v = { id: init.id, titel: init.titel || '', organisatie: init.organisatie || '', plaats: init.plaats || 'Antwerpen', bron: init.bron || 'VDAB', url: init.url || '', deadline: init.deadline || '', spoor: init.spoor || 'erfgoed', tekst: init.tekst || '', status: init.status || 'interessant' };
@@ -141,15 +138,15 @@ export function hotlist(r) {
     { label: 'Prioriteit', width: 90, render: x => badge(String(x.prioriteit), x.prioriteit === 1 ? 'orange' : 'grey') },
     { label: 'Status', width: 170, render: x => sel(HOTSTATUS, x.status, v => upsert('hotlist', { id: x.id, status: v }), `status status--${['gesolliciteerd', 'gesprek'].includes(x.status) ? 'active' : ['contact', 'in voorbereiding', 'volgen'].includes(x.status) ? 'contact' : 'archived'} status--select`) },
   ];
-  const body = h('div', { class: 'stack' }, h('div', null, h('h1', { class: 'page-title' }, 'Hotlist'), h('p', { class: 'muted' }, 'Organisaties waar Remi graag zou werken, per spoor, met vacaturepagina, contact en instap. Prioriteit 1 eerst.')), grid(cols, groups, x => hotlistPeek(x.id)));
-  const tool = [h('label', { class: 'zonesearch' }, icon('search', 14), h('input', { placeholder: 'Zoek organisatie', value: r.tab || '', onInput: e => { location.hash = `#/hotlist?tab=${encodeURIComponent(e.target.value)}`; } })), h('div', { class: 'chrome__spacer' }), h('button', { class: 'btn btn--primary', onClick: () => hotlistForm() }, icon('plus', 14), 'Organisatie toevoegen')];
-  return { chrome: { where: `${items.length} organisaties`, tool }, body };
+  const body = h('div', null, h('p', { class: 'grid2__note' }, 'Organisaties waar Remi graag zou werken, per spoor, met vacaturepagina, contact en instap. Prioriteit 1 eerst. Klik op de pijl om te openen.'), grid(cols, groups, x => hotlistPeek(x.id)));
+  const tool = [h('label', { class: 'zonesearch' }, icon('search', 14), h('input', { placeholder: 'Zoek organisatie', value: r.tab || '', onInput: e => { location.hash = `#/hotlist?tab=${encodeURIComponent(e.target.value)}`; } })), h('button', { class: 'btn btn--primary', onClick: () => hotlistForm() }, icon('plus', 14), 'Organisatie toevoegen')];
+  return { chrome: { where: 'Alle organisaties', tool, tabLabel: 'Alle organisaties', view: `${items.length} organisaties`, viewIcon: 'star' }, body };
 }
 export function hotlistPeek(id) {
   openPeek(() => get('hotlist', id)?.naam || 'Organisatie', () => {
     const x = get('hotlist', id); if (!x) return h('p', null, 'Verwijderd.');
     const sols = all('sollicitaties').filter(s => s.hotlistId === x.id);
-    return h('div', { class: 'stack' },
+    return h('div', { class: 'stack stack--tight' },
       h('div', null, h('div', { class: 'meta' }, spoorBadge(x.spoor), badge(`prioriteit ${x.prioriteit}`, x.prioriteit === 1 ? 'orange' : 'grey'), h('span', null, x.type)), h('h1', { class: 'page-title', style: 'font-size:22px;margin-top:6px' }, x.naam), h('p', { class: 'muted' }, x.plaats)),
       titled('Links', h('div', { class: 'stack-sm' }, x.website && h('p', null, ext(x.website, 'Website')), x.vacatures && h('p', null, ext(x.vacatures, 'Vacaturepagina')), x.contact && h('p', { class: 'small' }, x.contact))),
       titled('Wat ze doen', h('p', null, x.rollen)), titled('Hoe instappen', h('p', null, x.instap)),
@@ -178,17 +175,17 @@ export function verkenning(r) {
   const tab = r.tab || 'alles';
   const items = all('verkenning').filter(x => tab === 'alles' || x.domein === tab).sort((a, b) => (b.fit || 0) - (a.fit || 0));
   const tabs = DOMEINEN.map(([k, l]) => ({ label: l, href: `#/verkenning?tab=${k}`, active: tab === k }));
-  const body = h('div', { class: 'stack' },
-    h('div', null, h('h1', { class: 'page-title' }, 'Verkenning'), h('p', { class: 'muted' }, 'Alle werkvelden die in beeld kwamen, ook de onverwachte, met een inschatting van de fit op vijf. Uit onderzoek 6 tot 9; grotendeels nog te verifiëren.')),
-    h('div', { class: 'grid-cards grid-cards--wide' }, items.map(x => h('div', { class: `card card--pad stack-sm accent-${{ erfgoed: 'orange', cultuur: 'violet', onderwijs: 'green', sociaal: 'red', ecologisch: 'green', geschiedenis: 'orange', overheid: 'grey', reserve: 'grey' }[x.domein] || 'grey'}` },
+  const body = content(
+    intro('Verkenning', 'Alle werkvelden die in beeld kwamen, ook de onverwachte, met een inschatting van de fit op vijf. Uit onderzoek 6 tot 9; grotendeels nog te verifiëren.'),
+    h('div', { class: 'grid-cards grid-cards--wide' }, items.map(x => h('div', { class: `card card--pad accent-${{ erfgoed: 'orange', cultuur: 'violet', onderwijs: 'green', sociaal: 'red', ecologisch: 'green', geschiedenis: 'orange', overheid: 'grey', reserve: 'grey' }[x.domein] || 'grey'}` },
       h('div', { class: 'meta' }, spoorBadge(x.domein), fit(x.fit), badge(x.status, x.status === 'hoofdspoor' ? 'orange' : x.status === 'verkennen' ? 'violet' : 'grey')),
-      h('p', { class: 'section-title' }, x.naam), h('p', { class: 'small' }, x.waarom),
+      h('p', { class: 'row-title' }, x.naam), h('p', { class: 'small' }, x.waarom),
       h('p', { class: 'small' }, h('strong', null, 'Rollen: '), x.rollen.join(', ')), h('p', { class: 'small' }, h('strong', null, 'Werkgevers: '), x.werkgevers.join('; ')),
       h('p', { class: 'small muted' }, `Vereisten: ${x.vereisten}`), h('p', { class: 'small muted' }, `Knelpunt: ${x.knelpunt || 'niet'}. Loon: ${x.loon}.`),
       h('div', { class: 'form__actions' }, sel([['hoofdspoor', 'Hoofdspoor'], ['verkennen', 'Verkennen'], ['reserve', 'Reserve'], ['vrijwillig', 'Vrijwilligerswerk'], ['laag', 'Laag'], ['niet', 'Niet']], x.status, v => upsert('verkenning', { id: x.id, status: v }), 'field'), ),
       h('textarea', { class: 'field', style: 'min-height:48px', placeholder: 'Notities van Remi of Giulia', value: x.notities || '', onChange: e => upsert('verkenning', { id: x.id, notities: e.target.value }) })))),
   );
-  return { chrome: { where: `${items.length} werkvelden`, tabs, accent: 'violet' }, body };
+  return { chrome: { where: 'Werkvelden', tabs, accent: 'violet', view: `${items.length} werkvelden`, viewIcon: 'compass' }, body };
 }
 
 // ---------- Opleidingen ----------
@@ -196,15 +193,15 @@ export function opleidingen(r) {
   const tab = r.tab || 'alles';
   const items = all('opleidingen').filter(x => tab === 'alles' || x.spoor === tab).sort((a, b) => (b.fit || 0) - (a.fit || 0));
   const tabs = [['alles', 'Alles'], ['erfgoed', 'Erfgoed'], ['cultuur', 'Cultuur'], ['onderwijs', 'Onderwijs'], ['sociaal', 'Sociaal'], ['geschiedenis', 'Geschiedenis'], ['reserve', 'Reserve']].map(([k, l]) => ({ label: l, href: `#/opleidingen?tab=${k}`, active: tab === k }));
-  const body = h('div', { class: 'stack' },
-    h('div', null, h('h1', { class: 'page-title' }, 'Opleidingen'), h('p', { class: 'muted' }, 'Routes om te leren met inkomen: korte certificaten, graduaten met OKOT, de restauratorroute, VDAB-opleidingen. Beslissing uiterlijk 30 juni 2027.')),
+  const body = content(
+    intro('Opleidingen', 'Routes om te leren met inkomen: korte certificaten, graduaten met OKOT, de restauratorroute, VDAB-opleidingen. Beslissing uiterlijk 30 juni 2027.'),
     h('div', { class: 'callout' }, h('p', null, 'Drie manieren om te studeren met inkomen: (1) uitkering met VDAB-vrijstelling of OKOT, (2) herscholing via het ziekenfonds bij medisch vastgestelde ongeschiktheid voor het lasvak, (3) deeltijds werken met Vlaams opleidingsverlof of tijdskrediet. De voorwaarden staan in Rechten en in research/05.')),
-    h('div', { class: 'grid-cards grid-cards--wide' }, items.map(x => h('div', { class: 'card card--pad stack-sm' },
+    h('div', { class: 'grid-cards grid-cards--wide' }, items.map(x => h('div', { class: 'card card--pad' },
       h('div', { class: 'meta' }, spoorBadge(x.spoor), fit(x.fit), x.okot && badge('OKOT mogelijk', 'green'), x.knelpunt && badge(x.knelpunt, 'orange'), badge(x.status, 'grey')),
-      h('p', { class: 'section-title' }, x.naam), h('p', { class: 'small muted' }, `${x.instelling}. ${x.duur}. ${x.formaat}.`), h('p', { class: 'small' }, x.toelichting),
+      h('p', { class: 'row-title' }, x.naam), h('p', { class: 'small muted' }, `${x.instelling}. ${x.duur}. ${x.formaat}.`), h('p', { class: 'small' }, x.toelichting),
       h('p', { class: 'small muted' }, `Kost: ${x.kost}. Financiering: ${x.financiering}.`), x.url && h('p', { class: 'small' }, ext(x.url)),
       h('div', { class: 'form__actions' }, sel([['aanbevolen', 'Aanbevolen'], ['kandidaat', 'Kandidaat'], ['verkennen', 'Verkennen'], ['langere termijn', 'Langere termijn'], ['gekozen', 'Gekozen'], ['niet', 'Niet']], x.status, v => upsert('opleidingen', { id: x.id, status: v }), 'field')),
       h('textarea', { class: 'field', style: 'min-height:48px', placeholder: 'Notities', value: x.notities || '', onChange: e => upsert('opleidingen', { id: x.id, notities: e.target.value }) })))),
   );
-  return { chrome: { where: `${items.length} routes`, tabs, accent: 'violet' }, body };
+  return { chrome: { where: 'Leren met inkomen', tabs, accent: 'green', view: `${items.length} routes`, viewIcon: 'book' }, body };
 }

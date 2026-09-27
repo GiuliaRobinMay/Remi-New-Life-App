@@ -1,27 +1,546 @@
 [
-  {"id":"decorbouwer","domein":"cultuur","naam":"Decorbouwer metaal (theater, opera)","rollen":["decorbouwer","constructeur decor","ateliermedewerker metaal","smid decoratelier"],"werkgevers":["Opera Ballet Vlaanderen (decoratelier Zele)","Toneelhuis","De Munt (Brussel)","Total Concept (Ranst)","Deusjevoo (Zoersel)"],"vereisten":"Geen diploma; lassen, plannen lezen, veiligheid. Precies zijn profiel.","knelpunt":"Valt onder lasser","loon":"PC 304 ongeveer €2.450 tot €2.750","fit":5,"waarom":"Directe overdracht van zijn vak naar een zinvolle, artistieke context met vaste ateliers.","status":"hoofdspoor"},
-  {"id":"museumtechnicus","domein":"cultuur","naam":"Technisch medewerker museum, tentoonstellingsopbouw","rollen":["museumtechnicus","medewerker tentoonstellingsopbouw","technisch assistent C1"],"werkgevers":["Stad Antwerpen Musea en Erfgoed","KMSKA","M HKA","Bozar","Technopolis"],"vereisten":"Diploma secundair (niveau C) of geen (D). Hout, metaal, tekeningen.","knelpunt":"Niet als zodanig","loon":"Stad C1 vanaf €2.460; met 5 jaar ervaring €2.769","fit":5,"waarom":"Rustig, zorgvuldig, institutioneel. Werfreserve van de stad blijft een jaar geldig.","status":"hoofdspoor"},
-  {"id":"mountmaker","domein":"cultuur","naam":"Mount maker en vitrinebouwer","rollen":["mount maker","vitrinebouwer","medewerker museale inrichting"],"werkgevers":["Meyvaert Museum (Gent)","Potteau Labo (Kortrijk)","grote musea in-house"],"vereisten":"Geen diploma; fijn metaalwerk, plooien, solderen, TIG op inox en messing.","knelpunt":"Niet als zodanig","loon":"Privé ongeveer €2.600 tot €3.200","fit":5,"waarom":"Een echte niche voor een TIG-lasser met ontwerpgevoel; museumkwaliteit.","status":"hoofdspoor"},
-  {"id":"restauratiemedewerker","domein":"erfgoed","naam":"Restauratiemedewerker metaal en monumenten","rollen":["restauratiemedewerker metaal","smeedwerkrestauratie","vakman restauratie"],"werkgevers":["Verstraete & Vanhecke","Renotec","Monument Group","Smego","Lapis Arte","AltNova"],"vereisten":"Vakmanschap; restaurateurs hebben de UAntwerpen-opleiding, aannemers nemen vakmensen aan.","knelpunt":"Via onderliggend vak (lasser, smid)","loon":"Ongeveer €2.500 tot €3.000","fit":5,"waarom":"De brug van lassen naar erfgoed; onderzoekend en zorgvuldig werk.","status":"hoofdspoor"},
-  {"id":"monumentenwachter","domein":"erfgoed","naam":"Monumentenwachter","rollen":["monumentenwachter"],"werkgevers":["Monumentenwacht Antwerpen (provincie)"],"vereisten":"Technisch secundair of bachelor bouw; klimconditie; rijbewijs B.","knelpunt":"Niet","loon":"Provinciale schaal C/B ongeveer €2.500 tot €3.000","fit":5,"waarom":"Inspecteren, rapporteren, adviseren: onderzoekend, behoedzaam en dienstbaar. Kleine ploeg.","status":"hoofdspoor"},
-  {"id":"depot","domein":"erfgoed","naam":"Depotmedewerker, art handler, collectiezorg","rollen":["depotmedewerker","art handler","collectiemedewerker behoud en beheer","registrator (later)"],"werkgevers":["Stad Antwerpen collectiedepot","KMSKA depot","Onroerend Erfgoed depot","Mobull (Brussel)"],"vereisten":"Geen diploma of secundair; heftruck, VCA, rijbewijs helpen. FARO basiscursus als instapticket.","knelpunt":"Niet","loon":"PC 329.01 ongeveer €2.300 tot €2.900","fit":4,"waarom":"Deuropener naar musea en collecties; kalm en precies.","status":"hoofdspoor"},
-  {"id":"podiumtechnicus","domein":"cultuur","naam":"Podiumtechnicus (toneel, rigging)","rollen":["podiumtechnicus","toneeltechnicus","rigger"],"werkgevers":["deSingel","Toneelhuis","hetpaleis","Opera Ballet Vlaanderen"],"vereisten":"Se-n-Se, RITCS of on-the-job; hoogte- en riggingcertificaten. Avond- en weekendwerk.","knelpunt":"Vermoedelijk op de lijst (te verifiëren)","loon":"PC 304 ongeveer €2.650 tot €2.900","fit":4,"waarom":"Lasten en constructies begrijpen is een voordeel; nadeel: onregelmatige uren naast de studie.","status":"verkennen"},
-  {"id":"instructeur-jeugd","domein":"sociaal","naam":"Instructeur metaal in jongerenopleiding","rollen":["instructeur lassen","werkvloerbegeleider","NAFT-begeleider","atelierbegeleider"],"werkgevers":["Groep INTRO","Profo vzw (Antwerpen)","Arktos","JES Werkt"],"vereisten":"Vakkennis plus pedagogische houding; diploma secundair volstaat meestal voor instructeur. Overdag.","knelpunt":"Niet als zodanig","loon":"PC 329.01 ongeveer €2.500 tot €2.900","fit":5,"waarom":"Dienstbaarheid en sociaal profiel, kleine groepen, structuur; zijn lasvak is zeldzaam in deze sector.","status":"verkennen"},
-  {"id":"sociale-economie","domein":"sociaal","naam":"Werkvloerbegeleider in de sociale economie","rollen":["werkvloerbegeleider","monitor","werkbegeleider atelier"],"werkgevers":["Levanto (Bouw en Renovatie, Fietspunt)","De Kringwinkel Antwerpen (meubelatelier)","Manus","Aralea","Mariasteen (Gits, metaal)"],"vereisten":"Geen diploma; technische beheersing en coachende houding.","knelpunt":"Niet","loon":"PC 327.01 ongeveer €2.600 tot €3.000","fit":4,"waarom":"Zinvol en stabiel, overdag; vraagt wel dagelijks een groep leiden.","status":"verkennen"},
-  {"id":"zorgatelier","domein":"sociaal","naam":"Atelierbegeleider in zorg en psychiatrie","rollen":["begeleider dagbesteding","atelierbegeleider hout en metaal","begeleider arbeidszorg"],"werkgevers":["Ritmica (Hove)","Monnikenheide-Spectrum (Zoersel)","OLO-Rotonde","Multiversum","PZ Bethanië"],"vereisten":"Bachelor of A2 met relevante ervaring (PC 319.01 klasse 2). Vakkennis is zeldzaam en gewild.","knelpunt":"Opvoeder-begeleider is knelpunt","loon":"B2b ongeveer €2.600 tot €2.750; B1c na graduaat €2.950 tot €3.100","fit":4,"waarom":"Ambacht in dienst van mensen; graduaat orthopedagogische begeleiding in avondtraject maakt klasse 1 mogelijk.","status":"verkennen"},
-  {"id":"circulair","domein":"ecologisch","naam":"Circulair bouwen en hergebruik","rollen":["ateliermedewerker hergebruikmaterialen","ontmantelaar","productiemedewerker leembouw","energiesnoeier"],"werkgevers":["Rotor DC (Brussel)","BC materials (Brussel)","Opalis-handelaars","Energiesnoeiers (Herwin)","Ecoso (Mechelen)"],"vereisten":"Geen diploma; handvaardigheid, rijbewijs B, veiligheid.","knelpunt":"Bouwberoepen zijn knelpunt","loon":"Ongeveer €2.400 tot €2.900","fit":4,"waarom":"Ontwerp plus handwerk plus ecologische betekenis; ontmanteling is zwaar, atelierkant lichter.","status":"verkennen"},
-  {"id":"natuur","domein":"ecologisch","naam":"Natuur- en groenbeheer met techniek","rollen":["technisch medewerker","ploegbaas natuurbeheer","monitor groen"],"werkgevers":["Natuurpunt","Aralea","Natuurwerk","KMDA technische dienst","Stad Antwerpen Stadsbeheer"],"vereisten":"Groenkennis, kettingzaagattest (Inverde), rijbewijs B.","knelpunt":"Onderhoudstechnicus is knelpunt","loon":"Ongeveer €2.500 tot €3.100","fit":3,"waarom":"Buiten, zinvol, kleine ploegen; minder ambacht.","status":"verkennen"},
-  {"id":"archeologie","domein":"geschiedenis","naam":"Archeologie en vondstverwerking","rollen":["veldtechnicus archeologie","vondstverwerker","depotmedewerker archeologie","conservator archeologisch metaal (na opleiding)"],"werkgevers":["Commerciële archeologiebedrijven (BAAC, Ruben Willaert, All-Archeo, Monument Vandekerckhove archeologie)","Stad Antwerpen dienst Archeologie","Onroerend Erfgoed depot","Intergemeentelijke erfgoeddiensten"],"vereisten":"Veldtechnicus meestal zonder master; bachelor Archeologie (UGent, KU Leuven, VUB) staat open met diploma secundair.","knelpunt":"Niet","loon":"Te verifiëren","fit":4,"waarom":"Onderzoekend, geduldig, zinvol; metaalvondsten conserveren is een directe brug vanuit het lasvak. Onderzoek 9 loopt.","status":"verkennen"},
-  {"id":"archief","domein":"geschiedenis","naam":"Archief en collectieregistratie","rollen":["archiefmedewerker","depotbeheerder","digitaliseringsmedewerker","collectieregistrator"],"werkgevers":["FelixArchief","Letterenhuis","Erfgoedbibliotheek Hendrik Conscience","ADVN (Antwerpen)","Rijksarchief","meemoo"],"vereisten":"Graduaat Informatiebeheer: bibliotheek en archief (2 jaar) of ervaring; FARO-cursussen.","knelpunt":"Niet","loon":"Te verifiëren","fit":3,"waarom":"Stil, ordelijk en historisch; minder handwerk. Onderzoek 9 loopt.","status":"verkennen"},
-  {"id":"lasinspecteur","domein":"reserve","naam":"Lasinspecteur, NDT-technicus","rollen":["lasinspecteur","lascoördinator","NDT-technicus"],"werkgevers":["Kiwa Vinçotte","SGS Belgium","Bureau Veritas","in-house bij scheepswerven en chemie"],"vereisten":"IWS via het Belgisch Instituut voor Lastechniek (6 tot 12 maanden deeltijds); NDT niveau 1 en 2 per methode.","knelpunt":"Lasser ja; inspecteur vermoedelijk","loon":"€2.800 tot €4.200","fit":5,"waarom":"Andermans precisie controleren: onderzoekend, behoedzaam, uitdagend, veel minder fysiek. Blijft in zijn vakwereld.","status":"reserve"},
-  {"id":"vdab-instructeur","domein":"onderwijs","naam":"Instructeur lassen bij VDAB","rollen":["instructeur lassen","instructeur metaal"],"werkgevers":["VDAB competentiecentra Antwerpen, Mechelen, Turnhout","Talentenfabriek Antwerpen"],"vereisten":"Geen pedagogisch diploma; interne opleiding. Kleine groepen van 8 tot 12 volwassenen.","knelpunt":"Niet als zodanig; VDAB werft doorlopend","loon":"Schaal C ongeveer €2.600 tot €3.300, 35 verlofdagen","fit":5,"waarom":"Dienstbaarheid en stabiliteit bij een publieke werkgever, studievriendelijke uren; aluminium TIG is schaars.","status":"hoofdspoor"},
-  {"id":"justitie","domein":"overheid","naam":"Penitentiair technisch assistent (gevangeniswerkhuizen)","rollen":["penitentiair technisch assistent niveau C"],"werkgevers":["FOD Justitie, Cellmade: Antwerpen, Beveren, Merksplas, Hoogstraten, Mechelen"],"vereisten":"Diploma hoger secundair plus vakkennis; selectie via werkenvoor.be; statutair.","knelpunt":"Niet","loon":"Federaal C ongeveer €2.600 tot €2.900 plus premies","fit":4,"waarom":"Metaalwerk aanleren aan gedetineerden: diep zinvol, weekdagen, statuut. Vraagteken: gezag met lage assertiviteit.","status":"verkennen"},
-  {"id":"werkplaats-onderzoek","domein":"reserve","naam":"Werkplaats van universiteit of onderzoeksinstelling","rollen":["instrumentenmaker","technicus mechanische werkplaats"],"werkgevers":["UAntwerpen","KU Leuven instrumentenmakerij","SCK CEN (Mol)","VITO"],"vereisten":"Technisch secundair of graduaat; interne opleiding.","knelpunt":"Technicus ja","loon":"Universiteit C ongeveer €2.500 tot €3.100; SCK €3.000 tot €3.800","fit":4,"waarom":"Wetenschappelijke cultuur beloont exactheid; universiteiten zijn de meest studievriendelijke werkgevers.","status":"reserve"},
-  {"id":"tekenwerk","domein":"reserve","naam":"Tekenaar, werkvoorbereider, CNC en lasrobot","rollen":["bouwkundig tekenaar","BIM-modelleur","tekenaar-werkvoorbereider metaalconstructie","lasrobotprogrammeur"],"werkgevers":["metaalbouwbedrijven","architecten- en ingenieursbureaus","lasersnijbedrijven"],"vereisten":"Graduaat Bouwkundig tekenen (2 jaar, OKOT vermoedelijk) of VDAB-cursus Tekla, SolidWorks, CNC (3 tot 6 maanden).","knelpunt":"Ja, allemaal","loon":"€2.600 tot €3.800","fit":4,"waarom":"Zittend, precies, stapelbaar met de studie; zwakker op dienstbaarheid tenzij bij een overheid.","status":"reserve"},
-  {"id":"prototype","domein":"reserve","naam":"Prototypebouwer designmeubelen, maquettebouw","rollen":["prototypebouwer","modelmaker","maquettebouwer"],"werkgevers":["Tribu (Bilzen)","Extremis","Bulo (Mechelen)","maquettebouwstudio's"],"vereisten":"On-the-job; de ontwerpstudie is het verschil.","knelpunt":"Niet","loon":"€2.500 tot €3.200","fit":4,"waarom":"Versmelt aluminium TIG met meubelontwerp; zwakker op stabiliteit en afstand.","status":"reserve"},
-  {"id":"kmda","domein":"overheid","naam":"Technische dienst ZOO Antwerpen en Planckendael (KMDA)","rollen":["technieker metaal","onderhoudstechnieker atelier"],"werkgevers":["KMDA","Plantentuin Meise"],"vereisten":"Technisch secundair plus ervaring.","knelpunt":"Onderhoudstechnicus ja","loon":"Ongeveer €2.500 tot €3.100 (te verifiëren)","fit":4,"waarom":"Erfgoedinstelling in het centrum, kleine ploeg, tastbare betekenis; vacatures zeldzaam.","status":"verkennen"},
-  {"id":"kunstgieterij","domein":"reserve","naam":"Kunstgieterij en kunstenaarsateliers","rollen":["TIG-lasser brons","ciseleur","kunstenaarsassistent"],"werkgevers":["Art Casting (Oudenaarde)","Studio Arne Quinze","Studio Wim Delvoye"],"vereisten":"On-the-job; brons TIG-lassen leer je in de gieterij.","knelpunt":"Niet","loon":"€2.400 tot €3.100, vaak projectmatig","fit":3,"waarom":"Artistiek en uitdagend, maar kleine privéstudio's botsen met de nood aan zekerheid. Gieterijen zijn stabieler.","status":"reserve"},
-  {"id":"tandtechnicus","domein":"reserve","naam":"Tandtechnicus","rollen":["tandtechnicus","CAD/CAM-tandtechnicus"],"werkgevers":["tandtechnische labo's in de provincie"],"vereisten":"Se-n-Se of SYNTRA (2 tot 3 jaar avond).","knelpunt":"Vermoedelijk","loon":"€2.300 tot €3.000","fit":4,"waarom":"Kleine stille labo's, precisie, indirecte dienstbaarheid; lager loon en langere omscholing.","status":"reserve"},
-  {"id":"erfgoedtransport","domein":"geschiedenis","naam":"Historische voertuigen, schepen, uurwerken, orgels","rollen":["restaurateur torenuurwerken","scheepshersteller erfgoed","orgelbouwer"],"werkgevers":["Michiels Torenuurwerken (Mechelen)","Clock-o-Matic","Orgelbouw Schumacher","Watererfgoed Vlaanderen","Stampe en Vertongen Museum (Deurne)","Stoomtrein Dendermonde-Puurs"],"vereisten":"Leren in het bedrijf; erfgoedverenigingen zijn bijna volledig vrijwillig.","knelpunt":"Niet","loon":"€2.300 tot €3.000 in kleine bedrijven; anders vrijwillig","fit":3,"waarom":"Diepe betekenis en precisie, maar betaalde plaatsen zijn zeldzaam. Uitstekend als vrijwilligerswerk naast een vaste job.","status":"vrijwillig"},
-  {"id":"event","domein":"reserve","naam":"Film, festival en pretpark","rollen":["decorbouwer film","onderhoudstechnieker attracties"],"werkgevers":["Lites (Vilvoorde)","Tomorrowland productie","Bobbejaanland","Plopsa"],"vereisten":"Vakkennis; freelance-cultuur.","knelpunt":"Niet","loon":"Wisselend","fit":2,"waarom":"Onregelmatige uren en prikkelcultuur botsen met het profiel. Attractieonderhoud bij Bobbejaanland is de stabiele uitzondering.","status":"laag"}
+  {
+    "id": "decorbouwer",
+    "domein": "cultuur",
+    "naam": "Decorbouwer metaal (theater, opera)",
+    "rollen": [
+      "decorbouwer",
+      "constructeur decor",
+      "ateliermedewerker metaal",
+      "smid decoratelier"
+    ],
+    "werkgevers": [
+      "Opera Ballet Vlaanderen (decoratelier Zele)",
+      "Toneelhuis",
+      "De Munt (Brussel)",
+      "Total Concept (Ranst)",
+      "Deusjevoo (Zoersel)"
+    ],
+    "vereisten": "Geen diploma; lassen, plannen lezen, veiligheid. Precies zijn profiel.",
+    "knelpunt": "Valt onder lasser",
+    "loon": "PC 304 ongeveer €2.450 tot €2.750",
+    "fit": 5,
+    "waarom": "Directe overdracht van zijn vak naar een zinvolle, artistieke context met vaste ateliers.",
+    "status": "hoofdspoor"
+  },
+  {
+    "id": "museumtechnicus",
+    "domein": "cultuur",
+    "naam": "Technisch medewerker museum, tentoonstellingsopbouw",
+    "rollen": [
+      "museumtechnicus",
+      "medewerker tentoonstellingsopbouw",
+      "technisch assistent C1"
+    ],
+    "werkgevers": [
+      "Stad Antwerpen Musea en Erfgoed",
+      "KMSKA",
+      "M HKA",
+      "Bozar",
+      "Technopolis"
+    ],
+    "vereisten": "Diploma secundair (niveau C) of geen (D). Hout, metaal, tekeningen.",
+    "knelpunt": "Niet als zodanig",
+    "loon": "Stad C1 vanaf €2.460; met 5 jaar ervaring €2.769",
+    "fit": 5,
+    "waarom": "Rustig, zorgvuldig, institutioneel. Werfreserve van de stad blijft een jaar geldig.",
+    "status": "hoofdspoor"
+  },
+  {
+    "id": "mountmaker",
+    "domein": "cultuur",
+    "naam": "Mount maker en vitrinebouwer",
+    "rollen": [
+      "mount maker",
+      "vitrinebouwer",
+      "medewerker museale inrichting"
+    ],
+    "werkgevers": [
+      "Meyvaert Museum (Gent)",
+      "Potteau Labo (Kortrijk)",
+      "grote musea in-house"
+    ],
+    "vereisten": "Geen diploma; fijn metaalwerk, plooien, solderen, TIG op inox en messing.",
+    "knelpunt": "Niet als zodanig",
+    "loon": "Privé ongeveer €2.600 tot €3.200",
+    "fit": 5,
+    "waarom": "Een echte niche voor een TIG-lasser met ontwerpgevoel; museumkwaliteit.",
+    "status": "hoofdspoor"
+  },
+  {
+    "id": "restauratiemedewerker",
+    "domein": "erfgoed",
+    "naam": "Restauratiemedewerker metaal en monumenten",
+    "rollen": [
+      "restauratiemedewerker metaal",
+      "smeedwerkrestauratie",
+      "vakman restauratie"
+    ],
+    "werkgevers": [
+      "Verstraete & Vanhecke",
+      "Renotec",
+      "Monument Group",
+      "Smego",
+      "Lapis Arte",
+      "AltNova"
+    ],
+    "vereisten": "Vakmanschap; restaurateurs hebben de UAntwerpen-opleiding, aannemers nemen vakmensen aan.",
+    "knelpunt": "Via onderliggend vak (lasser, smid)",
+    "loon": "Ongeveer €2.500 tot €3.000",
+    "fit": 5,
+    "waarom": "De brug van lassen naar erfgoed; onderzoekend en zorgvuldig werk.",
+    "status": "hoofdspoor"
+  },
+  {
+    "id": "monumentenwachter",
+    "domein": "erfgoed",
+    "naam": "Monumentenwachter",
+    "rollen": [
+      "monumentenwachter"
+    ],
+    "werkgevers": [
+      "Monumentenwacht Antwerpen (provincie)"
+    ],
+    "vereisten": "Technisch secundair of bachelor bouw; klimconditie; rijbewijs B.",
+    "knelpunt": "Niet",
+    "loon": "Provinciale schaal C/B ongeveer €2.500 tot €3.000",
+    "fit": 5,
+    "waarom": "Inspecteren, rapporteren, adviseren: onderzoekend, behoedzaam en dienstbaar. Kleine ploeg.",
+    "status": "hoofdspoor"
+  },
+  {
+    "id": "depot",
+    "domein": "erfgoed",
+    "naam": "Depotmedewerker, art handler, collectiezorg",
+    "rollen": [
+      "depotmedewerker",
+      "art handler",
+      "collectiemedewerker behoud en beheer",
+      "registrator (later)"
+    ],
+    "werkgevers": [
+      "Stad Antwerpen collectiedepot",
+      "KMSKA depot",
+      "Onroerend Erfgoed depot",
+      "Mobull (Brussel)"
+    ],
+    "vereisten": "Geen diploma of secundair; heftruck, VCA, rijbewijs helpen. FARO basiscursus als instapticket.",
+    "knelpunt": "Niet",
+    "loon": "PC 329.01 ongeveer €2.300 tot €2.900",
+    "fit": 4,
+    "waarom": "Deuropener naar musea en collecties; kalm en precies.",
+    "status": "hoofdspoor"
+  },
+  {
+    "id": "podiumtechnicus",
+    "domein": "cultuur",
+    "naam": "Podiumtechnicus (toneel, rigging)",
+    "rollen": [
+      "podiumtechnicus",
+      "toneeltechnicus",
+      "rigger"
+    ],
+    "werkgevers": [
+      "deSingel",
+      "Toneelhuis",
+      "hetpaleis",
+      "Opera Ballet Vlaanderen"
+    ],
+    "vereisten": "Se-n-Se, RITCS of on-the-job; hoogte- en riggingcertificaten. Avond- en weekendwerk.",
+    "knelpunt": "Vermoedelijk op de lijst (te verifiëren)",
+    "loon": "PC 304 ongeveer €2.650 tot €2.900",
+    "fit": 4,
+    "waarom": "Lasten en constructies begrijpen is een voordeel; nadeel: onregelmatige uren naast de studie.",
+    "status": "verkennen"
+  },
+  {
+    "id": "instructeur-jeugd",
+    "domein": "sociaal",
+    "naam": "Instructeur metaal in jongerenopleiding",
+    "rollen": [
+      "instructeur lassen",
+      "werkvloerbegeleider",
+      "NAFT-begeleider",
+      "atelierbegeleider"
+    ],
+    "werkgevers": [
+      "Groep INTRO",
+      "Profo vzw (Antwerpen)",
+      "Arktos",
+      "JES Werkt"
+    ],
+    "vereisten": "Vakkennis plus pedagogische houding; diploma secundair volstaat meestal voor instructeur. Overdag.",
+    "knelpunt": "Niet als zodanig",
+    "loon": "PC 329.01 ongeveer €2.500 tot €2.900",
+    "fit": 5,
+    "waarom": "Dienstbaarheid en sociaal profiel, kleine groepen, structuur; zijn lasvak is zeldzaam in deze sector.",
+    "status": "verkennen"
+  },
+  {
+    "id": "sociale-economie",
+    "domein": "sociaal",
+    "naam": "Werkvloerbegeleider in de sociale economie",
+    "rollen": [
+      "werkvloerbegeleider",
+      "monitor",
+      "werkbegeleider atelier"
+    ],
+    "werkgevers": [
+      "Levanto (Bouw en Renovatie, Fietspunt)",
+      "De Kringwinkel Antwerpen (meubelatelier)",
+      "Manus",
+      "Aralea",
+      "Mariasteen (Gits, metaal)"
+    ],
+    "vereisten": "Geen diploma; technische beheersing en coachende houding.",
+    "knelpunt": "Niet",
+    "loon": "PC 327.01 ongeveer €2.600 tot €3.000",
+    "fit": 4,
+    "waarom": "Zinvol en stabiel, overdag; vraagt wel dagelijks een groep leiden.",
+    "status": "verkennen"
+  },
+  {
+    "id": "zorgatelier",
+    "domein": "sociaal",
+    "naam": "Atelierbegeleider in zorg en psychiatrie",
+    "rollen": [
+      "begeleider dagbesteding",
+      "atelierbegeleider hout en metaal",
+      "begeleider arbeidszorg"
+    ],
+    "werkgevers": [
+      "Ritmica (Hove)",
+      "Monnikenheide-Spectrum (Zoersel)",
+      "OLO-Rotonde",
+      "Multiversum",
+      "PZ Bethanië"
+    ],
+    "vereisten": "Bachelor of A2 met relevante ervaring (PC 319.01 klasse 2). Vakkennis is zeldzaam en gewild.",
+    "knelpunt": "Opvoeder-begeleider is knelpunt",
+    "loon": "B2b ongeveer €2.600 tot €2.750; B1c na graduaat €2.950 tot €3.100",
+    "fit": 4,
+    "waarom": "Ambacht in dienst van mensen; graduaat orthopedagogische begeleiding in avondtraject maakt klasse 1 mogelijk.",
+    "status": "verkennen"
+  },
+  {
+    "id": "circulair",
+    "domein": "ecologisch",
+    "naam": "Circulair bouwen en hergebruik",
+    "rollen": [
+      "ateliermedewerker hergebruikmaterialen",
+      "ontmantelaar",
+      "productiemedewerker leembouw",
+      "energiesnoeier"
+    ],
+    "werkgevers": [
+      "Rotor DC (Brussel)",
+      "BC materials (Brussel)",
+      "Opalis-handelaars",
+      "Energiesnoeiers (Herwin)",
+      "Ecoso (Mechelen)"
+    ],
+    "vereisten": "Geen diploma; handvaardigheid, rijbewijs B, veiligheid.",
+    "knelpunt": "Bouwberoepen zijn knelpunt",
+    "loon": "Ongeveer €2.400 tot €2.900",
+    "fit": 4,
+    "waarom": "Ontwerp plus handwerk plus ecologische betekenis; ontmanteling is zwaar, atelierkant lichter.",
+    "status": "verkennen"
+  },
+  {
+    "id": "natuur",
+    "domein": "ecologisch",
+    "naam": "Natuur- en groenbeheer met techniek",
+    "rollen": [
+      "technisch medewerker",
+      "ploegbaas natuurbeheer",
+      "monitor groen"
+    ],
+    "werkgevers": [
+      "Natuurpunt",
+      "Aralea",
+      "Natuurwerk",
+      "KMDA technische dienst",
+      "Stad Antwerpen Stadsbeheer"
+    ],
+    "vereisten": "Groenkennis, kettingzaagattest (Inverde), rijbewijs B.",
+    "knelpunt": "Onderhoudstechnicus is knelpunt",
+    "loon": "Ongeveer €2.500 tot €3.100",
+    "fit": 3,
+    "waarom": "Buiten, zinvol, kleine ploegen; minder ambacht.",
+    "status": "verkennen"
+  },
+  {
+    "id": "archeologie",
+    "domein": "geschiedenis",
+    "naam": "Archeologie en vondstverwerking",
+    "rollen": [
+      "veldtechnicus archeologie",
+      "vondstverwerker",
+      "depotmedewerker archeologie",
+      "conservator archeologisch metaal (na opleiding)"
+    ],
+    "werkgevers": [
+      "Commerciële archeologiebedrijven (BAAC, Ruben Willaert, All-Archeo, Monument Vandekerckhove archeologie)",
+      "Stad Antwerpen dienst Archeologie",
+      "Onroerend Erfgoed depot",
+      "Intergemeentelijke erfgoeddiensten"
+    ],
+    "vereisten": "Veldtechnicus meestal zonder master; bachelor Archeologie (UGent, KU Leuven, VUB) staat open met diploma secundair.",
+    "knelpunt": "Niet",
+    "loon": "Te verifiëren",
+    "fit": 4,
+    "waarom": "Onderzoekend, geduldig, zinvol; metaalvondsten conserveren is een directe brug vanuit het lasvak. Onderzoek 9 loopt.",
+    "status": "verkennen"
+  },
+  {
+    "id": "archief",
+    "domein": "geschiedenis",
+    "naam": "Archief en collectieregistratie",
+    "rollen": [
+      "archiefmedewerker",
+      "depotbeheerder",
+      "digitaliseringsmedewerker",
+      "collectieregistrator"
+    ],
+    "werkgevers": [
+      "FelixArchief",
+      "Letterenhuis",
+      "Erfgoedbibliotheek Hendrik Conscience",
+      "ADVN (Antwerpen)",
+      "Rijksarchief",
+      "meemoo"
+    ],
+    "vereisten": "Graduaat Informatiebeheer: bibliotheek en archief (2 jaar) of ervaring; FARO-cursussen.",
+    "knelpunt": "Niet",
+    "loon": "Te verifiëren",
+    "fit": 4,
+    "waarom": "Stil, ordelijk en historisch. Remi bouwde in 2017 en 2018 zelf een fotoarchief op, een concreet bewijs voor sollicitaties. Onderzoek 9 loopt.",
+    "status": "verkennen"
+  },
+  {
+    "id": "lasinspecteur",
+    "domein": "reserve",
+    "naam": "Lasinspecteur, NDT-technicus",
+    "rollen": [
+      "lasinspecteur",
+      "lascoördinator",
+      "NDT-technicus"
+    ],
+    "werkgevers": [
+      "Kiwa Vinçotte",
+      "SGS Belgium",
+      "Bureau Veritas",
+      "in-house bij scheepswerven en chemie"
+    ],
+    "vereisten": "IWS via het Belgisch Instituut voor Lastechniek (6 tot 12 maanden deeltijds); NDT niveau 1 en 2 per methode.",
+    "knelpunt": "Lasser ja; inspecteur vermoedelijk",
+    "loon": "€2.800 tot €4.200",
+    "fit": 5,
+    "waarom": "Andermans precisie controleren: onderzoekend, behoedzaam, uitdagend, veel minder fysiek. Blijft in zijn vakwereld.",
+    "status": "reserve"
+  },
+  {
+    "id": "vdab-instructeur",
+    "domein": "onderwijs",
+    "naam": "Instructeur lassen bij VDAB",
+    "rollen": [
+      "instructeur lassen",
+      "instructeur metaal"
+    ],
+    "werkgevers": [
+      "VDAB competentiecentra Antwerpen, Mechelen, Turnhout",
+      "Talentenfabriek Antwerpen"
+    ],
+    "vereisten": "Geen pedagogisch diploma; interne opleiding. Kleine groepen van 8 tot 12 volwassenen.",
+    "knelpunt": "Niet als zodanig; VDAB werft doorlopend",
+    "loon": "Schaal C ongeveer €2.600 tot €3.300, 35 verlofdagen",
+    "fit": 5,
+    "waarom": "Dienstbaarheid en stabiliteit bij een publieke werkgever, studievriendelijke uren; aluminium TIG is schaars.",
+    "status": "hoofdspoor"
+  },
+  {
+    "id": "justitie",
+    "domein": "overheid",
+    "naam": "Penitentiair technisch assistent (gevangeniswerkhuizen)",
+    "rollen": [
+      "penitentiair technisch assistent niveau C"
+    ],
+    "werkgevers": [
+      "FOD Justitie, Cellmade: Antwerpen, Beveren, Merksplas, Hoogstraten, Mechelen"
+    ],
+    "vereisten": "Diploma hoger secundair plus vakkennis; selectie via werkenvoor.be; statutair.",
+    "knelpunt": "Niet",
+    "loon": "Federaal C ongeveer €2.600 tot €2.900 plus premies",
+    "fit": 4,
+    "waarom": "Metaalwerk aanleren aan gedetineerden: diep zinvol, weekdagen, statuut. Vraagteken: gezag met lage assertiviteit.",
+    "status": "verkennen"
+  },
+  {
+    "id": "werkplaats-onderzoek",
+    "domein": "reserve",
+    "naam": "Werkplaats van universiteit of onderzoeksinstelling",
+    "rollen": [
+      "instrumentenmaker",
+      "technicus mechanische werkplaats"
+    ],
+    "werkgevers": [
+      "UAntwerpen",
+      "KU Leuven instrumentenmakerij",
+      "SCK CEN (Mol)",
+      "VITO"
+    ],
+    "vereisten": "Technisch secundair of graduaat; interne opleiding.",
+    "knelpunt": "Technicus ja",
+    "loon": "Universiteit C ongeveer €2.500 tot €3.100; SCK €3.000 tot €3.800",
+    "fit": 4,
+    "waarom": "Wetenschappelijke cultuur beloont exactheid; universiteiten zijn de meest studievriendelijke werkgevers.",
+    "status": "reserve"
+  },
+  {
+    "id": "tekenwerk",
+    "domein": "reserve",
+    "naam": "Tekenaar, werkvoorbereider, CNC en lasrobot",
+    "rollen": [
+      "bouwkundig tekenaar",
+      "BIM-modelleur",
+      "tekenaar-werkvoorbereider metaalconstructie",
+      "lasrobotprogrammeur"
+    ],
+    "werkgevers": [
+      "metaalbouwbedrijven",
+      "architecten- en ingenieursbureaus",
+      "lasersnijbedrijven"
+    ],
+    "vereisten": "Graduaat Bouwkundig tekenen (2 jaar, OKOT vermoedelijk) of VDAB-cursus Tekla, SolidWorks, CNC (3 tot 6 maanden).",
+    "knelpunt": "Ja, allemaal",
+    "loon": "€2.600 tot €3.800",
+    "fit": 5,
+    "waarom": "Remi is al technisch tekenaar en werkvoorbereider: dit is zijn huidige vak zonder de fysieke last. Zittend, precies, stapelbaar met de studie; zwakker op dienstbaarheid tenzij bij een overheid of erfgoedbureau.",
+    "status": "reserve"
+  },
+  {
+    "id": "prototype",
+    "domein": "reserve",
+    "naam": "Prototypebouwer designmeubelen, maquettebouw",
+    "rollen": [
+      "prototypebouwer",
+      "modelmaker",
+      "maquettebouwer"
+    ],
+    "werkgevers": [
+      "Tribu (Bilzen)",
+      "Extremis",
+      "Bulo (Mechelen)",
+      "maquettebouwstudio's"
+    ],
+    "vereisten": "On-the-job; de ontwerpstudie is het verschil.",
+    "knelpunt": "Niet",
+    "loon": "€2.500 tot €3.200",
+    "fit": 4,
+    "waarom": "Versmelt aluminium TIG met meubelontwerp; zwakker op stabiliteit en afstand.",
+    "status": "reserve"
+  },
+  {
+    "id": "kmda",
+    "domein": "overheid",
+    "naam": "Technische dienst ZOO Antwerpen en Planckendael (KMDA)",
+    "rollen": [
+      "technieker metaal",
+      "onderhoudstechnieker atelier"
+    ],
+    "werkgevers": [
+      "KMDA",
+      "Plantentuin Meise"
+    ],
+    "vereisten": "Technisch secundair plus ervaring.",
+    "knelpunt": "Onderhoudstechnicus ja",
+    "loon": "Ongeveer €2.500 tot €3.100 (te verifiëren)",
+    "fit": 4,
+    "waarom": "Erfgoedinstelling in het centrum, kleine ploeg, tastbare betekenis; vacatures zeldzaam.",
+    "status": "verkennen"
+  },
+  {
+    "id": "kunstgieterij",
+    "domein": "reserve",
+    "naam": "Kunstgieterij en kunstenaarsateliers",
+    "rollen": [
+      "TIG-lasser brons",
+      "ciseleur",
+      "kunstenaarsassistent"
+    ],
+    "werkgevers": [
+      "Art Casting (Oudenaarde)",
+      "Studio Arne Quinze",
+      "Studio Wim Delvoye"
+    ],
+    "vereisten": "On-the-job; brons TIG-lassen leer je in de gieterij.",
+    "knelpunt": "Niet",
+    "loon": "€2.400 tot €3.100, vaak projectmatig",
+    "fit": 3,
+    "waarom": "Artistiek en uitdagend, maar kleine privéstudio's botsen met de nood aan zekerheid. Gieterijen zijn stabieler.",
+    "status": "reserve"
+  },
+  {
+    "id": "tandtechnicus",
+    "domein": "reserve",
+    "naam": "Tandtechnicus",
+    "rollen": [
+      "tandtechnicus",
+      "CAD/CAM-tandtechnicus"
+    ],
+    "werkgevers": [
+      "tandtechnische labo's in de provincie"
+    ],
+    "vereisten": "Se-n-Se of SYNTRA (2 tot 3 jaar avond).",
+    "knelpunt": "Vermoedelijk",
+    "loon": "€2.300 tot €3.000",
+    "fit": 4,
+    "waarom": "Kleine stille labo's, precisie, indirecte dienstbaarheid; lager loon en langere omscholing.",
+    "status": "reserve"
+  },
+  {
+    "id": "erfgoedtransport",
+    "domein": "geschiedenis",
+    "naam": "Historische voertuigen, schepen, uurwerken, orgels",
+    "rollen": [
+      "restaurateur torenuurwerken",
+      "scheepshersteller erfgoed",
+      "orgelbouwer"
+    ],
+    "werkgevers": [
+      "Michiels Torenuurwerken (Mechelen)",
+      "Clock-o-Matic",
+      "Orgelbouw Schumacher",
+      "Watererfgoed Vlaanderen",
+      "Stampe en Vertongen Museum (Deurne)",
+      "Stoomtrein Dendermonde-Puurs"
+    ],
+    "vereisten": "Leren in het bedrijf; erfgoedverenigingen zijn bijna volledig vrijwillig.",
+    "knelpunt": "Niet",
+    "loon": "€2.300 tot €3.000 in kleine bedrijven; anders vrijwillig",
+    "fit": 3,
+    "waarom": "Diepe betekenis en precisie, maar betaalde plaatsen zijn zeldzaam. Uitstekend als vrijwilligerswerk naast een vaste job.",
+    "status": "vrijwillig"
+  },
+  {
+    "id": "event",
+    "domein": "reserve",
+    "naam": "Film, festival en pretpark",
+    "rollen": [
+      "decorbouwer film",
+      "onderhoudstechnieker attracties"
+    ],
+    "werkgevers": [
+      "Lites (Vilvoorde)",
+      "Tomorrowland productie",
+      "Bobbejaanland",
+      "Plopsa"
+    ],
+    "vereisten": "Vakkennis; freelance-cultuur.",
+    "knelpunt": "Niet",
+    "loon": "Wisselend",
+    "fit": 2,
+    "waarom": "Onregelmatige uren en prikkelcultuur botsen met het profiel. Attractieonderhoud bij Bobbejaanland is de stabiele uitzondering.",
+    "status": "laag"
+  }
 ]

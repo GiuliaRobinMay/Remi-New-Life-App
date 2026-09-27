@@ -1,7 +1,7 @@
 {
-  "peildatum":"2026-09-27",
-  "disclaimer":"Dit is informatie, geen juridisch advies. De bronpagina's konden in deze omgeving niet volledig geladen worden; alles komt uit zoekresultaten van RVA, FOD Werkgelegenheid, VDAB, ACV en sociale secretariaten, gekruist waar mogelijk. Wat als 'te verifiëren' staat, laat je ACV-CSC METEA bevestigen voor je erop handelt.",
-  "kern":[
+  "peildatum": "2026-09-27",
+  "disclaimer": "Dit is informatie, geen juridisch advies. De bronpagina's konden in deze omgeving niet volledig geladen worden; alles komt uit zoekresultaten van RVA, FOD Werkgelegenheid, VDAB, ACV en sociale secretariaten, gekruist waar mogelijk. Wat als 'te verifiëren' staat, laat je ACV-CSC METEA bevestigen voor je erop handelt.",
+  "kern": [
     "Teken niets. Een beëindiging in onderling akkoord is voor de RVA hetzelfde als zelf opzeggen: 4 tot 52 weken geen uitkering, en je geeft ook de opzegvergoeding op die de werkgever anders verschuldigd is.",
     "Als de werkgever wil dat je vertrekt, moet de werkgever opzeggen (18 weken bij 5 jaar anciënniteit) of het equivalent betalen. Dat is hun kost, niet de jouwe.",
     "Het beste scenario voor herstel met inkomen: ontslag door de werkgever met opzegtermijn en vrijstelling van prestaties. Loon tot het einde, daarna volledige uitkering.",
@@ -9,21 +9,99 @@
     "Zelf opzeggen zonder sanctie kan alleen als er meteen een nieuwe job van minstens 13 weken volgt en je voor de tussenperiode geen uitkering vraagt.",
     "Medisch gedocumenteerde ongeschiktheid voor het beroep is de enige 'wettige reden' die de RVA aanvaardt. Moe zijn is dat niet. Daarom de huisarts."
   ],
-  "scenarios":[
-    {"id":"A","naam":"Ontslag door de werkgever","kleur":"green","oordeel":"Beste scenario","punten":["Opzegtermijn 18 weken (5 tot 6 jaar anciënniteit) of 15 weken (4 tot 5 jaar), of verbrekingsvergoeding voor het niet-gepresteerde deel.","Vraag schriftelijk vrijstelling van prestaties: je komt niet meer werken en behoudt je loon. Schrijf je dan binnen een maand in bij VDAB.","Sollicitatieverlof: een volledige dag per week, betaald.","Geen RVA-sanctie. Uitkering 65 procent van het begrensde loon de eerste drie maanden, daarna 60 procent, maximaal 24 maanden.","Ziekte tijdens deze opzeg schorst de opzegtermijn.","Je mag binnen twee maanden na het einde de ontslagredenen opvragen (cao 109)."]},
-    {"id":"B","naam":"Ziekteverlof en medisch spoor","kleur":"violet","oordeel":"Goed voor herstel, opent herscholing","punten":["Gewaarborgd loon door de werkgever: dag 1 tot 7 100 procent, dag 8 tot 14 85,88 procent, dag 15 tot 30 gedeeltelijk, daarna 60 procent van het begrensde loon via het ziekenfonds.","De werkgever mag tijdens ziekte ontslaan met opzeg of vergoeding, maar niet omwille van de ziekte. De ziekte-uitkering loopt door na het einde van het contract.","De eerste zes maanden wordt de ongeschiktheid beoordeeld tegenover je eigen job (lasser), daarna tegenover de hele arbeidsmarkt. Daarom moet het dossier de fysieke belasting van het laswerk documenteren, niet alleen vermoeidheid.","Herscholing via het ziekenfonds (socioprofessionele re-integratie): opleiding betaald, premie per lesuur, uitkering behouden tijdens de opleiding en zes maanden erna. Aanvragen via de adviserend arts en de Terug Naar Werk-coördinator.","Re-integratietraject bij de arbeidsarts kan je zelf aanvragen. Beslissing B (definitief ongeschikt voor het huidige werk) is het sterkste document.","Medische overmacht kan pas na zes maanden onafgebroken ziekte en beëindigt het contract zonder vergoeding; alleen zinvol als je dat zelf wil."]},
-    {"id":"C","naam":"Zelf opzeggen","kleur":"red","oordeel":"Alleen met nieuwe job klaar","punten":["Opzegtermijn 9 weken (5 tot 6 jaar) of 7 weken (4 tot 5 jaar). Aangetekende brief geldt op de derde werkdag; de termijn start de maandag erna.","Zonder nieuwe job: RVA-uitsluiting van 4 tot 52 weken. Onvoorspelbaar.","Met nieuwe job van minstens 13 weken: geen sanctie, als je in de tussentijd geen uitkering vraagt.","Eindejaarspremie PC 111 kan wegvallen bij ontslagname (provinciale cao Antwerpen, te verifiëren bij ACV).","Geen IBO mogelijk na zelf opzeggen.","Ziekte tijdens je eigen opzeg schorst de termijn niet.","Wie zonder opzeg wegblijft, betaalt zelf een verbrekingsvergoeding aan de werkgever."]},
-    {"id":"D","naam":"Beëindiging in onderling akkoord","kleur":"red","oordeel":"Niet doen zonder vergoeding en RVA-garantie","punten":["Voor de RVA gelijk aan zelf opzeggen: 4 tot 52 weken uitsluiting.","Je geeft de opzegvergoeding op, tenzij het document een vergoeding toekent.","Achteraf bijna niet te herroepen (dwang, bedrog of dwaling bewijzen).","Nooit ter plaatse tekenen. Kopie mee. ACV laten lezen. Alleen 'voor ontvangst', nooit 'voor akkoord'."]}
+  "scenarios": [
+    {
+      "id": "A",
+      "naam": "Ontslag door de werkgever",
+      "kleur": "green",
+      "oordeel": "Beste scenario",
+      "punten": [
+        "Opzegtermijn 18 weken (5 tot 6 jaar anciënniteit) of 15 weken (4 tot 5 jaar), of verbrekingsvergoeding voor het niet-gepresteerde deel.",
+        "Vraag schriftelijk vrijstelling van prestaties: je komt niet meer werken en behoudt je loon. Schrijf je dan binnen een maand in bij VDAB.",
+        "Sollicitatieverlof: een volledige dag per week, betaald.",
+        "Geen RVA-sanctie. Uitkering 65 procent van het begrensde loon de eerste drie maanden, daarna 60 procent, maximaal 24 maanden.",
+        "Ziekte tijdens deze opzeg schorst de opzegtermijn.",
+        "Je mag binnen twee maanden na het einde de ontslagredenen opvragen (cao 109)."
+      ]
+    },
+    {
+      "id": "B",
+      "naam": "Ziekteverlof en medisch spoor",
+      "kleur": "violet",
+      "oordeel": "Goed voor herstel, opent herscholing",
+      "punten": [
+        "Gewaarborgd loon door de werkgever: dag 1 tot 7 100 procent, dag 8 tot 14 85,88 procent, dag 15 tot 30 gedeeltelijk, daarna 60 procent van het begrensde loon via het ziekenfonds.",
+        "De werkgever mag tijdens ziekte ontslaan met opzeg of vergoeding, maar niet omwille van de ziekte. De ziekte-uitkering loopt door na het einde van het contract.",
+        "De eerste zes maanden wordt de ongeschiktheid beoordeeld tegenover je eigen job (lasser), daarna tegenover de hele arbeidsmarkt. Daarom moet het dossier de fysieke belasting van het laswerk documenteren, niet alleen vermoeidheid.",
+        "Herscholing via het ziekenfonds (socioprofessionele re-integratie): opleiding betaald, premie per lesuur, uitkering behouden tijdens de opleiding en zes maanden erna. Aanvragen via de adviserend arts en de Terug Naar Werk-coördinator.",
+        "Re-integratietraject bij de arbeidsarts kan je zelf aanvragen. Beslissing B (definitief ongeschikt voor het huidige werk) is het sterkste document.",
+        "Medische overmacht kan pas na zes maanden onafgebroken ziekte en beëindigt het contract zonder vergoeding; alleen zinvol als je dat zelf wil."
+      ]
+    },
+    {
+      "id": "C",
+      "naam": "Zelf opzeggen",
+      "kleur": "red",
+      "oordeel": "Alleen met nieuwe job klaar",
+      "punten": [
+        "Opzegtermijn 9 weken (5 tot 6 jaar) of 7 weken (4 tot 5 jaar). Aangetekende brief geldt op de derde werkdag; de termijn start de maandag erna.",
+        "Zonder nieuwe job: RVA-uitsluiting van 4 tot 52 weken. Onvoorspelbaar.",
+        "Met nieuwe job van minstens 13 weken: geen sanctie, als je in de tussentijd geen uitkering vraagt.",
+        "Eindejaarspremie PC 111 kan wegvallen bij ontslagname (provinciale cao Antwerpen, te verifiëren bij ACV).",
+        "Geen IBO mogelijk na zelf opzeggen.",
+        "Ziekte tijdens je eigen opzeg schorst de termijn niet.",
+        "Wie zonder opzeg wegblijft, betaalt zelf een verbrekingsvergoeding aan de werkgever."
+      ]
+    },
+    {
+      "id": "D",
+      "naam": "Beëindiging in onderling akkoord",
+      "kleur": "red",
+      "oordeel": "Niet doen zonder vergoeding en RVA-garantie",
+      "punten": [
+        "Voor de RVA gelijk aan zelf opzeggen: 4 tot 52 weken uitsluiting.",
+        "Je geeft de opzegvergoeding op, tenzij het document een vergoeding toekent.",
+        "Achteraf bijna niet te herroepen (dwang, bedrog of dwaling bewijzen).",
+        "Nooit ter plaatse tekenen. Kopie mee. ACV laten lezen. Alleen 'voor ontvangst', nooit 'voor akkoord'."
+      ]
+    }
   ],
-  "opzegtabel":{"toelichting":"Eenheidsstatuut, contract gestart tussen 1 januari 2014 en 1 juni 2026. Rijen uit de wet; laat ACV de exacte anciënniteit bevestigen.","rijen":[
-    {"ancienniteit":"3 tot minder dan 4 jaar","werkgever":13,"werknemer":6},
-    {"ancienniteit":"4 tot minder dan 5 jaar","werkgever":15,"werknemer":7},
-    {"ancienniteit":"5 tot minder dan 6 jaar","werkgever":18,"werknemer":9},
-    {"ancienniteit":"6 tot minder dan 7 jaar","werkgever":21,"werknemer":10},
-    {"ancienniteit":"7 tot minder dan 8 jaar","werkgever":24,"werknemer":12},
-    {"ancienniteit":"8 jaar en meer","werkgever":27,"werknemer":13}
-  ]},
-  "werkloosheid2026":[
+  "opzegtabel": {
+    "toelichting": "Eenheidsstatuut, contract gestart tussen 1 januari 2014 en 1 juni 2026. Rijen uit de wet; laat ACV de exacte anciënniteit bevestigen.",
+    "rijen": [
+      {
+        "ancienniteit": "3 tot minder dan 4 jaar",
+        "werkgever": 13,
+        "werknemer": 6
+      },
+      {
+        "ancienniteit": "4 tot minder dan 5 jaar",
+        "werkgever": 15,
+        "werknemer": 7
+      },
+      {
+        "ancienniteit": "5 tot minder dan 6 jaar",
+        "werkgever": 18,
+        "werknemer": 9
+      },
+      {
+        "ancienniteit": "6 tot minder dan 7 jaar",
+        "werkgever": 21,
+        "werknemer": 10
+      },
+      {
+        "ancienniteit": "7 tot minder dan 8 jaar",
+        "werkgever": 24,
+        "werknemer": 12
+      },
+      {
+        "ancienniteit": "8 jaar en meer",
+        "werkgever": 27,
+        "werknemer": 13
+      }
+    ]
+  },
+  "werkloosheid2026": [
     "Toelaatbaarheid: 312 arbeidsdagen in de laatste 36 maanden, ongeacht leeftijd. Remi voldoet ruim.",
     "Duur: 12 maanden plus 1 maand per 4 extra maanden loopbaan, maximum 24 maanden. Met vijf jaar werk zit je aan het maximum.",
     "Bedrag: 65 procent van het begrensde brutoloon in maand 1 tot 3, 60 procent in maand 4 tot 6, daarna degressief. Loonplafond te verifiëren (€3.571 of €4.182 per maand naargelang de bron).",
@@ -31,13 +109,13 @@
     "Inschrijven bij VDAB binnen 8 dagen na het einde van de opzegtermijn. Uitbetalingsinstelling: ACV.",
     "Vrijstelling voor studies: minstens 20 uur per week overdag, minstens 27 nieuwe studiepunten. Een avondopleiding geeft geen vrijstelling maar mag wel, met melding aan VDAB."
   ],
-  "acv":[
+  "acv": [
     "ACV-CSC METEA is de centrale voor metaal en metaalbouw.",
     "Gratis juridische bijstand tot en met de arbeidsrechtbank na zes maanden aaneengesloten lidmaatschap op het moment van de feiten.",
     "ACV is uitbetalingsinstelling: doet het volledige werkloosheidsdossier, controleert de C4, staat bij op een RVA-verhoor.",
     "Syndicale premie tot ongeveer €145 per jaar. Dienstencentra in Antwerpen, afspraak via hetacv.be."
   ],
-  "vdabsteun":[
+  "vdabsteun": [
     "Beroepsverkennende stage: maximaal 30 dagen bij een werkgever met behoud van uitkering. Ideaal om een museumatelier of restauratiebedrijf van binnen te zien.",
     "IBO: 4 tot 26 weken opleiding op de werkvloer met aanwervingsengagement. Niet mogelijk na zelf opzeggen.",
     "Werkervaringsstage: tot 6 maanden met een premie van €200 per maand plus vervoer.",
@@ -45,8 +123,9 @@
     "Knelpuntopleidingen zijn gratis met terugbetaling van vervoer.",
     "Loopbaancheques vragen zeven jaar werkervaring: nog niet. Als werkzoekende krijg je gratis loopbaanoriëntatie."
   ],
-  "vakantiegeld":"Vakantiegeld van arbeiders wordt door de vakantiekas betaald tussen 2 mei en 30 juni 2027, wie ook het contract beëindigt: 15,38 procent van 108 procent van het brutoloon van 2026. Eindejaarspremie PC 111: pro rata, regels per provincie, mogelijk niet bij ontslagname; te verifiëren bij ACV METEA.",
-  "teverifieren":[
+  "vakantiegeld": "Vakantiegeld van arbeiders wordt door de vakantiekas betaald tussen 2 mei en 30 juni 2027, wie ook het contract beëindigt: 15,38 procent van 108 procent van het brutoloon van 2026. Eindejaarspremie PC 111: pro rata, regels per provincie, mogelijk niet bij ontslagname; te verifiëren bij ACV METEA.",
+  "teverifieren": [
+    "Statuut: arbeider of bediende (zie loonfiche). De pagina gaat uit van arbeider (PC 111). Als bediende: gewaarborgd loon een volledige maand aan 100 procent, vakantiegeld en vertrekvakantiegeld door de werkgever, eindejaarspremie volgens PC 200 of 209. De opzegtermijnen zijn dezelfde.",
     "Exacte anciënniteit en dus de rij in de opzegtabel (startdatum, leerovereenkomst).",
     "Eindejaarspremie PC 111 provincie Antwerpen bij ontslagname versus ontslag.",
     "Loonplafond werkloosheid 2026 en het bedrag van de uitkering voor Remi.",

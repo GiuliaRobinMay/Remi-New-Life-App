@@ -10,6 +10,9 @@ Bouwt `app/js/seed.js` uit `data/*.json` en `documents/` en serveert de app op h
 
 Andere opdrachten: `npm run build:data` (seed bijwerken na wijzigingen in data of documents), `npm run pdf [slug]` (cv naar pdf met Chromium), `npm run screenshots` (visuele controle, vereist het pakket playwright).
 
+## Online zetten (Vercel of een andere statische host)
+De app staat in de map `app/`. `vercel.json` in de root stuurt elke url naar die map, dus een Vercel-project op deze repository werkt zonder extra instellingen. Zonder `vercel.json` kan je in de projectinstellingen van Vercel de Root Directory op `app` zetten. Andere statische hosts: publiceer de map `app/`. Na elke wijziging in `data/` of `documents/` eerst `npm run build:data` draaien en `app/js/seed.js` mee committen, want de online versie leest alleen die seed.
+
 ## Hoe het samenwerkt
 - `data/*.json` is de bron van waarheid voor profiel, rechten, programma, stappenplan, hotlist, jobbronnen, verkenning, opleidingen en het master-cv. Claude Code onderhoudt deze bestanden op vraag.
 - De app bewaart wijzigingen (statussen, notities, sollicitaties, vacatures) in de browser (localStorage). Via het tandwiel rechtsboven exporteer of importeer je een JSON-bestand om te delen tussen Giulia en Remi, of geef je het aan Claude om in `data/` vast te leggen.

@@ -1,0 +1,309 @@
+{
+  "inleiding": "Deze vragen zijn voor jou, Remi. Niets hoeft in één keer. Korte antwoorden zijn goed; een voorbeeld is beter dan een omschrijving. Alles wat je invult blijft op dit toestel tot je het exporteert of kopieert voor Giulia. Uit je antwoorden komen het cv, de brieven, de tekst voor VDAB en de keuzes voor de volgende stap.",
+  "secties": [
+    {
+      "id": "praktisch",
+      "titel": "Praktisch, voor het cv",
+      "intro": "Feiten die op een cv of in een dossier moeten kloppen.",
+      "vragen": [
+        {
+          "id": "p01",
+          "vraag": "Volledige naam, geboortedatum en geboorteplaats",
+          "type": "kort"
+        },
+        {
+          "id": "p02",
+          "vraag": "Adres, gsm-nummer en e-mailadres dat je voor sollicitaties wil gebruiken",
+          "type": "kort"
+        },
+        {
+          "id": "p03",
+          "vraag": "Rijbewijs (B, ja of nee) en hoe je je verplaatst: fiets, openbaar vervoer, auto. Tot hoeveel minuten pendelen is haalbaar?",
+          "type": "kort"
+        },
+        {
+          "id": "p04",
+          "vraag": "Talen en niveau: Nederlands, Frans, Engels, andere",
+          "type": "kort"
+        },
+        {
+          "id": "p05",
+          "vraag": "Naam van je huidige werkgever, gemeente, en de startdatum van je contract (staat op het contract of de eerste loonfiche)",
+          "type": "kort"
+        },
+        {
+          "id": "p06",
+          "vraag": "Wat staat er op je loonfiche: arbeider of bediende, en welk paritair comité (bijvoorbeeld 111, 200, 209)?",
+          "hint": "Dit bepaalt gewaarborgd loon, vakantiegeld en eindejaarspremie.",
+          "type": "kort"
+        },
+        {
+          "id": "p07",
+          "vraag": "Je functietitel volgens het contract, en wat je vandaag echt doet (tekenen, plooien, lassen, atelier aansturen, hoeveel collega's)",
+          "type": "lang"
+        },
+        {
+          "id": "p08",
+          "vraag": "Welk tekenprogramma gebruik je (bijvoorbeeld SolidWorks, AutoCAD, Inventor, Tekla) en hoe goed?",
+          "type": "kort"
+        },
+        {
+          "id": "p09",
+          "vraag": "Welke lasprocessen beheers je: halfautomaat (MIG/MAG), elektrode, TIG? Welke certificaten heb je, met norm en geldigheid?",
+          "type": "lang"
+        },
+        {
+          "id": "p10",
+          "vraag": "Andere attesten: VCA, heftruck, hoogtewerker, EHBO, kantbank, andere",
+          "type": "kort"
+        },
+        {
+          "id": "p11",
+          "vraag": "Je opleidingen precies: secundair (richting, school, jaar), lasopleiding (waar, wanneer), academie (welke richtingen, welke jaren, getuigschrift of diploma)",
+          "type": "lang"
+        },
+        {
+          "id": "p12",
+          "vraag": "Katoen Natie: welke functie, welke afdeling, hoelang?",
+          "type": "kort"
+        },
+        {
+          "id": "p13",
+          "vraag": "Het creatief fietsatelier: naam, wat je daar maakte of herstelde, een voorbeeld",
+          "type": "kort"
+        },
+        {
+          "id": "p14",
+          "vraag": "Het fotoarchief voor Willy Van de Perre: wie is hij, hoeveel beelden, hoe heb je het aangepakt (ordenen, scannen, beschrijven, software)?",
+          "type": "lang"
+        },
+        {
+          "id": "p15",
+          "vraag": "Welke werkstukken bestaan er in foto's: meubels, constructies, fietsen, tekeningen? Waar staan die foto's?",
+          "hint": "Voor het portfolio: 6 tot 10 stukken met titel, jaar, materiaal, techniek.",
+          "type": "lang"
+        },
+        {
+          "id": "p16",
+          "vraag": "Vanaf wanneer ben je beschikbaar, voltijds of deeltijds, en welke dagen of avonden zijn bezet door de academie?",
+          "type": "kort"
+        },
+        {
+          "id": "p17",
+          "vraag": "Wat is je huidige brutoloon per maand, en wat heb je netto minimaal nodig om rond te komen?",
+          "hint": "Dit is voor de keuze tussen uitkering, opleiding en werk, niet voor een cv.",
+          "type": "kort"
+        }
+      ]
+    },
+    {
+      "id": "werk",
+      "titel": "Werk dat bij je past",
+      "intro": "Concrete momenten zeggen meer dan eigenschappen.",
+      "vragen": [
+        {
+          "id": "w01",
+          "vraag": "Drie momenten op het werk waarop je dacht: dit is goed. Wat deed je precies?",
+          "type": "lang"
+        },
+        {
+          "id": "w02",
+          "vraag": "Drie momenten waarop het echt niet ging. Wat gebeurde er?",
+          "type": "lang"
+        },
+        {
+          "id": "w03",
+          "vraag": "Een project waar je trots op bent: wat, voor wie, wat was moeilijk, hoe heb je het opgelost?",
+          "hint": "Dit wordt een regel op het cv en een voorbeeld in het gesprek.",
+          "type": "lang"
+        },
+        {
+          "id": "w04",
+          "vraag": "Nog een project, liefst iets helemaal anders",
+          "type": "lang"
+        },
+        {
+          "id": "w05",
+          "vraag": "Wat doe je het liefst in het atelier: tekenen, plooien, lassen, organiseren, uitleggen aan anderen? Zet ze in volgorde.",
+          "type": "kort"
+        },
+        {
+          "id": "w06",
+          "vraag": "Wat is fysiek het zwaarst, en waar voel je dat (rug, schouders, handen, ogen, ademhaling)?",
+          "hint": "Ook voor de huisarts.",
+          "type": "kort"
+        },
+        {
+          "id": "w07",
+          "vraag": "Werk je liever alleen, met twee of drie, of in een grotere ploeg? Waarom?",
+          "type": "kort"
+        },
+        {
+          "id": "w08",
+          "vraag": "Liever een klein bedrijf, een grote organisatie, een overheid, een vzw? Wat trekt je aan en wat schrikt af?",
+          "type": "kort"
+        },
+        {
+          "id": "w09",
+          "vraag": "Wat zouden je collega's zeggen als iemand vraagt hoe het is om met jou te werken?",
+          "type": "kort"
+        },
+        {
+          "id": "w10",
+          "vraag": "Wat heb je nodig van een baas of ploegbaas om goed te werken? En wat verdraag je niet?",
+          "type": "kort"
+        }
+      ]
+    },
+    {
+      "id": "sterktes",
+      "titel": "Sterktes en werkpunten",
+      "intro": "Eerlijk en met een voorbeeld; dit is geen sollicitatiegesprek.",
+      "vragen": [
+        {
+          "id": "s01",
+          "vraag": "Drie dingen waar je goed in bent, telkens met een voorbeeld",
+          "type": "lang"
+        },
+        {
+          "id": "s02",
+          "vraag": "Drie dingen die je wil verbeteren of die je moeilijk vindt",
+          "type": "lang"
+        },
+        {
+          "id": "s03",
+          "vraag": "Waarvoor komen mensen bij jou om hulp?",
+          "type": "kort"
+        },
+        {
+          "id": "s04",
+          "vraag": "Hoe leer je het liefst: door te doen, te kijken, te lezen, uitleg te krijgen?",
+          "type": "kort"
+        },
+        {
+          "id": "s05",
+          "vraag": "Hoe reageer je als er druk of stress is? Wat helpt dan?",
+          "type": "kort"
+        },
+        {
+          "id": "s06",
+          "vraag": "Wanneer zeg je te weinig, en wanneer had je liever iets gezegd?",
+          "hint": "De tests zeggen dat je niet snel op de voorgrond treedt; dit is om te weten waar dat je iets kost.",
+          "type": "kort"
+        },
+        {
+          "id": "s07",
+          "vraag": "Wat weet je over jezelf dat niet in een test staat?",
+          "type": "lang"
+        }
+      ]
+    },
+    {
+      "id": "passies",
+      "titel": "Passies en interesses",
+      "intro": "Wat je doet als niemand het vraagt.",
+      "vragen": [
+        {
+          "id": "i01",
+          "vraag": "Waar gaat je aandacht naartoe buiten het werk: maken, lezen, kijken, sporten, mensen, plekken?",
+          "type": "lang"
+        },
+        {
+          "id": "i02",
+          "vraag": "Welke gebouwen, objecten, musea of ateliers hebben je ooit geraakt, en waarom?",
+          "type": "lang"
+        },
+        {
+          "id": "i03",
+          "vraag": "Als geld geen rol speelde: wat zou je een jaar lang maken of leren?",
+          "type": "lang"
+        },
+        {
+          "id": "i04",
+          "vraag": "Van de sporen in de app (erfgoed en restauratie, culturele instellingen, lesgeven, sociaal en ecologisch, archief en archeologie): welke trekt het meest, welke het minst, en waarom?",
+          "type": "lang"
+        },
+        {
+          "id": "i05",
+          "vraag": "Welk werkveld in de Verkenning verraste je positief, en welk zou je meteen schrappen?",
+          "type": "kort"
+        },
+        {
+          "id": "i06",
+          "vraag": "Heb je ooit vrijwilligerswerk gedaan of iemand iets aangeleerd? Hoe was dat?",
+          "type": "kort"
+        },
+        {
+          "id": "i07",
+          "vraag": "Wat zou je op de academie het liefst verder doen: meubel, interieur, grafiek, iets anders?",
+          "type": "kort"
+        }
+      ]
+    },
+    {
+      "id": "overstap",
+      "titel": "De overstap",
+      "intro": "Hier gaat het om keuzes voor de komende maanden.",
+      "vragen": [
+        {
+          "id": "o01",
+          "vraag": "Drie dingen die de volgende job zeker moet hebben",
+          "type": "kort"
+        },
+        {
+          "id": "o02",
+          "vraag": "Drie dingen die je in de volgende job wil vermijden",
+          "type": "kort"
+        },
+        {
+          "id": "o03",
+          "vraag": "Wil je opnieuw studeren? Zo ja: hoelang zou je dat volhouden (een jaar, twee, drie), overdag of in de avond, en wat trekt je: restauratie, tekenen, lesgeven, archief, iets anders?",
+          "type": "lang"
+        },
+        {
+          "id": "o04",
+          "vraag": "Hoe voel je je nu: energie van 1 tot 10, slaap, zin om dingen te doen? Wat helpt je herstellen?",
+          "type": "kort"
+        },
+        {
+          "id": "o05",
+          "vraag": "Hoeveel weken rust denk je nodig te hebben voor je ergens nieuw kunt beginnen?",
+          "type": "kort"
+        },
+        {
+          "id": "o06",
+          "vraag": "Wat wil je dat Giulia doet in dit traject, en wat wil je liever zelf doen?",
+          "type": "kort"
+        },
+        {
+          "id": "o07",
+          "vraag": "Wat houdt je tegen om iets te tekenen bij je werkgever, en wat zou je willen dat er in de plaats gebeurt?",
+          "type": "lang"
+        }
+      ]
+    },
+    {
+      "id": "gesprek",
+      "titel": "Voor het gesprek",
+      "intro": "Twee zinnen die je paraat wil hebben.",
+      "vragen": [
+        {
+          "id": "g01",
+          "vraag": "Hoe zeg je in twee zinnen waarom je weggaat, zonder het over vermoeidheid of je werkgever te hebben?",
+          "hint": "Bijvoorbeeld: na vijf jaar plaatbewerking wil ik mijn vakmanschap inzetten voor werk dat blijft, zoals erfgoed of museumateliers.",
+          "type": "lang"
+        },
+        {
+          "id": "g02",
+          "vraag": "Welke vraag zou jij aan een werkgever stellen om te weten of je er past?",
+          "type": "kort"
+        },
+        {
+          "id": "g03",
+          "vraag": "Wie kan als referentie dienen (een collega, een klant, een docent) en mag je die naam gebruiken?",
+          "type": "kort"
+        }
+      ]
+    }
+  ]
+}

@@ -3,19 +3,26 @@
   "leeftijd": 20,
   "woonplaats": "Antwerpen",
   "situatie": "Woont alleen in Antwerpen. Heeft een inkomen nodig.",
-  "beroep": "Lasser, vijf jaar ervaring met aluminium en metaalconstructies op maat voor gebouwen en horeca",
+  "beroep": "Technisch tekenaar en verantwoordelijke atelier bij een metaalbewerkingsbedrijf (maatwerk in plaatmateriaal), sinds 2021; gestart als tekenaar en plooi- en lasoperator",
   "vaardigheden": [
-    "Plannen lezen en technische tekeningen interpreteren",
-    "TIG- en MIG-lassen, staal en aluminium",
-    "Aluminiumconstructie en plaatwerk op maat",
-    "Metaal snijden, plooien en afwerken",
+    "Technisch tekenen van maatwerk in plaatmateriaal en werkvoorbereiding",
+    "Atelier aansturen: planning, kwaliteit, collega's",
+    "Plooien op de kantbank, halfautomaat- en elektrodelassen, plaatwerk",
     "Meubels ontwerpen en bouwen (met zijn broer)",
+    "Fietsen bouwen en herstellen (creatief fietsatelier, 2019)",
+    "Een fotoarchief opbouwen en digitaliseren (2017 tot 2018)",
     "Ruimtelijk en structureel denken, sterk in wiskunde"
   ],
-  "studies": "Bachelor Interieurvormgeving aan de Koninklijke Academie voor Schone Kunsten Antwerpen (KASKA, AP Hogeschool), lopend",
+  "studies": "Avondonderwijs aan de Academie in Antwerpen: drie jaar meubel en interieur, een jaar grafiek, nu interieurvormgeving (precieze opleiding en instelling te bevestigen)",
   "talen": [
-    { "taal": "Nederlands", "niveau": "moedertaal" },
-    { "taal": "Engels", "niveau": "functioneel" }
+    {
+      "taal": "Nederlands",
+      "niveau": "moedertaal"
+    },
+    {
+      "taal": "Engels",
+      "niveau": "functioneel"
+    }
   ],
   "vakbond": "ACV (Algemeen Christelijk Vakverbond), sector metaal: ACV-CSC METEA",
   "randvoorwaarden": [
@@ -31,31 +38,109 @@
       "toelichting": "Ziet patronen en richting voor anderen die zien (Ni), leest de emotionele temperatuur van een groep (Fe), zoekt logische samenhang (Ti), waardeert materiaal en ambacht (Se)."
     },
     "loopbaanankers": [
-      { "anker": "Zuivere uitdaging", "score": 83, "niveau": "zeer hoog", "rol": "dominant" },
-      { "anker": "Dienstbaarheid en toewijding aan een zaak", "score": 80, "niveau": "zeer hoog", "rol": "dominant" },
-      { "anker": "Levensstijl", "score": 70, "niveau": "hoog", "rol": "ondersteunend" },
-      { "anker": "Technische en functionele competentie", "score": 66, "niveau": "hoog", "rol": "ondersteunend" },
-      { "anker": "Zekerheid en stabiliteit", "score": 63, "niveau": "hoog", "rol": "ondersteunend" },
-      { "anker": "Ondernemende creativiteit", "score": 60, "niveau": "hoog", "rol": "ondersteunend" },
-      { "anker": "Algemeen management", "score": 43, "niveau": "gemiddeld", "rol": "geen trekkracht" },
-      { "anker": "Autonomie en onafhankelijkheid", "score": 40, "niveau": "gemiddeld", "rol": "geen trekkracht" }
+      {
+        "anker": "Zuivere uitdaging",
+        "score": 83,
+        "niveau": "zeer hoog",
+        "rol": "dominant"
+      },
+      {
+        "anker": "Dienstbaarheid en toewijding aan een zaak",
+        "score": 80,
+        "niveau": "zeer hoog",
+        "rol": "dominant"
+      },
+      {
+        "anker": "Levensstijl",
+        "score": 70,
+        "niveau": "hoog",
+        "rol": "ondersteunend"
+      },
+      {
+        "anker": "Technische en functionele competentie",
+        "score": 66,
+        "niveau": "hoog",
+        "rol": "ondersteunend"
+      },
+      {
+        "anker": "Zekerheid en stabiliteit",
+        "score": 63,
+        "niveau": "hoog",
+        "rol": "ondersteunend"
+      },
+      {
+        "anker": "Ondernemende creativiteit",
+        "score": 60,
+        "niveau": "hoog",
+        "rol": "ondersteunend"
+      },
+      {
+        "anker": "Algemeen management",
+        "score": 43,
+        "niveau": "gemiddeld",
+        "rol": "geen trekkracht"
+      },
+      {
+        "anker": "Autonomie en onafhankelijkheid",
+        "score": 40,
+        "niveau": "gemiddeld",
+        "rol": "geen trekkracht"
+      }
     ],
     "bigfive": [
-      { "domein": "Neuroticisme", "niveau": "laag", "toelichting": "Uitzonderlijk kalm en onverstoorbaar. Enige nuance: Onmatigheid 14 (hoog)." },
-      { "domein": "Extraversie", "niveau": "laag", "toelichting": "Gereserveerd en rustig. Assertiviteit 7 en Spanningsbehoefte 7 zijn zeer laag." },
-      { "domein": "Openheid", "niveau": "hoog", "toelichting": "Verbeelding 16, Artistieke interesse 19, Intellect 18." },
-      { "domein": "Vriendelijkheid", "niveau": "hoog", "toelichting": "Vertrouwen 18, Moraliteit 18, Samenwerking 17, Altruïsme 16." },
-      { "domein": "Zorgvuldigheid", "niveau": "hoog", "toelichting": "Plichtsbesef 20 en Behoedzaamheid 20 zijn maximaal. Ordelijkheid 9 is laag." }
+      {
+        "domein": "Neuroticisme",
+        "niveau": "laag",
+        "toelichting": "Uitzonderlijk kalm en onverstoorbaar. Enige nuance: Onmatigheid 14 (hoog)."
+      },
+      {
+        "domein": "Extraversie",
+        "niveau": "laag",
+        "toelichting": "Gereserveerd en rustig. Assertiviteit 7 en Spanningsbehoefte 7 zijn zeer laag."
+      },
+      {
+        "domein": "Openheid",
+        "niveau": "hoog",
+        "toelichting": "Verbeelding 16, Artistieke interesse 19, Intellect 18."
+      },
+      {
+        "domein": "Vriendelijkheid",
+        "niveau": "hoog",
+        "toelichting": "Vertrouwen 18, Moraliteit 18, Samenwerking 17, Altruïsme 16."
+      },
+      {
+        "domein": "Zorgvuldigheid",
+        "niveau": "hoog",
+        "toelichting": "Plichtsbesef 20 en Behoedzaamheid 20 zijn maximaal. Ordelijkheid 9 is laag."
+      }
     ],
     "holland": {
       "code": "ISA",
       "scores": [
-        { "type": "Onderzoekend (Investigative)", "score": 23 },
-        { "type": "Sociaal (Social)", "score": 19 },
-        { "type": "Artistiek (Artistic)", "score": 17 },
-        { "type": "Realistisch (Realistic)", "score": 13 },
-        { "type": "Conventioneel (Conventional)", "score": 10 },
-        { "type": "Ondernemend (Enterprising)", "score": 7 }
+        {
+          "type": "Onderzoekend (Investigative)",
+          "score": 23
+        },
+        {
+          "type": "Sociaal (Social)",
+          "score": 19
+        },
+        {
+          "type": "Artistiek (Artistic)",
+          "score": 17
+        },
+        {
+          "type": "Realistisch (Realistic)",
+          "score": 13
+        },
+        {
+          "type": "Conventioneel (Conventional)",
+          "score": 10
+        },
+        {
+          "type": "Ondernemend (Enterprising)",
+          "score": 7
+        }
       ],
       "max": 32
     }
@@ -87,5 +172,42 @@
       "status": "hoofdspoor",
       "toelichting": "Museumateliers, theaterwerkplaatsen en tentoonstellingsbouw combineren onderzoekend, artistiek, sociaal en realistisch werk met betekenis en stabiliteit."
     }
+  ],
+  "loopbaan": [
+    {
+      "periode": "tot 2017",
+      "wat": "Secundair onderwijs Wetenschappen-Wiskunde, Sint-Lutgardis (Merksem of Antwerpen, te bevestigen)"
+    },
+    {
+      "periode": "2017 tot 2018",
+      "wat": "Katoen Natie, Antwerpen, ongeveer een jaar (functie te bevestigen)"
+    },
+    {
+      "periode": "2017 tot 2018",
+      "wat": "Fotoarchief opgebouwd voor Willy Van de Perre"
+    },
+    {
+      "periode": "2019",
+      "wat": "Creatief fietsatelier"
+    },
+    {
+      "periode": "[jaren]",
+      "wat": "Academie, avondonderwijs: drie jaar meubel en interieur, een jaar grafiek"
+    },
+    {
+      "periode": "rond 2020",
+      "wat": "Lasopleiding halfautomaat en elektroden"
+    },
+    {
+      "periode": "2021 tot heden",
+      "wat": "Technisch tekenaar en plooi- en lasoperator, nu verantwoordelijke atelier, bij een bedrijf in maatwerk plaatmateriaal"
+    }
+  ],
+  "tebevestigen": [
+    "Leeftijd: de eerdere notities zeggen 20, maar een diploma secundair in 2017 wijst op ongeveer 27. Geboortejaar nodig.",
+    "Statuut op de loonfiche: arbeider of bediende. Een tekenaar en atelierverantwoordelijke is vaak bediende (PC 200 of 209); dan gelden andere regels voor gewaarborgd loon, vakantiegeld en eindejaarspremie dan de arbeidersregels op de pagina Rechten.",
+    "Lasprocessen: halfautomaat (MIG/MAG) en elektrode zijn zeker; TIG te bevestigen.",
+    "Naam van het huidige bedrijf, startdatum van het contract en het CAD-programma.",
+    "Welke opleiding interieurvormgeving precies (hogeschool of academie, deeltijds kunstonderwijs)."
   ]
 }

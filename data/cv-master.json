@@ -9,19 +9,45 @@
     "rijbewijs": "[Rijbewijs B, ja of nee]",
     "portfolio": "[link naar portfolio-pdf of pagina]"
   },
-  "profiel": "Lasser met vijf jaar ervaring in aluminium- en staalconstructies op maat voor gebouwen en horeca. Sterk in plannen lezen, TIG- en MIG-lassen en nauwkeurige afwerking. Volgt daarnaast een opleiding interieurvormgeving aan de Academie in Antwerpen en bouwt meubels. Zoekt werk waarin vakmanschap, zorgvuldigheid en betekenis samenkomen: erfgoed en restauratie, museum- en theaterateliers, of het doorgeven van het vak.",
+  "profiel": "Technisch tekenaar en verantwoordelijke atelier bij een metaalbewerkingsbedrijf gespecialiseerd in maatwerk in plaatmateriaal, sinds 2021. Tekent werkstukken uit, bereidt het werk voor, plooit en last zelf en stuurt het atelier aan. Daarvoor werkte hij in een creatief fietsatelier en bouwde hij een fotoarchief op. Volgt daarnaast een opleiding interieurvormgeving aan de Academie in Antwerpen en bouwt meubels. Zoekt werk waarin vakmanschap, nauwkeurigheid en betekenis samenkomen: erfgoed en restauratie, museum- en theaterateliers, archief en collectie, of het doorgeven van het vak.",
   "werkervaring": [
     {
-      "periode": "[maand jaar] tot heden",
-      "functie": "Lasser en constructiebankwerker",
-      "werkgever": "[Naam bedrijf], [gemeente]",
+      "periode": "2021 tot heden",
+      "functie": "Technisch tekenaar en verantwoordelijke atelier",
+      "werkgever": "[Naam bedrijf], metaalbewerking en maatwerk in plaatmateriaal, [gemeente]",
       "taken": [
-        "Aluminium- en staalconstructies op maat voor gebouwen en horecazaken: van plan tot montage",
-        "TIG- en MIG-lassen van aluminium en staal, plaatwerk, snijden en plooien",
-        "Technische tekeningen lezen en vertalen naar werkstukken",
-        "Afwerking en kwaliteitscontrole van zichtwerk",
+        "Gestart als technisch tekenaar en plooi- en lasoperator; sinds [jaar] verantwoordelijke voor het atelier",
+        "Maatwerk in plaatmateriaal uittekenen in [CAD-programma] en klaarmaken voor productie",
+        "Werkvoorbereiding en planning van het atelier, aansturen van [aantal] collega's",
+        "Plooien op de kantbank, halfautomaat- en elektrodelassen, afwerking en kwaliteitscontrole",
         "[Concreet project 1: wat, voor wie, welke moeilijkheid opgelost]",
         "[Concreet project 2]"
+      ]
+    },
+    {
+      "periode": "2019",
+      "functie": "Medewerker creatief fietsatelier",
+      "werkgever": "[Naam atelier], Antwerpen",
+      "taken": [
+        "Bouw, herstel en maatwerk van fietsen",
+        "[Een voorbeeld: wat maakte of herstelde hij, welke techniek]"
+      ]
+    },
+    {
+      "periode": "2017 tot 2018",
+      "functie": "Opbouw van een fotoarchief",
+      "werkgever": "Willy Van de Perre, [fotograaf of kunstenaar, plaats]",
+      "taken": [
+        "Ordenen, digitaliseren en beschrijven van een fotoarchief",
+        "[Omvang: aantal beelden, gebruikte methode of software]"
+      ]
+    },
+    {
+      "periode": "2017 tot 2018",
+      "functie": "[Functie]",
+      "werkgever": "Katoen Natie, Antwerpen (ongeveer een jaar)",
+      "taken": [
+        "[Taken en afdeling]"
       ]
     },
     {
@@ -35,25 +61,60 @@
     }
   ],
   "opleiding": [
-    {"periode": "[jaar] tot heden", "titel": "Interieurvormgeving", "instelling": "Koninklijke Academie voor Schone Kunsten Antwerpen [precieze opleiding en instelling bevestigen]"},
-    {"periode": "[jaar] tot [jaar]", "titel": "Diploma secundair onderwijs, [BSO Lassen-constructie of TSO Mechanische technieken]", "instelling": "[School], [gemeente]"}
+    {
+      "periode": "[jaren] tot heden",
+      "titel": "Interieurvormgeving",
+      "instelling": "Koninklijke Academie voor Schone Kunsten Antwerpen, avondonderwijs [precieze opleiding en instelling bevestigen]"
+    },
+    {
+      "periode": "[jaren], drie jaar",
+      "titel": "Meubel en interieur",
+      "instelling": "[Academie, avondonderwijs; getuigschrift ja of nee]"
+    },
+    {
+      "periode": "[jaar], een jaar",
+      "titel": "Grafiek",
+      "instelling": "Academie, avondonderwijs [naam bevestigen]"
+    },
+    {
+      "periode": "[jaar, rond 2020]",
+      "titel": "Lasopleiding: halfautomaat (MIG/MAG) en elektrodelassen",
+      "instelling": "[VDAB, SYNTRA of school]"
+    },
+    {
+      "periode": "tot 2017",
+      "titel": "Diploma secundair onderwijs, Wetenschappen-Wiskunde",
+      "instelling": "Sint-Lutgardis, [Merksem of Antwerpen, naam bevestigen]"
+    }
   ],
   "certificaten": [
-    "Lascertificaten EN ISO 9606-1 [processen 141 TIG, 131/135 MIG/MAG] en EN ISO 9606-2 aluminium [geldigheid aanvullen]",
-    "VCA-basis [geldig tot]",
+    "Lascertificaten [MIG/MAG 135 en elektrode 111 bevestigen; TIG 141 ja of nee; norm EN ISO 9606-1; geldigheid]",
+    "VCA-basis [ja of nee, geldig tot]",
     "[Andere attesten: heftruck, hoogtewerker, EHBO]"
   ],
   "vaardigheden": [
-    "TIG- en MIG-lassen, staal en aluminium",
-    "Aluminiumconstructie en plaatwerk",
-    "Technische tekeningen lezen, opmeten, uittekenen",
-    "Meubelontwerp en -bouw",
-    "Nauwkeurig, geduldig en betrouwbaar; werkt graag in een klein team"
+    "Technisch tekenen van maatwerk in plaatmateriaal ([CAD-programma])",
+    "Werkvoorbereiding en aansturing van een atelier",
+    "Plooien op de kantbank, halfautomaat- en elektrodelassen, plaatwerk",
+    "Meubelontwerp en -bouw in metaal en hout",
+    "Fietstechniek: bouw en herstel",
+    "Archiveren en digitaliseren van beeldmateriaal",
+    "Sterk in wiskunde en structureel denken; nauwkeurig, geduldig en betrouwbaar"
   ],
   "talen": [
-    {"taal": "Nederlands", "niveau": "moedertaal"},
-    {"taal": "Engels", "niveau": "goed"},
-    {"taal": "Frans", "niveau": "[basis of beter]"}
+    {
+      "taal": "Nederlands",
+      "niveau": "moedertaal"
+    },
+    {
+      "taal": "Engels",
+      "niveau": "goed"
+    },
+    {
+      "taal": "Frans",
+      "niveau": "[basis of beter]"
+    }
   ],
-  "interesses": "Erfgoed en ambacht, architectuur en interieur, muziek, [aanvullen]"
+  "interesses": "Erfgoed en ambacht, architectuur en interieur, muziek, [aanvullen]",
+  "titel": "Technisch tekenaar en atelierverantwoordelijke in de plaatbewerking, lasser, meubelmaker"
 }

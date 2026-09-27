@@ -21,6 +21,7 @@ const NAV = [
   ] },
   { group: 'Remi', items: [
     { id: 'profiel', label: 'Profiel', icon: 'user', accent: 'grey' },
+    { id: 'vragenlijst', label: 'Vragenlijst', icon: 'list', accent: 'grey', count: () => { const v = all('antwoorden').filter(a => a.tekst && a.tekst.trim()).length; const t = (ref.vragenlijst?.secties || []).reduce((n, s) => n + s.vragen.length, 0); return v ? `${v}/${t}` : String(t); } },
     { id: 'documenten', label: 'Documenten', icon: 'doc', accent: 'grey' },
   ] },
 ];

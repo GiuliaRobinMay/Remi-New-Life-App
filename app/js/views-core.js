@@ -158,7 +158,8 @@ export function profiel(r) {
       titled('Kan', h('ul', { class: 'bullets' }, P.vaardigheden.map(v => h('li', null, v)))),
     ),
     titled('Randvoorwaarden', h('ul', { class: 'bullets' }, P.randvoorwaarden.map(v => h('li', null, v)))),
-    h('div', { class: 'callout callout--orange' }, h('p', { class: 'row-title' }, 'Te bevestigen'), h('p', null, 'Welke opleiding volgt Remi precies: een hogeschoolbachelor, een opleiding aan de stedelijke academie (deeltijds kunstonderwijs) of iets anders? Dat bepaalt studiepunten, vrijstellingen en opleidingsverlof. Zie stap "Studie bevestigen" in het stappenplan.')));
+    P.loopbaan && titled('Loopbaan tot nu toe', h('ul', { class: 'list list--tight' }, P.loopbaan.map(l => h('li', null, h('span', { class: 'small muted', style: 'width:110px;flex:none' }, l.periode), h('span', null, l.wat))))),
+    h('div', { class: 'callout callout--orange' }, h('p', { class: 'row-title' }, 'Te bevestigen'), h('ul', { class: 'bullets small' }, (P.tebevestigen || []).map(t => h('li', null, t)))));
   else if (tab === 'tests') inhoud = h('div', { class: 'stack stack--tight' },
     titled('Loopbaanankers (Schein)', P.tests.loopbaanankers.map(a => bar(a.anker, a.score, 100, a.rol === 'dominant')), h('p', { class: 'small muted' }, 'Zuivere uitdaging en dienstbaarheid vormen het dominante paar: werk moet echt moeilijk zijn en er echt toe doen.')),
     h('div', { class: 'two-col' },
@@ -201,4 +202,24 @@ export function instellingenPeek() {
     h('p', { class: 'small muted' }, 'Wis alle lokale wijzigingen en val terug op de seed uit de repository.'),
     h('button', { class: 'btn btn--danger', onClick: () => { if (confirm('Alle lokale wijzigingen wissen?')) { resetLocal(); closePeek(); } } }, 'Lokale gegevens wissen'),
   ));
+}
+
+// ---------- Vragenlijst ----------
+export function vragenlijst(r) {
+  const V = ref.vragenlijst; const secties = V.secties; const tab = secties.some(s => s.id === r.tab) ? r.tab : secties[0].id;
+  const antw = Object.fromEntries(all('antwoorden').map(a => [a.id, a.tekst || '']));
+  const beantwoord = (sec) => sec.vragen.filter(q => (antw[q.id] || '').trim()).length;
+  const tabs = secties.map(s => ({ label: `${s.titel} ${beantwoord(s)}/${s.vragen.length}`, href: `#/vragenlijst?tab=${s.id}`, active: tab === s.id }));
+  const sec = secties.find(s => s.id === tab);
+  const alsTekst = () => ['# Antwoorden van Remi', '', ...secties.flatMap(s => ['## ' + s.titel, '', ...s.vragen.flatMap(q => [`**${q.vraag}**`, antw[q.id] || '(nog niet beantwoord)', ''])])].join('\n');
+  const totaal = secties.reduce((n, s) => n + s.vragen.length, 0), klaar = secties.reduce((n, s) => n + beantwoord(s), 0);
+  const body = content(
+    intro('Vragenlijst', V.inleiding),
+    h('div', { class: 'card card--pad' }, h('div', { class: 'meta' }, h('span', { class: 'progress', style: 'width:160px;display:inline-block' }, h('span', { style: `width:${Math.round(klaar / totaal * 100)}%` })), h('span', null, `${klaar} van ${totaal} beantwoord`))),
+    h('section', { class: 'card card--pad' }, h('p', { class: 'eyebrow' }, sec.titel), h('p', { class: 'muted' }, sec.intro),
+      h('div', { class: 'form', style: 'margin-top:12px' }, sec.vragen.map((q, i) => h('label', null, `${i + 1}. ${q.vraag}`, q.hint && h('span', { class: 'muted', style: 'display:block;font-weight:400;margin-top:2px' }, q.hint),
+        h('textarea', { class: 'field', style: q.type === 'kort' ? 'min-height:56px' : 'min-height:110px', value: antw[q.id] || '', placeholder: 'Je antwoord', onChange: e => upsert('antwoorden', { id: q.id, tekst: e.target.value }) }))))),
+  );
+  const tool = [h('button', { class: 'btn btn--ghost', onClick: () => copyText(alsTekst()) }, icon('copy', 14), 'Kopieer alle antwoorden'), h('button', { class: 'btn btn--primary', onClick: () => download(`antwoorden-remi-${todayIso()}.md`, alsTekst(), 'text/markdown') }, icon('download', 14), 'Download')];
+  return { chrome: { where: 'Vertel wat meer', tabs, accent: 'violet', view: `${klaar} van ${totaal}`, viewIcon: 'list', tool }, body };
 }

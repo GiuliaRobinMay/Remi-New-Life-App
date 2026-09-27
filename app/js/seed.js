@@ -1,4 +1,4 @@
-// Gegenereerd door scripts/build-data.mjs op 2026-09-27T10:36:29.124Z. Niet met de hand bewerken: pas data/*.json aan en draai npm run build:data.
+// Gegenereerd door scripts/build-data.mjs op 2026-09-27T10:42:27.616Z. Niet met de hand bewerken: pas data/*.json aan en draai npm run build:data.
 export const seed = {
  "cvMaster": {
   "persoonlijk": {
@@ -11,19 +11,45 @@ export const seed = {
    "rijbewijs": "[Rijbewijs B, ja of nee]",
    "portfolio": "[link naar portfolio-pdf of pagina]"
   },
-  "profiel": "Lasser met vijf jaar ervaring in aluminium- en staalconstructies op maat voor gebouwen en horeca. Sterk in plannen lezen, TIG- en MIG-lassen en nauwkeurige afwerking. Volgt daarnaast een opleiding interieurvormgeving aan de Academie in Antwerpen en bouwt meubels. Zoekt werk waarin vakmanschap, zorgvuldigheid en betekenis samenkomen: erfgoed en restauratie, museum- en theaterateliers, of het doorgeven van het vak.",
+  "profiel": "Technisch tekenaar en verantwoordelijke atelier bij een metaalbewerkingsbedrijf gespecialiseerd in maatwerk in plaatmateriaal, sinds 2021. Tekent werkstukken uit, bereidt het werk voor, plooit en last zelf en stuurt het atelier aan. Daarvoor werkte hij in een creatief fietsatelier en bouwde hij een fotoarchief op. Volgt daarnaast een opleiding interieurvormgeving aan de Academie in Antwerpen en bouwt meubels. Zoekt werk waarin vakmanschap, nauwkeurigheid en betekenis samenkomen: erfgoed en restauratie, museum- en theaterateliers, archief en collectie, of het doorgeven van het vak.",
   "werkervaring": [
    {
-    "periode": "[maand jaar] tot heden",
-    "functie": "Lasser en constructiebankwerker",
-    "werkgever": "[Naam bedrijf], [gemeente]",
+    "periode": "2021 tot heden",
+    "functie": "Technisch tekenaar en verantwoordelijke atelier",
+    "werkgever": "[Naam bedrijf], metaalbewerking en maatwerk in plaatmateriaal, [gemeente]",
     "taken": [
-     "Aluminium- en staalconstructies op maat voor gebouwen en horecazaken: van plan tot montage",
-     "TIG- en MIG-lassen van aluminium en staal, plaatwerk, snijden en plooien",
-     "Technische tekeningen lezen en vertalen naar werkstukken",
-     "Afwerking en kwaliteitscontrole van zichtwerk",
+     "Gestart als technisch tekenaar en plooi- en lasoperator; sinds [jaar] verantwoordelijke voor het atelier",
+     "Maatwerk in plaatmateriaal uittekenen in [CAD-programma] en klaarmaken voor productie",
+     "Werkvoorbereiding en planning van het atelier, aansturen van [aantal] collega's",
+     "Plooien op de kantbank, halfautomaat- en elektrodelassen, afwerking en kwaliteitscontrole",
      "[Concreet project 1: wat, voor wie, welke moeilijkheid opgelost]",
      "[Concreet project 2]"
+    ]
+   },
+   {
+    "periode": "2019",
+    "functie": "Medewerker creatief fietsatelier",
+    "werkgever": "[Naam atelier], Antwerpen",
+    "taken": [
+     "Bouw, herstel en maatwerk van fietsen",
+     "[Een voorbeeld: wat maakte of herstelde hij, welke techniek]"
+    ]
+   },
+   {
+    "periode": "2017 tot 2018",
+    "functie": "Opbouw van een fotoarchief",
+    "werkgever": "Willy Van de Perre, [fotograaf of kunstenaar, plaats]",
+    "taken": [
+     "Ordenen, digitaliseren en beschrijven van een fotoarchief",
+     "[Omvang: aantal beelden, gebruikte methode of software]"
+    ]
+   },
+   {
+    "periode": "2017 tot 2018",
+    "functie": "[Functie]",
+    "werkgever": "Katoen Natie, Antwerpen (ongeveer een jaar)",
+    "taken": [
+     "[Taken en afdeling]"
     ]
    },
    {
@@ -38,27 +64,44 @@ export const seed = {
   ],
   "opleiding": [
    {
-    "periode": "[jaar] tot heden",
+    "periode": "[jaren] tot heden",
     "titel": "Interieurvormgeving",
-    "instelling": "Koninklijke Academie voor Schone Kunsten Antwerpen [precieze opleiding en instelling bevestigen]"
+    "instelling": "Koninklijke Academie voor Schone Kunsten Antwerpen, avondonderwijs [precieze opleiding en instelling bevestigen]"
    },
    {
-    "periode": "[jaar] tot [jaar]",
-    "titel": "Diploma secundair onderwijs, [BSO Lassen-constructie of TSO Mechanische technieken]",
-    "instelling": "[School], [gemeente]"
+    "periode": "[jaren], drie jaar",
+    "titel": "Meubel en interieur",
+    "instelling": "[Academie, avondonderwijs; getuigschrift ja of nee]"
+   },
+   {
+    "periode": "[jaar], een jaar",
+    "titel": "Grafiek",
+    "instelling": "Academie, avondonderwijs [naam bevestigen]"
+   },
+   {
+    "periode": "[jaar, rond 2020]",
+    "titel": "Lasopleiding: halfautomaat (MIG/MAG) en elektrodelassen",
+    "instelling": "[VDAB, SYNTRA of school]"
+   },
+   {
+    "periode": "tot 2017",
+    "titel": "Diploma secundair onderwijs, Wetenschappen-Wiskunde",
+    "instelling": "Sint-Lutgardis, [Merksem of Antwerpen, naam bevestigen]"
    }
   ],
   "certificaten": [
-   "Lascertificaten EN ISO 9606-1 [processen 141 TIG, 131/135 MIG/MAG] en EN ISO 9606-2 aluminium [geldigheid aanvullen]",
-   "VCA-basis [geldig tot]",
+   "Lascertificaten [MIG/MAG 135 en elektrode 111 bevestigen; TIG 141 ja of nee; norm EN ISO 9606-1; geldigheid]",
+   "VCA-basis [ja of nee, geldig tot]",
    "[Andere attesten: heftruck, hoogtewerker, EHBO]"
   ],
   "vaardigheden": [
-   "TIG- en MIG-lassen, staal en aluminium",
-   "Aluminiumconstructie en plaatwerk",
-   "Technische tekeningen lezen, opmeten, uittekenen",
-   "Meubelontwerp en -bouw",
-   "Nauwkeurig, geduldig en betrouwbaar; werkt graag in een klein team"
+   "Technisch tekenen van maatwerk in plaatmateriaal ([CAD-programma])",
+   "Werkvoorbereiding en aansturing van een atelier",
+   "Plooien op de kantbank, halfautomaat- en elektrodelassen, plaatwerk",
+   "Meubelontwerp en -bouw in metaal en hout",
+   "Fietstechniek: bouw en herstel",
+   "Archiveren en digitaliseren van beeldmateriaal",
+   "Sterk in wiskunde en structureel denken; nauwkeurig, geduldig en betrouwbaar"
   ],
   "talen": [
    {
@@ -74,7 +117,8 @@ export const seed = {
     "niveau": "[basis of beter]"
    }
   ],
-  "interesses": "Erfgoed en ambacht, architectuur en interieur, muziek, [aanvullen]"
+  "interesses": "Erfgoed en ambacht, architectuur en interieur, muziek, [aanvullen]",
+  "titel": "Technisch tekenaar en atelierverantwoordelijke in de plaatbewerking, lasser, meubelmaker"
  },
  "hotlist": [
   {
@@ -1175,16 +1219,17 @@ export const seed = {
   "leeftijd": 20,
   "woonplaats": "Antwerpen",
   "situatie": "Woont alleen in Antwerpen. Heeft een inkomen nodig.",
-  "beroep": "Lasser, vijf jaar ervaring met aluminium en metaalconstructies op maat voor gebouwen en horeca",
+  "beroep": "Technisch tekenaar en verantwoordelijke atelier bij een metaalbewerkingsbedrijf (maatwerk in plaatmateriaal), sinds 2021; gestart als tekenaar en plooi- en lasoperator",
   "vaardigheden": [
-   "Plannen lezen en technische tekeningen interpreteren",
-   "TIG- en MIG-lassen, staal en aluminium",
-   "Aluminiumconstructie en plaatwerk op maat",
-   "Metaal snijden, plooien en afwerken",
+   "Technisch tekenen van maatwerk in plaatmateriaal en werkvoorbereiding",
+   "Atelier aansturen: planning, kwaliteit, collega's",
+   "Plooien op de kantbank, halfautomaat- en elektrodelassen, plaatwerk",
    "Meubels ontwerpen en bouwen (met zijn broer)",
+   "Fietsen bouwen en herstellen (creatief fietsatelier, 2019)",
+   "Een fotoarchief opbouwen en digitaliseren (2017 tot 2018)",
    "Ruimtelijk en structureel denken, sterk in wiskunde"
   ],
-  "studies": "Bachelor Interieurvormgeving aan de Koninklijke Academie voor Schone Kunsten Antwerpen (KASKA, AP Hogeschool), lopend",
+  "studies": "Avondonderwijs aan de Academie in Antwerpen: drie jaar meubel en interieur, een jaar grafiek, nu interieurvormgeving (precieze opleiding en instelling te bevestigen)",
   "talen": [
    {
     "taal": "Nederlands",
@@ -1343,6 +1388,43 @@ export const seed = {
     "status": "hoofdspoor",
     "toelichting": "Museumateliers, theaterwerkplaatsen en tentoonstellingsbouw combineren onderzoekend, artistiek, sociaal en realistisch werk met betekenis en stabiliteit."
    }
+  ],
+  "loopbaan": [
+   {
+    "periode": "tot 2017",
+    "wat": "Secundair onderwijs Wetenschappen-Wiskunde, Sint-Lutgardis (Merksem of Antwerpen, te bevestigen)"
+   },
+   {
+    "periode": "2017 tot 2018",
+    "wat": "Katoen Natie, Antwerpen, ongeveer een jaar (functie te bevestigen)"
+   },
+   {
+    "periode": "2017 tot 2018",
+    "wat": "Fotoarchief opgebouwd voor Willy Van de Perre"
+   },
+   {
+    "periode": "2019",
+    "wat": "Creatief fietsatelier"
+   },
+   {
+    "periode": "[jaren]",
+    "wat": "Academie, avondonderwijs: drie jaar meubel en interieur, een jaar grafiek"
+   },
+   {
+    "periode": "rond 2020",
+    "wat": "Lasopleiding halfautomaat en elektroden"
+   },
+   {
+    "periode": "2021 tot heden",
+    "wat": "Technisch tekenaar en plooi- en lasoperator, nu verantwoordelijke atelier, bij een bedrijf in maatwerk plaatmateriaal"
+   }
+  ],
+  "tebevestigen": [
+   "Leeftijd: de eerdere notities zeggen 20, maar een diploma secundair in 2017 wijst op ongeveer 27. Geboortejaar nodig.",
+   "Statuut op de loonfiche: arbeider of bediende. Een tekenaar en atelierverantwoordelijke is vaak bediende (PC 200 of 209); dan gelden andere regels voor gewaarborgd loon, vakantiegeld en eindejaarspremie dan de arbeidersregels op de pagina Rechten.",
+   "Lasprocessen: halfautomaat (MIG/MAG) en elektrode zijn zeker; TIG te bevestigen.",
+   "Naam van het huidige bedrijf, startdatum van het contract en het CAD-programma.",
+   "Welke opleiding interieurvormgeving precies (hogeschool of academie, deeltijds kunstonderwijs)."
   ]
  },
  "programma": {
@@ -1579,6 +1661,7 @@ export const seed = {
   ],
   "vakantiegeld": "Vakantiegeld van arbeiders wordt door de vakantiekas betaald tussen 2 mei en 30 juni 2027, wie ook het contract beëindigt: 15,38 procent van 108 procent van het brutoloon van 2026. Eindejaarspremie PC 111: pro rata, regels per provincie, mogelijk niet bij ontslagname; te verifiëren bij ACV METEA.",
   "teverifieren": [
+   "Statuut: arbeider of bediende (zie loonfiche). De pagina gaat uit van arbeider (PC 111). Als bediende: gewaarborgd loon een volledige maand aan 100 procent, vakantiegeld en vertrekvakantiegeld door de werkgever, eindejaarspremie volgens PC 200 of 209. De opzegtermijnen zijn dezelfde.",
    "Exacte anciënniteit en dus de rij in de opzegtabel (startdatum, leerovereenkomst).",
    "Eindejaarspremie PC 111 provincie Antwerpen bij ontslagname versus ontslag.",
    "Loonplafond werkloosheid 2026 en het bedrag van de uitkering voor Remi.",
@@ -1625,7 +1708,7 @@ export const seed = {
    "id": "s04",
    "groep": "Eerst, deze week",
    "titel": "Startdatum en statuut controleren",
-   "wat": "Zoek de exacte startdatum van het contract op (contract, eerste loonfiche, mijnloopbaan). Controleer paritair comité (111 of 149.04) op de loonfiche. Dit bepaalt de opzegtermijn (15 of 18 weken door de werkgever, 7 of 9 weken door de werknemer) en de eindejaarspremie.",
+   "wat": "Zoek de exacte startdatum van het contract op (contract, eerste loonfiche, mijnloopbaan). Controleer op de loonfiche het statuut (arbeider of bediende) en het paritair comité (111, 200 of 209). Dit bepaalt de opzegtermijn (15 of 18 weken door de werkgever, 7 of 9 weken door de werknemer), het gewaarborgd loon bij ziekte, het vakantiegeld en de eindejaarspremie.",
    "wie": "Remi en Giulia",
    "deadline": "2026-10-04",
    "status": "open",
@@ -2218,8 +2301,8 @@ export const seed = {
    "vereisten": "Graduaat Informatiebeheer: bibliotheek en archief (2 jaar) of ervaring; FARO-cursussen.",
    "knelpunt": "Niet",
    "loon": "Te verifiëren",
-   "fit": 3,
-   "waarom": "Stil, ordelijk en historisch; minder handwerk. Onderzoek 9 loopt.",
+   "fit": 4,
+   "waarom": "Stil, ordelijk en historisch. Remi bouwde in 2017 en 2018 zelf een fotoarchief op, een concreet bewijs voor sollicitaties. Onderzoek 9 loopt.",
    "status": "verkennen"
   },
   {
@@ -2319,8 +2402,8 @@ export const seed = {
    "vereisten": "Graduaat Bouwkundig tekenen (2 jaar, OKOT vermoedelijk) of VDAB-cursus Tekla, SolidWorks, CNC (3 tot 6 maanden).",
    "knelpunt": "Ja, allemaal",
    "loon": "€2.600 tot €3.800",
-   "fit": 4,
-   "waarom": "Zittend, precies, stapelbaar met de studie; zwakker op dienstbaarheid tenzij bij een overheid.",
+   "fit": 5,
+   "waarom": "Remi is al technisch tekenaar en werkvoorbereider: dit is zijn huidige vak zonder de fysieke last. Zittend, precies, stapelbaar met de studie; zwakker op dienstbaarheid tenzij bij een overheid of erfgoedbureau.",
    "status": "reserve"
   },
   {
@@ -2449,11 +2532,321 @@ export const seed = {
    "status": "laag"
   }
  ],
+ "vragenlijst": {
+  "inleiding": "Deze vragen zijn voor jou, Remi. Niets hoeft in één keer. Korte antwoorden zijn goed; een voorbeeld is beter dan een omschrijving. Alles wat je invult blijft op dit toestel tot je het exporteert of kopieert voor Giulia. Uit je antwoorden komen het cv, de brieven, de tekst voor VDAB en de keuzes voor de volgende stap.",
+  "secties": [
+   {
+    "id": "praktisch",
+    "titel": "Praktisch, voor het cv",
+    "intro": "Feiten die op een cv of in een dossier moeten kloppen.",
+    "vragen": [
+     {
+      "id": "p01",
+      "vraag": "Volledige naam, geboortedatum en geboorteplaats",
+      "type": "kort"
+     },
+     {
+      "id": "p02",
+      "vraag": "Adres, gsm-nummer en e-mailadres dat je voor sollicitaties wil gebruiken",
+      "type": "kort"
+     },
+     {
+      "id": "p03",
+      "vraag": "Rijbewijs (B, ja of nee) en hoe je je verplaatst: fiets, openbaar vervoer, auto. Tot hoeveel minuten pendelen is haalbaar?",
+      "type": "kort"
+     },
+     {
+      "id": "p04",
+      "vraag": "Talen en niveau: Nederlands, Frans, Engels, andere",
+      "type": "kort"
+     },
+     {
+      "id": "p05",
+      "vraag": "Naam van je huidige werkgever, gemeente, en de startdatum van je contract (staat op het contract of de eerste loonfiche)",
+      "type": "kort"
+     },
+     {
+      "id": "p06",
+      "vraag": "Wat staat er op je loonfiche: arbeider of bediende, en welk paritair comité (bijvoorbeeld 111, 200, 209)?",
+      "hint": "Dit bepaalt gewaarborgd loon, vakantiegeld en eindejaarspremie.",
+      "type": "kort"
+     },
+     {
+      "id": "p07",
+      "vraag": "Je functietitel volgens het contract, en wat je vandaag echt doet (tekenen, plooien, lassen, atelier aansturen, hoeveel collega's)",
+      "type": "lang"
+     },
+     {
+      "id": "p08",
+      "vraag": "Welk tekenprogramma gebruik je (bijvoorbeeld SolidWorks, AutoCAD, Inventor, Tekla) en hoe goed?",
+      "type": "kort"
+     },
+     {
+      "id": "p09",
+      "vraag": "Welke lasprocessen beheers je: halfautomaat (MIG/MAG), elektrode, TIG? Welke certificaten heb je, met norm en geldigheid?",
+      "type": "lang"
+     },
+     {
+      "id": "p10",
+      "vraag": "Andere attesten: VCA, heftruck, hoogtewerker, EHBO, kantbank, andere",
+      "type": "kort"
+     },
+     {
+      "id": "p11",
+      "vraag": "Je opleidingen precies: secundair (richting, school, jaar), lasopleiding (waar, wanneer), academie (welke richtingen, welke jaren, getuigschrift of diploma)",
+      "type": "lang"
+     },
+     {
+      "id": "p12",
+      "vraag": "Katoen Natie: welke functie, welke afdeling, hoelang?",
+      "type": "kort"
+     },
+     {
+      "id": "p13",
+      "vraag": "Het creatief fietsatelier: naam, wat je daar maakte of herstelde, een voorbeeld",
+      "type": "kort"
+     },
+     {
+      "id": "p14",
+      "vraag": "Het fotoarchief voor Willy Van de Perre: wie is hij, hoeveel beelden, hoe heb je het aangepakt (ordenen, scannen, beschrijven, software)?",
+      "type": "lang"
+     },
+     {
+      "id": "p15",
+      "vraag": "Welke werkstukken bestaan er in foto's: meubels, constructies, fietsen, tekeningen? Waar staan die foto's?",
+      "hint": "Voor het portfolio: 6 tot 10 stukken met titel, jaar, materiaal, techniek.",
+      "type": "lang"
+     },
+     {
+      "id": "p16",
+      "vraag": "Vanaf wanneer ben je beschikbaar, voltijds of deeltijds, en welke dagen of avonden zijn bezet door de academie?",
+      "type": "kort"
+     },
+     {
+      "id": "p17",
+      "vraag": "Wat is je huidige brutoloon per maand, en wat heb je netto minimaal nodig om rond te komen?",
+      "hint": "Dit is voor de keuze tussen uitkering, opleiding en werk, niet voor een cv.",
+      "type": "kort"
+     }
+    ]
+   },
+   {
+    "id": "werk",
+    "titel": "Werk dat bij je past",
+    "intro": "Concrete momenten zeggen meer dan eigenschappen.",
+    "vragen": [
+     {
+      "id": "w01",
+      "vraag": "Drie momenten op het werk waarop je dacht: dit is goed. Wat deed je precies?",
+      "type": "lang"
+     },
+     {
+      "id": "w02",
+      "vraag": "Drie momenten waarop het echt niet ging. Wat gebeurde er?",
+      "type": "lang"
+     },
+     {
+      "id": "w03",
+      "vraag": "Een project waar je trots op bent: wat, voor wie, wat was moeilijk, hoe heb je het opgelost?",
+      "hint": "Dit wordt een regel op het cv en een voorbeeld in het gesprek.",
+      "type": "lang"
+     },
+     {
+      "id": "w04",
+      "vraag": "Nog een project, liefst iets helemaal anders",
+      "type": "lang"
+     },
+     {
+      "id": "w05",
+      "vraag": "Wat doe je het liefst in het atelier: tekenen, plooien, lassen, organiseren, uitleggen aan anderen? Zet ze in volgorde.",
+      "type": "kort"
+     },
+     {
+      "id": "w06",
+      "vraag": "Wat is fysiek het zwaarst, en waar voel je dat (rug, schouders, handen, ogen, ademhaling)?",
+      "hint": "Ook voor de huisarts.",
+      "type": "kort"
+     },
+     {
+      "id": "w07",
+      "vraag": "Werk je liever alleen, met twee of drie, of in een grotere ploeg? Waarom?",
+      "type": "kort"
+     },
+     {
+      "id": "w08",
+      "vraag": "Liever een klein bedrijf, een grote organisatie, een overheid, een vzw? Wat trekt je aan en wat schrikt af?",
+      "type": "kort"
+     },
+     {
+      "id": "w09",
+      "vraag": "Wat zouden je collega's zeggen als iemand vraagt hoe het is om met jou te werken?",
+      "type": "kort"
+     },
+     {
+      "id": "w10",
+      "vraag": "Wat heb je nodig van een baas of ploegbaas om goed te werken? En wat verdraag je niet?",
+      "type": "kort"
+     }
+    ]
+   },
+   {
+    "id": "sterktes",
+    "titel": "Sterktes en werkpunten",
+    "intro": "Eerlijk en met een voorbeeld; dit is geen sollicitatiegesprek.",
+    "vragen": [
+     {
+      "id": "s01",
+      "vraag": "Drie dingen waar je goed in bent, telkens met een voorbeeld",
+      "type": "lang"
+     },
+     {
+      "id": "s02",
+      "vraag": "Drie dingen die je wil verbeteren of die je moeilijk vindt",
+      "type": "lang"
+     },
+     {
+      "id": "s03",
+      "vraag": "Waarvoor komen mensen bij jou om hulp?",
+      "type": "kort"
+     },
+     {
+      "id": "s04",
+      "vraag": "Hoe leer je het liefst: door te doen, te kijken, te lezen, uitleg te krijgen?",
+      "type": "kort"
+     },
+     {
+      "id": "s05",
+      "vraag": "Hoe reageer je als er druk of stress is? Wat helpt dan?",
+      "type": "kort"
+     },
+     {
+      "id": "s06",
+      "vraag": "Wanneer zeg je te weinig, en wanneer had je liever iets gezegd?",
+      "hint": "De tests zeggen dat je niet snel op de voorgrond treedt; dit is om te weten waar dat je iets kost.",
+      "type": "kort"
+     },
+     {
+      "id": "s07",
+      "vraag": "Wat weet je over jezelf dat niet in een test staat?",
+      "type": "lang"
+     }
+    ]
+   },
+   {
+    "id": "passies",
+    "titel": "Passies en interesses",
+    "intro": "Wat je doet als niemand het vraagt.",
+    "vragen": [
+     {
+      "id": "i01",
+      "vraag": "Waar gaat je aandacht naartoe buiten het werk: maken, lezen, kijken, sporten, mensen, plekken?",
+      "type": "lang"
+     },
+     {
+      "id": "i02",
+      "vraag": "Welke gebouwen, objecten, musea of ateliers hebben je ooit geraakt, en waarom?",
+      "type": "lang"
+     },
+     {
+      "id": "i03",
+      "vraag": "Als geld geen rol speelde: wat zou je een jaar lang maken of leren?",
+      "type": "lang"
+     },
+     {
+      "id": "i04",
+      "vraag": "Van de sporen in de app (erfgoed en restauratie, culturele instellingen, lesgeven, sociaal en ecologisch, archief en archeologie): welke trekt het meest, welke het minst, en waarom?",
+      "type": "lang"
+     },
+     {
+      "id": "i05",
+      "vraag": "Welk werkveld in de Verkenning verraste je positief, en welk zou je meteen schrappen?",
+      "type": "kort"
+     },
+     {
+      "id": "i06",
+      "vraag": "Heb je ooit vrijwilligerswerk gedaan of iemand iets aangeleerd? Hoe was dat?",
+      "type": "kort"
+     },
+     {
+      "id": "i07",
+      "vraag": "Wat zou je op de academie het liefst verder doen: meubel, interieur, grafiek, iets anders?",
+      "type": "kort"
+     }
+    ]
+   },
+   {
+    "id": "overstap",
+    "titel": "De overstap",
+    "intro": "Hier gaat het om keuzes voor de komende maanden.",
+    "vragen": [
+     {
+      "id": "o01",
+      "vraag": "Drie dingen die de volgende job zeker moet hebben",
+      "type": "kort"
+     },
+     {
+      "id": "o02",
+      "vraag": "Drie dingen die je in de volgende job wil vermijden",
+      "type": "kort"
+     },
+     {
+      "id": "o03",
+      "vraag": "Wil je opnieuw studeren? Zo ja: hoelang zou je dat volhouden (een jaar, twee, drie), overdag of in de avond, en wat trekt je: restauratie, tekenen, lesgeven, archief, iets anders?",
+      "type": "lang"
+     },
+     {
+      "id": "o04",
+      "vraag": "Hoe voel je je nu: energie van 1 tot 10, slaap, zin om dingen te doen? Wat helpt je herstellen?",
+      "type": "kort"
+     },
+     {
+      "id": "o05",
+      "vraag": "Hoeveel weken rust denk je nodig te hebben voor je ergens nieuw kunt beginnen?",
+      "type": "kort"
+     },
+     {
+      "id": "o06",
+      "vraag": "Wat wil je dat Giulia doet in dit traject, en wat wil je liever zelf doen?",
+      "type": "kort"
+     },
+     {
+      "id": "o07",
+      "vraag": "Wat houdt je tegen om iets te tekenen bij je werkgever, en wat zou je willen dat er in de plaats gebeurt?",
+      "type": "lang"
+     }
+    ]
+   },
+   {
+    "id": "gesprek",
+    "titel": "Voor het gesprek",
+    "intro": "Twee zinnen die je paraat wil hebben.",
+    "vragen": [
+     {
+      "id": "g01",
+      "vraag": "Hoe zeg je in twee zinnen waarom je weggaat, zonder het over vermoeidheid of je werkgever te hebben?",
+      "hint": "Bijvoorbeeld: na vijf jaar plaatbewerking wil ik mijn vakmanschap inzetten voor werk dat blijft, zoals erfgoed of museumateliers.",
+      "type": "lang"
+     },
+     {
+      "id": "g02",
+      "vraag": "Welke vraag zou jij aan een werkgever stellen om te weten of je er past?",
+      "type": "kort"
+     },
+     {
+      "id": "g03",
+      "vraag": "Wie kan als referentie dienen (een collega, een klant, een docent) en mag je die naam gebruiken?",
+      "type": "kort"
+     }
+    ]
+   }
+  ]
+ },
  "gegenereerd": [],
  "sjablonen": {
   "mails.md": "# Mailsjablonen (Nederlands, \"u\" tegenover de werkgever)\n\n## Sollicitatiemail\nOnderwerp: Sollicitatie [functietitel] - Remi [Achternaam] (ref. [nummer])\n\nGeachte mevrouw [Naam], / Geachte heer [Naam], (onbekend: Geachte mevrouw, geachte heer,)\n\nMet veel interesse las ik uw vacature voor [functietitel] op [vdab.be / cultuurjobs.be / uw website]. Als lasser met vijf jaar ervaring in TIG- en MIG-lassen van aluminium en staal, en als student interieurvormgeving aan de Academie in Antwerpen, herken ik mij sterk in het profiel dat u zoekt.\n\nIn bijlage vindt u mijn cv, mijn motivatiebrief en een beknopt portfolio van mijn werkstukken. Ik licht mijn kandidatuur graag toe in een persoonlijk gesprek.\n\nMet vriendelijke groeten\nRemi [Achternaam]\n[gsm] | [e-mail] | [portfolio-link]\nBijlagen: cv, motivatiebrief, portfolio (pdf)\n\n## Spontane sollicitatie\nOnderwerp: Spontane sollicitatie - lasser en meubelmaker - Remi [Achternaam]\n\nGeachte mevrouw [Naam], / Geachte heer [Naam],\n\nTijdens [een bezoek aan uw atelier / de tentoonstelling ... / mijn opleiding aan de Academie] leerde ik het werk van [organisatie] kennen. De zorg waarmee u [historisch metaalwerk restaureert / decors bouwt / collectiestukken bewaart] sluit nauw aan bij wat ik zelf doe: precies laswerk in aluminium en staal combineren met ontwerp en meubelbouw. Daarom schrijf ik u spontaan aan. Ik zou graag als [technisch medewerker / atelierlasser / restauratiemedewerker] bijdragen aan uw projecten en stel voor om mijn werkstukken tijdens een kort werkbezoek of een proefdag te tonen. [Optioneel: Een start via een individuele beroepsopleiding (IBO) met VDAB in januari of februari 2027 is voor mij mogelijk.]\n\nIn bijlage vindt u mijn cv en portfolio.\n\nMet vriendelijke groeten\nRemi [Achternaam]\n[gsm] | [e-mail]\n\n## Opvolgmail (10 tot 14 dagen na verzending)\nOnderwerp: Opvolging sollicitatie [functietitel] - Remi [Achternaam]\n\nGeachte mevrouw [Naam], / Geachte heer [Naam],\n\nOp [datum] solliciteerde ik voor de functie van [functietitel]. Omdat ik nog geen nieuws ontving, wil ik graag nagaan of u mijn kandidatuur goed hebt ontvangen en of u al een zicht hebt op het verdere verloop van de procedure. Mijn interesse in de functie en in [organisatie] is onverminderd groot. Mocht u aanvullende informatie of referenties wensen, dan bezorg ik u die graag.\n\nMet vriendelijke groeten\nRemi [Achternaam], [gsm]\n\n## Bedankmail (binnen 24 tot 48 uur na het gesprek)\nOnderwerp: Bedankt voor het gesprek - [functietitel] - Remi [Achternaam]\n\nGeachte mevrouw [Naam], / Geachte heer [Naam],\n\nHartelijk dank voor het aangename gesprek van [dag]. Uw toelichting over [concreet project of werking van het atelier] heeft mijn interesse in de functie alleen maar versterkt. Vooral [de combinatie van restauratie en eigen ontwerp / het werken in een klein team] spreekt mij aan. Ik ben ervan overtuigd dat ik met mijn ervaring in TIG- en MIG-lassen en mijn ontwerpachtergrond een concrete bijdrage kan leveren. Ik kijk uit naar uw antwoord en blijf beschikbaar voor bijkomende vragen.\n\nMet vriendelijke groeten\nRemi [Achternaam]\n\n## Reactie op een afwijzing met vraag om feedback\nOnderwerp: Sollicitatie [functietitel] - vraag om feedback\n\nGeachte mevrouw [Naam], / Geachte heer [Naam],\n\nBedankt voor uw bericht en voor de tijd die u in mijn kandidatuur hebt geïnvesteerd. Het spijt me dat ik niet de weerhouden kandidaat ben, maar ik respecteer uw beslissing. Om mij verder te ontwikkelen zou ik het erg waarderen als u mij kort kunt meegeven welke punten de doorslag hebben gegeven en waar u mijn sterktes zag. Mag ik u ook vragen mijn kandidatuur in gedachten te houden voor gelijkaardige vacatures of een toekomstige werfreserve? Ik wens u en uw team veel succes met de nieuwe collega.\n\nMet vriendelijke groeten\nRemi [Achternaam], [gsm]\n\n## Vraag om een werkbezoek of beroepsverkennende stage\nOnderwerp: Vraag om een kort werkbezoek - Remi [Achternaam], lasser\n\nGeachte mevrouw [Naam], / Geachte heer [Naam],\n\nIk ben lasser met vijf jaar ervaring en student interieurvormgeving, en ik oriënteer mij naar werk in [erfgoed en restauratie / museum- en theaterateliers]. Het werk van [organisatie] volg ik met veel interesse. Mag ik u vragen of een kort werkbezoek aan [het atelier / het depot] mogelijk is, of een beroepsverkennende stage van enkele dagen via VDAB? Ik kom graag kijken, luisteren en meehelpen waar dat kan.\n\nMet vriendelijke groeten\nRemi [Achternaam], [gsm]\n",
   "motivatiebrief-basis.md": "# Motivatiebrief, basisversie (aan te passen per organisatie)\n\nGebruik \"u\" tegenover de werkgever. Eén A4. Ik-vorm, korte zinnen. Geen uitroeptekens. De tekst tussen vierkante haken wordt per sollicitatie ingevuld met de werkwijze in .claude/skills/sollicitatie.\n\n---\n\nRemi [Achternaam]\n[Straat nummer]\n[postcode] Antwerpen\n[gsm] · [e-mail]\n\n[Organisatie]\nT.a.v. [mevrouw/heer Voornaam Achternaam], [functie]\n[Adres]\n\nAntwerpen, [dag maand jaar]\n\nBetreft: sollicitatie [functietitel] [(ref. nummer)] / spontane sollicitatie als [functie]\n\nGeachte mevrouw [Naam], / Geachte heer [Naam], / Geachte mevrouw, geachte heer,\n\n[Inleiding met haak: hoe ik de vacature of organisatie ken, één concreet detail over hun werk dat mij aanspreekt.]\n\nAls lasser met vijf jaar ervaring in aluminium- en staalconstructies op maat ken ik het werk van plan tot afwerking. Ik las TIG en MIG, lees technische tekeningen en werk graag aan stukken die precies moeten zijn en lang moeten meegaan. Naast mijn werk volg ik een opleiding interieurvormgeving aan de Academie in Antwerpen en bouw ik meubels. Die combinatie van ambacht en ontwerp wil ik inzetten voor [erfgoed en restauratie / de ateliers van uw huis / het doorgeven van het vak].\n\n[Waarom deze organisatie: twee of drie zinnen die tonen dat ik weet wat zij doen en waarom dat bij mij past.]\n\n[Waarom ik: twee of drie troeven met een concreet voorbeeld. Bijvoorbeeld: een project waar zorgvuldigheid het verschil maakte; iets over samenwerken in een klein team; iets over materiaalkennis.]\n\n[Concreet voorstel: een gesprek, een werkbezoek, een proefdag, een stage of een IBO-start in januari of februari 2027.]\n\nIk licht mijn kandidatuur graag toe in een gesprek. In bijlage vindt u mijn cv en een beknopt portfolio.\n\nMet vriendelijke groeten\n\nRemi [Achternaam]\n\nBijlagen: cv, portfolio\n",
-  "vdab-profiel.md": "# VDAB-profiel (Mijn Loopbaan): tekst voor Remi\n\nDoel: gevonden worden door werkgevers en bemiddelaars die zoeken op erfgoed, restauratie, museum, decor, atelier, instructeur en lassen. VDAB-profielen zijn kort en zakelijk. Zet het profiel op zichtbaar voor werkgevers en vul de rubrieken hieronder letterlijk over.\n\n## Titel (functietitel bovenaan)\nLasser en metaalconstructeur met ontwerpopleiding, op zoek naar werk in erfgoed, restauratie en cultuurateliers\n\n## Korte voorstelling (maximaal 5 zinnen)\nLasser met vijf jaar ervaring in aluminium- en staalconstructies op maat voor gebouwen en horeca. Ik las TIG en MIG, lees technische tekeningen en werk nauwkeurig af tot zichtwerk. Daarnaast volg ik een opleiding interieurvormgeving aan de Academie in Antwerpen en bouw ik meubels. Ik zoek werk waarin vakmanschap en zorgvuldigheid ergens toe dienen: restauratie van historisch metaalwerk, museum- of theaterateliers, tentoonstellingsbouw, of het doorgeven van het vak als instructeur. Ik werk het best in een klein team en ben beschikbaar vanaf [datum].\n\n## Gewenste functies (kies er tot vijf in de VDAB-lijst)\n- Lasser (TIG, MIG) en constructiebankwerker\n- Decorbouwer of ateliermedewerker metaal\n- Technisch medewerker museum of tentoonstellingsbouw\n- Restauratiemedewerker metaal (monumentenzorg)\n- Instructeur of praktijkbegeleider lassen en metaal\n\n## Gewenste sectoren\nCultuur en erfgoed; bouw en restauratie; metaal; onderwijs en opleiding; sociale economie\n\n## Competenties (vinkjes en vrije tekst)\n- TIG-lassen (141) en MIG/MAG-lassen (131, 135), staal en aluminium\n- Plaatwerk: snijden, plooien, afwerken\n- Technische tekeningen lezen en werkvoorbereiding\n- Opmeten en uittekenen op maat\n- Montage op de werf\n- Meubelontwerp en -bouw in metaal en hout\n- Kwaliteitscontrole van zichtwerk\n- Veiligheid: VCA-basis [geldig tot]\n- Rijbewijs B [indien van toepassing]\n\n## Talen\nNederlands moedertaal; Engels goed; Frans [niveau]\n\n## Opleiding\n- Interieurvormgeving, Koninklijke Academie voor Schone Kunsten Antwerpen, lopend [precieze opleiding bevestigen]\n- Diploma secundair onderwijs, [richting], [school], [jaar]\n- Lascertificaten EN ISO 9606-1 en 9606-2 [geldigheid]\n\n## Werkervaring\n[maand jaar] tot heden: lasser en constructiebankwerker, [bedrijf], [gemeente]. Aluminium- en staalconstructies op maat voor gebouwen en horeca, van plan tot montage.\n[jaar] tot heden: meubelmaker in eigen beheer met zijn broer, Antwerpen.\n\n## Mobiliteit en beschikbaarheid\nAntwerpen en omgeving, bereikbaar met openbaar vervoer [en fiets/wagen]. Voltijds of deeltijds. Beschikbaar vanaf [datum]. Open voor een individuele beroepsopleiding (IBO) of een beroepsverkennende stage.\n\n## Trefwoorden om zeker in de vrije tekst te zetten\nerfgoed, restauratie, monumentenzorg, museum, depot, decoratelier, decorbouw, tentoonstellingsbouw, atelier, smeedwerk, aluminium, inox, TIG, MIG, plannen lezen, meubelmaker, interieurvormgeving, instructeur lassen\n"
+  "vdab-profiel.md": "# VDAB-profiel (Mijn Loopbaan): tekst voor Remi\n\nDoel: gevonden worden door werkgevers en bemiddelaars die zoeken op erfgoed, restauratie, museum, decor, atelier, instructeur en lassen. VDAB-profielen zijn kort en zakelijk. Zet het profiel op zichtbaar voor werkgevers en vul de rubrieken hieronder letterlijk over.\n\n## Titel (functietitel bovenaan)\nTechnisch tekenaar en atelierverantwoordelijke plaatbewerking, lasser en meubelmaker, op zoek naar werk in erfgoed, restauratie, archief en cultuurateliers\n\n## Korte voorstelling (maximaal 5 zinnen)\nTechnisch tekenaar en verantwoordelijke atelier bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal, sinds 2021. Ik teken werkstukken uit, bereid het werk voor, plooi en las zelf (halfautomaat en elektrode) en stuur het atelier aan. Daarvoor werkte ik in een creatief fietsatelier en bouwde ik een fotoarchief op; daarnaast volg ik interieurvormgeving aan de Academie in Antwerpen en bouw ik meubels. Ik zoek werk waarin vakmanschap en zorgvuldigheid ergens toe dienen: restauratie van historisch metaalwerk, museum- of theaterateliers, archief en collectiezorg, tentoonstellingsbouw, of het doorgeven van het vak. Ik werk het best in een klein team en ben beschikbaar vanaf [datum].\n\n## Gewenste functies (kies er tot vijf in de VDAB-lijst)\n- Technisch tekenaar of werkvoorbereider metaal en plaatbewerking\n- Decorbouwer, ateliermedewerker metaal of vitrinebouwer\n- Technisch medewerker museum, depot of tentoonstellingsbouw\n- Restauratiemedewerker metaal (monumentenzorg)\n- Instructeur of praktijkbegeleider lassen en metaal\n\n## Gewenste sectoren\nCultuur en erfgoed; bouw en restauratie; metaal; onderwijs en opleiding; sociale economie\n\n## Competenties (vinkjes en vrije tekst)\n- Technisch tekenen van maatwerk in plaatmateriaal ([CAD-programma])\n- Werkvoorbereiding, planning en aansturing van een atelier\n- Plooien op de kantbank, MIG/MAG-lassen (135) en elektrodelassen (111) [TIG bevestigen]\n- Plaatwerk: snijden, plooien, afwerken, kwaliteitscontrole\n- Opmeten en uittekenen op maat, montage\n- Meubelontwerp en -bouw in metaal en hout\n- Fietsbouw en -herstel\n- Archiveren en digitaliseren van beeldmateriaal\n- Veiligheid: VCA-basis [geldig tot]\n- Rijbewijs B [indien van toepassing]\n\n## Talen\nNederlands moedertaal; Engels goed; Frans [niveau]\n\n## Opleiding\n- Interieurvormgeving, Koninklijke Academie voor Schone Kunsten Antwerpen, lopend [precieze opleiding bevestigen]\n- Lasopleiding halfautomaat en elektrodelassen, [instelling], [jaar]\n- Diploma secundair onderwijs Wetenschappen-Wiskunde, Sint-Lutgardis, 2017\n\n## Werkervaring\n2021 tot heden: technisch tekenaar en verantwoordelijke atelier, [bedrijf], [gemeente]. Gestart als tekenaar en plooi- en lasoperator. Maatwerk in plaatmateriaal van tekening tot afwerking.\n2019: medewerker creatief fietsatelier, Antwerpen.\n2017 tot 2018: opbouw van een fotoarchief voor Willy Van de Perre.\n2017 tot 2018: [functie], Katoen Natie, Antwerpen.\n[jaar] tot heden: meubelmaker in eigen beheer met zijn broer, Antwerpen.\n\n## Mobiliteit en beschikbaarheid\nAntwerpen en omgeving, bereikbaar met openbaar vervoer [en fiets/wagen]. Voltijds of deeltijds. Beschikbaar vanaf [datum]. Open voor een individuele beroepsopleiding (IBO) of een beroepsverkennende stage.\n\n## Trefwoorden om zeker in de vrije tekst te zetten\nerfgoed, restauratie, monumentenzorg, museum, depot, archief, decoratelier, decorbouw, tentoonstellingsbouw, atelier, technisch tekenaar, werkvoorbereider, plaatbewerking, plooien, kantbank, MIG/MAG, elektrodelassen, plannen lezen, meubelmaker, interieurvormgeving, instructeur lassen\n",
+  "vragenlijst-remi.md": "# Vragenlijst voor Remi\n\nDeze vragen zijn voor jou, Remi. Niets hoeft in één keer. Korte antwoorden zijn goed; een voorbeeld is beter dan een omschrijving. Alles wat je invult blijft op dit toestel tot je het exporteert of kopieert voor Giulia. Uit je antwoorden komen het cv, de brieven, de tekst voor VDAB en de keuzes voor de volgende stap.\n\n## Praktisch, voor het cv\n\nFeiten die op een cv of in een dossier moeten kloppen.\n\n- Volledige naam, geboortedatum en geboorteplaats\n  \n\n- Adres, gsm-nummer en e-mailadres dat je voor sollicitaties wil gebruiken\n  \n\n- Rijbewijs (B, ja of nee) en hoe je je verplaatst: fiets, openbaar vervoer, auto. Tot hoeveel minuten pendelen is haalbaar?\n  \n\n- Talen en niveau: Nederlands, Frans, Engels, andere\n  \n\n- Naam van je huidige werkgever, gemeente, en de startdatum van je contract (staat op het contract of de eerste loonfiche)\n  \n\n- Wat staat er op je loonfiche: arbeider of bediende, en welk paritair comité (bijvoorbeeld 111, 200, 209)?  \n  (Dit bepaalt gewaarborgd loon, vakantiegeld en eindejaarspremie.)\n  \n\n- Je functietitel volgens het contract, en wat je vandaag echt doet (tekenen, plooien, lassen, atelier aansturen, hoeveel collega's)\n  \n\n- Welk tekenprogramma gebruik je (bijvoorbeeld SolidWorks, AutoCAD, Inventor, Tekla) en hoe goed?\n  \n\n- Welke lasprocessen beheers je: halfautomaat (MIG/MAG), elektrode, TIG? Welke certificaten heb je, met norm en geldigheid?\n  \n\n- Andere attesten: VCA, heftruck, hoogtewerker, EHBO, kantbank, andere\n  \n\n- Je opleidingen precies: secundair (richting, school, jaar), lasopleiding (waar, wanneer), academie (welke richtingen, welke jaren, getuigschrift of diploma)\n  \n\n- Katoen Natie: welke functie, welke afdeling, hoelang?\n  \n\n- Het creatief fietsatelier: naam, wat je daar maakte of herstelde, een voorbeeld\n  \n\n- Het fotoarchief voor Willy Van de Perre: wie is hij, hoeveel beelden, hoe heb je het aangepakt (ordenen, scannen, beschrijven, software)?\n  \n\n- Welke werkstukken bestaan er in foto's: meubels, constructies, fietsen, tekeningen? Waar staan die foto's?  \n  (Voor het portfolio: 6 tot 10 stukken met titel, jaar, materiaal, techniek.)\n  \n\n- Vanaf wanneer ben je beschikbaar, voltijds of deeltijds, en welke dagen of avonden zijn bezet door de academie?\n  \n\n- Wat is je huidige brutoloon per maand, en wat heb je netto minimaal nodig om rond te komen?  \n  (Dit is voor de keuze tussen uitkering, opleiding en werk, niet voor een cv.)\n  \n\n## Werk dat bij je past\n\nConcrete momenten zeggen meer dan eigenschappen.\n\n- Drie momenten op het werk waarop je dacht: dit is goed. Wat deed je precies?\n  \n\n- Drie momenten waarop het echt niet ging. Wat gebeurde er?\n  \n\n- Een project waar je trots op bent: wat, voor wie, wat was moeilijk, hoe heb je het opgelost?  \n  (Dit wordt een regel op het cv en een voorbeeld in het gesprek.)\n  \n\n- Nog een project, liefst iets helemaal anders\n  \n\n- Wat doe je het liefst in het atelier: tekenen, plooien, lassen, organiseren, uitleggen aan anderen? Zet ze in volgorde.\n  \n\n- Wat is fysiek het zwaarst, en waar voel je dat (rug, schouders, handen, ogen, ademhaling)?  \n  (Ook voor de huisarts.)\n  \n\n- Werk je liever alleen, met twee of drie, of in een grotere ploeg? Waarom?\n  \n\n- Liever een klein bedrijf, een grote organisatie, een overheid, een vzw? Wat trekt je aan en wat schrikt af?\n  \n\n- Wat zouden je collega's zeggen als iemand vraagt hoe het is om met jou te werken?\n  \n\n- Wat heb je nodig van een baas of ploegbaas om goed te werken? En wat verdraag je niet?\n  \n\n## Sterktes en werkpunten\n\nEerlijk en met een voorbeeld; dit is geen sollicitatiegesprek.\n\n- Drie dingen waar je goed in bent, telkens met een voorbeeld\n  \n\n- Drie dingen die je wil verbeteren of die je moeilijk vindt\n  \n\n- Waarvoor komen mensen bij jou om hulp?\n  \n\n- Hoe leer je het liefst: door te doen, te kijken, te lezen, uitleg te krijgen?\n  \n\n- Hoe reageer je als er druk of stress is? Wat helpt dan?\n  \n\n- Wanneer zeg je te weinig, en wanneer had je liever iets gezegd?  \n  (De tests zeggen dat je niet snel op de voorgrond treedt; dit is om te weten waar dat je iets kost.)\n  \n\n- Wat weet je over jezelf dat niet in een test staat?\n  \n\n## Passies en interesses\n\nWat je doet als niemand het vraagt.\n\n- Waar gaat je aandacht naartoe buiten het werk: maken, lezen, kijken, sporten, mensen, plekken?\n  \n\n- Welke gebouwen, objecten, musea of ateliers hebben je ooit geraakt, en waarom?\n  \n\n- Als geld geen rol speelde: wat zou je een jaar lang maken of leren?\n  \n\n- Van de sporen in de app (erfgoed en restauratie, culturele instellingen, lesgeven, sociaal en ecologisch, archief en archeologie): welke trekt het meest, welke het minst, en waarom?\n  \n\n- Welk werkveld in de Verkenning verraste je positief, en welk zou je meteen schrappen?\n  \n\n- Heb je ooit vrijwilligerswerk gedaan of iemand iets aangeleerd? Hoe was dat?\n  \n\n- Wat zou je op de academie het liefst verder doen: meubel, interieur, grafiek, iets anders?\n  \n\n## De overstap\n\nHier gaat het om keuzes voor de komende maanden.\n\n- Drie dingen die de volgende job zeker moet hebben\n  \n\n- Drie dingen die je in de volgende job wil vermijden\n  \n\n- Wil je opnieuw studeren? Zo ja: hoelang zou je dat volhouden (een jaar, twee, drie), overdag of in de avond, en wat trekt je: restauratie, tekenen, lesgeven, archief, iets anders?\n  \n\n- Hoe voel je je nu: energie van 1 tot 10, slaap, zin om dingen te doen? Wat helpt je herstellen?\n  \n\n- Hoeveel weken rust denk je nodig te hebben voor je ergens nieuw kunt beginnen?\n  \n\n- Wat wil je dat Giulia doet in dit traject, en wat wil je liever zelf doen?\n  \n\n- Wat houdt je tegen om iets te tekenen bij je werkgever, en wat zou je willen dat er in de plaats gebeurt?\n  \n\n## Voor het gesprek\n\nTwee zinnen die je paraat wil hebben.\n\n- Hoe zeg je in twee zinnen waarom je weggaat, zonder het over vermoeidheid of je werkgever te hebben?  \n  (Bijvoorbeeld: na vijf jaar plaatbewerking wil ik mijn vakmanschap inzetten voor werk dat blijft, zoals erfgoed of museumateliers.)\n  \n\n- Welke vraag zou jij aan een werkgever stellen om te weten of je er past?\n  \n\n- Wie kan als referentie dienen (een collega, een klant, een docent) en mag je die naam gebruiken?\n  \n"
  },
- "gebouwdOp": "2026-09-27T10:36:29.124Z"
+ "gebouwdOp": "2026-09-27T10:42:27.616Z"
 };

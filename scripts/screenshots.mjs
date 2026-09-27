@@ -12,7 +12,7 @@ await new Promise(r => setTimeout(r, 700));
 try {
   const { chromium } = await import('playwright');
   const browser = await chromium.launch({ executablePath: chromiumPath() });
-  const views = ['overzicht', 'stappenplan', 'sollicitaties', 'vacatures', 'hotlist', 'verkenning', 'opleidingen', 'planning', 'rechten', 'profiel', 'documenten'];
+  const views = ['overzicht', 'stappenplan', 'sollicitaties', 'vacatures', 'hotlist', 'verkenning', 'opleidingen', 'planning', 'rechten', 'profiel', 'vragenlijst', 'documenten'];
   mkdirSync(join(root, 'screenshots'), { recursive: true });
   const errors = [];
   for (const [label, viewport] of [['desktop', { width: 1366, height: 860 }], ['phone', { width: 390, height: 844 }]]) {

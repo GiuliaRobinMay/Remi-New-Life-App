@@ -1,7 +1,7 @@
 // Data layer: seed (from data/*.json via build-data) plus a localStorage overlay. Export and import as JSON.
 import { seed } from './seed.js';
 const KEY = 'remi-nieuwe-start-v1';
-const MERGED = ['sollicitaties', 'vacatures', 'hotlist', 'stappenplan', 'verkenning', 'opleidingen', 'notities', 'agenda'];
+const MERGED = ['sollicitaties', 'vacatures', 'hotlist', 'stappenplan', 'verkenning', 'opleidingen', 'notities', 'agenda', 'antwoorden'];
 let local = load();
 const listeners = new Set();
 
@@ -30,7 +30,7 @@ export function upsert(name, item) {
 export function remove(name, id) { upsert(name, { id, verwijderd: true }); }
 export const ref = {
   profiel: seed.profiel, rechten: seed.rechten, programma: seed.programma, jobbronnen: seed.jobbronnen,
-  cvMaster: seed.cvMaster, sjablonen: seed.sjablonen || {}, gegenereerd: seed.gegenereerd || [], gebouwdOp: seed.gebouwdOp,
+  cvMaster: seed.cvMaster, sjablonen: seed.sjablonen || {}, gegenereerd: seed.gegenereerd || [], gebouwdOp: seed.gebouwdOp, vragenlijst: seed.vragenlijst,
 };
 export function exportJson() { return JSON.stringify({ versie: 1, geexporteerd: new Date().toISOString(), data: local }, null, 2); }
 export function importJson(text, { vervang = false } = {}) {

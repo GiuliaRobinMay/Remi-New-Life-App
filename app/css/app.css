@@ -135,3 +135,9 @@ select.field { appearance: auto; }
 /* Werkbalk: knoppen en label nooit afbreken; op smalle schermen scrolt de balk. */
 .chrome__tool .btn, .chrome__view { white-space: nowrap; flex: none; }
 .chrome__tool .zonesearch { flex: 1 1 140px; min-width: 120px; width: auto; }
+@media (max-width: 900px) {
+  /* Tabstrook scrolt horizontaal op een klein scherm; het thema houdt overflow zichtbaar voor de schaduw van de actieve tab. */
+  .chrome__tabs { overflow-x: auto; scrollbar-width: none; }
+  .chrome__tabs::-webkit-scrollbar { display: none; }
+  .tabs { min-width: max-content; }
+}

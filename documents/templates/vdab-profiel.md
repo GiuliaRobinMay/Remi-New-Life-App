@@ -34,7 +34,8 @@ Cultuur en erfgoed; bouw en restauratie; metaal; onderwijs en opleiding; sociale
 Nederlands moedertaal; Engels goed; Frans [niveau]
 
 ## Opleiding
-- Interieurvormgeving, Koninklijke Academie voor Schone Kunsten Antwerpen, lopend [precieze opleiding bevestigen]
+- Interieurvormgeving, avondonderwijs aan de Academie in Antwerpen, lopend [precieze opleiding bevestigen]
+- Meubel en interieur (drie jaar) en grafiek (een jaar), avondonderwijs aan de Academie in Antwerpen
 - Lasopleiding halfautomaat en elektrodelassen, [instelling], [jaar]
 - Diploma secundair onderwijs Wetenschappen-Wiskunde, Sint-Lutgardis, 2017
 
@@ -43,7 +44,7 @@ Nederlands moedertaal; Engels goed; Frans [niveau]
 2019: medewerker creatief fietsatelier, Antwerpen.
 2017 tot 2018: opbouw van een fotoarchief voor Willy Van de Perre.
 2017 tot 2018: [functie], Katoen Natie, Antwerpen.
-[jaar] tot heden: meubelmaker in eigen beheer met zijn broer, Antwerpen.
+[jaar] tot heden: meubelmaker in eigen beheer, samen met mijn broer, Antwerpen.
 
 ## Mobiliteit en beschikbaarheid
 Antwerpen en omgeving, bereikbaar met openbaar vervoer [en fiets/wagen]. Voltijds of deeltijds. Beschikbaar vanaf [datum]. Open voor een individuele beroepsopleiding (IBO) of een beroepsverkennende stage.

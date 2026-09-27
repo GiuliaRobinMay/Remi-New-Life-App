@@ -33,3 +33,5 @@ Alles wat naar buiten gaat is in het Nederlands (Vlaams), met "u" tegenover de w
 - Emoji, uitroeptekens, Nederlands-Nederlandse woorden (baan, salaris, mbo, uitzendbureau): gebruik job, loon, secundair onderwijs, interimkantoor.
 - Verzonnen feiten over Remi. Geen "Remy".
 - Het lasvak fysiek zwaar noemen in een brief; zeg wat hij wil, niet wat hij ontvlucht.
+- TIG-lassen of aluminium als vaststaand noemen zolang vraag p09 van de vragenlijst dat niet bevestigt. Zeker zijn: technisch tekenaar en verantwoordelijke atelier (maatwerk plaatmateriaal, sinds 2021), plooien, halfautomaat- en elektrodelassen.
+- Een leeftijd noemen; die is nog niet bevestigd.

@@ -33,7 +33,7 @@
     "id": "s04",
     "groep": "Eerst, deze week",
     "titel": "Startdatum en statuut controleren",
-    "wat": "Zoek de exacte startdatum van het contract op (contract, eerste loonfiche, mijnloopbaan). Controleer op de loonfiche het statuut (arbeider of bediende) en het paritair comité (111, 200 of 209). Dit bepaalt de opzegtermijn (15 of 18 weken door de werkgever, 7 of 9 weken door de werknemer), het gewaarborgd loon bij ziekte, het vakantiegeld en de eindejaarspremie.",
+    "wat": "Zoek de exacte startdatum van het contract op (contract, eerste loonfiche, mijnloopbaan). De startdatum bepaalt de opzegtermijn: 15 of 18 weken bij opzeg door de werkgever, 7 of 9 weken bij opzeg door de werknemer. Controleer ook op de loonfiche het statuut (arbeider of bediende) en het paritair comité (111, 200 of 209): dat bepaalt het gewaarborgd loon bij ziekte, het vakantiegeld en de eindejaarspremie.",
     "wie": "Remi en Giulia",
     "deadline": "2026-10-04",
     "status": "open",

@@ -1,6 +1,6 @@
 {
   "naam": "Remi",
-  "leeftijd": 20,
+  "leeftijd": null,
   "woonplaats": "Antwerpen",
   "situatie": "Woont alleen in Antwerpen. Heeft een inkomen nodig.",
   "beroep": "Technisch tekenaar en verantwoordelijke atelier bij een metaalbewerkingsbedrijf (maatwerk in plaatmateriaal), sinds 2021; gestart als tekenaar en plooi- en lasoperator",
@@ -8,7 +8,7 @@
     "Technisch tekenen van maatwerk in plaatmateriaal en werkvoorbereiding",
     "Atelier aansturen: planning, kwaliteit, collega's",
     "Plooien op de kantbank, halfautomaat- en elektrodelassen, plaatwerk",
-    "Meubels ontwerpen en bouwen (met zijn broer)",
+    "Meubels ontwerpen en bouwen samen met zijn broer",
     "Fietsen bouwen en herstellen (creatief fietsatelier, 2019)",
     "Een fotoarchief opbouwen en digitaliseren (2017 tot 2018)",
     "Ruimtelijk en structureel denken, sterk in wiskunde"
@@ -35,7 +35,7 @@
   "tests": {
     "mbti": {
       "type": "INFJ",
-      "toelichting": "Ziet patronen en richting voor anderen die zien (Ni), leest de emotionele temperatuur van een groep (Fe), zoekt logische samenhang (Ti), waardeert materiaal en ambacht (Se)."
+      "toelichting": "Ziet patronen en richting voordat anderen ze zien (Ni), leest de emotionele temperatuur van een groep (Fe), zoekt logische samenhang (Ti), waardeert materiaal en ambacht (Se)."
     },
     "loopbaanankers": [
       {

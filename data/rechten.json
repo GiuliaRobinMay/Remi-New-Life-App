@@ -19,7 +19,7 @@
         "Opzegtermijn 18 weken (5 tot 6 jaar anciënniteit) of 15 weken (4 tot 5 jaar), of verbrekingsvergoeding voor het niet-gepresteerde deel.",
         "Vraag schriftelijk vrijstelling van prestaties: je komt niet meer werken en behoudt je loon. Schrijf je dan binnen een maand in bij VDAB.",
         "Sollicitatieverlof: een volledige dag per week, betaald.",
-        "Geen RVA-sanctie. Uitkering 65 procent van het begrensde loon de eerste drie maanden, daarna 60 procent, maximaal 24 maanden.",
+        "Geen RVA-sanctie. Uitkering 65 procent van het begrensde loon de eerste drie maanden, 60 procent tot maand 6, daarna degressief, maximaal 24 maanden.",
         "Ziekte tijdens deze opzeg schorst de opzegtermijn.",
         "Je mag binnen twee maanden na het einde de ontslagredenen opvragen (cao 109)."
       ]
@@ -30,7 +30,7 @@
       "kleur": "violet",
       "oordeel": "Goed voor herstel, opent herscholing",
       "punten": [
-        "Gewaarborgd loon door de werkgever: dag 1 tot 7 100 procent, dag 8 tot 14 85,88 procent, dag 15 tot 30 gedeeltelijk, daarna 60 procent van het begrensde loon via het ziekenfonds.",
+        "Gewaarborgd loon door de werkgever: dag 1 tot 7: 100 procent; dag 8 tot 14: 85,88 procent; dag 15 tot 30: gedeeltelijk; daarna 60 procent van het begrensde loon via het ziekenfonds.",
         "De werkgever mag tijdens ziekte ontslaan met opzeg of vergoeding, maar niet omwille van de ziekte. De ziekte-uitkering loopt door na het einde van het contract.",
         "De eerste zes maanden wordt de ongeschiktheid beoordeeld tegenover je eigen job (lasser), daarna tegenover de hele arbeidsmarkt. Daarom moet het dossier de fysieke belasting van het laswerk documenteren, niet alleen vermoeidheid.",
         "Herscholing via het ziekenfonds (socioprofessionele re-integratie): opleiding betaald, premie per lesuur, uitkering behouden tijdens de opleiding en zes maanden erna. Aanvragen via de adviserend arts en de Terug Naar Werk-coördinator.",
@@ -67,7 +67,7 @@
     }
   ],
   "opzegtabel": {
-    "toelichting": "Eenheidsstatuut, contract gestart tussen 1 januari 2014 en 1 juni 2026. Rijen uit de wet; laat ACV de exacte anciënniteit bevestigen.",
+    "toelichting": "Eenheidsstatuut, contract gestart tussen 1 januari 2014 en 1 juni 2026. Rijen uit de wet; laat ACV de exacte anciënniteit bevestigen. Boven 8 jaar komt er bij opzeg door de werkgever telkens 3 weken per jaar bij; bij opzeg door de werknemer blijft het maximum 13 weken.",
     "rijen": [
       {
         "ancienniteit": "3 tot minder dan 4 jaar",
@@ -95,7 +95,7 @@
         "werknemer": 12
       },
       {
-        "ancienniteit": "8 jaar en meer",
+        "ancienniteit": "8 tot minder dan 9 jaar",
         "werkgever": 27,
         "werknemer": 13
       }

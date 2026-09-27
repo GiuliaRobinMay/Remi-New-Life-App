@@ -2,7 +2,7 @@
 import { h, icon, badge, fit, fmtDate, todayIso, addDays, daysUntil, uid, slugify, copyText, toast } from './ui.js';
 import { all, get, upsert, remove, ref } from './store.js';
 import { openPeek, closePeek, go } from './app.js';
-import { spoorBadge, content, intro } from './views-core.js';
+import { spoorBadge, content, intro, callout } from './views-core.js';
 
 const STATUSSEN = [['te doen', 'Te doen'], ['in voorbereiding', 'In voorbereiding'], ['verstuurd', 'Verstuurd'], ['opgevolgd', 'Opgevolgd'], ['gesprek', 'Gesprek'], ['aanbod', 'Aanbod'], ['afgewezen', 'Afgewezen'], ['gearchiveerd', 'Gearchiveerd']];
 const STATUSKLEUR = { 'te doen': 'grey', 'in voorbereiding': 'grey', verstuurd: 'orange', opgevolgd: 'orange', gesprek: 'violet', aanbod: 'green', afgewezen: 'red', gearchiveerd: 'grey' };
@@ -28,29 +28,28 @@ function grid(columns, groups, onOpen) {
 
 // ---------- Sollicitaties ----------
 export function sollicitaties(r) {
-  const q = (r.tab || '').toLowerCase();
+  const q = (r.q || '').toLowerCase();
   const items = all('sollicitaties').filter(s => !q || `${s.organisatie} ${s.functie}`.toLowerCase().includes(q)).sort((a, b) => (b.datumVerstuurd || b.aangemaakt || '').localeCompare(a.datumVerstuurd || a.aangemaakt || ''));
   const groups = [
-    { key: 'actief', label: 'ACTIEF', tone: 'active', rows: items.filter(s => ['verstuurd', 'opgevolgd', 'gesprek', 'aanbod'].includes(s.status)) },
-    { key: 'voorbereiden', label: 'VOORBEREIDEN', tone: 'contact', rows: items.filter(s => ['te doen', 'in voorbereiding'].includes(s.status)) },
-    { key: 'afgesloten', label: 'AFGESLOTEN', tone: 'archived', rows: items.filter(s => ['afgewezen', 'gearchiveerd'].includes(s.status)), hideEmpty: true },
+    { key: 'actief', label: 'ACTIEF', tone: 'orange', rows: items.filter(s => ['verstuurd', 'opgevolgd', 'gesprek', 'aanbod'].includes(s.status)) },
+    { key: 'voorbereiden', label: 'VOORBEREIDEN', tone: 'violet', rows: items.filter(s => ['te doen', 'in voorbereiding'].includes(s.status)) },
+    { key: 'afgesloten', label: 'AFGESLOTEN', tone: 'grey', rows: items.filter(s => ['afgewezen', 'gearchiveerd'].includes(s.status)), hideEmpty: true },
   ];
   const cols = [
     { label: 'Organisatie', width: 240, render: s => s.organisatie },
     { label: 'Functie', width: 220, render: s => s.functie || h('span', { class: 'grid2__dash' }, '—') },
     { label: 'Spoor', width: 120, render: s => spoorBadge(s.spoor) },
     { label: 'Verstuurd', width: 110, render: s => s.datumVerstuurd ? fmtDate(s.datumVerstuurd) : h('span', { class: 'grid2__dash' }, '—') },
-    { label: 'Opvolgen', width: 120, render: s => s.opvolgdatum && ['verstuurd', 'opgevolgd'].includes(s.status) ? h('span', { class: daysUntil(s.opvolgdatum) <= 0 ? 'overdue' : '' }, fmtDate(s.opvolgdatum)) : h('span', { class: 'grid2__dash' }, '—') },
-    { label: 'Status', width: 150, render: s => sel(STATUSSEN, s.status, v => zetStatus(s, v), `status status--${STATUSKLEUR[s.status] === 'green' ? 'active' : STATUSKLEUR[s.status] === 'orange' ? 'contact' : 'archived'} status--select`) },
+    { label: 'Opvolgen', width: 120, render: s => s.opvolgdatum && s.status === 'verstuurd' ? h('span', { class: daysUntil(s.opvolgdatum) <= 0 ? 'overdue' : '' }, fmtDate(s.opvolgdatum)) : h('span', { class: 'grid2__dash' }, '—') },
+    { label: 'Status', width: 150, render: s => sel(STATUSSEN, s.status, v => zetStatus(s, v), `status status--${STATUSKLEUR[s.status] || 'grey'} status--select`) },
   ];
-  const body = items.length ? grid(cols, groups, s => sollicitatiePeek(s.id)) : content(intro('Sollicitaties', 'Elke sollicitatie met status, opvolgdatum, contact en documenten. Opvolgen gebeurt 10 tot 14 dagen na verzending, één keer.'), h('div', { class: 'card empty' }, 'Nog geen sollicitaties. Start vanuit een vacature, vanuit de hotlist (spontaan) of met de knop in de werkbalk.'));
-  const tool = [h('label', { class: 'zonesearch' }, icon('search', 14), h('input', { placeholder: 'Zoek organisatie of functie', value: r.tab || '', onInput: e => { location.hash = `#/sollicitaties?tab=${encodeURIComponent(e.target.value)}`; } })), h('button', { class: 'btn btn--primary', onClick: () => sollicitatieForm() }, icon('plus', 14), 'Nieuwe sollicitatie')];
+  const body = items.length ? grid(cols, groups, s => sollicitatiePeek(s.id)) : content(intro('Sollicitaties', 'Elke sollicitatie met status, opvolgdatum, contact en documenten. Opvolgen gebeurt één keer, 10 tot 14 dagen na verzending.'), h('div', { class: 'card empty' }, 'Nog geen sollicitaties. Start vanuit een vacature, vanuit de hotlist (spontaan) of met de knop in de werkbalk.'));
+  const tool = [h('label', { class: 'zonesearch' }, icon('search', 14), h('input', { placeholder: 'Zoek organisatie of functie', value: r.q, dataset: { fk: 'zoek-sollicitaties' }, onInput: e => { history.replaceState(null, '', `#/sollicitaties${e.target.value ? '?q=' + encodeURIComponent(e.target.value) : ''}`); window.dispatchEvent(new HashChangeEvent('hashchange')); } })), h('button', { class: 'btn btn--primary', onClick: () => sollicitatieForm() }, icon('plus', 14), 'Nieuwe sollicitatie')];
   return { chrome: { where: 'Alle sollicitaties', tool, tabLabel: 'Alle sollicitaties', view: `${items.length} sollicitaties`, viewIcon: 'mail' }, body };
 }
 function zetStatus(s, status) {
   const patch = { id: s.id, status };
-  if (status === 'verstuurd' && !s.datumVerstuurd) { patch.datumVerstuurd = todayIso(); patch.opvolgdatum = addDays(todayIso(), 12); }
-  if (status === 'opgevolgd') { patch.opvolgdatum = addDays(todayIso(), 10); }
+  if (status === 'verstuurd') { const verzonden = s.datumVerstuurd || todayIso(); if (!s.datumVerstuurd) patch.datumVerstuurd = verzonden; if (!s.opvolgdatum) patch.opvolgdatum = addDays(verzonden, 12); }
   patch.logboek = [...(s.logboek || []), { datum: todayIso(), tekst: `Status naar ${status}` }];
   upsert('sollicitaties', patch);
 }
@@ -77,14 +76,14 @@ function sollicitatiePeek(id) {
     const hot = s.hotlistId && get('hotlist', s.hotlistId);
     const logInput = h('input', { class: 'field', placeholder: 'Wat gebeurde er (bijvoorbeeld: gebeld, geen antwoord)' });
     const opvolgTekst = (ref.sjablonen['mails.md'] || '').split('## Opvolgmail')[1]?.split('## ')[0] || '';
-    return h('div', { class: 'stack stack--tight' },
-      h('div', null, h('p', { class: 'muted small' }, `${s.type} · ${fmtDate(s.aangemaakt)}`), h('h1', { class: 'page-title', style: 'font-size:22px' }, s.organisatie), h('p', null, s.functie), h('div', { class: 'meta', style: 'margin-top:6px' }, spoorBadge(s.spoor), badge(s.status, STATUSKLEUR[s.status]))),
-      titled('Status', h('div', { class: 'form__actions' }, ...[['verstuurd', 'Verstuurd'], ['opgevolgd', 'Opgevolgd'], ['gesprek', 'Gesprek'], ['aanbod', 'Aanbod'], ['afgewezen', 'Afgewezen']].map(([v, l]) => h('button', { class: 'btn btn--ghost btn--sm' + (s.status === v ? ' chip--active' : ''), onClick: () => zetStatus(s, v) }, l))),
-        s.datumVerstuurd && h('p', { class: 'small' }, `Verstuurd ${fmtDate(s.datumVerstuurd)}.`), s.opvolgdatum && ['verstuurd', 'opgevolgd'].includes(s.status) && h('p', { class: 'small ' + (daysUntil(s.opvolgdatum) <= 0 ? 'overdue' : '') }, `Opvolgen op ${fmtDate(s.opvolgdatum)} (${daysUntil(s.opvolgdatum)} dagen).`), s.gesprekDatum && h('p', { class: 'small' }, `Gesprek: ${s.gesprekDatum.replace('T', ' om ')}.`)),
+    return h('div', { class: 'stack' },
+      h('div', null, h('p', { class: 'muted small' }, `${s.type} · ${fmtDate(s.aangemaakt)}`), h('h2', { class: 'section-title' }, s.organisatie), h('p', null, s.functie), h('div', { class: 'meta', style: 'margin-top:6px' }, spoorBadge(s.spoor), badge(s.status, STATUSKLEUR[s.status]))),
+      titled('Status', h('div', { class: 'form__actions' }, ...[['verstuurd', 'Verstuurd'], ['opgevolgd', 'Opgevolgd'], ['gesprek', 'Gesprek'], ['aanbod', 'Aanbod'], ['afgewezen', 'Afgewezen']].map(([v, l]) => h('button', { class: 'chip' + (s.status === v ? ' chip--active' : ''), onClick: () => zetStatus(s, v) }, l))),
+        s.datumVerstuurd && h('p', { class: 'small' }, `Verstuurd ${fmtDate(s.datumVerstuurd)}.`), s.opvolgdatum && s.status === 'verstuurd' && h('p', { class: 'small ' + (daysUntil(s.opvolgdatum) <= 0 ? 'overdue' : '') }, `Opvolgen op ${fmtDate(s.opvolgdatum)} (${daysUntil(s.opvolgdatum)} dagen).`), s.gesprekDatum && h('p', { class: 'small' }, `Gesprek: ${fmtDate(s.gesprekDatum)}${s.gesprekDatum.length > 10 ? ' om ' + s.gesprekDatum.slice(11, 16) : ''}.`)),
       titled('Contact', s.contactpersoon && h('p', null, s.contactpersoon), s.contactEmail && h('p', null, h('a', { href: `mailto:${s.contactEmail}?subject=${encodeURIComponent((s.status === 'verstuurd' ? 'Opvolging sollicitatie ' : 'Sollicitatie ') + (s.functie || '') + ' - Remi')}` }, s.contactEmail)), s.bronUrl && h('p', null, ext(s.bronUrl)), hot && h('p', { class: 'small' }, 'Hotlist: ', h('a', { href: '#/hotlist', onClick: () => hotlistPeek(hot.id) }, hot.naam)), !s.contactpersoon && !s.contactEmail && !s.bronUrl && h('p', { class: 'muted small' }, 'Nog geen contactgegevens.')),
       titled('Documenten', doc ? h('div', { class: 'link-list' }, doc.cv && h('a', { class: 'btn btn--ghost btn--sm', href: `cv.html?variant=${encodeURIComponent(doc.slug)}`, target: '_blank' }, icon('print', 12), 'Cv-variant'), doc.brief && h('button', { class: 'btn btn--ghost btn--sm', onClick: () => copyText(doc.brief) }, icon('copy', 12), 'Brief kopiëren'), doc.mail && h('button', { class: 'btn btn--ghost btn--sm', onClick: () => copyText(doc.mail) }, icon('copy', 12), 'Mail kopiëren')) : h('p', { class: 'small muted' }, `Geen aangepaste documenten gevonden voor map "${s.documentSlug || slugify(s.organisatie)}". Vraag Claude om ze te maken met de sollicitatie-werkwijze; ze verschijnen na npm run build:data.`),
         opvolgTekst && ['verstuurd'].includes(s.status) && h('button', { class: 'btn btn--quiet btn--sm', onClick: () => copyText(opvolgTekst.trim()) }, icon('copy', 12), 'Kopieer opvolgmail-sjabloon')),
-      titled('Notities', h('textarea', { class: 'field', value: s.notities || '', onChange: e => upsert('sollicitaties', { id: s.id, notities: e.target.value }) })),
+      titled('Notities', h('textarea', { class: 'field', value: s.notities || '', dataset: { fk: 'sn-' + s.id }, onInput: e => upsert('sollicitaties', { id: s.id, notities: e.target.value }, { silent: true }) })),
       titled('Logboek', h('form', { class: 'form__actions', onSubmit: e => { e.preventDefault(); if (!logInput.value) return; upsert('sollicitaties', { id: s.id, logboek: [...(s.logboek || []), { datum: todayIso(), tekst: logInput.value }] }); } }, logInput, h('button', { class: 'btn btn--ghost', type: 'submit' }, 'Noteer')), h('ul', { class: 'log list' }, [...(s.logboek || [])].reverse().map(l => h('li', null, h('time', null, fmtDate(l.datum)), l.tekst)))),
       h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--ghost', onClick: () => sollicitatieForm(s) }, icon('edit', 14), 'Bewerken')),
     );
@@ -101,8 +100,8 @@ export function vacatures(r) {
       h('div', { class: 'meta' }, badge(v.status, v.status === 'omgezet' ? 'green' : v.status === 'interessant' ? 'orange' : 'grey'), v.bron && h('span', null, v.bron), v.deadline && h('span', { class: daysUntil(v.deadline) < 3 ? 'overdue' : '' }, `deadline ${fmtDate(v.deadline)}`)),
       h('p', { class: 'row-title' }, v.titel), h('p', null, v.organisatie, v.plaats ? `, ${v.plaats}` : ''), v.url && h('p', { class: 'small' }, ext(v.url)), v.tekst && h('p', { class: 'small muted', style: 'max-height:80px;overflow:hidden' }, v.tekst.slice(0, 260) + (v.tekst.length > 260 ? '…' : '')),
       h('div', { class: 'form__actions' }, v.status !== 'omgezet' && h('button', { class: 'btn btn--primary btn--sm', onClick: () => sollicitatieForm({ organisatie: v.organisatie, functie: v.titel, bronUrl: v.url, spoor: v.spoor || 'erfgoed', vacatureId: v.id, notities: v.tekst ? v.tekst.slice(0, 500) : '' }) }, 'Maak sollicitatie'), h('button', { class: 'btn btn--ghost btn--sm', onClick: () => vacatureForm(v) }, 'Bewerken'), v.status !== 'niet' && h('button', { class: 'btn btn--quiet btn--sm', onClick: () => upsert('vacatures', { id: v.id, status: 'niet' }) }, 'Niet interessant'))))) : h('div', { class: 'card empty' }, 'Nog geen bewaarde vacatures. Zoek via het tabblad Zoeken en plak een vacature met de knop in de werkbalk.');
-  } else if (tab === 'zoeken') inhoud = h('div', { class: 'stack stack--tight' },
-    h('div', { class: 'callout' }, h('p', null, 'De sites zelf kunnen vanuit deze app niet automatisch gelezen worden (dat vraagt een server met netwerktoegang, zie README). Deze knoppen openen de juiste zoekopdracht; wat interessant is, plak je hier terug als vacature.')),
+  } else if (tab === 'zoeken') inhoud = h('div', { class: 'stack' },
+    callout('violet', 'search', 'Zo werkt zoeken', h('p', null, 'De sites zelf kunnen vanuit deze app niet automatisch gelezen worden (dat vraagt een server met netwerktoegang, zie README). Deze knoppen openen de juiste zoekopdracht; wat interessant is, plak je hier terug als vacature.')),
     titled('VDAB, zoekopdrachten', h('div', { class: 'link-list' }, J.zoektermen.map(t => h('a', { class: 'btn btn--ghost btn--sm', href: `https://www.vdab.be/vindeenjob/jobs/${slugify(t)}-antwerpen-provincie`, target: '_blank', rel: 'noopener' }, t, icon('external', 12))))),
     ...J.bronnen.filter(b => b.zoeklinks?.length).map(b => titled(b.naam, h('div', { class: 'link-list' }, b.zoeklinks.map(z => h('a', { class: 'btn btn--ghost btn--sm', href: z.url, target: '_blank', rel: 'noopener' }, z.label, icon('external', 12)))))),
   );
@@ -126,31 +125,32 @@ function vacatureForm(init = {}) {
 }
 
 // ---------- Hotlist ----------
+const HOTKLEUR = { 'nog niet benaderd': 'grey', volgen: 'violet', 'in voorbereiding': 'violet', contact: 'orange', gesolliciteerd: 'orange', gesprek: 'green', 'geen match': 'grey' };
 const HOTSTATUS = [['nog niet benaderd', 'Nog niet benaderd'], ['volgen', 'Vacatures volgen'], ['in voorbereiding', 'In voorbereiding'], ['contact', 'Contact gelegd'], ['gesolliciteerd', 'Gesolliciteerd'], ['gesprek', 'Gesprek'], ['geen match', 'Geen match']];
 export function hotlist(r) {
-  const q = (r.tab || '').toLowerCase();
+  const q = (r.q || '').toLowerCase();
   const items = all('hotlist').filter(x => !q || `${x.naam} ${x.plaats} ${x.rollen}`.toLowerCase().includes(q)).sort((a, b) => (a.prioriteit || 9) - (b.prioriteit || 9));
-  const groups = SPOREN.map(([k, l]) => ({ key: k, label: l.toUpperCase(), tone: k === 'erfgoed' || k === 'cultuur' ? 'active' : k === 'onderwijs' ? 'contact' : 'archived', rows: items.filter(x => x.spoor === k), hideEmpty: true }));
+  const groups = SPOREN.map(([k, l]) => ({ key: k, label: l.toUpperCase(), tone: { erfgoed: 'orange', cultuur: 'violet', onderwijs: 'green', overheid: 'grey', sociaal: 'red', geschiedenis: 'orange', reserve: 'grey' }[k] || 'grey', rows: items.filter(x => x.spoor === k), hideEmpty: true }));
   const cols = [
     { label: 'Organisatie', width: 300, render: x => x.naam },
     { label: 'Plaats', width: 180, render: x => x.plaats },
     { label: 'Type', width: 180, render: x => h('span', { class: 'small muted' }, x.type) },
     { label: 'Prioriteit', width: 90, render: x => badge(String(x.prioriteit), x.prioriteit === 1 ? 'orange' : 'grey') },
-    { label: 'Status', width: 170, render: x => sel(HOTSTATUS, x.status, v => upsert('hotlist', { id: x.id, status: v }), `status status--${['gesolliciteerd', 'gesprek'].includes(x.status) ? 'active' : ['contact', 'in voorbereiding', 'volgen'].includes(x.status) ? 'contact' : 'archived'} status--select`) },
+    { label: 'Status', width: 170, render: x => sel(HOTSTATUS, x.status, v => upsert('hotlist', { id: x.id, status: v }), `status status--${HOTKLEUR[x.status] || 'grey'} status--select`) },
   ];
-  const body = h('div', null, h('p', { class: 'grid2__note' }, 'Organisaties waar Remi graag zou werken, per spoor, met vacaturepagina, contact en instap. Prioriteit 1 eerst. Klik op de pijl om te openen.'), grid(cols, groups, x => hotlistPeek(x.id)));
-  const tool = [h('label', { class: 'zonesearch' }, icon('search', 14), h('input', { placeholder: 'Zoek organisatie', value: r.tab || '', onInput: e => { location.hash = `#/hotlist?tab=${encodeURIComponent(e.target.value)}`; } })), h('button', { class: 'btn btn--primary', onClick: () => hotlistForm() }, icon('plus', 14), 'Organisatie toevoegen')];
-  return { chrome: { where: 'Alle organisaties', tool, tabLabel: 'Alle organisaties', view: `${items.length} organisaties`, viewIcon: 'star' }, body };
+  const body = grid(cols, groups, x => hotlistPeek(x.id));
+  const tool = [h('label', { class: 'zonesearch' }, icon('search', 14), h('input', { placeholder: 'Zoek organisatie', value: r.q, dataset: { fk: 'zoek-hotlist' }, onInput: e => { history.replaceState(null, '', `#/hotlist${e.target.value ? '?q=' + encodeURIComponent(e.target.value) : ''}`); window.dispatchEvent(new HashChangeEvent('hashchange')); } })), h('button', { class: 'btn btn--primary', onClick: () => hotlistForm() }, icon('plus', 14), 'Organisatie toevoegen')];
+  return { chrome: { where: 'Prioriteit 1 eerst, pijl opent de fiche', tool, tabLabel: 'Alle organisaties', view: `${items.length} organisaties`, viewIcon: 'star' }, body };
 }
 export function hotlistPeek(id) {
   openPeek(() => get('hotlist', id)?.naam || 'Organisatie', () => {
     const x = get('hotlist', id); if (!x) return h('p', null, 'Verwijderd.');
     const sols = all('sollicitaties').filter(s => s.hotlistId === x.id);
-    return h('div', { class: 'stack stack--tight' },
-      h('div', null, h('div', { class: 'meta' }, spoorBadge(x.spoor), badge(`prioriteit ${x.prioriteit}`, x.prioriteit === 1 ? 'orange' : 'grey'), h('span', null, x.type)), h('h1', { class: 'page-title', style: 'font-size:22px;margin-top:6px' }, x.naam), h('p', { class: 'muted' }, x.plaats)),
+    return h('div', { class: 'stack' },
+      h('div', null, h('div', { class: 'meta' }, spoorBadge(x.spoor), badge(`prioriteit ${x.prioriteit}`, x.prioriteit === 1 ? 'orange' : 'grey'), h('span', null, x.type)), h('h2', { class: 'section-title', style: 'margin-top:6px' }, x.naam), h('p', { class: 'muted' }, x.plaats)),
       titled('Links', h('div', { class: 'stack-sm' }, x.website && h('p', null, ext(x.website, 'Website')), x.vacatures && h('p', null, ext(x.vacatures, 'Vacaturepagina')), x.contact && h('p', { class: 'small' }, x.contact))),
       titled('Wat ze doen', h('p', null, x.rollen)), titled('Hoe instappen', h('p', null, x.instap)),
-      titled('Status', sel(HOTSTATUS, x.status, v => upsert('hotlist', { id: x.id, status: v })), h('textarea', { class: 'field', placeholder: 'Notities (contacten, data, indrukken)', value: x.notities || '', onChange: e => upsert('hotlist', { id: x.id, notities: e.target.value }) })),
+      titled('Status', sel(HOTSTATUS, x.status, v => upsert('hotlist', { id: x.id, status: v })), h('textarea', { class: 'field', placeholder: 'Notities (contacten, data, indrukken)', value: x.notities || '', dataset: { fk: 'hn-' + x.id }, onInput: e => upsert('hotlist', { id: x.id, notities: e.target.value }, { silent: true }) })),
       sols.length ? titled('Sollicitaties', h('ul', { class: 'list list--tight' }, sols.map(s => h('li', null, h('a', { href: '#/sollicitaties' }, s.functie || s.type), ' ', badge(s.status, STATUSKLEUR[s.status]))))) : null,
       h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--primary', onClick: () => sollicitatieForm({ organisatie: x.naam, spoor: x.spoor, type: 'spontaan', bronUrl: x.vacatures || x.website, hotlistId: x.id, contactEmail: (x.contact || '').match(/[\w.+-]+@[\w-]+\.[\w.]+/)?.[0] || '' }) }, icon('mail', 14), 'Spontane sollicitatie starten'), h('button', { class: 'btn btn--ghost', onClick: () => hotlistForm(x) }, icon('edit', 14), 'Bewerken')),
     );
@@ -183,9 +183,9 @@ export function verkenning(r) {
       h('p', { class: 'small' }, h('strong', null, 'Rollen: '), x.rollen.join(', ')), h('p', { class: 'small' }, h('strong', null, 'Werkgevers: '), x.werkgevers.join('; ')),
       h('p', { class: 'small muted' }, `Vereisten: ${x.vereisten}`), h('p', { class: 'small muted' }, `Knelpunt: ${x.knelpunt || 'niet'}. Loon: ${x.loon}.`),
       h('div', { class: 'form__actions' }, sel([['hoofdspoor', 'Hoofdspoor'], ['verkennen', 'Verkennen'], ['reserve', 'Reserve'], ['vrijwillig', 'Vrijwilligerswerk'], ['laag', 'Laag'], ['niet', 'Niet']], x.status, v => upsert('verkenning', { id: x.id, status: v }), 'field'), ),
-      h('textarea', { class: 'field', style: 'min-height:48px', placeholder: 'Notities van Remi of Giulia', value: x.notities || '', onChange: e => upsert('verkenning', { id: x.id, notities: e.target.value }) })))),
+      h('textarea', { class: 'field', style: 'min-height:48px', placeholder: 'Notities van Remi of Giulia', value: x.notities || '', dataset: { fk: 'vk-' + x.id }, onInput: e => upsert('verkenning', { id: x.id, notities: e.target.value }, { silent: true }) })))),
   );
-  return { chrome: { where: 'Werkvelden', tabs, accent: 'violet', view: `${items.length} werkvelden`, viewIcon: 'compass' }, body };
+  return { chrome: { where: 'Werkvelden', tabs, view: `${items.length} werkvelden`, viewIcon: 'compass' }, body };
 }
 
 // ---------- Opleidingen ----------
@@ -195,13 +195,13 @@ export function opleidingen(r) {
   const tabs = [['alles', 'Alles'], ['erfgoed', 'Erfgoed'], ['cultuur', 'Cultuur'], ['onderwijs', 'Onderwijs'], ['sociaal', 'Sociaal'], ['geschiedenis', 'Geschiedenis'], ['reserve', 'Reserve']].map(([k, l]) => ({ label: l, href: `#/opleidingen?tab=${k}`, active: tab === k }));
   const body = content(
     intro('Opleidingen', 'Routes om te leren met inkomen: korte certificaten, graduaten met OKOT, de restauratorroute, VDAB-opleidingen. Beslissing uiterlijk 30 juni 2027.'),
-    h('div', { class: 'callout' }, h('p', null, 'Drie manieren om te studeren met inkomen: (1) uitkering met VDAB-vrijstelling of OKOT, (2) herscholing via het ziekenfonds bij medisch vastgestelde ongeschiktheid voor het lasvak, (3) deeltijds werken met Vlaams opleidingsverlof of tijdskrediet. De voorwaarden staan in Rechten en in research/05.')),
+    callout('green', 'book', 'Studeren met inkomen', h('p', null, 'Drie manieren om te studeren met inkomen: (1) uitkering met VDAB-vrijstelling of OKOT, (2) herscholing via het ziekenfonds bij medisch vastgestelde ongeschiktheid voor het lasvak, (3) deeltijds werken met Vlaams opleidingsverlof of tijdskrediet. De voorwaarden staan in Rechten en in research/05.')),
     h('div', { class: 'grid-cards grid-cards--wide' }, items.map(x => h('div', { class: 'card card--pad' },
       h('div', { class: 'meta' }, spoorBadge(x.spoor), fit(x.fit), x.okot && badge('OKOT mogelijk', 'green'), x.knelpunt && badge(x.knelpunt, 'orange'), badge(x.status, 'grey')),
       h('p', { class: 'row-title' }, x.naam), h('p', { class: 'small muted' }, `${x.instelling}. ${x.duur}. ${x.formaat}.`), h('p', { class: 'small' }, x.toelichting),
       h('p', { class: 'small muted' }, `Kost: ${x.kost}. Financiering: ${x.financiering}.`), x.url && h('p', { class: 'small' }, ext(x.url)),
       h('div', { class: 'form__actions' }, sel([['aanbevolen', 'Aanbevolen'], ['kandidaat', 'Kandidaat'], ['verkennen', 'Verkennen'], ['langere termijn', 'Langere termijn'], ['gekozen', 'Gekozen'], ['niet', 'Niet']], x.status, v => upsert('opleidingen', { id: x.id, status: v }), 'field')),
-      h('textarea', { class: 'field', style: 'min-height:48px', placeholder: 'Notities', value: x.notities || '', onChange: e => upsert('opleidingen', { id: x.id, notities: e.target.value }) })))),
+      h('textarea', { class: 'field', style: 'min-height:48px', placeholder: 'Notities', value: x.notities || '', dataset: { fk: 'op-' + x.id }, onInput: e => upsert('opleidingen', { id: x.id, notities: e.target.value }, { silent: true }) })))),
   );
-  return { chrome: { where: 'Leren met inkomen', tabs, accent: 'green', view: `${items.length} routes`, viewIcon: 'book' }, body };
+  return { chrome: { where: 'Leren met inkomen', tabs, view: `${items.length} routes`, viewIcon: 'book' }, body };
 }

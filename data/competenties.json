@@ -1,0 +1,662 @@
+{
+  "inleiding": "Deze scan is voor jou, niet voor een werkgever: hij helpt je zien waar je sterk staat en voor welke competenties je al een goed voorbeeld hebt. Lees per competentie de vier gedragsindicatoren en geef jezelf een score van 1 tot 5, eerlijk en zonder je met anderen te vergelijken. Schrijf daarna één concreet voorbeeld volgens STARR: situatie, taak, actie, resultaat en reflectie. Het voorbeeld dat al klaarstaat is een aanzet op basis van je eigen loopbaan; vervang alles tussen vierkante haakjes door wat echt gebeurde, of schrijf een ander voorbeeld.",
+  "bron": "Gebaseerd op algemene competentiekaders die in Vlaanderen gebruikt worden, zoals het competentiewoordenboek van de Vlaamse overheid en de beroepskwalificaties waarop de beroepsprofielen van VDAB steunen, sterk vereenvoudigd. Dit is geen officiële test en levert geen attest op.",
+  "schaal": [
+    {
+      "waarde": 1,
+      "label": "Nog niet",
+      "uitleg": "Je herkent dit gedrag nauwelijks bij jezelf en vindt er geen voorbeeld van."
+    },
+    {
+      "waarde": 2,
+      "label": "Soms",
+      "uitleg": "Je toont dit gedrag af en toe, vooral wanneer iemand het vraagt of voordoet."
+    },
+    {
+      "waarde": 3,
+      "label": "Meestal",
+      "uitleg": "Je toont dit gedrag in de meeste situaties en kunt er een voorbeeld van geven."
+    },
+    {
+      "waarde": 4,
+      "label": "Sterk",
+      "uitleg": "Je toont dit gedrag ook in moeilijke situaties en anderen rekenen erop."
+    },
+    {
+      "waarde": 5,
+      "label": "Uitgesproken sterkte",
+      "uitleg": "Collega's komen hiervoor naar jou en je hebt er meerdere sterke voorbeelden van."
+    }
+  ],
+  "groepen": [
+    {
+      "id": "vakmanschap-en-techniek",
+      "titel": "Vakmanschap en techniek",
+      "uitleg": "Het vakmanschap dat je in het atelier, in de lasopleiding en aan de academie hebt opgebouwd en dat je naar elk spoor meeneemt.",
+      "competenties": [
+        {
+          "id": "technisch-inzicht",
+          "naam": "Technisch inzicht",
+          "definitie": "Begrijpen hoe materialen, machines en constructies werken en die kennis gebruiken om een werkstuk juist te maken of een probleem te verklaren.",
+          "indicatoren": [
+            "Leest technische tekeningen en schetsen vlot en juist.",
+            "Kiest materiaal, dikte en bewerking die passen bij de functie van een werkstuk.",
+            "Legt uit waarom een constructie werkt of waarom ze faalt.",
+            "Stelt een machine in op basis van het materiaal en het gewenste resultaat."
+          ],
+          "niveaus": {
+            "basis": "Voert een bewerking correct uit volgens een tekening of instructie.",
+            "gevorderd": "Kiest zelf de juiste aanpak en bewerkingsvolgorde voor een nieuw werkstuk.",
+            "expert": "Doorziet complexe of onbekende constructies en adviseert anderen over materiaal en techniek."
+          },
+          "vraag": "Denk aan een werkstuk waarbij je eerst moest begrijpen hoe iets technisch in elkaar zat voor je kon beginnen. Wat was de situatie, wat moest jij doen, hoe pakte je het aan, wat was het resultaat en wat neem je eruit mee?",
+          "voorbeeld": {
+            "situatie": "Een klant bracht een [kapotte console of beugel] binnen die al [aantal] keer op dezelfde plaats was gescheurd en vroeg om een identiek nieuw stuk.",
+            "taak": "Ik moest een vervangstuk tekenen en maken, maar wilde eerst begrijpen waarom het origineel faalde.",
+            "actie": "Ik bekeek de breuk, zag dat de scheur begon aan een lasnaad vlak bij een scherpe plooi en ging na welke belasting het stuk moest dragen. Ik stelde voor om [de plaatdikte te verhogen, de plooistraal te vergroten of de las te verplaatsen] en tekende het stuk opnieuw uit.",
+            "resultaat": "De klant ging akkoord en het nieuwe stuk is sinds [periode] in gebruik zonder nieuwe breuk.",
+            "reflectie": "Een stuk identiek namaken is soms de verkeerde opdracht. Ik vraag nu eerst waarom iets vervangen moet worden."
+          },
+          "cvZin": "Analyse van breuk en slijtage bij bestaande onderdelen en herontwerp van [aantal] vervangstukken in plaatmateriaal.",
+          "gesprekVraag": "Kunt u een voorbeeld geven van een technisch probleem dat u pas kon oplossen nadat u goed begreep hoe iets in elkaar zat?",
+          "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "reserve"]
+        },
+        {
+          "id": "ruimtelijk-inzicht",
+          "naam": "Ruimtelijk inzicht",
+          "definitie": "Een object of ruimte in drie dimensies voor je zien, vertrekkend van een tekening, een schets of een bestaand stuk.",
+          "indicatoren": [
+            "Zet een tekening in twee dimensies om in een beeld van het afgewerkte object.",
+            "Maakt aanzichten, doorsneden en uitslagen van een driedimensionale vorm.",
+            "Ziet vooraf waar onderdelen elkaar raken of in de weg zitten.",
+            "Schat maten en verhoudingen in een ruimte goed in."
+          ],
+          "niveaus": {
+            "basis": "Leest aanzichten en doorsneden van eenvoudige objecten correct.",
+            "gevorderd": "Tekent zelf samengestelde objecten uit in aanzichten, doorsneden en uitslagen.",
+            "expert": "Ontwerpt complexe objecten of interieurs en voorziet transport, montage en gebruik in de ruimte."
+          },
+          "vraag": "Beschrijf een moment waarop je een object of ruimte in je hoofd moest opbouwen voor het bestond, bijvoorbeeld een meubel, een plaatwerkstuk of een ontwerp aan de academie. Wat deed je en hoe liep het af?",
+          "voorbeeld": {
+            "situatie": "Mijn broer en ik kregen de vraag om een [meubel, bijvoorbeeld een kast] te maken voor een [smalle of schuine] ruimte bij [klant].",
+            "taak": "Ik moest een ontwerp maken dat in de ruimte paste en dat in delen door de deur en langs de trap naar binnen kon.",
+            "actie": "Ik mat de ruimte op, tekende het meubel in aanzichten en doorsnede en verdeelde het in modules die ter plaatse samengezet konden worden. De verbindingen tekende ik op ware grootte uit.",
+            "resultaat": "Het meubel ging in [aantal] delen naar binnen en paste bij de eerste montage, met een speling van [aantal] mm.",
+            "reflectie": "Ik denk nu van bij de eerste schets na over transport en montage, niet alleen over de vorm."
+          },
+          "cvZin": "Ontwerp en bouw van [aantal] meubels op maat in metaal en hout, van opmeting en werktekening tot montage ter plaatse.",
+          "gesprekVraag": "Hoe gaat u te werk wanneer u een ontwerp op papier moet omzetten naar een object dat in een bestaande ruimte moet passen?",
+          "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "reserve"]
+        },
+        {
+          "id": "nauwkeurigheid",
+          "naam": "Nauwkeurigheid",
+          "definitie": "Werk precies en foutloos uitvoeren, ook bij kleine details en herhaalde handelingen.",
+          "indicatoren": [
+            "Controleert maten en gegevens voor, tijdens en na een bewerking.",
+            "Merkt kleine afwijkingen op en meldt of corrigeert ze meteen.",
+            "Werkt volgens de afgesproken toleranties en procedures.",
+            "Blijft even precies bij routinewerk als bij nieuw werk."
+          ],
+          "niveaus": {
+            "basis": "Werkt volgens instructie en controleert het eigen werk op het einde.",
+            "gevorderd": "Bouwt controles in het werkproces in en haalt fouten eruit voor ze verder gaan.",
+            "expert": "Ontwerpt werkwijzen en controlemomenten die ook anderen helpen foutloos te werken."
+          },
+          "vraag": "Geef een voorbeeld van een keer dat een kleine fout of afwijking grote gevolgen kon hebben. Hoe merkte je ze op, wat deed je en wat was het resultaat?",
+          "voorbeeld": {
+            "situatie": "Een klant bezorgde maten voor [soort maatwerk, bijvoorbeeld een reeks bekledingspanelen] die in een bestaande constructie moesten passen.",
+            "taak": "Als tekenaar moest ik de productietekeningen maken, zodat de stukken zonder aanpassing geplaatst konden worden.",
+            "actie": "Ik vergeleek de opgegeven maten met de plannen, vond een verschil van [aantal] mm bij [onderdeel] en vroeg de klant om een controle ter plaatse voor we in productie gingen. Daarna controleerde ik van elke reeks het eerste stuk op maat.",
+            "resultaat": "De [aantal] stukken pasten bij de plaatsing zonder herwerk.",
+            "reflectie": "Ik vertrouw maten pas wanneer ze op twee manieren kloppen. Dat vraagt soms een extra vraag aan de klant, maar het voorkomt een volledige reeks afkeur."
+          },
+          "cvZin": "Opmaak van productietekeningen voor [aantal] maatwerkprojecten per jaar, met maatcontrole vooraf en controle van het eerste stuk in het atelier.",
+          "gesprekVraag": "Kunt u een situatie beschrijven waarin uw nauwkeurigheid een fout heeft voorkomen?",
+          "relevantVoor": ["erfgoed", "cultuur", "geschiedenis", "reserve"]
+        },
+        {
+          "id": "kwaliteitsgericht-werken",
+          "naam": "Kwaliteitsgericht werken",
+          "definitie": "Een resultaat nastreven dat aan de afgesproken norm voldoet en het werk verbeteren waar dat kan.",
+          "indicatoren": [
+            "Kent de kwaliteitseisen van een werkstuk en houdt eraan vast.",
+            "Houdt eigen of andermans werk tegen wanneer het niet voldoet.",
+            "Zoekt de oorzaak van een terugkerende fout in plaats van enkel het gevolg te herstellen.",
+            "Stelt verbeteringen voor aan werkwijze, gereedschap of materiaal."
+          ],
+          "niveaus": {
+            "basis": "Levert werk af dat aan de gevraagde norm voldoet.",
+            "gevorderd": "Bewaakt de kwaliteit van het werk van een team en stuurt bij waar nodig.",
+            "expert": "Zet kwaliteitsafspraken en controles op die de hele werking verbeteren."
+          },
+          "vraag": "Denk aan een moment waarop je werk hebt tegengehouden of opnieuw gedaan omdat het niet goed genoeg was. Wat gebeurde er, wat deed je en wat leverde het op?",
+          "voorbeeld": {
+            "situatie": "In het atelier moesten bij [soort werkstuk] regelmatig lasnaden bijgewerkt worden voor de stukken naar de klant konden.",
+            "taak": "Als verantwoordelijke atelier moest ik ervoor zorgen dat de stukken in één keer goed het atelier verlieten.",
+            "actie": "Ik bekeek met de collega's waar het misliep, zag dat de voorbereiding van de naden per persoon verschilde en legde een vaste werkwijze en een controlemoment voor het lassen vast.",
+            "resultaat": "Het aantal stukken dat bijgewerkt moest worden daalde van [aantal] naar [aantal] per [week of maand].",
+            "reflectie": "De oorzaak lag niet bij één persoon maar bij een onduidelijke afspraak. Ik kijk nu eerst naar het proces voor ik naar mensen kijk."
+          },
+          "cvZin": "Invoering van een vaste naadvoorbereiding en controle voor het lassen, waardoor het herwerk in het atelier daalde met [percentage].",
+          "gesprekVraag": "Hoe bewaakt u de kwaliteit van uw werk wanneer de tijdsdruk hoog is? Kunt u een concreet voorbeeld geven?",
+          "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "reserve"]
+        },
+        {
+          "id": "veiligheidsbewust-werken",
+          "naam": "Veiligheidsbewust werken",
+          "definitie": "Werken met oog voor de eigen veiligheid, die van collega's en die van het object en de omgeving.",
+          "indicatoren": [
+            "Draagt de juiste beschermingsmiddelen en controleert gereedschap voor gebruik.",
+            "Houdt de werkplek opgeruimd en veilig voor anderen.",
+            "Spreekt collega's rustig aan op onveilig gedrag.",
+            "Meldt gevaarlijke situaties en stelt een oplossing voor."
+          ],
+          "niveaus": {
+            "basis": "Volgt de veiligheidsregels van de werkplek.",
+            "gevorderd": "Ziet risico's vooraf en past de werkwijze aan voor het werk begint.",
+            "expert": "Zet veiligheidsafspraken op en zorgt dat een team ze ook echt toepast."
+          },
+          "vraag": "Beschrijf een situatie waarin je een risico zag voor jezelf, een collega of een werkstuk. Wat deed je en wat veranderde er daarna?",
+          "voorbeeld": {
+            "situatie": "Bij het plooien van lange platen op de kantbank stonden collega's soms binnen het bereik van de plaat wanneer die omhoog kwam.",
+            "taak": "Als verantwoordelijke atelier moest ik ervoor zorgen dat iedereen veilig kon werken zonder dat het werk stil kwam te liggen.",
+            "actie": "Ik besprak de situatie met de ploeg, markeerde een vrije zone rond de machine en sprak af dat lange stukken altijd met twee geplooid worden, met één persoon die de beweging aangeeft.",
+            "resultaat": "De afspraak staat nu in de werkinstructie en [resultaat, bijvoorbeeld geen bijna-ongevallen meer aan de kantbank sinds datum].",
+            "reflectie": "Ik zeg zulke dingen nu meteen, ook als het werk even moet stoppen. Een korte onderbreking weegt niet op tegen een ongeval."
+          },
+          "cvZin": "Invoering van veiligheidsafspraken aan de kantbank en in de laszone voor een ploeg van [aantal] collega's.",
+          "gesprekVraag": "Vertel eens over een keer dat u een collega moest aanspreken op onveilig werken. Hoe hebt u dat aangepakt?",
+          "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "reserve"]
+        },
+        {
+          "id": "creativiteit-en-vormgeving",
+          "naam": "Creativiteit en vormgeving",
+          "definitie": "Eigen ideeën ontwikkelen en ze vertalen naar een vorm die mooi, bruikbaar en maakbaar is.",
+          "indicatoren": [
+            "Maakt meerdere schetsen of varianten voor er een keuze valt.",
+            "Combineert materialen en technieken op een nieuwe manier.",
+            "Houdt tegelijk rekening met gebruik, maakbaarheid en uitstraling.",
+            "Licht ontwerpkeuzes toe met argumenten."
+          ],
+          "niveaus": {
+            "basis": "Werkt een ontwerp van iemand anders zorgvuldig uit en stelt kleine verbeteringen voor.",
+            "gevorderd": "Ontwerpt zelf objecten of interieurs vanuit een vraag en werkt ze uit tot ze maakbaar zijn.",
+            "expert": "Ontwikkelt een herkenbare ontwerptaal en begeleidt anderen in het ontwerpproces."
+          },
+          "vraag": "Kies een ontwerp waar je trots op bent, van de academie, met je broer of in het atelier. Wat was de vraag, welke keuzes maakte je, wat was het resultaat en wat zou je nu anders doen?",
+          "voorbeeld": {
+            "situatie": "In de opleiding meubel en interieur aan de academie kregen we de opdracht om [een zitmeubel, een kast of een ander object] te ontwerpen rond [thema van de opdracht].",
+            "taak": "Ik wilde een ontwerp maken dat mijn ervaring met plaatmateriaal combineerde met hout en dat ik ook zelf kon bouwen.",
+            "actie": "Ik maakte [aantal] schetsen en maquettes, koos voor een frame in geplooid staal met een [houten] zitting of blad en tekende de verbindingen zo dat het meubel demonteerbaar bleef.",
+            "resultaat": "Het meubel werd gebouwd en [beoordeling of plaats waar het getoond werd]. Het staat in mijn portfolio.",
+            "reflectie": "Mijn technische achtergrond maakt me vrij in het ontwerpen: ik weet wat maakbaar is en durf daardoor verder te gaan in de vorm."
+          },
+          "cvZin": "Ontwerp en realisatie van [aantal] meubels in staal en hout, opgenomen in portfolio [link].",
+          "gesprekVraag": "Kunt u een ontwerp toelichten dat u zelf hebt bedacht en gerealiseerd? Welke keuzes hebt u gemaakt en waarom?",
+          "relevantVoor": ["erfgoed", "cultuur", "onderwijs"]
+        }
+      ]
+    },
+    {
+      "id": "erfgoed-en-informatie",
+      "titel": "Omgaan met erfgoed en informatie",
+      "uitleg": "De houding die erfgoedinstellingen, archieven en collecties vragen: zorg voor het object, alles vastleggen en eerst onderzoeken.",
+      "competenties": [
+        {
+          "id": "respect-voor-het-object",
+          "naam": "Respect voor het object",
+          "definitie": "Een object, gebouw of document met zorg benaderen, met aandacht voor wat het is, wat het betekent en wat niet verloren mag gaan.",
+          "indicatoren": [
+            "Bekijkt en beschrijft de toestand van een object voor er iets aan gebeurt.",
+            "Kiest de kleinste ingreep die het doel bereikt.",
+            "Hanteert en verplaatst objecten met de juiste bescherming.",
+            "Vraagt raad wanneer een ingreep onomkeerbaar kan zijn."
+          ],
+          "niveaus": {
+            "basis": "Volgt de hanteerregels en vraagt toestemming voor elke ingreep.",
+            "gevorderd": "Beoordeelt zelf de toestand van een object en stelt een passende, beperkte behandeling voor.",
+            "expert": "Weegt behoud, gebruik en betekenis tegen elkaar af en onderbouwt een behandelvoorstel volgens de principes van conservering en restauratie."
+          },
+          "vraag": "Denk aan een moment waarop je iets moest herstellen of behandelen dat oud, fragiel of waardevol was voor iemand. Hoe benaderde je het, wat deed je wel en niet, en waarom?",
+          "voorbeeld": {
+            "situatie": "In het creatief fietsatelier kwam een [oude fiets of frame] binnen die de eigenaar wilde laten herstellen met zoveel mogelijk originele onderdelen.",
+            "taak": "Ik moest de fiets opnieuw bruikbaar maken zonder het karakter en de originele onderdelen te verliezen.",
+            "actie": "Ik fotografeerde de fiets voor ik iets demonteerde, bekeek per onderdeel of reinigen en herstellen volstond, en verving alleen wat niet meer veilig was. De vervangen onderdelen gaf ik mee aan de eigenaar.",
+            "resultaat": "De fiets reed opnieuw met [aantal of deel] van de originele onderdelen, en de eigenaar [reactie of vervolg].",
+            "reflectie": "Herstellen betekent ook kiezen wat je niet doet. Dat principe wil ik verder uitdiepen in erfgoed en restauratie."
+          },
+          "cvZin": "Herstel van [oude fietsen of frames] met behoud van originele onderdelen en fotografische registratie voor en na de ingreep.",
+          "gesprekVraag": "Hoe gaat u te werk wanneer u aan een object moet werken dat niet vervangen kan worden?",
+          "relevantVoor": ["erfgoed", "cultuur", "geschiedenis"]
+        },
+        {
+          "id": "documenteren-en-registreren",
+          "naam": "Documenteren en registreren",
+          "definitie": "Gegevens over objecten, werkzaamheden of beslissingen volledig, eenduidig en terugvindbaar vastleggen.",
+          "indicatoren": [
+            "Legt vast wat er gebeurt terwijl het gebeurt, niet achteraf uit het geheugen.",
+            "Gebruikt een vaste structuur voor namen, nummers en beschrijvingen.",
+            "Maakt foto's en notities die ook voor anderen bruikbaar zijn.",
+            "Houdt een registratie actueel en verbetert fouten zodra ze opduiken."
+          ],
+          "niveaus": {
+            "basis": "Vult bestaande registratieformulieren en systemen correct in.",
+            "gevorderd": "Zet zelf een registratiesysteem op voor een collectie of een reeks werkzaamheden.",
+            "expert": "Ontwikkelt registratieafspraken voor een organisatie en werkt met erkende standaarden voor collectieregistratie."
+          },
+          "vraag": "Beschrijf hoe je ooit informatie, beelden of werkzaamheden hebt vastgelegd zodat iemand anders ermee verder kon. Hoe pakte je het aan en wat was het resultaat?",
+          "voorbeeld": {
+            "situatie": "Voor Willy Van de Perre bouwde ik tussen 2017 en 2018 een fotoarchief op met [aantal] beelden die verspreid lagen over [dozen, mappen of dragers].",
+            "taak": "Het archief moest geordend, gedigitaliseerd en beschreven worden, zodat beelden later snel terug te vinden waren.",
+            "actie": "Ik legde een nummering en een vaste bestandsnaam vast, digitaliseerde de beelden in reeksen en beschreef ze met [datum, plaats, onderwerp] in [software of rekenblad]. Na elke reeks controleerde ik steekproefsgewijs of beeld, nummer en beschrijving overeenkwamen.",
+            "resultaat": "Het archief telde [aantal] beschreven beelden, en een gezocht beeld was binnen [tijd] terug te vinden.",
+            "reflectie": "Een vaste structuur vanaf de eerste dag bespaart later veel zoekwerk. Vandaag zou ik ook een erkende beschrijvingsstandaard gebruiken."
+          },
+          "cvZin": "Ordening, digitalisering en beschrijving van een fotoarchief van [aantal] beelden voor Willy Van de Perre (2017 tot 2018).",
+          "gesprekVraag": "Hoe zorgt u ervoor dat de informatie die u vastlegt ook voor collega's bruikbaar en terugvindbaar is?",
+          "relevantVoor": ["erfgoed", "cultuur", "geschiedenis"]
+        },
+        {
+          "id": "onderzoekend-werken",
+          "naam": "Onderzoekend werken",
+          "definitie": "Vragen stellen, bronnen en materialen onderzoeken en pas handelen wanneer je begrijpt hoe iets in elkaar zit.",
+          "indicatoren": [
+            "Zoekt informatie op in documentatie, archief, vakliteratuur of bij specialisten.",
+            "Vergelijkt verschillende verklaringen voor een probleem of vraag.",
+            "Test een veronderstelling op kleine schaal voor er een beslissing valt.",
+            "Legt vast wat er onderzocht is en wat de conclusie was."
+          ],
+          "niveaus": {
+            "basis": "Zoekt gericht informatie op wanneer een taak dat vraagt.",
+            "gevorderd": "Zet zelf een klein onderzoek op met bronnen, proeven en een onderbouwde conclusie.",
+            "expert": "Leidt onderzoek naar materialen, technieken of de geschiedenis van een object en deelt de resultaten met vakgenoten."
+          },
+          "vraag": "Denk aan een vraag of probleem waar je dieper in dook dan nodig was, omdat je het echt wilde begrijpen. Hoe ging je te werk en wat vond je?",
+          "voorbeeld": {
+            "situatie": "Bij het lassen van [dunne plaat in materiaal] trokken de stukken krom, waardoor ze nadien gericht moesten worden.",
+            "taak": "Ik wilde de oorzaak begrijpen en een werkwijze vinden die de vervorming beperkte.",
+            "actie": "Ik zocht in [vakliteratuur, documentatie van de leverancier of bij een ervaren lasser] naar oorzaken, testte op restmateriaal verschillende lasvolgordes en hechtpunten en noteerde per proef de vervorming.",
+            "resultaat": "Met [een aangepaste lasvolgorde en klemming] daalde het richtwerk van [tijd] naar [tijd] per stuk.",
+            "reflectie": "Ik werk graag zo: eerst begrijpen, dan proberen, dan vastleggen. Die houding wil ik meenemen naar onderzoek naar historische materialen en technieken."
+          },
+          "cvZin": "Proeven naar lasvervorming bij dunne plaat, met een aangepaste werkwijze die het richtwerk verminderde met [percentage].",
+          "gesprekVraag": "Kunt u een voorbeeld geven van een situatie waarin u eerst grondig onderzoek deed voor u een beslissing nam?",
+          "relevantVoor": ["erfgoed", "cultuur", "geschiedenis", "reserve"]
+        }
+      ]
+    },
+    {
+      "id": "samenwerken-en-overdragen",
+      "titel": "Samenwerken en overdragen",
+      "uitleg": "Hoe je omgaat met collega's, klanten, bezoekers en leerlingen, en hoe je je vak doorgeeft.",
+      "competenties": [
+        {
+          "id": "samenwerken",
+          "naam": "Samenwerken",
+          "definitie": "Met anderen aan een gezamenlijk resultaat werken, afspraken nakomen en elkaars sterktes benutten.",
+          "indicatoren": [
+            "Deelt informatie die collega's nodig hebben, ook zonder dat ze erom vragen.",
+            "Springt bij wanneer een collega vastloopt.",
+            "Houdt rekening met de werkwijze en het tempo van anderen.",
+            "Bespreekt meningsverschillen rustig en zoekt een oplossing die voor iedereen werkt."
+          ],
+          "niveaus": {
+            "basis": "Voert het eigen deel van een gezamenlijke taak correct en tijdig uit.",
+            "gevorderd": "Stemt actief af met collega's en andere afdelingen zodat het geheel vlot loopt.",
+            "expert": "Brengt mensen met verschillende achtergronden samen en maakt van een groep een team."
+          },
+          "vraag": "Vertel over een project waarin je samen met iemand iets maakte, bijvoorbeeld met je broer of met collega's in het atelier. Hoe verdeelden jullie het werk, wat liep goed, wat liep moeilijk en wat leerde je?",
+          "voorbeeld": {
+            "situatie": "Met mijn broer bouw ik meubels op maat. Voor [klant of project] moesten we [meubel] maken binnen [termijn], naast ons gewone werk.",
+            "taak": "Ik wilde het werk zo verdelen dat ieder deed waar hij het sterkst in is, zonder dat we elkaar in de weg liepen.",
+            "actie": "Ik nam het ontwerp, de werktekeningen en het metaalwerk op mij, mijn broer [zijn deel, bijvoorbeeld het houtwerk en de afwerking]. We spraken vaste momenten af om de stand van zaken te bekijken en beslisten samen over wijzigingen.",
+            "resultaat": "Het meubel werd op tijd geleverd en [reactie van de klant of vervolgopdracht].",
+            "reflectie": "Duidelijke afspraken over wie wat beslist leveren meer op dan veel overleg. Dat pas ik nu ook toe in het atelier."
+          },
+          "cvZin": "Ontwerp en bouw van meubels op maat in duo, met een vaste verdeling van ontwerp, metaalwerk en afwerking over [aantal] projecten.",
+          "gesprekVraag": "Kunt u een situatie beschrijven waarin de samenwerking met een collega moeizaam verliep? Wat hebt u toen gedaan?",
+          "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "sociaal", "geschiedenis", "reserve"]
+        },
+        {
+          "id": "communiceren",
+          "naam": "Communiceren",
+          "definitie": "Informatie helder en afgestemd op de ander overbrengen, mondeling en schriftelijk, en goed luisteren.",
+          "indicatoren": [
+            "Luistert tot de ander uitgesproken is en vat samen wat er gezegd is.",
+            "Past woordkeuze en detail aan aan de persoon, van collega tot klant.",
+            "Gebruikt schetsen, tekeningen of voorbeelden om iets duidelijk te maken.",
+            "Bevestigt belangrijke afspraken schriftelijk."
+          ],
+          "niveaus": {
+            "basis": "Geeft informatie correct door en vraagt na wanneer iets onduidelijk is.",
+            "gevorderd": "Legt technische zaken begrijpelijk uit aan mensen zonder vakkennis.",
+            "expert": "Brengt een boodschap over aan groepen of in moeilijke gesprekken en stemt ze af op elk publiek."
+          },
+          "vraag": "Denk aan een keer dat je iets technisch moest uitleggen aan iemand zonder vakkennis, zoals een klant. Hoe deed je dat en hoe wist je dat het begrepen was?",
+          "voorbeeld": {
+            "situatie": "Een klant wilde [een maatwerkstuk, bijvoorbeeld een trapleuning of een behuizing] maar had enkel een ruwe schets en geen technische kennis.",
+            "taak": "Ik moest samen met de klant achterhalen wat hij precies nodig had en dat vertalen naar een tekening die hij kon goedkeuren.",
+            "actie": "Ik stelde vragen over het gebruik, maakte een eenvoudige schets met de belangrijkste maten en overliep die met hem. Wat we afspraken, bevestigde ik per mail met de tekening in bijlage.",
+            "resultaat": "De klant keurde de tekening goed na [aantal] versies en het stuk werd zonder wijzigingen geplaatst.",
+            "reflectie": "Een tekening zegt een klant vaak meer dan een uitleg. Ik vraag nu op het einde altijd dat de klant zelf herhaalt wat er gemaakt wordt."
+          },
+          "cvZin": "Vertaling van [aantal] klantvragen per jaar naar goedgekeurde werktekeningen, met schriftelijke bevestiging van maten en afwerking.",
+          "gesprekVraag": "Hoe legt u een technisch onderwerp uit aan iemand die er niets van kent? Kunt u een voorbeeld geven?",
+          "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "sociaal", "geschiedenis"]
+        },
+        {
+          "id": "kennis-overdragen",
+          "naam": "Kennis overdragen",
+          "definitie": "Vakkennis en vaardigheden zo doorgeven dat een ander ze zelf kan toepassen.",
+          "indicatoren": [
+            "Deelt een taak op in stappen die een beginner kan volgen.",
+            "Doet voor, laat nadoen en geeft gerichte feedback.",
+            "Past tempo en uitleg aan aan wie leert.",
+            "Controleert of iemand het zelfstandig kan en laat pas dan los."
+          ],
+          "niveaus": {
+            "basis": "Legt een collega een taak uit wanneer die erom vraagt.",
+            "gevorderd": "Begeleidt nieuwe collega's of leerlingen gestructureerd tot ze zelfstandig werken.",
+            "expert": "Ontwerpt lessen, instructies of opleidingstrajecten en evalueert wat er geleerd is."
+          },
+          "vraag": "Beschrijf een keer dat je iemand iets aanleerde, in het atelier of daarbuiten. Hoe pakte je het aan, hoe ver stond die persoon op het einde en wat zou je anders doen?",
+          "voorbeeld": {
+            "situatie": "In het atelier begon [een nieuwe collega of jobstudent] zonder ervaring op de kantbank.",
+            "taak": "Als verantwoordelijke atelier moest ik ervoor zorgen dat die persoon binnen [aantal] weken zelfstandig en veilig eenvoudige stukken kon plooien.",
+            "actie": "Ik deelde het werk op in stappen: tekening lezen, gereedschap kiezen, machine instellen, proefplooi, meten. Ik deed elke stap eerst voor, liet ze daarna zelf uitvoeren en gaf na elke reeks korte feedback. De stappen zette ik op een fiche bij de machine.",
+            "resultaat": "Na [aantal] weken plooide mijn collega eenvoudige reeksen zelfstandig, en de fiche wordt nu gebruikt voor elke nieuwe collega.",
+            "reflectie": "Ik doe dit graag en geduld is hier een sterkte van mij. Ik wil het verder ontwikkelen, bijvoorbeeld in het onderwijs."
+          },
+          "cvZin": "Opleiding en begeleiding van [aantal] nieuwe collega's aan de kantbank en in de laszone, met een eigen stappenfiche per machine.",
+          "gesprekVraag": "Hoe zou u een leerling of een nieuwe collega een vaardigheid aanleren die u zelf al jaren beheerst?",
+          "relevantVoor": ["onderwijs", "erfgoed", "cultuur", "sociaal"]
+        },
+        {
+          "id": "dienstverlening",
+          "naam": "Dienstverlening",
+          "definitie": "Werken vanuit de vraag en de behoefte van klanten, bezoekers of gebruikers en hen goed verder helpen.",
+          "indicatoren": [
+            "Vraagt door tot de echte behoefte duidelijk is.",
+            "Komt beloftes na of meldt tijdig wanneer dat niet lukt.",
+            "Blijft vriendelijk en rustig, ook bij een ontevreden klant.",
+            "Stelt een betere oplossing voor wanneer de gevraagde niet de beste is."
+          ],
+          "niveaus": {
+            "basis": "Helpt klanten of bezoekers vriendelijk en correct volgens de afspraken.",
+            "gevorderd": "Denkt mee met de klant en stelt oplossingen voor die beter aansluiten bij de behoefte.",
+            "expert": "Verbetert de dienstverlening van de organisatie op basis van signalen van klanten of bezoekers."
+          },
+          "vraag": "Denk aan een klant, bezoeker of iemand die je hielp en die niet tevreden was of iets anders nodig had dan gevraagd. Wat deed je en hoe liep het af?",
+          "voorbeeld": {
+            "situatie": "In het creatief fietsatelier kwam een klant met de vraag om [een onderdeel] te vervangen, maar het eigenlijke probleem zat bij [ander onderdeel of de afstelling].",
+            "taak": "Ik moest de klant helpen met wat hij echt nodig had, zonder hem iets op te dringen.",
+            "actie": "Ik liet het probleem zien, legde de twee mogelijkheden en hun kostprijs uit en liet de klant kiezen. Na de herstelling liet ik hem de fiets meteen testen.",
+            "resultaat": "De klant koos voor [oplossing] en [kwam later terug of stuurde anderen door].",
+            "reflectie": "Goede dienstverlening is voor mij eerlijk uitleggen wat er aan de hand is. Dat wil ik ook doen voor bezoekers en gebruikers van een culturele organisatie."
+          },
+          "cvZin": "Advies en herstelling op maat voor [aantal] klanten per week in een creatief fietsatelier, met duidelijke uitleg van opties en kostprijs.",
+          "gesprekVraag": "Kunt u een situatie beschrijven waarin u een klant of bezoeker verder hielp dan strikt gevraagd was?",
+          "relevantVoor": ["cultuur", "sociaal", "erfgoed", "onderwijs"]
+        }
+      ]
+    },
+    {
+      "id": "organiseren",
+      "titel": "Organiseren",
+      "uitleg": "Hoe je werk voorbereidt, problemen oplost, resultaten haalt en een klein team aanstuurt.",
+      "competenties": [
+        {
+          "id": "plannen-en-organiseren",
+          "naam": "Plannen en organiseren",
+          "definitie": "Werk, mensen en middelen zo inplannen dat doelen op tijd en efficiënt gehaald worden.",
+          "indicatoren": [
+            "Zet taken in een logische volgorde en schat de benodigde tijd in.",
+            "Stemt de planning af op beschikbare mensen, machines en materiaal.",
+            "Houdt de planning bij en past ze aan wanneer er iets verandert.",
+            "Bereidt werk voor zodat anderen vlot kunnen starten."
+          ],
+          "niveaus": {
+            "basis": "Plant het eigen werk en houdt de afgesproken termijnen aan.",
+            "gevorderd": "Plant het werk van een team of atelier en stuurt bij wanneer er iets wijzigt.",
+            "expert": "Plant meerdere projecten tegelijk en bewaakt capaciteit en prioriteiten over een langere periode."
+          },
+          "vraag": "Beschrijf een drukke periode waarin je meerdere opdrachten of taken tegelijk moest plannen, bijvoorbeeld werk en academie. Hoe maakte je keuzes, wat was het resultaat en wat zou je anders doen?",
+          "voorbeeld": {
+            "situatie": "In het atelier liepen [aantal] opdrachten tegelijk, met verschillende leverdata en beperkte tijd op de kantbank en aan de lastafels.",
+            "taak": "Als verantwoordelijke atelier moest ik een weekplanning maken die alle leverdata haalde zonder dat collega's op materiaal of tekeningen moesten wachten.",
+            "actie": "Ik zette de opdrachten op een planbord per machine en per dag, zorgde dat tekeningen en materiaal klaarlagen voor de start en overliep de planning elke ochtend kort met de ploeg.",
+            "resultaat": "In die periode werden [aantal] van de [aantal] opdrachten op tijd geleverd en daalde de wachttijd aan de machines.",
+            "reflectie": "Een zichtbare planning helpt de ploeg meer dan een planning in mijn hoofd. Op dezelfde manier combineer ik mijn werk met de lessen aan de academie."
+          },
+          "cvZin": "Werkvoorbereiding en weekplanning van het atelier voor [aantal] collega's en [aantal] machines, met [percentage] van de opdrachten op tijd geleverd.",
+          "gesprekVraag": "Hoe organiseert u uw werk wanneer meerdere opdrachten tegelijk dringend zijn?",
+          "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "reserve"]
+        },
+        {
+          "id": "probleemoplossend-denken",
+          "naam": "Probleemoplossend denken",
+          "definitie": "Een probleem analyseren, de oorzaak vinden en een werkbare oplossing uitvoeren.",
+          "indicatoren": [
+            "Verzamelt eerst feiten en kiest pas dan een oplossing.",
+            "Maakt onderscheid tussen oorzaak en gevolg.",
+            "Bedenkt meer dan één oplossing en weegt ze tegen elkaar af.",
+            "Controleert achteraf of de oplossing werkt."
+          ],
+          "niveaus": {
+            "basis": "Lost eenvoudige, gekende problemen op volgens de gewone werkwijze.",
+            "gevorderd": "Lost nieuwe problemen zelfstandig op door ze te analyseren en oplossingen te testen.",
+            "expert": "Lost complexe problemen op die meerdere mensen of afdelingen raken en voorkomt dat ze terugkomen."
+          },
+          "vraag": "Denk aan een probleem in het atelier, bij een meubel of aan de academie waarvoor geen standaardoplossing bestond. Hoe ging je te werk, welke oplossing koos je en waarom?",
+          "voorbeeld": {
+            "situatie": "Een klant vroeg een [werkstuk] waarvan het ontwerp niet in één stuk te plooien was, omdat [de laatste plooi tegen de machine zou botsen].",
+            "taak": "Ik moest een oplossing vinden die het uitzicht en de sterkte behield en toch maakbaar was in ons atelier.",
+            "actie": "Ik tekende drie varianten uit: het stuk in twee delen maken en lassen, de plooivolgorde omkeren met ander gereedschap, of de vorm licht aanpassen. Ik besprak de voor- en nadelen met [collega of klant] en we kozen voor [gekozen variant].",
+            "resultaat": "Het stuk werd gemaakt binnen [termijn] en [vervolg, bijvoorbeeld een nieuwe reeks of hergebruik van de oplossing].",
+            "reflectie": "Ik zoek nu altijd minstens twee oplossingen voor ik er een voorstel. Het eerste idee is zelden het beste."
+          },
+          "cvZin": "Uitwerking van maakbare alternatieven voor [aantal] ontwerpen die in hun oorspronkelijke vorm niet te produceren waren.",
+          "gesprekVraag": "Kunt u een probleem beschrijven waarvoor u geen kant-en-klare oplossing had? Hoe bent u tot een oplossing gekomen?",
+          "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "sociaal", "reserve"]
+        },
+        {
+          "id": "resultaatgericht-werken",
+          "naam": "Resultaatgericht werken",
+          "definitie": "Gericht naar een duidelijk doel werken en volhouden tot het resultaat er is, binnen de afgesproken tijd en middelen.",
+          "indicatoren": [
+            "Maakt vooraf duidelijk wat het resultaat moet zijn.",
+            "Volgt de voortgang op en grijpt in wanneer het doel in gevaar komt.",
+            "Werkt taken volledig af, ook de laatste details.",
+            "Weegt tijd, kost en kwaliteit tegen elkaar af."
+          ],
+          "niveaus": {
+            "basis": "Werkt het eigen werk af binnen de afgesproken termijn.",
+            "gevorderd": "Stuurt het eigen werk en dat van anderen bij om een gezamenlijk doel te halen.",
+            "expert": "Stelt haalbare doelen voor een team of project en bewaakt ze tot het einde."
+          },
+          "vraag": "Vertel over een opdracht met een harde deadline of een duidelijk doel, in het atelier of aan de academie. Wat deed je om het te halen en wat was het resultaat?",
+          "voorbeeld": {
+            "situatie": "In het jaar grafiek aan de academie moest ik een reeks van [aantal] [prenten] afwerken voor [de beoordeling of een tentoonstelling]. De lessen waren 's avonds, dus de tijd om eraan te werken was beperkt.",
+            "taak": "Ik moest de reeks op tijd en op het gevraagde niveau klaar hebben.",
+            "actie": "Ik legde vast wat per week af moest zijn, maakte eerst proefdrukken om technische problemen vroeg te zien en schrapte [een onderdeel] toen bleek dat de kwaliteit anders zou lijden.",
+            "resultaat": "De reeks was op tijd klaar en [beoordeling of plaats waar ze getoond werd].",
+            "reflectie": "Vroeg testen en bewust schrappen hielpen me meer dan harder werken op het einde. Zo combineer ik nu ook werk en opleiding."
+          },
+          "cvZin": "Afwerking van [aantal] projecten in de avondopleiding aan de academie (meubel en interieur, grafiek, interieurvormgeving), naast het werk in het atelier.",
+          "gesprekVraag": "Kunt u een voorbeeld geven van een doel dat u hebt gehaald ondanks tegenslag of weinig tijd?",
+          "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "sociaal", "reserve"]
+        },
+        {
+          "id": "leidinggeven-aan-een-klein-team",
+          "naam": "Leidinggeven aan een klein team",
+          "definitie": "Een kleine groep collega's richting geven, het werk verdelen en mensen ondersteunen zodat het team goed functioneert.",
+          "indicatoren": [
+            "Verdeelt taken volgens ieders kunnen en de planning.",
+            "Geeft duidelijke instructies en gaat na of ze begrepen zijn.",
+            "Geeft collega's erkenning en opbouwende feedback.",
+            "Neemt een beslissing wanneer het team vastzit en legt ze uit."
+          ],
+          "niveaus": {
+            "basis": "Coördineert een taak met enkele collega's en houdt het overzicht.",
+            "gevorderd": "Stuurt een klein team dagelijks aan, verdeelt het werk en volgt collega's op.",
+            "expert": "Ontwikkelt een team op langere termijn, coacht mensen en bouwt een goede werksfeer uit."
+          },
+          "vraag": "Denk aan een moment waarop je als verantwoordelijke atelier een beslissing moest nemen of een collega moest bijsturen. Hoe pakte je het aan, hoe reageerde het team en wat leerde je over je eigen stijl?",
+          "voorbeeld": {
+            "situatie": "Sinds [jaar] ben ik verantwoordelijke van het atelier, met [aantal] collega's met wie ik daarvoor als gelijke samenwerkte.",
+            "taak": "Ik moest het werk verdelen en opvolgen, en tegelijk de goede verhouding met mijn collega's bewaren.",
+            "actie": "Ik voerde een kort overleg in bij de start van de dag, verdeelde het werk op basis van ervaring en voorkeur en sprak collega's individueel aan wanneer iets niet volgens afspraak liep, rustig en met een concreet voorbeeld. Ik bleef zelf meewerken, zodat ik zag wat er leefde.",
+            "resultaat": "[Resultaat, bijvoorbeeld minder fouten, een vlottere doorstroming of een collega die doorgroeide naar een nieuwe taak.]",
+            "reflectie": "Ik stuur vooral aan door voorbereiding, voorbeeld en rust. Ik leer nog om moeilijke punten sneller op tafel te leggen."
+          },
+          "cvZin": "Dagelijkse aansturing van een atelier met [aantal] collega's: werkverdeling, opvolging, kwaliteitscontrole en inwerken van nieuwe collega's.",
+          "gesprekVraag": "Hoe zou uw team uw manier van leidinggeven omschrijven? Kunt u een voorbeeld geven van een moeilijk moment?",
+          "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "sociaal", "reserve"]
+        }
+      ]
+    },
+    {
+      "id": "jezelf",
+      "titel": "Jezelf",
+      "uitleg": "Hoe je omgaat met verantwoordelijkheid, zelfstandigheid, leren, druk en verandering.",
+      "competenties": [
+        {
+          "id": "verantwoordelijkheid-nemen",
+          "naam": "Verantwoordelijkheid nemen",
+          "definitie": "Instaan voor je eigen werk en beslissingen, fouten toegeven en ze helpen oplossen.",
+          "indicatoren": [
+            "Komt afspraken na, ook wanneer niemand controleert.",
+            "Meldt een eigen fout meteen en stelt een oplossing voor.",
+            "Neemt taken op die blijven liggen.",
+            "Denkt na over de gevolgen van het eigen werk voor anderen."
+          ],
+          "niveaus": {
+            "basis": "Staat in voor de eigen taken en voert ze betrouwbaar uit.",
+            "gevorderd": "Neemt verantwoordelijkheid voor het resultaat van een groep of een proces.",
+            "expert": "Draagt eindverantwoordelijkheid voor belangrijke beslissingen en hun gevolgen."
+          },
+          "vraag": "Beschrijf een fout die je zelf maakte en die gevolgen had voor anderen. Wat deed je toen, wat was het resultaat en wat doe je sindsdien anders?",
+          "voorbeeld": {
+            "situatie": "Bij een reeks [werkstukken] merkte ik na de productie dat er een maatfout in mijn tekening stond, waardoor [aantal] stukken niet pasten.",
+            "taak": "Als tekenaar lag de fout bij mij. Ik moest ze melden en de gevolgen voor de klant en het atelier zo klein mogelijk houden.",
+            "actie": "Ik meldde het meteen aan [leidinggevende], zocht uit welke stukken nog te redden waren, paste de tekening aan en plande de nieuwe stukken zo in dat de levering zo weinig mogelijk vertraging kreeg.",
+            "resultaat": "De klant kreeg de volledige reeks [aantal] dagen later dan gepland, met een eerlijke uitleg, en [reactie van de klant].",
+            "reflectie": "Sindsdien laat ik de tekeningen voor een nieuwe reeks door een tweede persoon nakijken, of controleer ik ze zelf de volgende dag opnieuw."
+          },
+          "cvZin": "Eindverantwoordelijkheid voor tekeningen en werkvoorbereiding van [aantal] projecten per jaar, met een dubbele controle voor elke nieuwe reeks.",
+          "gesprekVraag": "Vertel eens over een fout die u zelf gemaakt hebt. Hoe bent u daarmee omgegaan?",
+          "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "sociaal", "geschiedenis", "reserve"]
+        },
+        {
+          "id": "zelfstandig-werken",
+          "naam": "Zelfstandig werken",
+          "definitie": "Een taak zonder voortdurende begeleiding voorbereiden, uitvoeren en afwerken, en weten wanneer je hulp vraagt.",
+          "indicatoren": [
+            "Begint aan een taak zonder op extra instructies te wachten wanneer het doel duidelijk is.",
+            "Zoekt eerst zelf informatie op en stelt dan gerichte vragen.",
+            "Neemt beslissingen binnen de eigen bevoegdheid.",
+            "Houdt de verantwoordelijke op de hoogte van de voortgang."
+          ],
+          "niveaus": {
+            "basis": "Voert gekende taken zelfstandig uit.",
+            "gevorderd": "Werkt nieuwe opdrachten zelfstandig uit, van voorbereiding tot afwerking.",
+            "expert": "Werkt zelfstandig aan complexe projecten en bepaalt zelf aanpak, planning en prioriteiten."
+          },
+          "vraag": "Denk aan een opdracht die je grotendeels alleen uitvoerde, zoals het fotoarchief, een eigen meubel of een ontwerp aan de academie. Hoe organiseerde je jezelf, wanneer vroeg je hulp en wat was het resultaat?",
+          "voorbeeld": {
+            "situatie": "In de opleiding interieurvormgeving kreeg ik een individuele opdracht om [een interieur voor een bestaande ruimte] te ontwerpen, met [aantal] begeleidingsmomenten.",
+            "taak": "Ik moest de opmeting, het vooronderzoek, het ontwerp en de presentatie zelf plannen en uitvoeren.",
+            "actie": "Ik maakte een planning tot aan de presentatie, deed de opmeting en het vooronderzoek zelf en bracht naar elk begeleidingsmoment concrete vragen en varianten mee in plaats van op richting te wachten.",
+            "resultaat": "Het ontwerp was op tijd klaar en [beoordeling of feedback van de docent].",
+            "reflectie": "Ik werk graag zelfstandig zolang het doel duidelijk is. Ik leerde de begeleidingsmomenten beter te benutten door er voorbereid naartoe te gaan."
+          },
+          "cvZin": "Zelfstandige uitwerking van [aantal] interieurontwerpen in de avondopleiding, van opmeting en vooronderzoek tot presentatie.",
+          "gesprekVraag": "Kunt u een voorbeeld geven van een opdracht die u volledig zelfstandig hebt uitgevoerd? Wanneer vroeg u hulp?",
+          "relevantVoor": ["erfgoed", "cultuur", "geschiedenis", "reserve"]
+        },
+        {
+          "id": "leervermogen",
+          "naam": "Leervermogen",
+          "definitie": "Nieuwe kennis en vaardigheden snel opnemen en toepassen, en leren uit ervaring en feedback.",
+          "indicatoren": [
+            "Zoekt actief nieuwe kennis en opleidingen op.",
+            "Past nieuwe kennis snel toe in het eigen werk.",
+            "Vraagt feedback en doet er iets mee.",
+            "Kijkt terug op het eigen werk om te zien wat beter kan."
+          ],
+          "niveaus": {
+            "basis": "Leert nieuwe taken aan wanneer ze uitgelegd worden.",
+            "gevorderd": "Leert zelfstandig nieuwe technieken en vakgebieden aan en past ze toe.",
+            "expert": "Bouwt kennis op in meerdere vakgebieden en verbindt ze tot nieuwe inzichten voor anderen."
+          },
+          "vraag": "Beschrijf iets wat je in korte tijd moest leren, bijvoorbeeld lassen, plooien of een tekenprogramma. Hoe leerde je het, hoe lang duurde het en hoe gebruik je het vandaag?",
+          "voorbeeld": {
+            "situatie": "Rond 2020 volgde ik een lasopleiding halfautomaat (MIG/MAG) en elektrode. In 2021 begon ik als technisch tekenaar en plooi- en lasoperator bij een bedrijf in maatwerk in plaatmateriaal.",
+            "taak": "Ik moest in korte tijd lassen, plooien op de kantbank en tekenen in [CAD-programma] onder de knie krijgen, op het niveau dat het atelier vraagt.",
+            "actie": "Ik oefende op restmateriaal, vroeg ervaren collega's om mijn lassen te beoordelen, leerde het tekenprogramma via [cursus, handleiding of zelfstudie] en hield bij wat ik fout deed en waarom.",
+            "resultaat": "Na [aantal] maanden werkte ik zelfstandig, en sinds [jaar] ben ik verantwoordelijke van het atelier.",
+            "reflectie": "Ik leer het best door te doen en te begrijpen waarom iets werkt. Daarom combineer ik werk altijd met een opleiding, nu interieurvormgeving aan de academie."
+          },
+          "cvZin": "Doorgroei van technisch tekenaar en plooi- en lasoperator naar verantwoordelijke atelier in [aantal] jaar, naast een avondopleiding aan de academie.",
+          "gesprekVraag": "Wat hebt u het afgelopen jaar bijgeleerd, en hoe gebruikt u dat vandaag in uw werk?",
+          "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "sociaal", "geschiedenis", "reserve"]
+        },
+        {
+          "id": "stressbestendigheid",
+          "naam": "Stressbestendigheid",
+          "definitie": "Rustig en doeltreffend blijven werken bij tijdsdruk, tegenslag of onverwachte situaties.",
+          "indicatoren": [
+            "Blijft rustig en vriendelijk wanneer het druk wordt.",
+            "Stelt prioriteiten wanneer alles tegelijk moet.",
+            "Laat de kwaliteit niet zakken onder tijdsdruk.",
+            "Zegt tijdig wanneer iets niet haalbaar is."
+          ],
+          "niveaus": {
+            "basis": "Blijft correct werken bij een gewone piek in het werk.",
+            "gevorderd": "Behoudt overzicht en kwaliteit bij langdurige drukte of onverwachte problemen.",
+            "expert": "Brengt rust en structuur in een team wanneer alles tegelijk misloopt."
+          },
+          "vraag": "Denk aan een moment waarop veel tegelijk misliep of dringend werd. Wat deed je eerst, hoe hield je het overzicht en hoe liep het af?",
+          "voorbeeld": {
+            "situatie": "Op een dag dat een dringende levering voor [klant] klaar moest zijn, viel [de kantbank of een andere machine] in panne.",
+            "taak": "Als verantwoordelijke atelier moest ik ervoor zorgen dat zoveel mogelijk van de levering doorging en dat de ploeg niet stilstond.",
+            "actie": "Ik belde de technieker, bekeek welke stukken al klaar waren en welke op een andere machine of later konden, zette de ploeg op het lassen en afwerken van wat wel kon en belde de klant met een eerlijke inschatting.",
+            "resultaat": "[Het grootste deel] van de levering vertrok op tijd, de rest volgde [termijn] later in overleg met de klant.",
+            "reflectie": "Onder druk word ik stiller en werk ik stap voor stap. Ik let er nu op dat ik de ploeg en de klant sneller informeer, zodat niemand hoeft te raden."
+          },
+          "cvZin": "Bijsturing van planning en ploeg bij machinepannes en dringende leveringen, met [percentage] van de leveringen toch op tijd.",
+          "gesprekVraag": "Hoe gaat u om met tijdsdruk? Kunt u een situatie beschrijven waarin veel tegelijk moest gebeuren?",
+          "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "sociaal", "reserve"]
+        },
+        {
+          "id": "flexibiliteit",
+          "naam": "Flexibiliteit",
+          "definitie": "Je aanpak aanpassen aan veranderende omstandigheden, taken of mensen, zonder het doel uit het oog te verliezen.",
+          "indicatoren": [
+            "Past planning of werkwijze aan wanneer de situatie verandert.",
+            "Neemt andere taken op wanneer dat nodig is.",
+            "Staat open voor andere werkwijzen en ideeën.",
+            "Werkt vlot met verschillende materialen, mensen en omgevingen."
+          ],
+          "niveaus": {
+            "basis": "Aanvaardt wijzigingen en past zich aan wanneer dat gevraagd wordt.",
+            "gevorderd": "Ziet veranderingen aankomen en past de eigen aanpak op tijd aan.",
+            "expert": "Helpt anderen zich aan te passen en maakt van een verandering een verbetering."
+          },
+          "vraag": "Beschrijf een situatie waarin een opdracht, een plan of je rol plots veranderde, bijvoorbeeld van operator naar verantwoordelijke, of een klant die halverwege iets anders wilde. Hoe pakte je dat aan?",
+          "voorbeeld": {
+            "situatie": "Halverwege de bouw van [een meubel] voor [klant] besliste de klant om [de afmetingen of het materiaal] te wijzigen, terwijl het frame al gelast was.",
+            "taak": "Ik moest de wijziging mogelijk maken zonder helemaal opnieuw te beginnen en zonder de afgesproken termijn ver te overschrijden.",
+            "actie": "Ik bekeek wat van het bestaande werk bruikbaar bleef, tekende een aangepaste versie waarin het frame hergebruikt kon worden en legde de gevolgen voor tijd en kost aan de klant voor we verder werkten.",
+            "resultaat": "De klant koos voor [de aangepaste versie], en het meubel werd geleverd met [aantal] dagen vertraging, met hergebruik van het gelaste frame.",
+            "reflectie": "Ik spreek nu vooraf af tot welk moment een klant nog kan wijzigen. Dat maakt flexibel zijn makkelijker voor beide kanten."
+          },
+          "cvZin": "Aanpassing van [aantal] lopende maatwerkprojecten aan gewijzigde klantvragen, met hergebruik van bestaand werk en duidelijke afspraken over termijn en kost.",
+          "gesprekVraag": "Kunt u een situatie beschrijven waarin u uw aanpak plots moest veranderen? Hoe reageerde u?",
+          "relevantVoor": ["erfgoed", "cultuur", "onderwijs", "sociaal", "reserve"]
+        }
+      ]
+    }
+  ]
+}

@@ -30,6 +30,7 @@ li { margin: .8mm 0; text-align: left; }
 .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10mm; }
 .rule { border: 0; border-top: 1px solid var(--rule); margin: 6mm 0 0; }
 .tag { display: inline-block; border: 1px solid var(--rule); border-radius: 3px; padding: 0 6px; margin: 1px 3px 1px 0; font-size: 8.5pt; }
+.page a { color: var(--copper); }
 .foot { position: absolute; bottom: 8mm; left: 22mm; right: 22mm; font-size: 7.5pt; color: var(--warm); display: flex; justify-content: space-between; }
 .bar { position: fixed; top: 0; left: 0; right: 0; background: #1c1917; color: #fff; padding: 8px 16px; font-size: 13px; display: flex; gap: 12px; align-items: center; z-index: 5; }
 .bar button { background: var(--copper); color: #fff; border: 0; border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
@@ -44,29 +45,40 @@ li { margin: .8mm 0; text-align: left; }
 <div class="page" id="page"></div>
 <script type="module">
 import { seed } from './js/seed.js';
+import { getCv, normaliseer } from './js/cvdata.js';
 const params = new URLSearchParams(location.search);
 const variant = params.get('variant');
-let cv = structuredClone(seed.cvMaster);
+if (params.get('embed')) { document.querySelector('.bar').remove(); document.querySelector('.spacer').remove(); document.body.style.background = '#e9e5df'; }
+let cv = getCv();
 if (variant) {
   const g = (seed.gegenereerd || []).find(x => x.slug === variant);
-  if (g?.cv) { cv = deepMerge(cv, g.cv); document.getElementById('barTitle').textContent = `Cv Remi, versie ${variant}`; }
-  else document.getElementById('barTitle').textContent = `Variant "${variant}" niet gevonden, master-cv getoond`;
+  if (g?.cv) { cv = normaliseer(deepMerge(cv, g.cv)); document.getElementById('barTitle').textContent = `Cv Remi, versie ${variant}`; }
+  else document.getElementById('barTitle').textContent = `Versie "${variant}" niet gevonden, master-cv getoond`;
 }
 function deepMerge(a, b) { const o = { ...a }; for (const [k, v] of Object.entries(b)) o[k] = v && typeof v === 'object' && !Array.isArray(v) && a[k] && typeof a[k] === 'object' && !Array.isArray(a[k]) ? deepMerge(a[k], v) : v; return o; }
-const esc = s => String(s ?? '').replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
-const p = cv.persoonlijk;
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const safeUrl = u => /^https?:\/\//i.test(String(u || '')) ? esc(u) : '';
+const p = cv.persoonlijk, inst = cv.instellingen;
+const contact = [p.adres, p.gsm, p.email, inst.geboortedatum && p.geboortedatum && 'geboren ' + p.geboortedatum, p.nationaliteit, p.rijbewijs, p.linkedin && 'LinkedIn: ' + p.linkedin].filter(Boolean);
+const ervaring = cv.werkervaring.map(w => `<div class="item"><h3>${esc(w.functie)}</h3><div class="waar">${esc([w.werkgever, w.plaats].filter(Boolean).join(', '))} · ${esc(w.periode)}</div><ul>${[...w.realisaties, ...w.taken].map(t => `<li>${esc(t)}</li>`).join('')}</ul>${w.tools ? `<div class="waar" style="margin-top:1mm">${esc(w.tools)}</div>` : ''}</div>`).join('');
+const portfolio = inst.portfolio && (p.portfolio || cv.portfolio.length) ? `<div class="label">Portfolio</div>${p.portfolio ? `<p>${safeUrl(p.portfolio) ? `<a href="${safeUrl(p.portfolio)}">${esc(p.portfolio)}</a>` : esc(p.portfolio)}</p>` : ''}<ul>${cv.portfolio.slice(0, 5).map(x => `<li>${esc(x.titel)}${[x.jaar, x.materiaal, x.techniek].filter(Boolean).length ? ` (${esc([x.jaar, x.materiaal, x.techniek].filter(Boolean).join(', '))})` : ''}</li>`).join('')}</ul>` : '';
+const competenties = inst.competenties && cv.competenties.length ? `<div class="label">Competenties</div><ul>${cv.competenties.map(c => `<li>${esc(c.tekst)}</li>`).join('')}</ul>` : '';
+const referenties = inst.referenties && cv.referenties.some(r => r.toestemming) ? cv.referenties.filter(r => r.toestemming).map(r => `<p>${esc(r.naam)}, ${esc(r.relatie)}<br><span class="waar">${esc(r.contact)}</span></p>`).join('') : '<p>Op aanvraag</p>';
 document.getElementById('page').innerHTML = `
-  <div class="band"><span class="dot"></span><h1>${esc(p.naam)}</h1><div class="sub">${esc(cv.titel || 'Lasser en metaalconstructeur, student interieurvormgeving')}</div></div>
-  <div class="contact">${[p.adres, p.gsm, p.email, p.geboortedatum && 'geboren ' + p.geboortedatum, p.nationaliteit, p.rijbewijs, p.portfolio && 'Portfolio: ' + p.portfolio].filter(Boolean).map(esc).map(x => `<span>${x}</span>`).join('')}</div>
-  <div class="label">Profiel</div><p class="profiel">${esc(cv.profiel)}</p>
-  <div class="label">Werkervaring</div>
-  ${cv.werkervaring.map(w => `<div class="item"><h3>${esc(w.functie)}</h3><div class="waar">${esc(w.werkgever)} · ${esc(w.periode)}</div><ul>${w.taken.map(t => `<li>${esc(t)}</li>`).join('')}</ul></div>`).join('')}
+  <div class="band"><span class="dot"></span><h1>${esc(p.naam)}</h1><div class="sub">${esc(cv.titel || seed.cvMaster?.titel || '')}</div></div>
+  <div class="contact">${contact.map(x => `<span>${esc(x)}</span>`).join('')}</div>
+  ${cv.profiel ? `<div class="label">Profiel</div><p class="profiel">${esc(cv.profiel)}</p>` : ''}
+  <div class="label">Werkervaring</div>${ervaring}
   <div class="cols">
-    <div><div class="label">Opleiding</div>${cv.opleiding.map(o => `<div class="item"><h3>${esc(o.titel)}</h3><div class="waar">${esc(o.instelling)} · ${esc(o.periode)}</div></div>`).join('')}
-      <div class="label">Certificaten</div><ul>${cv.certificaten.map(c => `<li>${esc(c)}</li>`).join('')}</ul></div>
+    <div><div class="label">Opleiding</div>${cv.opleiding.map(o => `<div class="item"><h3>${esc(o.titel)}</h3><div class="waar">${esc(o.instelling)} · ${esc(o.periode)}</div>${o.toelichting ? `<div class="waar">${esc(o.toelichting)}</div>` : ''}</div>`).join('')}
+      ${cv.certificaten.length ? `<div class="label">Certificaten</div><ul>${cv.certificaten.map(c => `<li>${esc(c)}</li>`).join('')}</ul>` : ''}
+      ${portfolio}</div>
     <div><div class="label">Vaardigheden</div><ul>${cv.vaardigheden.map(c => `<li>${esc(c)}</li>`).join('')}</ul>
+      ${competenties}
       <div class="label">Talen</div><div>${cv.talen.map(t => `<span class="tag">${esc(t.taal)}: ${esc(t.niveau)}</span>`).join('')}</div>
-      ${cv.interesses ? `<div class="label">Interesses</div><p>${esc(cv.interesses)}</p>` : ''}</div>
+      ${cv.extra.length ? `<div class="label">Extra</div><ul>${cv.extra.map(c => `<li>${esc(c)}</li>`).join('')}</ul>` : ''}
+      ${cv.interesses ? `<div class="label">Interesses</div><p>${esc(cv.interesses)}</p>` : ''}
+      <div class="label">Referenties</div>${referenties}</div>
   </div>
   <div class="foot"><span>${esc(p.naam)}</span><span>Cv, ${new Date().toLocaleDateString('nl-BE', { month: 'long', year: 'numeric' })}</span></div>`;
 </script>

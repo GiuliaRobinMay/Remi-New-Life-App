@@ -61,13 +61,17 @@ export function fit(n) { const w = h('span', { class: 'fit', title: `Fit ${n} op
 const maanden = ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
 export function fmtDate(iso, withYear = true) {
   if (!iso) return '';
-  const d = new Date(iso + (iso.length === 10 ? 'T00:00:00' : ''));
+  const d = new Date(String(iso).slice(0, 10) + 'T00:00:00');
   if (isNaN(d)) return iso;
   return `${d.getDate()} ${maanden[d.getMonth()]}${withYear ? ' ' + d.getFullYear() : ''}`;
 }
-export function todayIso() { const d = new Date(); return d.toISOString().slice(0, 10); }
-export function addDays(iso, n) { const d = new Date(iso + 'T00:00:00'); d.setDate(d.getDate() + n); return d.toISOString().slice(0, 10); }
-export function daysUntil(iso) { const a = new Date(todayIso() + 'T00:00:00'), b = new Date(iso + 'T00:00:00'); return Math.round((b - a) / 86400000); }
+// Datums altijd in lokale tijd (Belgie); nooit via toISOString, dat is UTC en schuift een dag op.
+const pad2 = n => String(n).padStart(2, '0');
+export function isoLocal(d) { return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`; }
+export function parseLocal(iso) { return new Date(String(iso).slice(0, 10) + 'T00:00:00'); }
+export function todayIso() { return isoLocal(new Date()); }
+export function addDays(iso, n) { const d = parseLocal(iso); d.setDate(d.getDate() + n); return isoLocal(d); }
+export function daysUntil(iso) { if (!iso) return NaN; return Math.round((parseLocal(iso) - parseLocal(todayIso())) / 86400000); }
 export function uid() { return Math.random().toString(36).slice(2, 8) + Date.now().toString(36).slice(-4); }
 export function slugify(s) { return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
 export function md(text) {
@@ -93,7 +97,15 @@ export function toast(msg) {
   clearTimeout(t._tm); t._tm = setTimeout(() => t.classList.remove('toast--show'), 1800);
 }
 export async function copyText(text) {
-  try { await navigator.clipboard.writeText(text); toast('Gekopieerd'); } catch { toast('Kopiëren lukte niet'); }
+  try { await navigator.clipboard.writeText(text); toast('Gekopieerd'); return; } catch { /* valt terug hieronder */ }
+  // Terugval voor http-adressen of oudere browsers: tijdelijk tekstvak en execCommand.
+  const ta = h('textarea', { style: 'position:fixed;top:-1000px;opacity:0', readonly: true }); ta.value = text; document.body.append(ta); ta.select();
+  let ok = false; try { ok = document.execCommand('copy'); } catch { ok = false; }
+  ta.remove();
+  if (ok) { toast('Gekopieerd'); return; }
+  // Laatste redmiddel: toon de tekst geselecteerd zodat je hem zelf kunt kopiëren.
+  const box = h('div', { class: 'copybox' }, h('p', { class: 'small' }, 'Kopiëren lukte niet automatisch. Selecteer de tekst en kopieer hem zelf.'), h('textarea', { class: 'field', readonly: true, rows: 12 }), h('button', { class: 'btn btn--ghost', onClick: () => box.remove() }, 'Sluiten'));
+  box.querySelector('textarea').value = text; document.body.append(box); box.querySelector('textarea').select();
 }
 export function download(filename, text, type = 'application/json') {
   const a = h('a', { href: URL.createObjectURL(new Blob([text], { type })), download: filename });

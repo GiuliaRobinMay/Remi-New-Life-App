@@ -21,7 +21,7 @@ De app staat in de map `app/`. De root bevat een `index.html` die doorstuurt naa
 - `research/` bevat de negen onderzoeksdocumenten van 27 september 2026 met bronnen en verificatiestatus.
 
 ## Stijl
-De app gebruikt de klassennamen van Giulia's Studiolo-thema (`.shell`, `.sidebar`, `.chrome`, `.tabs`, `.grid2`, `.peek`, `.card`, `.badge`, `.btn`, `accent-*`). Het meegeleverde `app/css/studiolo-theme.css` is een voorlopige implementatie: vervang het door het echte `studiolo-theme.css` en de app neemt de echte stijl over. `app/css/app.css` bevat alleen aanvullingen.
+`app/css/studiolo-theme.css` is het echte Studiolo-thema van Giulia en wordt niet bewerkt. `app/css/app.css` bevat alleen aanvullingen (links, peek open en dicht, formulieren, mobiel gedrag, Cv-atelier).
 
 ## Vacatures automatisch ophalen (later)
 Vanuit de browser kunnen jobsites niet gelezen worden. Een kleine server met netwerktoegang kan dat wel: VDAB heeft een gratis Open Services API (developer.vdab.be, product Vacatures), en cultuurjobs.be, faro.be, job.antwerpen.be, jobs.provincieantwerpen.be, Randstad en Accent zijn serverzijde leesbaar. Indeed en LinkedIn alleen als doorkliklinks. Zie `research/03-jobbronnen-en-hotlist.md`.

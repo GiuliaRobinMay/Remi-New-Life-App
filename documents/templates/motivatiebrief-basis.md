@@ -21,7 +21,7 @@ Geachte mevrouw [Naam], / Geachte heer [Naam], / Geachte mevrouw, geachte heer,
 
 [Inleiding met haak: hoe ik de vacature of organisatie ken, één concreet detail over hun werk dat mij aanspreekt.]
 
-Als lasser met vijf jaar ervaring in aluminium- en staalconstructies op maat ken ik het werk van plan tot afwerking. Ik las TIG en MIG, lees technische tekeningen en werk graag aan stukken die precies moeten zijn en lang moeten meegaan. Naast mijn werk volg ik een opleiding interieurvormgeving aan de Academie in Antwerpen en bouw ik meubels. Die combinatie van ambacht en ontwerp wil ik inzetten voor [erfgoed en restauratie / de ateliers van uw huis / het doorgeven van het vak].
+Als technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal ken ik het werk van tekening tot afwerking. Ik teken uit, plooi en las (halfautomaat en elektrode [TIG bevestigen]), stuur het atelier aan en werk graag aan stukken die precies moeten zijn en lang moeten meegaan. Daarvoor bouwde ik een fotoarchief op en werkte ik in een creatief fietsatelier. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen, eerst meubel en interieur, nu interieurvormgeving, en bouw ik meubels. Die combinatie van ambacht en ontwerp wil ik inzetten voor [erfgoed en restauratie / de ateliers van uw huis / het doorgeven van het vak].
 
 [Waarom deze organisatie: twee of drie zinnen die tonen dat ik weet wat zij doen en waarom dat bij mij past.]
 

@@ -119,6 +119,8 @@ function render() {
   renderChrome(out.chrome || {}, r.id);
   portal.replaceChildren(out.body);
   const last = render.last || {};
+  // Naar een andere pagina: een open zijpaneel hoort bij de vorige pagina en gaat dicht.
+  if (last.id && r.id !== last.id && peek.classList.contains('peek--open')) closePeek();
   if (r.id !== last.id || r.tab !== last.tab) window.scrollTo(0, 0);
   render.last = r;
   restoreFocus(focus);

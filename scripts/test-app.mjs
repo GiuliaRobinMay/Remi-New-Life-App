@@ -12,15 +12,18 @@ const base = `http://localhost:${port}/`;
 const fouten = []; const geslaagd = [];
 const check = (naam, ok, detail = '') => (ok ? geslaagd : fouten).push(`${naam}${detail ? ': ' + detail : ''}`);
 const VIEWS = { overzicht: [], stappenplan: ['open', 'klaar', 'alles'], planning: [], rechten: ['kern', 'scenarios', 'opzeg', 'werkloosheid', 'steun', 'check'], sollicitaties: [], vacatures: ['bewaard', 'zoeken', 'bronnen'], hotlist: [], verkenning: ['alles', 'erfgoed', 'sociaal'], opleidingen: ['alles', 'erfgoed'], cv: ['start', 'gegevens', 'profiel', 'ervaring', 'opleiding', 'vaardigheden', 'competenties', 'portfolio', 'extra', 'zelftests', 'voorbeelden', 'gids', 'afdrukken'], vragenlijst: ['praktisch', 'werk'], profiel: ['samenvatting', 'tests', 'herzieningen'], documenten: ['cv', 'sjablonen', 'vdab', 'gegenereerd'] };
+let browser;
 try {
   const { chromium } = await import('playwright');
-  const browser = await chromium.launch({ executablePath: chromiumPath() });
+  browser = await chromium.launch({ executablePath: chromiumPath() });
   for (const [label, viewport] of [['desktop', { width: 1366, height: 860 }], ['phone', { width: 390, height: 844 }]]) {
     const ctx = await browser.newContext({ viewport, timezoneId: 'Europe/Brussels', locale: 'nl-BE' });
+    // Externe verzoeken (Google Fonts) blokkeren: offline hangen ze tot een time-out en vertragen networkidle.
+    await ctx.route(url => !url.href.startsWith(base), r => r.abort());
     const page = await ctx.newPage();
     const consoleErr = [];
     page.on('pageerror', e => consoleErr.push(e.message));
-    page.on('console', m => { if (m.type() === 'error' && !/ERR_CERT|fonts\.g/.test(m.text())) consoleErr.push(m.text()); });
+    page.on('console', m => { if (m.type() === 'error' && !/ERR_CERT|ERR_FAILED|fonts\.g/.test(m.text())) consoleErr.push(m.text()); });
     for (const [v, tabs] of Object.entries(VIEWS)) {
       for (const t of tabs.length ? tabs : [null]) {
         await page.goto(`${base}#/${v}${t ? '?tab=' + t : ''}`, { waitUntil: 'networkidle' });
@@ -116,6 +119,6 @@ try {
   }
   await browser.close();
 } catch (e) { fouten.push('script: ' + e.message); }
-finally { server.kill(); }
+finally { await browser?.close().catch(() => {}); server.kill(); }
 console.log(`Geslaagd: ${geslaagd.length}`);
 if (fouten.length) { console.log(`Mislukt: ${fouten.length}`); fouten.forEach(f => console.log(' - ' + f)); process.exitCode = 1; } else console.log('Alles in orde.');

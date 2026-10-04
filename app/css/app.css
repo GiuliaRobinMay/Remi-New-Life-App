@@ -205,7 +205,11 @@ details.plain > summary::-webkit-details-marker { display: none; }
 .cal__ev--violet { background: color-mix(in srgb, var(--brand-violet) 12%, white); color: var(--brand-violet-deep); }
 .cal__ev--red { background: color-mix(in srgb, var(--brand-red) 12%, white); color: var(--brand-red-deep); }
 .cal__ev--grey { background: var(--grey-100); color: var(--ink-soft); }
-.cal__ev.is-klaar, li.is-klaar a { text-decoration: line-through; }
+.cal__ev.is-klaar { text-decoration: line-through; opacity: .75; }
+li.is-klaar .agenda__naam, li.is-klaar .agenda__naam a { text-decoration: line-through; color: var(--muted); }
+.check-plek { width: 18px; flex: 0 0 auto; }
+.maand__stappen summary { cursor: pointer; }
+.maand__stappen .list { margin-top: 6px; }
 .cal__meer { font-size: 11px; color: var(--muted); padding: 0 6px; }
 @media (max-width: 720px) {
   .maand__last { grid-template-columns: 1fr 1fr; }

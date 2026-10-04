@@ -130,6 +130,15 @@ try {
       await page.goto(`${base}#/stappenplan?tab=open&wie=giulia`, { waitUntil: 'networkidle' });
       const wieTest = await page.evaluate(() => ({ actief: document.querySelector('.chips .chip--active')?.textContent || '', badges: [...document.querySelectorAll('.content .list .meta .badge:first-child')].map(b => b.textContent) }));
       check('stappen filteren op Giulia', /^Giulia/.test(wieTest.actief) && wieTest.badges.length > 0 && wieTest.badges.every(b => b === 'Giulia'), JSON.stringify(wieTest));
+      // Afvinken in Planning: blijft zichtbaar en doorstreept
+      await page.goto(`${base}#/planning?tab=fasen`, { waitUntil: 'networkidle' });
+      const eerste = page.locator('.content .list li:has(input.check)').first();
+      const naamVoor = await eerste.locator('.agenda__naam').textContent();
+      await eerste.locator('input.check').check();
+      await page.waitForTimeout(200);
+      const na = await page.evaluate(n => { const li = [...document.querySelectorAll('.content .list li')].find(x => x.querySelector('.agenda__naam')?.textContent === n); return li ? { klaar: li.classList.contains('is-klaar'), streep: getComputedStyle(li.querySelector('.agenda__naam')).textDecorationLine } : null; }, naamVoor);
+      check('afgevinkte stap blijft zichtbaar en doorstreept', na && na.klaar && na.streep.includes('line-through'), JSON.stringify(na));
+      await page.evaluate(async n => { const st = await import('./js/store.js'); const s = st.all('stappenplan').find(x => x.titel === n); if (s) st.upsert('stappenplan', { id: s.id, status: 'open' }); }, naamVoor);
       // Eigen afspraak in de agenda
       await page.goto(`${base}#/planning?tab=kalender&m=2026-10`, { waitUntil: 'networkidle' });
       await page.click('text=Afspraak toevoegen');

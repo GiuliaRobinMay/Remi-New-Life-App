@@ -132,14 +132,14 @@
     "OKOT: of het educatief graduaat ook in Antwerpen (AP, KdG) als OKOT loopt, en of een OKOT meetelt als beroepsopleiding voor de verlenging met 12 maanden.",
     "Premies herscholing via het ziekenfonds in 2026.",
     "Of sollicitatieverlof ook geldt bij opzeg door de werknemer.",
-    "Verwittiging: werd ze tijdig meegedeeld en staat de sanctie in het arbeidsreglement? Hoe zwaar weegt ze bij een later ontslag, en is een schriftelijk antwoord nu aangewezen?"
+    "Verwittiging: werd ze tijdig meegedeeld (reeks of afzonderlijke feiten) en staat de sanctie in het arbeidsreglement? Is een schriftelijk antwoord nu aangewezen? Welk statuut en paritair comité geldt (eindejaarspremie bij ontslag om dringende reden)?"
   ],
   "verwittiging": {
     "wat": "Een verwittiging is een tuchtsanctie: de werkgever legt schriftelijk vast dat je te laat kwam en vraagt dat het niet meer gebeurt. Het is nog geen ontslag. Als de brief een ontslag om dringende reden vermeldt, betekent dat: bij herhaling overweegt de werkgever je te ontslaan zonder opzegtermijn.",
     "risico": [
       "Ontslag om dringende reden betekent: geen opzegtermijn en geen opzegvergoeding. De werkgever moet het ontslag geven binnen 3 werkdagen nadat hij de feiten voldoende kent, en de reden binnen 3 werkdagen daarna aangetekend meedelen.",
       "Herhaald te laat komen na een schriftelijke verwittiging wordt door rechtbanken soms aanvaard als dringende reden. Een eerste verwittiging is een stap in een dossier: de volgende keer telt zwaarder.",
-      "Na zo'n ontslag kan de RVA oordelen dat je werkloos bent door eigen schuld. Gevolg: een verwittiging van de RVA, of minstens 4 weken geen uitkering (de bronnen noemen als maximum 26 of 52 weken; laat ACV de huidige regel bevestigen). In die weken heb je geen inkomen. De RVA beslist zelf, los van wat de werkgever op de C4 zet, en hoort je altijd eerst. ACV kan je bijstaan en je kan de beslissing aanvechten bij de arbeidsrechtbank.",
+      "Na zo'n ontslag kan de RVA oordelen dat je werkloos bent door eigen schuld. Gevolg: een verwittiging, of 4 tot 26 weken geen uitkering, eventueel (deels) met uitstel. De RVA beslist zelf, los van wat de werkgever op de C4 zet, en hoort je altijd eerst. ACV kan je bijstaan en je kan de beslissing aanvechten bij de arbeidsrechtbank.",
       "Ook een gewoon ontslag met opzegtermijn kan bij de RVA tot een sanctie leiden als de werkgever op de C4 'herhaald te laat komen' als reden zet. De reden op de C4 wordt dus belangrijk: bespreek met ACV hoe je dat voorkomt.",
       "Een dossier rond te laat komen kan ook gebruikt worden om druk te zetten om toch een onderling akkoord te tekenen. Teken niets zonder ACV."
     ],
@@ -164,6 +164,36 @@
       "Lukt werken niet meer door de vermoeidheid, ga dan vroeger naar de dokter dan 16 oktober. Met een attest ben je gewettigd afwezig.",
       "Noteer elk te laat komen en elk gesprek erover in het logboek bij Communicatie: datum, hoeveel minuten, reden, met wie."
     ],
-    "bronnen": "Wet van 3 juli 1978, art. 35 (dringende reden); wet van 8 april 1965 op de arbeidsreglementen (sancties); KB 25 november 1991, art. 51 en 52bis (werkloos door eigen schuld). Securex Lex4You, Tilleman Van Hoogenbemt (Legal News) en werk.belgie.be, geraadpleegd op 4 oktober 2026."
+    "bronnen": "Wet van 3 juli 1978, art. 35 (dringende reden); wet van 8 april 1965 op de arbeidsreglementen (sancties, boete hoogstens een vijfde van het dagloon); KB 25 november 1991, art. 51 en volgende (werkloos door eigen schuld); sectorale cao's eindejaarspremie PC 111. RVA, Securex Lex4You, Tilleman Van Hoogenbemt, GD&A Advocaten en Arbeidsrechtjournaal, geraadpleegd op 4 oktober 2026.",
+    "ergste": [
+      {
+        "wat": "Nieuwe tuchtsanctie",
+        "gevolg": "Alleen wat in het arbeidsreglement staat, bijvoorbeeld een boete van hoogstens een vijfde van het dagloon of een korte schorsing zonder loon. Telkens ten laatste de eerste werkdag na de vaststelling meegedeeld."
+      },
+      {
+        "wat": "Ontslag met opzegtermijn",
+        "gevolg": "De opzegtermijn of opzegvergoeding blijft verschuldigd. Zet de werkgever 'herhaald te laat komen' op de C4, dan kan de RVA toch een sanctie geven (zie onder)."
+      },
+      {
+        "wat": "Ontslag om dringende reden, het ergste geval",
+        "gevolg": "Geen opzegtermijn en geen opzegvergoeding. In PC 111 (arbeiders) ook geen eindejaarspremie. Het vakantiegeld blijft. Met ACV kan je het ontslag aanvechten bij de arbeidsrechtbank; is de dringende reden niet bewezen, dan volgt alsnog een opzegvergoeding."
+      },
+      {
+        "wat": "RVA: werkloos door eigen schuld",
+        "gevolg": "Een verwittiging, of 4 tot 26 weken geen uitkering. De RVA kan de sanctie geheel of gedeeltelijk met uitstel geven en houdt rekening met de omstandigheden. Je wordt altijd eerst gehoord. Na de sanctie start de uitkering gewoon."
+      },
+      {
+        "wat": "RVA bij herhaling",
+        "gevolg": "Binnen het jaar opnieuw: 8 tot 52 weken. Een tweede herhaling binnen twee jaar: definitieve uitsluiting. Ter vergelijking: zelf ontslag nemen zonder geldige reden kost 4 tot 52 weken."
+      },
+      {
+        "wat": "Ziek tijdens een sanctie",
+        "gevolg": "De sanctie wordt geschorst en verlengd met de ziekteperiode. Het ziekenfonds betaalt een ziekte-uitkering als je in orde bent met de ziekteverzekering."
+      },
+      {
+        "wat": "Zonder inkomen",
+        "gevolg": "Tijdens een sanctie kan je bij het OCMW een leefloon aanvragen. Het OCMW kijkt naar je middelen en die van wie bij je woont."
+      }
+    ]
   }
 }

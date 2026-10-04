@@ -200,7 +200,7 @@ export function rechten(r) {
     callout('red', 'shield', 'Wat een verwittiging betekent', h('p', null, V.wat)),
     h('div', { class: 'two-col' },
       titled('Wat nu doen', h('ol', { class: 'bullets' }, V.doen.map(k => h('li', null, k))), h('div', { class: 'form__actions' }, h('a', { class: 'btn btn--primary btn--sm', href: '#/communicatie?tab=brieven' }, 'Ontwerp van antwoord'), h('a', { class: 'btn btn--ghost btn--sm', href: '#/communicatie?tab=sms' }, 'Sms bij te laat of ziek'))),
-      h('div', { class: 'stack' }, titled('Waarom het ertoe doet', h('ul', { class: 'bullets' }, V.risico.map(k => h('li', null, k)))), titled('Regels die ACV kan nakijken', h('ul', { class: 'bullets' }, V.regels.map(k => h('li', null, k)))))),
+      h('div', { class: 'stack' }, V.ergste && titled('Het ergste geval, stap voor stap', h('table', { class: 'table' }, h('tbody', null, V.ergste.map(x => h('tr', null, h('td', { style: 'width:34%;vertical-align:top' }, h('strong', null, x.wat)), h('td', null, x.gevolg)))))), titled('Waarom het ertoe doet', h('ul', { class: 'bullets' }, V.risico.map(k => h('li', null, k)))), titled('Regels die ACV kan nakijken', h('ul', { class: 'bullets' }, V.regels.map(k => h('li', null, k)))))),
     h('p', { class: 'small muted' }, V.bronnen, ' ', R.disclaimer)); }
   else if (tab === 'scenarios') inhoud = h('div', { class: 'grid-cards grid-cards--wide' }, R.scenarios.map(s => h('div', { class: `card card--pad accent-${s.kleur}` }, h('p', { class: 'eyebrow' }, `Scenario ${s.id}`), h('p', { class: 'row-title' }, s.naam), badge(s.oordeel, s.kleur), h('ul', { class: 'bullets small', style: 'margin-top:8px' }, s.punten.map(p => h('li', null, p))))));
   else if (tab === 'opzeg') inhoud = h('div', { class: 'stack' },

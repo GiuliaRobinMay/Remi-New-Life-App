@@ -14,7 +14,7 @@ const NAV = [
     { id: 'stappenplan', label: 'Stappenplan', icon: 'check', accent: 'green', count: () => all('stappenplan').filter(s => s.status !== 'klaar').length },
     { id: 'planning', label: 'Planning', icon: 'calendar', accent: 'orange' },
     { id: 'rechten', label: 'Rechten', icon: 'shield', accent: 'red' },
-    { id: 'communicatie', label: 'Communicatie', icon: 'edit', accent: 'violet', count: () => all('berichten').filter(b => b.status !== 'verstuurd').length },
+    { id: 'communicatie', label: 'Communicatie', icon: 'edit', accent: 'violet', count: () => all('berichten').filter(b => b.soort !== 'bericht' && b.status !== 'verstuurd').length },
   ] },
   { group: 'Werk', items: [
     { id: 'sollicitaties', label: 'Sollicitaties', icon: 'mail', accent: 'violet', count: () => all('sollicitaties').filter(s => !['afgewezen', 'gearchiveerd'].includes(s.status)).length },

@@ -29,5 +29,51 @@
       "Bespreek de brief eerst met ACV. Zij kunnen de vraag ook zelf aan de werkgever richten."
     ],
     "status": "concept"
+  },
+  {
+    "id": "msg-verwittiging-brief",
+    "soort": "brief",
+    "titel": "Reactie op de verwittiging",
+    "aan": "Werkgever (wie de verwittiging ondertekende)",
+    "wanneer": "Alleen na overleg met ACV. Bel ACV deze week.",
+    "onderwerp": "Betreft: uw verwittiging van [datum van de brief]",
+    "tekst": "Remi [achternaam]\n[straat en nummer]\n[postcode en gemeente]\n\n[naam van het bedrijf]\nt.a.v. [naam]\n[straat en nummer]\n[postcode en gemeente]\n\nAntwerpen, [datum]\n\nBetreft: uw verwittiging van [datum van de brief]\n\nGeachte [heer of mevrouw] [naam],\n\nOp [datum van ontvangst] ontving ik uw brief van [datum van de brief] met een verwittiging omdat ik te laat begon op [data uit de brief].\n\nIk neem uw opmerking ernstig. [Kies na overleg met ACV: Het klopt dat ik op die dagen later begon. Of: Ik ben het niet eens met (welke datum of welk feit), omdat (feitelijke uitleg).]\n\n[Enkel als ACV het aanraadt: De laatste tijd heb ik gezondheidsklachten waarvoor ik onder medische opvolging sta.] Ik doe al het mogelijke om op tijd te beginnen. Als ik toch verhinderd ben, verwittig ik u vooraf.\n\nIk vraag u deze brief bij mijn personeelsdossier te voegen.\n\nMet vriendelijke groeten\n\nRemi [achternaam]",
+    "tips": [
+      "Stuur niets voor ACV de brief gezien heeft. Soms is zwijgen beter, soms is een antwoord nodig om je kant in het dossier te krijgen.",
+      "Kort en feitelijk: geen excuses voor dingen die niet kloppen, geen emotie, geen verwijten.",
+      "Over je gezondheid geef je geen details. Een zin over medische opvolging volstaat, en alleen als ACV het aanraadt.",
+      "Twee exemplaren: een afgeven en het tweede laten tekenen voor ontvangst, of aangetekend versturen."
+    ],
+    "status": "concept"
+  },
+  {
+    "id": "msg-later-sms",
+    "soort": "bericht",
+    "titel": "Verwittigen dat je later bent",
+    "aan": "Werkgever of je rechtstreekse chef",
+    "wanneer": "Vóór het beginuur, telkens als je weet dat je later zult zijn.",
+    "onderwerp": "Later vandaag",
+    "tekst": "Goedemorgen [naam], ik ben vandaag later. Ik verwacht om [uur] te beginnen. Mijn excuses. Remi",
+    "tips": [
+      "Stuur het vóór het beginuur, niet erna.",
+      "Per sms of mail, niet alleen telefonisch: zo is er een spoor. Bel je, stuur dan ook kort een bericht.",
+      "Noteer het daarna in het logboek."
+    ],
+    "status": "concept"
+  },
+  {
+    "id": "msg-ziek-sms",
+    "soort": "bericht",
+    "titel": "Ziekmelding",
+    "aan": "Werkgever of je rechtstreekse chef",
+    "wanneer": "Vóór het beginuur, op de eerste dag dat je niet kan werken.",
+    "onderwerp": "Ziek vandaag",
+    "tekst": "Goedemorgen [naam], ik ben ziek en kan vandaag niet komen werken. Ik ga naar de dokter en bezorg u het attest. Remi",
+    "tips": [
+      "Ga dezelfde dag naar de dokter of de huisartsenwachtpost en vraag een attest.",
+      "Bezorg het attest binnen de termijn van het arbeidsreglement, vaak 2 werkdagen. Hou een kopie of foto bij.",
+      "Je hoeft je werkgever niet te zeggen wat je hebt."
+    ],
+    "status": "concept"
   }
 ]

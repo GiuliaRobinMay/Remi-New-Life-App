@@ -162,9 +162,15 @@ function kalender(m) {
 // ---------- Rechten ----------
 export function rechten(r) {
   const R = ref.rechten; const tab = r.tab || 'kern';
-  const tabs = [['kern', 'Kern'], ['scenarios', 'Scenario\'s'], ['opzeg', 'Opzegtermijn'], ['werkloosheid', 'Werkloosheid 2026'], ['steun', 'ACV en VDAB'], ['check', 'Te verifiëren']].map(([k, l]) => ({ label: l, href: `#/rechten?tab=${k}`, active: tab === k }));
+  const tabs = [['kern', 'Kern'], ['verwittiging', 'Verwittiging'], ['scenarios', 'Scenario\'s'], ['opzeg', 'Opzegtermijn'], ['werkloosheid', 'Werkloosheid 2026'], ['steun', 'ACV en VDAB'], ['check', 'Te verifiëren']].map(([k, l]) => ({ label: l, href: `#/rechten?tab=${k}`, active: tab === k }));
   let inhoud;
   if (tab === 'kern') inhoud = h('div', { class: 'stack' }, callout('red', 'shield', 'Wat je meteen moet weten', h('ul', { class: 'bullets' }, R.kern.map(k => h('li', null, k)))), h('p', { class: 'small muted' }, R.disclaimer));
+  else if (tab === 'verwittiging') { const V = R.verwittiging; inhoud = h('div', { class: 'stack' },
+    callout('red', 'shield', 'Wat een verwittiging betekent', h('p', null, V.wat)),
+    h('div', { class: 'two-col' },
+      titled('Wat nu doen', h('ol', { class: 'bullets' }, V.doen.map(k => h('li', null, k))), h('div', { class: 'form__actions' }, h('a', { class: 'btn btn--primary btn--sm', href: '#/communicatie?tab=brieven' }, 'Ontwerp van antwoord'), h('a', { class: 'btn btn--ghost btn--sm', href: '#/communicatie?tab=sms' }, 'Sms bij te laat of ziek'))),
+      h('div', { class: 'stack' }, titled('Waarom het ertoe doet', h('ul', { class: 'bullets' }, V.risico.map(k => h('li', null, k)))), titled('Regels die ACV kan nakijken', h('ul', { class: 'bullets' }, V.regels.map(k => h('li', null, k)))))),
+    h('p', { class: 'small muted' }, V.bronnen, ' ', R.disclaimer)); }
   else if (tab === 'scenarios') inhoud = h('div', { class: 'grid-cards grid-cards--wide' }, R.scenarios.map(s => h('div', { class: `card card--pad accent-${s.kleur}` }, h('p', { class: 'eyebrow' }, `Scenario ${s.id}`), h('p', { class: 'row-title' }, s.naam), badge(s.oordeel, s.kleur), h('ul', { class: 'bullets small', style: 'margin-top:8px' }, s.punten.map(p => h('li', null, p))))));
   else if (tab === 'opzeg') inhoud = h('div', { class: 'stack' },
     titled('Opzegtermijnen in weken', h('p', { class: 'small muted' }, R.opzegtabel.toelichting), h('table', { class: 'table' }, h('thead', null, h('tr', null, h('th', null, 'Anciënniteit'), h('th', null, 'Werkgever zegt op'), h('th', null, 'Werknemer zegt op'))), h('tbody', null, R.opzegtabel.rijen.map(x => h('tr', null, h('td', null, x.ancienniteit), h('td', null, `${x.werkgever} weken`), h('td', null, `${x.werknemer} weken`)))))),

@@ -131,6 +131,32 @@
     "Eindejaarspremie PC 111 provincie Antwerpen bij ontslagname versus ontslag.",
     "OKOT: of het educatief graduaat ook in Antwerpen (AP, KdG) als OKOT loopt, en of een OKOT meetelt als beroepsopleiding voor de verlenging met 12 maanden.",
     "Premies herscholing via het ziekenfonds in 2026.",
-    "Of sollicitatieverlof ook geldt bij opzeg door de werknemer."
-  ]
+    "Of sollicitatieverlof ook geldt bij opzeg door de werknemer.",
+    "Verwittiging: werd ze tijdig meegedeeld en staat de sanctie in het arbeidsreglement? Hoe zwaar weegt ze bij een later ontslag, en is een schriftelijk antwoord nu aangewezen?"
+  ],
+  "verwittiging": {
+    "wat": "Een verwittiging is een tuchtsanctie: de werkgever legt schriftelijk vast dat je te laat kwam en vraagt dat het niet meer gebeurt. Het is nog geen ontslag. Als de brief een ontslag om dringende reden vermeldt, betekent dat: bij herhaling overweegt de werkgever je te ontslaan zonder opzegtermijn.",
+    "risico": [
+      "Ontslag om dringende reden betekent: geen opzegtermijn en geen opzegvergoeding. De werkgever moet het ontslag geven binnen 3 werkdagen nadat hij de feiten voldoende kent, en de reden binnen 3 werkdagen daarna aangetekend meedelen.",
+      "Herhaald te laat komen na een schriftelijke verwittiging wordt door rechtbanken soms aanvaard als dringende reden. Een eerste verwittiging is een stap in een dossier: de volgende keer telt zwaarder.",
+      "Na zo'n ontslag kan de RVA oordelen dat je werkloos bent door eigen schuld. Gevolg: een verwittiging van de RVA, of minstens 4 weken geen uitkering (de bronnen noemen als maximum 26 of 52 weken; laat ACV de huidige regel bevestigen). In die weken heb je geen inkomen. De RVA beslist zelf, los van wat de werkgever op de C4 zet, en hoort je altijd eerst. ACV kan je bijstaan en je kan de beslissing aanvechten bij de arbeidsrechtbank.",
+      "Een dossier rond te laat komen kan ook gebruikt worden om druk te zetten om toch een onderling akkoord te tekenen. Teken niets zonder ACV."
+    ],
+    "regels": [
+      "Een sanctie zoals een verwittiging moet in het arbeidsreglement staan en ten laatste de eerste werkdag na de vaststelling van de tekortkoming meegedeeld worden. Laat ACV nakijken of dat zo gebeurde.",
+      "Je mag een sanctie betwisten, intern of voor de arbeidsrechtbank. Een kort, feitelijk schriftelijk antwoord zorgt dat jouw kant ook in het dossier zit.",
+      "Ziekte is geen fout. Ben je arbeidsongeschikt en heb je een attest van de dokter, dan ben je gewettigd afwezig. Meld het meteen en bezorg het attest binnen de termijn van het arbeidsreglement (vaak 2 werkdagen)."
+    ],
+    "doen": [
+      "Teken de brief hoogstens 'voor ontvangst' met de datum, nooit 'akkoord'.",
+      "Maak een foto of scan van de brief en bewaar het origineel met de envelop.",
+      "Schrijf op wanneer je te laat kwam, de datum op de brief en de dag dat je hem kreeg. Kwamen de feiten een week of meer voor de brief, dan kan de verwittiging te laat zijn om als sanctie te gelden: de regel is ten laatste de eerste werkdag na de vaststelling. Laat ACV dat beoordelen.",
+      "Bel ACV deze week. Wacht hiervoor niet tot de afspraak van 16 oktober.",
+      "Antwoord pas schriftelijk na overleg met ACV. Er staat een ontwerp klaar bij Communicatie, Brieven.",
+      "Kom vanaf nu op tijd. Lukt het niet, verwittig dan vóór het beginuur per sms of mail, zodat er een spoor is (ontwerp bij Communicatie, Sms).",
+      "Lukt werken niet meer door de vermoeidheid, ga dan vroeger naar de dokter dan 16 oktober. Met een attest ben je gewettigd afwezig.",
+      "Noteer elk te laat komen en elk gesprek erover in het logboek bij Communicatie: datum, hoeveel minuten, reden, met wie."
+    ],
+    "bronnen": "Wet van 3 juli 1978, art. 35 (dringende reden); wet van 8 april 1965 op de arbeidsreglementen (sancties); KB 25 november 1991, art. 51 en 52bis (werkloos door eigen schuld). Securex Lex4You en werk.belgie.be, geraadpleegd op 4 oktober 2026."
+  }
 }

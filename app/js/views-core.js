@@ -85,29 +85,78 @@ const EVENEMENTEN = [
   { datum: '2026-10-04', naam: 'Voka Open Bedrijvendag' }, { datum: '2026-11-15', naam: 'Dag van de Ambachten (20ste editie)' }, { datum: '2026-11-15', naam: 'Kunstendag voor Kinderen' },
   { datum: '2027-04-18', naam: 'Erfgoeddag 2027, thema Passie' }, { datum: '2027-05-06', naam: 'Antwerp Art Weekend (6 tot 9 mei)' }, { datum: '2027-08-07', naam: 'Museumnacht Antwerpen (datum te bevestigen)' }, { datum: '2027-09-12', naam: 'Open Monumentendag 2027' },
 ];
-export function planning() {
-  const t = todayIso(); const fase = huidigeFase();
-  const agenda = [
-    ...all('stappenplan').filter(s => s.deadline && s.status !== 'klaar').map(s => ({ datum: s.deadline, naam: s.titel, soort: 'stap', href: '#/stappenplan' })),
+// Alles met een datum: stappen, opvolging, gesprekken, vacatures, evenementen en genoteerde contacten.
+function agendaItems({ metKlaar = false } = {}) {
+  return [
+    ...all('stappenplan').filter(s => s.deadline && (metKlaar || s.status !== 'klaar')).map(s => ({ datum: s.deadline, naam: s.titel, soort: 'stap', href: '#/stappenplan', klaar: s.status === 'klaar' })),
     ...all('sollicitaties').filter(s => s.opvolgdatum && ['verstuurd', 'opgevolgd'].includes(s.status)).map(s => ({ datum: s.opvolgdatum, naam: `Opvolgen: ${s.organisatie}`, soort: 'sollicitatie', href: '#/sollicitaties' })),
     ...all('sollicitaties').filter(s => s.gesprekDatum).map(s => ({ datum: s.gesprekDatum, naam: `Gesprek: ${s.organisatie}`, soort: 'gesprek', href: '#/sollicitaties' })),
     ...all('vacatures').filter(v => v.deadline && v.status !== 'niet').map(v => ({ datum: v.deadline, naam: `Deadline vacature: ${v.titel}`, soort: 'vacature', href: '#/vacatures' })),
     ...EVENEMENTEN.map(e => ({ ...e, soort: 'evenement' })),
-  ].filter(x => x.datum >= addDays(t, -7)).sort((a, b) => a.datum.localeCompare(b.datum));
-  const kleur = { stap: 'green', sollicitatie: 'orange', gesprek: 'violet', vacature: 'orange', evenement: 'grey' };
-  const body = content(
-    intro('Planning', `Vijf fasen van hier tot september 2027. Nu: ${fase.naam}.`),
-    h('div', { class: 'two-col' },
+    ...(metKlaar ? all('communicatie').filter(c => c.datum).map(c => ({ datum: c.datum, naam: `Contact: ${c.onderwerp || c.met || ''}`, soort: 'contact', href: '#/communicatie?tab=logboek' })) : []),
+  ].sort((a, b) => a.datum.localeCompare(b.datum));
+}
+const AGENDAKLEUR = { stap: 'green', sollicitatie: 'orange', gesprek: 'violet', vacature: 'orange', evenement: 'grey', contact: 'grey' };
+const MAANDEN = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
+const agendaRij = a => h('li', { class: a.klaar ? 'is-klaar' : '' },
+  h('span', { class: 'small muted', style: 'width:78px;flex:0 0 auto' }, fmtDate(a.datum)),
+  h('div', null, a.href ? h('a', { href: a.href }, a.naam) : a.naam, ' ', badge(a.klaar ? 'klaar' : a.soort, a.klaar ? 'grey' : AGENDAKLEUR[a.soort])));
+
+export function planning(r) {
+  const fase = huidigeFase();
+  const tab = r.tab === 'fasen' ? 'fasen' : 'kalender';
+  const tabs = [['kalender', 'Kalender'], ['fasen', 'Fasen en agenda']].map(([k, l]) => ({ label: l, href: `#/planning?tab=${k}`, active: tab === k }));
+  let inhoud;
+  if (tab === 'kalender') inhoud = kalender(r.m);
+  else {
+    const agenda = agendaItems().filter(x => x.datum >= addDays(todayIso(), -7));
+    inhoud = h('div', { class: 'two-col' },
       h('div', { class: 'timeline' }, ref.programma.fasen.map(f => h('div', { class: 'timeline__item' + (f.id === fase.id ? ' timeline__item--now' : '') },
         h('p', { class: 'eyebrow' }, f.periode), h('p', { class: 'row-title' }, f.naam), h('p', { class: 'small', style: 'margin:4px 0' }, f.doel), h('ul', { class: 'bullets small' }, f.acties.map(a => h('li', null, a)))))),
       h('div', { class: 'stack' },
-        titled('Agenda', agenda.length ? h('ul', { class: 'list list--tight' }, agenda.slice(0, 30).map(a => h('li', null,
-          h('span', { class: 'small muted', style: 'width:78px;flex:0 0 auto' }, fmtDate(a.datum)), h('div', null, a.href ? h('a', { href: a.href }, a.naam) : a.naam, ' ', badge(a.soort, kleur[a.soort]))))) : h('p', { class: 'muted' }, 'Nog niets ingepland.')),
+        titled('Agenda', agenda.length ? h('ul', { class: 'list list--tight' }, agenda.slice(0, 30).map(agendaRij)) : h('p', { class: 'muted' }, 'Nog niets ingepland.')),
         titled('Ritme', h('p', null, ref.programma.ritme)),
       ),
-    ),
-  );
-  return { chrome: { where: 'Fasen en agenda', tabLabel: 'Fasen en agenda', viewIcon: 'calendar' }, body };
+    );
+  }
+  const body = content(intro('Planning', `Vijf fasen van hier tot september 2027. Nu: ${fase.naam}.`), inhoud);
+  return { chrome: { where: tab === 'kalender' ? 'Kalender' : 'Fasen en agenda', tabs, viewIcon: 'calendar' }, body };
+}
+
+function kalender(m) {
+  const t = todayIso();
+  const [jaar, maand] = /^\d{4}-\d{2}$/.test(m || '') ? m.split('-').map(Number) : [Number(t.slice(0, 4)), Number(t.slice(5, 7))];
+  const eerste = new Date(jaar, maand - 1, 1);
+  const sleutel = d => isoLocal(d).slice(0, 7);
+  const vorige = sleutel(new Date(jaar, maand - 2, 1)), volgende = sleutel(new Date(jaar, maand, 1));
+  const items = agendaItems({ metKlaar: true });
+  const perDag = new Map();
+  for (const a of items) { if (!perDag.has(a.datum)) perDag.set(a.datum, []); perDag.get(a.datum).push(a); }
+  const start = new Date(eerste); start.setDate(1 - ((eerste.getDay() + 6) % 7));
+  const dagen = []; const d = new Date(start);
+  do { for (let i = 0; i < 7; i++) { dagen.push(new Date(d)); d.setDate(d.getDate() + 1); } } while (d.getMonth() === maand - 1);
+  const dagPeek = (iso) => openPeek(fmtDate(iso), () => { const l = perDag.get(iso) || []; return l.length ? h('ul', { class: 'list list--tight' }, l.map(agendaRij)) : h('p', { class: 'muted' }, 'Niets gepland op deze dag.'); });
+  const cel = dag => {
+    const iso = isoLocal(dag); const l = perDag.get(iso) || [];
+    const cls = ['cal__day', dag.getMonth() !== maand - 1 && 'cal__day--buiten', iso === t && 'cal__day--vandaag', l.length && 'cal__day--vol'].filter(Boolean).join(' ');
+    return h('button', { type: 'button', class: cls, 'aria-label': `${fmtDate(iso)}, ${l.length} ${l.length === 1 ? 'item' : 'items'}`, onClick: () => dagPeek(iso) },
+      h('span', { class: 'cal__num' }, String(dag.getDate())),
+      l.slice(0, 3).map(a => h('span', { class: `cal__ev cal__ev--${a.klaar ? 'grey' : AGENDAKLEUR[a.soort]}${a.klaar ? ' is-klaar' : ''}`, title: a.naam }, a.naam)),
+      l.length > 3 && h('span', { class: 'cal__meer' }, `+${l.length - 3} meer`));
+  };
+  const inMaand = items.filter(a => a.datum.slice(0, 7) === `${jaar}-${String(maand).padStart(2, '0')}`);
+  return h('div', { class: 'stack' },
+    h('section', { class: 'card card--pad' },
+      h('div', { class: 'cal__head' },
+        h('a', { class: 'btn btn--ghost btn--sm cal__nav', href: `#/planning?tab=kalender&m=${vorige}`, 'aria-label': 'Vorige maand' }, '‹'),
+        h('p', { class: 'row-title cal__titel' }, `${MAANDEN[maand - 1]} ${jaar}`),
+        h('a', { class: 'btn btn--ghost btn--sm cal__nav', href: `#/planning?tab=kalender&m=${volgende}`, 'aria-label': 'Volgende maand' }, '›'),
+        h('a', { class: 'btn btn--quiet btn--sm', href: '#/planning?tab=kalender' }, 'Vandaag')),
+      h('div', { class: 'cal' },
+        ['ma', 'di', 'wo', 'do', 'vr', 'za', 'zo'].map(w => h('span', { class: 'cal__wd' }, w)),
+        dagen.map(cel)),
+      h('p', { class: 'small muted', style: 'margin-top:8px' }, 'Klik op een dag voor alles wat erop staat. Groen: stap, oranje: opvolging of vacature, violet: gesprek, grijs: evenement of contact.')),
+    titled(`In ${MAANDEN[maand - 1]}`, inMaand.length ? h('ul', { class: 'list list--tight' }, inMaand.map(agendaRij)) : h('p', { class: 'muted' }, 'Niets gepland deze maand.')));
 }
 
 // ---------- Rechten ----------

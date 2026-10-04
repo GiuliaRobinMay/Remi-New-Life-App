@@ -45,7 +45,7 @@ function route() {
   const [path, query] = raw.split('?');
   const [id, ...rest] = (path || 'overzicht').split('/');
   const qs = new URLSearchParams(query || '');
-  return { id: KNOWN.has(id) ? id : 'overzicht', params: rest, tab: qs.get('tab'), q: qs.get('q') || '' };
+  return { id: KNOWN.has(id) ? id : 'overzicht', params: rest, tab: qs.get('tab'), q: qs.get('q') || '', m: qs.get('m') || '' };
 }
 export function go(path) { location.hash = '#/' + path; }
 

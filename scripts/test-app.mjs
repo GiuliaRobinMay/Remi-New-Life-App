@@ -11,7 +11,7 @@ await new Promise(r => setTimeout(r, 700));
 const base = `http://localhost:${port}/`;
 const fouten = []; const geslaagd = [];
 const check = (naam, ok, detail = '') => (ok ? geslaagd : fouten).push(`${naam}${detail ? ': ' + detail : ''}`);
-const VIEWS = { overzicht: [], stappenplan: ['open', 'klaar', 'alles'], planning: [], rechten: ['kern', 'scenarios', 'opzeg', 'werkloosheid', 'steun', 'check'], communicatie: ['mails', 'brieven', 'logboek'], sollicitaties: [], vacatures: ['bewaard', 'zoeken', 'bronnen'], hotlist: [], verkenning: ['alles', 'erfgoed', 'sociaal'], opleidingen: ['alles', 'erfgoed'], cv: ['start', 'gegevens', 'profiel', 'ervaring', 'opleiding', 'vaardigheden', 'competenties', 'portfolio', 'extra', 'zelftests', 'voorbeelden', 'gids', 'afdrukken'], vragenlijst: ['praktisch', 'werk'], profiel: ['samenvatting', 'tests', 'herzieningen'], documenten: ['cv', 'sjablonen', 'vdab', 'gegenereerd'] };
+const VIEWS = { overzicht: [], stappenplan: ['open', 'klaar', 'alles'], planning: ['kalender', 'fasen'], rechten: ['kern', 'scenarios', 'opzeg', 'werkloosheid', 'steun', 'check'], communicatie: ['mails', 'brieven', 'logboek'], sollicitaties: [], vacatures: ['bewaard', 'zoeken', 'bronnen'], hotlist: [], verkenning: ['alles', 'erfgoed', 'sociaal'], opleidingen: ['alles', 'erfgoed'], cv: ['start', 'gegevens', 'profiel', 'ervaring', 'opleiding', 'vaardigheden', 'competenties', 'portfolio', 'extra', 'zelftests', 'voorbeelden', 'gids', 'afdrukken'], vragenlijst: ['praktisch', 'werk'], profiel: ['samenvatting', 'tests', 'herzieningen'], documenten: ['cv', 'sjablonen', 'vdab', 'gegenereerd'] };
 let browser;
 try {
   const { chromium } = await import('playwright');
@@ -111,6 +111,16 @@ try {
       await page.locator('[data-fk="vl-p01"]').fill('Test'); await page.keyboard.press('Tab');
       const vf = await page.evaluate(() => document.activeElement?.dataset?.fk);
       check('vragenlijst: tab naar volgende vraag', vf === 'vl-p02', vf);
+      // Kalender: maand oktober 2026 met de doktersafspraak op vrijdag 16
+      await page.goto(`${base}#/planning?tab=kalender&m=2026-10`, { waitUntil: 'networkidle' });
+      const kal = await page.evaluate(() => ({ titel: document.querySelector('.cal__titel').textContent, cellen: document.querySelectorAll('.cal__day').length, eerste: document.querySelector('.cal__day .cal__num').textContent }));
+      check('kalender oktober 2026 start op maandag 28 september', kal.titel === 'oktober 2026' && kal.cellen === 35 && kal.eerste === '28', JSON.stringify(kal));
+      await page.click('.cal__day[aria-label^="16 okt"]');
+      check('dag openen toont de doktersafspraak', /Doktersafspraak/.test(await page.textContent('.peek__body')));
+      await page.click('#peekClose');
+      await page.click('a[aria-label="Volgende maand"]');
+      await page.waitForFunction(() => document.querySelector('.cal__titel')?.textContent !== 'oktober 2026', null, { timeout: 3000 }).catch(() => {});
+      check('volgende maand', (await page.textContent('.cal__titel')) === 'november 2026');
       // Communicatie: contractmail bewerken, bewaren en als verstuurd in het logboek zetten
       await page.goto(`${base}#/communicatie?tab=mails`, { waitUntil: 'networkidle' });
       const mail = page.locator('[data-fk="msg-msg-contract-mail"]');

@@ -1,6 +1,7 @@
 // Vercel Routing Middleware: elke aanvraag (pagina's én gegevensbestanden) vraagt eerst een wachtwoord.
 // Het wachtwoord staat niet in de code maar in de Vercel-instelling APP_WACHTWOORD
-// (Project, Settings, Environment Variables). Zonder die instelling blijft de app dicht.
+// (Project, Settings, Environment Variables). Zonder die instelling is de site open: de server bevat dan
+// alleen wat ook in de repository staat, en persoonlijke gegevens blijven altijd in de browser.
 export const config = { matcher: '/:path*' };
 
 const REALM = 'Basic realm="Nieuwe start", charset="UTF-8"';
@@ -24,9 +25,7 @@ function wachtwoordUit(header) {
 
 export default function middleware(request) {
   const wachtwoord = process.env.APP_WACHTWOORD;
-  if (!wachtwoord) {
-    return new Response('De app is afgesloten: stel in Vercel de omgevingsvariabele APP_WACHTWOORD in en publiceer opnieuw.', { status: 503, headers: { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'no-store' } });
-  }
+  if (!wachtwoord) return new Response(null, { headers: { 'x-middleware-next': '1' } });
   const gegeven = wachtwoordUit(request.headers.get('authorization'));
   if (gegeven !== null && gelijk(gegeven, wachtwoord)) {
     // Doorgaan naar het gevraagde bestand (zelfde signaal als next() uit @vercel/functions).

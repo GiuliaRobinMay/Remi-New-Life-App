@@ -121,6 +121,17 @@ try {
       await page.click('a[aria-label="Volgende maand"]');
       await page.waitForFunction(() => document.querySelector('.cal__titel')?.textContent !== 'oktober 2026', null, { timeout: 3000 }).catch(() => {});
       check('volgende maand', (await page.textContent('.cal__titel')) === 'november 2026');
+      // Eigen afspraak in de agenda
+      await page.goto(`${base}#/planning?tab=kalender&m=2026-10`, { waitUntil: 'networkidle' });
+      await page.click('text=Afspraak toevoegen');
+      await page.fill('.peek label:has-text("Wat") input', 'Testafspraak');
+      await page.fill('.peek input[type=date]', '2026-10-21');
+      await page.fill('.peek label:has-text("Uur") input', '10:00');
+      await page.click('.peek button[type=submit]');
+      await page.waitForTimeout(200);
+      await page.click('#peekClose');
+      await page.goto(`${base}#/planning?tab=kalender&m=2026-10`, { waitUntil: 'networkidle' });
+      check('afspraak in de kalender', /10:00 Testafspraak/.test(await page.textContent('.cal')));
       // Communicatie: contractmail bewerken, bewaren en als verstuurd in het logboek zetten
       await page.goto(`${base}#/communicatie?tab=mails`, { waitUntil: 'networkidle' });
       const mail = page.locator('[data-fk="msg-msg-contract-mail"]');

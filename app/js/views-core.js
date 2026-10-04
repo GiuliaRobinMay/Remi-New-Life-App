@@ -94,14 +94,42 @@ function agendaItems({ metKlaar = false } = {}) {
     ...all('sollicitaties').filter(s => s.gesprekDatum).map(s => ({ datum: s.gesprekDatum, naam: `Gesprek: ${s.organisatie}`, soort: 'gesprek', href: '#/sollicitaties' })),
     ...all('vacatures').filter(v => v.deadline && v.status !== 'niet').map(v => ({ datum: v.deadline, naam: `Deadline vacature: ${v.titel}`, soort: 'vacature', href: '#/vacatures' })),
     ...EVENEMENTEN.map(e => ({ ...e, soort: 'evenement' })),
+    ...all('agenda').filter(x => x.datum).map(x => ({ datum: x.datum, naam: [x.tijd, x.titel].filter(Boolean).join(' '), soort: 'afspraak', afspraak: x })),
     ...(metKlaar ? all('communicatie').filter(c => c.datum).map(c => ({ datum: c.datum, naam: `Contact: ${c.onderwerp || c.met || ''}`, soort: 'contact', href: '#/communicatie?tab=logboek' })) : []),
   ].sort((a, b) => a.datum.localeCompare(b.datum));
 }
-const AGENDAKLEUR = { stap: 'green', sollicitatie: 'orange', gesprek: 'violet', vacature: 'orange', evenement: 'grey', contact: 'grey' };
+const AGENDAKLEUR = { afspraak: 'red', stap: 'green', sollicitatie: 'orange', gesprek: 'violet', vacature: 'orange', evenement: 'grey', contact: 'grey' };
 const MAANDEN = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
 const agendaRij = a => h('li', { class: a.klaar ? 'is-klaar' : '' },
   h('span', { class: 'small muted', style: 'width:78px;flex:0 0 auto' }, fmtDate(a.datum)),
-  h('div', null, a.href ? h('a', { href: a.href }, a.naam) : a.naam, ' ', badge(a.klaar ? 'klaar' : a.soort, a.klaar ? 'grey' : AGENDAKLEUR[a.soort])));
+  h('div', { style: 'min-width:0' },
+    a.afspraak ? h('a', { href: '#', onClick: e => { e.preventDefault(); afspraakPeek(a.afspraak.id); } }, a.naam) : a.href ? h('a', { href: a.href }, a.naam) : a.naam, ' ', badge(a.klaar ? 'klaar' : a.soort, a.klaar ? 'grey' : AGENDAKLEUR[a.soort]),
+    a.afspraak?.plaats && h('p', { class: 'small muted' }, a.afspraak.plaats)));
+
+// Eigen afspraken (collectie 'agenda'): datum, uur, plaats en notities. Blijven in deze browser.
+export function afspraakPeek(id) {
+  openPeek(() => get('agenda', id)?.titel || 'Afspraak', () => {
+    const x = get('agenda', id);
+    if (!x) return h('p', { class: 'muted' }, 'Deze afspraak bestaat niet meer.');
+    return h('div', { class: 'stack' },
+      h('div', { class: 'meta' }, badge('afspraak', 'red'), h('span', null, fmtDate(x.datum)), x.tijd && h('span', null, x.tijd)),
+      x.plaats && h('p', null, h('strong', null, 'Waar: '), x.plaats),
+      x.notitie && md(x.notitie),
+      h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--ghost btn--sm', onClick: () => afspraakForm(x) }, 'Bewerken'), h('a', { class: 'btn btn--quiet btn--sm', href: `#/planning?tab=kalender&m=${x.datum.slice(0, 7)}` }, 'In de kalender')));
+  });
+}
+function afspraakForm(init = {}) {
+  const x = { id: init.id, datum: init.datum || todayIso(), tijd: init.tijd || '', titel: init.titel || '', plaats: init.plaats || '', notitie: init.notitie || '' };
+  openPeek(x.id ? 'Afspraak bewerken' : 'Afspraak toevoegen', () => {
+    const inp = (k, type = 'text', ph = '') => h('input', { class: 'field', type, value: x[k], placeholder: ph, onInput: e => x[k] = e.target.value });
+    return h('form', { class: 'form', onSubmit: e => { e.preventDefault(); if (!x.titel || !x.datum) return; const s = upsert('agenda', { ...x, id: x.id || 'ag-' + uid() }); toast('Bewaard'); afspraakPeek(s.id); } },
+      h('label', null, 'Wat', inp('titel')),
+      h('div', { class: 'form__row' }, h('label', null, 'Datum', inp('datum', 'date')), h('label', null, 'Uur', inp('tijd', 'text', 'bijvoorbeeld 15:00 tot 16:00'))),
+      h('label', null, 'Waar of hoe', inp('plaats')),
+      h('label', null, 'Notities (wat meenemen, welke vragen)', h('textarea', { class: 'field', style: 'min-height:180px', value: x.notitie, onInput: e => x.notitie = e.target.value })),
+      h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--primary', type: 'submit' }, 'Bewaren'), x.id && h('button', { class: 'btn btn--danger', type: 'button', onClick: () => { remove('agenda', x.id); closePeek(); } }, 'Verwijderen')));
+  });
+}
 
 export function planning(r) {
   const fase = huidigeFase();
@@ -122,7 +150,8 @@ export function planning(r) {
     );
   }
   const body = content(intro('Planning', `Vijf fasen van hier tot september 2027. Nu: ${fase.naam}.`), inhoud);
-  return { chrome: { where: { maanden: 'Per maand', kalender: 'Kalender', fasen: 'Fasen en agenda' }[tab], tabs, viewIcon: 'calendar' }, body };
+  const tool = [h('button', { class: 'btn btn--primary', onClick: () => afspraakForm() }, icon('plus', 14), h('span', { class: 'btn__label' }, 'Afspraak toevoegen'))];
+  return { chrome: { where: { maanden: 'Per maand', kalender: 'Kalender', fasen: 'Fasen en agenda' }[tab], tabs, tool, viewIcon: 'calendar' }, body };
 }
 
 // Per maand: thema, focus en de werklast (deadlines, afspraken, verwachte uren per week).
@@ -186,7 +215,7 @@ function kalender(m) {
       h('div', { class: 'cal' },
         ['ma', 'di', 'wo', 'do', 'vr', 'za', 'zo'].map(w => h('span', { class: 'cal__wd' }, w)),
         dagen.map(cel)),
-      h('p', { class: 'small muted', style: 'margin-top:8px' }, 'Klik op een dag voor alles wat erop staat. Groen: stap, oranje: opvolging of vacature, violet: gesprek, grijs: evenement of contact.')),
+      h('p', { class: 'small muted', style: 'margin-top:8px' }, 'Klik op een dag voor alles wat erop staat. Rood: afspraak, groen: stap, oranje: opvolging of vacature, violet: gesprek, grijs: evenement of contact.')),
     titled(`In ${MAANDEN[maand - 1]}`, inMaand.length ? h('ul', { class: 'list list--tight' }, inMaand.map(agendaRij)) : h('p', { class: 'muted' }, 'Niets gepland deze maand.')));
 }
 

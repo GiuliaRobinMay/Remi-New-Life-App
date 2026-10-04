@@ -1,4 +1,4 @@
-// Gegenereerd door scripts/build-data.mjs op 2026-10-04T18:33:55.061Z. Niet met de hand bewerken: pas data/*.json aan en draai npm run build:data.
+// Gegenereerd door scripts/build-data.mjs op 2026-10-04T18:38:42.402Z. Niet met de hand bewerken: pas data/*.json aan en draai npm run build:data.
 export const seed = {
  "berichten": [
   {
@@ -39,9 +39,10 @@ export const seed = {
    "aan": "Werkgever (wie de verwittiging ondertekende)",
    "wanneer": "Alleen na overleg met ACV. Bel ACV deze week.",
    "onderwerp": "Betreft: uw verwittiging van [datum van de brief]",
-   "tekst": "Remi [achternaam]\n[straat en nummer]\n[postcode en gemeente]\n\n[naam van het bedrijf]\nt.a.v. [naam]\n[straat en nummer]\n[postcode en gemeente]\n\nAntwerpen, [datum]\n\nBetreft: uw verwittiging van [datum van de brief]\n\nGeachte [heer of mevrouw] [naam],\n\nOp [datum van ontvangst] ontving ik uw brief van [datum van de brief] met een verwittiging omdat ik te laat begon op [data uit de brief].\n\nIk neem uw opmerking ernstig. [Kies na overleg met ACV: Het klopt dat ik op die dagen later begon. Of: Ik ben het niet eens met (welke datum of welk feit), omdat (feitelijke uitleg).]\n\n[Enkel als ACV het aanraadt: De laatste tijd heb ik gezondheidsklachten waarvoor ik onder medische opvolging sta.] Ik doe al het mogelijke om op tijd te beginnen. Als ik toch verhinderd ben, verwittig ik u vooraf.\n\nIk vraag u deze brief bij mijn personeelsdossier te voegen.\n\nMet vriendelijke groeten\n\nRemi [achternaam]",
+   "tekst": "Remi [achternaam]\n[straat en nummer]\n[postcode en gemeente]\n\n[naam van het bedrijf]\nt.a.v. [naam en functie van wie de brief ondertekende]\n[straat en nummer]\n[postcode en gemeente]\n\nAntwerpen, [datum]\n\nBetreft: uw aangetekende brief van [datum van de brief]\n\nGeachte [heer of mevrouw] [naam],\n\nIk heb uw aangetekende brief van [datum van de brief] goed ontvangen en neem kennis van de inhoud.\n\nIk begrijp dat mijn late aankomst de planning en mijn collega's belast. Vanaf nu begin ik elke dag op het afgesproken uur. Als ik toch verhinderd ben, verwittig ik u vooraf.\n\n[Enkel als ACV het aanraadt: De voorbije weken had ik gezondheidsklachten waarvoor ik onder medische opvolging sta. Dat maakte het begin van de dag zwaar. Ik schrijf dit niet om het goed te praten, maar zodat u de context kent.]\n\n[Enkel als een datum niet klopt: Volgens mijn eigen gegevens klopt (datum) niet, omdat (feitelijke uitleg).]\n\nIk vraag u deze brief bij mijn personeelsdossier te voegen.\n\nMet vriendelijke groeten\n\nRemi [achternaam]",
    "tips": [
     "Stuur niets voor ACV de brief gezien heeft. Soms is zwijgen beter, soms is een antwoord nodig om je kant in het dossier te krijgen.",
+    "'Ik neem kennis van de inhoud' bevestigt dat je de brief kreeg, zonder elke datum toe te geven.",
     "Kort en feitelijk: geen excuses voor dingen die niet kloppen, geen emotie, geen verwijten.",
     "Over je gezondheid geef je geen details. Een zin over medische opvolging volstaat, en alleen als ACV het aanraadt.",
     "Twee exemplaren: een afgeven en het tweede laten tekenen voor ontvangst, of aangetekend versturen."
@@ -2476,6 +2477,187 @@ export const seed = {
    }
   ]
  },
+ "maandplan": [
+  {
+   "maand": "2026-10",
+   "thema": "Administratie, strategie en cv",
+   "focus": [
+    "Rechten veiligstellen: ACV (verwittiging, contract), dokter op 16 oktober, niets tekenen",
+    "Papieren op orde: kopie van het contract en het arbeidsreglement, startdatum en statuut, loonfiches",
+    "Strategie kiezen: uitstapscenario A, B of C met ACV, en de sporen waarop je solliciteert",
+    "Cv-atelier afwerken: master-cv, portfolio, VDAB-profiel",
+    "De twaalf concept-sollicitaties nalezen en aanvullen, nog niets versturen"
+   ],
+   "klaar": "Dossier op orde, een gekozen scenario, een cv en portfolio die klaar zijn om te versturen.",
+   "sollicitaties": "Nog geen, alleen voorbereiden",
+   "uren": [
+    3,
+    5
+   ]
+  },
+  {
+   "maand": "2026-11",
+   "thema": "Sollicitaties versturen",
+   "focus": [
+    "Twee tot drie spontane sollicitaties per week, prioriteit 1 eerst (erfgoed, musea, decorateliers)",
+    "Opvolgen twaalf dagen na het versturen, alles bijhouden in Sollicitaties",
+    "Na twee weken kijken hoeveel tijd één sollicitatie echt vraagt, en het tempo daarop afstemmen",
+    "Dag van de Ambachten op 15 november",
+    "Loopbaancheque aanvragen vóór 30 november, VDAB-loopbaangesprek aanvragen"
+   ],
+   "klaar": "Zes tot tien sollicitaties verstuurd en zicht op hoeveel werk één sollicitatie vraagt.",
+   "sollicitaties": "6 tot 10",
+   "uren": [
+    4,
+    6
+   ]
+  },
+  {
+   "maand": "2026-12",
+   "thema": "Opvolgen en het contract afronden",
+   "focus": [
+    "Opvolgen, gesprekken plannen en voorbereiden",
+    "Einde contract correct: C4, vakantiegeld, eindejaarspremie, alleen tekenen voor ontvangst",
+    "VDAB-inschrijving en uitkeringsdossier bij ACV voorbereiden",
+    "Rust inbouwen rond de feestdagen"
+   ],
+   "klaar": "Alle papieren van het einde van het contract binnen, inschrijving klaar om in te dienen.",
+   "sollicitaties": "2 tot 4, en opvolging",
+   "uren": [
+    3,
+    5
+   ]
+  },
+  {
+   "maand": "2027-01",
+   "thema": "Herstellen en inschrijven",
+   "focus": [
+    "Inschrijven bij VDAB binnen 8 dagen, uitkeringsdossier via ACV",
+    "Rust staat centraal: één trajectdag per week",
+    "Op de trajectdag: sollicitaties opvolgen en antwoorden noteren"
+   ],
+   "klaar": "Ingeschreven, inkomen geregeld, een vast ritme van één trajectdag per week.",
+   "sollicitaties": "Alleen opvolging",
+   "uren": [
+    2,
+    4
+   ]
+  },
+  {
+   "maand": "2027-02",
+   "thema": "Rust en oriëntatie",
+   "focus": [
+    "Infomomenten van opleidingen bezoeken en noteren",
+    "Een VDAB-beroepsopleiding van minstens 3 maanden voltijds bekijken (verlengt de uitkering)",
+    "Eventueel korte certificaten zoals VCA of IPAF"
+   ],
+   "klaar": "Een korte lijst van opleidingen en stages die je wil proberen.",
+   "sollicitaties": "1 tot 3 gerichte",
+   "uren": [
+    3,
+    5
+   ]
+  },
+  {
+   "maand": "2027-03",
+   "thema": "Proeven: stage en vrijwilligerswerk",
+   "focus": [
+    "Beroepsverkennende stage of IBO bij een museumatelier, decoratelier of restauratiebedrijf",
+    "Gerichte sollicitaties op vacatures",
+    "FARO basiscursus"
+   ],
+   "klaar": "Een eerste stage of vrijwilligersplek loopt.",
+   "sollicitaties": "2 tot 4 gerichte",
+   "uren": [
+    6,
+    10
+   ]
+  },
+  {
+   "maand": "2027-04",
+   "thema": "Proeven en netwerken",
+   "focus": [
+    "Stage of vrijwilligerswerk verderzetten",
+    "Erfgoeddag op 18 april",
+    "Opleidingen vergelijken op inhoud, duur en inkomen"
+   ],
+   "klaar": "Weten welk werk je echt ligt.",
+   "sollicitaties": "2 tot 4 gerichte",
+   "uren": [
+    6,
+    10
+   ]
+  },
+  {
+   "maand": "2027-05",
+   "thema": "Kiezen",
+   "focus": [
+    "Antwerp Art Weekend van 6 tot 9 mei",
+    "Inschrijvingen en toelatingsvoorwaarden van de gekozen opleiding nakijken",
+    "Gesprekken bij VDAB en ACV over het behoud van inkomen tijdens de opleiding"
+   ],
+   "klaar": "Een voorkeur voor job of opleiding, met een plan voor het inkomen.",
+   "sollicitaties": "2 tot 4 gerichte",
+   "uren": [
+    5,
+    8
+   ]
+  },
+  {
+   "maand": "2027-06",
+   "thema": "Beslissen",
+   "focus": [
+    "Beslissing over de opleiding uiterlijk 30 juni",
+    "Inschrijven of het contract voorbereiden"
+   ],
+   "klaar": "De keuze is gemaakt en ingediend.",
+   "sollicitaties": "Volgens de keuze",
+   "uren": [
+    4,
+    6
+   ]
+  },
+  {
+   "maand": "2027-07",
+   "thema": "Zomer: rust en praktische zaken",
+   "focus": [
+    "Praktische voorbereiding van de start",
+    "Rust"
+   ],
+   "klaar": "Alles klaar voor september.",
+   "sollicitaties": "Geen of weinig",
+   "uren": [
+    1,
+    3
+   ]
+  },
+  {
+   "maand": "2027-08",
+   "thema": "Voorbereiden op de start",
+   "focus": [
+    "Materiaal, uurrooster en verplaatsingen regelen",
+    "Museumnacht Antwerpen (datum te bevestigen)"
+   ],
+   "klaar": "Klaar om te beginnen.",
+   "sollicitaties": "Geen of weinig",
+   "uren": [
+    2,
+    4
+   ]
+  },
+  {
+   "maand": "2027-09",
+   "thema": "Starten",
+   "focus": [
+    "Eerste contract in de nieuwe richting, of start van de opleiding met behoud van inkomen",
+    "Avondstudie verder",
+    "Open Monumentendag op 12 september"
+   ],
+   "klaar": "Een nieuwe start.",
+   "sollicitaties": "Volgens de situatie",
+   "uren": null
+  }
+ ],
  "opleidingen": [
   {
    "id": "certificaten",
@@ -3148,10 +3330,12 @@ export const seed = {
     "Ontslag om dringende reden betekent: geen opzegtermijn en geen opzegvergoeding. De werkgever moet het ontslag geven binnen 3 werkdagen nadat hij de feiten voldoende kent, en de reden binnen 3 werkdagen daarna aangetekend meedelen.",
     "Herhaald te laat komen na een schriftelijke verwittiging wordt door rechtbanken soms aanvaard als dringende reden. Een eerste verwittiging is een stap in een dossier: de volgende keer telt zwaarder.",
     "Na zo'n ontslag kan de RVA oordelen dat je werkloos bent door eigen schuld. Gevolg: een verwittiging van de RVA, of minstens 4 weken geen uitkering (de bronnen noemen als maximum 26 of 52 weken; laat ACV de huidige regel bevestigen). In die weken heb je geen inkomen. De RVA beslist zelf, los van wat de werkgever op de C4 zet, en hoort je altijd eerst. ACV kan je bijstaan en je kan de beslissing aanvechten bij de arbeidsrechtbank.",
+    "Ook een gewoon ontslag met opzegtermijn kan bij de RVA tot een sanctie leiden als de werkgever op de C4 'herhaald te laat komen' als reden zet. De reden op de C4 wordt dus belangrijk: bespreek met ACV hoe je dat voorkomt.",
     "Een dossier rond te laat komen kan ook gebruikt worden om druk te zetten om toch een onderling akkoord te tekenen. Teken niets zonder ACV."
    ],
    "regels": [
     "Een sanctie zoals een verwittiging moet in het arbeidsreglement staan en ten laatste de eerste werkdag na de vaststelling van de tekortkoming meegedeeld worden. Laat ACV nakijken of dat zo gebeurde.",
+    "Een verwittiging die ook een ingebrekestelling is, legt vast dat je gewaarschuwd bent. Ze bewijst niet dat elke datum klopt: vergelijk de data met je eigen gegevens.",
     "Je mag een sanctie betwisten, intern of voor de arbeidsrechtbank. Een kort, feitelijk schriftelijk antwoord zorgt dat jouw kant ook in het dossier zit.",
     "Ziekte is geen fout. Ben je arbeidsongeschikt en heb je een attest van de dokter, dan ben je gewettigd afwezig. Meld het meteen en bezorg het attest binnen de termijn van het arbeidsreglement (vaak 2 werkdagen)."
    ],
@@ -3159,6 +3343,8 @@ export const seed = {
     "Teken de brief hoogstens 'voor ontvangst' met de datum, nooit 'akkoord'.",
     "Maak een foto of scan van de brief en bewaar het origineel met de envelop.",
     "Schrijf op wanneer je te laat kwam, de datum op de brief en de dag dat je hem kreeg. Kwamen de feiten een week of meer voor de brief, dan kan de verwittiging te laat zijn om als sanctie te gelden: de regel is ten laatste de eerste werkdag na de vaststelling. Laat ACV dat beoordelen.",
+    "Ga na welke afspraken er waren over de werkuren, bijvoorbeeld na een verlofperiode. Schrijf op wat werd afgesproken, wanneer en met wie.",
+    "Kijk op de loonfiches na of de gemiste uren werden ingehouden. Niet gewerkte uren mogen ingehouden worden; een boete moet in het arbeidsreglement staan.",
     "Bel ACV deze week. Wacht hiervoor niet tot de afspraak van 16 oktober.",
     "Antwoord pas schriftelijk na overleg met ACV. Er staat een ontwerp klaar bij Communicatie, Brieven.",
     "Kom vanaf nu op tijd. Lukt het niet, verwittig dan vóór het beginuur per sms of mail, zodat er een spoor is (ontwerp bij Communicatie, Sms).",
@@ -3493,7 +3679,7 @@ export const seed = {
    "id": "s35",
    "groep": "Eerst, deze week",
    "titel": "Verwittiging: ACV deze week bellen",
-   "wat": "Remi kreeg een eerste schriftelijke verwittiging omdat hij te laat kwam. Bel ACV nog deze week (niet wachten tot 16 oktober): bespreek wat de brief betekent, of hij tijdig en volgens het arbeidsreglement kwam, en of een schriftelijk antwoord nodig is. Het te laat komen was waarschijnlijk een week of meer voor de brief: noteer de data en laat ACV nakijken of de verwittiging tijdig kwam. Teken niets behalve 'voor ontvangst'. Uitleg bij Rechten, Verwittiging.",
+   "wat": "Remi kreeg een eerste schriftelijke verwittiging omdat hij te laat kwam. Bel ACV nog deze week (niet wachten tot 16 oktober): bespreek wat de brief betekent, of hij tijdig en volgens het arbeidsreglement kwam, en of een schriftelijk antwoord nodig is. De meeste feiten in de brief liggen weken voor de brief: laat ACV nakijken of de verwittiging tijdig kwam. De brief en de analyse staan in Documenten, Dossier. Teken niets behalve 'voor ontvangst'. Uitleg bij Rechten, Verwittiging.",
    "wie": "Remi (Giulia helpt)",
    "deadline": "2026-10-07",
    "status": "open",
@@ -5833,5 +6019,5 @@ export const seed = {
   "vdab-profiel.md": "# VDAB-profiel (Mijn Loopbaan): tekst voor Remi\n\nDoel: gevonden worden door werkgevers en bemiddelaars die zoeken op erfgoed, restauratie, museum, decor, atelier, instructeur en lassen. VDAB-profielen zijn kort en zakelijk. Zet het profiel op zichtbaar voor werkgevers en vul de rubrieken hieronder letterlijk over.\n\n## Titel (functietitel bovenaan)\nTechnisch tekenaar en atelierverantwoordelijke plaatbewerking, lasser en meubelmaker, op zoek naar werk in erfgoed, restauratie, archief en cultuurateliers\n\n## Korte voorstelling (maximaal 5 zinnen)\nTechnisch tekenaar en verantwoordelijke atelier bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal, sinds 2021. Ik teken werkstukken uit, bereid het werk voor, plooi en las zelf (halfautomaat en elektrode) en stuur het atelier aan. Daarvoor werkte ik in een creatief fietsatelier en bouwde ik een fotoarchief op; daarnaast volg ik interieurvormgeving aan de Academie in Antwerpen en bouw ik meubels. Ik zoek werk waarin vakmanschap en zorgvuldigheid ergens toe dienen: restauratie van historisch metaalwerk, museum- of theaterateliers, archief en collectiezorg, tentoonstellingsbouw, of het doorgeven van het vak. Ik werk het best in een klein team en ben beschikbaar vanaf [datum].\n\n## Gewenste functies (kies er tot vijf in de VDAB-lijst)\n- Technisch tekenaar of werkvoorbereider metaal en plaatbewerking\n- Decorbouwer, ateliermedewerker metaal of vitrinebouwer\n- Technisch medewerker museum, depot of tentoonstellingsbouw\n- Restauratiemedewerker metaal (monumentenzorg)\n- Instructeur of praktijkbegeleider lassen en metaal\n\n## Gewenste sectoren\nCultuur en erfgoed; bouw en restauratie; metaal; onderwijs en opleiding; sociale economie\n\n## Competenties (vinkjes en vrije tekst)\n- Technisch tekenen van maatwerk in plaatmateriaal ([CAD-programma])\n- Werkvoorbereiding, planning en aansturing van een atelier\n- Plooien op de kantbank, MIG/MAG-lassen (135) en elektrodelassen (111) [TIG bevestigen]\n- Plaatwerk: snijden, plooien, afwerken, kwaliteitscontrole\n- Opmeten en uittekenen op maat, montage\n- Meubelontwerp en -bouw [in metaal en hout, materiaal bevestigen]\n- Fietsbouw en -herstel\n- Archiveren en digitaliseren van beeldmateriaal\n- Veiligheid: VCA-basis [geldig tot]\n- Rijbewijs B [indien van toepassing]\n\n## Talen\nNederlands moedertaal; Engels goed; Frans [niveau]\n\n## Opleiding\n- Interieurvormgeving, avondonderwijs aan de Academie in Antwerpen, lopend [precieze opleiding bevestigen]\n- Meubel en interieur (drie jaar) en grafiek (een jaar), avondonderwijs aan de Academie in Antwerpen\n- Lasopleiding halfautomaat en elektrodelassen, [instelling], [jaar]\n- Diploma secundair onderwijs Wetenschappen-Wiskunde, Sint-Lutgardis, 2017\n\n## Werkervaring\n2021 tot heden: technisch tekenaar en verantwoordelijke atelier, [bedrijf], [gemeente]. Gestart als tekenaar en plooi- en lasoperator. Maatwerk in plaatmateriaal van tekening tot afwerking.\n2019: medewerker creatief fietsatelier, Antwerpen.\n2017 tot 2018: opbouw van een fotoarchief voor Willy Van de Perre.\n2017 tot 2018: [functie], Katoen Natie, Antwerpen.\n[jaar] tot heden: meubelmaker in eigen beheer, samen met mijn broer, Antwerpen.\n\n## Mobiliteit en beschikbaarheid\nAntwerpen en omgeving, bereikbaar met openbaar vervoer [en fiets/wagen]. Voltijds of deeltijds. Beschikbaar vanaf [datum]. Open voor een individuele beroepsopleiding (IBO) of een beroepsverkennende stage.\n\n## Trefwoorden om zeker in de vrije tekst te zetten\nerfgoed, restauratie, monumentenzorg, museum, depot, archief, decoratelier, decorbouw, tentoonstellingsbouw, atelier, technisch tekenaar, werkvoorbereider, plaatbewerking, plooien, kantbank, MIG/MAG, elektrodelassen, plannen lezen, meubelmaker, interieurvormgeving, instructeur lassen\n",
   "vragenlijst-remi.md": "# Vragenlijst voor Remi\n\nDeze vragen zijn voor jou, Remi. Niets hoeft in één keer. Korte antwoorden zijn goed; een voorbeeld is beter dan een omschrijving. Alles wat je invult blijft op dit toestel tot je het exporteert of kopieert voor Giulia. Uit je antwoorden komen het cv, de brieven, de tekst voor VDAB en de keuzes voor de volgende stap.\n\n## Praktisch, voor het cv\n\nFeiten die op een cv of in een dossier moeten kloppen.\n\n- Volledige naam, geboortedatum en geboorteplaats\n  \n\n- Adres, gsm-nummer en e-mailadres dat je voor sollicitaties wil gebruiken\n  \n\n- Rijbewijs (B, ja of nee) en hoe je je verplaatst: fiets, openbaar vervoer, auto. Tot hoeveel minuten pendelen is haalbaar?\n  \n\n- Talen en niveau: Nederlands, Frans, Engels, andere\n  \n\n- Naam van je huidige werkgever, gemeente, en de startdatum van je contract (staat op het contract of de eerste loonfiche)\n  \n\n- Wat staat er op je loonfiche: arbeider of bediende, en welk paritair comité (bijvoorbeeld 111, 200, 209)?  \n  (Dit bepaalt gewaarborgd loon, vakantiegeld en eindejaarspremie.)\n  \n\n- Je functietitel volgens het contract, en wat je vandaag echt doet (tekenen, plooien, lassen, atelier aansturen, hoeveel collega's)\n  \n\n- Welk tekenprogramma gebruik je (bijvoorbeeld SolidWorks, AutoCAD, Inventor, Tekla) en hoe goed?\n  \n\n- Welke lasprocessen beheers je: halfautomaat (MIG/MAG), elektrode, TIG? Welke certificaten heb je, met norm en geldigheid?\n  \n\n- Andere attesten: VCA, heftruck, hoogtewerker, EHBO, kantbank, andere\n  \n\n- Je opleidingen precies: secundair (richting, school, jaar), lasopleiding (waar, wanneer), academie (welke richtingen, welke jaren, getuigschrift of diploma)\n  \n\n- Katoen Natie: welke functie, welke afdeling, hoelang?\n  \n\n- Het creatief fietsatelier: naam, wat je daar maakte of herstelde, een voorbeeld\n  \n\n- Het fotoarchief voor Willy Van de Perre: wie is hij, hoeveel beelden, hoe heb je het aangepakt (ordenen, scannen, beschrijven, software)?\n  \n\n- Welke werkstukken bestaan er in foto's: meubels, constructies, fietsen, tekeningen? Waar staan die foto's?  \n  (Voor het portfolio: 6 tot 10 stukken met titel, jaar, materiaal, techniek.)\n  \n\n- Vanaf wanneer ben je beschikbaar, voltijds of deeltijds, en welke dagen of avonden zijn bezet door de academie?\n  \n\n- Wat is je huidige brutoloon per maand, en wat heb je netto minimaal nodig om rond te komen?  \n  (Dit is voor de keuze tussen uitkering, opleiding en werk, niet voor een cv.)\n  \n\n## Werk dat bij je past\n\nConcrete momenten zeggen meer dan eigenschappen.\n\n- Drie momenten op het werk waarop je dacht: dit is goed. Wat deed je precies?\n  \n\n- Drie momenten waarop het echt niet ging. Wat gebeurde er?\n  \n\n- Een project waar je trots op bent: wat, voor wie, wat was moeilijk, hoe heb je het opgelost?  \n  (Dit wordt een regel op het cv en een voorbeeld in het gesprek.)\n  \n\n- Nog een project, liefst iets helemaal anders\n  \n\n- Wat doe je het liefst in het atelier: tekenen, plooien, lassen, organiseren, uitleggen aan anderen? Zet ze in volgorde.\n  \n\n- Wat is fysiek het zwaarst, en waar voel je dat (rug, schouders, handen, ogen, ademhaling)?  \n  (Ook voor de huisarts.)\n  \n\n- Werk je liever alleen, met twee of drie, of in een grotere ploeg? Waarom?\n  \n\n- Liever een klein bedrijf, een grote organisatie, een overheid, een vzw? Wat trekt je aan en wat schrikt af?\n  \n\n- Wat zouden je collega's zeggen als iemand vraagt hoe het is om met jou te werken?\n  \n\n- Wat heb je nodig van een baas of ploegbaas om goed te werken? En wat verdraag je niet?\n  \n\n## Sterktes en werkpunten\n\nEerlijk en met een voorbeeld; dit is geen sollicitatiegesprek.\n\n- Drie dingen waar je goed in bent, telkens met een voorbeeld\n  \n\n- Drie dingen die je wil verbeteren of die je moeilijk vindt\n  \n\n- Waarvoor komen mensen bij jou om hulp?\n  \n\n- Hoe leer je het liefst: door te doen, te kijken, te lezen, uitleg te krijgen?\n  \n\n- Hoe reageer je als er druk of stress is? Wat helpt dan?\n  \n\n- Wanneer zeg je te weinig, en wanneer had je liever iets gezegd?  \n  (De tests zeggen dat je niet snel op de voorgrond treedt; dit is om te weten waar dat je iets kost.)\n  \n\n- Wat weet je over jezelf dat niet in een test staat?\n  \n\n## Passies en interesses\n\nWat je doet als niemand het vraagt.\n\n- Waar gaat je aandacht naartoe buiten het werk: maken, lezen, kijken, sporten, mensen, plekken?\n  \n\n- Welke gebouwen, objecten, musea of ateliers hebben je ooit geraakt, en waarom?\n  \n\n- Als geld geen rol speelde: wat zou je een jaar lang maken of leren?\n  \n\n- Van de sporen in de app (erfgoed en restauratie, culturele instellingen, lesgeven, sociaal en ecologisch, archief en archeologie): welke trekt het meest, welke het minst, en waarom?\n  \n\n- Welk werkveld in de Verkenning verraste je positief, en welk zou je meteen schrappen?\n  \n\n- Heb je ooit vrijwilligerswerk gedaan of iemand iets aangeleerd? Hoe was dat?\n  \n\n- Wat zou je op de academie het liefst verder doen: meubel, interieur, grafiek, iets anders?\n  \n\n## De overstap\n\nHier gaat het om keuzes voor de komende maanden.\n\n- Drie dingen die de volgende job zeker moet hebben\n  \n\n- Drie dingen die je in de volgende job wil vermijden\n  \n\n- Wil je opnieuw studeren? Zo ja: hoelang zou je dat volhouden (een jaar, twee, drie), overdag of in de avond, en wat trekt je: restauratie, tekenen, lesgeven, archief, iets anders?\n  \n\n- Hoe voel je je nu: energie van 1 tot 10, slaap, zin om dingen te doen? Wat helpt je herstellen?\n  \n\n- Hoeveel weken rust denk je nodig te hebben voor je ergens nieuw kunt beginnen?\n  \n\n- Wat wil je dat Giulia doet in dit traject, en wat wil je liever zelf doen?\n  \n\n- Wat houdt je tegen om iets te tekenen bij je werkgever, en wat zou je willen dat er in de plaats gebeurt?\n  \n\n## Voor het gesprek\n\nTwee zinnen die je paraat wil hebben.\n\n- Hoe zeg je in twee zinnen waarom je weggaat, zonder het over vermoeidheid of je werkgever te hebben?  \n  (Bijvoorbeeld: na vijf jaar plaatbewerking wil ik mijn vakmanschap inzetten voor werk dat blijft, zoals erfgoed of museumateliers.)\n  \n\n- Welke vraag zou jij aan een werkgever stellen om te weten of je er past?\n  \n\n- Wie kan als referentie dienen (een collega, een klant, een docent) en mag je die naam gebruiken?\n  \n"
  },
- "gebouwdOp": "2026-10-04T18:33:55.061Z"
+ "gebouwdOp": "2026-10-04T18:38:42.402Z"
 };

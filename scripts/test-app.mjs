@@ -11,7 +11,7 @@ await new Promise(r => setTimeout(r, 700));
 const base = `http://localhost:${port}/`;
 const fouten = []; const geslaagd = [];
 const check = (naam, ok, detail = '') => (ok ? geslaagd : fouten).push(`${naam}${detail ? ': ' + detail : ''}`);
-const VIEWS = { overzicht: [], stappenplan: ['open', 'klaar', 'alles'], planning: ['kalender', 'fasen'], rechten: ['kern', 'verwittiging', 'scenarios', 'opzeg', 'werkloosheid', 'steun', 'check'], communicatie: ['mails', 'brieven', 'sms', 'logboek'], sollicitaties: [], vacatures: ['bewaard', 'zoeken', 'bronnen'], hotlist: [], verkenning: ['alles', 'erfgoed', 'sociaal'], opleidingen: ['alles', 'erfgoed'], cv: ['start', 'gegevens', 'profiel', 'ervaring', 'opleiding', 'vaardigheden', 'competenties', 'portfolio', 'extra', 'zelftests', 'voorbeelden', 'gids', 'afdrukken'], vragenlijst: ['praktisch', 'werk'], profiel: ['samenvatting', 'tests', 'herzieningen'], documenten: ['cv', 'sjablonen', 'vdab', 'gegenereerd'] };
+const VIEWS = { overzicht: [], stappenplan: ['open', 'klaar', 'alles'], planning: ['maanden', 'kalender', 'fasen'], rechten: ['kern', 'verwittiging', 'scenarios', 'opzeg', 'werkloosheid', 'steun', 'check'], communicatie: ['mails', 'brieven', 'sms', 'logboek'], sollicitaties: [], vacatures: ['bewaard', 'zoeken', 'bronnen'], hotlist: [], verkenning: ['alles', 'erfgoed', 'sociaal'], opleidingen: ['alles', 'erfgoed'], cv: ['start', 'gegevens', 'profiel', 'ervaring', 'opleiding', 'vaardigheden', 'competenties', 'portfolio', 'extra', 'zelftests', 'voorbeelden', 'gids', 'afdrukken'], vragenlijst: ['praktisch', 'werk'], profiel: ['samenvatting', 'tests', 'herzieningen'], documenten: ['cv', 'dossier', 'sjablonen', 'vdab', 'gegenereerd'] };
 let browser;
 try {
   const { chromium } = await import('playwright');
@@ -140,6 +140,18 @@ try {
       await page.click('.peek button[type=submit]');
       await page.waitForTimeout(200);
       check('contact noteren', /Telefoon met ACV/.test(await page.textContent('.content')));
+      // Dossier: document toevoegen met een foto als bijlage
+      await page.goto(`${base}#/documenten?tab=dossier`, { waitUntil: 'networkidle' });
+      await page.click('text=Document toevoegen');
+      await page.fill('.peek label:has-text("Titel") input', 'Testbrief');
+      await page.click('.peek button[type=submit]');
+      await page.waitForTimeout(200);
+      const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==', 'base64');
+      await page.setInputFiles('.peek input[type=file]', { name: 'pagina1.png', mimeType: 'image/png', buffer: png });
+      await page.waitForSelector('.peek .bijlage img', { timeout: 3000 }).catch(() => {});
+      check('dossier: foto als bijlage bewaard en getoond', await page.locator('.peek .bijlage img').count() === 1);
+      await page.click('#peekClose');
+      check('dossier: document in de lijst', /Testbrief/.test(await page.textContent('.content')) && /1 bijlage/.test(await page.textContent('.content')));
       // Import weigert een vreemd bestand
       const imp = await page.evaluate(async () => { const s = await import('./js/store.js'); try { s.importJson('{"foo":1}'); return 'aanvaard'; } catch { return 'geweigerd'; } });
       check('import weigert vreemd bestand', imp === 'geweigerd', imp);

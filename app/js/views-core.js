@@ -2,6 +2,7 @@
 import { h, icon, badge, fit, fmtDate, todayIso, addDays, daysUntil, uid, md, copyText, download, toast, isoLocal } from './ui.js';
 import { all, get, upsert, remove, ref, exportJson, importJson, resetLocal, localSize } from './store.js';
 import { openPeek, closePeek, go } from './app.js';
+import { dossierTab } from './views-dossier.js';
 
 const SPOORKLEUR = { erfgoed: 'orange', cultuur: 'violet', onderwijs: 'green', overheid: 'grey', sociaal: 'red', ecologisch: 'green', geschiedenis: 'orange', reserve: 'grey' };
 export const spoorBadge = (s) => badge(s || 'algemeen', SPOORKLEUR[s] || 'grey');
@@ -104,10 +105,11 @@ const agendaRij = a => h('li', { class: a.klaar ? 'is-klaar' : '' },
 
 export function planning(r) {
   const fase = huidigeFase();
-  const tab = r.tab === 'fasen' ? 'fasen' : 'kalender';
-  const tabs = [['kalender', 'Kalender'], ['fasen', 'Fasen en agenda']].map(([k, l]) => ({ label: l, href: `#/planning?tab=${k}`, active: tab === k }));
+  const tab = ['kalender', 'fasen'].includes(r.tab) ? r.tab : 'maanden';
+  const tabs = [['maanden', 'Per maand'], ['kalender', 'Kalender'], ['fasen', 'Fasen en agenda']].map(([k, l]) => ({ label: l, href: `#/planning?tab=${k}`, active: tab === k }));
   let inhoud;
-  if (tab === 'kalender') inhoud = kalender(r.m);
+  if (tab === 'maanden') inhoud = maanden();
+  else if (tab === 'kalender') inhoud = kalender(r.m);
   else {
     const agenda = agendaItems().filter(x => x.datum >= addDays(todayIso(), -7));
     inhoud = h('div', { class: 'two-col' },
@@ -120,7 +122,36 @@ export function planning(r) {
     );
   }
   const body = content(intro('Planning', `Vijf fasen van hier tot september 2027. Nu: ${fase.naam}.`), inhoud);
-  return { chrome: { where: tab === 'kalender' ? 'Kalender' : 'Fasen en agenda', tabs, viewIcon: 'calendar' }, body };
+  return { chrome: { where: { maanden: 'Per maand', kalender: 'Kalender', fasen: 'Fasen en agenda' }[tab], tabs, viewIcon: 'calendar' }, body };
+}
+
+// Per maand: thema, focus en de werklast (deadlines, afspraken, verwachte uren per week).
+function maanden() {
+  const nu = todayIso().slice(0, 7);
+  const items = agendaItems();
+  const maxUren = 12;
+  const kaart = mp => {
+    const [j, m] = mp.maand.split('-').map(Number);
+    const vanMaand = items.filter(a => a.datum.slice(0, 7) === mp.maand);
+    const stappen = vanMaand.filter(a => a.soort === 'stap').length, overige = vanMaand.length - stappen;
+    const status = mp.maand === nu ? 'nu' : mp.maand < nu ? 'voorbij' : null;
+    const uren = Array.isArray(mp.uren) ? mp.uren : null;
+    return h('section', { class: 'card card--pad maand' + (status ? ` maand--${status}` : '') },
+      h('div', { class: 'meta' }, h('span', { class: 'eyebrow', style: 'margin:0' }, `${MAANDEN[m - 1]} ${j}`), status === 'nu' && badge('deze maand', 'violet'), status === 'voorbij' && badge('voorbij', 'grey')),
+      h('p', { class: 'row-title' }, mp.thema),
+      h('div', { class: 'maand__last' },
+        h('div', null, h('p', { class: 'maand__getal' }, String(stappen)), h('p', { class: 'small muted' }, stappen === 1 ? 'stap met deadline' : 'stappen met deadline')),
+        h('div', null, h('p', { class: 'maand__getal' }, String(overige)), h('p', { class: 'small muted' }, 'afspraken en momenten')),
+        h('div', null, h('p', { class: 'maand__getal maand__getal--tekst' }, mp.sollicitaties), h('p', { class: 'small muted' }, 'sollicitaties'))),
+      uren ? h('div', { class: 'maand__uren' }, h('p', { class: 'small' }, `Ongeveer ${uren[0]} tot ${uren[1]} uur per week`), h('div', { class: 'progress' }, h('span', { style: `width:${Math.round(uren[1] / maxUren * 100)}%` }))) : h('p', { class: 'small' }, 'Voltijds aan de slag in de nieuwe richting.'),
+      stappen > 10 && h('p', { class: 'small maand__let' }, `${stappen} deadlines is veel voor één maand. Kies samen wat kan schuiven naar de volgende maand.`),
+      h('ul', { class: 'bullets small' }, mp.focus.map(f => h('li', null, f))),
+      h('p', { class: 'small' }, h('strong', null, 'Klaar aan het einde: '), mp.klaar),
+      h('a', { class: 'small', href: `#/planning?tab=kalender&m=${mp.maand}` }, 'Bekijk in de kalender'));
+  };
+  return h('div', { class: 'stack' },
+    callout('violet', 'calendar', 'Zo is het jaar opgebouwd', h('p', null, 'Oktober is voor de administratie, de strategie en het cv. Vanaf november gaan de sollicitaties de deur uit, twee tot drie per week, zodat je na een paar weken weet hoeveel werk één sollicitatie echt vraagt. Daarna volgen rust, proeven en kiezen. De uren zijn een richtlijn, geen opdracht.')),
+    h('div', { class: 'grid-cards' }, ref.maandplan.map(kaart)));
 }
 
 function kalender(m) {
@@ -232,7 +263,7 @@ export function profiel(r) {
 // ---------- Documenten ----------
 export function documenten(r) {
   const tab = r.tab || 'cv';
-  const tabs = [['cv', 'Cv'], ['sjablonen', 'Sjablonen'], ['vdab', 'VDAB-profiel'], ['gegenereerd', 'Per sollicitatie']].map(([k, l]) => ({ label: l, href: `#/documenten?tab=${k}`, active: tab === k }));
+  const tabs = [['cv', 'Cv'], ['dossier', `Dossier ${all('dossier').length}`], ['sjablonen', 'Sjablonen'], ['vdab', 'VDAB-profiel'], ['gegenereerd', 'Per sollicitatie']].map(([k, l]) => ({ label: l, href: `#/documenten?tab=${k}`, active: tab === k }));
   const S = ref.sjablonen; let inhoud;
   if (tab === 'cv') { const cv = ref.cvMaster; inhoud = h('div', { class: 'stack' },
     h('div', { class: 'toolbar' }, h('a', { class: 'btn btn--primary', href: 'cv.html', target: '_blank' }, icon('print', 14), 'Afdrukversie openen (pdf)'), h('button', { class: 'btn btn--ghost', onClick: () => copyText(JSON.stringify(cv, null, 2)) }, icon('copy', 14), 'Kopieer cv-gegevens')),
@@ -240,10 +271,11 @@ export function documenten(r) {
     titled('Profiel', h('p', null, cv.profiel)),
     titled('Werkervaring', cv.werkervaring.map(w => h('div', { style: 'margin-bottom:10px' }, h('p', { class: 'row-title' }, `${w.functie}, ${w.werkgever}`), h('p', { class: 'small muted' }, w.periode), h('ul', { class: 'bullets small' }, w.taken.map(t => h('li', null, t)))))),
     h('div', { class: 'two-col' }, titled('Opleiding', h('ul', { class: 'list list--tight' }, cv.opleiding.map(o => h('li', null, h('div', null, h('p', { class: 'row-title' }, o.titel), h('p', { class: 'small muted' }, `${o.instelling}, ${o.periode}`)))))), titled('Certificaten en vaardigheden', h('ul', { class: 'bullets small' }, [...cv.certificaten, ...cv.vaardigheden].map(c => h('li', null, c))))));
-  } else if (tab === 'sjablonen') inhoud = h('div', { class: 'stack' }, ['motivatiebrief-basis.md', 'mails.md'].filter(k => S[k]).map(k => titled(k.replace('.md', '').replace(/-/g, ' '), h('div', { class: 'toolbar' }, h('button', { class: 'btn btn--ghost btn--sm', onClick: () => copyText(S[k]) }, icon('copy', 12), 'Kopieer tekst')), md(S[k]))));
+  } else if (tab === 'dossier') inhoud = dossierTab();
+  else if (tab === 'sjablonen') inhoud = h('div', { class: 'stack' }, ['motivatiebrief-basis.md', 'mails.md'].filter(k => S[k]).map(k => titled(k.replace('.md', '').replace(/-/g, ' '), h('div', { class: 'toolbar' }, h('button', { class: 'btn btn--ghost btn--sm', onClick: () => copyText(S[k]) }, icon('copy', 12), 'Kopieer tekst')), md(S[k]))));
   else if (tab === 'vdab') inhoud = h('div', { class: 'stack' }, h('div', { class: 'toolbar' }, h('button', { class: 'btn btn--primary', onClick: () => copyText(S['vdab-profiel.md'] || '') }, icon('copy', 14), 'Kopieer volledige tekst'), h('a', { class: 'btn btn--ghost', href: 'https://www.vdab.be/mijnloopbaan', target: '_blank' }, icon('external', 14), 'Mijn Loopbaan openen')), card(md(S['vdab-profiel.md'] || 'Nog niet beschikbaar.')));
   else inhoud = ref.gegenereerd.length ? h('div', { class: 'stack' }, ref.gegenereerd.map(g => titled(g.slug, g.meta && h('p', { class: 'small muted' }, [g.meta.organisatie, g.meta.functie, g.meta.datum && fmtDate(g.meta.datum)].filter(Boolean).join(', ')), h('div', { class: 'toolbar' }, g.cv && h('a', { class: 'btn btn--ghost btn--sm', href: `cv.html?variant=${encodeURIComponent(g.slug)}`, target: '_blank' }, icon('print', 12), 'Cv-variant'), g.brief && h('button', { class: 'btn btn--ghost btn--sm', onClick: () => copyText(g.brief) }, icon('copy', 12), 'Kopieer brief'), g.mail && h('button', { class: 'btn btn--ghost btn--sm', onClick: () => copyText(g.mail) }, icon('copy', 12), 'Kopieer mail')), g.brief && md(g.brief), g.mail && md(g.mail)))) : h('div', { class: 'empty' }, 'Nog geen aangepaste documenten. Geef een vacature aan Claude met de werkwijze in .claude/skills/sollicitatie en de map documents/generated vult zich.');
-  const body = content(intro('Documenten', 'Master-cv, brieven, mails en de tekst voor het VDAB-profiel. Alles in het Nederlands, met "u" tegenover werkgevers.'), inhoud);
+  const body = content(intro('Documenten', 'Master-cv, het dossier met brieven van en naar de werkgever, mails en de tekst voor het VDAB-profiel. Alles in het Nederlands, met "u" tegenover werkgevers.'), inhoud);
   return { chrome: { where: 'Cv, brieven, mails', tabs, viewIcon: 'doc' }, body };
 }
 

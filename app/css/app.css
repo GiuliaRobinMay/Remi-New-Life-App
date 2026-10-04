@@ -149,7 +149,25 @@ details.plain > summary::-webkit-details-marker { display: none; }
 .toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: var(--ink); color: #fff; padding: 8px 14px; border-radius: var(--radius-pill); font-size: 13px; z-index: 70; opacity: 0; transition: opacity .2s; pointer-events: none; }
 .toast--show { opacity: 1; }
 
-/* Kalender (Planning). Maandraster van maandag tot zondag; kleuren volgen de badges van het thema. */
+/* Dossier: bijlagen */
+.bijlagen { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+.bijlage { margin: 0; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.bijlage img { display: block; width: 100%; height: 160px; object-fit: cover; border: 1px solid var(--hairline); border-radius: var(--radius-chip); background: var(--grey-50); }
+.bijlage__pdf { display: flex; align-items: center; justify-content: center; height: 160px; border: 1px solid var(--hairline); border-radius: var(--radius-chip); color: var(--muted); }
+.bijlage figcaption { overflow-wrap: anywhere; }
+
+/* Per maand (Planning) */
+.maand { display: flex; flex-direction: column; gap: 8px; }
+.maand > * { margin: 0; }
+.maand--nu { border-color: var(--brand-violet); box-shadow: inset 0 0 0 1px var(--brand-violet); }
+.maand--voorbij { opacity: .65; }
+.maand__last { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding: 8px 0; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+.maand__last > div > p { margin: 0; }
+.maand__getal { font-size: 22px; font-weight: 700; line-height: 1.2; }
+.maand__getal--tekst { font-size: 14px; line-height: 1.35; padding-top: 3px; }
+.maand__let { color: var(--brand-red-deep); }
+.maand__uren .progress { margin-top: 4px; }
+ Maandraster van maandag tot zondag; kleuren volgen de badges van het thema. */
 .cal__head { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
 .cal__nav { min-width: 40px; justify-content: center; font-size: 20px; line-height: 1; }
 .cal__titel { flex: 1 1 auto; text-align: center; text-transform: capitalize; margin: 0; }
@@ -172,6 +190,8 @@ details.plain > summary::-webkit-details-marker { display: none; }
 .cal__ev.is-klaar, li.is-klaar a { text-decoration: line-through; }
 .cal__meer { font-size: 11px; color: var(--muted); padding: 0 6px; }
 @media (max-width: 720px) {
+  .maand__last { grid-template-columns: 1fr 1fr; }
+  .maand__last > div:last-child { grid-column: 1 / -1; }
   .cal { gap: 2px; }
   .cal__wd { padding: 0 2px 4px; text-align: center; font-size: 11px; }
   .cal__day { min-height: 52px; padding: 4px 2px; align-items: center; flex-flow: row wrap; justify-content: center; align-content: flex-start; gap: 2px; }

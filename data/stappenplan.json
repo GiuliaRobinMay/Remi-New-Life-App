@@ -10,22 +10,32 @@
     "bron": "rechten"
   },
   {
+    "id": "s34",
+    "groep": "Eerst, deze week",
+    "titel": "ACV-afspraak boeken voor vrijdag 16 oktober",
+    "wat": "ACV laat maar een week op voorhand boeken. Boek op zondag 11 oktober via hetacv.be een afspraak op vrijdag 16 oktober, na de doktersafspraak van 08:30 in Deurne (bijvoorbeeld vanaf 10:00).",
+    "wie": "Remi of Giulia",
+    "deadline": "2026-10-11",
+    "status": "open",
+    "bron": "rechten"
+  },
+  {
     "id": "s02",
     "groep": "Eerst, deze week",
-    "titel": "Afspraak bij ACV-CSC METEA",
-    "wat": "Neem mee: het document van de werkgever, het arbeidscontract, de laatste loonfiches, de startdatum. Vragen: exacte anciënniteit en opzegtermijn, eindejaarspremie PC 111 Antwerpen bij ontslagname versus ontslag, hoe reageren op druk, wat de C4 moet vermelden, hoe ACV de uitkering regelt.",
+    "titel": "Afspraak bij ACV-CSC METEA, vrijdag 16 oktober",
+    "wat": "Op dezelfde dag als de doktersafspraak, liefst vanaf 10:00 zodat er tijd is na de dokter. Wat de dokter vaststelt, kan je meteen met ACV bespreken. Neem mee: het document van de werkgever, het arbeidscontract, de laatste loonfiches, de startdatum. Vragen: exacte anciënniteit en opzegtermijn, eindejaarspremie PC 111 Antwerpen bij ontslagname versus ontslag, hoe reageren op druk, wat de C4 moet vermelden, hoe ACV de uitkering regelt.",
     "wie": "Remi (Giulia mee als hij dat wil)",
-    "deadline": "2026-10-09",
+    "deadline": "2026-10-16",
     "status": "open",
     "bron": "rechten"
   },
   {
     "id": "s03",
     "groep": "Eerst, deze week",
-    "titel": "Bezoek aan de huisarts",
-    "wat": "Bespreek vermoeidheid, burn-outklachten en de fysieke belasting van het laswerk. Vraag om de klachten te documenteren in het dossier. Bespreek of ziekteverlof nu aangewezen is en wat een verwijzing naar een psycholoog kan betekenen. Vraag naar de mogelijkheid van een re-integratietraject via de arbeidsarts.",
+    "titel": "Doktersafspraak, vrijdag 16 oktober om 08:30",
+    "wat": "Afspraak in Deurne om 08:30; naam en adres staan in je agenda. Bespreek vermoeidheid, burn-outklachten en de fysieke belasting van het laswerk. Vraag om de klachten te documenteren in het dossier. Bespreek of ziekteverlof nu aangewezen is en wat een verwijzing naar een psycholoog kan betekenen. Vraag naar de mogelijkheid van een re-integratietraject via de arbeidsarts.",
     "wie": "Remi",
-    "deadline": "2026-10-09",
+    "deadline": "2026-10-16",
     "status": "open",
     "bron": "herstel"
   },

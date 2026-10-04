@@ -45,7 +45,7 @@ function route() {
   const [path, query] = raw.split('?');
   const [id, ...rest] = (path || 'overzicht').split('/');
   const qs = new URLSearchParams(query || '');
-  return { id: KNOWN.has(id) ? id : 'overzicht', params: rest, tab: qs.get('tab'), q: qs.get('q') || '', m: qs.get('m') || '' };
+  return { id: KNOWN.has(id) ? id : 'overzicht', params: rest, tab: qs.get('tab'), q: qs.get('q') || '', m: qs.get('m') || '', wie: qs.get('wie') || '' };
 }
 export function go(path) { location.hash = '#/' + path; }
 
@@ -142,6 +142,29 @@ document.getElementById('navClose').addEventListener('click', () => {
 });
 try { if (localStorage.getItem('remi-sidebar-smal') === '1' && !mobiel()) sidebar.classList.add('sidebar--tight'); } catch { /* geen opslag */ }
 
+// Wie gebruikt dit toestel: Remi of Giulia. Per toestel bewaard; het wachtwoord van de site is gedeeld.
+const WIE_KEY = 'remi-gebruiker';
+export const NAMEN = { remi: 'Remi', giulia: 'Giulia' };
+export function gebruiker() { try { const w = localStorage.getItem(WIE_KEY); return NAMEN[w] ? w : ''; } catch { return ''; } }
+export function zetGebruiker(w) {
+  try { if (NAMEN[w]) localStorage.setItem(WIE_KEY, w); else localStorage.removeItem(WIE_KEY); } catch { /* geen opslag */ }
+  toonGebruiker(); closePeek(); render();
+}
+function toonGebruiker() {
+  const w = gebruiker(); const mark = document.getElementById('brandMark'), lab = document.getElementById('brandWho');
+  mark.textContent = w === 'giulia' ? 'G' : 'R'; mark.dataset.wie = w;
+  lab.textContent = w ? `Ingelogd als ${NAMEN[w]}` : 'Wie ben jij? Kies hier'; lab.title = 'Klik om te kiezen wie dit toestel gebruikt';
+}
+export function kiesGebruiker() {
+  openPeek('Wie gebruikt dit toestel?', () => h('div', { class: 'stack' },
+    h('p', null, 'De app onthoudt het op dit toestel. Je ziet dan eerst wat jij moet doen, en wat jullie samen doen.'),
+    h('div', { class: 'form__actions' },
+      h('button', { class: 'btn btn--primary wie-knop wie-knop--remi', onClick: () => zetGebruiker('remi') }, 'Ik ben Remi'),
+      h('button', { class: 'btn btn--primary wie-knop wie-knop--giulia', onClick: () => zetGebruiker('giulia') }, 'Ik ben Giulia')),
+    gebruiker() && h('button', { class: 'btn btn--quiet btn--sm', onClick: () => zetGebruiker('') }, 'Niemand kiezen')));
+}
+document.getElementById('brandWho').addEventListener('click', kiesGebruiker);
+
 // Peek
 const peek = document.getElementById('peek'), peekBody = document.getElementById('peekBody'), peekTitle = document.getElementById('peekTitle'), peekBackdrop = document.getElementById('peekBackdrop');
 let peekRerender = null;
@@ -155,5 +178,6 @@ document.getElementById('peekClose').addEventListener('click', closePeek);
 peekBackdrop.addEventListener('click', closePeek);
 window.addEventListener('keydown', e => { if (e.key === 'Escape') { closePeek(); setNav(false); } });
 
+toonGebruiker();
 render();
 try { if (!localStorage.getItem('remi-welkom')) { localStorage.setItem('remi-welkom', '1'); setTimeout(() => toast('Welkom. Alles wat je hier invult blijft in deze browser.'), 400); } } catch { /* geen opslag */ }

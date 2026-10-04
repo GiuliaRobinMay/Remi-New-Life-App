@@ -121,6 +121,15 @@ try {
       await page.click('a[aria-label="Volgende maand"]');
       await page.waitForFunction(() => document.querySelector('.cal__titel')?.textContent !== 'oktober 2026', null, { timeout: 3000 }).catch(() => {});
       check('volgende maand', (await page.textContent('.cal__titel')) === 'november 2026');
+      // Wie gebruikt het toestel
+      await page.goto(`${base}#/overzicht`, { waitUntil: 'networkidle' });
+      await page.click('text=Ik ben Giulia');
+      await page.waitForTimeout(150);
+      check('gebruiker kiezen', (await page.textContent('#brandWho')).includes('Giulia') && /Dag Giulia/.test(await page.textContent('.content')));
+      // Wie doet wat: filter Giulia
+      await page.goto(`${base}#/stappenplan?tab=open&wie=giulia`, { waitUntil: 'networkidle' });
+      const wieTest = await page.evaluate(() => ({ actief: document.querySelector('.chips .chip--active')?.textContent || '', badges: [...document.querySelectorAll('.content .list .meta .badge:first-child')].map(b => b.textContent) }));
+      check('stappen filteren op Giulia', /^Giulia/.test(wieTest.actief) && wieTest.badges.length > 0 && wieTest.badges.every(b => b === 'Giulia'), JSON.stringify(wieTest));
       // Eigen afspraak in de agenda
       await page.goto(`${base}#/planning?tab=kalender&m=2026-10`, { waitUntil: 'networkidle' });
       await page.click('text=Afspraak toevoegen');

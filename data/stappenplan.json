@@ -7,17 +7,19 @@
     "wie": "Remi",
     "deadline": "2026-10-02",
     "status": "open",
-    "bron": "rechten"
+    "bron": "rechten",
+    "voor": "remi"
   },
   {
     "id": "s34",
     "groep": "Eerst, deze week",
     "titel": "ACV-afspraak boeken voor vrijdag 16 oktober",
     "wat": "ACV laat maar een week op voorhand boeken. Boek op zondag 11 oktober via hetacv.be een afspraak op vrijdag 16 oktober, na de doktersafspraak van 08:30 in Deurne (bijvoorbeeld vanaf 10:00). Misschien regelt het telefoongesprek met ACV van maandag 5 oktober dit al.",
-    "wie": "Remi of Giulia",
+    "wie": "Giulia",
     "deadline": "2026-10-11",
     "status": "open",
-    "bron": "rechten"
+    "bron": "rechten",
+    "voor": "giulia"
   },
   {
     "id": "s02",
@@ -27,17 +29,19 @@
     "wie": "Remi (Giulia mee als hij dat wil)",
     "deadline": "2026-10-16",
     "status": "open",
-    "bron": "rechten"
+    "bron": "rechten",
+    "voor": "remi"
   },
   {
     "id": "s35",
     "groep": "Eerst, deze week",
     "titel": "Telefoon met ACV voorbereiden (maandag 5 oktober)",
     "wat": "ACV belt maandag 5 oktober tussen 15:00 en 16:00; de details staan in de agenda. Zorg dat Remi erbij is, want ACV bespreekt zijn dossier normaal alleen met hemzelf of met zijn toestemming. Leg klaar: de verwittiging met envelop en ontvangstbewijs, de lijst met data, de loonfiches en de startdatum. Vragen: is de verwittiging tijdig en geldig, moet Remi antwoorden, hoe vraagt hij het contract en het arbeidsreglement op, welk statuut en welke opzegtermijn gelden, hoe bekomt hij een ontslag door de werkgever zonder 'fout' op de C4, wat bij druk om te tekenen, is zijn lidmaatschap in orde voor juridische bijstand, en kan er een afspraak ter plaatse volgen (bijvoorbeeld 16 oktober na de dokter). Teken niets behalve 'voor ontvangst'. Uitleg bij Rechten, Verwittiging.",
-    "wie": "Remi (Giulia helpt)",
+    "wie": "Giulia en Remi (ACV belt naar Giulia)",
     "deadline": "2026-10-05",
     "status": "open",
-    "bron": "rechten"
+    "bron": "rechten",
+    "voor": "samen"
   },
   {
     "id": "s36",
@@ -47,7 +51,8 @@
     "wie": "Remi met ACV",
     "deadline": "2026-10-16",
     "status": "open",
-    "bron": "rechten"
+    "bron": "rechten",
+    "voor": "remi"
   },
   {
     "id": "s37",
@@ -57,7 +62,8 @@
     "wie": "Remi",
     "deadline": "2026-10-05",
     "status": "open",
-    "bron": "rechten"
+    "bron": "rechten",
+    "voor": "remi"
   },
   {
     "id": "s03",
@@ -67,7 +73,8 @@
     "wie": "Remi",
     "deadline": "2026-10-16",
     "status": "open",
-    "bron": "herstel"
+    "bron": "herstel",
+    "voor": "remi"
   },
   {
     "id": "s04",
@@ -77,7 +84,8 @@
     "wie": "Remi en Giulia",
     "deadline": "2026-10-04",
     "status": "open",
-    "bron": "rechten"
+    "bron": "rechten",
+    "voor": "samen"
   },
   {
     "id": "s05",
@@ -87,7 +95,8 @@
     "wie": "Remi met ACV",
     "deadline": "2026-10-23",
     "status": "open",
-    "bron": "rechten"
+    "bron": "rechten",
+    "voor": "remi"
   },
   {
     "id": "s06",
@@ -97,7 +106,8 @@
     "wie": "Remi, Giulia, ACV",
     "deadline": "2026-10-31",
     "status": "open",
-    "bron": "rechten"
+    "bron": "rechten",
+    "voor": "samen"
   },
   {
     "id": "s07",
@@ -107,7 +117,8 @@
     "wie": "Remi",
     "deadline": "",
     "status": "open",
-    "bron": "rechten"
+    "bron": "rechten",
+    "voor": "remi"
   },
   {
     "id": "s08",
@@ -117,7 +128,8 @@
     "wie": "Remi",
     "deadline": "2026-12-31",
     "status": "open",
-    "bron": "rechten"
+    "bron": "rechten",
+    "voor": "remi"
   },
   {
     "id": "s09",
@@ -127,7 +139,8 @@
     "wie": "Remi",
     "deadline": "2027-01-08",
     "status": "open",
-    "bron": "vdab"
+    "bron": "vdab",
+    "voor": "remi"
   },
   {
     "id": "s10",
@@ -137,7 +150,8 @@
     "wie": "Remi (Giulia bereidt de vragen voor)",
     "deadline": "2026-11-15",
     "status": "open",
-    "bron": "vdab"
+    "bron": "vdab",
+    "voor": "samen"
   },
   {
     "id": "s11",
@@ -147,7 +161,8 @@
     "wie": "Remi",
     "deadline": "2026-10-31",
     "status": "open",
-    "bron": "vdab"
+    "bron": "vdab",
+    "voor": "remi"
   },
   {
     "id": "s33",
@@ -157,7 +172,8 @@
     "wie": "Remi",
     "deadline": "2026-11-30",
     "status": "open",
-    "bron": "vdab"
+    "bron": "vdab",
+    "voor": "remi"
   },
   {
     "id": "s12",
@@ -167,7 +183,8 @@
     "wie": "Giulia",
     "deadline": "2026-10-11",
     "status": "klaar",
-    "bron": "vdab"
+    "bron": "vdab",
+    "voor": "giulia"
   },
   {
     "id": "s13",
@@ -177,7 +194,8 @@
     "wie": "Remi",
     "deadline": "2026-11-30",
     "status": "open",
-    "bron": "herstel"
+    "bron": "herstel",
+    "voor": "remi"
   },
   {
     "id": "s14",
@@ -187,7 +205,8 @@
     "wie": "Remi",
     "deadline": "",
     "status": "open",
-    "bron": "herstel"
+    "bron": "herstel",
+    "voor": "remi"
   },
   {
     "id": "s15",
@@ -197,7 +216,8 @@
     "wie": "Remi",
     "deadline": "2027-01-05",
     "status": "open",
-    "bron": "herstel"
+    "bron": "herstel",
+    "voor": "remi"
   },
   {
     "id": "s16",
@@ -207,7 +227,8 @@
     "wie": "Remi en Giulia",
     "deadline": "2026-10-11",
     "status": "open",
-    "bron": "documenten"
+    "bron": "documenten",
+    "voor": "samen"
   },
   {
     "id": "s17",
@@ -217,7 +238,8 @@
     "wie": "Remi",
     "deadline": "2026-10-25",
     "status": "open",
-    "bron": "documenten"
+    "bron": "documenten",
+    "voor": "remi"
   },
   {
     "id": "s18",
@@ -227,7 +249,8 @@
     "wie": "Giulia met Claude",
     "deadline": "2026-10-11",
     "status": "open",
-    "bron": "documenten"
+    "bron": "documenten",
+    "voor": "giulia"
   },
   {
     "id": "s19",
@@ -237,7 +260,8 @@
     "wie": "Remi",
     "deadline": "2026-10-18",
     "status": "open",
-    "bron": "documenten"
+    "bron": "documenten",
+    "voor": "remi"
   },
   {
     "id": "s20",
@@ -247,7 +271,8 @@
     "wie": "Remi en Giulia",
     "deadline": "2026-10-11",
     "status": "open",
-    "bron": "hotlist"
+    "bron": "hotlist",
+    "voor": "samen"
   },
   {
     "id": "s21",
@@ -257,7 +282,8 @@
     "wie": "Remi",
     "deadline": "2026-10-11",
     "status": "open",
-    "bron": "vacatures"
+    "bron": "vacatures",
+    "voor": "remi"
   },
   {
     "id": "s22",
@@ -267,7 +293,8 @@
     "wie": "Remi",
     "deadline": "2026-10-04",
     "status": "open",
-    "bron": "netwerk"
+    "bron": "netwerk",
+    "voor": "remi"
   },
   {
     "id": "s23",
@@ -277,7 +304,8 @@
     "wie": "Remi",
     "deadline": "2026-11-30",
     "status": "open",
-    "bron": "netwerk"
+    "bron": "netwerk",
+    "voor": "remi"
   },
   {
     "id": "s24",
@@ -287,7 +315,8 @@
     "wie": "Remi",
     "deadline": "2026-11-15",
     "status": "open",
-    "bron": "netwerk"
+    "bron": "netwerk",
+    "voor": "remi"
   },
   {
     "id": "s25",
@@ -297,7 +326,8 @@
     "wie": "Remi met Giulia",
     "deadline": "2026-11-15",
     "status": "open",
-    "bron": "sollicitaties"
+    "bron": "sollicitaties",
+    "voor": "samen"
   },
   {
     "id": "s26",
@@ -307,7 +337,8 @@
     "wie": "Remi",
     "deadline": "",
     "status": "open",
-    "bron": "netwerk"
+    "bron": "netwerk",
+    "voor": "remi"
   },
   {
     "id": "s27",
@@ -317,7 +348,8 @@
     "wie": "Remi",
     "deadline": "2026-10-11",
     "status": "open",
-    "bron": "opleiding"
+    "bron": "opleiding",
+    "voor": "remi"
   },
   {
     "id": "s28",
@@ -327,7 +359,8 @@
     "wie": "Remi",
     "deadline": "2027-03-31",
     "status": "open",
-    "bron": "opleiding"
+    "bron": "opleiding",
+    "voor": "remi"
   },
   {
     "id": "s29",
@@ -337,7 +370,8 @@
     "wie": "Remi",
     "deadline": "2027-03-31",
     "status": "open",
-    "bron": "opleiding"
+    "bron": "opleiding",
+    "voor": "remi"
   },
   {
     "id": "s30",
@@ -347,7 +381,8 @@
     "wie": "Remi",
     "deadline": "2027-02-28",
     "status": "open",
-    "bron": "opleiding"
+    "bron": "opleiding",
+    "voor": "remi"
   },
   {
     "id": "s31",
@@ -357,7 +392,8 @@
     "wie": "Remi en Giulia",
     "deadline": "2027-06-30",
     "status": "open",
-    "bron": "opleiding"
+    "bron": "opleiding",
+    "voor": "samen"
   },
   {
     "id": "s32",
@@ -367,6 +403,7 @@
     "wie": "Remi",
     "deadline": "",
     "status": "open",
-    "bron": "opleiding"
+    "bron": "opleiding",
+    "voor": "remi"
   }
 ]

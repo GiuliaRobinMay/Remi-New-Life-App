@@ -149,6 +149,23 @@ details.plain > summary::-webkit-details-marker { display: none; }
 .toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: var(--ink); color: #fff; padding: 8px 14px; border-radius: var(--radius-pill); font-size: 13px; z-index: 70; opacity: 0; transition: opacity .2s; pointer-events: none; }
 .toast--show { opacity: 1; }
 
+/* Wie: Remi blauw, Giulia rood, samen violet */
+:root { --wie-remi: #2563eb; --wie-remi-deep: #1d4ed8; --wie-giulia: var(--brand-red); --wie-samen: var(--brand-violet); }
+.badge--blue { background: color-mix(in srgb, var(--wie-remi) 12%, white); color: var(--wie-remi-deep); }
+.sidebar__mark[data-wie="remi"] { background: var(--wie-remi); }
+.sidebar__mark[data-wie="giulia"] { background: var(--wie-giulia); }
+.chips a.chip { text-decoration: none; }
+.sidebar__who { all: unset; cursor: pointer; font-size: 13px; color: rgba(255, 255, 255, .72); }
+.sidebar__who:hover, .sidebar__who:focus-visible { color: #fff; text-decoration: underline; }
+.wie-knop--remi { background: var(--wie-remi); border-color: var(--wie-remi); }
+.wie-knop--giulia { background: var(--wie-giulia); border-color: var(--wie-giulia); }
+.chip--wie-remi.chip--active { background: var(--wie-remi); border-color: var(--wie-remi); color: #fff; }
+.chip--wie-giulia.chip--active { background: var(--wie-giulia); border-color: var(--wie-giulia); color: #fff; }
+.chip--wie-samen.chip--active { background: var(--wie-samen); border-color: var(--wie-samen); color: #fff; }
+.cal__ev--wie-remi { box-shadow: inset 3px 0 0 var(--wie-remi); }
+.cal__ev--wie-giulia { box-shadow: inset 3px 0 0 var(--wie-giulia); }
+.cal__ev--wie-samen { box-shadow: inset 3px 0 0 var(--wie-samen); }
+
 /* Dossier: bijlagen */
 .bijlagen { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
 .bijlage { margin: 0; display: flex; flex-direction: column; gap: 4px; min-width: 0; }

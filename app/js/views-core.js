@@ -1,10 +1,14 @@
 // Views: overzicht, stappenplan, planning, rechten, profiel, documenten, instellingen.
 import { h, icon, badge, fit, fmtDate, todayIso, addDays, daysUntil, uid, md, copyText, download, toast, isoLocal } from './ui.js';
 import { all, get, upsert, remove, ref, exportJson, importJson, resetLocal, localSize } from './store.js';
-import { openPeek, closePeek, go } from './app.js';
+import { openPeek, closePeek, go, gebruiker, kiesGebruiker, zetGebruiker, NAMEN } from './app.js';
 import { dossierTab } from './views-dossier.js';
 
 const SPOORKLEUR = { erfgoed: 'orange', cultuur: 'violet', onderwijs: 'green', overheid: 'grey', sociaal: 'red', ecologisch: 'green', geschiedenis: 'orange', reserve: 'grey' };
+// Wie doet het: Remi, Giulia of samen. Afgeleid uit 'wie' als 'voor' ontbreekt (eigen stappen).
+export const VOOR = { remi: ['Remi', 'blue'], giulia: ['Giulia', 'red'], samen: ['Samen', 'violet'] };
+export const voorVan = (s) => s.voor || (/giulia/i.test(s.wie || '') ? (/remi/i.test(s.wie || '') ? 'samen' : 'giulia') : 'remi');
+export const voorBadge = (s) => { const [l, k] = VOOR[voorVan(s)]; return badge(l, k); };
 export const spoorBadge = (s) => badge(s || 'algemeen', SPOORKLEUR[s] || 'grey');
 const card = (...c) => h('section', { class: 'card card--pad' }, ...c);
 const titled = (title, ...c) => h('section', { class: 'card card--pad' }, h('p', { class: 'eyebrow' }, title), ...c);
@@ -23,14 +27,17 @@ function huidigeFase() {
 export function overzicht() {
   const t = todayIso();
   const stappen = all('stappenplan').filter(s => s.status !== 'klaar');
-  const dezeWeek = stappen.filter(s => s.deadline && daysUntil(s.deadline) <= 14).sort((a, b) => a.deadline.localeCompare(b.deadline));
+  const ik = gebruiker();
+  const dezeWeek = stappen.filter(s => s.deadline && daysUntil(s.deadline) <= 14 && (!ik || [ik, 'samen'].includes(voorVan(s)))).sort((a, b) => a.deadline.localeCompare(b.deadline));
   const soll = all('sollicitaties');
   const opTeVolgen = soll.filter(s => s.status === 'verstuurd' && s.opvolgdatum && daysUntil(s.opvolgdatum) <= 3).sort((a, b) => a.opvolgdatum.localeCompare(b.opvolgdatum));
   const gesprekken = soll.filter(s => s.status === 'gesprek' && s.gesprekDatum && daysUntil(s.gesprekDatum.slice(0, 10)) >= 0);
   const telling = (st) => soll.filter(s => s.status === st).length;
   const fase = huidigeFase();
   const body = content(
-    intro('Overzicht', `Vandaag ${fmtDate(t)}. ${daysUntil(ref.programma.einddatum_contract)} dagen tot 31 december 2026.`),
+    intro(ik ? `Dag ${NAMEN[ik]}` : 'Overzicht', `Vandaag ${fmtDate(t)}. ${daysUntil(ref.programma.einddatum_contract)} dagen tot 31 december 2026.`),
+    !ik && h('section', { class: 'card card--pad callout' }, h('p', { class: 'row-title' }, 'Wie gebruikt dit toestel?'), h('p', null, 'Kies wie je bent. Dan toont de app eerst jouw stappen en wat jullie samen doen.'),
+      h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--primary wie-knop wie-knop--remi', onClick: () => zetGebruiker('remi') }, 'Ik ben Remi'), h('button', { class: 'btn btn--primary wie-knop wie-knop--giulia', onClick: () => zetGebruiker('giulia') }, 'Ik ben Giulia'))),
     callout('red', 'shield', 'Eerst dit', h('p', null, ref.rechten.kern[0]), h('p', { class: 'small' }, h('a', { href: '#/rechten' }, 'Alle rechten en scenario\'s'))),
     h('div', { class: 'grid-cards' },
       h('div', { class: 'card kpi accent-green' }, h('p', { class: 'eyebrow' }, 'Open stappen'), h('p', { class: 'kpi__num' }, String(stappen.length)), h('a', { href: '#/stappenplan', class: 'small' }, 'Naar het stappenplan')),
@@ -38,9 +45,9 @@ export function overzicht() {
       h('div', { class: 'card kpi accent-violet' }, h('p', { class: 'eyebrow' }, 'Huidige fase'), h('p', { class: 'row-title' }, fase.naam), h('p', { class: 'small muted' }, fase.periode), h('a', { href: '#/planning', class: 'small' }, 'Planning')),
     ),
     h('div', { class: 'two-col' },
-      titled('Deze twee weken', dezeWeek.length ? h('ul', { class: 'list list--tight' }, dezeWeek.slice(0, 8).map(s => h('li', null,
+      titled(ik ? 'Voor jou en samen, deze twee weken' : 'Deze twee weken', dezeWeek.length ? h('ul', { class: 'list list--tight' }, dezeWeek.slice(0, 8).map(s => h('li', null,
         h('input', { type: 'checkbox', class: 'check', onChange: () => upsert('stappenplan', { id: s.id, status: 'klaar' }) }),
-        h('div', null, h('p', { class: 'row-title' }, s.titel), h('p', { class: 'meta' }, h('span', { class: daysUntil(s.deadline) < 0 ? 'overdue' : '' }, fmtDate(s.deadline)), s.wie))))) : h('p', { class: 'muted' }, 'Niets met een deadline binnen twee weken.')),
+        h('div', null, h('p', { class: 'row-title' }, s.titel), h('p', { class: 'meta' }, voorBadge(s), h('span', { class: daysUntil(s.deadline) < 0 ? 'overdue' : '' }, fmtDate(s.deadline)), s.wie !== VOOR[voorVan(s)][0] && s.wie))))) : h('p', { class: 'muted' }, 'Niets met een deadline binnen twee weken.')),
       titled('Op te volgen', opTeVolgen.length || gesprekken.length ? h('ul', { class: 'list list--tight' },
         gesprekken.map(s => h('li', null, icon('calendar', 14), h('div', null, h('p', { class: 'row-title' }, `Gesprek: ${s.organisatie}`), h('p', { class: 'meta' }, `${fmtDate(s.gesprekDatum)}${s.gesprekDatum.length > 10 ? ' om ' + s.gesprekDatum.slice(11, 16) : ''}`, s.functie)))),
         opTeVolgen.map(s => h('li', null, icon('mail', 14), h('div', null, h('a', { href: '#/sollicitaties', class: 'row-title' }, s.organisatie), h('p', { class: 'meta' }, h('span', { class: daysUntil(s.opvolgdatum) < 0 ? 'overdue' : '' }, `opvolgen ${fmtDate(s.opvolgdatum)}`), s.functie))))) : h('p', { class: 'muted' }, 'Geen sollicitaties die nu opvolging vragen.')),
@@ -53,29 +60,35 @@ export function overzicht() {
 
 // ---------- Stappenplan ----------
 export function stappenplan(r) {
-  const filter = r.tab || 'open';
-  const items = all('stappenplan').filter(s => filter === 'alles' || (filter === 'open' ? s.status !== 'klaar' : s.status === 'klaar'));
+  const filter = r.tab || 'open'; const wie = VOOR[r.wie] ? r.wie : '';
+  const naStatus = all('stappenplan').filter(s => filter === 'alles' || (filter === 'open' ? s.status !== 'klaar' : s.status === 'klaar'));
+  const items = naStatus.filter(s => !wie || voorVan(s) === wie);
+  const wieLink = w => `#/stappenplan?tab=${filter}${w ? '&wie=' + w : ''}`;
+  const ik = gebruiker();
+  const wieChips = h('div', { class: 'chips' }, [['', 'Iedereen'], ['remi', 'Remi'], ['giulia', 'Giulia'], ['samen', 'Samen']].map(([w, l]) => h('a', { class: 'chip' + (w ? ` chip--wie-${w}` : '') + (wie === w ? ' chip--active' : ''), href: wieLink(w) }, `${l}${w && w === ik ? ' (jij)' : ''} ${w ? naStatus.filter(s => voorVan(s) === w).length : naStatus.length}`)));
   const groepen = [...new Set(all('stappenplan').map(s => s.groep))];
   const body = content(
     intro('Stappenplan', 'Alles wat te doen is, van de dokter en ACV tot VDAB, cv en hotlist. Vink af wat klaar is; voeg eigen stappen toe.'),
+    wieChips,
     groepen.map(g => { const list = items.filter(s => s.groep === g); if (!list.length) return null; return titled(g, h('ul', { class: 'list' }, list.map(s => h('li', null,
       h('input', { type: 'checkbox', class: 'check', checked: s.status === 'klaar', onChange: (e) => upsert('stappenplan', { id: s.id, status: e.target.checked ? 'klaar' : 'open' }) }),
       h('div', { style: 'flex:1;min-width:0' },
         h('p', { class: 'row-title' + (s.status === 'klaar' ? ' done' : '') }, s.titel),
         h('p', { class: 'small', style: 'margin-top:2px' }, s.wat),
-        h('p', { class: 'meta', style: 'margin-top:4px' }, s.wie && h('span', null, s.wie), s.deadline && h('span', { class: s.status !== 'klaar' && daysUntil(s.deadline) < 0 ? 'overdue' : '' }, `deadline ${fmtDate(s.deadline)}`), s.bron && badge(s.bron, 'grey'), h('button', { class: 'btn btn--quiet btn--sm', onClick: () => stapForm(s) }, 'Bewerken'))))))); }),
+        h('p', { class: 'meta', style: 'margin-top:4px' }, voorBadge(s), s.wie && s.wie !== VOOR[voorVan(s)][0] && h('span', null, s.wie), s.deadline && h('span', { class: s.status !== 'klaar' && daysUntil(s.deadline) < 0 ? 'overdue' : '' }, `deadline ${fmtDate(s.deadline)}`), s.bron && badge(s.bron, 'grey'), h('button', { class: 'btn btn--quiet btn--sm', onClick: () => stapForm(s) }, 'Bewerken'))))))); }),
   );
-  const tabs = [['open', 'Open'], ['klaar', 'Klaar'], ['alles', 'Alles']].map(([k, l]) => ({ label: l, href: `#/stappenplan?tab=${k}`, active: filter === k }));
+  const tabs = [['open', 'Open'], ['klaar', 'Klaar'], ['alles', 'Alles']].map(([k, l]) => ({ label: l, href: `#/stappenplan?tab=${k}${wie ? '&wie=' + wie : ''}`, active: filter === k }));
   const tool = [h('button', { class: 'btn btn--primary', onClick: () => stapForm() }, icon('plus', 14), 'Stap toevoegen')];
   return { chrome: { where: 'Te doen', tabs, tool, view: `${items.length} stappen`, viewIcon: 'check' }, body };
 }
 function stapForm(s = {}) {
   openPeek(s.id ? 'Stap bewerken' : 'Nieuwe stap', () => {
-    const f = { titel: s.titel || '', wat: s.wat || '', wie: s.wie || 'Remi', deadline: s.deadline || '', groep: s.groep || 'Eigen stappen' };
+    const f = { titel: s.titel || '', wat: s.wat || '', wie: s.wie || 'Remi', voor: voorVan(s), deadline: s.deadline || '', groep: s.groep || 'Eigen stappen' };
     const inp = (k, type = 'text') => h('input', { class: 'field', type, value: f[k], onInput: e => f[k] = e.target.value });
     return h('form', { class: 'form', onSubmit: e => { e.preventDefault(); if (!f.titel) return; upsert('stappenplan', { id: s.id || 's-' + uid(), status: s.status || 'open', ...f }); closePeek(); toast('Bewaard'); } },
       h('label', null, 'Titel', inp('titel')), h('label', null, 'Wat precies', h('textarea', { class: 'field', value: f.wat, onInput: e => f.wat = e.target.value })),
-      h('div', { class: 'form__row' }, h('label', null, 'Wie', inp('wie')), h('label', null, 'Deadline', inp('deadline', 'date'))),
+      h('div', { class: 'form__row' }, h('label', null, 'Voor wie', h('select', { class: 'field', onChange: e => f.voor = e.target.value }, Object.entries(VOOR).map(([k, [l]]) => h('option', { value: k, selected: f.voor === k }, l)))), h('label', null, 'Deadline', inp('deadline', 'date'))),
+      h('label', null, 'Wie precies (optioneel)', inp('wie')),
       h('label', null, 'Groep', inp('groep')),
       h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--primary', type: 'submit' }, 'Bewaren'), s.id && h('button', { class: 'btn btn--danger', type: 'button', onClick: () => { remove('stappenplan', s.id); closePeek(); } }, 'Verwijderen')));
   });
@@ -89,12 +102,12 @@ const EVENEMENTEN = [
 // Alles met een datum: stappen, opvolging, gesprekken, vacatures, evenementen en genoteerde contacten.
 function agendaItems({ metKlaar = false } = {}) {
   return [
-    ...all('stappenplan').filter(s => s.deadline && (metKlaar || s.status !== 'klaar')).map(s => ({ datum: s.deadline, naam: s.titel, soort: 'stap', href: '#/stappenplan', klaar: s.status === 'klaar' })),
+    ...all('stappenplan').filter(s => s.deadline && (metKlaar || s.status !== 'klaar')).map(s => ({ datum: s.deadline, naam: s.titel, soort: 'stap', href: '#/stappenplan', klaar: s.status === 'klaar', voor: voorVan(s) })),
     ...all('sollicitaties').filter(s => s.opvolgdatum && ['verstuurd', 'opgevolgd'].includes(s.status)).map(s => ({ datum: s.opvolgdatum, naam: `Opvolgen: ${s.organisatie}`, soort: 'sollicitatie', href: '#/sollicitaties' })),
     ...all('sollicitaties').filter(s => s.gesprekDatum).map(s => ({ datum: s.gesprekDatum, naam: `Gesprek: ${s.organisatie}`, soort: 'gesprek', href: '#/sollicitaties' })),
     ...all('vacatures').filter(v => v.deadline && v.status !== 'niet').map(v => ({ datum: v.deadline, naam: `Deadline vacature: ${v.titel}`, soort: 'vacature', href: '#/vacatures' })),
     ...EVENEMENTEN.map(e => ({ ...e, soort: 'evenement' })),
-    ...all('agenda').filter(x => x.datum).map(x => ({ datum: x.datum, naam: [x.tijd, x.titel].filter(Boolean).join(' '), soort: 'afspraak', afspraak: x })),
+    ...all('agenda').filter(x => x.datum).map(x => ({ datum: x.datum, naam: [x.tijd, x.titel].filter(Boolean).join(' '), soort: 'afspraak', afspraak: x, voor: x.voor })),
     ...(metKlaar ? all('communicatie').filter(c => c.datum).map(c => ({ datum: c.datum, naam: `Contact: ${c.onderwerp || c.met || ''}`, soort: 'contact', href: '#/communicatie?tab=logboek' })) : []),
   ].sort((a, b) => a.datum.localeCompare(b.datum));
 }
@@ -103,7 +116,7 @@ const MAANDEN = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli',
 const agendaRij = a => h('li', { class: a.klaar ? 'is-klaar' : '' },
   h('span', { class: 'small muted', style: 'width:78px;flex:0 0 auto' }, fmtDate(a.datum)),
   h('div', { style: 'min-width:0' },
-    a.afspraak ? h('a', { href: '#', onClick: e => { e.preventDefault(); afspraakPeek(a.afspraak.id); } }, a.naam) : a.href ? h('a', { href: a.href }, a.naam) : a.naam, ' ', badge(a.klaar ? 'klaar' : a.soort, a.klaar ? 'grey' : AGENDAKLEUR[a.soort]),
+    a.afspraak ? h('a', { href: '#', onClick: e => { e.preventDefault(); afspraakPeek(a.afspraak.id); } }, a.naam) : a.href ? h('a', { href: a.href }, a.naam) : a.naam, ' ', badge(a.klaar ? 'klaar' : a.soort, a.klaar ? 'grey' : AGENDAKLEUR[a.soort]), VOOR[a.voor] && [' ', badge(VOOR[a.voor][0], VOOR[a.voor][1])],
     a.afspraak?.plaats && h('p', { class: 'small muted' }, a.afspraak.plaats)));
 
 // Eigen afspraken (collectie 'agenda'): datum, uur, plaats en notities. Blijven in deze browser.
@@ -112,20 +125,20 @@ export function afspraakPeek(id) {
     const x = get('agenda', id);
     if (!x) return h('p', { class: 'muted' }, 'Deze afspraak bestaat niet meer.');
     return h('div', { class: 'stack' },
-      h('div', { class: 'meta' }, badge('afspraak', 'red'), h('span', null, fmtDate(x.datum)), x.tijd && h('span', null, x.tijd)),
+      h('div', { class: 'meta' }, badge('afspraak', 'red'), VOOR[x.voor] && badge(VOOR[x.voor][0], VOOR[x.voor][1]), h('span', null, fmtDate(x.datum)), x.tijd && h('span', null, x.tijd)),
       x.plaats && h('p', null, h('strong', null, 'Waar: '), x.plaats),
       x.notitie && md(x.notitie),
       h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--ghost btn--sm', onClick: () => afspraakForm(x) }, 'Bewerken'), h('a', { class: 'btn btn--quiet btn--sm', href: `#/planning?tab=kalender&m=${x.datum.slice(0, 7)}` }, 'In de kalender')));
   });
 }
 function afspraakForm(init = {}) {
-  const x = { id: init.id, datum: init.datum || todayIso(), tijd: init.tijd || '', titel: init.titel || '', plaats: init.plaats || '', notitie: init.notitie || '' };
+  const x = { id: init.id, datum: init.datum || todayIso(), tijd: init.tijd || '', titel: init.titel || '', voor: init.voor || 'remi', plaats: init.plaats || '', notitie: init.notitie || '' };
   openPeek(x.id ? 'Afspraak bewerken' : 'Afspraak toevoegen', () => {
     const inp = (k, type = 'text', ph = '') => h('input', { class: 'field', type, value: x[k], placeholder: ph, onInput: e => x[k] = e.target.value });
     return h('form', { class: 'form', onSubmit: e => { e.preventDefault(); if (!x.titel || !x.datum) return; const s = upsert('agenda', { ...x, id: x.id || 'ag-' + uid() }); toast('Bewaard'); afspraakPeek(s.id); } },
       h('label', null, 'Wat', inp('titel')),
       h('div', { class: 'form__row' }, h('label', null, 'Datum', inp('datum', 'date')), h('label', null, 'Uur', inp('tijd', 'text', 'bijvoorbeeld 15:00 tot 16:00'))),
-      h('label', null, 'Waar of hoe', inp('plaats')),
+      h('div', { class: 'form__row' }, h('label', null, 'Voor wie', h('select', { class: 'field', onChange: e => x.voor = e.target.value }, Object.entries(VOOR).map(([k, [l]]) => h('option', { value: k, selected: x.voor === k }, l)))), h('label', null, 'Waar of hoe', inp('plaats'))),
       h('label', null, 'Notities (wat meenemen, welke vragen)', h('textarea', { class: 'field', style: 'min-height:180px', value: x.notitie, onInput: e => x.notitie = e.target.value })),
       h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--primary', type: 'submit' }, 'Bewaren'), x.id && h('button', { class: 'btn btn--danger', type: 'button', onClick: () => { remove('agenda', x.id); closePeek(); } }, 'Verwijderen')));
   });
@@ -201,7 +214,7 @@ function kalender(m) {
     const cls = ['cal__day', dag.getMonth() !== maand - 1 && 'cal__day--buiten', iso === t && 'cal__day--vandaag', l.length && 'cal__day--vol'].filter(Boolean).join(' ');
     return h('button', { type: 'button', class: cls, 'aria-label': `${fmtDate(iso)}, ${l.length} ${l.length === 1 ? 'item' : 'items'}`, onClick: () => dagPeek(iso) },
       h('span', { class: 'cal__num' }, String(dag.getDate())),
-      l.slice(0, 3).map(a => h('span', { class: `cal__ev cal__ev--${a.klaar ? 'grey' : AGENDAKLEUR[a.soort]}${a.klaar ? ' is-klaar' : ''}`, title: a.naam }, a.naam)),
+      l.slice(0, 3).map(a => h('span', { class: `cal__ev cal__ev--${a.klaar ? 'grey' : AGENDAKLEUR[a.soort]}${a.klaar ? ' is-klaar' : ''}${VOOR[a.voor] ? ` cal__ev--wie-${a.voor}` : ''}`, title: a.naam }, a.naam)),
       l.length > 3 && h('span', { class: 'cal__meer' }, `+${l.length - 3} meer`));
   };
   const inMaand = items.filter(a => a.datum.slice(0, 7) === `${jaar}-${String(maand).padStart(2, '0')}`);
@@ -215,7 +228,7 @@ function kalender(m) {
       h('div', { class: 'cal' },
         ['ma', 'di', 'wo', 'do', 'vr', 'za', 'zo'].map(w => h('span', { class: 'cal__wd' }, w)),
         dagen.map(cel)),
-      h('p', { class: 'small muted', style: 'margin-top:8px' }, 'Klik op een dag voor alles wat erop staat. Rood: afspraak, groen: stap, oranje: opvolging of vacature, violet: gesprek, grijs: evenement of contact.')),
+      h('p', { class: 'small muted', style: 'margin-top:8px' }, 'Klik op een dag voor alles wat erop staat. Rood: afspraak, groen: stap, oranje: opvolging of vacature, violet: gesprek, grijs: evenement of contact. Het streepje links toont voor wie: blauw Remi, rood Giulia, violet samen.')),
     titled(`In ${MAANDEN[maand - 1]}`, inMaand.length ? h('ul', { class: 'list list--tight' }, inMaand.map(agendaRij)) : h('p', { class: 'muted' }, 'Niets gepland deze maand.')));
 }
 

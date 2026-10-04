@@ -1,7 +1,7 @@
 // Data layer: seed (from data/*.json via build-data) plus a localStorage overlay. Export and import as JSON.
 import { seed } from './seed.js';
 const KEY = 'remi-nieuwe-start-v1';
-const MERGED = ['sollicitaties', 'vacatures', 'hotlist', 'stappenplan', 'verkenning', 'opleidingen', 'notities', 'agenda', 'antwoorden', 'cvdoc', 'competentiescores', 'zelftests'];
+const MERGED = ['sollicitaties', 'vacatures', 'hotlist', 'stappenplan', 'verkenning', 'opleidingen', 'notities', 'agenda', 'antwoorden', 'cvdoc', 'competentiescores', 'zelftests', 'berichten', 'communicatie'];
 let local = load();
 const listeners = new Set();
 

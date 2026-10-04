@@ -11,7 +11,7 @@ await new Promise(r => setTimeout(r, 700));
 const base = `http://localhost:${port}/`;
 const fouten = []; const geslaagd = [];
 const check = (naam, ok, detail = '') => (ok ? geslaagd : fouten).push(`${naam}${detail ? ': ' + detail : ''}`);
-const VIEWS = { overzicht: [], stappenplan: ['open', 'klaar', 'alles'], planning: [], rechten: ['kern', 'scenarios', 'opzeg', 'werkloosheid', 'steun', 'check'], sollicitaties: [], vacatures: ['bewaard', 'zoeken', 'bronnen'], hotlist: [], verkenning: ['alles', 'erfgoed', 'sociaal'], opleidingen: ['alles', 'erfgoed'], cv: ['start', 'gegevens', 'profiel', 'ervaring', 'opleiding', 'vaardigheden', 'competenties', 'portfolio', 'extra', 'zelftests', 'voorbeelden', 'gids', 'afdrukken'], vragenlijst: ['praktisch', 'werk'], profiel: ['samenvatting', 'tests', 'herzieningen'], documenten: ['cv', 'sjablonen', 'vdab', 'gegenereerd'] };
+const VIEWS = { overzicht: [], stappenplan: ['open', 'klaar', 'alles'], planning: [], rechten: ['kern', 'scenarios', 'opzeg', 'werkloosheid', 'steun', 'check'], communicatie: ['mails', 'brieven', 'logboek'], sollicitaties: [], vacatures: ['bewaard', 'zoeken', 'bronnen'], hotlist: [], verkenning: ['alles', 'erfgoed', 'sociaal'], opleidingen: ['alles', 'erfgoed'], cv: ['start', 'gegevens', 'profiel', 'ervaring', 'opleiding', 'vaardigheden', 'competenties', 'portfolio', 'extra', 'zelftests', 'voorbeelden', 'gids', 'afdrukken'], vragenlijst: ['praktisch', 'werk'], profiel: ['samenvatting', 'tests', 'herzieningen'], documenten: ['cv', 'sjablonen', 'vdab', 'gegenereerd'] };
 let browser;
 try {
   const { chromium } = await import('playwright');
@@ -29,7 +29,7 @@ try {
         await page.goto(`${base}#/${v}${t ? '?tab=' + t : ''}`, { waitUntil: 'networkidle' });
         const naam = await page.textContent('.chrome__name');
         const actief = await page.$eval('.sidebar__item--active .sidebar__label', e => e.textContent).catch(() => '');
-        const verwacht = { overzicht: 'Overzicht', stappenplan: 'Stappenplan', planning: 'Planning', rechten: 'Rechten', sollicitaties: 'Sollicitaties', vacatures: 'Vacatures', hotlist: 'Hotlist', verkenning: 'Verkenning', opleidingen: 'Opleidingen', cv: 'Cv-atelier', vragenlijst: 'Vragenlijst', profiel: 'Profiel', documenten: 'Documenten' }[v];
+        const verwacht = { overzicht: 'Overzicht', stappenplan: 'Stappenplan', planning: 'Planning', rechten: 'Rechten', communicatie: 'Communicatie', sollicitaties: 'Sollicitaties', vacatures: 'Vacatures', hotlist: 'Hotlist', verkenning: 'Verkenning', opleidingen: 'Opleidingen', cv: 'Cv-atelier', vragenlijst: 'Vragenlijst', profiel: 'Profiel', documenten: 'Documenten' }[v];
         check(`${label} route ${v}${t ? '?tab=' + t : ''}`, naam === verwacht && actief === verwacht, `chrome=${naam} nav=${actief}`);
         if (t) { const at = await page.$eval('.tabs__item--active', e => e.getAttribute('href')).catch(() => ''); check(`${label} actieve tab ${v}/${t}`, at.endsWith(`tab=${t}`), at); }
         const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
@@ -111,6 +111,25 @@ try {
       await page.locator('[data-fk="vl-p01"]').fill('Test'); await page.keyboard.press('Tab');
       const vf = await page.evaluate(() => document.activeElement?.dataset?.fk);
       check('vragenlijst: tab naar volgende vraag', vf === 'vl-p02', vf);
+      // Communicatie: contractmail bewerken, bewaren en als verstuurd in het logboek zetten
+      await page.goto(`${base}#/communicatie?tab=mails`, { waitUntil: 'networkidle' });
+      const mail = page.locator('[data-fk="msg-msg-contract-mail"]');
+      check('contractmail staat klaar', /arbeidsovereenkomst/.test(await mail.inputValue()) && /arbeidsreglement/.test(await mail.inputValue()));
+      await mail.fill((await mail.inputValue()).replace('[naam]', 'Jan'));
+      await page.waitForTimeout(600);
+      await page.goto(`${base}#/communicatie?tab=brieven`, { waitUntil: 'networkidle' });
+      await page.goto(`${base}#/communicatie?tab=mails`, { waitUntil: 'networkidle' });
+      check('aangepaste mail blijft bewaard', /Beste Jan,/.test(await mail.inputValue()));
+      page.once('dialog', d => d.accept());
+      await page.click('text=Markeer als verstuurd');
+      await page.waitForTimeout(200);
+      await page.goto(`${base}#/communicatie?tab=logboek`, { waitUntil: 'networkidle' });
+      check('verstuurde mail staat in het logboek', /Vraag om een kopie van mijn arbeidsovereenkomst/.test(await page.textContent('.content')));
+      await page.click('text=Contact noteren');
+      await page.fill('.peek input[type=text] >> nth=1', 'Telefoon met ACV');
+      await page.click('.peek button[type=submit]');
+      await page.waitForTimeout(200);
+      check('contact noteren', /Telefoon met ACV/.test(await page.textContent('.content')));
       // Import weigert een vreemd bestand
       const imp = await page.evaluate(async () => { const s = await import('./js/store.js'); try { s.importJson('{"foo":1}'); return 'aanvaard'; } catch { return 'geweigerd'; } });
       check('import weigert vreemd bestand', imp === 'geweigerd', imp);

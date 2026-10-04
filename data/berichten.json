@@ -1,0 +1,33 @@
+[
+  {
+    "id": "msg-contract-mail",
+    "soort": "mail",
+    "titel": "Kopie van het arbeidscontract vragen",
+    "aan": "Werkgever (zaakvoerder of personeelsdienst)",
+    "wanneer": "Nu, zodat je de kopie hebt voor de ACV-afspraak van vrijdag 16 oktober.",
+    "onderwerp": "Vraag om een kopie van mijn arbeidsovereenkomst",
+    "tekst": "Beste [naam],\n\nIk vind mijn exemplaar van mijn arbeidsovereenkomst niet meer terug. Mag ik u vragen mij een kopie te bezorgen, samen met de bijlagen en eventuele wijzigingen sinds mijn indiensttreding? Graag ontvang ik ook een kopie van het arbeidsreglement.\n\nEen kopie per mail is voor mij prima. Zou dat lukken tegen woensdag 14 oktober?\n\nAlvast bedankt.\n\nMet vriendelijke groeten\n\nRemi [achternaam]",
+    "tips": [
+      "Stuur dit per mail, niet mondeling: zo heb je een spoor van je vraag. Bewaar de verzonden mail.",
+      "Geef geen reden op. Een uitleg is niet nodig en zegt niets over je plannen.",
+      "Zeg je 'je' tegen je baas, pas de mail dan gerust aan. De vraag zelf blijft dezelfde.",
+      "Een voltijds contract van onbepaalde duur moet niet altijd op papier staan. Is er geen geschreven contract, dan tonen je loonfiches (datum van indiensttreding, statuut, paritair comité) de belangrijkste gegevens. Neem ze mee naar ACV.",
+      "Komt er na een week geen antwoord, gebruik dan de brief bij Brieven en bespreek het eerst met ACV."
+    ],
+    "status": "concept"
+  },
+  {
+    "id": "msg-contract-brief",
+    "soort": "brief",
+    "titel": "Herinnering: kopie van het arbeidscontract",
+    "aan": "Werkgever (zaakvoerder of personeelsdienst)",
+    "wanneer": "Pas als de mail na een week geen antwoord kreeg, en na overleg met ACV.",
+    "onderwerp": "Betreft: kopie van mijn arbeidsovereenkomst",
+    "tekst": "Remi [achternaam]\n[straat en nummer]\n[postcode en gemeente]\n\n[naam van het bedrijf]\nt.a.v. [naam zaakvoerder of personeelsdienst]\n[straat en nummer]\n[postcode en gemeente]\n\nAntwerpen, [datum]\n\nBetreft: kopie van mijn arbeidsovereenkomst\n\nGeachte [heer of mevrouw] [naam],\n\nOp [datum van de mail] vroeg ik per mail een kopie van mijn arbeidsovereenkomst en van het arbeidsreglement. Omdat ik die nog niet ontving, herhaal ik mijn vraag met deze brief.\n\nIk vraag u mij een kopie te bezorgen van:\n- mijn arbeidsovereenkomst, met de bijlagen en eventuele wijzigingen sinds mijn indiensttreding;\n- het arbeidsreglement.\n\nU mag de documenten mailen naar [e-mailadres] of mij een papieren kopie geven.\n\nMet vriendelijke groeten\n\nRemi [achternaam]",
+    "tips": [
+      "Maak twee exemplaren. Geef er een af en laat het tweede dateren en tekenen voor ontvangst, of stuur de brief aangetekend.",
+      "Bespreek de brief eerst met ACV. Zij kunnen de vraag ook zelf aan de werkgever richten."
+    ],
+    "status": "concept"
+  }
+]

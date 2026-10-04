@@ -4,8 +4,9 @@ import { subscribe, all, ref } from './store.js';
 import * as core from './views-core.js';
 import * as werk from './views-werk.js';
 import * as cvmod from './views-cv.js';
+import * as comm from './views-comm.js';
 
-const views = { ...core, ...werk, ...cvmod };
+const views = { ...core, ...werk, ...cvmod, ...comm };
 // Accentkleuren wisselen zodat buren verschillen (thema: kleur is decoratie). De chrome van elke zone gebruikt dezelfde kleur als het icoon in de zijbalk.
 const NAV = [
   { group: null, items: [{ id: 'overzicht', label: 'Overzicht', icon: 'home', accent: 'violet' }] },
@@ -13,6 +14,7 @@ const NAV = [
     { id: 'stappenplan', label: 'Stappenplan', icon: 'check', accent: 'green', count: () => all('stappenplan').filter(s => s.status !== 'klaar').length },
     { id: 'planning', label: 'Planning', icon: 'calendar', accent: 'orange' },
     { id: 'rechten', label: 'Rechten', icon: 'shield', accent: 'red' },
+    { id: 'communicatie', label: 'Communicatie', icon: 'edit', accent: 'violet', count: () => all('berichten').filter(b => b.status !== 'verstuurd').length },
   ] },
   { group: 'Werk', items: [
     { id: 'sollicitaties', label: 'Sollicitaties', icon: 'mail', accent: 'violet', count: () => all('sollicitaties').filter(s => !['afgewezen', 'gearchiveerd'].includes(s.status)).length },

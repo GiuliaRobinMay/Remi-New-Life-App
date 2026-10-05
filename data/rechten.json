@@ -196,5 +196,39 @@
         "gevolg": "Tijdens een sanctie kan je bij het OCMW een leefloon aanvragen. Het OCMW kijkt naar je middelen en die van wie bij je woont."
       }
     ]
+  },
+  "gezondheid": {
+    "intro": "Wat er kan als het werk te zwaar wordt voor je gezondheid. Algemene regels, stand 2026; laat ACV ze toepassen op jouw situatie.",
+    "punten": [
+      {
+        "titel": "Spontane raadpleging bij de arbeidsarts",
+        "tekst": "Elke werknemer kan zelf een raadpleging vragen bij de arbeidsarts van de externe preventiedienst als hij gezondheidsklachten heeft die met het werk te maken kunnen hebben. Het bezoek volgt binnen 10 werkdagen. Het kan vertrouwelijk, zonder dat de werkgever het weet. Zo staan de klachten en het verband met het werk op papier."
+      },
+      {
+        "titel": "Evaluatie van je werkpost (nieuw sinds 2026)",
+        "tekst": "Wie een risico loopt om arbeidsongeschikt te worden, kan de werkgever vragen om de werkpost te laten evalueren, met het oog op aanpassingen of ander werk. Dat verloopt via de werkgever en de arbeidsarts en is dus niet vertrouwelijk. Bespreek eerst met ACV of dit in jouw situatie helpt."
+      },
+      {
+        "titel": "Ziekteverlof",
+        "tekst": "Stelt de dokter vast dat je arbeidsongeschikt bent, dan ben je gewettigd afwezig. Eerst betaalt de werkgever gewaarborgd loon, daarna het ziekenfonds. Na acht weken moet de werkgever je arbeidspotentieel laten inschatten door de arbeidsarts."
+      },
+      {
+        "titel": "Medische overmacht",
+        "tekst": "Na minstens zes maanden ononderbroken arbeidsongeschiktheid (sinds 2026, voordien negen) kan de werkgever of de werknemer de procedure medische overmacht starten. Stelt de arbeidsarts vast dat je definitief ongeschikt bent voor je job en is er geen aangepast werk, dan eindigt het contract zonder opzeg en zonder opzegvergoeding. De werkgever stort dan 1.800 euro aan het Terug Naar Werk-fonds. Het is geen 'eigen schuld' voor de RVA. Het is wel een trage weg."
+      },
+      {
+        "titel": "Zelf vertrekken om medische redenen",
+        "tekst": "Zelf ontslag nemen leidt normaal tot een RVA-sanctie. Er is geen sanctie als je een wettige reden had, zoals een ernstige medische reden die de arts van de RVA erkent, of werk dat niet meer passend is voor je gezondheid. De RVA laat je dan onderzoeken. Dit is onzeker: doe het nooit zonder ACV."
+      },
+      {
+        "titel": "Opleiding tijdens ziekte",
+        "tekst": "Ben je arbeidsongeschikt, dan kan je met toestemming van de adviserend arts van het ziekenfonds een opleiding volgen. Vraag het minstens een werkdag voor de start aan. Het ziekenfonds heeft een Terug Naar Werk-coördinator die je daarbij helpt."
+      },
+      {
+        "titel": "Bescherming tegen discriminatie",
+        "tekst": "Ontslag wegens je huidige, vroegere of toekomstige gezondheidstoestand is verboden discriminatie. De werkgever riskeert dan een forfaitaire vergoeding van zes maanden loon. Is je gezondheidsprobleem een handicap in de zin van de wet, dan moet de werkgever redelijke aanpassingen overwegen. Dit is een beschermingsmiddel, geen reden om een conflict te zoeken."
+      }
+    ],
+    "bronnen": "Codex welzijn op het werk en KB re-integratie (wijzigingen vanaf 1 januari 2026); art. 34 Arbeidsovereenkomstenwet (medische overmacht); antidiscriminatiewet van 10 mei 2007; RVA. Geraadpleegd via Liantis, Securex, SD Worx, Cesi, Beswic, Attentia, Jubel en werk.belgie.be op 5 oktober 2026."
   }
 }

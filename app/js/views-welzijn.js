@@ -1,5 +1,5 @@
-// View: welzijn. Scorehulp voor gevalideerde vragenlijsten (de vragen zelf staan op de officiële formulieren),
-// een kort dagboek en voorbereiding voor de huisarts. Antwoorden blijven in deze browser.
+// View: welzijn. Gevalideerde vragenlijsten om in de app in te vullen (of, voor de BAT, met het officiële
+// formulier ernaast), een kort dagboek en voorbereiding voor de huisarts. Antwoorden blijven in deze browser.
 import { h, icon, badge, fmtDate, todayIso, uid, copyText, toast } from './ui.js';
 import { all, get, upsert, remove, ref } from './store.js';
 import { openPeek, closePeek } from './app.js';
@@ -9,60 +9,130 @@ const titled = (title, ...c) => h('section', { class: 'card card--pad' }, h('p',
 const ext = (href, label) => h('a', { href, target: '_blank', rel: 'noopener' }, label, ' ', icon('external', 12));
 const W = () => ref.welzijn || { tests: [], dokter: {}, hulp: [], veiligheid: { lijnen: [] } };
 
-// Score van een ingevulde test: null zolang niet alle vragen beantwoord zijn.
-export function testScore(t, antwoorden = []) {
-  const a = antwoorden.slice(0, t.aantal);
-  const ingevuld = a.filter(x => x !== null && x !== undefined && x !== '').length;
-  if (ingevuld < t.aantal) return { ingevuld, klaar: false };
-  const som = a.reduce((n, x) => n + Number(x), 0);
-  const waarde = t.score === 'gemiddelde' ? som / t.aantal : som;
-  const band = t.banden.find(b => waarde <= b.tot) || t.banden[t.banden.length - 1];
-  return { ingevuld, klaar: true, som, waarde, band };
+// Twee soorten tests. Met vragen op het scherm (t.vragen): per vraag wordt de gekozen optie bewaard (keuzes,
+// als volgnummer), want soms geven twee opties dezelfde waarde. Zonder vragen (alleen het officiële formulier):
+// de waarden zelf (antwoorden).
+const opScherm = t => Array.isArray(t.vragen) && t.vragen.length > 0;
+const aantalVan = t => (opScherm(t) ? t.vragen.length : t.aantal);
+const optiesVan = (t, i) => { const o = t.vragen[i].opties || 'standaard'; return Array.isArray(o) ? o : t.optieSets[o]; };
+
+function waarden(t, rec) {
+  return Array.from({ length: aantalVan(t) }, (_, i) => {
+    if (!opScherm(t)) { const v = rec?.antwoorden?.[i]; return v === null || v === undefined || v === '' ? null : Number(v); }
+    const k = rec?.keuzes?.[i]; const o = k === null || k === undefined ? null : optiesVan(t, i)[k];
+    return o ? o.waarde : null;
+  });
 }
-const toonWaarde = (t, s) => t.score === 'gemiddelde' ? s.waarde.toFixed(2).replace('.', ',') : String(s.waarde);
-const alarm = (t, rec) => t.alarmVraag && Number((rec?.antwoorden || [])[t.alarmVraag - 1]) > 0;
+
+// Een schaal telt de waarden van haar vragen op (of neemt het gemiddelde). Een groep zoals [8, 9]
+// telt alleen de hoogste van die vragen, zoals de MDI voorschrijft.
+function schaalScore(sch, w) {
+  const delen = sch.items.map(it => (Array.isArray(it) ? (it.some(i => w[i - 1] === null) ? null : Math.max(...it.map(i => w[i - 1]))) : w[it - 1]));
+  if (delen.some(x => x === null)) return null;
+  const som = delen.reduce((a, b) => a + b, 0);
+  const waarde = (sch.score === 'gemiddelde' ? som / delen.length : som) * (sch.factor || 1);
+  const band = sch.banden.find(b => waarde <= b.tot) || sch.banden[sch.banden.length - 1];
+  return { ...sch, waarde, band };
+}
+
+// Score van een test: klaar zodra alle vragen beantwoord zijn. De eerste schaal is de hoofdscore.
+export function testScore(t, rec) {
+  const w = waarden(t, rec);
+  const ingevuld = w.filter(x => x !== null).length;
+  const klaar = ingevuld === w.length;
+  const schalen = !klaar ? [] : (t.schalen || [{ naam: t.naam, items: w.map((_, i) => i + 1), score: t.score, banden: t.banden }]).map(x => schaalScore(x, w));
+  return { ingevuld, aantal: w.length, klaar, schalen, hoofd: schalen[0] || null, waarden: w };
+}
+const toon = x => {
+  const d = x.decimalen ?? (x.score === 'gemiddelde' ? 2 : 0);
+  return `${x.waarde.toFixed(d).replace('.', ',')}${x.eenheid || ''}`;
+};
+const alarmNrs = t => new Set(opScherm(t) ? (t.alarm || []).map(a => a.vraag) : t.alarmVraag ? [t.alarmVraag] : []);
+const alarm = (t, rec) => (opScherm(t)
+  ? (t.alarm || []).some(a => (rec?.keuzes?.[a.vraag - 1] ?? -1) >= a.vanaf)
+  : !!t.alarmVraag && Number((rec?.antwoorden || [])[t.alarmVraag - 1]) > 0);
 
 function veiligheidKaart(dringend = false) {
   const V = W().veiligheid;
-  return h('section', { class: 'card card--pad callout' + (dringend ? ' welzijn-alarm' : '') },
+  return h('section', { class: 'card card--pad callout' + (dringend ? ' welzijn-alarm' : ''), role: dringend ? 'alert' : null },
     h('div', { class: 'callout__head' }, h('span', { class: 'icon-chip icon-chip--sm accent-red' }, icon('shield', 14)), h('p', { class: 'row-title' }, dringend ? 'Neem vandaag nog contact op' : V.titel)),
-    dringend ? h('p', null, 'Je gaf aan dat je de voorbije twee weken dacht dat je beter dood zou zijn of jezelf iets zou aandoen. Wacht niet tot de afspraak: bel vandaag je huisarts, of de Zelfmoordlijn op 1813. Je hoeft het niet alleen te dragen.') : h('p', null, V.tekst),
+    dringend ? h('p', null, 'Je gaf aan dat je gedachten had over de dood, dat je beter dood zou zijn, of dat het leven niet de moeite waard is. Wacht niet tot de afspraak: bel vandaag je huisarts, of de Zelfmoordlijn op 1813. Je hoeft het niet alleen te dragen.') : h('p', null, V.tekst),
     h('ul', { class: 'list list--tight' }, V.lijnen.map(l => h('li', null, h('a', { class: 'welzijn-nummer', href: `tel:${l.nummer}` }, l.nummer), h('div', null, h('p', { class: 'row-title' }, l.naam), h('p', { class: 'small muted' }, l.wat))))));
 }
 
-function testKaart(t) {
-  const rec = get('welzijn', `test-${t.id}`) || { id: `test-${t.id}`, antwoorden: [] };
+// Uitslag per schaal, met de uitleg van die schaal.
+function uitslag(t, s) {
+  return h('div', { class: 'welzijn-uitslag' }, s.schalen.map(x => h('div', { class: 'welzijn-schaal' },
+    h('div', { class: 'meta' }, h('strong', null, x.naam), badge(`${toon(x)}: ${x.band.label}`, x.band.kleur)),
+    x.uitleg && h('p', { class: 'small muted' }, x.uitleg))));
+}
+
+// Vragen op het scherm, met de antwoordopties voluit.
+function vragenLijst(t, rec, s) {
+  const nrs = alarmNrs(t);
+  const zet = (i, k) => {
+    const n = Array.from({ length: t.vragen.length }, (_, j) => rec.keuzes?.[j] ?? null);
+    n[i] = n[i] === k ? null : k;
+    const wordtKlaar = !s.klaar && n.every(x => x !== null);
+    upsert('welzijn', { id: rec.id, keuzes: n, datum: todayIso() });
+    if (wordtKlaar) setTimeout(() => document.getElementById(`test-${t.id}`)?.scrollIntoView({ block: 'start', behavior: 'smooth' }), 60);
+  };
+  return h('ol', { class: 'welzijn-vragen' }, t.vragen.map((q, i) => [
+    q.kop && h('li', { class: 'welzijn-kop', 'aria-hidden': 'true' }, q.kop),
+    h('li', { class: 'welzijn-vraagblok' + (nrs.has(i + 1) ? ' welzijn-vraag--alarm' : '') },
+      h('p', { class: 'welzijn-vraagtekst', id: `${t.id}-v${i + 1}` }, h('span', { class: 'welzijn-nr' }, `${i + 1}`), h('span', null, q.tekst)),
+      h('div', { class: 'welzijn-keuze', role: 'group', 'aria-labelledby': `${t.id}-v${i + 1}` }, optiesVan(t, i).map((o, k) => {
+        const gekozen = (rec.keuzes?.[i] ?? null) === k;
+        return h('button', { type: 'button', class: 'welzijn-optie welzijn-optie--tekst' + (gekozen ? ' is-gekozen' : ''), 'aria-pressed': gekozen ? 'true' : 'false', 'data-test': t.id, 'data-vraag': i + 1, 'data-keuze': k, onClick: () => zet(i, k) }, o.label);
+      })))]));
+}
+
+// Oudere werkwijze: het officiële formulier invullen en hier per vraag de waarde aantikken.
+function waardenRaster(t, rec) {
   const antw = Array.from({ length: t.aantal }, (_, i) => rec.antwoorden?.[i] ?? null);
-  const s = testScore(t, antw);
   const zet = (i, v) => { const n = antw.slice(); n[i] = n[i] === v ? null : v; upsert('welzijn', { id: rec.id, antwoorden: n, datum: todayIso() }); };
+  return h('div', { class: 'welzijn-grid' }, antw.map((v, i) => h('div', { class: 'welzijn-vraag' + (t.alarmVraag === i + 1 ? ' welzijn-vraag--alarm' : '') },
+    h('span', { class: 'welzijn-nr', title: t.alarmVraag === i + 1 ? t.alarmLabel : '' }, `${i + 1}`),
+    h('div', { class: 'welzijn-keuze', role: 'group', 'aria-label': `${t.kort}, vraag ${i + 1}` }, t.waarden.map((w, k) => h('button', { type: 'button', class: 'welzijn-optie' + (v === w ? ' is-gekozen' : ''), title: t.labels[k], 'aria-pressed': v === w ? 'true' : 'false', 'data-test': t.id, 'data-vraag': i + 1, 'data-waarde': w, onClick: () => zet(i, w) }, t.score === 'gemiddelde' ? t.labels[k] : String(w)))))));
+}
+
+function testKaart(t) {
+  const rec = get('welzijn', `test-${t.id}`) || { id: `test-${t.id}`, antwoorden: [], keuzes: [] };
+  const s = testScore(t, rec);
+  const scherm = opScherm(t);
+  const vragen = scherm ? vragenLijst(t, rec, s) : waardenRaster(t, rec);
   return h('section', { class: 'card card--pad welzijn-test', id: `test-${t.id}` },
-    h('div', { class: 'meta' }, h('span', { class: 'eyebrow', style: 'margin:0' }, t.kort), badge(`${t.aantal} vragen, ${t.minuten} min`, 'grey'),
-      s.klaar ? badge(`${toonWaarde(t, s)}: ${s.band.label}`, s.band.kleur) : badge(`${s.ingevuld} van ${t.aantal} ingevuld`, 'grey'),
+    h('div', { class: 'meta' }, h('span', { class: 'eyebrow', style: 'margin:0' }, t.kort), badge(`${s.aantal} vragen, ${t.minuten} min`, 'grey'),
+      s.klaar ? badge(`${toon(s.hoofd)}: ${s.hoofd.band.label}`, s.hoofd.band.kleur) : badge(`${s.ingevuld} van ${s.aantal} ingevuld`, 'grey'),
+      t.herkomst && h('span', null, t.herkomst),
       rec.datum && h('span', null, `ingevuld ${fmtDate(rec.datum)}`)),
     h('p', { class: 'row-title' }, t.naam),
     h('p', { class: 'small' }, t.meet),
     h('p', { class: 'small muted' }, t.waarom),
-    h('p', { class: 'small' }, ext(t.formulier, t.formulierLabel), t.handleiding ? [' · ', ext(t.handleiding, 'Handleiding')] : null),
-    h('p', { class: 'small welzijn-hint' }, t.hint),
+    t.formulier && h('p', { class: 'small' }, ext(t.formulier, t.formulierLabel), t.handleiding ? [' · ', ext(t.handleiding, 'Handleiding')] : null),
+    t.hint && h('p', { class: 'small welzijn-hint' }, t.hint),
     alarm(t, rec) && veiligheidKaart(true),
-    h('div', { class: 'welzijn-grid' }, antw.map((v, i) => h('div', { class: 'welzijn-vraag' + (t.alarmVraag === i + 1 ? ' welzijn-vraag--alarm' : '') },
-      h('span', { class: 'welzijn-nr', title: t.alarmVraag === i + 1 ? t.alarmLabel : '' }, `${i + 1}`),
-      h('div', { class: 'welzijn-keuze', role: 'group', 'aria-label': `${t.kort}, vraag ${i + 1}` }, t.waarden.map((w, k) => h('button', { type: 'button', class: 'welzijn-optie' + (v === w ? ' is-gekozen' : ''), title: t.labels[k], 'aria-pressed': v === w ? 'true' : 'false', 'data-test': t.id, 'data-vraag': i + 1, 'data-waarde': w, onClick: () => zet(i, w) }, t.score === 'gemiddelde' ? t.labels[k] : String(w))))))),
-    t.alarmVraag && h('p', { class: 'small muted' }, `${t.alarmLabel} Elk antwoord boven 0 toont meteen waar je hulp vindt.`),
+    s.klaar && s.schalen.length > 1 && uitslag(t, s),
+    scherm && t.instructie && !s.klaar && h('p', { class: 'welzijn-instructie' }, t.instructie),
+    scherm && s.klaar ? h('details', { class: 'welzijn-antwoorden' }, h('summary', { class: 'small' }, 'Je antwoorden bekijken of aanpassen'), t.instructie && h('p', { class: 'small muted' }, t.instructie), vragen) : vragen,
+    t.alarmVraag && !scherm && h('p', { class: 'small muted' }, `${t.alarmLabel} Elk antwoord boven 0 toont meteen waar je hulp vindt.`),
+    t.alarmLabel && scherm && h('p', { class: 'small muted' }, t.alarmLabel),
     t.extraVraag && h('label', { class: 'small', style: 'display:block;margin-top:8px' }, t.extraVraag.label, ' ',
       h('select', { class: 'field', style: 'max-width:280px', onChange: e => upsert('welzijn', { id: rec.id, extra: e.target.value }) }, [h('option', { value: '' }, 'Kies'), ...t.extraVraag.opties.map(o => h('option', { value: o, selected: rec.extra === o }, o))])),
     h('details', { style: 'margin-top:8px' }, h('summary', { class: 'small' }, 'Hoe lees je de score'), h('p', { class: 'small' }, t.bandenTekst), t.opgelet && h('p', { class: 'small muted' }, t.opgelet), h('p', { class: 'small muted' }, t.bron)),
-    h('div', { class: 'form__actions' }, (s.ingevuld > 0) && h('button', { class: 'btn btn--quiet btn--sm', onClick: () => { if (confirm(`Alle antwoorden van de ${t.naam} wissen?`)) upsert('welzijn', { id: rec.id, antwoorden: [], datum: '', extra: '' }); } }, 'Opnieuw beginnen')));
+    h('div', { class: 'form__actions' }, (s.ingevuld > 0) && h('button', { class: 'btn btn--quiet btn--sm', onClick: () => { if (confirm(`Alle antwoorden van de ${t.naam} wissen?`)) upsert('welzijn', { id: rec.id, antwoorden: [], keuzes: [], datum: '', extra: '' }); } }, 'Opnieuw beginnen')));
 }
 
 // Tekst om mee te nemen naar de huisarts.
 function samenvatting() {
   const regels = ['Zelftests voor de huisarts', `Opgemaakt op ${fmtDate(todayIso())}`, ''];
   for (const t of W().tests) {
-    const rec = get('welzijn', `test-${t.id}`); const s = testScore(t, rec?.antwoorden || []);
+    const rec = get('welzijn', `test-${t.id}`); const s = testScore(t, rec);
     if (!rec || !s.ingevuld) continue;
-    regels.push(s.klaar ? `${t.naam}: ${toonWaarde(t, s)} (${s.band.label}), ingevuld op ${fmtDate(rec.datum)}` : `${t.naam}: onvolledig (${s.ingevuld} van ${t.aantal} vragen)`);
-    if (s.klaar) regels.push(`  Antwoorden: ${rec.antwoorden.slice(0, t.aantal).join(', ')}`);
+    if (!s.klaar) regels.push(`${t.naam}: onvolledig (${s.ingevuld} van ${s.aantal} vragen)`);
+    else if (s.schalen.length === 1) regels.push(`${t.naam}: ${toon(s.hoofd)} (${s.hoofd.band.label}), ingevuld op ${fmtDate(rec.datum)}`);
+    else regels.push(`${t.naam}, ingevuld op ${fmtDate(rec.datum)}:`, ...s.schalen.map(x => `  ${x.naam}: ${toon(x)} (${x.band.label})`));
+    if (s.klaar) regels.push(`  Antwoorden per vraag: ${s.waarden.join(', ')}`);
     if (rec.extra) regels.push(`  ${t.extraVraag.label.replace(/^Vraag 10: /, 'Vraag 10, ')} ${rec.extra}`);
   }
   const dagen = all('dagboek').sort((a, b) => a.datum.localeCompare(b.datum));
@@ -97,7 +167,7 @@ function dagForm(init = {}) {
 export function welzijn(r) {
   const tab = ['zelftests', 'dagboek', 'dokter', 'hulp'].includes(r.tab) ? r.tab : 'zelftests';
   const tests = W().tests;
-  const ingevuld = tests.filter(t => testScore(t, get('welzijn', `test-${t.id}`)?.antwoorden || []).klaar).length;
+  const ingevuld = tests.filter(t => testScore(t, get('welzijn', `test-${t.id}`)).klaar).length;
   const tabs = [['zelftests', `Zelftests ${ingevuld}/${tests.length}`], ['dagboek', 'Dagboek'], ['dokter', 'Voor de dokter'], ['hulp', 'Hulp']].map(([k, l]) => ({ label: l, href: `#/welzijn?tab=${k}`, active: tab === k }));
   const dringend = tests.some(t => alarm(t, get('welzijn', `test-${t.id}`)));
   let inhoud;

@@ -1,4 +1,4 @@
-// Gegenereerd door scripts/build-data.mjs op 2026-10-05T17:23:25.028Z. Niet met de hand bewerken: pas data/*.json aan en draai npm run build:data.
+// Gegenereerd door scripts/build-data.mjs op 2026-10-11T09:50:56.778Z. Niet met de hand bewerken: pas data/*.json aan en draai npm run build:data.
 export const seed = {
  "berichten": [
   {
@@ -5296,6 +5296,326 @@ export const seed = {
    }
   ]
  },
+ "welzijn": {
+  "intro": "Vragenlijsten die artsen ook gebruiken, om voor het bezoek aan de huisarts een eerste beeld te krijgen. Ze stellen geen diagnose: een hoge score betekent 'bespreek dit met je arts', een lage score sluit niets uit. Vul de officiële formulieren in en tik je antwoorden hier in; de app rekent de score uit. Alles blijft op dit toestel.",
+  "veiligheid": {
+   "titel": "Hulp nodig, nu meteen?",
+   "tekst": "Denk je aan de dood of eraan om jezelf iets aan te doen, of maakt iemand zich zorgen over je veiligheid: wacht niet tot de afspraak bij de dokter.",
+   "lijnen": [
+    {
+     "naam": "Zelfmoordlijn",
+     "nummer": "1813",
+     "wat": "Gratis en anoniem, dag en nacht. Ook voor familie die zich zorgen maakt. Chat via zelfmoord1813.be."
+    },
+    {
+     "naam": "Huisartsenwachtpost",
+     "nummer": "1733",
+     "wat": "'s Avonds, 's nachts en in het weekend."
+    },
+    {
+     "naam": "Noodnummer",
+     "nummer": "112",
+     "wat": "Bij acuut gevaar. Laat de persoon niet alleen."
+    },
+    {
+     "naam": "Tele-Onthaal",
+     "nummer": "106",
+     "wat": "Gratis en anoniem, dag en nacht, als je gewoon met iemand wil praten."
+    }
+   ]
+  },
+  "tests": [
+   {
+    "id": "bat",
+    "naam": "Burnout Assessment Tool (BAT-23)",
+    "kort": "Burn-out",
+    "meet": "Burn-outklachten door het werk: uitputting, mentale afstand, problemen met concentratie en met emoties.",
+    "waarom": "Ontwikkeld aan de KU Leuven, getoetst bij Vlaamse werknemers en bij mensen met een vastgestelde burn-out. Gratis te gebruiken, zonder de vragen te wijzigen. Gebruikt door Belgische preventiediensten.",
+    "minuten": 5,
+    "aantal": 23,
+    "waarden": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "labels": [
+     "Nooit",
+     "Zelden",
+     "Soms",
+     "Vaak",
+     "Altijd"
+    ],
+    "score": "gemiddelde",
+    "banden": [
+     {
+      "tot": 2.585,
+      "kleur": "green",
+      "label": "Geen verhoogd risico"
+     },
+     {
+      "tot": 3.015,
+      "kleur": "orange",
+      "label": "Risico op burn-out"
+     },
+     {
+      "tot": 5,
+      "kleur": "red",
+      "label": "Zeer hoog risico, ernstige burn-outklachten"
+     }
+    ],
+    "bandenTekst": "Gemiddelde van de 23 vragen: tot 2,58 geen verhoogd risico, 2,59 tot 3,01 risico, vanaf 3,02 zeer hoog risico (klinische grenzen, Schaufeli en anderen, 2023).",
+    "formulier": "https://burnoutassessmenttool.be/wp-content/uploads/2020/08/BAT-Vlaams.pdf",
+    "formulierLabel": "Officieel Vlaams formulier (KU Leuven)",
+    "handleiding": "https://burnoutassessmenttool.be/wp-content/uploads/2020/08/Gebruikshandleiding-BAT-versie-2.0.pdf",
+    "hint": "Gebruik de versie over je werk. Neem de 23 kernvragen; de extra vragen over andere klachten zijn optioneel en tellen niet mee. Nooit is 1, Altijd is 5.",
+    "opgelet": "In zwaar lichamelijk werk kunnen de vragen over uitputting ook lichamelijke vermoeidheid meten. De BAT maakt geen onderscheid tussen burn-out, depressie of een lichamelijke oorzaak: dat doet de arts.",
+    "bron": "Schaufeli, Desart en De Witte (2020), International Journal of Environmental Research and Public Health 17(24):9495."
+   },
+   {
+    "id": "phq9",
+    "naam": "PHQ-9",
+    "kort": "Depressie",
+    "meet": "Hoe sterk klachten van depressie de voorbije twee weken aanwezig waren.",
+    "waarom": "De meest onderzochte korte vragenlijst voor depressie, gratis, met een officiële Belgisch-Nederlandse vertaling. De BAT meet geen depressie, daarom hoort deze erbij.",
+    "minuten": 3,
+    "aantal": 9,
+    "waarden": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "labels": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "score": "som",
+    "alarmVraag": 9,
+    "alarmLabel": "Vraag 9 gaat over gedachten dat je beter dood zou zijn of jezelf iets zou aandoen.",
+    "banden": [
+     {
+      "tot": 4,
+      "kleur": "green",
+      "label": "Geen of minimale klachten"
+     },
+     {
+      "tot": 9,
+      "kleur": "green",
+      "label": "Lichte klachten"
+     },
+     {
+      "tot": 14,
+      "kleur": "orange",
+      "label": "Matige klachten, bespreek met je arts"
+     },
+     {
+      "tot": 19,
+      "kleur": "red",
+      "label": "Matig ernstige klachten, bespreek met je arts"
+     },
+     {
+      "tot": 27,
+      "kleur": "red",
+      "label": "Ernstige klachten, bel je huisarts voor een vroegere afspraak"
+     }
+    ],
+    "bandenTekst": "Totaal van vraag 1 tot 9 (0 tot 27): 0-4 minimaal, 5-9 licht, 10-14 matig, 15-19 matig ernstig, 20-27 ernstig. Vanaf 10 is het een reden om het met de arts te bespreken; het is geen diagnose. Ook 7 tot 9, samen met duidelijke problemen in het dagelijks leven, is het bespreken waard.",
+    "formulier": "https://www.ecfs.eu/sites/default/files/general-content-files/working-groups/Mental%20Health/PHQ9_Dutch%20for%20Belgium.pdf",
+    "formulierLabel": "Officieel Belgisch-Nederlands formulier (Pfizer)",
+    "hint": "Kijk naar de voorbije twee weken. De vier antwoordkolommen van links naar rechts tellen voor 0, 1, 2 en 3. Vraag 10 telt niet mee in de score.",
+    "extraVraag": {
+     "label": "Vraag 10: hoe moeilijk maakten deze problemen je werk, thuis en contact met anderen?",
+     "opties": [
+      "Helemaal niet moeilijk",
+      "Enigszins moeilijk",
+      "Erg moeilijk",
+      "Extreem moeilijk"
+     ]
+    },
+    "bron": "Kroenke, Spitzer en Williams (2001). Copyright Pfizer, vrij te gebruiken en te verspreiden."
+   },
+   {
+    "id": "gad7",
+    "naam": "GAD-7",
+    "kort": "Angst en piekeren",
+    "meet": "Piekeren, onrust en angst de voorbije twee weken. Komt vaak samen met burn-out voor.",
+    "waarom": "Korte, gratis vragenlijst met een officiële Belgisch-Nederlandse vertaling, met dezelfde antwoordvorm als de PHQ-9.",
+    "minuten": 2,
+    "aantal": 7,
+    "waarden": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "labels": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "score": "som",
+    "banden": [
+     {
+      "tot": 4,
+      "kleur": "green",
+      "label": "Minimale klachten"
+     },
+     {
+      "tot": 9,
+      "kleur": "green",
+      "label": "Lichte klachten"
+     },
+     {
+      "tot": 14,
+      "kleur": "orange",
+      "label": "Matige klachten, bespreek met je arts"
+     },
+     {
+      "tot": 21,
+      "kleur": "red",
+      "label": "Ernstige klachten, bespreek met je arts"
+     }
+    ],
+    "bandenTekst": "Totaal (0 tot 21): 0-4 minimaal, 5-9 licht, 10-14 matig, 15-21 ernstig. Vanaf 10 is verdere bespreking met de arts aangewezen.",
+    "formulier": "https://www.ecfs.eu/sites/default/files/general-content-files/working-groups/Mental%20Health/GAD7_Dutch%20for%20Belgium.pdf",
+    "formulierLabel": "Officieel Belgisch-Nederlands formulier (Pfizer)",
+    "hint": "Vul ze in meteen na de PHQ-9. De vier kolommen tellen voor 0, 1, 2 en 3.",
+    "opgelet": "Onrust, prikkelbaarheid en slecht slapen door overbelasting verhogen de score ook. Het onderscheid tussen overspanning en een angststoornis maakt de arts.",
+    "bron": "Spitzer, Kroenke, Williams en Löwe (2006). Copyright Pfizer, vrij te gebruiken en te verspreiden."
+   },
+   {
+    "id": "ess",
+    "naam": "Epworth-slaperigheidsschaal (optioneel)",
+    "kort": "Slaperigheid overdag",
+    "meet": "Hoe snel je overdag indommelt. Uitputting en te laat komen kunnen ook door een slaapprobleem komen, zoals slaapapneu.",
+    "waarom": "Een korte vragenlijst die slaapcentra gebruiken. Vul het formulier van een ziekenhuis in voor jezelf, of vraag het aan de huisarts.",
+    "minuten": 2,
+    "aantal": 8,
+    "waarden": [
+     0,
+     1,
+     2,
+     3
+    ],
+    "labels": [
+     "0",
+     "1",
+     "2",
+     "3"
+    ],
+    "score": "som",
+    "banden": [
+     {
+      "tot": 5,
+      "kleur": "green",
+      "label": "Laag normaal"
+     },
+     {
+      "tot": 10,
+      "kleur": "green",
+      "label": "Hoog normaal"
+     },
+     {
+      "tot": 12,
+      "kleur": "orange",
+      "label": "Licht verhoogde slaperigheid, bespreek met je arts"
+     },
+     {
+      "tot": 15,
+      "kleur": "red",
+      "label": "Matig verhoogde slaperigheid, bespreek met je arts"
+     },
+     {
+      "tot": 24,
+      "kleur": "red",
+      "label": "Sterk verhoogde slaperigheid, bespreek met je arts"
+     }
+    ],
+    "bandenTekst": "Totaal (0 tot 24): boven 10 is overmatige slaperigheid overdag en een reden om slaaponderzoek met de arts te bespreken.",
+    "formulier": "https://www.sint-trudo.be/sites/default/files/public/mcm_plus/00713-NL.pdf",
+    "formulierLabel": "Formulier van het ziekenhuis Sint-Trudo",
+    "hint": "Kans om in te dommelen in acht situaties: 0 nooit, 1 kleine kans, 2 matige kans, 3 grote kans.",
+    "opgelet": "Dommel je in tijdens het rijden of aan de machines: zeg het meteen aan je arts en vermijd dat tot je onderzocht bent.",
+    "bron": "Johns (1991). Copyright Murray W. Johns; vrij voor persoonlijk gebruik."
+   }
+  ],
+  "dokter": {
+   "voorbereiding": [
+    "Vul de vragenlijsten zelf in, eerlijk en alleen, op een rustige dag voor de afspraak. Schrijf de datum erop en neem de ingevulde formulieren mee.",
+    "Hou tot de afspraak elke dag kort bij: slaap, energie en stemming, cafeïne en alcohol, werkuren en laswerk, hoofdpijn of duizeligheid, en of je te laat kwam. Dat kan bij Dagboek.",
+    "Schrijf op één blad: sinds wanneer de uitputting er is en hoe ze veranderde, wat helpt en wat het erger maakt, fouten of bijna-ongevallen aan de machines, gevolgen thuis en met vrienden, stemming en interesse, lichamelijke klachten, medicatie en ziektes in de familie.",
+    "Beschrijf je werk concreet: tekenen, lassen en plooien, het atelier leiden, uren en overuren, de lichamelijke belasting en de spanningen op het werk.",
+    "Beschrijf het laswerk: welke processen en metalen, of er afzuiging is, of je een masker draagt, of je in afgesloten ruimtes werkt, en of collega's dezelfde klachten hebben.",
+    "Je beslist zelf of iemand meegaat. Een vertrouwd persoon helpt onthouden wat gezegd werd."
+   ],
+   "vragen": [
+    "Is dit overspanning, burn-out, depressie of een mengeling?",
+    "Welk bloedonderzoek raadt u aan, en waarom?",
+    "Is een onderzoek van mijn slaap nodig?",
+    "Kan mijn werk, zoals laswerk en dampen, een rol spelen? Moet ik naar de arbeidsarts?",
+    "Moet ik minder of tijdelijk niet werken, en hoelang?",
+    "Is het veilig dat ik rijd en aan machines werk?",
+    "Kan u mij doorverwijzen naar een geconventioneerde eerstelijnspsycholoog?",
+    "Wanneer is de volgende afspraak?",
+    "Wilt u dat ik de 4DKL invul? Dat is een vragenlijst die overspanning onderscheidt van depressie en angst."
+   ],
+   "lichamelijk": [
+    "Bij langdurige vermoeidheid kijkt de huisarts vaak eerst naar bloedarmoede, ontsteking, suiker en schildklier. Andere waarden enkel als daar een reden voor is.",
+    "Slaapapneu, slapeloosheid en een verschoven slaapritme kunnen uitputting en te laat komen ook verklaren.",
+    "Lasdampen en koolstofmonoxide kunnen vermoeidheid, hoofdpijn en duizeligheid geven. Een aanwijzing: klachten die op werkdagen erger zijn en in het weekend of op vakantie beter.",
+    "Een normaal bloedonderzoek betekent niet dat er niets is. De meeste mensen met vermoeidheid hebben normale bloedwaarden."
+   ],
+   "ziekteverlof": [
+    "Verwittig de werkgever telefonisch vóór het begin van je werkdag, en zeg hoelang je ongeveer afwezig zal zijn.",
+    "Bezorg het attest binnen de termijn van het arbeidsreglement, vaak 2 werkdagen. Hou een bewijs bij: foto, verzendbewijs of ontvangstbevestiging.",
+    "Het attest voor de werkgever vermeldt hoelang je ongeschikt bent, niet wat je hebt."
+   ]
+  },
+  "hulp": [
+   {
+    "naam": "Huisarts",
+    "wat": "Eerste aanspreekpunt: diagnose, bloedonderzoek, ziekteverlof en doorverwijzing.",
+    "contact": "Je eigen huisartsenpraktijk. Buiten de uren: 1733.",
+    "kost": "Gewoon consult, deels terugbetaald door het ziekenfonds."
+   },
+   {
+    "naam": "Eerstelijnspsycholoog",
+    "wat": "Gesprekken bij een geconventioneerde psycholoog voor stress, burn-out en lichte tot matige depressie, via het netwerk geestelijke gezondheid. Een verwijzing van de huisarts is niet nodig.",
+    "contact": "Vraag de huisarts of het ziekenfonds naar een geconventioneerde psycholoog in de buurt.",
+    "kost": "Eerste individuele sessie gratis, daarna 11 euro per sessie (4 euro met verhoogde tegemoetkoming). Bevestig het bedrag bij het boeken."
+   },
+   {
+    "naam": "Arbeidsarts",
+    "wat": "Vertrouwelijke spontane raadpleging bij de externe preventiedienst van je werkgever, voor klachten die met het werk te maken kunnen hebben.",
+    "contact": "De naam van de preventiedienst staat in het arbeidsreglement of vraag je aan de werkgever.",
+    "kost": "Gratis voor de werknemer."
+   },
+   {
+    "naam": "CAW",
+    "wat": "Laagdrempelige hulp bij stress en problemen met werk, geld of relaties. Zonder verwijzing.",
+    "contact": "caw.be",
+    "kost": "Gratis, kan anoniem."
+   },
+   {
+    "naam": "Ziekenfonds",
+    "wat": "Terugbetaling van huisarts, bloedonderzoek en psycholoog. Bij langer ziekteverlof helpen de adviserend arts en de Terug Naar Werk-coördinator.",
+    "contact": "Je eigen ziekenfonds.",
+    "kost": "Verschilt per ziekenfonds."
+   },
+   {
+    "naam": "Gezondheid en Wetenschap",
+    "wat": "Betrouwbare uitleg over burn-out en vermoeidheid, voor jou en je familie.",
+    "contact": "gezondheidenwetenschap.be",
+    "kost": "Gratis."
+   }
+  ],
+  "bronnen": "BAT: burnoutassessmenttool.be en Schaufeli e.a. (2020, 2023). PHQ-9 en GAD-7: Kroenke e.a. (2001), Spitzer e.a. (2006), Levis e.a. (2019). Epworth: Johns, American Thoracic Society. Vlaanderen: RIZIV, FOD WASO, Gezondheid en Wetenschap, NHG. Opgezocht op 11 oktober 2026; de formulieren zelf konden niet geopend worden en de telefoonnummers moeten nog eens nagekeken worden op de officiële sites."
+ },
  "zelftests": {
   "werkwaarden": {
    "inleiding": "Werkwaarden zijn de dingen die werk voor jou de moeite waard maken, los van de functietitel. Als je weet wat voor jou zwaar weegt, kun je vacatures sneller schiften en in een gesprek beter uitleggen waarom een job bij je past. Er zijn geen goede of foute antwoorden.",
@@ -6124,5 +6444,5 @@ export const seed = {
   "vdab-profiel.md": "# VDAB-profiel (Mijn Loopbaan): tekst voor Remi\n\nDoel: gevonden worden door werkgevers en bemiddelaars die zoeken op erfgoed, restauratie, museum, decor, atelier, instructeur en lassen. VDAB-profielen zijn kort en zakelijk. Zet het profiel op zichtbaar voor werkgevers en vul de rubrieken hieronder letterlijk over.\n\n## Titel (functietitel bovenaan)\nTechnisch tekenaar en atelierverantwoordelijke plaatbewerking, lasser en meubelmaker, op zoek naar werk in erfgoed, restauratie, archief en cultuurateliers\n\n## Korte voorstelling (maximaal 5 zinnen)\nTechnisch tekenaar en verantwoordelijke atelier bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal, sinds 2021. Ik teken werkstukken uit, bereid het werk voor, plooi en las zelf (halfautomaat en elektrode) en stuur het atelier aan. Daarvoor werkte ik in een creatief fietsatelier en bouwde ik een fotoarchief op; daarnaast volg ik interieurvormgeving aan de Academie in Antwerpen en bouw ik meubels. Ik zoek werk waarin vakmanschap en zorgvuldigheid ergens toe dienen: restauratie van historisch metaalwerk, museum- of theaterateliers, archief en collectiezorg, tentoonstellingsbouw, of het doorgeven van het vak. Ik werk het best in een klein team en ben beschikbaar vanaf [datum].\n\n## Gewenste functies (kies er tot vijf in de VDAB-lijst)\n- Technisch tekenaar of werkvoorbereider metaal en plaatbewerking\n- Decorbouwer, ateliermedewerker metaal of vitrinebouwer\n- Technisch medewerker museum, depot of tentoonstellingsbouw\n- Restauratiemedewerker metaal (monumentenzorg)\n- Instructeur of praktijkbegeleider lassen en metaal\n\n## Gewenste sectoren\nCultuur en erfgoed; bouw en restauratie; metaal; onderwijs en opleiding; sociale economie\n\n## Competenties (vinkjes en vrije tekst)\n- Technisch tekenen van maatwerk in plaatmateriaal ([CAD-programma])\n- Werkvoorbereiding, planning en aansturing van een atelier\n- Plooien op de kantbank, MIG/MAG-lassen (135) en elektrodelassen (111) [TIG bevestigen]\n- Plaatwerk: snijden, plooien, afwerken, kwaliteitscontrole\n- Opmeten en uittekenen op maat, montage\n- Meubelontwerp en -bouw [in metaal en hout, materiaal bevestigen]\n- Fietsbouw en -herstel\n- Archiveren en digitaliseren van beeldmateriaal\n- Veiligheid: VCA-basis [geldig tot]\n- Rijbewijs B [indien van toepassing]\n\n## Talen\nNederlands moedertaal; Engels goed; Frans [niveau]\n\n## Opleiding\n- Interieurvormgeving, avondonderwijs aan de Academie in Antwerpen, lopend [precieze opleiding bevestigen]\n- Meubel en interieur (drie jaar) en grafiek (een jaar), avondonderwijs aan de Academie in Antwerpen\n- Lasopleiding halfautomaat en elektrodelassen, [instelling], [jaar]\n- Diploma secundair onderwijs Wetenschappen-Wiskunde, Sint-Lutgardis, 2017\n\n## Werkervaring\n2021 tot heden: technisch tekenaar en verantwoordelijke atelier, [bedrijf], [gemeente]. Gestart als tekenaar en plooi- en lasoperator. Maatwerk in plaatmateriaal van tekening tot afwerking.\n2019: medewerker creatief fietsatelier, Antwerpen.\n2017 tot 2018: opbouw van een fotoarchief voor Willy Van de Perre.\n2017 tot 2018: [functie], Katoen Natie, Antwerpen.\n[jaar] tot heden: meubelmaker in eigen beheer, samen met mijn broer, Antwerpen.\n\n## Mobiliteit en beschikbaarheid\nAntwerpen en omgeving, bereikbaar met openbaar vervoer [en fiets/wagen]. Voltijds of deeltijds. Beschikbaar vanaf [datum]. Open voor een individuele beroepsopleiding (IBO) of een beroepsverkennende stage.\n\n## Trefwoorden om zeker in de vrije tekst te zetten\nerfgoed, restauratie, monumentenzorg, museum, depot, archief, decoratelier, decorbouw, tentoonstellingsbouw, atelier, technisch tekenaar, werkvoorbereider, plaatbewerking, plooien, kantbank, MIG/MAG, elektrodelassen, plannen lezen, meubelmaker, interieurvormgeving, instructeur lassen\n",
   "vragenlijst-remi.md": "# Vragenlijst voor Remi\n\nDeze vragen zijn voor jou, Remi. Niets hoeft in één keer. Korte antwoorden zijn goed; een voorbeeld is beter dan een omschrijving. Alles wat je invult blijft op dit toestel tot je het exporteert of kopieert voor Giulia. Uit je antwoorden komen het cv, de brieven, de tekst voor VDAB en de keuzes voor de volgende stap.\n\n## Praktisch, voor het cv\n\nFeiten die op een cv of in een dossier moeten kloppen.\n\n- Volledige naam, geboortedatum en geboorteplaats\n  \n\n- Adres, gsm-nummer en e-mailadres dat je voor sollicitaties wil gebruiken\n  \n\n- Rijbewijs (B, ja of nee) en hoe je je verplaatst: fiets, openbaar vervoer, auto. Tot hoeveel minuten pendelen is haalbaar?\n  \n\n- Talen en niveau: Nederlands, Frans, Engels, andere\n  \n\n- Naam van je huidige werkgever, gemeente, en de startdatum van je contract (staat op het contract of de eerste loonfiche)\n  \n\n- Wat staat er op je loonfiche: arbeider of bediende, en welk paritair comité (bijvoorbeeld 111, 200, 209)?  \n  (Dit bepaalt gewaarborgd loon, vakantiegeld en eindejaarspremie.)\n  \n\n- Je functietitel volgens het contract, en wat je vandaag echt doet (tekenen, plooien, lassen, atelier aansturen, hoeveel collega's)\n  \n\n- Welk tekenprogramma gebruik je (bijvoorbeeld SolidWorks, AutoCAD, Inventor, Tekla) en hoe goed?\n  \n\n- Welke lasprocessen beheers je: halfautomaat (MIG/MAG), elektrode, TIG? Welke certificaten heb je, met norm en geldigheid?\n  \n\n- Andere attesten: VCA, heftruck, hoogtewerker, EHBO, kantbank, andere\n  \n\n- Je opleidingen precies: secundair (richting, school, jaar), lasopleiding (waar, wanneer), academie (welke richtingen, welke jaren, getuigschrift of diploma)\n  \n\n- Katoen Natie: welke functie, welke afdeling, hoelang?\n  \n\n- Het creatief fietsatelier: naam, wat je daar maakte of herstelde, een voorbeeld\n  \n\n- Het fotoarchief voor Willy Van de Perre: wie is hij, hoeveel beelden, hoe heb je het aangepakt (ordenen, scannen, beschrijven, software)?\n  \n\n- Welke werkstukken bestaan er in foto's: meubels, constructies, fietsen, tekeningen? Waar staan die foto's?  \n  (Voor het portfolio: 6 tot 10 stukken met titel, jaar, materiaal, techniek.)\n  \n\n- Vanaf wanneer ben je beschikbaar, voltijds of deeltijds, en welke dagen of avonden zijn bezet door de academie?\n  \n\n- Wat is je huidige brutoloon per maand, en wat heb je netto minimaal nodig om rond te komen?  \n  (Dit is voor de keuze tussen uitkering, opleiding en werk, niet voor een cv.)\n  \n\n## Werk dat bij je past\n\nConcrete momenten zeggen meer dan eigenschappen.\n\n- Drie momenten op het werk waarop je dacht: dit is goed. Wat deed je precies?\n  \n\n- Drie momenten waarop het echt niet ging. Wat gebeurde er?\n  \n\n- Een project waar je trots op bent: wat, voor wie, wat was moeilijk, hoe heb je het opgelost?  \n  (Dit wordt een regel op het cv en een voorbeeld in het gesprek.)\n  \n\n- Nog een project, liefst iets helemaal anders\n  \n\n- Wat doe je het liefst in het atelier: tekenen, plooien, lassen, organiseren, uitleggen aan anderen? Zet ze in volgorde.\n  \n\n- Wat is fysiek het zwaarst, en waar voel je dat (rug, schouders, handen, ogen, ademhaling)?  \n  (Ook voor de huisarts.)\n  \n\n- Werk je liever alleen, met twee of drie, of in een grotere ploeg? Waarom?\n  \n\n- Liever een klein bedrijf, een grote organisatie, een overheid, een vzw? Wat trekt je aan en wat schrikt af?\n  \n\n- Wat zouden je collega's zeggen als iemand vraagt hoe het is om met jou te werken?\n  \n\n- Wat heb je nodig van een baas of ploegbaas om goed te werken? En wat verdraag je niet?\n  \n\n## Sterktes en werkpunten\n\nEerlijk en met een voorbeeld; dit is geen sollicitatiegesprek.\n\n- Drie dingen waar je goed in bent, telkens met een voorbeeld\n  \n\n- Drie dingen die je wil verbeteren of die je moeilijk vindt\n  \n\n- Waarvoor komen mensen bij jou om hulp?\n  \n\n- Hoe leer je het liefst: door te doen, te kijken, te lezen, uitleg te krijgen?\n  \n\n- Hoe reageer je als er druk of stress is? Wat helpt dan?\n  \n\n- Wanneer zeg je te weinig, en wanneer had je liever iets gezegd?  \n  (De tests zeggen dat je niet snel op de voorgrond treedt; dit is om te weten waar dat je iets kost.)\n  \n\n- Wat weet je over jezelf dat niet in een test staat?\n  \n\n## Passies en interesses\n\nWat je doet als niemand het vraagt.\n\n- Waar gaat je aandacht naartoe buiten het werk: maken, lezen, kijken, sporten, mensen, plekken?\n  \n\n- Welke gebouwen, objecten, musea of ateliers hebben je ooit geraakt, en waarom?\n  \n\n- Als geld geen rol speelde: wat zou je een jaar lang maken of leren?\n  \n\n- Van de sporen in de app (erfgoed en restauratie, culturele instellingen, lesgeven, sociaal en ecologisch, archief en archeologie): welke trekt het meest, welke het minst, en waarom?\n  \n\n- Welk werkveld in de Verkenning verraste je positief, en welk zou je meteen schrappen?\n  \n\n- Heb je ooit vrijwilligerswerk gedaan of iemand iets aangeleerd? Hoe was dat?\n  \n\n- Wat zou je op de academie het liefst verder doen: meubel, interieur, grafiek, iets anders?\n  \n\n## De overstap\n\nHier gaat het om keuzes voor de komende maanden.\n\n- Drie dingen die de volgende job zeker moet hebben\n  \n\n- Drie dingen die je in de volgende job wil vermijden\n  \n\n- Wil je opnieuw studeren? Zo ja: hoelang zou je dat volhouden (een jaar, twee, drie), overdag of in de avond, en wat trekt je: restauratie, tekenen, lesgeven, archief, iets anders?\n  \n\n- Hoe voel je je nu: energie van 1 tot 10, slaap, zin om dingen te doen? Wat helpt je herstellen?\n  \n\n- Hoeveel weken rust denk je nodig te hebben voor je ergens nieuw kunt beginnen?\n  \n\n- Wat wil je dat Giulia doet in dit traject, en wat wil je liever zelf doen?\n  \n\n- Wat houdt je tegen om iets te tekenen bij je werkgever, en wat zou je willen dat er in de plaats gebeurt?\n  \n\n## Voor het gesprek\n\nTwee zinnen die je paraat wil hebben.\n\n- Hoe zeg je in twee zinnen waarom je weggaat, zonder het over vermoeidheid of je werkgever te hebben?  \n  (Bijvoorbeeld: na vijf jaar plaatbewerking wil ik mijn vakmanschap inzetten voor werk dat blijft, zoals erfgoed of museumateliers.)\n  \n\n- Welke vraag zou jij aan een werkgever stellen om te weten of je er past?\n  \n\n- Wie kan als referentie dienen (een collega, een klant, een docent) en mag je die naam gebruiken?\n  \n"
  },
- "gebouwdOp": "2026-10-05T17:23:25.028Z"
+ "gebouwdOp": "2026-10-11T09:50:56.778Z"
 };

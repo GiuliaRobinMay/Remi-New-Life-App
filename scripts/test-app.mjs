@@ -11,7 +11,7 @@ await new Promise(r => setTimeout(r, 700));
 const base = `http://localhost:${port}/`;
 const fouten = []; const geslaagd = [];
 const check = (naam, ok, detail = '') => (ok ? geslaagd : fouten).push(`${naam}${detail ? ': ' + detail : ''}`);
-const VIEWS = { overzicht: [], stappenplan: ['open', 'klaar', 'alles'], planning: ['maanden', 'kalender', 'fasen'], rechten: ['kern', 'verwittiging', 'gezondheid', 'scenarios', 'opzeg', 'werkloosheid', 'steun', 'check'], communicatie: ['mails', 'brieven', 'sms', 'logboek'], sollicitaties: [], vacatures: ['bewaard', 'zoeken', 'bronnen'], hotlist: [], verkenning: ['alles', 'erfgoed', 'sociaal'], opleidingen: ['alles', 'erfgoed'], cv: ['start', 'gegevens', 'profiel', 'ervaring', 'opleiding', 'vaardigheden', 'competenties', 'portfolio', 'extra', 'zelftests', 'voorbeelden', 'gids', 'afdrukken'], vragenlijst: ['praktisch', 'werk'], profiel: ['samenvatting', 'tests', 'herzieningen'], documenten: ['cv', 'dossier', 'sjablonen', 'vdab', 'gegenereerd'] };
+const VIEWS = { overzicht: [], stappenplan: ['open', 'klaar', 'alles'], planning: ['maanden', 'kalender', 'fasen'], rechten: ['kern', 'verwittiging', 'gezondheid', 'scenarios', 'opzeg', 'werkloosheid', 'steun', 'check'], communicatie: ['mails', 'brieven', 'sms', 'logboek'], sollicitaties: [], vacatures: ['bewaard', 'zoeken', 'bronnen'], hotlist: [], verkenning: ['alles', 'erfgoed', 'sociaal'], opleidingen: ['alles', 'erfgoed'], cv: ['start', 'gegevens', 'profiel', 'ervaring', 'opleiding', 'vaardigheden', 'competenties', 'portfolio', 'extra', 'zelftests', 'voorbeelden', 'gids', 'afdrukken'], vragenlijst: ['praktisch', 'werk'], profiel: ['samenvatting', 'tests', 'herzieningen'], welzijn: ['zelftests', 'dagboek', 'dokter', 'hulp'], documenten: ['cv', 'dossier', 'sjablonen', 'vdab', 'gegenereerd'] };
 let browser;
 try {
   const { chromium } = await import('playwright');
@@ -29,7 +29,7 @@ try {
         await page.goto(`${base}#/${v}${t ? '?tab=' + t : ''}`, { waitUntil: 'networkidle' });
         const naam = await page.textContent('.chrome__name');
         const actief = await page.$eval('.sidebar__item--active .sidebar__label', e => e.textContent).catch(() => '');
-        const verwacht = { overzicht: 'Overzicht', stappenplan: 'Stappenplan', planning: 'Planning', rechten: 'Rechten', communicatie: 'Communicatie', sollicitaties: 'Sollicitaties', vacatures: 'Vacatures', hotlist: 'Hotlist', verkenning: 'Verkenning', opleidingen: 'Opleidingen', cv: 'Cv-atelier', vragenlijst: 'Vragenlijst', profiel: 'Profiel', documenten: 'Documenten' }[v];
+        const verwacht = { overzicht: 'Overzicht', stappenplan: 'Stappenplan', planning: 'Planning', rechten: 'Rechten', communicatie: 'Communicatie', sollicitaties: 'Sollicitaties', vacatures: 'Vacatures', hotlist: 'Hotlist', verkenning: 'Verkenning', opleidingen: 'Opleidingen', cv: 'Cv-atelier', vragenlijst: 'Vragenlijst', profiel: 'Profiel', documenten: 'Documenten', welzijn: 'Welzijn' }[v];
         check(`${label} route ${v}${t ? '?tab=' + t : ''}`, naam === verwacht && actief === verwacht, `chrome=${naam} nav=${actief}`);
         if (t) { const at = await page.$eval('.tabs__item--active', e => e.getAttribute('href')).catch(() => ''); check(`${label} actieve tab ${v}/${t}`, at.endsWith(`tab=${t}`), at); }
         const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
@@ -121,6 +121,17 @@ try {
       await page.click('a[aria-label="Volgende maand"]');
       await page.waitForFunction(() => document.querySelector('.cal__titel')?.textContent !== 'oktober 2026', null, { timeout: 3000 }).catch(() => {});
       check('volgende maand', (await page.textContent('.cal__titel')) === 'november 2026');
+      // Welzijn: scores en veiligheidsmelding
+      await page.goto(`${base}#/welzijn?tab=zelftests`, { waitUntil: 'networkidle' });
+      for (let i = 1; i <= 23; i++) await page.click(`button[data-test="bat"][data-vraag="${i}"][data-waarde="3"]`);
+      const batBadge = await page.textContent('#test-bat .meta');
+      check('BAT gemiddelde 3,00 is risico (oranje)', /3,00: Risico op burn-out/.test(batBadge), batBadge);
+      for (let i = 1; i <= 9; i++) await page.click(`button[data-test="phq9"][data-vraag="${i}"][data-waarde="${i === 9 ? 1 : 2}"]`);
+      const phq = await page.evaluate(() => ({ meta: document.querySelector('#test-phq9 .meta').textContent, alarm: !!document.querySelector('#test-phq9 .welzijn-alarm') }));
+      check('PHQ-9 totaal 17 en melding bij vraag 9', /17: Matig ernstige/.test(phq.meta) && phq.alarm, JSON.stringify(phq));
+      await page.goto(`${base}#/welzijn?tab=dokter`, { waitUntil: 'networkidle' });
+      const sv = await page.textContent('.welzijn-samenvatting');
+      check('samenvatting voor de huisarts', /Burnout Assessment Tool \(BAT-23\): 3,00/.test(sv) && /PHQ-9: 17/.test(sv), sv.slice(0, 160));
       // Wie gebruikt het toestel
       await page.goto(`${base}#/overzicht`, { waitUntil: 'networkidle' });
       await page.click('text=Ik ben Giulia');

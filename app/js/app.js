@@ -5,8 +5,9 @@ import * as core from './views-core.js';
 import * as werk from './views-werk.js';
 import * as cvmod from './views-cv.js';
 import * as comm from './views-comm.js';
+import * as welzijnmod from './views-welzijn.js';
 
-const views = { ...core, ...werk, ...cvmod, ...comm };
+const views = { ...core, ...werk, ...cvmod, ...comm, ...welzijnmod };
 // Accentkleuren wisselen zodat buren verschillen (thema: kleur is decoratie). De chrome van elke zone gebruikt dezelfde kleur als het icoon in de zijbalk.
 const NAV = [
   { group: null, items: [{ id: 'overzicht', label: 'Overzicht', icon: 'home', accent: 'violet' }] },
@@ -28,6 +29,7 @@ const NAV = [
     { id: 'vragenlijst', label: 'Vragenlijst', icon: 'list', accent: 'orange', count: () => { const v = all('antwoorden').filter(a => a.tekst && a.tekst.trim()).length; const t = (ref.vragenlijst?.secties || []).reduce((n, s) => n + s.vragen.length, 0); return v ? `${v}/${t}` : String(t); } },
     { id: 'profiel', label: 'Profiel', icon: 'user', accent: 'red' },
     { id: 'documenten', label: 'Documenten', icon: 'print', accent: 'violet' },
+    { id: 'welzijn', label: 'Welzijn', icon: 'leaf', accent: 'green' },
   ] },
 ];
 const flat = NAV.flatMap(g => g.items);

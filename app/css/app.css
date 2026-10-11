@@ -149,6 +149,21 @@ details.plain > summary::-webkit-details-marker { display: none; }
 .toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: var(--ink); color: #fff; padding: 8px 14px; border-radius: var(--radius-pill); font-size: 13px; z-index: 70; opacity: 0; transition: opacity .2s; pointer-events: none; }
 .toast--show { opacity: 1; }
 
+/* Welzijn: scorehulp voor vragenlijsten */
+.welzijn-hint { background: var(--grey-50); border: 1px solid var(--hairline); border-radius: var(--radius-chip); padding: 8px 10px; }
+.welzijn-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr)); gap: 6px 14px; margin-top: 10px; }
+.welzijn-vraag { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.welzijn-nr { flex: 0 0 26px; text-align: right; font-weight: 600; font-size: 13px; color: var(--muted); }
+.welzijn-vraag--alarm .welzijn-nr { color: var(--brand-red-deep); }
+.welzijn-keuze { display: flex; gap: 4px; flex-wrap: wrap; min-width: 0; }
+.welzijn-optie { font: inherit; font-size: 12.5px; min-width: 34px; padding: 5px 8px; border: 1px solid var(--hairline); border-radius: var(--radius-chip); background: var(--surface); color: var(--ink-soft); cursor: pointer; }
+.welzijn-optie:hover { border-color: var(--faint); color: var(--ink); }
+.welzijn-optie.is-gekozen { background: var(--ink); border-color: var(--ink); color: #fff; }
+.welzijn-alarm { border-color: var(--brand-red); box-shadow: inset 0 0 0 1px var(--brand-red); }
+.welzijn-nummer { flex: 0 0 64px; font-size: 20px; font-weight: 700; color: var(--brand-red-deep); text-decoration: none; }
+.welzijn-samenvatting { white-space: pre-wrap; font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--grey-50); border: 1px solid var(--hairline); border-radius: var(--radius-chip); padding: 10px 12px; margin: 8px 0; overflow-wrap: anywhere; }
+@media (max-width: 720px) { .welzijn-optie { min-width: 40px; padding: 8px 8px; } }
+
 /* Wie: Remi blauw, Giulia rood, samen violet */
 :root { --wie-remi: #2563eb; --wie-remi-deep: #1d4ed8; --wie-giulia: var(--brand-red); --wie-samen: var(--brand-violet); }
 .badge--blue { background: color-mix(in srgb, var(--wie-remi) 12%, white); color: var(--wie-remi-deep); }

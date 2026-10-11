@@ -314,3 +314,15 @@ li.is-klaar .agenda__naam, li.is-klaar .agenda__naam a { text-decoration: line-t
   .peek__body { padding: 16px 16px 40px; }
 }
 @media print { .sidebar, .chrome, .peek, .toast, .nav-backdrop { display: none !important; } }
+
+/* Aanmelden bij de centrale database */
+.shell--poort .sidebar, .shell--poort .nav-backdrop, .shell--poort .chrome__burger { display: none; }
+.shell--poort .shell__main { margin-left: 0; width: 100%; }
+.aanmelden { display: flex; justify-content: center; padding: 48px 16px; }
+.aanmelden__kaart { width: 100%; max-width: 440px; }
+.aanmelden__titel { font-size: 24px; margin: 0 0 10px; }
+.aanmelden .form { margin-top: 10px; }
+.aanmeld-code { font-size: 22px; letter-spacing: .3em; max-width: 220px; }
+.sidebar__sync { all: unset; cursor: pointer; display: block; width: 100%; font: inherit; color: inherit; text-align: left; }
+.sidebar__sync:focus-visible { outline: 2px solid var(--brand-violet); outline-offset: 2px; }
+.sidebar__sync--fout, .sidebar__sync--offline { color: var(--brand-red-deep); }

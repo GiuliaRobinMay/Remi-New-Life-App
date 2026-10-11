@@ -19,10 +19,19 @@ export const mails = () => all('berichten').filter(b => b.soort === 'mail');
 // Gearchiveerde mails blijven bewaard en kunnen terug bij de e-mails gezet worden.
 const archief = () => all('berichten').filter(b => b.soort === 'archief');
 
-// Handtekening: per toestel bewaard (Remi en Giulia hebben elk hun eigen toestel).
+// Handtekening: in de gedeelde instellingen, zodat ze op elk toestel dezelfde is (oude plek op dit toestel als terugval).
 const HT = 'remi-mail-handtekening';
-export function handtekening() { try { return localStorage.getItem(HT) || ''; } catch { return ''; } }
-function zetHandtekening(v) { try { localStorage.setItem(HT, v); } catch { /* privévenster: niet bewaard */ } }
+export function handtekening() {
+  const gedeeld = get('instellingen', 'mail');
+  if (gedeeld && typeof gedeeld.handtekening === 'string') return gedeeld.handtekening;
+  try { return localStorage.getItem(HT) || ''; } catch { return ''; }
+}
+let htTimer = null;
+function zetHandtekening(v) {
+  try { localStorage.setItem(HT, v); } catch { /* privévenster */ }
+  clearTimeout(htTimer);
+  htTimer = setTimeout(() => upsert('instellingen', { id: 'mail', handtekening: v }, { silent: true }), 400);
+}
 
 export function communicatie(r) {
   bewaarAlles();
@@ -75,7 +84,7 @@ function instellingen() {
   return h('div', { class: 'stack' },
     h('section', { class: 'card card--pad' }, h('p', { class: 'eyebrow' }, 'Afzender (Gmail)'), gmailBlok()),
     h('section', { class: 'card card--pad' }, h('p', { class: 'eyebrow' }, 'Handtekening'),
-      h('p', { class: 'small muted' }, 'Komt automatisch onder elke nieuwe e-mail. In een bestaande mail zet je ze erbij met Handtekening invoegen. Ze wordt bewaard op dit toestel.'),
+      h('p', { class: 'small muted' }, 'Komt automatisch onder elke nieuwe e-mail. In een bestaande mail zet je ze erbij met Handtekening invoegen.'),
       h('textarea', { class: 'field', rows: 5, 'data-fk': 'mail-handtekening', value: ht, placeholder: 'Met vriendelijke groeten\n\nRemi\n+32 …', onInput: e => { ht = e.target.value; zetHandtekening(ht); opgeslagen.textContent = 'Bewaard.'; } }),
       opgeslagen));
 }
@@ -206,7 +215,7 @@ async function laadBijlagen(c) {
   const out = []; let totaal = 0;
   for (const x of c.bijlagen || []) {
     const blob = await leesBijlage(x.id).catch(() => null);
-    if (!blob) throw new Error(`De bijlage ${x.naam} staat niet op dit toestel. Voeg ze opnieuw toe.`);
+    if (!blob) throw new Error(`De bijlage ${x.naam} kon niet geladen worden. Kijk of er verbinding is, of voeg ze opnieuw toe.`);
     totaal += blob.size; out.push({ ...x, blob });
   }
   if (totaal > mail.MAX_BIJLAGEN) throw new Error(`De bijlagen zijn samen ${grootte(totaal)}. Gmail aanvaardt tot 25 MB.`);

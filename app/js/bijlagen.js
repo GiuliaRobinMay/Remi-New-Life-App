@@ -1,6 +1,11 @@
-// Bijlagen (foto's en pdf's) in IndexedDB. Ze blijven op dit toestel en gaan nooit naar de server of de repository.
+// Bijlagen (foto's en pdf's). Op dit toestel in IndexedDB, zodat ze ook zonder verbinding openen.
+// Met een centrale database (sync.js) gaat elke bijlage ook naar de afgeschermde opslag, en haalt een ander
+// toestel ze daar op zodra iemand ze opent. Ze komen nooit in de repository.
 const DB = 'remi-bijlagen', STORE = 'bestanden';
 let dbBelofte = null;
+let extern = null;
+// sync.js meldt zich hier aan: { gewijzigd(id, 'op'|'weg'), haal(id) -> Blob|null }
+export function zetExtern(adapter) { extern = adapter; }
 
 function db() {
   if (!dbBelofte) dbBelofte = new Promise((res, rej) => {
@@ -20,6 +25,21 @@ async function tx(mode, fn) {
     t.onerror = () => rej(t.error);
   });
 }
-export const bewaarBijlage = (id, blob) => tx('readwrite', s => s.put(blob, id));
-export const leesBijlage = id => tx('readonly', s => s.get(id));
-export const wisBijlage = id => tx('readwrite', s => s.delete(id));
+export const leesLokaal = id => tx('readonly', s => s.get(id));
+export const lokaleSleutels = () => tx('readonly', s => s.getAllKeys());
+
+export async function bewaarBijlage(id, blob) {
+  await tx('readwrite', s => s.put(blob, id));
+  extern?.gewijzigd(id, 'op');
+}
+export async function leesBijlage(id) {
+  const lokaal = await leesLokaal(id).catch(() => undefined);
+  if (lokaal || !extern) return lokaal;
+  const ver = await extern.haal(id).catch(() => null);
+  if (ver) await tx('readwrite', s => s.put(ver, id)).catch(() => {});
+  return ver || undefined;
+}
+export async function wisBijlage(id) {
+  await tx('readwrite', s => s.delete(id));
+  extern?.gewijzigd(id, 'weg');
+}

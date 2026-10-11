@@ -3,6 +3,7 @@ import { h, icon, badge, fit, fmtDate, todayIso, addDays, daysUntil, uid, md, co
 import { all, get, upsert, remove, ref, exportJson, importJson, resetLocal, localSize } from './store.js';
 import { openPeek, closePeek, go, gebruiker, kiesGebruiker, zetGebruiker, NAMEN } from './app.js';
 import { dossierTab } from './views-dossier.js';
+import { syncStatus, syncNu, afmelden } from './sync.js';
 
 const SPOORKLEUR = { erfgoed: 'orange', cultuur: 'violet', onderwijs: 'green', overheid: 'grey', sociaal: 'red', ecologisch: 'green', geschiedenis: 'orange', reserve: 'grey' };
 // Wie doet het: Remi, Giulia of samen. Afgeleid uit 'wie' als 'voor' ontbreekt (eigen stappen).
@@ -333,9 +334,30 @@ export function documenten(r) {
 }
 
 // ---------- Instellingen (peek) ----------
+const MODUSTEKST = {
+  actief: 'Alles is bijgewerkt met de database.', bezig: 'Bezig met bijwerken…', offline: 'Geen verbinding. Wijzigingen gaan door zodra er weer internet is.',
+  fout: 'Bijwerken met de database lukte niet. De app probeert het vanzelf opnieuw.', laden: 'Verbinden…', afgemeld: 'Niet aangemeld.', 'geen-toegang': 'Dit adres heeft geen toegang.',
+};
+function databaseBlok() {
+  const s = syncStatus();
+  if (s.modus === 'lokaal') return h('p', { class: 'small' }, `Alles wat je invult staat in deze browser (${Math.round(localSize() / 1024)} kB). Er is nog geen centrale database ingesteld.`);
+  const uur = s.laatste ? new Date(s.laatste).toLocaleString('nl-BE', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) : '';
+  return h('div', { class: 'stack', style: 'gap:8px' },
+    h('p', { class: 'eyebrow', style: 'margin:0' }, 'Centrale database'),
+    h('p', { class: 'small' }, s.email ? ['Aangemeld als ', h('strong', null, s.email), s.wie ? ` (${NAMEN[s.wie]})` : '', '.'] : 'Niet aangemeld.'),
+    h('p', { class: 'small', role: 'status', 'data-sync-status': s.modus }, MODUSTEKST[s.modus] || '', uur ? ` Laatst bijgewerkt: ${uur}.` : '', s.wachtend ? ` Nog ${s.wachtend} ${s.wachtend === 1 ? 'wijziging' : 'wijzigingen'} door te sturen.` : ''),
+    s.fout && s.modus !== 'actief' && h('p', { class: 'small muted' }, s.fout),
+    h('p', { class: 'small muted' }, 'Giulia en Remi zien dezelfde gegevens op elk toestel: mails met bijlagen, planning, documenten, tests en het dagboek.'),
+    h('div', { class: 'form__actions' },
+      h('button', { class: 'btn btn--primary btn--sm', 'data-actie': 'sync-nu', onClick: () => syncNu().then(() => toast(syncStatus().modus === 'actief' ? 'Bijgewerkt' : 'Bijwerken lukte nog niet')) }, 'Nu bijwerken'),
+      s.email && h('button', { class: 'btn btn--quiet btn--sm', onClick: () => { if (confirm('Afmelden op dit toestel?')) afmelden(); } }, 'Afmelden')));
+}
+
 export function instellingenPeek() {
   openPeek('Instellingen en synchronisatie', () => h('div', { class: 'stack' },
-    h('p', { class: 'small' }, `Alles wat je invult staat in deze browser (${Math.round(localSize() / 1024)} kB). Om te delen tussen Giulia en Remi: exporteer hier en importeer op het andere toestel, of geef het bestand aan Claude om in data/ vast te leggen.`),
+    databaseBlok(),
+    h('hr', { class: 'rule' }),
+    h('p', { class: 'small' }, syncStatus().modus === 'lokaal' ? 'Reservekopie: exporteer alles naar een bestand, of importeer een eerder bestand.' : 'Reservekopie: exporteer alles naar een bestand. Een geïmporteerd bestand gaat ook naar de database.'),
     h('div', { class: 'form__actions' },
       h('button', { class: 'btn btn--primary', onClick: () => download(`remi-app-${todayIso()}.json`, exportJson()) }, icon('download', 14), 'Exporteer gegevens'),
       h('label', { class: 'btn btn--ghost bestand-knop' }, icon('upload', 14), 'Importeer bestand', h('input', { type: 'file', accept: 'application/json', class: 'visueel-verborgen', 'aria-label': 'Importeer bestand', onChange: async e => { const f = e.target.files[0]; if (!f) return; try { importJson(await f.text()); toast('Geïmporteerd'); } catch { toast('Bestand niet herkend'); } } })),
@@ -344,8 +366,11 @@ export function instellingenPeek() {
     h('p', { class: 'small' }, 'Mails met bijlagen rechtstreeks versturen vanaf het Gmail-adres van Remi.'),
     h('a', { class: 'btn btn--ghost', href: '#/communicatie?tab=instellingen' }, icon('mail', 14), 'Gmail en handtekening instellen'),
     h('hr', { class: 'rule' }),
-    h('p', { class: 'small muted' }, 'Wis alle lokale wijzigingen en val terug op de seed uit de repository.'),
-    h('button', { class: 'btn btn--danger', onClick: () => { if (confirm('Alle lokale wijzigingen wissen?')) { resetLocal(); closePeek(); } } }, 'Lokale gegevens wissen'),
+    syncStatus().modus === 'lokaal'
+      ? [h('p', { class: 'small muted' }, 'Wis alle lokale wijzigingen en val terug op de seed uit de repository.'),
+        h('button', { class: 'btn btn--danger', onClick: () => { if (confirm('Alle lokale wijzigingen wissen?')) { resetLocal(); closePeek(); } } }, 'Lokale gegevens wissen')]
+      : [h('p', { class: 'small muted' }, 'Klopt er iets niet op dit toestel? Wis de kopie hier en haal alles opnieuw op uit de database. Wat nog niet doorgestuurd is, gaat dan verloren.'),
+        h('button', { class: 'btn btn--ghost', onClick: () => { if (confirm('De kopie op dit toestel wissen en alles opnieuw ophalen uit de database?')) { resetLocal(); closePeek(); } } }, 'Opnieuw ophalen uit de database')],
   ));
 }
 

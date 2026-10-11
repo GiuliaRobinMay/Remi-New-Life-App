@@ -1,6 +1,7 @@
 // Mail versturen via Gmail, rechtstreeks vanuit de browser (Google Identity Services en de Gmail API).
 // Geen server: het toegangstoken blijft in het geheugen van deze pagina en verdwijnt bij herladen.
 // De app vraagt alleen toestemming om mail te versturen (gmail.send) en het e-mailadres te tonen, niet om mail te lezen.
+import { get, upsert } from './store.js';
 const SCOPES = ['https://www.googleapis.com/auth/gmail.send', 'https://www.googleapis.com/auth/userinfo.email'];
 const CID_KEY = 'remi-gmail-client-id';
 export const MAX_BIJLAGEN = 24 * 1024 * 1024; // Gmail aanvaardt tot 25 MB aan bijlagen per mail.
@@ -9,10 +10,17 @@ const CRLF = '\r\n';
 let gisBelofte = null;
 let sessie = null; // { token, verloopt, email }
 
-export function clientId() { try { return localStorage.getItem(CID_KEY) || ''; } catch { return ''; } }
+// De client-ID staat in de gedeelde instellingen (zodat ook het andere toestel ze kent), met de oude
+// plek op dit toestel als terugval.
+export function clientId() {
+  const gedeeld = get('instellingen', 'mail');
+  if (gedeeld && typeof gedeeld.clientId === 'string') return gedeeld.clientId;
+  try { return localStorage.getItem(CID_KEY) || ''; } catch { return ''; }
+}
 export function zetClientId(v) {
   const schoon = String(v || '').trim();
   try { if (schoon) localStorage.setItem(CID_KEY, schoon); else localStorage.removeItem(CID_KEY); } catch { /* geen opslag */ }
+  upsert('instellingen', { id: 'mail', clientId: schoon }, { silent: true });
   sessie = null;
 }
 export const geldigeClientId = v => /^[\w-]+\.apps\.googleusercontent\.com$/.test(String(v || '').trim());

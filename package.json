@@ -10,7 +10,10 @@
     "start": "npm run build:data && npm run serve",
     "pdf": "node scripts/render-pdf.mjs",
     "screenshots": "node scripts/screenshots.mjs",
-    "test": "npm run build:data && node scripts/test-app.mjs"
+    "test": "npm run build:data && node scripts/test-app.mjs && node scripts/test-sync.mjs",
+    "test:sync": "node scripts/test-sync.mjs"
   },
-  "engines": { "node": ">=20" }
+  "engines": {
+    "node": ">=20"
+  }
 }

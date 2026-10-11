@@ -6,6 +6,8 @@ import * as werk from './views-werk.js';
 import * as cvmod from './views-cv.js';
 import * as comm from './views-comm.js';
 import * as welzijnmod from './views-welzijn.js';
+import { start as startSync, opStatus, syncStatus } from './sync.js';
+import { aanmeldScherm } from './views-aanmelden.js';
 
 const views = { ...core, ...werk, ...cvmod, ...comm, ...welzijnmod };
 // Accentkleuren wisselen zodat buren verschillen (thema: kleur is decoratie). De chrome van elke zone gebruikt dezelfde kleur als het icoon in de zijbalk.
@@ -60,7 +62,25 @@ function renderNav(active) {
       it.count ? h('span', { class: 'sidebar__count' }, String(it.count())) : null,
     )),
   )));
-  document.getElementById('navFoot').textContent = `Gegevens lokaal in deze browser. Seed van ${ref.gebouwdOp ? ref.gebouwdOp.slice(0, 10) : ''}.`;
+  voet();
+}
+
+// Onderaan de zijbalk: waar de gegevens staan en of alles doorgestuurd is.
+function voet() {
+  const s = syncStatus(), el = document.getElementById('navFoot');
+  const uur = s.laatste ? new Date(s.laatste).toLocaleTimeString('nl-BE', { hour: '2-digit', minute: '2-digit' }) : '';
+  const wacht = s.wachtend ? ` ${s.wachtend} ${s.wachtend === 1 ? 'wijziging wacht' : 'wijzigingen wachten'}.` : '';
+  const tekst = {
+    lokaal: `Gegevens op dit toestel. Seed van ${ref.gebouwdOp ? ref.gebouwdOp.slice(0, 10) : ''}.`,
+    laden: 'Verbinden met de database…',
+    bezig: 'Database: bezig met bijwerken…',
+    actief: `Database: alles bijgewerkt${uur ? ` om ${uur}` : ''}.${wacht}`,
+    offline: `Geen verbinding. Je werkt met de kopie op dit toestel.${wacht}`,
+    fout: `Bijwerken met de database lukte niet.${wacht} Tik hier.`,
+    afgemeld: 'Niet aangemeld.',
+    'geen-toegang': 'Geen toegang.',
+  }[s.modus] || '';
+  el.replaceChildren(h('button', { type: 'button', class: 'sidebar__sync sidebar__sync--' + s.modus, title: s.fout || 'Instellingen en synchronisatie', onClick: () => views.instellingenPeek() }, tekst));
 }
 
 function renderChrome(cfg, active) {
@@ -115,9 +135,23 @@ function restoreFocus(f) {
   try { if (f.start != null) el.setSelectionRange(f.start, f.end); } catch { /* niet elk veld kent een selectie */ }
 }
 
+// Met een centrale database: eerst aanmelden. Zolang dat niet gebeurd is, toont de app alleen het aanmeldscherm.
+const POORT = ['laden', 'afgemeld', 'geen-toegang'];
 function render() {
   const r = route();
   const focus = captureFocus();
+  const poort = POORT.includes(syncStatus().modus);
+  shell.classList.toggle('shell--poort', poort);
+  if (poort) {
+    if (peek.classList.contains('peek--open')) closePeek();
+    navEl.replaceChildren(); voet();
+    chrome.className = 'chrome accent-violet';
+    chrome.replaceChildren(h('div', { class: 'chrome__top' }, h('div', { class: 'chrome__id' }, h('span', { class: 'chrome__name' }, 'Nieuwe start'))));
+    portal.replaceChildren(aanmeldScherm(render));
+    render.last = null;
+    restoreFocus(focus);
+    return;
+  }
   renderNav(r.id);
   const out = views[r.id](r);
   renderChrome(out.chrome || {}, r.id);
@@ -154,7 +188,9 @@ export function zetGebruiker(w) {
 }
 function toonGebruiker() {
   const w = gebruiker(); const mark = document.getElementById('brandMark'), lab = document.getElementById('brandWho');
+  const s = syncStatus();
   mark.textContent = w === 'giulia' ? 'G' : 'R'; mark.dataset.wie = w;
+  if (s.wie) { lab.textContent = `Aangemeld als ${NAMEN[s.wie] || s.email}`; lab.title = s.email; return; }
   lab.textContent = w ? `Ingelogd als ${NAMEN[w]}` : 'Wie ben jij? Kies hier'; lab.title = 'Klik om te kiezen wie dit toestel gebruikt';
 }
 export function kiesGebruiker() {
@@ -165,7 +201,19 @@ export function kiesGebruiker() {
       h('button', { class: 'btn btn--primary wie-knop wie-knop--giulia', onClick: () => zetGebruiker('giulia') }, 'Ik ben Giulia')),
     gebruiker() && h('button', { class: 'btn btn--quiet btn--sm', onClick: () => zetGebruiker('') }, 'Niemand kiezen')));
 }
-document.getElementById('brandWho').addEventListener('click', kiesGebruiker);
+document.getElementById('brandWho').addEventListener('click', () => (syncStatus().wie ? views.instellingenPeek() : kiesGebruiker()));
+
+// Wie aangemeld is bij de database, bepaalt wie dit toestel gebruikt (Remi of Giulia).
+let vorigeModus = syncStatus().modus;
+opStatus(s => {
+  if (s.wie && NAMEN[s.wie] && gebruiker() !== s.wie) { try { localStorage.setItem(WIE_KEY, s.wie); } catch { /* geen opslag */ } }
+  toonGebruiker();
+  // Het aanmeldscherm hertekenen bij elke wissel van of naar een aanmeldtoestand; anders alleen de voetregel.
+  const herteken = s.modus !== vorigeModus && (POORT.includes(s.modus) || POORT.includes(vorigeModus));
+  vorigeModus = s.modus;
+  if (herteken) render(); else voet();
+  if (peekRerender && peek.classList.contains('peek--open') && peekTitle.textContent === 'Instellingen en synchronisatie') peekRerender();
+});
 
 // Peek
 const peek = document.getElementById('peek'), peekBody = document.getElementById('peekBody'), peekTitle = document.getElementById('peekTitle'), peekBackdrop = document.getElementById('peekBackdrop');
@@ -189,4 +237,5 @@ window.addEventListener('keydown', e => { if (e.key === 'Escape') { closePeek();
 
 toonGebruiker();
 render();
-try { if (!localStorage.getItem('remi-welkom')) { localStorage.setItem('remi-welkom', '1'); setTimeout(() => toast('Welkom. Alles wat je hier invult blijft in deze browser.'), 400); } } catch { /* geen opslag */ }
+startSync().catch(e => console.warn(e));
+try { if (syncStatus().modus === 'lokaal' && !localStorage.getItem('remi-welkom')) { localStorage.setItem('remi-welkom', '1'); setTimeout(() => toast('Welkom. Alles wat je hier invult blijft in deze browser.'), 400); } } catch { /* geen opslag */ }

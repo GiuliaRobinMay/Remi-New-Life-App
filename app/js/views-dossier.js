@@ -1,5 +1,5 @@
 // Dossier: ontvangen en verstuurde brieven, attesten en andere documenten, met foto's als bijlage.
-// Alles blijft in deze browser: de tekst in de app-gegevens, de bestanden in IndexedDB (bijlagen.js).
+// De tekst staat in de app-gegevens, de bestanden in bijlagen.js. Met de centrale database zien Giulia en Remi beide.
 import { h, icon, badge, fmtDate, todayIso, uid, md, toast } from './ui.js';
 import { all, get, upsert, remove } from './store.js';
 import { openPeek, closePeek } from './app.js';
@@ -14,7 +14,7 @@ export function dossierTab() {
   return h('div', { class: 'stack' },
     h('section', { class: 'card card--pad callout' },
       h('p', { class: 'row-title' }, 'Alles op één plek'),
-      h('p', null, 'Bewaar hier elke brief van en naar de werkgever, attesten, loonfiches en het contract. Voeg een foto toe van elke pagina. Alles blijft op dit toestel; foto\'s zitten niet in de export, dus bewaar ook altijd het origineel.'),
+      h('p', null, 'Bewaar hier elke brief van en naar de werkgever, attesten, loonfiches en het contract. Voeg een foto toe van elke pagina. Giulia en Remi zien alles op hun eigen toestel, in jullie afgeschermde database. Bewaar ook altijd het origineel.'),
       h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--primary btn--sm', onClick: () => dossierForm() }, icon('plus', 12), 'Document toevoegen'))),
     docs.length ? h('div', { class: 'grid-cards' }, docs.map(d => h('section', { class: 'card card--pad' },
       h('div', { class: 'meta' }, badge(soortLabel(d.soort), SOORTKLEUR[d.soort] || 'grey'), d.aangetekend && badge('aangetekend', 'orange'), d.datum && h('span', null, fmtDate(d.datum))),
@@ -31,7 +31,7 @@ function bijlagenBlok(d) {
     const vak = h('figure', { class: 'bijlage' }, h('span', { class: 'small muted' }, 'Laden…'));
     lijst.append(vak);
     leesBijlage(b.id).then(blob => {
-      if (!blob) { vak.replaceChildren(h('span', { class: 'small muted' }, `${b.naam}: niet op dit toestel`)); return; }
+      if (!blob) { vak.replaceChildren(h('span', { class: 'small muted' }, `${b.naam}: kon niet geladen worden. Is er verbinding?`)); return; }
       const url = URL.createObjectURL(blob);
       const beeld = (b.type || blob.type || '').startsWith('image/') ? h('img', { src: url, alt: b.naam }) : h('span', { class: 'bijlage__pdf' }, icon('doc', 20));
       vak.replaceChildren(h('a', { href: url, target: '_blank', rel: 'noopener' }, beeld), h('figcaption', { class: 'small' }, b.naam, ' ',

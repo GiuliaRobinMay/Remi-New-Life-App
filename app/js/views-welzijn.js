@@ -1,5 +1,5 @@
 // View: welzijn. Gevalideerde vragenlijsten om in de app in te vullen (of, voor de BAT, met het officiële
-// formulier ernaast), een kort dagboek en voorbereiding voor de huisarts. Antwoorden blijven in deze browser.
+// formulier ernaast), een kort dagboek en voorbereiding voor de huisarts. Antwoorden staan in de gegevens van de app (met de centrale database: voor Giulia en Remi).
 import { h, icon, badge, fmtDate, todayIso, uid, copyText, toast } from './ui.js';
 import { all, get, upsert, remove, ref } from './store.js';
 import { openPeek, closePeek } from './app.js';

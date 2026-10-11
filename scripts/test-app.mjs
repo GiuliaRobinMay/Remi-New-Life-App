@@ -192,6 +192,34 @@ try {
       check('dossier: foto als bijlage bewaard en getoond', await page.locator('.peek .bijlage img').count() === 1);
       await page.click('#peekClose');
       check('dossier: document in de lijst', /Testbrief/.test(await page.textContent('.content')) && /1 bijlage/.test(await page.textContent('.content')));
+      // Mail versturen met Gmail (Google en Gmail nagebootst): adres, bijlage, bevestiging, MIME
+      let verzonden = null;
+      await page.route('https://accounts.google.com/gsi/client', r => r.fulfill({ contentType: 'text/javascript', body: `window.google = { accounts: { oauth2: { initTokenClient: (o) => ({ requestAccessToken: () => setTimeout(() => o.callback({ access_token: 'tok', expires_in: 3600, scope: 'x' }), 5) }), hasGrantedAllScopes: () => true, revoke: (t, cb) => cb && cb() } } };` }));
+      await page.route('https://www.googleapis.com/oauth2/v3/userinfo', r => r.fulfill({ contentType: 'application/json', body: JSON.stringify({ email: 'remi.test@gmail.com' }) }));
+      await page.route('https://gmail.googleapis.com/**', r => { verzonden = { url: r.request().url(), body: r.request().postData(), auth: r.request().headers().authorization }; r.fulfill({ contentType: 'application/json', body: JSON.stringify({ id: 'msg123', threadId: 't1' }) }); });
+      await page.evaluate(() => localStorage.setItem('remi-gmail-client-id', '1234-test.apps.googleusercontent.com'));
+      await page.goto(`${base}#/communicatie?tab=mails`, { waitUntil: 'networkidle' });
+      await page.fill('[data-fk="msg-msg-contract-mail-naar"]', 'werkgever@voorbeeld.be');
+      await page.setInputFiles('input[data-bijlage="msg-contract-mail"]', { name: 'Volmacht Remi é.pdf', mimeType: 'application/pdf', buffer: Buffer.from('%PDF-1.4 test') });
+      await page.waitForSelector('.mail-bijlagen li', { timeout: 3000 }).catch(() => {});
+      await page.click('[data-actie="gmail"]');
+      await page.waitForSelector('[data-actie="verstuur-nu"]', { timeout: 3000 }).catch(() => {});
+      const geblokkeerd = await page.$eval('[data-actie="verstuur-nu"]', b => b.disabled).catch(() => null);
+      check('versturen geblokkeerd zolang er velden tussen haken staan', geblokkeerd === true, String(geblokkeerd));
+      await page.click('#peekClose');
+      await page.fill('[data-fk="msg-msg-contract-mail"]', 'Beste Jan,\n\nMag ik een kopie van mijn arbeidsovereenkomst? Dank je wel.\n\nRemi');
+      await page.waitForTimeout(600);
+      await page.click('[data-actie="gmail"]');
+      await page.waitForSelector('[data-actie="verstuur-nu"]:not([disabled])', { timeout: 3000 }).catch(() => {});
+      const van = await page.textContent('.mail-overzicht').catch(() => '');
+      check('bevestiging toont afzender en bijlage', /remi\.test@gmail\.com/.test(van) && /Volmacht Remi/.test(van), van.slice(0, 160));
+      await page.click('[data-actie="verstuur-nu"]');
+      await page.waitForTimeout(400);
+      const tekstDeel = verzonden ? Buffer.from((verzonden.body.split('Content-Transfer-Encoding: base64\r\n\r\n')[1] || '').split('\r\n--')[0].replace(/\r\n/g, ''), 'base64').toString('utf8') : '';
+      check('Gmail kreeg een correcte MIME-mail', !!verzonden && /uploadType=media/.test(verzonden.url) && verzonden.auth === 'Bearer tok' && /^To: werkgever@voorbeeld\.be\r\n/m.test(verzonden.body) && /Subject: /.test(verzonden.body) && /Content-Type: application\/pdf;\r\n name="=\?UTF-8\?B\?/.test(verzonden.body) && Buffer.from((verzonden.body.match(/filename="=\?UTF-8\?B\?([^?]+)\?="/) || [])[1] || '', 'base64').toString('utf8') === 'Volmacht Remi é.pdf' && /Mag ik een kopie/.test(tekstDeel), verzonden ? verzonden.body.slice(0, 200) : 'niets verstuurd');
+      const naVersturen = await page.textContent('.content');
+      check('mail gemarkeerd als verstuurd vanaf Gmail-adres', /vanaf remi\.test@gmail\.com/.test(naVersturen), '');
+      await page.unroute('https://accounts.google.com/gsi/client'); await page.unroute('https://www.googleapis.com/oauth2/v3/userinfo'); await page.unroute('https://gmail.googleapis.com/**');
       // Import weigert een vreemd bestand
       const imp = await page.evaluate(async () => { const s = await import('./js/store.js'); try { s.importJson('{"foo":1}'); return 'aanvaard'; } catch { return 'geweigerd'; } });
       check('import weigert vreemd bestand', imp === 'geweigerd', imp);

@@ -3,6 +3,7 @@ import { h, icon, badge, fit, fmtDate, todayIso, addDays, daysUntil, uid, md, co
 import { all, get, upsert, remove, ref, exportJson, importJson, resetLocal, localSize } from './store.js';
 import { openPeek, closePeek, go, gebruiker, kiesGebruiker, zetGebruiker, NAMEN } from './app.js';
 import { dossierTab } from './views-dossier.js';
+import { gmailInstellen } from './views-comm.js';
 
 const SPOORKLEUR = { erfgoed: 'orange', cultuur: 'violet', onderwijs: 'green', overheid: 'grey', sociaal: 'red', ecologisch: 'green', geschiedenis: 'orange', reserve: 'grey' };
 // Wie doet het: Remi, Giulia of samen. Afgeleid uit 'wie' als 'voor' ontbreekt (eigen stappen).
@@ -340,6 +341,9 @@ export function instellingenPeek() {
       h('button', { class: 'btn btn--primary', onClick: () => download(`remi-app-${todayIso()}.json`, exportJson()) }, icon('download', 14), 'Exporteer gegevens'),
       h('label', { class: 'btn btn--ghost' }, icon('upload', 14), 'Importeer bestand', h('input', { type: 'file', accept: 'application/json', style: 'display:none', onChange: async e => { const f = e.target.files[0]; if (!f) return; try { importJson(await f.text()); toast('Geïmporteerd'); } catch { toast('Bestand niet herkend'); } } })),
       h('button', { class: 'btn btn--ghost', onClick: () => copyText(exportJson()) }, icon('copy', 14), 'Kopieer als JSON')),
+    h('hr', { class: 'rule' }),
+    h('p', { class: 'small' }, 'Mails met bijlagen rechtstreeks versturen vanaf het Gmail-adres van Remi.'),
+    h('button', { class: 'btn btn--ghost', onClick: gmailInstellen }, icon('mail', 14), 'E-mail via Gmail instellen'),
     h('hr', { class: 'rule' }),
     h('p', { class: 'small muted' }, 'Wis alle lokale wijzigingen en val terug op de seed uit de repository.'),
     h('button', { class: 'btn btn--danger', onClick: () => { if (confirm('Alle lokale wijzigingen wissen?')) { resetLocal(); closePeek(); } } }, 'Lokale gegevens wissen'),

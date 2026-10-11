@@ -149,6 +149,17 @@ details.plain > summary::-webkit-details-marker { display: none; }
 .toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: var(--ink); color: #fff; padding: 8px 14px; border-radius: var(--radius-pill); font-size: 13px; z-index: 70; opacity: 0; transition: opacity .2s; pointer-events: none; }
 .toast--show { opacity: 1; }
 
+/* Mail: velden, bijlagen, versturen */
+.mail-velden { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; margin-top: 8px; }
+.mail-velden .mail-veld:last-child { grid-column: 1 / -1; }
+.mail-veld { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.mail-bijlagen { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--hairline); }
+.mail-bijlagen .list li { align-items: center; gap: 8px; }
+.mail-overzicht { width: 100%; border-collapse: collapse; }
+.mail-voorbeeld { white-space: pre-wrap; font: 13px/1.5 var(--font); background: var(--grey-50); border: 1px solid var(--hairline); border-radius: var(--radius-chip); padding: 10px 12px; max-height: 320px; overflow: auto; overflow-wrap: anywhere; margin: 0; }
+.mail-let { color: var(--brand-red-deep); }
+@media (max-width: 720px) { .mail-velden { grid-template-columns: 1fr; } }
+
 /* Welzijn: scorehulp voor vragenlijsten */
 .welzijn-hint { background: var(--grey-50); border: 1px solid var(--hairline); border-radius: var(--radius-chip); padding: 8px 10px; }
 .welzijn-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr)); gap: 6px 14px; margin-top: 10px; }

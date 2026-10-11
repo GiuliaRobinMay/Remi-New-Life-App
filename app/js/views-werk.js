@@ -12,7 +12,7 @@ const ext = (href, label) => href ? h('a', { href, target: '_blank', rel: 'noope
 const sel = (opts, value, onChange, cls = 'field') => h('select', { class: cls, onChange: e => onChange(e.target.value) }, opts.map(([v, l]) => h('option', { value: v, selected: value === v }, l)));
 
 // Grid table with folds
-function grid(columns, groups, onOpen) {
+export function grid(columns, groups, onOpen) {
   const open = new Set(JSON.parse(sessionStorage.getItem('folds-closed') || '[]'));
   const tbody = h('tbody');
   for (const g of groups) {

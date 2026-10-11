@@ -3,7 +3,6 @@ import { h, icon, badge, fit, fmtDate, todayIso, addDays, daysUntil, uid, md, co
 import { all, get, upsert, remove, ref, exportJson, importJson, resetLocal, localSize } from './store.js';
 import { openPeek, closePeek, go, gebruiker, kiesGebruiker, zetGebruiker, NAMEN } from './app.js';
 import { dossierTab } from './views-dossier.js';
-import { gmailInstellen } from './views-comm.js';
 
 const SPOORKLEUR = { erfgoed: 'orange', cultuur: 'violet', onderwijs: 'green', overheid: 'grey', sociaal: 'red', ecologisch: 'green', geschiedenis: 'orange', reserve: 'grey' };
 // Wie doet het: Remi, Giulia of samen. Afgeleid uit 'wie' als 'voor' ontbreekt (eigen stappen).
@@ -109,7 +108,7 @@ function agendaItems({ metKlaar = false, metContact = false } = {}) {
     ...all('vacatures').filter(v => v.deadline && v.status !== 'niet').map(v => ({ datum: v.deadline, naam: `Deadline vacature: ${v.titel}`, soort: 'vacature', href: '#/vacatures' })),
     ...EVENEMENTEN.map(e => ({ ...e, soort: 'evenement' })),
     ...all('agenda').filter(x => x.datum && (metKlaar || x.status !== 'klaar')).map(x => ({ datum: x.datum, naam: [x.tijd, x.titel].filter(Boolean).join(' '), soort: 'afspraak', afspraak: x, voor: x.voor, klaar: x.status === 'klaar' })),
-    ...(metContact ? all('communicatie').filter(c => c.datum).map(c => ({ datum: c.datum, naam: `Contact: ${c.onderwerp || c.met || ''}`, soort: 'contact', href: '#/communicatie?tab=logboek' })) : []),
+    ...(metContact ? all('communicatie').filter(c => c.datum).map(c => ({ datum: c.datum, naam: `Contact: ${c.onderwerp || c.met || ''}`, soort: 'contact', href: c.kanaal === 'mail' ? '#/communicatie' : undefined })) : []),
   ].sort((a, b) => a.datum.localeCompare(b.datum));
 }
 const AGENDAKLEUR = { afspraak: 'red', stap: 'green', sollicitatie: 'orange', gesprek: 'violet', vacature: 'orange', evenement: 'grey', contact: 'grey' };
@@ -249,7 +248,7 @@ export function rechten(r) {
   else if (tab === 'verwittiging') { const V = R.verwittiging; inhoud = h('div', { class: 'stack' },
     callout('red', 'shield', 'Wat een verwittiging betekent', h('p', null, V.wat)),
     h('div', { class: 'two-col' },
-      titled('Wat nu doen', h('ol', { class: 'bullets' }, V.doen.map(k => h('li', null, k))), h('div', { class: 'form__actions' }, h('a', { class: 'btn btn--primary btn--sm', href: '#/communicatie?tab=brieven' }, 'Ontwerp van antwoord'), h('a', { class: 'btn btn--ghost btn--sm', href: '#/communicatie?tab=sms' }, 'Sms bij te laat of ziek'))),
+      titled('Wat nu doen', h('ol', { class: 'bullets' }, V.doen.map(k => h('li', null, k))), h('div', { class: 'form__actions' }, h('a', { class: 'btn btn--primary btn--sm', href: '#/communicatie' }, 'Naar de e-mails'))),
       h('div', { class: 'stack' }, V.nooit && callout('red', 'shield', 'Nooit zeggen, schrijven of tekenen', h('p', { class: 'small' }, V.nooit.intro), h('ul', { class: 'bullets small' }, V.nooit.zinnen.map(z => h('li', null, z))), h('p', { class: 'small muted' }, V.nooit.zekerheid)), V.ergste && titled('Het ergste geval, stap voor stap', h('table', { class: 'table' }, h('tbody', null, V.ergste.map(x => h('tr', null, h('td', { style: 'width:34%;vertical-align:top' }, h('strong', null, x.wat)), h('td', null, x.gevolg)))))), titled('Waarom het ertoe doet', h('ul', { class: 'bullets' }, V.risico.map(k => h('li', null, k)))), titled('Regels die ACV kan nakijken', h('ul', { class: 'bullets' }, V.regels.map(k => h('li', null, k)))))),
     h('p', { class: 'small muted' }, V.bronnen, ' ', R.disclaimer)); }
   else if (tab === 'gezondheid' && R.gezondheid) { const G = R.gezondheid; inhoud = h('div', { class: 'stack' },
@@ -343,7 +342,7 @@ export function instellingenPeek() {
       h('button', { class: 'btn btn--ghost', onClick: () => copyText(exportJson()) }, icon('copy', 14), 'Kopieer als JSON')),
     h('hr', { class: 'rule' }),
     h('p', { class: 'small' }, 'Mails met bijlagen rechtstreeks versturen vanaf het Gmail-adres van Remi.'),
-    h('button', { class: 'btn btn--ghost', onClick: gmailInstellen }, icon('mail', 14), 'E-mail via Gmail instellen'),
+    h('a', { class: 'btn btn--ghost', href: '#/communicatie?tab=instellingen' }, icon('mail', 14), 'Gmail en handtekening instellen'),
     h('hr', { class: 'rule' }),
     h('p', { class: 'small muted' }, 'Wis alle lokale wijzigingen en val terug op de seed uit de repository.'),
     h('button', { class: 'btn btn--danger', onClick: () => { if (confirm('Alle lokale wijzigingen wissen?')) { resetLocal(); closePeek(); } } }, 'Lokale gegevens wissen'),

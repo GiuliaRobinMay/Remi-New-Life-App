@@ -195,7 +195,21 @@
         "wat": "Zonder inkomen",
         "gevolg": "Tijdens een sanctie kan je bij het OCMW een leefloon aanvragen. Het OCMW kijkt naar je middelen en die van wie bij je woont."
       }
-    ]
+    ],
+    "nooit": {
+      "intro": "Een voornemen om te vertrekken is geen ontslag. Een opzegging door de werknemer moet schriftelijk gebeuren, en een ontslag zonder opzeg vraagt een zekere en duidelijke wil. Het gevaar zit in wat je vanaf nu zegt, schrijft of tekent: dan kan een voornemen een ontslagname of een akkoord worden, met verlies van opzegvergoeding en een sanctie van de RVA.",
+      "zinnen": [
+        "Niet bevestigen: 'mijn intentie blijft ongewijzigd', 'ja, dat blijft de planning', 'ik vertrek op 31 december' of eender welke einddatum of laatste werkdag.",
+        "Niet zeggen of schrijven: 'ik neem ontslag', 'ik zeg op', 'ik wil stoppen', 'ik ben uitgekeken op mijn functie'.",
+        "Ook niet: 'mijn plannen zijn gewijzigd' of 'ik trek mijn intentie in'. Dat veronderstelt dat er al een vaste beslissing was.",
+        "Niet akkoord gaan met een 'beëindiging in onderling akkoord of overleg', en niet vragen om ontslagen te worden: de RVA kan dat zien als een verdoken ontslagname.",
+        "Niet zelf besluiten 'ik kan deze job niet meer doen'. Medische conclusies trekken de huisarts en de arbeidsarts.",
+        "Niet zelf zeggen dat de werkgever je 'al ontslagen' heeft, tenzij ACV dat nagekeken heeft.",
+        "Nooit tekenen met 'voor akkoord' of 'gelezen en goedgekeurd'. Hoogstens: 'Voor ontvangst op [datum], niet akkoord met de inhoud'.",
+        "In een gesprek is deze zin genoeg: 'Ik antwoord schriftelijk, na advies van mijn vakbond.'"
+      ],
+      "zekerheid": "Algemene regels (art. 32, 37 en 39 Arbeidsovereenkomstenwet; art. 51 en volgende Werkloosheidsbesluit), opgezocht op 11 oktober 2026. Laat ACV ze toepassen op jouw situatie."
+    }
   },
   "gezondheid": {
     "intro": "Wat er kan als het werk te zwaar wordt voor je gezondheid. Algemene regels, stand 2026; laat ACV ze toepassen op jouw situatie.",

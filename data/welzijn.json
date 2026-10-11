@@ -4,10 +4,26 @@
     "titel": "Hulp nodig, nu meteen?",
     "tekst": "Denk je aan de dood of eraan om jezelf iets aan te doen, of maakt iemand zich zorgen over je veiligheid: wacht niet tot de afspraak bij de dokter.",
     "lijnen": [
-      { "naam": "Zelfmoordlijn", "nummer": "1813", "wat": "Gratis en anoniem, dag en nacht. Ook voor familie die zich zorgen maakt. Chat via zelfmoord1813.be." },
-      { "naam": "Huisartsenwachtpost", "nummer": "1733", "wat": "'s Avonds, 's nachts en in het weekend." },
-      { "naam": "Noodnummer", "nummer": "112", "wat": "Bij acuut gevaar. Laat de persoon niet alleen." },
-      { "naam": "Tele-Onthaal", "nummer": "106", "wat": "Gratis en anoniem, dag en nacht, als je gewoon met iemand wil praten." }
+      {
+        "naam": "Zelfmoordlijn",
+        "nummer": "1813",
+        "wat": "Gratis en anoniem, dag en nacht. Ook voor familie die zich zorgen maakt. Chat via zelfmoord1813.be."
+      },
+      {
+        "naam": "Huisartsenwachtpost",
+        "nummer": "1733",
+        "wat": "'s Avonds, 's nachts en in het weekend."
+      },
+      {
+        "naam": "Noodnummer",
+        "nummer": "112",
+        "wat": "Bij acuut gevaar. Laat de persoon niet alleen."
+      },
+      {
+        "naam": "Tele-Onthaal",
+        "nummer": "106",
+        "wat": "Gratis en anoniem, dag en nacht, als je gewoon met iemand wil praten."
+      }
     ]
   },
   "tests": [
@@ -19,13 +35,37 @@
       "waarom": "Ontwikkeld aan de KU Leuven, getoetst bij Vlaamse werknemers en bij mensen met een vastgestelde burn-out. Gratis te gebruiken, zonder de vragen te wijzigen. Gebruikt door Belgische preventiediensten.",
       "minuten": 5,
       "aantal": 23,
-      "waarden": [1, 2, 3, 4, 5],
-      "labels": ["Nooit", "Zelden", "Soms", "Vaak", "Altijd"],
+      "waarden": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "labels": [
+        "Nooit",
+        "Zelden",
+        "Soms",
+        "Vaak",
+        "Altijd"
+      ],
       "score": "gemiddelde",
       "banden": [
-        { "tot": 2.585, "kleur": "green", "label": "Geen verhoogd risico" },
-        { "tot": 3.015, "kleur": "orange", "label": "Risico op burn-out" },
-        { "tot": 5, "kleur": "red", "label": "Zeer hoog risico, ernstige burn-outklachten" }
+        {
+          "tot": 2.585,
+          "kleur": "green",
+          "label": "Geen verhoogd risico"
+        },
+        {
+          "tot": 3.015,
+          "kleur": "orange",
+          "label": "Risico op burn-out"
+        },
+        {
+          "tot": 5,
+          "kleur": "red",
+          "label": "Zeer hoog risico, ernstige burn-outklachten"
+        }
       ],
       "bandenTekst": "Gemiddelde van de 23 vragen: tot 2,58 geen verhoogd risico, 2,59 tot 3,01 risico, vanaf 3,02 zeer hoog risico (klinische grenzen, Schaufeli en anderen, 2023).",
       "formulier": "https://burnoutassessmenttool.be/wp-content/uploads/2020/08/BAT-Vlaams.pdf",
@@ -43,23 +83,61 @@
       "waarom": "De meest onderzochte korte vragenlijst voor depressie, gratis, met een officiële Belgisch-Nederlandse vertaling. De BAT meet geen depressie, daarom hoort deze erbij.",
       "minuten": 3,
       "aantal": 9,
-      "waarden": [0, 1, 2, 3],
-      "labels": ["0", "1", "2", "3"],
+      "waarden": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "labels": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
       "score": "som",
       "alarmVraag": 9,
       "alarmLabel": "Vraag 9 gaat over gedachten dat je beter dood zou zijn of jezelf iets zou aandoen.",
       "banden": [
-        { "tot": 4, "kleur": "green", "label": "Geen of minimale klachten" },
-        { "tot": 9, "kleur": "green", "label": "Lichte klachten" },
-        { "tot": 14, "kleur": "orange", "label": "Matige klachten, bespreek met je arts" },
-        { "tot": 19, "kleur": "red", "label": "Matig ernstige klachten, bespreek met je arts" },
-        { "tot": 27, "kleur": "red", "label": "Ernstige klachten, bel je huisarts voor een vroegere afspraak" }
+        {
+          "tot": 4,
+          "kleur": "green",
+          "label": "Geen of minimale klachten"
+        },
+        {
+          "tot": 9,
+          "kleur": "green",
+          "label": "Lichte klachten"
+        },
+        {
+          "tot": 14,
+          "kleur": "orange",
+          "label": "Matige klachten, bespreek met je arts"
+        },
+        {
+          "tot": 19,
+          "kleur": "red",
+          "label": "Matig ernstige klachten, bespreek met je arts"
+        },
+        {
+          "tot": 27,
+          "kleur": "red",
+          "label": "Ernstige klachten, bel je huisarts voor een vroegere afspraak"
+        }
       ],
       "bandenTekst": "Totaal van vraag 1 tot 9 (0 tot 27): 0-4 minimaal, 5-9 licht, 10-14 matig, 15-19 matig ernstig, 20-27 ernstig. Vanaf 10 is het een reden om het met de arts te bespreken; het is geen diagnose. Ook 7 tot 9, samen met duidelijke problemen in het dagelijks leven, is het bespreken waard.",
       "formulier": "https://www.ecfs.eu/sites/default/files/general-content-files/working-groups/Mental%20Health/PHQ9_Dutch%20for%20Belgium.pdf",
       "formulierLabel": "Officieel Belgisch-Nederlands formulier (Pfizer)",
       "hint": "Kijk naar de voorbije twee weken. De vier antwoordkolommen van links naar rechts tellen voor 0, 1, 2 en 3. Vraag 10 telt niet mee in de score.",
-      "extraVraag": { "label": "Vraag 10: hoe moeilijk maakten deze problemen je werk, thuis en contact met anderen?", "opties": ["Helemaal niet moeilijk", "Enigszins moeilijk", "Erg moeilijk", "Extreem moeilijk"] },
+      "extraVraag": {
+        "label": "Vraag 10: hoe moeilijk maakten deze problemen je werk, thuis en contact met anderen?",
+        "opties": [
+          "Helemaal niet moeilijk",
+          "Enigszins moeilijk",
+          "Erg moeilijk",
+          "Extreem moeilijk"
+        ]
+      },
       "bron": "Kroenke, Spitzer en Williams (2001). Copyright Pfizer, vrij te gebruiken en te verspreiden."
     },
     {
@@ -70,14 +148,40 @@
       "waarom": "Korte, gratis vragenlijst met een officiële Belgisch-Nederlandse vertaling, met dezelfde antwoordvorm als de PHQ-9.",
       "minuten": 2,
       "aantal": 7,
-      "waarden": [0, 1, 2, 3],
-      "labels": ["0", "1", "2", "3"],
+      "waarden": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "labels": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
       "score": "som",
       "banden": [
-        { "tot": 4, "kleur": "green", "label": "Minimale klachten" },
-        { "tot": 9, "kleur": "green", "label": "Lichte klachten" },
-        { "tot": 14, "kleur": "orange", "label": "Matige klachten, bespreek met je arts" },
-        { "tot": 21, "kleur": "red", "label": "Ernstige klachten, bespreek met je arts" }
+        {
+          "tot": 4,
+          "kleur": "green",
+          "label": "Minimale klachten"
+        },
+        {
+          "tot": 9,
+          "kleur": "green",
+          "label": "Lichte klachten"
+        },
+        {
+          "tot": 14,
+          "kleur": "orange",
+          "label": "Matige klachten, bespreek met je arts"
+        },
+        {
+          "tot": 21,
+          "kleur": "red",
+          "label": "Ernstige klachten, bespreek met je arts"
+        }
       ],
       "bandenTekst": "Totaal (0 tot 21): 0-4 minimaal, 5-9 licht, 10-14 matig, 15-21 ernstig. Vanaf 10 is verdere bespreking met de arts aangewezen.",
       "formulier": "https://www.ecfs.eu/sites/default/files/general-content-files/working-groups/Mental%20Health/GAD7_Dutch%20for%20Belgium.pdf",
@@ -94,15 +198,45 @@
       "waarom": "Een korte vragenlijst die slaapcentra gebruiken. Vul het formulier van een ziekenhuis in voor jezelf, of vraag het aan de huisarts.",
       "minuten": 2,
       "aantal": 8,
-      "waarden": [0, 1, 2, 3],
-      "labels": ["0", "1", "2", "3"],
+      "waarden": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "labels": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
       "score": "som",
       "banden": [
-        { "tot": 5, "kleur": "green", "label": "Laag normaal" },
-        { "tot": 10, "kleur": "green", "label": "Hoog normaal" },
-        { "tot": 12, "kleur": "orange", "label": "Licht verhoogde slaperigheid, bespreek met je arts" },
-        { "tot": 15, "kleur": "red", "label": "Matig verhoogde slaperigheid, bespreek met je arts" },
-        { "tot": 24, "kleur": "red", "label": "Sterk verhoogde slaperigheid, bespreek met je arts" }
+        {
+          "tot": 5,
+          "kleur": "green",
+          "label": "Laag normaal"
+        },
+        {
+          "tot": 10,
+          "kleur": "green",
+          "label": "Hoog normaal"
+        },
+        {
+          "tot": 12,
+          "kleur": "orange",
+          "label": "Licht verhoogde slaperigheid, bespreek met je arts"
+        },
+        {
+          "tot": 15,
+          "kleur": "red",
+          "label": "Matig verhoogde slaperigheid, bespreek met je arts"
+        },
+        {
+          "tot": 24,
+          "kleur": "red",
+          "label": "Sterk verhoogde slaperigheid, bespreek met je arts"
+        }
       ],
       "bandenTekst": "Totaal (0 tot 24): boven 10 is overmatige slaperigheid overdag en een reden om slaaponderzoek met de arts te bespreken.",
       "formulier": "https://www.sint-trudo.be/sites/default/files/public/mcm_plus/00713-NL.pdf",
@@ -139,18 +273,52 @@
       "Een normaal bloedonderzoek betekent niet dat er niets is. De meeste mensen met vermoeidheid hebben normale bloedwaarden."
     ],
     "ziekteverlof": [
-      "Verwittig de werkgever telefonisch vóór het begin van je werkdag, en zeg hoelang je ongeveer afwezig zal zijn.",
-      "Bezorg het attest binnen de termijn van het arbeidsreglement, vaak 2 werkdagen. Hou een bewijs bij: foto, verzendbewijs of ontvangstbevestiging.",
-      "Het attest voor de werkgever vermeldt hoelang je ongeschikt bent, niet wat je hebt."
+      "Bel de werkgever vóór het begin van je werkdag. Zeg dat je arbeidsongeschikt bent, hoelang ongeveer, en waar je verblijft als dat niet thuis is. Een diagnose hoef je nooit te geven.",
+      "Stuur meteen daarna een korte bevestiging per sms of mail: 'Bevestiging: ik heb vandaag om [uur] aan [naam] gemeld dat ik ziek ben en niet kan werken. Ik bezorg het attest.' Zo heb je bewijs met datum en uur.",
+      "Ga de eerste ziektedag naar de dokter. Een attest geldt normaal pas vanaf de dag van het bezoek.",
+      "Bezorg het attest dezelfde dag, ten laatste de volgende werkdag, tot je het arbeidsreglement hebt: de wettelijke termijn is 2 werkdagen, maar het arbeidsreglement kan korter zijn. Mail een foto of scan, en geef het origineel af tegen een gedateerd ontvangstbewijs of stuur het aangetekend. Versturen binnen de termijn volstaat.",
+      "Vraag ook een attest voor één ziektedag. De vrijstelling voor de eerste ziektedag geldt niet in elke onderneming.",
+      "Blijf bereikbaar voor een controlearts op het adres dat je opgaf. Is je ziekte langer dan 14 dagen, kijk dan na of het ziekenfonds het attest ontving.",
+      "Volg je avondlessen, vraag dan vooraf toestemming aan de adviserend arts van het ziekenfonds."
     ]
   },
   "hulp": [
-    { "naam": "Huisarts", "wat": "Eerste aanspreekpunt: diagnose, bloedonderzoek, ziekteverlof en doorverwijzing.", "contact": "Je eigen huisartsenpraktijk. Buiten de uren: 1733.", "kost": "Gewoon consult, deels terugbetaald door het ziekenfonds." },
-    { "naam": "Eerstelijnspsycholoog", "wat": "Gesprekken bij een geconventioneerde psycholoog voor stress, burn-out en lichte tot matige depressie, via het netwerk geestelijke gezondheid. Een verwijzing van de huisarts is niet nodig.", "contact": "Vraag de huisarts of het ziekenfonds naar een geconventioneerde psycholoog in de buurt.", "kost": "Eerste individuele sessie gratis, daarna 11 euro per sessie (4 euro met verhoogde tegemoetkoming). Bevestig het bedrag bij het boeken." },
-    { "naam": "Arbeidsarts", "wat": "Vertrouwelijke spontane raadpleging bij de externe preventiedienst van je werkgever, voor klachten die met het werk te maken kunnen hebben.", "contact": "De naam van de preventiedienst staat in het arbeidsreglement of vraag je aan de werkgever.", "kost": "Gratis voor de werknemer." },
-    { "naam": "CAW", "wat": "Laagdrempelige hulp bij stress en problemen met werk, geld of relaties. Zonder verwijzing.", "contact": "caw.be", "kost": "Gratis, kan anoniem." },
-    { "naam": "Ziekenfonds", "wat": "Terugbetaling van huisarts, bloedonderzoek en psycholoog. Bij langer ziekteverlof helpen de adviserend arts en de Terug Naar Werk-coördinator.", "contact": "Je eigen ziekenfonds.", "kost": "Verschilt per ziekenfonds." },
-    { "naam": "Gezondheid en Wetenschap", "wat": "Betrouwbare uitleg over burn-out en vermoeidheid, voor jou en je familie.", "contact": "gezondheidenwetenschap.be", "kost": "Gratis." }
+    {
+      "naam": "Huisarts",
+      "wat": "Eerste aanspreekpunt: diagnose, bloedonderzoek, ziekteverlof en doorverwijzing.",
+      "contact": "Je eigen huisartsenpraktijk. Buiten de uren: 1733.",
+      "kost": "Gewoon consult, deels terugbetaald door het ziekenfonds."
+    },
+    {
+      "naam": "Eerstelijnspsycholoog",
+      "wat": "Gesprekken bij een geconventioneerde psycholoog voor stress, burn-out en lichte tot matige depressie, via het netwerk geestelijke gezondheid. Een verwijzing van de huisarts is niet nodig.",
+      "contact": "Vraag de huisarts of het ziekenfonds naar een geconventioneerde psycholoog in de buurt.",
+      "kost": "Eerste individuele sessie gratis, daarna 11 euro per sessie (4 euro met verhoogde tegemoetkoming). Bevestig het bedrag bij het boeken."
+    },
+    {
+      "naam": "Arbeidsarts",
+      "wat": "Vertrouwelijke spontane raadpleging bij de externe preventiedienst van je werkgever, voor klachten die met het werk te maken kunnen hebben.",
+      "contact": "De naam van de preventiedienst staat in het arbeidsreglement of vraag je aan de werkgever.",
+      "kost": "Gratis voor de werknemer."
+    },
+    {
+      "naam": "CAW",
+      "wat": "Laagdrempelige hulp bij stress en problemen met werk, geld of relaties. Zonder verwijzing.",
+      "contact": "caw.be",
+      "kost": "Gratis, kan anoniem."
+    },
+    {
+      "naam": "Ziekenfonds",
+      "wat": "Terugbetaling van huisarts, bloedonderzoek en psycholoog. Bij langer ziekteverlof helpen de adviserend arts en de Terug Naar Werk-coördinator.",
+      "contact": "Je eigen ziekenfonds.",
+      "kost": "Verschilt per ziekenfonds."
+    },
+    {
+      "naam": "Gezondheid en Wetenschap",
+      "wat": "Betrouwbare uitleg over burn-out en vermoeidheid, voor jou en je familie.",
+      "contact": "gezondheidenwetenschap.be",
+      "kost": "Gratis."
+    }
   ],
   "bronnen": "BAT: burnoutassessmenttool.be en Schaufeli e.a. (2020, 2023). PHQ-9 en GAD-7: Kroenke e.a. (2001), Spitzer e.a. (2006), Levis e.a. (2019). Epworth: Johns, American Thoracic Society. Vlaanderen: RIZIV, FOD WASO, Gezondheid en Wetenschap, NHG. Opgezocht op 11 oktober 2026; de formulieren zelf konden niet geopend worden en de telefoonnummers moeten nog eens nagekeken worden op de officiële sites."
 }

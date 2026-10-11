@@ -160,6 +160,12 @@ details.plain > summary::-webkit-details-marker { display: none; }
 .mail-let { color: var(--brand-red-deep); }
 .mail-archief { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin: -4px 0 12px; padding: 10px 12px; border-radius: var(--radius-chip); background: var(--grey-50); border: 1px solid var(--hairline); }
 .mail-archief p { margin: 0; }
+.gmail-stap { border: 1px solid var(--hairline); border-radius: var(--radius-chip); padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; }
+.gmail-stap.is-uit { opacity: .55; }
+.gmail-stap__titel { margin: 0; display: flex; align-items: center; gap: 8px; font-weight: 600; }
+.gmail-stap__nr { flex: 0 0 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; background: var(--grey-50); border: 1px solid var(--hairline); }
+.gmail-stap__nr.is-klaar { background: var(--brand-green); border-color: var(--brand-green); color: #fff; }
+.gmail-stap label { display: flex; flex-direction: column; gap: 6px; }
 .mail-afzender { display: flex; flex-direction: column; gap: 2px; margin: 0; }
 .mail-afzender strong { font-size: 17px; overflow-wrap: anywhere; }
 .visueel-verborgen { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }

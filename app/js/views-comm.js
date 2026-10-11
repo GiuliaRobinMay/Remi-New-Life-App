@@ -324,45 +324,59 @@ const STAPPEN = origin => [
   'Ga naar het OAuth-toestemmingsscherm (Google Auth Platform). Kies Extern, geef de app de naam "Nieuwe start" en vul je e-mailadres in als contact.',
   'Laat de publicatiestatus op Testen staan. Voeg bij Testgebruikers (Doelgroep) het Gmail-adres van Remi toe.',
   `Ga naar Clients (Inloggegevens), maak een OAuth-client-ID van het type Webapplicatie. Voeg bij Geautoriseerde JavaScript-bronnen dit adres toe: ${origin}`,
-  'Kopieer de client-ID (eindigt op .apps.googleusercontent.com) en plak hem hieronder. Klik op Bewaren.',
-  'Klik op Verbinding testen en meld aan met het Gmail-account van Remi. Google waarschuwt dat de app niet geverifieerd is: kies Geavanceerd en dan Doorgaan. Dat is normaal voor een privé-app in testmodus. Vink de toestemming om e-mail te versturen aan.',
+  'Kopieer de client-ID (eindigt op .apps.googleusercontent.com), plak hem bij stap 1 hierboven en klik op Bewaren.',
+  'Klik bij stap 2 op Aanmelden met Gmail en kies het Gmail-account van Remi. Google waarschuwt dat de app niet geverifieerd is: kies Geavanceerd en dan Doorgaan. Dat is normaal voor een privé-app in testmodus. Vink de toestemming om e-mail te versturen aan.',
 ];
 export function gmailInstellen() {
   if (mail.geldigeClientId(mail.clientId())) mail.laadGoogle().catch(() => {});
   openPeek('E-mail versturen via Gmail', () => gmailBlok());
 }
 
+// Melding van de Gmail-instellingen, bewaard over het hertekenen heen.
+let gmailMelding = '';
 function gmailBlok() {
   let waarde = mail.clientId();
   const nu = mail.aangemeldAls();
-  const ingesteld = mail.geldigeClientId(mail.clientId());
-  const status = h('p', { class: 'small', role: 'status', 'data-gmail-status': '' }, nu ? `Aangemeld als ${nu}. Mails vertrekken vanaf dit adres.` : (ingesteld ? 'Gmail is ingesteld. Nog niet aangemeld in deze pagina: dat gebeurt bij het eerste versturen, of nu met Aanmelden.' : 'Nog niet ingesteld. Volg eenmalig de stappen hieronder.'));
+  const bewaard = mail.clientId();
+  const ingesteld = mail.geldigeClientId(bewaard);
+  const melding = h('p', { class: 'small', role: 'status', 'data-gmail-status': '' }, gmailMelding);
+  const meld = t => { gmailMelding = t; melding.textContent = t; };
   const aanmelden = async () => {
-    if (!mail.geldigeClientId(waarde)) { status.textContent = 'Vul eerst een geldige client-ID in.'; return; }
-    if (mail.clientId() !== waarde.trim()) mail.zetClientId(waarde);
+    if (!mail.geldigeClientId(mail.clientId())) { meld('Bewaar eerst de client-ID (stap 1).'); return; }
     try {
       const s = await mail.aanmelden({ ander: true });
-      status.textContent = `Aangemeld als ${s.email || 'je Google-account'}. Mails vertrekken vanaf dit adres.${s.email && !/@(gmail|googlemail)\.com$/i.test(s.email) ? ' Heeft dit account geen Gmail, dan lukt versturen niet.' : ''}`;
-    } catch (e) { status.textContent = e.message; }
+      gmailMelding = `Aangemeld als ${s.email || 'je Google-account'}. Mails vertrekken vanaf dit adres.${s.email && !/@(gmail|googlemail)\.com$/i.test(s.email) ? ' Heeft dit account geen Gmail, dan lukt versturen niet.' : ''}`;
+      vernieuw();
+    } catch (e) { meld(e.message); }
   };
   return h('div', { class: 'stack' },
     h('p', { class: 'mail-afzender' }, h('span', { class: 'small muted' }, 'Mails vertrekken vanaf'), h('strong', null, nu || 'nog niet aangemeld')),
-    status,
-    ingesteld && h('div', { class: 'form__actions' },
-      h('button', { class: 'btn btn--primary', onClick: aanmelden }, nu ? 'Ander account kiezen' : 'Aanmelden met Gmail'),
-      h('button', { class: 'btn btn--quiet', onClick: () => {
-        status.textContent = mail.afmelden()
-          ? 'Afgemeld en toestemming ingetrokken.'
-          : 'Er was geen actieve aanmelding in deze pagina. De toestemming zelf blijft bij Google tot je ze intrekt via myaccount.google.com/connections. Op een gedeeld toestel: meld je ook af bij Google.';
-      } }, 'Afmelden')),
-    h('p', { class: 'small muted' }, 'De app vraagt alleen toestemming om mail te versturen en het adres te tonen, niet om mail te lezen. Het toegangstoken blijft alleen in deze pagina en verdwijnt bij herladen. De toestemming zelf blijft bij Google tot je ze intrekt via myaccount.google.com/connections. Werkt alleen met een Google-account dat Gmail gebruikt, meestal een adres op @gmail.com.'),
-    h('details', { open: !ingesteld }, h('summary', { class: 'small' }, ingesteld ? 'Instellen of client-ID wijzigen' : 'Eenmalig instellen (ongeveer tien minuten)'),
-      h('ol', { class: 'bullets small' }, STAPPEN(location.origin).map(x => h('li', null, x))),
-      h('label', null, 'Google client-ID', h('input', { class: 'field', value: waarde, placeholder: '123456789-abc.apps.googleusercontent.com', 'data-gmail-cid': '', onInput: e => { waarde = e.target.value; } })),
+    // Stap 1: de client-ID, altijd zichtbaar met de bewaarde waarde.
+    h('div', { class: 'gmail-stap' },
+      h('p', { class: 'gmail-stap__titel' }, h('span', { class: 'gmail-stap__nr' + (ingesteld ? ' is-klaar' : '') }, ingesteld ? '✓' : '1'), 'Google client-ID'),
+      h('label', { class: 'small' }, ingesteld ? 'Bewaard. Je hoeft dit maar één keer te doen.' : 'Plak de client-ID uit Google Cloud en klik op Bewaren.',
+        h('input', { class: 'field', value: waarde, placeholder: '123456789-abc.apps.googleusercontent.com', 'data-gmail-cid': '', onInput: e => { waarde = e.target.value; } })),
       h('div', { class: 'form__actions' },
-        h('button', { class: 'btn btn--primary', onClick: () => {
-          if (!mail.geldigeClientId(waarde)) { status.textContent = 'Dit lijkt geen geldige client-ID. Ze eindigt op .apps.googleusercontent.com.'; return; }
-          mail.zetClientId(waarde); mail.laadGoogle().catch(() => {}); status.textContent = 'Bewaard. Klik nu op Verbinding testen.';
-        } }, 'Bewaren'),
-        h('button', { class: 'btn btn--ghost', onClick: aanmelden }, 'Verbinding testen'))));
+        h('button', { class: 'btn ' + (ingesteld ? 'btn--ghost' : 'btn--primary') + ' btn--sm', 'data-actie': 'gmail-bewaren', onClick: () => {
+          if (!mail.geldigeClientId(waarde)) { meld('Dit lijkt geen geldige client-ID. Ze eindigt op .apps.googleusercontent.com.'); return; }
+          mail.zetClientId(waarde); mail.laadGoogle().catch(() => {});
+          gmailMelding = 'Client-ID bewaard. Ga nu verder met stap 2: aanmelden met het Gmail-account van Remi.';
+          vernieuw();
+        } }, ingesteld ? 'Wijziging bewaren' : 'Bewaren')),
+      h('details', { open: !ingesteld }, h('summary', { class: 'small' }, 'Hoe kom ik aan een client-ID? (eenmalig, ongeveer tien minuten)'),
+        h('ol', { class: 'bullets small' }, STAPPEN(location.origin).map(x => h('li', null, x))))),
+    // Stap 2: aanmelden bij Google. Het toegangstoken blijft alleen in deze pagina.
+    h('div', { class: 'gmail-stap' + (ingesteld ? '' : ' is-uit') },
+      h('p', { class: 'gmail-stap__titel' }, h('span', { class: 'gmail-stap__nr' + (nu ? ' is-klaar' : '') }, nu ? '✓' : '2'), 'Aanmelden met Gmail'),
+      h('p', { class: 'small' }, nu ? `Aangemeld als ${nu}.` : 'Meld je aan met het Gmail-account van Remi en vink de toestemming aan om e-mail te versturen. Na het herladen van de pagina ben je weer afgemeld bij Google; de app vraagt het dan vanzelf opnieuw als je een mail verstuurt.'),
+      h('div', { class: 'form__actions' },
+        h('button', { class: 'btn btn--primary btn--sm', disabled: !ingesteld, 'data-actie': 'gmail-aanmelden', onClick: aanmelden }, nu ? 'Ander account kiezen' : 'Aanmelden met Gmail'),
+        nu && h('button', { class: 'btn btn--quiet btn--sm', onClick: () => {
+          gmailMelding = mail.afmelden()
+            ? 'Afgemeld en toestemming ingetrokken.'
+            : 'Er was geen actieve aanmelding in deze pagina. De toestemming zelf blijft bij Google tot je ze intrekt via myaccount.google.com/connections.';
+          vernieuw();
+        } }, 'Afmelden'))),
+    melding,
+    h('p', { class: 'small muted' }, 'De app vraagt alleen toestemming om mail te versturen en het adres te tonen, niet om mail te lezen. De toestemming blijft bij Google tot je ze intrekt via myaccount.google.com/connections. Werkt alleen met een Google-account dat Gmail gebruikt, meestal een adres op @gmail.com.'));
 }

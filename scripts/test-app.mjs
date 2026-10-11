@@ -175,7 +175,7 @@ try {
       // Communicatie: tabel met alle e-mails, een mail openen, bewerken, bewaren en als verstuurd markeren
       await page.goto(`${base}#/communicatie`, { waitUntil: 'networkidle' });
       const tabsComm = await page.$$eval('.tabs__item', els => els.map(e => e.textContent.trim()));
-      check('communicatie: alleen E-mails en Instellingen', tabsComm.length === 2 && /^E-mails/.test(tabsComm[0]) && tabsComm[1] === 'Instellingen', tabsComm.join(' | '));
+      check('communicatie: alleen E-mails en Instellingen', tabsComm.length === 2 && tabsComm[0] === 'E-mails' && tabsComm[1] === 'Instellingen', tabsComm.join(' | '));
       check('e-mails staan in een tabel', await page.locator('.grid2__table a[data-mail="msg-contract-mail"]').count() === 1 && !/Ziekmelding|Herinnering: kopie/.test(await page.textContent('.grid2__table')));
       await page.click('a[data-mail="msg-contract-mail"]');
       await page.waitForSelector('[data-fk="msg-msg-contract-mail"]', { timeout: 3000 }).catch(() => {});

@@ -24,7 +24,7 @@ export function communicatie(r) {
   const lijst = mails();
   const open = lijst.find(b => b.id === r.params?.[0]);
   const tab = open ? 'mails' : r.tab === 'instellingen' ? 'instellingen' : 'mails';
-  const tabs = [['mails', `E-mails ${lijst.length}`], ['instellingen', 'Instellingen']].map(([k, l]) => ({ label: l, href: `#/communicatie?tab=${k}`, active: tab === k }));
+  const tabs = [['mails', 'E-mails'], ['instellingen', 'Instellingen']].map(([k, l]) => ({ label: l, href: `#/communicatie?tab=${k}`, active: tab === k }));
   if (mail.geldigeClientId(mail.clientId())) mail.laadGoogle().catch(() => {});
   const tool = [h('button', { class: 'btn btn--primary', 'data-actie': 'nieuwe-mail', onClick: nieuweMail }, icon('plus', 14), h('span', { class: 'btn__label' }, 'Nieuwe e-mail'))];
   const concepten = lijst.filter(b => b.status !== 'verstuurd').length;

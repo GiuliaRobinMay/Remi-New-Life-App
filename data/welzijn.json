@@ -1,5 +1,5 @@
 {
-  "intro": "Vragenlijsten die artsen ook gebruiken, om voor het bezoek aan de huisarts een eerste beeld te krijgen. Ze stellen geen diagnose: een hoge score betekent 'bespreek dit met je arts', een lage score sluit niets uit. Vul de officiële formulieren in en tik je antwoorden hier in; de app rekent de score uit. Alles blijft op dit toestel.",
+  "intro": "Vragenlijsten die artsen ook gebruiken, om voor het bezoek aan de huisarts een eerste beeld te krijgen. Ze stellen geen diagnose: een hoge score betekent 'bespreek dit met je arts', een lage score sluit niets uit. De CBI en de WHO-5 vul je hier in de app in. De BAT vul je in naast het officiële formulier, de 4DKL online. Alles blijft op dit toestel.",
   "veiligheid": {
     "titel": "Hulp nodig, nu meteen?",
     "tekst": "Denk je aan de dood of eraan om jezelf iets aan te doen, of maakt iemand zich zorgen over je veiligheid: wacht niet tot de afspraak bij de dokter.",
@@ -73,177 +73,474 @@
       "handleiding": "https://burnoutassessmenttool.be/wp-content/uploads/2020/08/Gebruikshandleiding-BAT-versie-2.0.pdf",
       "hint": "Gebruik de versie over je werk. Neem de 23 kernvragen; de extra vragen over andere klachten zijn optioneel en tellen niet mee. Nooit is 1, Altijd is 5.",
       "opgelet": "In zwaar lichamelijk werk kunnen de vragen over uitputting ook lichamelijke vermoeidheid meten. De BAT maakt geen onderscheid tussen burn-out, depressie of een lichamelijke oorzaak: dat doet de arts.",
-      "bron": "Schaufeli, Desart en De Witte (2020), International Journal of Environmental Research and Public Health 17(24):9495."
+      "bron": "Schaufeli, Desart en De Witte (2020), International Journal of Environmental Research and Public Health 17(24):9495.",
+      "herkomst": "België, KU Leuven"
     },
     {
-      "id": "phq9",
-      "naam": "PHQ-9",
-      "kort": "Depressie",
-      "meet": "Hoe sterk klachten van depressie de voorbije twee weken aanwezig waren.",
-      "waarom": "De meest onderzochte korte vragenlijst voor depressie, gratis, met een officiële Belgisch-Nederlandse vertaling. De BAT meet geen depressie, daarom hoort deze erbij.",
-      "minuten": 3,
-      "aantal": 9,
-      "waarden": [
-        0,
-        1,
-        2,
-        3
-      ],
-      "labels": [
-        "0",
-        "1",
-        "2",
-        "3"
-      ],
-      "score": "som",
-      "alarmVraag": 9,
-      "alarmLabel": "Vraag 9 gaat over gedachten dat je beter dood zou zijn of jezelf iets zou aandoen.",
-      "banden": [
+      "id": "4dkl",
+      "naam": "Vierdimensionale Klachtenlijst (4DKL)",
+      "kort": "Burn-out of depressie?",
+      "herkomst": "Nederland, gebruikt door huisartsen",
+      "meet": "Vier soorten klachten van de voorbije week: distress (overspanning en burn-out), depressie, angst en lichamelijke klachten. Zo zie je of het eerder op burn-out wijst, op depressie, of op een mengeling.",
+      "waarom": "Dit is de vragenlijst die huisartsen en bedrijfsartsen gebruiken als ze twijfelen tussen overspanning, burn-out en depressie (NHG-standaard Overspanning en burn-out). Ook in het Belgische zorgpad voor terugkeer naar werk na een burn-out (KU Leuven, in opdracht van het RIZIV) vult de patiënt de 4DKL in. Gratis voor niet-commercieel gebruik.",
+      "minuten": 10,
+      "aantal": 50,
+      "invoer": "scores",
+      "online": "https://dkp.nl/apps/4dkl/",
+      "onlineLabel": "Online invullen (4DKL van DKP)",
+      "formulier": "https://www.nhg.org/4DKL",
+      "formulierLabel": "Officieel papieren formulier (NHG)",
+      "hint": "Vul de 50 vragen online in, in één keer en eerlijk. De vragen gaan over de afgelopen week, vandaag meegerekend. Je krijgt vier scores: tik ze hieronder in. Werk je op papier: nee telt 0, soms telt 1, regelmatig of vaker telt 2.",
+      "veiligheidsvraag": "Antwoordde je bij vraag 33 of 46 (over liever dood zijn) iets anders dan nee?",
+      "schalen": [
         {
-          "tot": 4,
-          "kleur": "green",
-          "label": "Geen of minimale klachten"
+          "id": "distress",
+          "naam": "Distress (overspanning, burn-out)",
+          "min": 0,
+          "max": 32,
+          "banden": [
+            {
+              "tot": 10,
+              "kleur": "green",
+              "label": "Niet verhoogd",
+              "uitleg": "Geen verhoogde spanning of uitputting."
+            },
+            {
+              "tot": 20,
+              "kleur": "orange",
+              "label": "Matig verhoogd",
+              "uitleg": "Verhoogde spanning en uitputting, met kans dat je uitvalt op het werk. Bespreek dit met de huisarts."
+            },
+            {
+              "tot": 32,
+              "kleur": "red",
+              "label": "Sterk verhoogd",
+              "uitleg": "Sterk verhoogde spanning en uitputting, met een grote kans op uitval en ziekteverlof. Bespreek dit zeker met de huisarts."
+            }
+          ]
         },
         {
-          "tot": 9,
-          "kleur": "green",
-          "label": "Lichte klachten"
+          "id": "depressie",
+          "naam": "Depressie",
+          "min": 0,
+          "max": 12,
+          "banden": [
+            {
+              "tot": 2,
+              "kleur": "green",
+              "label": "Depressie onwaarschijnlijk",
+              "uitleg": "Weinig wijst op een depressie."
+            },
+            {
+              "tot": 5,
+              "kleur": "orange",
+              "label": "Depressie mogelijk",
+              "uitleg": "Mogelijk een depressie. De huisarts kijkt het best na enkele weken opnieuw."
+            },
+            {
+              "tot": 12,
+              "kleur": "red",
+              "label": "Depressie vrij waarschijnlijk",
+              "uitleg": "Vrij grote kans op een depressie. Verder onderzoek door de huisarts is nodig."
+            }
+          ]
         },
         {
-          "tot": 14,
-          "kleur": "orange",
-          "label": "Matige klachten, bespreek met je arts"
+          "id": "angst",
+          "naam": "Angst",
+          "min": 0,
+          "max": 24,
+          "banden": [
+            {
+              "tot": 3,
+              "kleur": "green",
+              "label": "Niet verhoogd",
+              "uitleg": "Geen verhoogde angst."
+            },
+            {
+              "tot": 9,
+              "kleur": "orange",
+              "label": "Matig verhoogd",
+              "uitleg": "Wat verhoogde angst. Komt vaak mee met spanning."
+            },
+            {
+              "tot": 24,
+              "kleur": "red",
+              "label": "Sterk verhoogd",
+              "uitleg": "Sterk verhoogde angst. Bespreek dit met de huisarts."
+            }
+          ]
         },
         {
-          "tot": 19,
-          "kleur": "red",
-          "label": "Matig ernstige klachten, bespreek met je arts"
-        },
-        {
-          "tot": 27,
-          "kleur": "red",
-          "label": "Ernstige klachten, bel je huisarts voor een vroegere afspraak"
+          "id": "somatisatie",
+          "naam": "Lichamelijke klachten (somatisatie)",
+          "min": 0,
+          "max": 32,
+          "banden": [
+            {
+              "tot": 10,
+              "kleur": "green",
+              "label": "Niet verhoogd",
+              "uitleg": "Weinig lichamelijke klachten."
+            },
+            {
+              "tot": 20,
+              "kleur": "orange",
+              "label": "Matig verhoogd",
+              "uitleg": "Meer lichamelijke klachten dan gewoonlijk. Spanning kan meespelen, maar laat lichamelijke oorzaken altijd nakijken."
+            },
+            {
+              "tot": 32,
+              "kleur": "red",
+              "label": "Sterk verhoogd",
+              "uitleg": "Veel lichamelijke klachten. Laat lichamelijke oorzaken zeker nakijken; spanning kan meespelen."
+            }
+          ]
         }
       ],
-      "bandenTekst": "Totaal van vraag 1 tot 9 (0 tot 27): 0-4 minimaal, 5-9 licht, 10-14 matig, 15-19 matig ernstig, 20-27 ernstig. Vanaf 10 is het een reden om het met de arts te bespreken; het is geen diagnose. Ook 7 tot 9, samen met duidelijke problemen in het dagelijks leven, is het bespreken waard.",
-      "formulier": "https://www.ecfs.eu/sites/default/files/general-content-files/working-groups/Mental%20Health/PHQ9_Dutch%20for%20Belgium.pdf",
-      "formulierLabel": "Officieel Belgisch-Nederlands formulier (Pfizer)",
-      "hint": "Kijk naar de voorbije twee weken. De vier antwoordkolommen van links naar rechts tellen voor 0, 1, 2 en 3. Vraag 10 telt niet mee in de score.",
-      "extraVraag": {
-        "label": "Vraag 10: hoe moeilijk maakten deze problemen je werk, thuis en contact met anderen?",
-        "opties": [
-          "Helemaal niet moeilijk",
-          "Enigszins moeilijk",
-          "Erg moeilijk",
-          "Extreem moeilijk"
+      "bandenTekst": "Grenzen volgens het scoringsformulier van het NHG (2014). Distress: 0-10 niet verhoogd, 11-20 matig, 21-32 sterk verhoogd. Depressie: 0-2 onwaarschijnlijk, 3-5 mogelijk, 6-12 vrij waarschijnlijk. Angst: 0-3, 4-9, 10-24. Lichamelijke klachten: 0-10, 11-20, 21-32. Een hoge distress met een lage depressiescore past eerder bij overspanning of burn-out.",
+      "opgelet": "De 4DKL stelt geen diagnose: de arts bespreekt de scores met jou. De vragen zelf staan niet in de app, omdat ze auteursrechtelijk beschermd zijn.",
+      "bron": "Terluin (1996), Huisarts en Wetenschap 39:538-547; Terluin e.a. (2006), BMC Psychiatry 6:34; Terluin e.a. (2014), BMC Psychiatry 14:121 (grenzen voor angst). © Dr. B. Terluin."
+    },
+    {
+      "id": "cbi",
+      "naam": "Copenhagen Burnout Inventory (CBI)",
+      "kort": "Burn-out: algemeen en door het werk",
+      "herkomst": "Denemarken, nationaal onderzoekscentrum voor arbeidsomstandigheden (NFA)",
+      "meet": "Hoe uitgeput je je voelt, apart gemeten voor je leven in het algemeen en voor je werk. Is de uitputting door het werk veel hoger, dan wijst dat op het werk als oorzaak. Is ze overal even hoog, dan kijkt de arts ook naar andere oorzaken, zoals slaap, een lichamelijke ziekte of een depressie.",
+      "waarom": "Ontwikkeld met publiek geld in Denemarken en vrij beschikbaar voor iedereen. Wereldwijd gebruikt en in veel landen getoetst. Korte, concrete vragen, die ook passen bij lichamelijk zwaar werk. Het deel over klanten laten we weg: dat past niet bij werk in een atelier.",
+      "minuten": 3,
+      "instructie": "Kies bij elke vraag het antwoord dat het best bij je past. Denk niet te lang na: het eerste antwoord is meestal het beste.",
+      "optieSets": {
+        "frequentie": [
+          {
+            "label": "Altijd",
+            "waarde": 100
+          },
+          {
+            "label": "Vaak",
+            "waarde": 75
+          },
+          {
+            "label": "Soms",
+            "waarde": 50
+          },
+          {
+            "label": "Zelden",
+            "waarde": 25
+          },
+          {
+            "label": "Nooit of bijna nooit",
+            "waarde": 0
+          }
+        ],
+        "mate": [
+          {
+            "label": "In zeer sterke mate",
+            "waarde": 100
+          },
+          {
+            "label": "In sterke mate",
+            "waarde": 75
+          },
+          {
+            "label": "Enigszins",
+            "waarde": 50
+          },
+          {
+            "label": "In geringe mate",
+            "waarde": 25
+          },
+          {
+            "label": "In zeer geringe mate",
+            "waarde": 0
+          }
+        ],
+        "frequentieOmgekeerd": [
+          {
+            "label": "Altijd",
+            "waarde": 0
+          },
+          {
+            "label": "Vaak",
+            "waarde": 25
+          },
+          {
+            "label": "Soms",
+            "waarde": 50
+          },
+          {
+            "label": "Zelden",
+            "waarde": 75
+          },
+          {
+            "label": "Nooit of bijna nooit",
+            "waarde": 100
+          }
         ]
       },
-      "bron": "Kroenke, Spitzer en Williams (2001). Copyright Pfizer, vrij te gebruiken en te verspreiden."
-    },
-    {
-      "id": "gad7",
-      "naam": "GAD-7",
-      "kort": "Angst en piekeren",
-      "meet": "Piekeren, onrust en angst de voorbije twee weken. Komt vaak samen met burn-out voor.",
-      "waarom": "Korte, gratis vragenlijst met een officiële Belgisch-Nederlandse vertaling, met dezelfde antwoordvorm als de PHQ-9.",
-      "minuten": 2,
-      "aantal": 7,
-      "waarden": [
-        0,
-        1,
-        2,
-        3
-      ],
-      "labels": [
-        "0",
-        "1",
-        "2",
-        "3"
-      ],
-      "score": "som",
-      "banden": [
+      "vragen": [
         {
-          "tot": 4,
-          "kleur": "green",
-          "label": "Minimale klachten"
+          "kop": "Hoe je je in het algemeen voelt",
+          "tekst": "Hoe vaak voel je je moe?",
+          "origineel": "How often do you feel tired?",
+          "opties": "frequentie"
         },
         {
-          "tot": 9,
-          "kleur": "green",
-          "label": "Lichte klachten"
+          "tekst": "Hoe vaak ben je lichamelijk uitgeput?",
+          "origineel": "How often are you physically exhausted?",
+          "opties": "frequentie"
         },
         {
-          "tot": 14,
-          "kleur": "orange",
-          "label": "Matige klachten, bespreek met je arts"
+          "tekst": "Hoe vaak ben je emotioneel uitgeput?",
+          "origineel": "How often are you emotionally exhausted?",
+          "opties": "frequentie"
         },
         {
-          "tot": 21,
-          "kleur": "red",
-          "label": "Ernstige klachten, bespreek met je arts"
+          "tekst": "Hoe vaak denk je: \"Ik kan het niet meer aan\"?",
+          "origineel": "How often do you think: \"I can't take it anymore\"?",
+          "opties": "frequentie"
+        },
+        {
+          "tekst": "Hoe vaak voel je je helemaal op?",
+          "origineel": "How often do you feel worn out?",
+          "opties": "frequentie"
+        },
+        {
+          "tekst": "Hoe vaak voel je je zwak en vatbaar voor ziekte?",
+          "origineel": "How often do you feel weak and susceptible to illness?",
+          "opties": "frequentie"
+        },
+        {
+          "kop": "Je werk",
+          "tekst": "Is je werk emotioneel uitputtend?",
+          "origineel": "Is your work emotionally exhausting?",
+          "opties": "mate"
+        },
+        {
+          "tekst": "Voel je je opgebrand door je werk?",
+          "origineel": "Do you feel burnt out because of your work?",
+          "opties": "mate"
+        },
+        {
+          "tekst": "Frustreert je werk je?",
+          "origineel": "Does your work frustrate you?",
+          "opties": "mate"
+        },
+        {
+          "tekst": "Voel je je helemaal op aan het einde van de werkdag?",
+          "origineel": "Do you feel worn out at the end of the working day?",
+          "opties": "frequentie"
+        },
+        {
+          "tekst": "Ben je 's morgens al uitgeput bij de gedachte aan weer een werkdag?",
+          "origineel": "Are you exhausted in the morning at the thought of another day at work?",
+          "opties": "frequentie"
+        },
+        {
+          "tekst": "Heb je het gevoel dat elk werkuur vermoeiend is?",
+          "origineel": "Do you feel that every working hour is tiring for you?",
+          "opties": "frequentie"
+        },
+        {
+          "tekst": "Heb je in je vrije tijd genoeg energie voor familie en vrienden?",
+          "origineel": "Do you have enough energy for family and friends during leisure time?",
+          "opties": "frequentieOmgekeerd"
         }
       ],
-      "bandenTekst": "Totaal (0 tot 21): 0-4 minimaal, 5-9 licht, 10-14 matig, 15-21 ernstig. Vanaf 10 is verdere bespreking met de arts aangewezen.",
-      "formulier": "https://www.ecfs.eu/sites/default/files/general-content-files/working-groups/Mental%20Health/GAD7_Dutch%20for%20Belgium.pdf",
-      "formulierLabel": "Officieel Belgisch-Nederlands formulier (Pfizer)",
-      "hint": "Vul ze in meteen na de PHQ-9. De vier kolommen tellen voor 0, 1, 2 en 3.",
-      "opgelet": "Onrust, prikkelbaarheid en slecht slapen door overbelasting verhogen de score ook. Het onderscheid tussen overspanning en een angststoornis maakt de arts.",
-      "bron": "Spitzer, Kroenke, Williams en Löwe (2006). Copyright Pfizer, vrij te gebruiken en te verspreiden."
-    },
-    {
-      "id": "ess",
-      "naam": "Epworth-slaperigheidsschaal (optioneel)",
-      "kort": "Slaperigheid overdag",
-      "meet": "Hoe snel je overdag indommelt. Uitputting en te laat komen kunnen ook door een slaapprobleem komen, zoals slaapapneu.",
-      "waarom": "Een korte vragenlijst die slaapcentra gebruiken. Vul het formulier van een ziekenhuis in voor jezelf, of vraag het aan de huisarts.",
-      "minuten": 2,
-      "aantal": 8,
-      "waarden": [
-        0,
-        1,
-        2,
-        3
-      ],
-      "labels": [
-        "0",
-        "1",
-        "2",
-        "3"
-      ],
-      "score": "som",
-      "banden": [
+      "schalen": [
         {
-          "tot": 5,
-          "kleur": "green",
-          "label": "Laag normaal"
+          "id": "werk",
+          "naam": "Burn-out door het werk",
+          "items": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "score": "gemiddelde",
+          "decimalen": 0,
+          "banden": [
+            {
+              "tot": 49.99,
+              "kleur": "green",
+              "label": "Laag",
+              "uitleg": "Weinig tekenen van burn-out op dit deel."
+            },
+            {
+              "tot": 74.99,
+              "kleur": "orange",
+              "label": "Matig",
+              "uitleg": "Duidelijke tekenen van burn-out. Bespreek dit met de huisarts."
+            },
+            {
+              "tot": 99.99,
+              "kleur": "red",
+              "label": "Hoog",
+              "uitleg": "Sterke tekenen van burn-out. Bespreek dit zeker met de huisarts."
+            },
+            {
+              "tot": 100,
+              "kleur": "red",
+              "label": "Zeer hoog",
+              "uitleg": "Op elke vraag het zwaarste antwoord. Bespreek dit zo snel mogelijk met de huisarts."
+            }
+          ]
         },
         {
-          "tot": 10,
-          "kleur": "green",
-          "label": "Hoog normaal"
-        },
-        {
-          "tot": 12,
-          "kleur": "orange",
-          "label": "Licht verhoogde slaperigheid, bespreek met je arts"
-        },
-        {
-          "tot": 15,
-          "kleur": "red",
-          "label": "Matig verhoogde slaperigheid, bespreek met je arts"
-        },
-        {
-          "tot": 24,
-          "kleur": "red",
-          "label": "Sterk verhoogde slaperigheid, bespreek met je arts"
+          "id": "persoonlijk",
+          "naam": "Burn-out in het algemeen",
+          "items": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "score": "gemiddelde",
+          "decimalen": 0,
+          "banden": [
+            {
+              "tot": 49.99,
+              "kleur": "green",
+              "label": "Laag",
+              "uitleg": "Weinig tekenen van burn-out op dit deel."
+            },
+            {
+              "tot": 74.99,
+              "kleur": "orange",
+              "label": "Matig",
+              "uitleg": "Duidelijke tekenen van burn-out. Bespreek dit met de huisarts."
+            },
+            {
+              "tot": 99.99,
+              "kleur": "red",
+              "label": "Hoog",
+              "uitleg": "Sterke tekenen van burn-out. Bespreek dit zeker met de huisarts."
+            },
+            {
+              "tot": 100,
+              "kleur": "red",
+              "label": "Zeer hoog",
+              "uitleg": "Op elke vraag het zwaarste antwoord. Bespreek dit zo snel mogelijk met de huisarts."
+            }
+          ]
         }
       ],
-      "bandenTekst": "Totaal (0 tot 24): boven 10 is overmatige slaperigheid overdag en een reden om slaaponderzoek met de arts te bespreken.",
-      "formulier": "https://www.sint-trudo.be/sites/default/files/public/mcm_plus/00713-NL.pdf",
-      "formulierLabel": "Formulier van het ziekenhuis Sint-Trudo",
-      "hint": "Kans om in te dommelen in acht situaties: 0 nooit, 1 kleine kans, 2 matige kans, 3 grote kans.",
-      "opgelet": "Dommel je in tijdens het rijden of aan de machines: zeg het meteen aan je arts en vermijd dat tot je onderzocht bent.",
-      "bron": "Johns (1991). Copyright Murray W. Johns; vrij voor persoonlijk gebruik."
+      "bandenTekst": "Elk antwoord telt van 0 (nooit, of in zeer geringe mate) tot 100 (altijd, of in zeer sterke mate). Bij de laatste vraag is dat omgekeerd: genoeg energie is goed. De score is het gemiddelde per deel, van 0 tot 100. In onderzoek geldt: onder 50 laag, 50 tot 74 matig, 75 tot 99 hoog, 100 zeer hoog. Dat is een gebruikelijke indeling, geen officiële grens van de makers. Ter vergelijking: werkende Denen scoorden gemiddeld ongeveer 36 op het algemene deel.",
+      "opgelet": "Er bestaat geen officiële Nederlandse versie. De vragen zijn door de app vertaald uit het Engelse origineel, dat telkens schuin onder de vraag staat. De score is daarom een goede richting, maar niet officieel getoetst in het Nederlands.",
+      "bron": "Kristensen, Borritz, Villadsen en Christensen (2005), Work & Stress 19(3):192-207; Borritz e.a. (2006), Scandinavian Journal of Public Health 34:49-58. Vrij beschikbaar gesteld door het NFA (Denemarken)."
+    },
+    {
+      "id": "who5",
+      "naam": "WHO-5 Welzijnsindex",
+      "kort": "Stemming en depressie",
+      "herkomst": "Wereldgezondheidsorganisatie (WHO), ontwikkeld in Denemarken",
+      "meet": "Hoe goed je je de laatste twee weken voelde: stemming, rust, energie, slaap en interesse. Een lage score is een teken om op depressie te laten onderzoeken.",
+      "waarom": "Vijf vragen van de Wereldgezondheidsorganisatie, in Europa ontwikkeld en een van de meest gebruikte korte tests om depressie op te sporen. Gratis te gebruiken. Wordt ook in Vlaanderen gebruikt, onder meer door het Vlaams Instituut Gezond Leven.",
+      "minuten": 2,
+      "formulier": "https://cdn.who.int/media/docs/default-source/mental-health/five-well-being-index-(who-5)/who-5_dutch.pdf?sfvrsn=eb69010b_3",
+      "formulierLabel": "Officiële Nederlandse versie (WHO)",
+      "instructie": "Kies bij elke uitspraak wat het best weergeeft hoe je je de laatste twee weken voelde. Let op: hier is een hoger getal beter.",
+      "voorvoegsel": "De laatste twee weken",
+      "optieSets": {
+        "standaard": [
+          {
+            "label": "Constant",
+            "waarde": 5
+          },
+          {
+            "label": "Meestal",
+            "waarde": 4
+          },
+          {
+            "label": "Meer dan de helft van de tijd",
+            "waarde": 3
+          },
+          {
+            "label": "Minder dan de helft van de tijd",
+            "waarde": 2
+          },
+          {
+            "label": "Soms",
+            "waarde": 1
+          },
+          {
+            "label": "Helemaal niet",
+            "waarde": 0
+          }
+        ]
+      },
+      "vragen": [
+        {
+          "tekst": "voelde ik me vrolijk en in een opperbeste stemming.",
+          "origineel": "I have felt cheerful and in good spirits."
+        },
+        {
+          "tekst": "voelde ik me rustig en ontspannen.",
+          "origineel": "I have felt calm and relaxed."
+        },
+        {
+          "tekst": "voelde ik me actief en doelbewust.",
+          "origineel": "I have felt active and vigorous."
+        },
+        {
+          "tekst": "voelde ik me fris en uitgerust wanneer ik wakker werd.",
+          "origineel": "I woke up feeling fresh and rested."
+        },
+        {
+          "tekst": "was mijn dagelijkse leven gevuld met dingen die me interesseren.",
+          "origineel": "My daily life has been filled with things that interest me."
+        }
+      ],
+      "schalen": [
+        {
+          "id": "welzijn",
+          "naam": "Welbevinden",
+          "items": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "score": "som",
+          "factor": 4,
+          "eenheid": "%",
+          "decimalen": 0,
+          "banden": [
+            {
+              "tot": 28,
+              "kleur": "red",
+              "label": "Zeer laag welbevinden",
+              "uitleg": "Zo laag ligt het welbevinden vaak bij mensen met een depressie. Bespreek dit snel met de huisarts."
+            },
+            {
+              "tot": 48,
+              "kleur": "orange",
+              "label": "Laag welbevinden",
+              "uitleg": "Onder de 50%: de WHO raadt aan om verder te laten onderzoeken, bijvoorbeeld op depressie. Bespreek dit met de huisarts."
+            },
+            {
+              "tot": 100,
+              "kleur": "green",
+              "label": "Geen aanwijzing voor laag welbevinden",
+              "uitleg": "Geen teken van een laag welbevinden. Een hoge score sluit burn-out niet uit."
+            }
+          ]
+        }
+      ],
+      "laagItem": {
+        "tot": 1,
+        "tekst": "bij minstens één vraag antwoordde je 'soms' of 'helemaal niet'. Ook dan raadt de handleiding aan om met de huisarts naar depressie te kijken."
+      },
+      "bandenTekst": "Tel de vijf antwoorden op (constant is 5, helemaal niet is 0) en vermenigvuldig met 4. Zo krijg je een percentage van 0 tot 100; hoger is beter. Onder 50% is een teken om verder te laten onderzoeken op depressie. 28% of lager is het niveau dat vaak bij een depressie hoort.",
+      "opgelet": "De WHO-5 stelt geen diagnose en meet geen burn-out. De Nederlandse tekst volgt de officiële vertaling van de WHO, maar niet elk woord kon tegen het formulier nagekeken worden. Het Engelse origineel staat telkens schuin onder de vraag.",
+      "bron": "WHO-5 Welzijnsindex. © World Health Organization 2024, licentie CC BY-NC-SA 3.0 IGO. Nederlandse vertaling van 1999, niet door de WHO nagekeken. Topp e.a. (2015), Psychotherapy and Psychosomatics 84:167-176."
     }
   ],
   "dokter": {
@@ -320,5 +617,6 @@
       "kost": "Gratis."
     }
   ],
-  "bronnen": "BAT: burnoutassessmenttool.be en Schaufeli e.a. (2020, 2023). PHQ-9 en GAD-7: Kroenke e.a. (2001), Spitzer e.a. (2006), Levis e.a. (2019). Epworth: Johns, American Thoracic Society. Vlaanderen: RIZIV, FOD WASO, Gezondheid en Wetenschap, NHG. Opgezocht op 11 oktober 2026; de formulieren zelf konden niet geopend worden en de telefoonnummers moeten nog eens nagekeken worden op de officiële sites."
+  "bronnen": "BAT: burnoutassessmenttool.be en Schaufeli e.a. (2020, 2023). 4DKL: Terluin (1996, 2006, 2014), NHG. CBI: Kristensen e.a. (2005), NFA Denemarken. WHO-5: WHO (2024), Topp e.a. (2015). Vlaanderen: RIZIV en KU Leuven (zorgpad burn-out), Gezond Leven. Opgezocht op 11 oktober 2026. De officiële websites konden vanuit onze omgeving niet geopend worden: de teksten zijn nagekeken via meerdere afschriften en zoekresultaten.",
+  "volgorde": "Volgorde: eerst de BAT en de CBI (burn-out), dan de WHO-5 (stemming), en tot slot de 4DKL online (burn-out of depressie). Samen ongeveer twintig minuten. Neem de samenvatting mee naar de huisarts."
 }

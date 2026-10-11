@@ -193,6 +193,11 @@ details.plain > summary::-webkit-details-marker { display: none; }
 .welzijn-schaal .meta { margin: 0; }
 .welzijn-schaal p { margin: 2px 0 0; }
 .welzijn-antwoorden { margin-top: 10px; }
+.welzijn-origineel { display: block; margin-top: 2px; font-size: 12.5px; color: var(--muted); font-style: italic; }
+.welzijn-scores { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr)); gap: 10px 14px; }
+.welzijn-scoreveld { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.welzijn-scoreveld .field { max-width: 120px; }
+.welzijn-veilig .welzijn-keuze { padding-left: 0; }
 @media (max-width: 720px) { .welzijn-vraagblok .welzijn-keuze { padding-left: 0; } .welzijn-optie--tekst { padding: 9px 11px; } }
 
 /* Wie: Remi blauw, Giulia rood, samen violet */

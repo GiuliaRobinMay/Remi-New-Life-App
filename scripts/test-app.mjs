@@ -126,12 +126,23 @@ try {
       for (let i = 1; i <= 23; i++) await page.click(`button[data-test="bat"][data-vraag="${i}"][data-waarde="3"]`);
       const batBadge = await page.textContent('#test-bat .meta');
       check('BAT gemiddelde 3,00 is risico (oranje)', /3,00: Risico op burn-out/.test(batBadge), batBadge);
-      for (let i = 1; i <= 9; i++) await page.click(`button[data-test="phq9"][data-vraag="${i}"][data-waarde="${i === 9 ? 1 : 2}"]`);
-      const phq = await page.evaluate(() => ({ meta: document.querySelector('#test-phq9 .meta').textContent, alarm: !!document.querySelector('#test-phq9 .welzijn-alarm') }));
-      check('PHQ-9 totaal 17 en melding bij vraag 9', /17: Matig ernstige/.test(phq.meta) && phq.alarm, JSON.stringify(phq));
+      // CBI: alles 'Vaak' (de laatste vraag telt omgekeerd): werk 68 matig, algemeen 75 hoog
+      for (let i = 1; i <= 13; i++) await page.click(`button[data-test="cbi"][data-vraag="${i}"][data-keuze="1"]`);
+      const cbiTekst = await page.textContent('#test-cbi');
+      check('CBI: werk 68 matig, algemeen 75 hoog', /Burn-out door het werk 68: Matig/.test(cbiTekst) && /75: Hoog/.test(cbiTekst) && /How often do you feel tired\?/.test(cbiTekst), cbiTekst.slice(0, 200));
+      // WHO-5: vier keer 'minder dan de helft' (2) en één keer 'helemaal niet' (0): 8 x 4 = 32%
+      for (const [i, k] of [[1, 3], [2, 3], [3, 3], [4, 3], [5, 5]]) await page.click(`button[data-test="who5"][data-vraag="${i}"][data-keuze="${k}"]`);
+      const whoTekst = await page.textContent('#test-who5');
+      check('WHO-5: 32% laag welbevinden, met signaal bij een laag antwoord', /32%: Laag welbevinden/.test(whoTekst) && /helemaal niet/.test(whoTekst), whoTekst.slice(0, 200));
+      // 4DKL: scores intikken en veiligheidsvraag
+      for (const [k, v] of [['distress', '22'], ['depressie', '4'], ['angst', '2'], ['somatisatie', '12']]) { await page.fill(`[data-score="4dkl-${k}"]`, v); await page.press(`[data-score="4dkl-${k}"]`, 'Tab'); }
+      await page.click('[data-veilig="4dkl-ja"]');
+      const d4 = await page.evaluate(() => ({ meta: document.querySelector('#test-4dkl .meta').textContent, tekst: document.querySelector('#test-4dkl').textContent, alarm: !!document.querySelector('#test-4dkl .welzijn-alarm') }));
+      check('4DKL: distress 22 sterk verhoogd, depressie mogelijk, veiligheidsmelding', /Distress 22: Sterk verhoogd/.test(d4.meta) && /4: Depressie mogelijk/.test(d4.tekst) && d4.alarm, d4.meta);
+      check('oude tests weg', await page.locator('#test-phq9, #test-gad7, #test-ess').count() === 0);
       await page.goto(`${base}#/welzijn?tab=dokter`, { waitUntil: 'networkidle' });
       const sv = await page.textContent('.welzijn-samenvatting');
-      check('samenvatting voor de huisarts', /Burnout Assessment Tool \(BAT-23\): 3,00/.test(sv) && /PHQ-9: 17/.test(sv), sv.slice(0, 160));
+      check('samenvatting voor de huisarts', /Burnout Assessment Tool \(BAT-23\): 3,00/.test(sv) && /Distress \(overspanning, burn-out\): 22 \(Sterk verhoogd\)/.test(sv) && /WHO-5 Welzijnsindex: 32% \(Laag welbevinden\)/.test(sv) && /Burn-out door het werk: 68 \(Matig\)/.test(sv) && /vraag 33 of 46.*Ja/.test(sv), sv.slice(0, 400));
       // Wie gebruikt het toestel
       await page.goto(`${base}#/overzicht`, { waitUntil: 'networkidle' });
       await page.click('text=Ik ben Giulia');

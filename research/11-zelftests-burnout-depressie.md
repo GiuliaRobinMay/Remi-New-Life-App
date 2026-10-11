@@ -434,3 +434,40 @@ Any of these could add to the package after checking licences and cut-offs.
 - https://www.ntvg.nl/moeheid
 - https://oem.bmj.com/content/64/3/167
 - https://aoemj.org/journal/view.php?number=431
+
+## Herziening van 11 oktober 2026: Europese tests in de app
+
+Giulia vond de PHQ-9, GAD-7 en Epworth niet bruikbaar: alleen een pdf, en de GAD-7 meet angst, niet burn-out of depressie. De BAT bleef. Drie nieuwe onderzoekssporen zochten Europese, gevalideerde tests voor burn-out en depressie, met de Nederlandse tekst, de scoring, de grenzen en de licentie.
+
+Beperking: vanuit deze omgeving konden de officiële sites (nhg.org, nfa.dk, who.int, pmc) niet geopend worden. Teksten zijn nagekeken via afschriften op GitHub (NIMH Data Archive, OpenScales, WHO-transcripties) en via letterlijke zoekfragmenten. Wat niet nagekeken kon worden, staat hieronder.
+
+### Gekozen
+
+1. **4DKL (Vierdimensionale Klachtenlijst, Terluin, Nederland).** Scheidt distress (overspanning, burn-out) van depressie, angst en lichamelijke klachten. Aanbevolen in de NHG-standaard Overspanning en burn-out ("Bij twijfel aan de diagnose overspanning of burn-out kunnen de huisarts en bedrijfsarts de 4DKL gebruiken") en gebruikt in het Belgische zorgpad terugkeer naar werk na burn-out (KU Leuven, RIZIV, 2017-2018).
+   - Scoring (NHG-scoringsformulier, letterlijk): nee = 0, soms = 1, regelmatig of vaker = 2. Grenzen NHG 2014: distress > 10 en > 20; depressie > 2 en > 5; angst > 3 en > 9 (herzien in Terluin e.a. 2014); somatisatie > 10 en > 20.
+   - Schalen: somatisatie 1-16; distress 17, 19, 20, 22, 25, 26, 29, 31, 32, 36, 37, 38, 39, 41, 47, 48; depressie 28, 30, 33, 34, 35, 46; angst de overige twaalf.
+   - Doodsvragen: 33 ("dat het beter zou zijn als u maar dood was?") en 46 ("was ik maar dood").
+   - Licentie: "De 4DKL is gratis voor niet-commercieel gebruik zoals in de zorg en bij wetenschappelijk onderzoek." Herpubliceren van de vragen in een openbare repository is daarmee niet gedekt. Daarom staan de vragen niet in de app: Remi vult de test online in (dkp.nl/apps/4dkl, volgens burnout-help.nl met toestemming van de auteur) of op het NHG-formulier, en tikt de vier scores in. Niet alle 50 vragen konden letterlijk nagekeken worden.
+2. **Copenhagen Burnout Inventory (CBI, Kristensen e.a. 2005, NFA Denemarken).** Burn-out in het algemeen (6 vragen) en door het werk (7 vragen). Het deel over klanten is weggelaten.
+   - Engelse tekst letterlijk nagekeken in drie onafhankelijke afschriften (NIMH Data Archive cbi01, OpenScales, psytools). Antwoorden 100/75/50/25/0; vragen 7-9 met een schaal van mate; de vraag over energie voor familie en vrienden telt omgekeerd. Score per deel is het gemiddelde.
+   - Geen officiële Nederlandse versie gevonden. De app gebruikt een eigen vertaling en toont het Engelse origineel onder elke vraag.
+   - Grenzen: de makers geven geen officiële grenzen. De app gebruikt de gebruikelijke indeling uit onderzoek (Borritz e.a. 2006): onder 50 laag, 50-74 matig, 75-99 hoog, 100 zeer hoog.
+   - Licentie: met publiek geld ontwikkeld en vrij beschikbaar gesteld; geen expliciete licentietekst gevonden.
+3. **WHO-5 Welzijnsindex (WHO, ontwikkeld in Denemarken).** Vijf vragen over de laatste twee weken; screening op depressie.
+   - Scoring (WHO 2024): ruwe score 0-25, maal 4 geeft een percentage. Onder 50% (ruw onder 13) is een aanwijzing voor verder onderzoek; 28% of lager is het niveau van een depressie (Löwe e.a., via Topp e.a. 2015). Volgens de versie van 1998 ook verder kijken als één vraag 0 of 1 scoort.
+   - Licentie: © WHO 2024, CC BY-NC-SA 3.0 IGO (niet-commercieel delen mag, met bronvermelding). De Nederlandse vertaling dateert van 1999 en is niet door de WHO nagekeken.
+   - Nederlandse tekst: de fragmenten "opperbeste stemming", "actief en doelbewust", "fris en uitgerust" en "dingen die me interesseren", en de schaal van "Constant" tot "Helemaal niet", zijn letterlijk bevestigd. Vraag 2 ("rustig en ontspannen") en de middelste antwoorden konden niet tegen het formulier nagekeken worden.
+
+### Niet gekozen
+
+- **MDI (Major Depression Inventory, Denemarken):** geen traceerbare officiële Nederlandse tekst, en de licentie voor herpublicatie is onduidelijk.
+- **OLBI (Oldenburg):** overlapt sterk met de BAT; de Nederlandse versie is niet openbaar.
+- **KEDS (Karolinska):** goede klinische grens (19), maar geen Nederlandse versie en de Engelse tekst kon niet nagekeken worden.
+- **UBOS en MBI:** betalend en beschermd.
+- **PHQ-9:** blijft de best onderzochte depressietest in Vlaamse en Nederlandse huisartsenpraktijken. CGG De Pont en CGG Kempen bieden ze online aan op depressiehulp.be. Ze is niet meer in de app opgenomen op vraag van Giulia.
+
+### Nog na te kijken door iemand met een gewone browser
+
+- Werkt dkp.nl/apps/4dkl en toont het de vier scores?
+- De Nederlandse WHO-5-tekst tegen de officiële pdf (cdn.who.int, who-5_dutch.pdf).
+- De CBI-vertaling eventueel laten nalezen.

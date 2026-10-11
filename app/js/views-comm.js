@@ -11,8 +11,13 @@ import * as mail from './mail.js';
 const haken = t => (String(t || '').match(/\[[^\]]+\]/g) || []).length;
 const grootte = n => (n >= 1048576 ? `${(n / 1048576).toFixed(1).replace('.', ',')} MB` : `${Math.max(1, Math.round(n / 1024))} kB`);
 const titelVan = b => b.titel || b.onderwerp || '(zonder onderwerp)';
-const datumVan = b => (b.status === 'verstuurd' ? b.verstuurdOp : '') || b.bijgewerkt || b.aangemaakt || '';
+const datumVan = b => {
+  const d = (b.status === 'verstuurd' ? b.verstuurdOp : '') || b.bijgewerkt || b.aangemaakt || '';
+  return d && d.slice(0, 10) > todayIso() ? todayIso() : d; // nooit een datum in de toekomst tonen
+};
 export const mails = () => all('berichten').filter(b => b.soort === 'mail');
+// Gearchiveerde mails blijven bewaard en kunnen terug bij de e-mails gezet worden.
+const archief = () => all('berichten').filter(b => b.soort === 'archief');
 
 // Handtekening: per toestel bewaard (Remi en Giulia hebben elk hun eigen toestel).
 const HT = 'remi-mail-handtekening';
@@ -22,7 +27,8 @@ function zetHandtekening(v) { try { localStorage.setItem(HT, v); } catch { /* pr
 export function communicatie(r) {
   bewaarAlles();
   const lijst = mails();
-  const open = lijst.find(b => b.id === r.params?.[0]);
+  const gearchiveerd = archief();
+  const open = [...lijst, ...gearchiveerd].find(b => b.id === r.params?.[0]);
   const tab = open ? 'mails' : r.tab === 'instellingen' ? 'instellingen' : 'mails';
   const tabs = [['mails', 'E-mails'], ['instellingen', 'Instellingen']].map(([k, l]) => ({ label: l, href: `#/communicatie?tab=${k}`, active: tab === k }));
   if (mail.geldigeClientId(mail.clientId())) mail.laadGoogle().catch(() => {});
@@ -38,18 +44,19 @@ export function communicatie(r) {
   }
   if (tab === 'instellingen') return { chrome, body: content(intro('Instellingen', 'Vanaf welk adres de mails vertrekken, en de handtekening onder nieuwe mails.'), instellingen()) };
 
-  if (!lijst.length) return { chrome, body: content(intro('E-mails', 'Alle mails aan de werkgever, ACV en andere instanties.'), h('div', { class: 'card empty' }, 'Nog geen e-mails. Gebruik Nieuwe e-mail in de werkbalk.')) };
+  if (!lijst.length && !gearchiveerd.length) return { chrome, body: content(intro('E-mails', 'Alle mails aan de werkgever, ACV en andere instanties.'), h('div', { class: 'card empty' }, 'Nog geen e-mails. Gebruik Nieuwe e-mail in de werkbalk.')) };
   const sorteer = rows => rows.sort((a, b) => datumVan(b).localeCompare(datumVan(a)));
   const groups = [
     { key: 'mail-concept', label: 'CONCEPT', tone: 'violet', rows: sorteer(lijst.filter(b => b.status !== 'verstuurd')) },
     { key: 'mail-verstuurd', label: 'VERSTUURD', tone: 'green', rows: sorteer(lijst.filter(b => b.status === 'verstuurd')), hideEmpty: true },
+    { key: 'mail-archief', label: 'ARCHIEF', tone: 'grey', rows: sorteer(gearchiveerd), hideEmpty: true },
   ];
   const leeg = () => h('span', { class: 'grid2__dash' }, '—');
   const cols = [
     { label: 'E-mail', width: 300, render: b => h('a', { href: `#/communicatie/${encodeURIComponent(b.id)}`, 'data-mail': b.id }, titelVan(b)) },
     { label: 'Aan', width: 230, render: b => b.naar || b.aan || leeg() },
     { label: 'Bijlagen', width: 90, render: b => (b.bijlagen || []).length ? h('span', null, icon('doc', 12), ` ${(b.bijlagen || []).length}`) : leeg() },
-    { label: 'Status', width: 190, render: b => bezigMet.has(b.id) ? badge('bezig met versturen', 'orange') : b.status === 'verstuurd' ? badge(`verstuurd${b.verstuurdVan ? ' met Gmail' : ''}`, 'green') : b.twijfelOp ? badge('misschien verstuurd', 'red') : badge('concept', 'grey') },
+    { label: 'Status', width: 190, render: b => b.soort === 'archief' ? badge('gearchiveerd', 'grey') : bezigMet.has(b.id) ? badge('bezig met versturen', 'orange') : b.status === 'verstuurd' ? badge(`verstuurd${b.verstuurdVan ? ' met Gmail' : ''}`, 'green') : b.twijfelOp ? badge('misschien verstuurd', 'red') : badge('concept', 'grey') },
     { label: 'Datum', width: 110, render: b => datumVan(b) ? fmtDate(datumVan(b)) : leeg() },
   ];
   return { chrome, body: grid(cols, groups, b => go(`communicatie/${encodeURIComponent(b.id)}`)) };
@@ -83,7 +90,10 @@ function mailKaart(b) {
   const bezig = bezigMet.has(b.id);
   const heeftBijlagen = (b.bijlagen || []).length > 0;
   const ht = handtekening().trim();
+  const gearchiveerd = b.soort === 'archief';
+  const zetSoort = soort => { bewaarNu(b.id); upsert('berichten', { id: b.id, soort }); toast(soort === 'mail' ? 'Teruggezet bij de e-mails' : 'Gearchiveerd. Je vindt de mail onderaan de lijst bij Archief.'); };
   return h('section', { class: 'card card--pad' },
+    gearchiveerd && h('div', { class: 'mail-archief' }, h('p', { class: 'small' }, 'Deze e-mail staat in het archief.'), h('button', { class: 'btn btn--primary btn--sm', 'data-actie': 'terugzetten', onClick: () => zetSoort('mail') }, 'Terugzetten bij de e-mails')),
     h('div', { class: 'meta' }, badge(verstuurd ? `verstuurd ${fmtDate(b.verstuurdOp)}${b.verstuurdVan ? ` vanaf ${b.verstuurdVan}` : ''}` : 'concept', verstuurd ? 'green' : 'grey'), bezig && badge('bezig met versturen', 'orange'), b.twijfelOp && !verstuurd && badge('misschien verstuurd, kijk Gmail na', 'red'), b.aan && h('span', null, `Voor: ${b.aan}`)),
     b.titel && h('p', { class: 'row-title' }, b.titel),
     b.wanneer && h('p', { class: 'small muted' }, b.wanneer),
@@ -107,6 +117,7 @@ function mailKaart(b) {
           upsert('berichten', { id: b.id, status: 'verstuurd', verstuurdOp: todayIso(), verstuurdVan: '', gmailId: '', twijfelOp: '' });
           toast('Gemarkeerd als verstuurd. Het staat nu ook in de Planning.');
         } }, icon('check', 12), h('span', { class: 'btn__label' }, 'Markeer als verstuurd')),
+      !gearchiveerd && !bezig && h('button', { class: 'btn btn--quiet btn--sm', 'data-actie': 'archiveren', onClick: () => zetSoort('archief') }, 'Archiveren'),
       b.eigen && h('button', { class: 'btn btn--quiet btn--sm', disabled: bezig, onClick: async () => {
         if (!confirm('Deze e-mail verwijderen?')) return;
         for (const x of get('berichten', b.id)?.bijlagen || []) if (x.bron !== 'dossier') await wisBijlage(x.id).catch(() => {});

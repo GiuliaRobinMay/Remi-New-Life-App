@@ -219,6 +219,19 @@ try {
         await page.waitForTimeout(300);
         check('eigen e-mail verwijderen', /#\/communicatie$/.test(page.url()) && !/Testonderwerp nieuw/.test(await page.textContent('body')));
       }
+      // Archiveren en terugzetten
+      await page.goto(`${base}#/communicatie/msg-contract-mail`, { waitUntil: 'networkidle' });
+      await page.click('[data-actie="archiveren"]');
+      await page.waitForTimeout(200);
+      await page.goto(`${base}#/communicatie`, { waitUntil: 'networkidle' });
+      const metArchief = await page.textContent('.grid2__table');
+      check('gearchiveerde mail staat bij ARCHIEF', /ARCHIEF/.test(metArchief) && /gearchiveerd/.test(metArchief), metArchief.slice(0, 200));
+      await page.click('a[data-mail="msg-contract-mail"]');
+      await page.waitForSelector('[data-actie="terugzetten"]', { timeout: 3000 }).catch(() => {});
+      await page.click('[data-actie="terugzetten"]');
+      await page.waitForTimeout(200);
+      await page.goto(`${base}#/communicatie`, { waitUntil: 'networkidle' });
+      check('mail terugzetten uit het archief', !/ARCHIEF/.test(await page.textContent('.grid2__table')) && await page.locator('a[data-mail="msg-contract-mail"]').count() === 1);
       // Dossier: document toevoegen met een foto als bijlage
       await page.goto(`${base}#/documenten?tab=dossier`, { waitUntil: 'networkidle' });
       await page.click('text=Document toevoegen');

@@ -196,7 +196,8 @@ try {
       let verzonden = null;
       await page.route('https://accounts.google.com/gsi/client', r => r.fulfill({ contentType: 'text/javascript', body: `window.google = { accounts: { oauth2: { initTokenClient: (o) => ({ requestAccessToken: () => setTimeout(() => o.callback({ access_token: 'tok', expires_in: 3600, scope: 'x' }), 5) }), hasGrantedAllScopes: () => true, revoke: (t, cb) => cb && cb() } } };` }));
       await page.route('https://www.googleapis.com/oauth2/v3/userinfo', r => r.fulfill({ contentType: 'application/json', body: JSON.stringify({ email: 'remi.test@gmail.com' }) }));
-      await page.route('https://gmail.googleapis.com/**', r => { verzonden = { url: r.request().url(), body: r.request().postData(), auth: r.request().headers().authorization }; r.fulfill({ contentType: 'application/json', body: JSON.stringify({ id: 'msg123', threadId: 't1' }) }); });
+      let aantalVerzonden = 0, dialogen = 0;
+      await page.route('https://gmail.googleapis.com/**', async r => { aantalVerzonden++; verzonden = { url: r.request().url(), body: r.request().postData(), auth: r.request().headers().authorization }; await new Promise(z => setTimeout(z, 300)); r.fulfill({ contentType: 'application/json', body: JSON.stringify({ id: 'msg123', threadId: 't1' }) }); });
       await page.evaluate(() => localStorage.setItem('remi-gmail-client-id', '1234-test.apps.googleusercontent.com'));
       await page.goto(`${base}#/communicatie?tab=mails`, { waitUntil: 'networkidle' });
       await page.fill('[data-fk="msg-msg-contract-mail-naar"]', 'werkgever@voorbeeld.be');
@@ -213,10 +214,18 @@ try {
       await page.waitForSelector('[data-actie="verstuur-nu"]:not([disabled])', { timeout: 3000 }).catch(() => {});
       const van = await page.textContent('.mail-overzicht').catch(() => '');
       check('bevestiging toont afzender en bijlage', /remi\.test@gmail\.com/.test(van) && /Volmacht Remi/.test(van), van.slice(0, 160));
-      await page.click('[data-actie="verstuur-nu"]');
-      await page.waitForTimeout(400);
+      // De mail werd eerder in deze test al als verstuurd gemarkeerd: het paneel moet dat zeggen en om bevestiging vragen.
+      const alVerstuurd = await page.textContent('.peek').catch(() => '');
+      check('waarschuwing bij een mail die al verstuurd is', /werd al verstuurd/.test(alVerstuurd) && /Toch opnieuw versturen/.test(alVerstuurd), alVerstuurd.slice(0, 160));
+      const opDialoog = d => { dialogen++; d.accept(); };
+      page.on('dialog', opDialoog);
+      // Dubbelklik: twee klikken in dezelfde tik mogen maar één mail versturen.
+      await page.evaluate(() => { const b = document.querySelector('[data-actie="verstuur-nu"]'); b.click(); b.click(); });
+      await page.waitForTimeout(900);
+      page.off('dialog', opDialoog);
+      check('dubbelklik verstuurt maar één keer', aantalVerzonden === 1 && dialogen === 1, `verzonden ${aantalVerzonden}, vragen ${dialogen}`);
       const tekstDeel = verzonden ? Buffer.from((verzonden.body.split('Content-Transfer-Encoding: base64\r\n\r\n')[1] || '').split('\r\n--')[0].replace(/\r\n/g, ''), 'base64').toString('utf8') : '';
-      check('Gmail kreeg een correcte MIME-mail', !!verzonden && /uploadType=media/.test(verzonden.url) && verzonden.auth === 'Bearer tok' && /^To: werkgever@voorbeeld\.be\r\n/m.test(verzonden.body) && /Subject: /.test(verzonden.body) && /Content-Type: application\/pdf;\r\n name="=\?UTF-8\?B\?/.test(verzonden.body) && Buffer.from((verzonden.body.match(/filename="=\?UTF-8\?B\?([^?]+)\?="/) || [])[1] || '', 'base64').toString('utf8') === 'Volmacht Remi é.pdf' && /Mag ik een kopie/.test(tekstDeel), verzonden ? verzonden.body.slice(0, 200) : 'niets verstuurd');
+      check('Gmail kreeg een correcte MIME-mail', !!verzonden && /uploadType=media/.test(verzonden.url) && verzonden.auth === 'Bearer tok' && /^To: werkgever@voorbeeld\.be\r\n/m.test(verzonden.body) && /Subject: /.test(verzonden.body) && /Content-Type: application\/pdf;\r\n name="=\?UTF-8\?B\?/.test(verzonden.body) && /Content-Disposition: attachment;\r\n filename\*=UTF-8''Volmacht%20Remi%20%C3%A9\.pdf\r\n/.test(verzonden.body) && Buffer.from((verzonden.body.match(/name="=\?UTF-8\?B\?([^?]+)\?="/) || [])[1] || '', 'base64').toString('utf8') === 'Volmacht Remi é.pdf' && /^Message-ID: <remi\.[^@>]+@nieuwe-start\.app>\r\n/m.test(verzonden.body) && /Mag ik een kopie/.test(tekstDeel), verzonden ? verzonden.body.slice(0, 200) : 'niets verstuurd');
       const naVersturen = await page.textContent('.content');
       check('mail gemarkeerd als verstuurd vanaf Gmail-adres', /vanaf remi\.test@gmail\.com/.test(naVersturen), '');
       await page.unroute('https://accounts.google.com/gsi/client'); await page.unroute('https://www.googleapis.com/oauth2/v3/userinfo'); await page.unroute('https://gmail.googleapis.com/**');

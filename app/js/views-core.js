@@ -339,7 +339,7 @@ export function instellingenPeek() {
     h('p', { class: 'small' }, `Alles wat je invult staat in deze browser (${Math.round(localSize() / 1024)} kB). Om te delen tussen Giulia en Remi: exporteer hier en importeer op het andere toestel, of geef het bestand aan Claude om in data/ vast te leggen.`),
     h('div', { class: 'form__actions' },
       h('button', { class: 'btn btn--primary', onClick: () => download(`remi-app-${todayIso()}.json`, exportJson()) }, icon('download', 14), 'Exporteer gegevens'),
-      h('label', { class: 'btn btn--ghost' }, icon('upload', 14), 'Importeer bestand', h('input', { type: 'file', accept: 'application/json', style: 'display:none', onChange: async e => { const f = e.target.files[0]; if (!f) return; try { importJson(await f.text()); toast('Geïmporteerd'); } catch { toast('Bestand niet herkend'); } } })),
+      h('label', { class: 'btn btn--ghost bestand-knop' }, icon('upload', 14), 'Importeer bestand', h('input', { type: 'file', accept: 'application/json', class: 'visueel-verborgen', 'aria-label': 'Importeer bestand', onChange: async e => { const f = e.target.files[0]; if (!f) return; try { importJson(await f.text()); toast('Geïmporteerd'); } catch { toast('Bestand niet herkend'); } } })),
       h('button', { class: 'btn btn--ghost', onClick: () => copyText(exportJson()) }, icon('copy', 14), 'Kopieer als JSON')),
     h('hr', { class: 'rule' }),
     h('p', { class: 'small' }, 'Mails met bijlagen rechtstreeks versturen vanaf het Gmail-adres van Remi.'),

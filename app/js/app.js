@@ -170,12 +170,19 @@ document.getElementById('brandWho').addEventListener('click', kiesGebruiker);
 // Peek
 const peek = document.getElementById('peek'), peekBody = document.getElementById('peekBody'), peekTitle = document.getElementById('peekTitle'), peekBackdrop = document.getElementById('peekBackdrop');
 let peekRerender = null;
+// Elk geopend paneel krijgt een volgnummer, zodat werk dat later klaar is (zoals een verzonden mail)
+// alleen het eigen paneel sluit en niet een ander paneel waarin je intussen typt.
+let peekGen = 0;
 export function openPeek(title, build) {
   peekRerender = () => { const f = captureFocus(); peekTitle.textContent = typeof title === 'function' ? title() : title; peekBody.replaceChildren(build()); restoreFocus(f); };
   peekRerender();
   peek.classList.add('peek--open'); peekBackdrop.classList.add('peek__backdrop--open'); lock();
+  return ++peekGen;
 }
-export function closePeek() { peek.classList.remove('peek--open'); peekBackdrop.classList.remove('peek__backdrop--open'); peekRerender = null; lock(); }
+export function closePeek() { peek.classList.remove('peek--open'); peekBackdrop.classList.remove('peek__backdrop--open'); peekRerender = null; peekGen++; lock(); }
+export const peekActief = id => id === peekGen && peek.classList.contains('peek--open');
+// Opnieuw tekenen zonder iets te bewaren, bijvoorbeeld als een verzending start of stopt.
+export function vernieuw() { render(); if (peekRerender) peekRerender(); }
 document.getElementById('peekClose').addEventListener('click', closePeek);
 peekBackdrop.addEventListener('click', closePeek);
 window.addEventListener('keydown', e => { if (e.key === 'Escape') { closePeek(); setNav(false); } });

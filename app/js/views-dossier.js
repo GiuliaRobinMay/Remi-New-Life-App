@@ -35,18 +35,19 @@ function bijlagenBlok(d) {
       const url = URL.createObjectURL(blob);
       const beeld = (b.type || blob.type || '').startsWith('image/') ? h('img', { src: url, alt: b.naam }) : h('span', { class: 'bijlage__pdf' }, icon('doc', 20));
       vak.replaceChildren(h('a', { href: url, target: '_blank', rel: 'noopener' }, beeld), h('figcaption', { class: 'small' }, b.naam, ' ',
-        h('button', { class: 'btn btn--quiet btn--sm', type: 'button', onClick: async () => { if (!confirm(`${b.naam} verwijderen?`)) return; await wisBijlage(b.id).catch(() => {}); upsert('dossier', { id: d.id, bijlagen: (get('dossier', d.id).bijlagen || []).filter(x => x.id !== b.id) }); } }, 'Verwijderen')));
+        h('button', { class: 'btn btn--quiet btn--sm', type: 'button', 'aria-label': `${b.naam} verwijderen`, onClick: async () => { if (!confirm(`${b.naam} verwijderen?`)) return; await wisBijlage(b.id).catch(() => {}); upsert('dossier', { id: d.id, bijlagen: (get('dossier', d.id).bijlagen || []).filter(x => x.id !== b.id) }); } }, 'Verwijderen')));
     }).catch(() => vak.replaceChildren(h('span', { class: 'small muted' }, 'Bijlage kon niet geladen worden.')));
   }
-  const kies = h('input', { type: 'file', accept: 'image/*,application/pdf', multiple: true, style: 'display:none', onChange: async e => {
+  const kies = h('input', { type: 'file', accept: 'image/*,application/pdf', multiple: true, class: 'visueel-verborgen', 'aria-label': 'Foto of pdf toevoegen', onChange: async e => {
     const nieuw = [];
     for (const f of e.target.files) { const id = `${d.id}/${uid()}`; try { await bewaarBijlage(id, f); nieuw.push({ id, naam: f.name, type: f.type }); } catch { toast(`${f.name} kon niet bewaard worden`); } }
+    e.target.value = '';
     if (nieuw.length) { upsert('dossier', { id: d.id, bijlagen: [...(get('dossier', d.id).bijlagen || []), ...nieuw] }); toast(nieuw.length === 1 ? 'Foto toegevoegd' : `${nieuw.length} bestanden toegevoegd`); }
   } });
   return h('section', { class: 'stack', style: 'gap:8px' },
     h('p', { class: 'eyebrow' }, 'Foto\'s en bestanden'),
     (d.bijlagen || []).length ? lijst : h('p', { class: 'small muted' }, 'Nog geen foto. Neem een foto van elke pagina.'),
-    h('label', { class: 'btn btn--ghost btn--sm', style: 'align-self:flex-start' }, icon('upload', 12), 'Foto of pdf toevoegen', kies));
+    h('label', { class: 'btn btn--ghost btn--sm bestand-knop', style: 'align-self:flex-start' }, icon('upload', 12), 'Foto of pdf toevoegen', kies));
 }
 
 export function dossierPeek(id) {

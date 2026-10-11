@@ -6,6 +6,7 @@ export function h(tag, attrs, ...children) {
     if (k === 'class') el.className = v;
     else if (k === 'html') el.innerHTML = v;
     else if (k.startsWith('on') && typeof v === 'function') el.addEventListener(k.slice(2).toLowerCase(), v);
+    else if ((k === 'href' || k === 'src') && /^(javascript|vbscript|data:text\/html)/i.test(String(v).replace(/[\s\u0000-\u001f]/g, ''))) continue; // nooit uitvoerbare links uit gegevens
     else if (k === 'value') el.value = v;
     else if (k === 'checked') el.checked = !!v;
     else if (k === 'dataset') Object.assign(el.dataset, v);
@@ -96,7 +97,8 @@ export function md(text) {
 export function toast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg; t.classList.add('toast--show');
-  clearTimeout(t._tm); t._tm = setTimeout(() => t.classList.remove('toast--show'), 1800);
+  // Lange meldingen blijven langer staan, zodat ze te lezen zijn.
+  clearTimeout(t._tm); t._tm = setTimeout(() => t.classList.remove('toast--show'), Math.min(9000, Math.max(2200, String(msg).length * 55)));
 }
 export async function copyText(text) {
   try { await navigator.clipboard.writeText(text); toast('Gekopieerd'); return; } catch { /* valt terug hieronder */ }

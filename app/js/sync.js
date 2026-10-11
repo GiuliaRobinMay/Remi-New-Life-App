@@ -79,7 +79,10 @@ export async function syncNu() {
           const [c, id] = uitSleutel(k);
           const rec = store.lokaalRecord(c, id);
           if (!rec) { delete st.wacht[k]; continue; }
-          const bijgewerkt = rec.bijgewerkt || st.wacht[k];
+          let bijgewerkt = rec.bijgewerkt || st.wacht[k];
+          // Een datum in de toekomst zou in de database elke latere bewerking blokkeren: terug naar nu.
+          const nu = new Date().toISOString();
+          if (bijgewerkt > nu) { bijgewerkt = nu; store.zetStempel(c, id, nu); st.wacht[k] = nu; }
           stempels[k] = st.wacht[k];
           rijen.push({ collectie: c, id, data: { ...rec, bijgewerkt }, bijgewerkt, verwijderd: !!rec.verwijderd });
         }

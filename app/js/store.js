@@ -16,6 +16,8 @@ let wijzigingHaak = null, wisHaak = null;
 export function zetHaken({ wijziging, wis }) { wijzigingHaak = wijziging || null; wisHaak = wis || null; }
 const meldWijziging = (name, rec) => { try { wijzigingHaak?.(name, rec); } catch (e) { console.warn(e); } };
 export const collecties = () => MERGED.slice();
+// Een datum in de toekomst (bijvoorbeeld uit een import) terugzetten naar nu, zodat ze latere bewerkingen niet blokkeert.
+export function zetStempel(name, id, stempel) { const r = lokaalRecord(name, id); if (r) { r.bijgewerkt = stempel; persist(); } }
 export function lokaalRecord(name, id) { return (Array.isArray(local[name]) ? local[name] : []).find(x => x.id === id) || null; }
 export function lokaleRecords() { const out = []; for (const k of MERGED) for (const r of (Array.isArray(local[k]) ? local[k] : [])) if (r && r.id) out.push([k, r]); return out; }
 // Records van het andere toestel toepassen. De recentst bewerkte versie wint; een gelijke versie verandert niets.

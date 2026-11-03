@@ -20,21 +20,29 @@ export const collecties = () => MERGED.slice();
 export function zetStempel(name, id, stempel) { const r = lokaalRecord(name, id); if (r) { r.bijgewerkt = stempel; persist(); } }
 export function lokaalRecord(name, id) { return (Array.isArray(local[name]) ? local[name] : []).find(x => x.id === id) || null; }
 export function lokaleRecords() { const out = []; for (const k of MERGED) for (const r of (Array.isArray(local[k]) ? local[k] : [])) if (r && r.id) out.push([k, r]); return out; }
-// Records van het andere toestel toepassen. De recentst bewerkte versie wint; een gelijke versie verandert niets.
+// Records van het andere toestel toepassen, veld per veld: de recentste versie wint per veld, ontbrekende
+// velden komen erbij. Een grafsteentje (verwijderd) vervangt alles.
+const zelfdeVelden = (a, b) => { const x = Object.keys(a).sort(), y = Object.keys(b).sort(); return x.length === y.length && x.every((k, i) => k === y[i]); };
 export function pasToe(rijen, { stil = false } = {}) {
   let veranderd = false;
   for (const r of rijen || []) {
     if (!r || !MERGED.includes(r.collectie) || !r.id || !r.data || typeof r.data !== 'object') continue;
-    const rec = { ...r.data, id: r.id, bijgewerkt: r.data.bijgewerkt || r.bijgewerkt };
-    if (r.verwijderd) rec.verwijderd = true;
+    const stempel = r.data.bijgewerkt || r.bijgewerkt || '';
+    const rec = r.verwijderd ? { id: r.id, verwijderd: true, bijgewerkt: stempel } : { ...r.data, id: r.id, bijgewerkt: stempel };
+    if (!r.verwijderd) delete rec.verwijderd;
     const arr = Array.isArray(local[r.collectie]) ? local[r.collectie] : (local[r.collectie] = []);
     const i = arr.findIndex(x => x.id === r.id);
-    if (i >= 0) {
-      if ((arr[i].bijgewerkt || '') > (rec.bijgewerkt || '')) continue;
-      if (JSON.stringify(arr[i]) === JSON.stringify(rec)) continue;
-      arr[i] = rec;
-    } else arr.push(rec);
-    veranderd = true;
+    if (i < 0) { arr.push(rec); veranderd = true; continue; }
+    const lok = arr[i], lt = lok.bijgewerkt || '';
+    let nieuw;
+    if (stempel > lt) nieuw = rec.verwijderd || lok.verwijderd ? rec : { ...lok, ...rec };
+    else if (stempel === lt) { if (rec.verwijderd || lok.verwijderd) continue; nieuw = { ...rec, ...lok }; }
+    else { // ouder dan wat hier staat: alleen ontbrekende velden aanvullen
+      if (rec.verwijderd || lok.verwijderd) continue;
+      nieuw = { ...rec, ...lok };
+    }
+    if (zelfdeVelden(nieuw, lok) && Object.keys(nieuw).every(k => JSON.stringify(nieuw[k]) === JSON.stringify(lok[k]))) continue;
+    arr[i] = nieuw; veranderd = true;
   }
   if (veranderd) { persist(); if (!stil) emit(); }
   return veranderd;
@@ -53,14 +61,34 @@ export function upsert(name, item, { silent = false } = {}) {
   if (!MERGED.includes(name)) throw new Error('Onbekende collectie ' + name);
   const arr = Array.isArray(local[name]) ? local[name] : [];
   const i = arr.findIndex(x => x.id === item.id);
-  const stamped = { ...item, bijgewerkt: new Date().toISOString() };
-  if (i >= 0) arr[i] = { ...arr[i], ...stamped }; else arr.push(stamped);
+  // Elke bewerking is nieuwer dan de versie die dit toestel kent, ook als de klok van dit toestel achterloopt.
+  const vorige = i >= 0 ? Date.parse(arr[i].bijgewerkt || '') : NaN;
+  const stempel = new Date(Math.max(Date.now(), Number.isFinite(vorige) ? vorige + 1 : 0)).toISOString();
+  const stamped = { ...item, bijgewerkt: stempel };
+  // Een verwijderd record dat opnieuw bewerkt wordt, begint opnieuw (zonder oude inhoud of verwijderd-vlag).
+  if (i >= 0 && arr[i].verwijderd && !item.verwijderd) arr[i] = { id: item.id, ...stamped };
+  else if (i >= 0) arr[i] = { ...arr[i], ...stamped }; else arr.push(stamped);
   local[name] = arr; persist();
   meldWijziging(name, i >= 0 ? arr[i] : stamped);
   if (!silent) emit();
   return get(name, item.id);
 }
-export function remove(name, id) { upsert(name, { id, verwijderd: true }); }
+// Verwijderen: het record wordt een leeg grafsteentje (alleen id, datum en de vlag), zodat de inhoud
+// ook uit de database en van het andere toestel verdwijnt.
+export function remove(name, id) {
+  if (!MERGED.includes(name)) throw new Error('Onbekende collectie ' + name);
+  const arr = Array.isArray(local[name]) ? local[name] : (local[name] = []);
+  const i = arr.findIndex(x => x.id === id);
+  const vorige = i >= 0 ? Date.parse(arr[i].bijgewerkt || '') : NaN;
+  const stempel = new Date(Math.max(Date.now(), Number.isFinite(vorige) ? vorige + 1 : 0)).toISOString();
+  const graf = { id, verwijderd: true, bijgewerkt: stempel };
+  if (i >= 0) arr[i] = graf; else arr.push(graf);
+  persist();
+  meldWijziging(name, graf);
+  emit();
+}
+// Bij afmelden: de kopie op dit toestel wissen. De database blijft onaangeroerd.
+export function wisAlles() { local = {}; try { localStorage.removeItem(KEY); } catch { /* geen opslag */ } emit(); }
 export const ref = {
   profiel: seed.profiel, rechten: seed.rechten, programma: seed.programma, jobbronnen: seed.jobbronnen,
   cvMaster: seed.cvMaster, maandplan: seed.maandplan || [], welzijn: seed.welzijn || null, sjablonen: seed.sjablonen || {}, gegenereerd: seed.gegenereerd || [], gebouwdOp: seed.gebouwdOp, vragenlijst: seed.vragenlijst,

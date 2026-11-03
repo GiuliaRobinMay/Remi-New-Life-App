@@ -25,6 +25,13 @@ export function dossierTab() {
       : h('div', { class: 'card empty' }, 'Nog geen documenten. Voeg er een toe met de knop hierboven, of importeer een bestand via Instellingen.'));
 }
 
+// Alleen foto's en pdf's openen in de browser. Al de rest wordt gedownload, zodat een bestand nooit als
+// webpagina binnen de app kan draaien.
+const TOONBAAR = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'application/pdf'];
+// Een bijlage die ook in een mail zit, blijft bewaard als ze uit het dossier verdwijnt.
+const inMail = id => all('berichten').some(m => (m.bijlagen || []).some(x => x.id === id));
+async function wisAlsVrij(id) { if (!inMail(id)) await wisBijlage(id).catch(() => {}); }
+
 function bijlagenBlok(d) {
   const lijst = h('div', { class: 'bijlagen' });
   for (const b of d.bijlagen || []) {
@@ -32,10 +39,13 @@ function bijlagenBlok(d) {
     lijst.append(vak);
     leesBijlage(b.id).then(blob => {
       if (!blob) { vak.replaceChildren(h('span', { class: 'small muted' }, `${b.naam}: kon niet geladen worden. Is er verbinding?`)); return; }
-      const url = URL.createObjectURL(blob);
-      const beeld = (b.type || blob.type || '').startsWith('image/') ? h('img', { src: url, alt: b.naam }) : h('span', { class: 'bijlage__pdf' }, icon('doc', 20));
-      vak.replaceChildren(h('a', { href: url, target: '_blank', rel: 'noopener' }, beeld), h('figcaption', { class: 'small' }, b.naam, ' ',
-        h('button', { class: 'btn btn--quiet btn--sm', type: 'button', 'aria-label': `${b.naam} verwijderen`, onClick: async () => { if (!confirm(`${b.naam} verwijderen?`)) return; await wisBijlage(b.id).catch(() => {}); upsert('dossier', { id: d.id, bijlagen: (get('dossier', d.id).bijlagen || []).filter(x => x.id !== b.id) }); } }, 'Verwijderen')));
+      const type = String(blob.type || b.type || '').toLowerCase().split(';')[0].trim();
+      const toonbaar = TOONBAAR.includes(type);
+      const url = URL.createObjectURL(new Blob([blob], { type: toonbaar ? type : 'application/octet-stream' }));
+      const beeld = toonbaar && type.startsWith('image/') ? h('img', { src: url, alt: b.naam }) : h('span', { class: 'bijlage__pdf' }, icon('doc', 20));
+      const link = toonbaar ? h('a', { href: url, target: '_blank', rel: 'noopener' }, beeld) : h('a', { href: url, download: b.naam || 'bijlage' }, beeld);
+      vak.replaceChildren(link, h('figcaption', { class: 'small' }, b.naam, ' ',
+        h('button', { class: 'btn btn--quiet btn--sm', type: 'button', 'aria-label': `${b.naam} verwijderen`, onClick: async () => { if (!confirm(`${b.naam} verwijderen?`)) return; upsert('dossier', { id: d.id, bijlagen: (get('dossier', d.id).bijlagen || []).filter(x => x.id !== b.id) }); await wisAlsVrij(b.id); } }, 'Verwijderen')));
     }).catch(() => vak.replaceChildren(h('span', { class: 'small muted' }, 'Bijlage kon niet geladen worden.')));
   }
   const kies = h('input', { type: 'file', accept: 'image/*,application/pdf', multiple: true, class: 'visueel-verborgen', 'aria-label': 'Foto of pdf toevoegen', onChange: async e => {
@@ -82,8 +92,9 @@ function dossierForm(init = {}) {
       h('label', null, 'Notities', area('notities', 80)),
       h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--primary', type: 'submit' }, 'Bewaren'), d.id && h('button', { class: 'btn btn--danger', type: 'button', onClick: async () => {
         if (!confirm('Dit document en zijn foto\'s verwijderen?')) return;
-        for (const b of get('dossier', d.id)?.bijlagen || []) await wisBijlage(b.id).catch(() => {});
+        const weg = get('dossier', d.id)?.bijlagen || [];
         remove('dossier', d.id); closePeek();
+        for (const b of weg) await wisAlsVrij(b.id);
       } }, 'Verwijderen')));
   });
 }

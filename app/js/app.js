@@ -69,7 +69,8 @@ function renderNav(active) {
 function voet() {
   const s = syncStatus(), el = document.getElementById('navFoot');
   const uur = s.laatste ? new Date(s.laatste).toLocaleTimeString('nl-BE', { hour: '2-digit', minute: '2-digit' }) : '';
-  const wacht = s.wachtend ? ` ${s.wachtend} ${s.wachtend === 1 ? 'wijziging wacht' : 'wijzigingen wachten'}.` : '';
+  const wacht = (s.wachtend ? ` ${s.wachtend} ${s.wachtend === 1 ? 'wijziging wacht' : 'wijzigingen wachten'}.` : '')
+    + (s.mislukt ? ` ${s.mislukt} ${s.mislukt === 1 ? 'wijziging kon' : 'wijzigingen konden'} niet bewaard worden: tik hier.` : '');
   const tekst = {
     lokaal: `Gegevens op dit toestel. Seed van ${ref.gebouwdOp ? ref.gebouwdOp.slice(0, 10) : ''}.`,
     laden: 'Verbinden met de database…',
@@ -79,6 +80,8 @@ function voet() {
     fout: `Bijwerken met de database lukte niet.${wacht} Tik hier.`,
     afgemeld: 'Niet aangemeld.',
     'geen-toegang': 'Geen toegang.',
+    controle: 'Toegang nakijken…',
+    ophalen: 'Alles ophalen uit de database…',
   }[s.modus] || '';
   el.replaceChildren(h('button', { type: 'button', class: 'sidebar__sync sidebar__sync--' + s.modus, title: s.fout || 'Instellingen en synchronisatie', onClick: () => views.instellingenPeek() }, tekst));
 }
@@ -135,12 +138,12 @@ function restoreFocus(f) {
   try { if (f.start != null) el.setSelectionRange(f.start, f.end); } catch { /* niet elk veld kent een selectie */ }
 }
 
-// Met een centrale database: eerst aanmelden. Zolang dat niet gebeurd is, toont de app alleen het aanmeldscherm.
-const POORT = ['laden', 'afgemeld', 'geen-toegang'];
+// Met een centrale database: eerst aanmelden. Zolang de toegang niet nagekeken is (of op een nieuw toestel
+// nog niet alles opgehaald is), toont de app alleen het aanmeldscherm, nooit gegevens.
 function render() {
   const r = route();
   const focus = captureFocus();
-  const poort = POORT.includes(syncStatus().modus);
+  const poort = !syncStatus().open;
   shell.classList.toggle('shell--poort', poort);
   if (poort) {
     if (peek.classList.contains('peek--open')) closePeek();
@@ -204,13 +207,13 @@ export function kiesGebruiker() {
 document.getElementById('brandWho').addEventListener('click', () => (syncStatus().wie ? views.instellingenPeek() : kiesGebruiker()));
 
 // Wie aangemeld is bij de database, bepaalt wie dit toestel gebruikt (Remi of Giulia).
-let vorigeModus = syncStatus().modus;
+let vorigeModus = syncStatus().modus, vorigOpen = syncStatus().open;
 opStatus(s => {
   if (s.wie && NAMEN[s.wie] && gebruiker() !== s.wie) { try { localStorage.setItem(WIE_KEY, s.wie); } catch { /* geen opslag */ } }
   toonGebruiker();
-  // Het aanmeldscherm hertekenen bij elke wissel van of naar een aanmeldtoestand; anders alleen de voetregel.
-  const herteken = s.modus !== vorigeModus && (POORT.includes(s.modus) || POORT.includes(vorigeModus));
-  vorigeModus = s.modus;
+  // Hertekenen als de app open- of dichtgaat, of als het aanmeldscherm een andere toestand moet tonen; anders alleen de voetregel.
+  const herteken = s.open !== vorigOpen || (!s.open && s.modus !== vorigeModus);
+  vorigeModus = s.modus; vorigOpen = s.open;
   if (herteken) render(); else voet();
   if (peekRerender && peek.classList.contains('peek--open') && peekTitle.textContent === 'Instellingen en synchronisatie') peekRerender();
 });

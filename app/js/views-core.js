@@ -1,9 +1,9 @@
 // Views: overzicht, stappenplan, planning, rechten, profiel, documenten, instellingen.
 import { h, icon, badge, fit, fmtDate, todayIso, addDays, daysUntil, uid, md, copyText, download, toast, isoLocal } from './ui.js';
 import { all, get, upsert, remove, ref, exportJson, importJson, resetLocal, localSize } from './store.js';
-import { openPeek, closePeek, go, gebruiker, kiesGebruiker, zetGebruiker, NAMEN } from './app.js';
+import { openPeek, closePeek, go, gebruiker, kiesGebruiker, zetGebruiker, NAMEN, vernieuw } from './app.js';
 import { dossierTab } from './views-dossier.js';
-import { syncStatus, syncNu, afmelden } from './sync.js';
+import { syncStatus, syncNu, afmelden, nogNietVerstuurd, codeMaken, mislukteLijst, mislukteOpnieuw } from './sync.js';
 
 const SPOORKLEUR = { erfgoed: 'orange', cultuur: 'violet', onderwijs: 'green', overheid: 'grey', sociaal: 'red', ecologisch: 'green', geschiedenis: 'orange', reserve: 'grey' };
 // Wie doet het: Remi, Giulia of samen. Afgeleid uit 'wie' als 'voor' ontbreekt (eigen stappen).
@@ -337,7 +337,45 @@ export function documenten(r) {
 const MODUSTEKST = {
   actief: 'Alles is bijgewerkt met de database.', bezig: 'Bezig met bijwerken…', offline: 'Geen verbinding. Wijzigingen gaan door zodra er weer internet is.',
   fout: 'Bijwerken met de database lukte niet. De app probeert het vanzelf opnieuw.', laden: 'Verbinden…', afgemeld: 'Niet aangemeld.', 'geen-toegang': 'Dit adres heeft geen toegang.',
+  controle: 'Toegang nakijken…', ophalen: 'Alles ophalen uit de database…',
 };
+const APP_URL = 'https://remi-new-life-app.vercel.app';
+let nieuweCode = null; // { wie, code, verloopt }: blijft zichtbaar tot het paneel sluit of een nieuwe code gemaakt wordt
+let codeBezig = '';
+async function maakCode(wie, herteken) {
+  if (codeBezig) return;
+  codeBezig = wie; herteken();
+  try { const r = await codeMaken(wie); nieuweCode = { wie, ...r }; }
+  catch (e) { toast(e.offline ? 'Geen verbinding. Probeer opnieuw.' : `De code kon niet gemaakt worden. ${e.message}`); }
+  finally { codeBezig = ''; herteken(); }
+}
+function codeBericht(c) {
+  const tot = new Date(c.verloopt).toLocaleString('nl-BE', { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' });
+  return `Hallo ${NAMEN[c.wie]},\n\nZo maak je je account voor de app:\n1. Open ${APP_URL}\n2. Kies "Gebruik een toegangscode".\n3. Vul je e-mailadres in, deze code en een wachtwoord dat je zelf kiest.\n\nToegangscode: ${c.code}\n\nDe code werkt één keer en is geldig tot ${tot}. Daarna meld je altijd aan met je e-mailadres en wachtwoord.`;
+}
+function toegangBlok(herteken) {
+  const knop = wie => h('button', { class: 'btn btn--ghost btn--sm', disabled: !!codeBezig, 'data-actie': 'code-' + wie, onClick: () => maakCode(wie, herteken) }, codeBezig === wie ? 'Even geduld…' : `Code voor ${NAMEN[wie]}`);
+  return h('div', { class: 'stack', style: 'gap:8px' },
+    h('p', { class: 'eyebrow', style: 'margin:0' }, 'Toegang geven'),
+    h('p', { class: 'small muted' }, 'Maak een toegangscode voor wie een account moet maken, of voor wie het wachtwoord vergeten is. Een code werkt één keer en blijft 7 dagen geldig.'),
+    h('div', { class: 'form__actions' }, knop('remi'), knop('giulia')),
+    nieuweCode && h('div', { class: 'card card--pad', role: 'status', 'data-nieuwe-code': nieuweCode.code },
+      h('p', { class: 'small', style: 'margin:0 0 6px' }, `Toegangscode voor ${NAMEN[nieuweCode.wie]}:`),
+      h('p', { class: 'aanmeld-code', style: 'margin:0 0 8px;font-weight:600' }, nieuweCode.code),
+      h('div', { class: 'form__actions' },
+        h('button', { class: 'btn btn--primary btn--sm', onClick: () => copyText(codeBericht(nieuweCode)) }, icon('copy', 12), 'Kopieer bericht met uitleg'),
+        navigator.share && h('button', { class: 'btn btn--ghost btn--sm', onClick: () => navigator.share({ text: codeBericht(nieuweCode) }).catch(() => {}) }, 'Delen'))));
+}
+async function veiligAfmelden() {
+  const open = await nogNietVerstuurd();
+  const vraag = open
+    ? `${open} ${open === 1 ? 'wijziging is' : 'wijzigingen zijn'} nog niet naar de database gestuurd (geen verbinding?). Bij afmelden gaan die verloren. Toch afmelden?`
+    : 'Afmelden op dit toestel? De gegevens worden van dit toestel gewist. Ze blijven bewaard in de database; na opnieuw aanmelden staan ze er weer.';
+  if (!confirm(vraag)) return;
+  nieuweCode = null;
+  closePeek();
+  await afmelden();
+}
 function databaseBlok() {
   const s = syncStatus();
   if (s.modus === 'lokaal') return h('p', { class: 'small' }, `Alles wat je invult staat in deze browser (${Math.round(localSize() / 1024)} kB). Er is nog geen centrale database ingesteld.`);
@@ -347,15 +385,21 @@ function databaseBlok() {
     h('p', { class: 'small' }, s.email ? ['Aangemeld als ', h('strong', null, s.email), s.wie ? ` (${NAMEN[s.wie]})` : '', '.'] : 'Niet aangemeld.'),
     h('p', { class: 'small', role: 'status', 'data-sync-status': s.modus }, MODUSTEKST[s.modus] || '', uur ? ` Laatst bijgewerkt: ${uur}.` : '', s.wachtend ? ` Nog ${s.wachtend} ${s.wachtend === 1 ? 'wijziging' : 'wijzigingen'} door te sturen.` : ''),
     s.fout && s.modus !== 'actief' && h('p', { class: 'small muted' }, s.fout),
+    s.mislukt > 0 && h('div', { class: 'stack', style: 'gap:6px', role: 'alert' },
+      h('p', { class: 'small mail-let', style: 'margin:0' }, `${s.mislukt} ${s.mislukt === 1 ? 'wijziging kon' : 'wijzigingen konden'} niet in de database bewaard worden:`),
+      h('ul', { class: 'small muted', style: 'margin:0;padding-left:18px' }, mislukteLijst().slice(0, 8).map(m => h('li', null, `${m.wat}: ${m.reden}`))),
+      h('div', null, h('button', { class: 'btn btn--ghost btn--sm', onClick: () => { mislukteOpnieuw(); toast('Opnieuw geprobeerd'); } }, 'Opnieuw proberen'))),
     h('p', { class: 'small muted' }, 'Giulia en Remi zien dezelfde gegevens op elk toestel: mails met bijlagen, planning, documenten, tests en het dagboek.'),
     h('div', { class: 'form__actions' },
       h('button', { class: 'btn btn--primary btn--sm', 'data-actie': 'sync-nu', onClick: () => syncNu().then(() => toast(syncStatus().modus === 'actief' ? 'Bijgewerkt' : 'Bijwerken lukte nog niet')) }, 'Nu bijwerken'),
-      s.email && h('button', { class: 'btn btn--quiet btn--sm', onClick: () => { if (confirm('Afmelden op dit toestel?')) afmelden(); } }, 'Afmelden')));
+      s.email && h('button', { class: 'btn btn--quiet btn--sm', 'data-actie': 'afmelden', onClick: veiligAfmelden }, 'Afmelden')));
 }
 
 export function instellingenPeek() {
+  nieuweCode = null;
   openPeek('Instellingen en synchronisatie', () => h('div', { class: 'stack' },
     databaseBlok(),
+    syncStatus().wie && [h('hr', { class: 'rule' }), toegangBlok(vernieuw)],
     h('hr', { class: 'rule' }),
     h('p', { class: 'small' }, syncStatus().modus === 'lokaal' ? 'Reservekopie: exporteer alles naar een bestand, of importeer een eerder bestand.' : 'Reservekopie: exporteer alles naar een bestand. Een geïmporteerd bestand gaat ook naar de database.'),
     h('div', { class: 'form__actions' },

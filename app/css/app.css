@@ -328,7 +328,9 @@ li.is-klaar .agenda__naam, li.is-klaar .agenda__naam a { text-decoration: line-t
 .aanmelden__kaart { width: 100%; max-width: 440px; }
 .aanmelden__titel { font-size: 24px; margin: 0 0 10px; }
 .aanmelden .form { margin-top: 10px; }
-.aanmeld-code { font-size: 22px; letter-spacing: .3em; max-width: 220px; }
+.aanmeld-code { font-size: 18px; letter-spacing: .12em; text-transform: uppercase; max-width: 260px; font-variant-numeric: tabular-nums; }
+.linkknop { background: none; border: 0; padding: 0; font: inherit; color: var(--brand-violet); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+.linkknop:hover { color: var(--brand-violet-deep); }
 .sidebar__sync { all: unset; cursor: pointer; display: block; width: 100%; font: inherit; color: inherit; text-align: left; }
 .sidebar__sync:focus-visible { outline: 2px solid var(--brand-violet); outline-offset: 2px; }
 .sidebar__sync--fout, .sidebar__sync--offline { color: var(--brand-red-deep); }

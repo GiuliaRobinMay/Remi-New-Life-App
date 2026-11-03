@@ -19,10 +19,21 @@ function db() {
 async function tx(mode, fn) {
   const d = await db();
   return new Promise((res, rej) => {
-    const t = d.transaction(STORE, mode);
+    let t;
+    // Een verbroken verbinding (bijvoorbeeld op iPhone na de achtergrond): de volgende keer opnieuw openen.
+    try { t = d.transaction(STORE, mode); } catch (e) { dbBelofte = null; rej(e); return; }
     const req = fn(t.objectStore(STORE));
     t.oncomplete = () => res(req?.result);
-    t.onerror = () => rej(t.error);
+    t.onerror = () => { dbBelofte = null; rej(t.error); };
+    t.onabort = () => { dbBelofte = null; rej(t.error); };
+  });
+}
+// Alles van dit toestel wissen (bij afmelden).
+export function wisAlleBijlagen() {
+  return new Promise(res => {
+    const sluit = dbBelofte ? dbBelofte.then(d => d.close()).catch(() => {}) : Promise.resolve();
+    dbBelofte = null;
+    sluit.then(() => { const r = indexedDB.deleteDatabase(DB); r.onsuccess = r.onerror = r.onblocked = () => res(); });
   });
 }
 export const leesLokaal = id => tx('readonly', s => s.get(id));

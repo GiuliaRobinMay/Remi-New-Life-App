@@ -80,6 +80,48 @@ create policy "bijlagen toevoegen" on storage.objects for insert to authenticate
 create policy "bijlagen wijzigen" on storage.objects for update to authenticated using (bucket_id = 'bijlagen' and public.heeft_toegang()) with check (bucket_id = 'bijlagen' and public.heeft_toegang());
 create policy "bijlagen verwijderen" on storage.objects for delete to authenticated using (bucket_id = 'bijlagen' and public.heeft_toegang());
 
--- 4. Toegang geven (apart uitvoeren, met de echte adressen; niet in de repository bewaren):
+-- 4. Mail versturen vanaf het Gmail-adres van Remi (serverfunctie supabase/functions/gmail).
+--    Deze tabellen hebben RLS aan en GEEN regels: alleen de serverfunctie (service role) kan erbij,
+--    nooit de app in de browser. Zo blijven het clientgeheim en de toestemming van Remi afgeschermd.
+create table if not exists public.gmail_app (
+  id int primary key default 1 check (id = 1),
+  client_id text not null,
+  client_secret text not null,
+  ingesteld_door text,
+  ingesteld_op timestamptz not null default now()
+);
+create table if not exists public.gmail_koppeling (
+  id int primary key default 1 check (id = 1),
+  email text not null,
+  refresh_token text not null,
+  gekoppeld_op timestamptz not null default now(),
+  gekoppeld_door text
+);
+create table if not exists public.gmail_uitnodiging (
+  state text primary key,
+  aangemaakt_door text not null,
+  verloopt timestamptz not null
+);
+alter table public.gmail_app enable row level security;
+alter table public.gmail_koppeling enable row level security;
+alter table public.gmail_uitnodiging enable row level security;
+revoke all on public.gmail_app, public.gmail_koppeling, public.gmail_uitnodiging from anon, authenticated;
+
+-- 5. Toegangscodes om een account te maken of een nieuw wachtwoord te kiezen (serverfunctie supabase/functions/account).
+--    Alleen de hash van de code wordt bewaard; de app kan deze tabel niet lezen.
+create table if not exists public.account_code (
+  code_hash text primary key,
+  wie text not null check (wie in ('remi', 'giulia')),
+  verloopt timestamptz not null,
+  gebruikt_op timestamptz,
+  aangemaakt_door text
+);
+alter table public.account_code enable row level security;
+revoke all on public.account_code from anon, authenticated;
+
+-- 6. Toegang geven gebeurt met een toegangscode in de app (functie account). Een eerste code zet je zo klaar
+--    (met de hash van de code; de code zelf nooit in de repository):
+-- insert into public.account_code (code_hash, wie, verloopt) values (encode(sha256('CODE'::bytea), 'hex'), 'giulia', now() + interval '7 days');
+-- Of rechtstreeks een adres toegang geven:
 -- insert into public.toegang (email, wie) values ('adres-van-giulia@voorbeeld.be', 'giulia'), ('adres-van-remi@voorbeeld.be', 'remi')
 --   on conflict (email) do update set wie = excluded.wie;

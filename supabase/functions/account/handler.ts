@@ -93,7 +93,7 @@ export function maakHandler(admin: Admin, env: Omgeving = {}) {
     if (req.method === 'OPTIONS') return new Response('ok', { headers: CORS });
     if (req.method !== 'POST') return json(405, { message: 'Niet toegestaan.' });
     try {
-      const body = await req.json().catch(() => ({}));
+      const body = (await req.json().catch(() => null)) || {}; // ook als de body de json-waarde null is
       if (body.actie === 'maak') return await maak(body);
       if (body.actie === 'code') return await code(req, body);
       throw new Fout(400, 'Onbekende actie.');

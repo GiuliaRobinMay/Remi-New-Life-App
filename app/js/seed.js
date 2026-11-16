@@ -1,4 +1,4 @@
-// Gegenereerd door scripts/build-data.mjs op 2026-11-16T15:52:50.270Z. Niet met de hand bewerken: pas data/*.json aan en draai npm run build:data.
+// Gegenereerd door scripts/build-data.mjs op 2026-11-16T16:06:24.730Z. Niet met de hand bewerken: pas data/*.json aan en draai npm run build:data.
 export const seed = {
  "berichten": [
   {
@@ -4135,6 +4135,1141 @@ export const seed = {
    "voor": "remi"
   }
  ],
+ "vacaturebronnen": {
+  "versie": "2026-11-16",
+  "uitleg": "Bronnen voor de dagelijkse vacaturescan (scripts/vacaturescan.mjs). Alleen publieke werkgevers, non-profit en publieke of non-profit jobsites; geen privébedrijven of interimkantoren. soort: jobsite of organisatie. js: true als de lijst pas met JavaScript verschijnt. zoekparameters: extra lijst- of zoekpagina's die de scan ook opent (voor VDAB één zoek-URL per zoekterm, regio provincie Antwerpen).",
+  "zoektermen": [
+   "technisch tekenaar",
+   "werkvoorbereider metaal",
+   "plaatbewerker",
+   "lasser",
+   "decorbouwer",
+   "podiumtechnicus",
+   "technisch medewerker museum",
+   "tentoonstellingsbouw",
+   "art handler",
+   "depotmedewerker",
+   "archiefmedewerker",
+   "restauratie",
+   "erfgoed",
+   "monumentenwacht",
+   "instructeur lassen",
+   "praktijkleraar metaal",
+   "meubelmaker",
+   "metaalbewerker",
+   "lasser-metaalbewerker",
+   "constructiebankwerker",
+   "plaatwerker",
+   "plaatslager",
+   "carrossier",
+   "smid",
+   "kunstsmid",
+   "metaalrestauratie",
+   "technisch assistent",
+   "technisch medewerker werkplaats",
+   "centrale werkplaats",
+   "stielman",
+   "polyvalent technicus",
+   "allround technieker",
+   "technische dienst",
+   "vakspecialist",
+   "lasinstructeur",
+   "docent lassen",
+   "lesgever lassen",
+   "leraar lassen-constructie",
+   "leerkracht mechanica",
+   "praktijklector",
+   "maatwerkcoach",
+   "werkleider",
+   "werkbegeleider",
+   "teamcoach",
+   "instructeur",
+   "talent developer",
+   "fietsatelier",
+   "fietshersteller",
+   "fablab",
+   "makerspace",
+   "atelierassistent",
+   "decoratelier",
+   "museumtechnicus",
+   "technisch projectleider tentoonstellingen",
+   "collectiebeheer",
+   "depotbeheerder",
+   "conservatie",
+   "modelbouw",
+   "CAD-tekenaar",
+   "lasersnijden"
+  ],
+  "uitsluiten": [
+   "interim",
+   "uitzend",
+   "manpower",
+   "randstad",
+   "tempo-team",
+   "adecco",
+   "start people",
+   "accent",
+   "asap\\.be",
+   "go4jobs",
+   "synergie",
+   "agilitas",
+   "daoust",
+   "unique",
+   "trace",
+   "konvert",
+   "solvus",
+   "tower",
+   "covebo",
+   "jobat",
+   "house of hr",
+   "hays",
+   "robert half",
+   "page personnel",
+   "proselect",
+   "select human",
+   "xelion",
+   "jobmatch",
+   "impact interim",
+   "t-interim",
+   "sd worx staffing",
+   "actief interim",
+   "baobab",
+   "talentus",
+   "vivaldis",
+   "sterk interim",
+   "ago jobs"
+  ],
+  "bronnen": [
+   {
+    "id": "vdab",
+    "naam": "VDAB, Vind een job",
+    "url": "https://www.vdab.be/vindeenjob",
+    "soort": "jobsite",
+    "sector": "primair (publieke dienst, algemeen met filter)",
+    "js": true,
+    "zoekparameters": [
+     {
+      "zoekterm": "technisch tekenaar",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=technisch%20tekenaar&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "werkvoorbereider metaal",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=werkvoorbereider%20metaal&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "plaatbewerker",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=plaatbewerker&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "lasser",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=lasser&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "decorbouwer",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=decorbouwer&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "podiumtechnicus",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=podiumtechnicus&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "technisch medewerker museum",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=technisch%20medewerker%20museum&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "tentoonstellingsbouw",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=tentoonstellingsbouw&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "art handler",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=art%20handler&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "depotmedewerker",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=depotmedewerker&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "archiefmedewerker",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=archiefmedewerker&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "restauratie",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=restauratie&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "erfgoed",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=erfgoed&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "monumentenwacht",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=monumentenwacht&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "instructeur lassen",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=instructeur%20lassen&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "praktijkleraar metaal",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=praktijkleraar%20metaal&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "meubelmaker",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=meubelmaker&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "metaalbewerker",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=metaalbewerker&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "lasser-metaalbewerker",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=lasser-metaalbewerker&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "constructiebankwerker",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=constructiebankwerker&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "plaatwerker",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=plaatwerker&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "plaatslager",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=plaatslager&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "carrossier",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=carrossier&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "smid",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=smid&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "kunstsmid",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=kunstsmid&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "metaalrestauratie",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=metaalrestauratie&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "technisch assistent",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=technisch%20assistent&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "technisch medewerker werkplaats",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=technisch%20medewerker%20werkplaats&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "centrale werkplaats",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=centrale%20werkplaats&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "stielman",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=stielman&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "polyvalent technicus",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=polyvalent%20technicus&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "allround technieker",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=allround%20technieker&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "technische dienst",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=technische%20dienst&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "vakspecialist",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=vakspecialist&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "lasinstructeur",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=lasinstructeur&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "docent lassen",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=docent%20lassen&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "lesgever lassen",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=lesgever%20lassen&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "leraar lassen-constructie",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=leraar%20lassen-constructie&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "leerkracht mechanica",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=leerkracht%20mechanica&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "praktijklector",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=praktijklector&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "maatwerkcoach",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=maatwerkcoach&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "werkleider",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=werkleider&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "werkbegeleider",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=werkbegeleider&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "teamcoach",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=teamcoach&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "instructeur",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=instructeur&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "talent developer",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=talent%20developer&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "fietsatelier",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=fietsatelier&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "fietshersteller",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=fietshersteller&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "fablab",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=fablab&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "makerspace",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=makerspace&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "atelierassistent",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=atelierassistent&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "decoratelier",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=decoratelier&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "museumtechnicus",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=museumtechnicus&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "technisch projectleider tentoonstellingen",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=technisch%20projectleider%20tentoonstellingen&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "collectiebeheer",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=collectiebeheer&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "depotbeheerder",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=depotbeheerder&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "conservatie",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=conservatie&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "modelbouw",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=modelbouw&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "CAD-tekenaar",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=CAD-tekenaar&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     },
+     {
+      "zoekterm": "lasersnijden",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=lasersnijden&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
+     }
+    ]
+   },
+   {
+    "id": "werken-voor-vlaanderen",
+    "naam": "Werken voor Vlaanderen",
+    "url": "https://www.werkenvoorvlaanderen.be/",
+    "soort": "jobsite",
+    "sector": "overheid (Vlaams)",
+    "js": false
+   },
+   {
+    "id": "werkenvoor-be",
+    "naam": "werkenvoor.be (federaal)",
+    "url": "https://werkenvoor.be/nl/jobs",
+    "soort": "jobsite",
+    "sector": "overheid (federaal)",
+    "js": false
+   },
+   {
+    "id": "jobs-bij-stad-antwerpen",
+    "naam": "Jobs bij Stad Antwerpen",
+    "url": "https://job.antwerpen.be/go/Alle-vacatures/4474301/",
+    "soort": "jobsite",
+    "sector": "overheid (stad)",
+    "js": false
+   },
+   {
+    "id": "jobs-bij-provincie-antwerpen",
+    "naam": "Jobs bij Provincie Antwerpen",
+    "url": "https://jobs.provincieantwerpen.be/",
+    "soort": "jobsite",
+    "sector": "overheid (provincie)",
+    "js": false
+   },
+   {
+    "id": "cultuurjobs-be",
+    "naam": "Cultuurjobs.be",
+    "url": "https://www.cultuurjobs.be/",
+    "soort": "jobsite",
+    "sector": "cultuur",
+    "js": false,
+    "zoekparameters": [
+     {
+      "label": "Antwerpen",
+      "url": "https://www.cultuurjobs.be/plaats/antwerpen/"
+     },
+     {
+      "label": "Productie",
+      "url": "https://www.cultuurjobs.be/categorie/productie/"
+     }
+    ]
+   },
+   {
+    "id": "publiq-vacaturebank",
+    "naam": "publiq vacaturebank",
+    "url": "https://www.publiq.be/nl/vacaturebank",
+    "soort": "jobsite",
+    "sector": "cultuur en vrije tijd",
+    "js": false
+   },
+   {
+    "id": "faro",
+    "naam": "FARO, vacatures cultureel erfgoed",
+    "url": "https://faro.be/vacatures",
+    "soort": "jobsite",
+    "sector": "erfgoed",
+    "js": false
+   },
+   {
+    "id": "herita",
+    "naam": "Herita",
+    "url": "https://www.herita.be/nl/vacatures",
+    "soort": "jobsite",
+    "sector": "erfgoed",
+    "js": false
+   },
+   {
+    "id": "sociaal-fonds-podiumkunsten",
+    "naam": "Sociaal Fonds Podiumkunsten, vacatures",
+    "url": "https://www.podiumkunsten.be/vacatures",
+    "soort": "jobsite",
+    "sector": "cultuur (podiumkunsten, cultuurcentra, lokale besturen)",
+    "js": false
+   },
+   {
+    "id": "cult-be-vacatures",
+    "naam": "cult.be vacatures",
+    "url": "https://www.cult.be/zoek",
+    "soort": "jobsite",
+    "sector": "cultuur",
+    "js": false
+   },
+   {
+    "id": "icom-belgium-flanders",
+    "naam": "ICOM Belgium-Flanders, vacatures in de museumsector",
+    "url": "https://www.icom-belgium-flanders.be/2026/10/13/vacatures-in-de-museumsector/",
+    "soort": "jobsite",
+    "sector": "musea (overzichtslijst)",
+    "js": false
+   },
+   {
+    "id": "vvsg",
+    "naam": "VVSG, overzicht vacatures lokale overheden",
+    "url": "https://www.vvsg.be/vacatures/overzicht-vacatures",
+    "soort": "jobsite",
+    "sector": "overheid (gemeenten, OCMW's, intercommunales, brandweerzones)",
+    "js": false
+   },
+   {
+    "id": "gemeentejob-be",
+    "naam": "Gemeentejob.be",
+    "url": "https://www.gemeentejob.be/vacatures/",
+    "soort": "jobsite",
+    "sector": "overheid (aggregator, alleen lokale besturen)",
+    "js": false
+   },
+   {
+    "id": "som",
+    "naam": "SOM, vacatures sociale ondernemingen",
+    "url": "https://www.som.be/vacatures",
+    "soort": "jobsite",
+    "sector": "sociale economie",
+    "js": false
+   },
+   {
+    "id": "sociare-vacatures",
+    "naam": "Sociare vacatures",
+    "url": "https://www.sociare.be/nl/vacatures",
+    "soort": "jobsite",
+    "sector": "sociaal-cultureel",
+    "js": false
+   },
+   {
+    "id": "11-be-vacatures",
+    "naam": "11.be vacatures",
+    "url": "https://11.be/vacatures",
+    "soort": "jobsite",
+    "sector": "non-profit",
+    "js": false
+   },
+   {
+    "id": "groep-maatwerk",
+    "naam": "Groep Maatwerk, overzicht maatwerkbedrijven",
+    "url": "https://www.groepmaatwerk.be/maatwerkbedrijven",
+    "soort": "jobsite",
+    "sector": "sociale economie (gids, geen jobsite)",
+    "js": false
+   },
+   {
+    "id": "vlaamse-hogescholenraad",
+    "naam": "Vlaamse Hogescholenraad, vacatures alle hogescholen",
+    "url": "https://www.vlaamsehogescholenraad.be/nl/werken/vacatures",
+    "soort": "jobsite",
+    "sector": "onderwijs (hogescholen)",
+    "js": false
+   },
+   {
+    "id": "de-brandweer",
+    "naam": "De Brandweer, vacatures alle zones",
+    "url": "https://debrandweer.be/nl/vacatures",
+    "soort": "jobsite",
+    "sector": "overheid (hulpverleningszones)",
+    "js": false
+   },
+   {
+    "id": "bond-beter-leefmilieu",
+    "naam": "Bond Beter Leefmilieu, vacatures",
+    "url": "https://www.bondbeterleefmilieu.be/vacatures",
+    "soort": "jobsite",
+    "sector": "non-profit (duurzaamheid, sociale economie)",
+    "js": false
+   },
+   {
+    "id": "jobs-stedelijk-onderwijs-antwerpen",
+    "naam": "Jobs Stedelijk Onderwijs Antwerpen",
+    "url": "https://jobs.stedelijkonderwijs.be/",
+    "soort": "jobsite",
+    "sector": "onderwijs",
+    "js": false
+   },
+   {
+    "id": "onderwijsvacatures-be",
+    "naam": "Onderwijsvacatures.be",
+    "url": "https://www.onderwijsvacatures.be/",
+    "soort": "jobsite",
+    "sector": "onderwijs",
+    "js": false
+   },
+   {
+    "id": "syntra-ab-jobs",
+    "naam": "SYNTRA AB jobs",
+    "url": "https://jobs.syntra-ab.be/",
+    "soort": "jobsite",
+    "sector": "onderwijs (volwassenen)",
+    "js": false
+   },
+   {
+    "id": "stepp",
+    "naam": "STEPP (podiumtechniek)",
+    "url": "https://www.stepp.be/",
+    "soort": "jobsite",
+    "sector": "cultuur (netwerk)",
+    "js": false
+   },
+   {
+    "id": "universiteit-antwerpen",
+    "naam": "Universiteit Antwerpen (centrale werkplaats, technische diensten, Mekano Makerspace)",
+    "url": "https://www.uantwerpen.be/nl/jobs/vacatures/atp/",
+    "soort": "organisatie",
+    "sector": "universiteit",
+    "plaats": "Antwerpen (meerdere campussen)",
+    "js": false
+   },
+   {
+    "id": "ap-hogeschool",
+    "naam": "AP Hogeschool (Koninklijke Academie, Mixlab, makerspace en studio's, technische dienst)",
+    "url": "https://vacatures.ap.be/",
+    "soort": "organisatie",
+    "sector": "hogeschool",
+    "plaats": "Antwerpen",
+    "js": false
+   },
+   {
+    "id": "karel-de-grote-hogeschool",
+    "naam": "Karel de Grote Hogeschool (incl. KdG FabLab)",
+    "url": "https://www.kdg.be/vacatures",
+    "soort": "organisatie",
+    "sector": "hogeschool",
+    "plaats": "Antwerpen",
+    "js": false
+   },
+   {
+    "id": "thomas-more",
+    "naam": "Thomas More (Campus De Nayer en Antwerpse campussen)",
+    "url": "https://thomasmore.cvw.io/",
+    "soort": "organisatie",
+    "sector": "hogeschool (vzw)",
+    "plaats": "Sint-Katelijne-Waver (trein vanuit Antwerpen), Antwerpen",
+    "js": true
+   },
+   {
+    "id": "instituut-voor-tropische-geneeskunde",
+    "naam": "Instituut voor Tropische Geneeskunde (ITG)",
+    "url": "https://www.itg.be/nl/jobs-en-onderzoeksmogelijkheden",
+    "soort": "organisatie",
+    "sector": "onderzoeksinstelling",
+    "plaats": "Nationalestraat 155, Antwerpen",
+    "js": false
+   },
+   {
+    "id": "antwerp-maritime-academy",
+    "naam": "Antwerp Maritime Academy (Hogere Zeevaartschool)",
+    "url": "https://amacademy.be/nl/vacancy/assistent-faculteit-scheepswerktuigkunde-0",
+    "soort": "organisatie",
+    "sector": "hogeschool",
+    "plaats": "Noordkasteel Oost, Antwerpen",
+    "js": false
+   },
+   {
+    "id": "uza",
+    "naam": "UZA, Universitair Ziekenhuis Antwerpen",
+    "url": "https://uza.cvw.io/",
+    "soort": "organisatie",
+    "sector": "openbaar ziekenhuis",
+    "plaats": "Edegem (tram/bus vanuit Antwerpen)",
+    "js": true
+   },
+   {
+    "id": "zas",
+    "naam": "ZAS, Ziekenhuis aan de Stroom (ex-ZNA en GZA)",
+    "url": "https://www.zas.be/jobs/werken-bij-zas/technische-dienst",
+    "soort": "organisatie",
+    "sector": "ziekenhuis (vzw met stad en OCMW Antwerpen als stichtende leden)",
+    "plaats": "13 campussen in Antwerpen",
+    "js": false
+   },
+   {
+    "id": "zorgbedrijf-antwerpen",
+    "naam": "Zorgbedrijf Antwerpen",
+    "url": "https://www.vdab.be/vindeenjob/jobs/zorgbedrijf-antwerpen-medewerkers",
+    "soort": "organisatie",
+    "sector": "overheid (lokaal, zorg)",
+    "plaats": "Antwerpen (woonzorgcentra van Berendrecht tot Wilrijk)",
+    "js": false
+   },
+   {
+    "id": "ag-vespa",
+    "naam": "AG Vespa (vastgoedbedrijf stad Antwerpen)",
+    "url": "https://www.agvespa.be/werken-bij-ag-vespa/vacatures",
+    "soort": "organisatie",
+    "sector": "overheid (autonoom gemeentebedrijf)",
+    "plaats": "Antwerpen",
+    "js": false
+   },
+   {
+    "id": "stad-antwerpen",
+    "naam": "Stad Antwerpen, technische diensten (Groen en Begraafplaatsen, districten, stadsgebouwen, Kunstenlab)",
+    "url": "https://job.antwerpen.be/go/Alle-vacatures/4474301/",
+    "soort": "organisatie",
+    "sector": "overheid (stad)",
+    "plaats": "Antwerpen",
+    "js": false
+   },
+   {
+    "id": "woonhaven-antwerpen",
+    "naam": "Woonhaven Antwerpen",
+    "url": "https://woonhaven.be/jobs/",
+    "soort": "organisatie",
+    "sector": "overheid (sociale huisvesting)",
+    "plaats": "Antwerpen",
+    "js": false
+   },
+   {
+    "id": "brandweer-zone-antwerpen",
+    "naam": "Brandweer Zone Antwerpen (dienst Wagenpark en gebouwenbeheer)",
+    "url": "https://brandweer.be/brandweerzone/brandweer-zone-antwerpen/",
+    "soort": "organisatie",
+    "sector": "overheid (hulpverleningszone)",
+    "plaats": "Noorderlaan 69, Antwerpen",
+    "js": false
+   },
+   {
+    "id": "lokaal-bestuur-mortsel",
+    "naam": "Lokaal bestuur Mortsel",
+    "url": "https://www.mortsel.be/vacatures",
+    "soort": "organisatie",
+    "sector": "overheid (gemeente)",
+    "plaats": "Mortsel (tram en trein vanuit Antwerpen)",
+    "js": false
+   },
+   {
+    "id": "provincie-antwerpen",
+    "naam": "Provincie Antwerpen, provinciale groendomeinen en diensten",
+    "url": "https://jobs.provincieantwerpen.be/",
+    "soort": "organisatie",
+    "sector": "overheid (provincie)",
+    "plaats": "Rivierenhof (Deurne), Vrijbroekpark (Mechelen) en andere",
+    "js": false
+   },
+   {
+    "id": "provinciaal-onderwijs-antwerpen",
+    "naam": "Provinciaal Onderwijs Antwerpen (o.a. PITO Stabroek, avAnt)",
+    "url": "https://www.provincieantwerpen.be/werken-bij-de-provincie/werken-in-het-provinciaal-onderwijs-/vacature-onderwijs.html",
+    "soort": "organisatie",
+    "sector": "onderwijs (provincie)",
+    "plaats": "Stabroek, Antwerpen, Mechelen, Boom",
+    "js": false
+   },
+   {
+    "id": "go-scholengroep-antwerpen",
+    "naam": "GO! Scholengroep Antwerpen (GO! Spectrumschool, De Scheepvaartschool en andere)",
+    "url": "https://go-antwerpen.be/vacatures/",
+    "soort": "organisatie",
+    "sector": "onderwijs (gemeenschapsonderwijs)",
+    "plaats": "Antwerpen",
+    "js": false
+   },
+   {
+    "id": "go-cvo-antwerpen",
+    "naam": "GO! CVO Antwerpen",
+    "url": "https://www.cvoantwerpen.be/vacatures/",
+    "soort": "organisatie",
+    "sector": "onderwijs (volwassenen)",
+    "plaats": "Antwerpen",
+    "js": false
+   },
+   {
+    "id": "don-bosco-technisch-instituut-hoboken",
+    "naam": "Don Bosco Technisch Instituut Hoboken",
+    "url": "https://www.vdab.be/vindeenjob/jobs/leerkracht-2660-hoboken",
+    "soort": "organisatie",
+    "sector": "onderwijs (katholiek, vzw)",
+    "plaats": "Salesianenlaan 1, Hoboken",
+    "js": false
+   },
+   {
+    "id": "fablab-en-technische-scholen-van-stedeli",
+    "naam": "Fablab+ en technische scholen van Stedelijk Onderwijs (Technicum Noord-Antwerpen e.a.)",
+    "url": "https://jobs.stedelijkonderwijs.be/",
+    "soort": "organisatie",
+    "sector": "onderwijs (stad Antwerpen) en makerspace",
+    "plaats": "Lange Klarenstraat 17, Antwerpen (Fablab+)",
+    "js": false
+   },
+   {
+    "id": "rising-you-vzw",
+    "naam": "Rising You vzw",
+    "url": "https://risingyou.be/schenk-je-tijd/jobs/",
+    "soort": "organisatie",
+    "sector": "vzw (opleiding en werk voor nieuwkomers)",
+    "plaats": "Park Spoor Noord, Antwerpen",
+    "js": false
+   },
+   {
+    "id": "stroom-maatwerk-vzw",
+    "naam": "Stroom Maatwerk vzw",
+    "url": "https://www.stroommaatwerk.be/",
+    "soort": "organisatie",
+    "sector": "sociale economie (maatwerkbedrijf)",
+    "plaats": "Merksem (Antwerpen)",
+    "js": false
+   },
+   {
+    "id": "groep-intro-vzw",
+    "naam": "Groep INTRO vzw (inclusief ex-Levanto)",
+    "url": "https://jobs.groepintro.be/nl?province=antwerpen",
+    "soort": "organisatie",
+    "sector": "sociale economie",
+    "plaats": "Clara Snellingsstraat 47, Deurne",
+    "js": false
+   },
+   {
+    "id": "werkmmaat-vzw",
+    "naam": "Werkmmaat vzw",
+    "url": "https://www.werkmmaat.be/",
+    "soort": "organisatie",
+    "sector": "sociale economie (collectief maatwerkbedrijf)",
+    "plaats": "Antwerpen (Deurne), Mortsel, Lier",
+    "js": false
+   },
+   {
+    "id": "ecoso-vzw",
+    "naam": "Ecoso vzw, Fietsatelier Mechelen",
+    "url": "https://www.ecoso.be",
+    "soort": "organisatie",
+    "sector": "sociale economie (maatwerkbedrijf)",
+    "plaats": "Rode Kruisplein 14, Mechelen (trein vanuit Antwerpen)",
+    "js": false
+   },
+   {
+    "id": "port-of-antwerp-bruges",
+    "naam": "Port of Antwerp-Bruges (havenbedrijf)",
+    "url": "https://portofantwerpbruges.com/jobs",
+    "soort": "organisatie",
+    "sector": "overheidsbedrijf",
+    "plaats": "Antwerpen (haven)",
+    "js": false
+   },
+   {
+    "id": "de-lijn",
+    "naam": "De Lijn (onderhoudscentrum Noorderlaan, PAL)",
+    "url": "https://jobs.delijn.be/",
+    "soort": "organisatie",
+    "sector": "overheidsbedrijf",
+    "plaats": "Noorderlaan 63, Antwerpen",
+    "js": false
+   },
+   {
+    "id": "nmbs",
+    "naam": "NMBS (herstelwerkplaats goederenwagons Antwerpen-Noord)",
+    "url": "https://jobs.belgiantrain.be/",
+    "soort": "organisatie",
+    "sector": "overheidsbedrijf",
+    "plaats": "Noorderlaan 630, Antwerpen",
+    "js": false
+   },
+   {
+    "id": "de-vlaamse-waterweg",
+    "naam": "De Vlaamse Waterweg",
+    "url": "https://www.vlaamsewaterweg.be/werkenbij",
+    "soort": "organisatie",
+    "sector": "overheidsbedrijf (Vlaams)",
+    "plaats": "Willebroek, Antwerpen en langs de waterwegen",
+    "js": false
+   },
+   {
+    "id": "waterbouwkundig-laboratorium",
+    "naam": "Waterbouwkundig Laboratorium (Departement MOW)",
+    "url": "https://www.werkenvoorvlaanderen.be/",
+    "soort": "organisatie",
+    "sector": "overheid (Vlaams, onderzoek)",
+    "plaats": "Berchemlei 115, Borgerhout",
+    "js": false
+   },
+   {
+    "id": "agentschap-wegen-en-verkeer",
+    "naam": "Agentschap Wegen en Verkeer",
+    "url": "https://wegenenverkeer.be/jobs",
+    "soort": "organisatie",
+    "sector": "overheid (Vlaams)",
+    "plaats": "Antwerpen (district- en provinciekantoren)",
+    "js": false
+   },
+   {
+    "id": "departement-cultuur",
+    "naam": "Departement Cultuur, Jeugd en Media, depot Collectie Vlaamse Gemeenschap",
+    "url": "https://faro.be/vacatures",
+    "soort": "organisatie",
+    "sector": "overheid (Vlaams, erfgoed)",
+    "plaats": "Vilvoorde (trein vanuit Antwerpen, ongeveer 30 minuten)",
+    "js": false
+   },
+   {
+    "id": "kmkg",
+    "naam": "KMKG, Koninklijke Musea voor Kunst en Geschiedenis (Art & History Museum)",
+    "url": "https://www.artandhistory.museum/nl/vacatures",
+    "soort": "organisatie",
+    "sector": "overheid (federale wetenschappelijke instelling)",
+    "plaats": "Brussel (Jubelpark)",
+    "js": false
+   },
+   {
+    "id": "war-heritage-institute",
+    "naam": "War Heritage Institute",
+    "url": "https://www.cultuurjobs.be/organisatie/war-heritage-institute/",
+    "soort": "organisatie",
+    "sector": "overheid (federaal, erfgoed)",
+    "plaats": "Brussel (Jubelpark)",
+    "js": false
+   },
+   {
+    "id": "rijksarchief",
+    "naam": "Rijksarchief (Antwerpen en Beveren)",
+    "url": "https://www.arch.be/index.php?l=nl&m=nieuws&r=vacatures",
+    "soort": "organisatie",
+    "sector": "overheid (federaal, archief)",
+    "plaats": "Antwerpen, Beveren",
+    "js": false
+   },
+   {
+    "id": "kmda",
+    "naam": "KMDA (ZOO Antwerpen, ZOO Planckendael)",
+    "url": "https://kmda.cvw.io/",
+    "soort": "organisatie",
+    "sector": "vzw",
+    "plaats": "Antwerpen (Centraal), Mechelen",
+    "js": true
+   },
+   {
+    "id": "monumentenwacht-vlaanderen",
+    "naam": "Monumentenwacht Vlaanderen",
+    "url": "https://www.monumentenwacht.be/vacatures",
+    "soort": "organisatie",
+    "sector": "vzw (erfgoed)",
+    "plaats": "Antwerpen en provincies",
+    "js": false
+   },
+   {
+    "id": "monumentenwacht-antwerpen",
+    "naam": "Monumentenwacht Antwerpen (Provincie Antwerpen, Dienst Erfgoed)",
+    "url": "https://jobs.provincieantwerpen.be/",
+    "soort": "organisatie",
+    "sector": "overheid (provincie, erfgoed)",
+    "plaats": "Ruggeveldlaan 99, Deurne",
+    "js": false
+   },
+   {
+    "id": "agentschap-onroerend-erfgoed",
+    "naam": "Agentschap Onroerend Erfgoed",
+    "url": "https://www.onroerenderfgoed.be/vacatures",
+    "soort": "organisatie",
+    "sector": "overheid (Vlaams, erfgoed)",
+    "plaats": "Brussel en regionale kantoren",
+    "js": false
+   },
+   {
+    "id": "kik-irpa",
+    "naam": "KIK-IRPA",
+    "url": "https://www.kikirpa.be/nl/vacatures",
+    "soort": "organisatie",
+    "sector": "overheid (federale wetenschappelijke instelling)",
+    "plaats": "Brussel",
+    "js": false
+   },
+   {
+    "id": "kmska",
+    "naam": "KMSKA",
+    "url": "https://kmska.be/nl/jobs",
+    "soort": "organisatie",
+    "sector": "cultuur (Vlaamse instelling)",
+    "plaats": "Leopold de Waelplaats, Antwerpen",
+    "js": false
+   },
+   {
+    "id": "m-hka",
+    "naam": "M HKA",
+    "url": "https://muhka-jobs.cvw.io/",
+    "soort": "organisatie",
+    "sector": "cultuur (Vlaamse instelling)",
+    "plaats": "Leuvenstraat 32, Antwerpen",
+    "js": true
+   },
+   {
+    "id": "momu",
+    "naam": "MoMu, Modemuseum Antwerpen",
+    "url": "https://job.antwerpen.be/go/Alle-vacatures/4474301/",
+    "soort": "organisatie",
+    "sector": "cultuur (stad Antwerpen)",
+    "plaats": "Nationalestraat 28, Antwerpen",
+    "js": false
+   },
+   {
+    "id": "fomu",
+    "naam": "FOMU, Fotomuseum Antwerpen",
+    "url": "https://job.antwerpen.be/go/Alle-vacatures/4474301/",
+    "soort": "organisatie",
+    "sector": "cultuur (stad Antwerpen)",
+    "plaats": "Waalsekaai 47, Antwerpen",
+    "js": false
+   },
+   {
+    "id": "diva",
+    "naam": "DIVA, Antwerp Home of Diamonds",
+    "url": "https://www.divamuseum.be/nl/werken-bij-het-diva-museum",
+    "soort": "organisatie",
+    "sector": "cultuur (stad Antwerpen)",
+    "plaats": "Suikerrui, Antwerpen",
+    "js": false
+   },
+   {
+    "id": "middelheimmuseum",
+    "naam": "Middelheimmuseum",
+    "url": "https://job.antwerpen.be/",
+    "soort": "organisatie",
+    "sector": "cultuur (stad Antwerpen)",
+    "plaats": "Middelheimlaan 61, Antwerpen",
+    "js": false
+   },
+   {
+    "id": "mas",
+    "naam": "MAS, Museum aan de Stroom",
+    "url": "https://job.antwerpen.be/",
+    "soort": "organisatie",
+    "sector": "cultuur (stad Antwerpen)",
+    "plaats": "Hanzestedenplaats 1, Antwerpen",
+    "js": false
+   },
+   {
+    "id": "stad-antwerpen-2",
+    "naam": "Stad Antwerpen, Musea en Erfgoed (Plantin-Moretus, Rubenshuis, Red Star Line, Letterenhuis, FelixArchief)",
+    "url": "https://job.antwerpen.be/go/Alle-vacatures/4474301/",
+    "soort": "organisatie",
+    "sector": "cultuur (stad Antwerpen)",
+    "plaats": "Antwerpen",
+    "js": false
+   },
+   {
+    "id": "toneelhuis",
+    "naam": "Toneelhuis",
+    "url": "https://toneelhuis.be/nl/over-toneelhuis/vacatures-stages/",
+    "soort": "organisatie",
+    "sector": "cultuur (vzw)",
+    "plaats": "Komedieplaats, Antwerpen",
+    "js": false
+   },
+   {
+    "id": "desingel",
+    "naam": "deSingel",
+    "url": "https://www.cultuurjobs.be/organisatie/de-singel/",
+    "soort": "organisatie",
+    "sector": "cultuur (Vlaamse instelling)",
+    "plaats": "Desguinlei 25, Antwerpen",
+    "js": false
+   },
+   {
+    "id": "opera-ballet-vlaanderen",
+    "naam": "Opera Ballet Vlaanderen",
+    "url": "https://www.operaballet.be/nl/werken-bij-opera-ballet-vlaanderen",
+    "soort": "organisatie",
+    "sector": "cultuur (vzw)",
+    "plaats": "Antwerpen, Gent; decoratelier in Zele",
+    "js": false
+   },
+   {
+    "id": "hetpaleis",
+    "naam": "hetpaleis",
+    "url": "https://www.hetpaleis.be/nl/ons-huis/jobs-stages-vrijwilligers",
+    "soort": "organisatie",
+    "sector": "cultuur (vzw, jeugdtheater)",
+    "plaats": "Meir, Antwerpen",
+    "js": false
+   },
+   {
+    "id": "theater-froefroe",
+    "naam": "Theater FroeFroe",
+    "url": "https://www.froefroe.be/froefroe",
+    "soort": "organisatie",
+    "sector": "cultuur (vzw, poppentheater)",
+    "plaats": "Antwerpen",
+    "js": false
+   },
+   {
+    "id": "de-roma",
+    "naam": "De Roma",
+    "url": "https://www.cultuurjobs.be/organisatie/de-roma-vzw/",
+    "soort": "organisatie",
+    "sector": "cultuur (vzw)",
+    "plaats": "Turnhoutsebaan, Borgerhout",
+    "js": false
+   },
+   {
+    "id": "antwerp-symphony-orchestra",
+    "naam": "Antwerp Symphony Orchestra",
+    "url": "https://www.cultuurjobs.be/organisatie/antwerp-symphony-orchestra/",
+    "soort": "organisatie",
+    "sector": "cultuur (vzw)",
+    "plaats": "Koningin Elisabethzaal, Antwerpen",
+    "js": false
+   },
+   {
+    "id": "zomer-van-antwerpen",
+    "naam": "Zomer van Antwerpen",
+    "url": "https://www.zva.be/nl/over-zva/jobs/open-sollicitatie-zomer-van-antwerpen-2026",
+    "soort": "organisatie",
+    "sector": "cultuur (vzw, festival)",
+    "plaats": "Antwerpen",
+    "js": false
+   },
+   {
+    "id": "laika",
+    "naam": "Laika",
+    "url": "https://www.laika.be/",
+    "soort": "organisatie",
+    "sector": "cultuur (vzw)",
+    "plaats": "Borgerhout",
+    "js": false
+   },
+   {
+    "id": "syntra-ab",
+    "naam": "SYNTRA AB",
+    "url": "https://jobs.syntra-ab.be/",
+    "soort": "organisatie",
+    "sector": "onderwijs (vzw, volwassenen)",
+    "plaats": "Antwerpen, Mechelen",
+    "js": false
+   },
+   {
+    "id": "cvo-encora",
+    "naam": "CVO Encora (Stedelijk Onderwijs Antwerpen)",
+    "url": "https://jobs.stedelijkonderwijs.be/",
+    "soort": "organisatie",
+    "sector": "onderwijs (stad)",
+    "plaats": "Antwerpen",
+    "js": false
+   },
+   {
+    "id": "cvo-vitant",
+    "naam": "CVO Vitant (Provinciaal Onderwijs Antwerpen)",
+    "url": "https://jobpage.cvwarehouse.com/?companyGuid=29d5dabf-79af-4731-941e-91cb971e6435&lang=nl-BE",
+    "soort": "organisatie",
+    "sector": "onderwijs (provincie)",
+    "plaats": "Antwerpen, Berchem, Hoboken, Kapellen",
+    "js": true
+   },
+   {
+    "id": "vdab-competentiecentra",
+    "naam": "VDAB-competentiecentra (instructeur lassen en metaal)",
+    "url": "https://www.vdab.be/vindeenjob/jobs/vdab-instructeur",
+    "soort": "organisatie",
+    "sector": "overheid (Vlaams)",
+    "plaats": "Antwerpen, Mechelen, Turnhout",
+    "js": false
+   },
+   {
+    "id": "het-facilitair-bedrijf",
+    "naam": "Het Facilitair Bedrijf (Vlaamse overheid)",
+    "url": "https://www.werkenvoorvlaanderen.be/",
+    "soort": "organisatie",
+    "sector": "overheid (Vlaams)",
+    "plaats": "Brussel en regionaal",
+    "js": false
+   },
+   {
+    "id": "fod-justitie",
+    "naam": "FOD Justitie, gevangeniswerkhuizen (Cellmade)",
+    "url": "https://werkenvoor.be/nl/jobs",
+    "soort": "organisatie",
+    "sector": "overheid (federaal)",
+    "plaats": "Antwerpen, Beveren, Merksplas, Hoogstraten, Wortel",
+    "js": false
+   },
+   {
+    "id": "vito",
+    "naam": "VITO",
+    "url": "https://jobs.vito.be/",
+    "soort": "organisatie",
+    "sector": "onderzoeksinstelling (Vlaams)",
+    "plaats": "Mol (ongeveer 1 uur met de trein)",
+    "js": false
+   }
+  ]
+ },
  "vacatures": [],
  "verkenning": [
   {
@@ -6760,5 +7895,5 @@ export const seed = {
   "vdab-profiel.md": "# VDAB-profiel (Mijn Loopbaan): tekst voor Remi\n\nDoel: gevonden worden door werkgevers en bemiddelaars die zoeken op erfgoed, restauratie, museum, decor, atelier, instructeur en lassen. VDAB-profielen zijn kort en zakelijk. Zet het profiel op zichtbaar voor werkgevers en vul de rubrieken hieronder letterlijk over.\n\n## Titel (functietitel bovenaan)\nTechnisch tekenaar en atelierverantwoordelijke plaatbewerking, lasser en meubelmaker, op zoek naar werk in erfgoed, restauratie, archief en cultuurateliers\n\n## Korte voorstelling (maximaal 5 zinnen)\nTechnisch tekenaar en verantwoordelijke atelier bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal, sinds 2021. Ik teken werkstukken uit, bereid het werk voor, plooi en las zelf (halfautomaat en elektrode) en stuur het atelier aan. Daarvoor werkte ik in een creatief fietsatelier en bouwde ik een fotoarchief op; daarnaast volg ik interieurvormgeving aan de Academie in Antwerpen en bouw ik meubels. Ik zoek werk waarin vakmanschap en zorgvuldigheid ergens toe dienen: restauratie van historisch metaalwerk, museum- of theaterateliers, archief en collectiezorg, tentoonstellingsbouw, of het doorgeven van het vak. Ik werk het best in een klein team en ben beschikbaar vanaf [datum].\n\n## Gewenste functies (kies er tot vijf in de VDAB-lijst)\n- Technisch tekenaar of werkvoorbereider metaal en plaatbewerking\n- Decorbouwer, ateliermedewerker metaal of vitrinebouwer\n- Technisch medewerker museum, depot of tentoonstellingsbouw\n- Restauratiemedewerker metaal (monumentenzorg)\n- Instructeur of praktijkbegeleider lassen en metaal\n\n## Gewenste sectoren\nCultuur en erfgoed; bouw en restauratie; metaal; onderwijs en opleiding; sociale economie\n\n## Competenties (vinkjes en vrije tekst)\n- Technisch tekenen van maatwerk in plaatmateriaal ([CAD-programma])\n- Werkvoorbereiding, planning en aansturing van een atelier\n- Plooien op de kantbank, MIG/MAG-lassen (135) en elektrodelassen (111) [TIG bevestigen]\n- Plaatwerk: snijden, plooien, afwerken, kwaliteitscontrole\n- Opmeten en uittekenen op maat, montage\n- Meubelontwerp en -bouw [in metaal en hout, materiaal bevestigen]\n- Fietsbouw en -herstel\n- Archiveren en digitaliseren van beeldmateriaal\n- Veiligheid: VCA-basis [geldig tot]\n- Rijbewijs B [indien van toepassing]\n\n## Talen\nNederlands moedertaal; Engels goed; Frans [niveau]\n\n## Opleiding\n- Interieurvormgeving, avondonderwijs aan de Academie in Antwerpen, lopend [precieze opleiding bevestigen]\n- Meubel en interieur (drie jaar) en grafiek (een jaar), avondonderwijs aan de Academie in Antwerpen\n- Lasopleiding halfautomaat en elektrodelassen, [instelling], [jaar]\n- Diploma secundair onderwijs Wetenschappen-Wiskunde, Sint-Lutgardis, 2017\n\n## Werkervaring\n2021 tot heden: technisch tekenaar en verantwoordelijke atelier, [bedrijf], [gemeente]. Gestart als tekenaar en plooi- en lasoperator. Maatwerk in plaatmateriaal van tekening tot afwerking.\n2019: medewerker creatief fietsatelier, Antwerpen.\n2017 tot 2018: opbouw van een fotoarchief voor Willy Van de Perre.\n2017 tot 2018: [functie], Katoen Natie, Antwerpen.\n[jaar] tot heden: meubelmaker in eigen beheer, samen met mijn broer, Antwerpen.\n\n## Mobiliteit en beschikbaarheid\nAntwerpen en omgeving, bereikbaar met openbaar vervoer [en fiets/wagen]. Voltijds of deeltijds. Beschikbaar vanaf [datum]. Open voor een individuele beroepsopleiding (IBO) of een beroepsverkennende stage.\n\n## Trefwoorden om zeker in de vrije tekst te zetten\nerfgoed, restauratie, monumentenzorg, museum, depot, archief, decoratelier, decorbouw, tentoonstellingsbouw, atelier, technisch tekenaar, werkvoorbereider, plaatbewerking, plooien, kantbank, MIG/MAG, elektrodelassen, plannen lezen, meubelmaker, interieurvormgeving, instructeur lassen\n",
   "vragenlijst-remi.md": "# Vragenlijst voor Remi\n\nDeze vragen zijn voor jou, Remi. Niets hoeft in één keer. Korte antwoorden zijn goed; een voorbeeld is beter dan een omschrijving. Alles wat je invult blijft op dit toestel tot je het exporteert of kopieert voor Giulia. Uit je antwoorden komen het cv, de brieven, de tekst voor VDAB en de keuzes voor de volgende stap.\n\n## Praktisch, voor het cv\n\nFeiten die op een cv of in een dossier moeten kloppen.\n\n- Volledige naam, geboortedatum en geboorteplaats\n  \n\n- Adres, gsm-nummer en e-mailadres dat je voor sollicitaties wil gebruiken\n  \n\n- Rijbewijs (B, ja of nee) en hoe je je verplaatst: fiets, openbaar vervoer, auto. Tot hoeveel minuten pendelen is haalbaar?\n  \n\n- Talen en niveau: Nederlands, Frans, Engels, andere\n  \n\n- Naam van je huidige werkgever, gemeente, en de startdatum van je contract (staat op het contract of de eerste loonfiche)\n  \n\n- Wat staat er op je loonfiche: arbeider of bediende, en welk paritair comité (bijvoorbeeld 111, 200, 209)?  \n  (Dit bepaalt gewaarborgd loon, vakantiegeld en eindejaarspremie.)\n  \n\n- Je functietitel volgens het contract, en wat je vandaag echt doet (tekenen, plooien, lassen, atelier aansturen, hoeveel collega's)\n  \n\n- Welk tekenprogramma gebruik je (bijvoorbeeld SolidWorks, AutoCAD, Inventor, Tekla) en hoe goed?\n  \n\n- Welke lasprocessen beheers je: halfautomaat (MIG/MAG), elektrode, TIG? Welke certificaten heb je, met norm en geldigheid?\n  \n\n- Andere attesten: VCA, heftruck, hoogtewerker, EHBO, kantbank, andere\n  \n\n- Je opleidingen precies: secundair (richting, school, jaar), lasopleiding (waar, wanneer), academie (welke richtingen, welke jaren, getuigschrift of diploma)\n  \n\n- Katoen Natie: welke functie, welke afdeling, hoelang?\n  \n\n- Het creatief fietsatelier: naam, wat je daar maakte of herstelde, een voorbeeld\n  \n\n- Het fotoarchief voor Willy Van de Perre: wie is hij, hoeveel beelden, hoe heb je het aangepakt (ordenen, scannen, beschrijven, software)?\n  \n\n- Welke werkstukken bestaan er in foto's: meubels, constructies, fietsen, tekeningen? Waar staan die foto's?  \n  (Voor het portfolio: 6 tot 10 stukken met titel, jaar, materiaal, techniek.)\n  \n\n- Vanaf wanneer ben je beschikbaar, voltijds of deeltijds, en welke dagen of avonden zijn bezet door de academie?\n  \n\n- Wat is je huidige brutoloon per maand, en wat heb je netto minimaal nodig om rond te komen?  \n  (Dit is voor de keuze tussen uitkering, opleiding en werk, niet voor een cv.)\n  \n\n## Werk dat bij je past\n\nConcrete momenten zeggen meer dan eigenschappen.\n\n- Drie momenten op het werk waarop je dacht: dit is goed. Wat deed je precies?\n  \n\n- Drie momenten waarop het echt niet ging. Wat gebeurde er?\n  \n\n- Een project waar je trots op bent: wat, voor wie, wat was moeilijk, hoe heb je het opgelost?  \n  (Dit wordt een regel op het cv en een voorbeeld in het gesprek.)\n  \n\n- Nog een project, liefst iets helemaal anders\n  \n\n- Wat doe je het liefst in het atelier: tekenen, plooien, lassen, organiseren, uitleggen aan anderen? Zet ze in volgorde.\n  \n\n- Wat is fysiek het zwaarst, en waar voel je dat (rug, schouders, handen, ogen, ademhaling)?  \n  (Ook voor de huisarts.)\n  \n\n- Werk je liever alleen, met twee of drie, of in een grotere ploeg? Waarom?\n  \n\n- Liever een klein bedrijf, een grote organisatie, een overheid, een vzw? Wat trekt je aan en wat schrikt af?\n  \n\n- Wat zouden je collega's zeggen als iemand vraagt hoe het is om met jou te werken?\n  \n\n- Wat heb je nodig van een baas of ploegbaas om goed te werken? En wat verdraag je niet?\n  \n\n## Sterktes en werkpunten\n\nEerlijk en met een voorbeeld; dit is geen sollicitatiegesprek.\n\n- Drie dingen waar je goed in bent, telkens met een voorbeeld\n  \n\n- Drie dingen die je wil verbeteren of die je moeilijk vindt\n  \n\n- Waarvoor komen mensen bij jou om hulp?\n  \n\n- Hoe leer je het liefst: door te doen, te kijken, te lezen, uitleg te krijgen?\n  \n\n- Hoe reageer je als er druk of stress is? Wat helpt dan?\n  \n\n- Wanneer zeg je te weinig, en wanneer had je liever iets gezegd?  \n  (De tests zeggen dat je niet snel op de voorgrond treedt; dit is om te weten waar dat je iets kost.)\n  \n\n- Wat weet je over jezelf dat niet in een test staat?\n  \n\n## Passies en interesses\n\nWat je doet als niemand het vraagt.\n\n- Waar gaat je aandacht naartoe buiten het werk: maken, lezen, kijken, sporten, mensen, plekken?\n  \n\n- Welke gebouwen, objecten, musea of ateliers hebben je ooit geraakt, en waarom?\n  \n\n- Als geld geen rol speelde: wat zou je een jaar lang maken of leren?\n  \n\n- Van de sporen in de app (erfgoed en restauratie, culturele instellingen, lesgeven, sociaal en ecologisch, archief en archeologie): welke trekt het meest, welke het minst, en waarom?\n  \n\n- Welk werkveld in de Verkenning verraste je positief, en welk zou je meteen schrappen?\n  \n\n- Heb je ooit vrijwilligerswerk gedaan of iemand iets aangeleerd? Hoe was dat?\n  \n\n- Wat zou je op de academie het liefst verder doen: meubel, interieur, grafiek, iets anders?\n  \n\n## De overstap\n\nHier gaat het om keuzes voor de komende maanden.\n\n- Drie dingen die de volgende job zeker moet hebben\n  \n\n- Drie dingen die je in de volgende job wil vermijden\n  \n\n- Wil je opnieuw studeren? Zo ja: hoelang zou je dat volhouden (een jaar, twee, drie), overdag of in de avond, en wat trekt je: restauratie, tekenen, lesgeven, archief, iets anders?\n  \n\n- Hoe voel je je nu: energie van 1 tot 10, slaap, zin om dingen te doen? Wat helpt je herstellen?\n  \n\n- Hoeveel weken rust denk je nodig te hebben voor je ergens nieuw kunt beginnen?\n  \n\n- Wat wil je dat Giulia doet in dit traject, en wat wil je liever zelf doen?\n  \n\n- Wat houdt je tegen om iets te tekenen bij je werkgever, en wat zou je willen dat er in de plaats gebeurt?\n  \n\n## Voor het gesprek\n\nTwee zinnen die je paraat wil hebben.\n\n- Hoe zeg je in twee zinnen waarom je weggaat, zonder het over vermoeidheid of je werkgever te hebben?  \n  (Bijvoorbeeld: na vijf jaar plaatbewerking wil ik mijn vakmanschap inzetten voor werk dat blijft, zoals erfgoed of museumateliers.)\n  \n\n- Welke vraag zou jij aan een werkgever stellen om te weten of je er past?\n  \n\n- Wie kan als referentie dienen (een collega, een klant, een docent) en mag je die naam gebruiken?\n  \n"
  },
- "gebouwdOp": "2026-11-16T15:52:50.270Z"
+ "gebouwdOp": "2026-11-16T16:06:24.730Z"
 };

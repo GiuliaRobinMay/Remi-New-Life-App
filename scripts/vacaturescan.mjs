@@ -65,6 +65,8 @@ const GENERIEK = /^(view job|view vacancy|see job|job details|apply( now)?|more 
 
 const config = JSON.parse(readFileSync(bronbestand, 'utf8'));
 const uitsluitenRe = config.uitsluiten?.length ? new RegExp(`\\b(${config.uitsluiten.join('|')})\\b`, 'i') : /(?!)/;
+// Lesgevende functies (leraar, docent, instructeur ...) slaan we over: Remi is geen leerkracht.
+const titelUitRe = config.uitsluitenTitels?.length ? new RegExp(`(${config.uitsluitenTitels.join('|')})`, 'i') : /(?!)/;
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const log = (...a) => console.error(...a);
 
@@ -323,6 +325,7 @@ function beoordeel(items, lijstUrl, bron) {
   for (const { it, href, titel, eigenPagina, s } of gescoord) {
     if (s < 4) continue;
     if (bron.filterInterim && (uitsluitenRe.test(it.werkgever) || /\binterim\b/i.test(it.context))) { uitgefilterd++; continue; }
+    if (titelUitRe.test(titel)) { uitgefilterd++; continue; }
     const sleutel = eigenPagina ? `${lijst}|${titel.toLowerCase()}` : href;
     const oud = gezien.get(sleutel);
     if (!oud || s > oud.score) gezien.set(sleutel, { titel, url: href || lijstUrl, context: it.context, werkgever: it.werkgever || undefined, score: s });

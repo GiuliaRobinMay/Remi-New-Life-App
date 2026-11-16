@@ -591,8 +591,9 @@ grant select on public.sollicitaties, public.vacatures, public.hotlist, public.s
 --      [ ] 'Allow new users to sign up' staat UIT (een account maken kan dan alleen met een toegangscode);
 --      [ ] 'Confirm email' staat AAN;
 --      [ ] 'Secure email change' staat AAN.
---    Zo kan niemand vooraf een account maken met het adres van iemand die een code krijgt. Gebeurt dat toch, dan
---    neemt de functie account zo'n account (zonder toegang) niet over, maar vervangt ze het door een nieuw account.
+--    Zo kan niemand vooraf een account maken met het adres van iemand die een code krijgt. Bestaat er toch al een
+--    account met dat adres zonder toegang (bijvoorbeeld voor een andere app in dezelfde database), dan neemt de
+--    functie account het niet over en verwijdert ze het niet: wie het wachtwoord kent, meldt zich aan en koppelt de code.
 --
 --    Alleen de allereerste code (zolang nog niemand toegang heeft) zet je hier klaar: met de hash van de code in
 --    hoofdletters zonder streepje (de code zelf nooit in de repository) en het adres in kleine letters.

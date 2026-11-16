@@ -341,114 +341,70 @@ try {
     const u = t.gebruiker('remi@test.be');
     t.legCode('KLMNP-QRSTU', 'remi', 'remi@test.be');
     const r = await t.maak('remi@test.be', 'KLMNP-QRSTU');
-    check('account zonder toegang op pagina 2: verwijderd en vervangen', r.status === 200 && r.json?.nieuw === true && isDeepStrictEqual(t.oproepen.deleteUser, [u.id])
-      && t.oproepen.createUser.length === 1 && !t.oproepen.updateUserById.length, r.tekst);
+    check('account zonder toegang op pagina 2: gevonden en geweigerd (409), niets gewijzigd', r.status === 409 && geenWijziging(t) && t.gebruikers.some(x => x.id === u.id), r.tekst);
   }
 
-  // ---- maak: een account met dit adres zonder toegang wordt niet overgenomen, maar vervangen ----
+  // ---- maak: een account met dit adres zonder toegang wordt nooit overgenomen en nooit verwijderd ----
+  //      (de database kan gedeeld zijn met andere apps: dat account kan bij een andere app horen)
   {
     // Een aanvaller maakte met de openbare sleutel een account met het adres van Giulia (open aanmelding, zonder
-    // bevestiging) en houdt zijn toegangstoken bij. Daarna maakt Giulia haar account met de code.
+    // bevestiging) en houdt zijn toegangstoken bij. Daarna probeert Giulia haar account te maken met de code.
     const t = opzet();
     const kaper = t.aanmelding('Giulia@Test.be', 'tok-kaper');
-    t.sessies.set('tok-kaper-2', kaper.id);
     const remi = t.lid('remi@test.be', 'remi', 'tok-remi');
     t.legCode('ABCDE-FGHJK', 'giulia', 'giulia@test.be');
     const r = await t.maak('giulia@test.be', 'ABCDE-FGHJK');
-    const nieuw = t.gebruikers.find(x => x.email === 'giulia@test.be');
-    check('zonder toegang: 200, een nieuw account', r.status === 200 && isDeepStrictEqual(r.json, { ok: true, wie: 'giulia', nieuw: true }), r.tekst);
-    check('zonder toegang: het oude account eerst verwijderd, dan een nieuw gemaakt', isDeepStrictEqual(t.oproepen.deleteUser, [kaper.id])
-      && isDeepStrictEqual(t.oproepen.createUser, [{ email: 'giulia@test.be', password: WW, email_confirm: true }]), { d: t.oproepen.deleteUser, c: t.oproepen.createUser });
-    check('zonder toegang: niet overgenomen (geen nieuw wachtwoord op het oude account, niets in te trekken)', !t.oproepen.updateUserById.length && !t.oproepen.rpc.length);
-    check('zonder toegang: het oude account bestaat niet meer, het nieuwe heeft een ander id', !t.gebruikers.some(x => x.id === kaper.id) && !!nieuw && nieuw.id !== kaper.id
-      && nieuw.password === WW && t.gebruikers.filter(x => (x.email || '').toLowerCase() === 'giulia@test.be').length === 1, t.gebruikers);
-    check('zonder toegang: toegang hangt aan het nieuwe id, niets aan het oude', isDeepStrictEqual(t.tabellen.toegang.find(x => x.email === 'giulia@test.be'), { email: 'giulia@test.be', wie: 'giulia', user_id: nieuw?.id })
-      && !t.tabellen.toegang.some(x => x.user_id === kaper.id), t.tabellen.toegang);
-    const k1 = await t.codeVoor('giulia', 'iemand@test.be', 'tok-kaper');
-    const k2 = await t.koppel('ABCDE-FGHJK', 'tok-kaper-2');
-    check('zonder toegang: de oude toegangstokens werken nergens meer', k1.status === 401 && k2.status === 401 && t.tabellen.account_code.length === 1, `${k1.tekst} | ${k2.tekst}`);
+    check('zonder toegang: 409 met uitleg (aanmelden en de code koppelen)', r.status === 409 && /bestaat al een account/.test(melding(r)) && /toegangscode/.test(melding(r)), r.tekst);
+    check('zonder toegang: niets gewijzigd (geen nieuw account, geen nieuw wachtwoord, niets verwijderd)', geenWijziging(t) && t.gebruikers.some(x => x.id === kaper.id && x.password === 'oud-wachtwoord'));
+    check('zonder toegang: geen toegang gegeven', !t.tabellen.toegang.some(x => x.email === 'giulia@test.be' || x.user_id === kaper.id), t.tabellen.toegang);
+    check('zonder toegang: de code blijft onaangeroerd', t.codeRij('ABCDE-FGHJK')?.gebruikt_op === null && t.oproepen.claims === 0);
     check('zonder toegang: Remi blijft ongemoeid', t.sessies.get('tok-remi') === remi.id && t.tabellen.toegang.some(x => x.user_id === remi.id));
-    check('zonder toegang: code gemarkeerd als gebruikt', t.codeRij('ABCDE-FGHJK')?.gebruikt_op === new Date(NU).toISOString());
   }
   {
-    // Een oude rij in toegang voor dit adres zonder account (user_id leeg), en een account zonder toegang: ook vervangen.
+    // Een account voor een andere app in dezelfde database: wie het wachtwoord kent, meldt zich aan en koppelt de code.
+    const t = opzet();
+    const ander = t.aanmelding('remi@test.be', 'tok-ander-app');
+    t.legCode('ABCDE-FGHJK', 'remi', 'remi@test.be');
+    const r = await t.maak('remi@test.be', 'ABCDE-FGHJK');
+    check('account van een andere app: maak geweigerd (409), account blijft', r.status === 409 && geenWijziging(t) && t.gebruikers.some(x => x.id === ander.id), r.tekst);
+    const k = await t.koppel('ABCDE-FGHJK', 'tok-ander-app');
+    check('account van een andere app: koppelen met de code lukt', k.status === 200 && isDeepStrictEqual(k.json, { ok: true, wie: 'remi' }) && isDeepStrictEqual(t.tabellen.toegang, [{ email: 'remi@test.be', wie: 'remi', user_id: ander.id }]), k.tekst);
+    check('account van een andere app: nooit verwijderd, geen nieuw wachtwoord', !t.oproepen.deleteUser.length && !t.oproepen.updateUserById.length && t.gebruikers.some(x => x.id === ander.id && x.password === 'oud-wachtwoord'));
+  }
+  {
+    // Een oude rij in toegang voor dit adres zonder account (user_id leeg), en een account zonder toegang: ook geweigerd.
     const t = opzet();
     const oud = t.gebruiker('remi@test.be');
     t.tabellen.toegang.push({ email: 'remi@test.be', wie: 'remi', user_id: null });
     t.legCode('ABCDE-FGHJK', 'remi', 'remi@test.be');
     const r = await t.maak('remi@test.be', 'ABCDE-FGHJK');
-    const nieuw = t.gebruikers.find(x => x.email === 'remi@test.be');
-    check('oude rij zonder user_id, account zonder toegang: vervangen, de rij krijgt het nieuwe id', r.status === 200 && r.json?.nieuw === true && isDeepStrictEqual(t.oproepen.deleteUser, [oud.id])
-      && !!nieuw && nieuw.id !== oud.id && isDeepStrictEqual(t.tabellen.toegang, [{ email: 'remi@test.be', wie: 'remi', user_id: nieuw.id }]), t.tabellen.toegang);
+    check('oude rij zonder user_id, account zonder toegang: 409, niets gewijzigd', r.status === 409 && geenWijziging(t) && t.gebruikers.some(x => x.id === oud.id)
+      && isDeepStrictEqual(t.tabellen.toegang, [{ email: 'remi@test.be', wie: 'remi', user_id: null }]), r.tekst);
   }
   {
-    // Verwijderen mislukt: niets gemaakt, het oude account blijft, de code blijft bruikbaar.
+    // Een nieuw account, maar de toegang kon niet bewaard worden: de code blijft bruikbaar. Het net gemaakte account
+    // heeft geen toegang en wordt niet verwijderd; de volgende poging met maak wordt dus geweigerd, koppelen lukt.
     const t = opzet();
-    const oud = t.gebruiker('remi@test.be');
-    t.legCode('ABCDE-FGHJK', 'remi', 'remi@test.be');
-    t.storing.deleteUser = { message: 'Database error deleting user' };
-    const r = await t.maak('remi@test.be', 'ABCDE-FGHJK');
-    check('verwijderen mislukt: 500 met uitleg', r.status === 500 && /kon niet vervangen worden/.test(melding(r)) && /dezelfde code/.test(melding(r)), r.tekst);
-    check('verwijderen mislukt: geen nieuw account, geen nieuw wachtwoord, geen toegang', !t.oproepen.createUser.length && !t.oproepen.updateUserById.length && !t.tabellen.toegang.length
-      && t.gebruikers.some(x => x.id === oud.id && x.password === 'oud-wachtwoord'));
-    check('verwijderen mislukt: code weer vrijgegeven', t.codeRij('ABCDE-FGHJK')?.gebruikt_op === null && t.oproepen.claims === 1);
-    t.storing.deleteUser = null;
-    const r2 = await t.maak('remi@test.be', 'ABCDE-FGHJK');
-    const nieuw = t.gebruikers.find(x => x.email === 'remi@test.be');
-    check('verwijderen mislukt: daarna lukt het met dezelfde code', r2.status === 200 && r2.json?.nieuw === true && !!nieuw && nieuw.id !== oud.id
-      && isDeepStrictEqual(t.tabellen.toegang, [{ email: 'remi@test.be', wie: 'remi', user_id: nieuw.id }]), r2.tekst);
-  }
-  {
-    // Het oude account is net weg wanneer het verwijderd wordt (Supabase: 'User not found'): gewoon verder.
-    const t = opzet();
-    const oud = t.gebruiker('remi@test.be');
-    t.legCode('ABCDE-FGHJK', 'remi', 'remi@test.be');
-    t.wacht.deleteUser = async () => { t.gebruikers.splice(t.gebruikers.indexOf(oud), 1); };
-    const r = await t.maak('remi@test.be', 'ABCDE-FGHJK');
-    check('oud account al weg bij het verwijderen: toch een nieuw account', r.status === 200 && r.json?.nieuw === true && isDeepStrictEqual(t.oproepen.deleteUser, [oud.id])
-      && t.oproepen.createUser.length === 1 && t.tabellen.toegang[0]?.user_id === t.gebruikers[0]?.id && t.gebruikers[0]?.id !== oud.id, r.tekst);
-  }
-  {
-    // Verwijderd, maar het nieuwe account kon niet gemaakt worden: de code blijft bruikbaar.
-    const t = opzet();
-    const oud = t.gebruiker('remi@test.be');
-    t.legCode('ABCDE-FGHJK', 'remi', 'remi@test.be');
-    t.storing.createUser = { message: 'Password is known to be weak' };
-    const r = await t.maak('remi@test.be', 'ABCDE-FGHJK');
-    check('vervangen, wachtwoord geweigerd: 400, code vrij, geen toegang', r.status === 400 && /wachtwoord wordt niet aanvaard/.test(melding(r))
-      && t.codeRij('ABCDE-FGHJK')?.gebruikt_op === null && !t.tabellen.toegang.length && !t.gebruikers.some(x => x.id === oud.id), r.tekst);
-    t.storing.createUser = null;
-    const r2 = await t.maak('remi@test.be', 'ABCDE-FGHJK', 'een-beter-wachtwoord');
-    check('vervangen, wachtwoord geweigerd: daarna lukt het, zonder nog iets te verwijderen', r2.status === 200 && r2.json?.nieuw === true && t.oproepen.deleteUser.length === 1
-      && t.tabellen.toegang[0]?.user_id === t.gebruikers.find(x => x.email === 'remi@test.be')?.id, r2.tekst);
-  }
-  {
-    // Vervangen, maar de toegang kon niet bewaard worden: bij de volgende poging wordt het net gemaakte account
-    // (nog zonder toegang) opnieuw vervangen.
-    const t = opzet();
-    const oud = t.gebruiker('remi@test.be');
     t.legCode('ABCDE-FGHJK', 'remi', 'remi@test.be');
     t.storing['toegang.upsert'] = { message: 'kapot' };
     const r = await t.maak('remi@test.be', 'ABCDE-FGHJK');
     const tussen = t.gebruikers.find(x => x.email === 'remi@test.be');
-    check('vervangen, toegang niet bewaard: 500, code vrij', r.status === 500 && melding(r) === 'De toegang kon niet bewaard worden.' && t.codeRij('ABCDE-FGHJK')?.gebruikt_op === null && !t.tabellen.toegang.length, r.tekst);
+    check('toegang niet bewaard: 500, code vrij', r.status === 500 && melding(r) === 'De toegang kon niet bewaard worden.' && t.codeRij('ABCDE-FGHJK')?.gebruikt_op === null && !t.tabellen.toegang.length && !!tussen, r.tekst);
     t.storing['toegang.upsert'] = null;
     const r2 = await t.maak('remi@test.be', 'ABCDE-FGHJK');
-    const nieuw = t.gebruikers.find(x => x.email === 'remi@test.be');
-    check('vervangen, toegang niet bewaard: daarna lukt het, met één account voor het adres', r2.status === 200 && isDeepStrictEqual(t.oproepen.deleteUser, [oud.id, tussen?.id])
-      && t.gebruikers.filter(x => x.email === 'remi@test.be').length === 1 && isDeepStrictEqual(t.tabellen.toegang, [{ email: 'remi@test.be', wie: 'remi', user_id: nieuw?.id }]), r2.tekst);
+    check('toegang niet bewaard: opnieuw maak geeft 409 (niets verwijderd)', r2.status === 409 && !t.oproepen.deleteUser.length && t.gebruikers.filter(x => x.email === 'remi@test.be').length === 1, r2.tekst);
   }
   {
-    // Twee verzoeken tegelijk met dezelfde code, terwijl er een account zonder toegang bestaat: maar één keer vervangen.
+    // Een nieuw account, maar het wachtwoord werd geweigerd: niets gemaakt, de code blijft bruikbaar.
     const t = opzet();
-    const oud = t.gebruiker('remi@test.be');
     t.legCode('ABCDE-FGHJK', 'remi', 'remi@test.be');
-    let aantal = 0; let los = () => {}; const samen = new Promise<void>(r => { los = r; });
-    t.wacht.listUsers = async () => { if (++aantal >= 2) los(); await samen; };
-    const [a, b] = await Promise.all([t.maak('remi@test.be', 'ABCDE-FGHJK', 'eerste-wachtwoord'), t.maak('remi@test.be', 'ABCDE-FGHJK', 'tweede-wachtwoord')]);
-    check('tegelijk, account zonder toegang: één lukt, het andere 400', [a.status, b.status].sort().join(',') === '200,400' && aantal === 2, `${a.tekst} | ${b.tekst}`);
-    check('tegelijk, account zonder toegang: één keer verwijderd, één nieuw account', isDeepStrictEqual(t.oproepen.deleteUser, [oud.id]) && t.oproepen.createUser.length === 1
-      && t.gebruikers.length === 1 && t.tabellen.toegang.length === 1 && t.tabellen.toegang[0].user_id === t.gebruikers[0].id);
+    t.storing.createUser = { message: 'Password is known to be weak' };
+    const r = await t.maak('remi@test.be', 'ABCDE-FGHJK');
+    check('wachtwoord geweigerd: 400, code vrij, geen toegang', r.status === 400 && /wachtwoord wordt niet aanvaard/.test(melding(r))
+      && t.codeRij('ABCDE-FGHJK')?.gebruikt_op === null && !t.tabellen.toegang.length, r.tekst);
+    t.storing.createUser = null;
+    const r2 = await t.maak('remi@test.be', 'ABCDE-FGHJK', 'een-beter-wachtwoord');
+    check('wachtwoord geweigerd: daarna lukt het', r2.status === 200 && r2.json?.nieuw === true && t.tabellen.toegang[0]?.user_id === t.gebruikers.find(x => x.email === 'remi@test.be')?.id, r2.tekst);
   }
   {
     // Een geweigerde code (ander adres, andere persoon) verwijdert nooit een account.

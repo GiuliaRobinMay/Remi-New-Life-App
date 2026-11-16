@@ -4,8 +4,9 @@
 //        voor dat adres; oudere ongebruikte codes voor hetzelfde adres vervallen meteen
 //   POST {actie:'maak', email, wachtwoord, code}  -> een nieuw account met dit wachtwoord, en toegang als 'remi' of
 //        'giulia'. Heeft het account met dit adres al toegang (wachtwoord vergeten), dan krijgt het een nieuw wachtwoord
-//        en vervallen al zijn aanmeldingen. Een account met dit adres zonder toegang wordt nooit overgenomen: het wordt
-//        verwijderd en vervangen door een nieuw account (nieuw id, dus elk oud toegangstoken is waardeloos)
+//        en vervallen al zijn aanmeldingen. Een account met dit adres zonder toegang wordt nooit overgenomen en nooit
+//        verwijderd (de database kan gedeeld zijn met andere apps): dan meldt de gebruiker zich aan met dat account en
+//        koppelt het met de code (actie 'koppel')
 //   POST {actie:'koppel', code}  (aangemeld, nog zonder toegang) -> toegang voor dit account, zonder wachtwoord
 // Toegang hangt aan het account (toegang.user_id), niet aan het e-mailadres. Een bestaande toegang krijgt nooit een
 // andere 'wie'. De codes staan alleen als hash in de database (tabel account_code, niet leesbaar voor de app).
@@ -149,6 +150,12 @@ export function maakHandler(admin: Admin, env: Omgeving = {}) {
     // Alleen een account dat al toegang heeft met dit adres, krijgt een nieuw wachtwoord (wachtwoord vergeten).
     const metToegang = await nakijkenToegang(email, codeWie, bestaand?.id);
     const vergeten = bestaand && metToegang ? bestaand : null;
+    if (bestaand && !vergeten) {
+      // Een account met dit adres zonder toegang (gemaakt voor een andere app in dezelfde database, of via een open
+      // aanmelding): niet overnemen (een toegangstoken dat de maker al had, zou dan meteen toegang geven) en ook niet
+      // verwijderen (het kan bij een andere app horen). Wie het wachtwoord kent, meldt zich aan en koppelt de code.
+      throw new Fout(409, 'Er bestaat al een account met dit e-mailadres. Meld je aan met dat account en vul daarna de toegangscode in.');
+    }
     const { stempel, wie } = await inwisselen(hash, email);
     try {
       let id: string;
@@ -161,15 +168,6 @@ export function maakHandler(admin: Admin, env: Omgeving = {}) {
         const { error } = await admin.rpc('trek_sessies_in', { uid: id });
         if (error) throw new Fout(500, 'De andere aanmeldingen van dit account konden niet afgemeld worden. Probeer opnieuw met dezelfde code.');
       } else {
-        if (bestaand) {
-          // Een account met dit adres zonder toegang (bijvoorbeeld gemaakt via een open aanmelding, door wie dan ook):
-          // niet overnemen, want een toegangstoken dat de maker al had, zou dan meteen toegang geven. Eerst verwijderen,
-          // dan een nieuw account maken: de toegang hangt aan het nieuwe id, dus elk oud token is waardeloos.
-          const { error } = await admin.auth.admin.deleteUser(bestaand.id);
-          if (error && !/user.?not.?found/i.test(`${error.code || ''} ${error.message}`)) {
-            throw new Fout(500, 'Er bestond al een account met dit e-mailadres, zonder toegang, en dat kon niet vervangen worden. Probeer opnieuw met dezelfde code.');
-          }
-        }
         const r = await admin.auth.admin.createUser({ email, password: wachtwoord, email_confirm: true });
         if (r.error) throw wachtwoordFout(r.error, 'Het account kon niet gemaakt worden');
         const nieuwId = r.data?.user?.id;

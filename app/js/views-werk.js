@@ -142,7 +142,7 @@ export function vacatures(r) {
     const items = alle.sort(vacVolgorde);
     const groups = VACSTATUS.map(([k, l]) => ({ key: 'vac-' + k, label: l.toUpperCase(), tone: VACTOON[k], rows: items.filter(v => vacStatus(v) === k), hideEmpty: true }));
     const cols = [
-      { label: 'Score', width: 104, render: v => scoreBadge(v) || dash() },
+      { label: 'Score', width: 120, render: v => scoreBadge(v) || dash() },
       { label: 'Functie en organisatie', width: 360, render: v => h('span', null, h('a', { href: '#', 'data-vacature': v.id, onClick: e => { e.preventDefault(); vacaturePeek(v.id); } }, v.titel || 'Vacature'), v.organisatie && h('span', { class: 'vac-org' }, ` · ${v.organisatie}`)) },
       { label: 'Plaats', width: 150, render: v => v.plaats || dash() },
       { label: 'Deadline', width: 120, render: v => v.deadline ? h('span', { class: ['nieuw', 'voorgelegd', 'interessant'].includes(vacStatus(v)) && daysUntil(v.deadline) < 3 ? 'overdue' : '' }, fmtDate(v.deadline)) : dash() },

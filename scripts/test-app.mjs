@@ -11,7 +11,7 @@ await new Promise(r => setTimeout(r, 700));
 const base = `http://localhost:${port}/`;
 const fouten = []; const geslaagd = [];
 const check = (naam, ok, detail = '') => (ok ? geslaagd : fouten).push(`${naam}${detail ? ': ' + detail : ''}`);
-const VIEWS = { overzicht: [], stappenplan: ['open', 'klaar', 'alles'], planning: ['maanden', 'kalender', 'fasen'], rechten: ['kern', 'verwittiging', 'gezondheid', 'scenarios', 'opzeg', 'werkloosheid', 'steun', 'check'], communicatie: ['mails', 'instellingen'], sollicitaties: [], vacatures: ['bewaard', 'zoeken', 'bronnen'], hotlist: [], verkenning: ['alles', 'erfgoed', 'sociaal'], opleidingen: ['alles', 'erfgoed'], cv: ['start', 'gegevens', 'profiel', 'ervaring', 'opleiding', 'vaardigheden', 'competenties', 'portfolio', 'extra', 'zelftests', 'voorbeelden', 'gids', 'afdrukken'], vragenlijst: ['praktisch', 'werk'], profiel: ['samenvatting', 'tests', 'herzieningen'], welzijn: ['zelftests', 'dagboek', 'dokter', 'hulp'], documenten: ['cv', 'dossier', 'sjablonen', 'vdab', 'gegenereerd'] };
+const VIEWS = { overzicht: [], stappenplan: ['open', 'klaar', 'alles'], planning: ['maanden', 'kalender', 'fasen'], rechten: ['kern', 'verwittiging', 'gezondheid', 'scenarios', 'opzeg', 'werkloosheid', 'steun', 'check'], communicatie: ['mails', 'instellingen'], sollicitaties: [], vacatures: ['gevonden', 'zoeken', 'bronnen'], hotlist: [], verkenning: ['alles', 'erfgoed', 'sociaal'], opleidingen: ['alles', 'erfgoed'], cv: ['start', 'gegevens', 'profiel', 'ervaring', 'opleiding', 'vaardigheden', 'competenties', 'portfolio', 'extra', 'zelftests', 'voorbeelden', 'gids', 'afdrukken'], vragenlijst: ['praktisch', 'werk'], profiel: ['samenvatting', 'tests', 'herzieningen'], welzijn: ['zelftests', 'dagboek', 'dokter', 'hulp'], documenten: ['cv', 'dossier', 'sjablonen', 'vdab', 'gegenereerd'] };
 let browser;
 try {
   const { chromium } = await import('playwright');
@@ -284,6 +284,81 @@ try {
       // Import weigert een vreemd bestand
       const imp = await page.evaluate(async () => { const s = await import('./js/store.js'); try { s.importJson('{"foo":1}'); return 'aanvaard'; } catch { return 'geweigerd'; } });
       check('import weigert vreemd bestand', imp === 'geweigerd', imp);
+      // Vacatures: gevonden door de scan, per status gegroepeerd, met score; status wijzigen en omzetten naar een sollicitatie
+      const foutenVoorVacatures = consoleErr.length;
+      await page.evaluate(async () => {
+        const st = await import('./js/store.js');
+        for (const v of [
+          { id: 'vac-test-a', titel: 'Testvacature A', organisatie: 'Testmuseum', sector: 'cultuur', plaats: 'Antwerpen', url: 'https://voorbeeld.be/vacature-a', bron: 'Testbron', gevonden: '2026-11-14', deadline: '2026-12-20', contract: 'voltijds, onbepaalde duur', inhoud: 'Technisch medewerker in het atelier.', score: 'A', waarom: 'Atelierwerk met metaal in een museum.', aandachtspunt: 'Rijbewijs gevraagd.', status: 'nieuw', statusDatum: '2026-11-14' },
+          { id: 'vac-test-b', titel: 'Testvacature B', organisatie: 'Teststad', sector: 'overheid', plaats: 'Mechelen', url: 'https://voorbeeld.be/vacature-b', gevonden: '2026-11-15', deadline: '2026-12-01', score: 'B', waarom: 'Onderhoud van erfgoedgebouwen.', aandachtspunt: 'Examen bij Jobpunt.', status: 'nieuw', statusDatum: '2026-11-15' },
+          { id: 'vac-test-c', titel: 'Testvacature C', organisatie: 'Testvzw', sector: 'vzw', plaats: 'Gent', gevonden: '2026-11-13', score: 'C', status: 'voorgelegd', statusDatum: '2026-11-15' },
+          { id: 'vac-test-oud', titel: 'Testvacature oud', organisatie: 'Testarchief', plaats: 'Antwerpen', toegevoegd: '2026-10-02', spoor: 'geschiedenis', status: 'interessant' },
+        ]) st.upsert('vacatures', v, { silent: true });
+      });
+      const vacGroepen = () => page.evaluate(() => { const uit = []; let g = null; for (const tr of document.querySelectorAll('.grid2__table tbody tr')) { if (tr.classList.contains('grid2__fold')) { g = { naam: tr.querySelector('.grid2__foldname').textContent, rijen: [] }; uit.push(g); } else if (g) g.rijen.push({ id: tr.querySelector('[data-vacature]')?.dataset.vacature || '', score: tr.querySelector('.vac-score')?.textContent || '', kleur: (tr.querySelector('.vac-score')?.className.match(/badge--(\w+)/) || [])[1] || '' }); } return uit; });
+      await page.goto(`${base}#/vacatures?tab=gevonden`, { waitUntil: 'networkidle' });
+      let vg = await vacGroepen();
+      check('vacatures: groepen in volgorde, lege verborgen', vg.map(g => g.naam).join(' | ') === 'NIEUW | VOORGELEGD AAN REMI | INTERESSANT', vg.map(g => g.naam).join(' | '));
+      check('vacatures: binnen een groep score A voor B', vg[0]?.rijen.map(r => r.id).join(',') === 'vac-test-a,vac-test-b', JSON.stringify(vg[0]?.rijen));
+      check('vacatures: scorebadges A groen, B oranje, C grijs', vg[0]?.rijen[0]?.kleur === 'green' && vg[0]?.rijen[1]?.kleur === 'orange' && vg[1]?.rijen[0]?.score === 'C' && vg[1]?.rijen[0]?.kleur === 'grey' && vg[2]?.rijen[0]?.score === '', JSON.stringify(vg.map(g => g.rijen)));
+      check('vacatures: kop telt nieuw en voorgelegd', (await page.textContent('.chrome__view')) === '3 nieuw of voorgelegd' && (await page.textContent('.tabs__item--active')) === 'Gevonden', await page.textContent('.chrome__view'));
+      check('vacatures: oud record toont de datum van toevoegen', /2 okt 2026/.test(await page.textContent('.grid2__table')));
+      await page.click('a[data-vacature="vac-test-b"]');
+      await page.waitForSelector('.peek--open', { timeout: 3000 }).catch(() => {});
+      const vacPeek = await page.textContent('.peek__body');
+      check('vacature openen toont waarom, aandachtspunt, link en velden', /Waarom dit past/.test(vacPeek) && /Onderhoud van erfgoedgebouwen/.test(vacPeek) && /Examen bij Jobpunt/.test(vacPeek) && await page.locator('.peek a[href="https://voorbeeld.be/vacature-b"]').count() > 0 && /Teststad/.test(vacPeek) && /1 dec 2026/.test(vacPeek), vacPeek.slice(0, 200));
+      const knoppen = await page.$$eval('.peek .form__actions button', els => els.map(e => e.textContent.trim()));
+      check('vacature heeft alle knoppen', ['Remi wil solliciteren', 'Voorgelegd aan Remi', 'Interessant', 'Niet voor Remi', 'Verlopen', 'Bewerken', 'Verwijderen'].every(k => knoppen.includes(k)), knoppen.join(' | '));
+      await page.click('.peek button:has-text("Niet voor Remi")');
+      await page.waitForTimeout(200);
+      const vacNa = await page.evaluate(async () => { const st = await import('./js/store.js'); const u = await import('./js/ui.js'); const v = st.get('vacatures', 'vac-test-b'); return { status: v.status, datum: v.statusDatum, vandaag: u.todayIso() }; });
+      check('Niet voor Remi wijzigt de status en de statusdatum', vacNa.status === 'niet' && vacNa.datum === vacNa.vandaag, JSON.stringify(vacNa));
+      check('paneel toont de nieuwe status', await page.locator('.peek .chip--active:has-text("Niet voor Remi")').count() === 1);
+      await page.click('#peekClose');
+      vg = await vacGroepen();
+      check('vacature staat nu bij NIET VOOR REMI', vg.find(g => g.naam === 'NIET VOOR REMI')?.rijen.some(r => r.id === 'vac-test-b') && !vg[0].rijen.some(r => r.id === 'vac-test-b'), vg.map(g => `${g.naam}: ${g.rijen.map(r => r.id)}`).join(' | '));
+      check('kop telt na de wijziging', (await page.textContent('.chrome__view')) === '2 nieuw of voorgelegd', await page.textContent('.chrome__view'));
+      // Status kiezen in de tabel
+      await page.selectOption('select[data-vacstatus="vac-test-c"]', 'verlopen');
+      await page.waitForTimeout(200);
+      vg = await vacGroepen();
+      check('status kiezen in de tabel verplaatst naar VERLOPEN', vg.at(-1)?.naam === 'VERLOPEN' && vg.at(-1)?.rijen[0]?.id === 'vac-test-c', vg.map(g => g.naam).join(' | '));
+      // Remi wil solliciteren: formulier voorgevuld, bij bewaren omgezet met sollicitatie
+      await page.click('a[data-vacature="vac-test-a"]');
+      await page.click('[data-actie="solliciteren"]');
+      await page.waitForTimeout(150);
+      const voorgevuld = await page.evaluate(() => [...document.querySelectorAll('.peek input.field')].slice(0, 3).map(i => i.value));
+      check('sollicitatieformulier voorgevuld uit de vacature', voorgevuld[0] === 'Testmuseum' && voorgevuld[1] === 'Testvacature A' && voorgevuld[2] === 'https://voorbeeld.be/vacature-a', JSON.stringify(voorgevuld));
+      await page.click('.peek button[type=submit]');
+      await page.waitForTimeout(200);
+      const omgezet = await page.evaluate(async () => { const st = await import('./js/store.js'); const u = await import('./js/ui.js'); const v = st.get('vacatures', 'vac-test-a'); const s = v.sollicitatieId && st.get('sollicitaties', v.sollicitatieId); return { status: v.status, datum: v.statusDatum === u.todayIso(), sol: s ? `${s.organisatie}|${s.functie}|${s.vacatureId}|${s.spoor}` : '' }; });
+      check('bewaren zet de vacature op omgezet met sollicitatie en datum', omgezet.status === 'omgezet' && omgezet.datum && omgezet.sol === 'Testmuseum|Testvacature A|vac-test-a|cultuur', JSON.stringify(omgezet));
+      await page.click('#peekClose');
+      vg = await vacGroepen();
+      check('omgezette vacature staat bij OMGEZET NAAR SOLLICITATIE', vg.find(g => g.naam === 'OMGEZET NAAR SOLLICITATIE')?.rijen.some(r => r.id === 'vac-test-a'), vg.map(g => g.naam).join(' | '));
+      await page.click('a[data-vacature="vac-test-a"]');
+      check('omgezette vacature verwijst naar de sollicitatie', await page.locator('.peek button:has-text("Naar de sollicitatie")').count() === 1 && await page.locator('[data-actie="solliciteren"]').count() === 0);
+      await page.click('#peekClose');
+      // Bewerken met de nieuwe velden
+      await page.click('a[data-vacature="vac-test-oud"]');
+      await page.click('.peek button:has-text("Bewerken")');
+      await page.selectOption('.peek label:has-text("Score") select', 'B');
+      await page.selectOption('.peek label:has-text("Sector") select', 'erfgoed');
+      await page.fill('.peek label:has-text("Waarom dit past") textarea', 'Archiefwerk.');
+      await page.selectOption('.peek label:has-text("Status") select', 'voorgelegd');
+      await page.click('.peek button[type=submit]');
+      await page.waitForTimeout(200);
+      const bewerkt = await page.evaluate(async () => { const st = await import('./js/store.js'); const u = await import('./js/ui.js'); const v = st.get('vacatures', 'vac-test-oud'); return { score: v.score, sector: v.sector, waarom: v.waarom, status: v.status, datum: v.statusDatum === u.todayIso(), gevonden: v.gevonden }; });
+      check('vacatureformulier bewaart score, sector, waarom en status', bewerkt.score === 'B' && bewerkt.sector === 'erfgoed' && bewerkt.waarom === 'Archiefwerk.' && bewerkt.status === 'voorgelegd' && bewerkt.datum && bewerkt.gevonden === '2026-10-02', JSON.stringify(bewerkt));
+      check('paneel na bewaren toont de vacature', /Archiefwerk\./.test(await page.textContent('.peek__body')));
+      await page.click('#peekClose');
+      // Oude link naar Bewaard opent Gevonden; Zoeken legt de dagelijkse scan uit
+      await page.goto(`${base}#/vacatures?tab=bewaard`, { waitUntil: 'networkidle' });
+      check('oude link tab=bewaard opent Gevonden', (await page.textContent('.tabs__item--active')) === 'Gevonden' && await page.locator('.grid2__table').count() === 1);
+      await page.goto(`${base}#/vacatures?tab=zoeken`, { waitUntil: 'networkidle' });
+      const zoekUitleg = await page.textContent('.callout');
+      check('zoeken: uitleg over de dagelijkse scan', /Elke ochtend zoekt een scan op deze sites en bij de organisaties uit de hotlist/.test(zoekUitleg) && /komt bij Gevonden en Remi krijgt het per mail/.test(zoekUitleg) && !/niet automatisch gelezen/.test(zoekUitleg), zoekUitleg.slice(0, 160));
+      check('vacatures: geen consolefouten', consoleErr.length === foutenVoorVacatures, consoleErr.slice(foutenVoorVacatures).join(' | '));
     }
     await ctx.close();
   }

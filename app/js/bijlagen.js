@@ -8,13 +8,20 @@ let extern = null;
 export function zetExtern(adapter) { extern = adapter; }
 
 function db() {
-  if (!dbBelofte) dbBelofte = new Promise((res, rej) => {
+  if (dbBelofte) return dbBelofte;
+  const belofte = new Promise((res, rej) => {
     const r = indexedDB.open(DB, 1);
     r.onupgradeneeded = () => r.result.createObjectStore(STORE);
-    r.onsuccess = () => res(r.result);
-    r.onerror = () => { dbBelofte = null; rej(r.error); };
+    r.onsuccess = () => {
+      const d = r.result;
+      // Een ander tabblad wist de bijlagen (afmelden): de verbinding hier sluiten, anders blijft het wissen hangen.
+      d.onversionchange = () => { d.close(); if (dbBelofte === belofte) dbBelofte = null; };
+      res(d);
+    };
+    r.onerror = () => { if (dbBelofte === belofte) dbBelofte = null; rej(r.error); };
   });
-  return dbBelofte;
+  dbBelofte = belofte;
+  return belofte;
 }
 async function tx(mode, fn) {
   const d = await db();
@@ -28,12 +35,19 @@ async function tx(mode, fn) {
     t.onabort = () => { dbBelofte = null; rej(t.error); };
   });
 }
-// Alles van dit toestel wissen (bij afmelden).
+// Alles van dit toestel wissen (bij afmelden). Andere tabbladen sluiten hun verbinding (onversionchange);
+// blijft het wissen toch geblokkeerd, dan gaat het door zodra die verbinding sluit.
 export function wisAlleBijlagen() {
   return new Promise(res => {
     const sluit = dbBelofte ? dbBelofte.then(d => d.close()).catch(() => {}) : Promise.resolve();
     dbBelofte = null;
-    sluit.then(() => { const r = indexedDB.deleteDatabase(DB); r.onsuccess = r.onerror = r.onblocked = () => res(); });
+    sluit.then(() => {
+      const r = indexedDB.deleteDatabase(DB);
+      const klaar = () => { clearTimeout(t); res(); };
+      const t = setTimeout(res, 5000);
+      r.onsuccess = r.onerror = klaar;
+      r.onblocked = () => { /* wacht tot de andere verbinding sluit, hoogstens 5 seconden */ };
+    });
   });
 }
 export const leesLokaal = id => tx('readonly', s => s.get(id));

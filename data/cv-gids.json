@@ -91,7 +91,7 @@
         "Uitleg over waarom je je huidige job verlaat",
         "Testresultaten zoals je MBTI-type of Holland-code; die helpen jou kiezen, maar zeggen een werkgever weinig"
       ],
-      "voorbeeldGoed": "Sinds 2021 werk ik in een bedrijf voor maatwerk in plaatmateriaal, eerst als technisch tekenaar en plooi- en lasoperator, nu als tekenaar en verantwoordelijke atelier. Ik teken werkstukken uit, plan het werk voor [aantal] collega's en controleer de maatvoering en de afwerking voordat een stuk het atelier verlaat. Daarnaast volg ik interieurvormgeving in het avondonderwijs aan de Academie in Antwerpen, na drie jaar meubel en interieur en een jaar grafiek. Samen met mijn broer ontwerp en bouw ik meubels, en eerder bouwde ik een fotoarchief op voor Willy Van de Perre. Die nauwkeurigheid en mijn ervaring met [materiaal of techniek uit de vacature] wil ik inzetten voor [werk dat blijft, bijvoorbeeld de restauratie van erfgoed of het atelier van uw museum].",
+      "voorbeeldGoed": "Sinds 2021 werk ik in een bedrijf voor maatwerk in plaatmateriaal, eerst als technisch tekenaar en plooi- en lasoperator, nu als tekenaar en verantwoordelijke atelier. Ik teken werkstukken uit, plan het werk voor [aantal] collega's en controleer de maatvoering en de afwerking voordat een stuk het atelier verlaat. Daarnaast volg ik interieurvormgeving in het avondonderwijs aan de Academie in Antwerpen, na drie jaar meubel en interieur en een jaar grafiek. Samen met mijn broer ontwerp en bouw ik meubels, en eerder bouwde ik een fotoarchief op voor [opdrachtgever]. Die nauwkeurigheid en mijn ervaring met [materiaal of techniek uit de vacature] wil ik inzetten voor [werk dat blijft, bijvoorbeeld de restauratie van erfgoed of het atelier van uw museum].",
       "voorbeeldZwak": "Gemotiveerde en flexibele teamplayer met een passie voor techniek en design. Ik ben stressbestendig, leergierig en heb oog voor detail. Op zoek naar een nieuwe uitdaging in een dynamische omgeving.",
       "vragenlijstIds": ["p07", "w03", "w09", "s01", "i04", "o01", "g01"]
     },
@@ -104,7 +104,7 @@
         "Een halve regel over het bedrijf als de naam niets zegt, bijvoorbeeld maatwerk in plaatmateriaal",
         "Drie tot vijf regels per job: taken, en vooral realisaties",
         "Doorgroei binnen hetzelfde bedrijf, zoals van operator naar verantwoordelijke atelier",
-        "Oudere en kortere ervaring in één of twee regels: Katoen Natie (2017 tot 2018, [functie]), het fotoarchief, het fietsatelier en je meubelwerk"
+        "Oudere en kortere ervaring in één of twee regels: [vorige werkgever] (2017 tot 2018, [functie]), het fotoarchief, het fietsatelier en je meubelwerk"
       ],
       "doen": [
         "Begin elke regel met een actiewerkwoord: in de tegenwoordige tijd voor je huidige job (plan, teken uit), in de verleden tijd voor vroegere jobs (bouwde, ordende).",
@@ -146,8 +146,8 @@
         "Een getuigschrift of diploma dat je niet behaald hebt of niet kunt voorleggen",
         "Punten, graden of vakkenlijsten, tenzij de vacature erom vraagt"
       ],
-      "voorbeeldGoed": "[jaar] tot heden | Interieurvormgeving, avondonderwijs | [Academie, volledige naam], Antwerpen\n[jaar] | Grafiek, een jaar avondonderwijs | [Academie, volledige naam], Antwerpen\n[jaar] tot [jaar] | Meubel en interieur, drie jaar avondonderwijs, [getuigschrift ja of nee] | [Academie, volledige naam], Antwerpen\n[jaar, rond 2020] | Lasopleiding halfautomaat (MIG/MAG) en elektrode | [VDAB, SYNTRA of school], [gemeente]\n2017 | Diploma secundair onderwijs, ASO Wetenschappen-Wiskunde | Sint-Lutgardis, [Merksem of Antwerpen]",
-      "voorbeeldZwak": "Middelbare school: Sint-Lutgardis\nAcademie: meubels, grafiek, interieur\nLassen (cursus)",
+      "voorbeeldGoed": "[jaar] tot heden | Interieurvormgeving, avondonderwijs | [Academie, volledige naam], Antwerpen\n[jaar] | Grafiek, een jaar avondonderwijs | [Academie, volledige naam], Antwerpen\n[jaar] tot [jaar] | Meubel en interieur, drie jaar avondonderwijs, [getuigschrift ja of nee] | [Academie, volledige naam], Antwerpen\n[jaar, rond 2020] | Lasopleiding halfautomaat (MIG/MAG) en elektrode | [VDAB, SYNTRA of school], [gemeente]\n2017 | Diploma secundair onderwijs, ASO Wetenschappen-Wiskunde | [naam school], [gemeente]",
+      "voorbeeldZwak": "Middelbare school: [naam school]\nAcademie: meubels, grafiek, interieur\nLassen (cursus)",
       "vragenlijstIds": ["p11", "p16"]
     },
     {
@@ -263,7 +263,7 @@
         "Kies per vacature de volgorde: voor restauratie eerst precisiewerk en afwerking, voor tentoonstellingsbouw eerst constructies, voor lesgeven eerst tekeningen en werkvoorbereiding.",
         "Noem in je motivatiebrief één of twee stukken bij naam.",
         "Neem een geprinte versie mee naar het gesprek.",
-        "Vraag toestemming aan je werkgever, een klant of Willy Van de Perre voordat je foto's van hun werk of beelden uit het archief toont."
+        "Vraag toestemming aan je werkgever, een klant of de eigenaar van het archief voordat je foto's van hun werk of beelden uit het archief toont."
       ],
       "vermijden": [
         "Een link die vraagt om in te loggen, of een map losse foto's zonder uitleg",
@@ -416,7 +416,7 @@
     },
     {
       "id": "verboden-woorden",
-      "regel": "Het cv bevat niets over gezondheid, vermoeidheid, burn-out, ziekteverlof of vakbond (ook niet ACV), geen uitroeptekens of emoji, en geen woorden uit Nederland zoals baan, salaris of middelbare school.",
+      "regel": "Het cv bevat niets over gezondheid, ziekteverlof of vakbondslidmaatschap, geen uitroeptekens of emoji, en geen woorden uit Nederland zoals baan, salaris of middelbare school.",
       "waarom": "Een werkgever mag niet naar gezondheid of vakbond vragen, dus het hoort niet op je cv; woorden uit Nederland klinken vreemd voor een Vlaamse lezer, en uitroeptekens en emoji passen niet in een zakelijk document."
     },
     {

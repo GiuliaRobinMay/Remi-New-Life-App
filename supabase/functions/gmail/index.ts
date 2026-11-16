@@ -1,7 +1,7 @@
 // Supabase Edge Function "gmail". Uitrollen zonder JWT-controle (verify_jwt = false): Google stuurt de browser van Remi
-// zonder aanmelding terug naar deze functie (beveiligd met de state uit de koppellink); de acties uit de app
-// controleren zelf de aanmelding. Optioneel GOOGLE_CLIENT_ID en GOOGLE_CLIENT_SECRET als geheimen van de functie:
-// die gaan voor op wat in de app ingesteld werd.
+// zonder aanmelding terug naar deze functie (beveiligd met de state uit de koppellink, 48 uur geldig en alleen voor het
+// verwachte Gmail-adres); de acties uit de app controleren zelf de aanmelding. Optioneel GOOGLE_CLIENT_ID en
+// GOOGLE_CLIENT_SECRET als geheimen van de functie: die gaan voor op wat in de app ingesteld werd.
 import { createClient } from 'npm:@supabase/supabase-js@2.117.2';
 import { maakHandler } from './handler.ts';
 

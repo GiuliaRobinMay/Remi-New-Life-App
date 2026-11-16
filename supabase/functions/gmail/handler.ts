@@ -3,17 +3,21 @@
 // en verstuurt ermee, voor Giulia en voor Remi. Acties uit de app (aangemeld, met toegang):
 //   POST {actie:'status'}                            -> { ingesteld, gekoppeld, email, gekoppeldOp, redirectUri, clientId }
 //   POST {actie:'instellen', clientId, clientSecret} -> { ok }  (client-ID en clientgeheim uit Google Cloud)
-//   POST {actie:'link'}                              -> { link, verloopt }  koppellink voor Remi, 7 dagen geldig
-//   POST {actie:'verstuur', pad}                     -> { id, threadId, van }  pad = uitgaand/<id>.eml in de opslag
+//   POST {actie:'link', email}                       -> { link, verloopt, email }  koppellink voor Remi, 48 uur geldig
+//        en alleen voor dit Gmail-adres: kiest wie de link opent een ander Google-account, dan wordt niets gekoppeld
+//   POST {actie:'verstuur', pad, sleutel}            -> { id, threadId, van }  pad = uitgaand/<id>.eml in de opslag;
+//        sleutel = '<mail-id>:<poging>'. Dezelfde sleutel vertrekt nooit twee keer: een tweede verzoek krijgt
+//        409 { dubbel: true, gmailId } (tabel gmail_verzonden, rij 'bezig' vóór het versturen)
 //   POST {actie:'ontkoppel'}                         -> { ok }
 // Pagina's voor de browser van Remi (zonder aanmelding, beveiligd met de state uit de koppellink):
 //   GET ?actie=start&state=...  -> door naar Google
-//   GET ?code=...&state=...     -> terug van Google: de toestemming bewaren
+//   GET ?code=...&state=...     -> terug van Google: de toestemming bewaren (alleen voor het verwachte adres)
 // Het clientgeheim en de toestemming komen nooit terug naar de app (tabellen zonder RLS-regels, alleen service role).
 
+type DbFout = { message: string; code?: string } | null;
 export type Admin = {
   from(t: string): any;
-  auth: { getUser(jwt: string): Promise<{ data: { user: { email?: string } | null }; error: unknown }> };
+  auth: { getUser(jwt: string): Promise<{ data: { user: { id: string; email?: string } | null }; error: unknown }> };
   storage: {
     from(bucket: string): {
       download(pad: string): Promise<{ data: Blob | null; error: unknown }>;
@@ -25,6 +29,8 @@ export type Omgeving = { SUPABASE_URL: string; GOOGLE_CLIENT_ID?: string; GOOGLE
 type Haal = (url: string, init?: RequestInit) => Promise<Response>;
 type App = { clientId: string; clientSecret: string };
 type Koppeling = { email: string; refresh_token: string; gekoppeld_op: string };
+type Lid = { id: string; email: string };
+type Uitnodiging = { state: string; aangemaakt_door: string; aangemaakt_door_id: string; verwacht_email: string; verloopt: string };
 
 const CORS = {
   'Access-Control-Allow-Origin': '*',
@@ -38,10 +44,14 @@ const GOOGLE_USERINFO = 'https://openidconnect.googleapis.com/v1/userinfo';
 const GMAIL_SEND = 'https://gmail.googleapis.com/upload/gmail/v1/users/me/messages/send?uploadType=media';
 const SCOPE_SEND = 'https://www.googleapis.com/auth/gmail.send';
 const MAX_MAIL = 35 * 1024 * 1024; // Gmail aanvaardt tot 35 MB per mail
-const GELDIG = 7 * 864e5;
+export const GELDIG = 48 * 36e5; // een koppellink is 48 uur geldig
 export const GELDIG_PAD = /^uitgaand\/[A-Za-z0-9-]+\.eml$/;
+// '<mail-id>:<poging>': het id van de mail (zonder spaties of stuurtekens) en het nummer van de bewuste poging.
+export const GELDIGE_SLEUTEL = /^[^\s\u0000-\u001f\u007f]{1,200}:[0-9]{1,9}$/;
+const ADRES = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const VERLOPEN = 'Deze link is verlopen of al gebruikt. Vraag een nieuwe link.';
 const HERKOPPELEN = 'De toestemming van Remi is ingetrokken of verlopen. Remi moet de koppellink opnieuw openen.';
+const DUBBEL = 'Deze mail is al verstuurd of wordt nu verstuurd.';
 
 class Fout extends Error {
   status: number;
@@ -53,6 +63,9 @@ const json = (status: number, body: unknown) => new Response(JSON.stringify(body
 const PAGINA = { 'Cache-Control': 'no-store', 'Referrer-Policy': 'no-referrer', 'X-Content-Type-Options': 'nosniff' };
 const tekst = (status: number, t: string) => new Response(t, { status, headers: { ...PAGINA, 'Content-Type': 'text/plain; charset=utf-8' } });
 const formulier = (velden: Record<string, string>) => ({ method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(velden).toString() });
+const dbFout = (e: unknown) => (e as { message?: string })?.message || String(e);
+// Een adres half verbergen op een pagina die iedereen met de link ziet: re…@voorbeeld.be
+export const verberg = (e: string) => { const [naam, domein] = String(e).split('@'); return `${naam.slice(0, 2)}…@${domein || ''}`; };
 
 export async function sha256(t: string) {
   const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t));
@@ -73,20 +86,25 @@ export function maakHandler(admin: Admin, env: Omgeving, fetchFn: Haal) {
   const nu = env.nu || (() => Date.now());
   const redirectUri = `${String(env.SUPABASE_URL || '').replace(/\/+$/, '')}/functions/v1/gmail`;
 
-  async function lid(req: Request) {
+  // Toegang hangt aan het account (toegang.user_id), niet aan het e-mailadres.
+  async function heeftToegang(userId: string) {
+    const { data, error } = await admin.from('toegang').select('wie').eq('user_id', userId).maybeSingle();
+    if (error) throw new Error(`toegang lezen: ${dbFout(error)}`);
+    return !!data;
+  }
+  async function lid(req: Request): Promise<Lid> {
     const jwt = (req.headers.get('Authorization') || '').replace(/^Bearer\s+/i, '');
     if (!jwt) throw new Fout(401, 'Niet aangemeld.');
     const { data } = await admin.auth.getUser(jwt);
-    const email = (data?.user?.email || '').toLowerCase();
-    if (!email) throw new Fout(401, 'Niet aangemeld.');
-    const { data: t } = await admin.from('toegang').select('wie').eq('email', email).maybeSingle();
-    if (!t) throw new Fout(403, 'Dit adres heeft geen toegang.');
-    return email;
+    const u = data?.user;
+    if (!u?.id) throw new Fout(401, 'Niet aangemeld.');
+    if (!(await heeftToegang(u.id))) throw new Fout(403, 'Dit account heeft geen toegang.');
+    return { id: u.id, email: (u.email || '').toLowerCase() };
   }
 
   async function rij(tabel: string, velden: string) {
     const { data, error } = await admin.from(tabel).select(velden).eq('id', 1).maybeSingle();
-    if (error) throw new Error(`${tabel} lezen: ${(error as { message?: string }).message || error}`);
+    if (error) throw new Error(`${tabel} lezen: ${dbFout(error)}`);
     return data;
   }
   // Client-ID en geheim: de serverinstellingen (env) gaan voor op wat in de app ingesteld werd.
@@ -112,27 +130,29 @@ export function maakHandler(admin: Admin, env: Omgeving, fetchFn: Haal) {
     return json(200, { ingesteld: !!a, gekoppeld: !!k, email: k?.email || null, gekoppeldOp: k?.gekoppeld_op || null, redirectUri, clientId: a?.clientId || null });
   }
 
-  async function instellen(door: string, body: Record<string, unknown>) {
+  async function instellen(door: Lid, body: Record<string, unknown>) {
     const clientId = String(body.clientId || '').trim();
     const clientSecret = String(body.clientSecret || '').trim();
     if (!/^[\w-]+\.apps\.googleusercontent\.com$/.test(clientId)) throw new Fout(400, 'Vul een geldige client-ID in (die eindigt op .apps.googleusercontent.com).');
     if (!clientSecret || /\s/.test(clientSecret) || clientSecret.length > 500) throw new Fout(400, 'Vul het clientgeheim in.');
     // Een toestemming die bij een vorige client-ID hoort, valt bij het volgende versturen vanzelf weg (herkoppelen).
-    const { error } = await admin.from('gmail_app').upsert({ id: 1, client_id: clientId, client_secret: clientSecret, ingesteld_door: door, ingesteld_op: new Date(nu()).toISOString() });
+    const { error } = await admin.from('gmail_app').upsert({ id: 1, client_id: clientId, client_secret: clientSecret, ingesteld_door: door.email, ingesteld_op: new Date(nu()).toISOString() });
     if (error) throw new Fout(500, 'De instellingen konden niet bewaard worden.');
     return json(200, { ok: true });
   }
 
-  async function link(door: string) {
+  async function link(door: Lid, body: Record<string, unknown>) {
+    const verwacht = String(body.email || '').trim().toLowerCase();
+    if (!ADRES.test(verwacht)) throw new Fout(400, 'Vul het Gmail-adres van Remi in: alleen dat adres kan met de koppellink gekoppeld worden.');
     await nodigApp();
     const b = new Uint8Array(32);
     crypto.getRandomValues(b);
     const state = base64url(b); // 43 tekens; in de database staat alleen de hash
     const verloopt = new Date(nu() + GELDIG).toISOString();
     await admin.from('gmail_uitnodiging').delete().lt('verloopt', new Date(nu()).toISOString()); // verlopen links opruimen
-    const { error } = await admin.from('gmail_uitnodiging').insert({ state: await sha256(state), aangemaakt_door: door, verloopt });
+    const { error } = await admin.from('gmail_uitnodiging').insert({ state: await sha256(state), aangemaakt_door: door.email, aangemaakt_door_id: door.id, verwacht_email: verwacht, verloopt });
     if (error) throw new Fout(500, 'De koppellink kon niet gemaakt worden.');
-    return json(200, { link: `${redirectUri}?actie=start&state=${encodeURIComponent(state)}`, verloopt });
+    return json(200, { link: `${redirectUri}?actie=start&state=${encodeURIComponent(state)}`, verloopt, email: verwacht });
   }
 
   // Een kortlopend toegangstoken met de blijvende toestemming van Remi.
@@ -154,11 +174,32 @@ export function maakHandler(admin: Admin, env: Omgeving, fetchFn: Haal) {
     throw new Fout(502, `Google gaf geen toegang om te versturen (code ${r.status}${t.error ? `, ${t.error}` : ''}). Er is niets verstuurd.`, { onzeker: false });
   }
 
-  async function verstuur(body: Record<string, unknown>) {
+  // ---------- Elke verzending één keer (gmail_verzonden) ----------
+  async function verzonden(sleutel: string): Promise<{ status: string; gmail_id: string | null } | null> {
+    const { data, error } = await admin.from('gmail_verzonden').select('status, gmail_id').eq('sleutel', sleutel).maybeSingle();
+    if (error) throw new Error(`gmail_verzonden lezen: ${dbFout(error)}`);
+    return data || null;
+  }
+  const dubbel = (v: { gmail_id?: string | null } | null) => new Fout(409, DUBBEL, { dubbel: true, gmailId: v?.gmail_id || null });
+  // Zeker niet verstuurd: de rij weg, zodat dezelfde sleutel opnieuw mag. Lukt dat niet, dan blijft de sleutel geblokkeerd
+  // (veilig: de app verhoogt de poging pas bij een bewuste nieuwe verzending).
+  async function vrijgeven(sleutel: string) {
+    try {
+      const { error } = await admin.from('gmail_verzonden').delete().eq('sleutel', sleutel).eq('status', 'bezig');
+      if (error) console.error('gmail_verzonden vrijgeven:', dbFout(error));
+    } catch (e) { console.error('gmail_verzonden vrijgeven:', e); }
+  }
+
+  async function verstuur(door: Lid, body: Record<string, unknown>) {
     const pad = typeof body.pad === 'string' ? body.pad : '';
     if (!GELDIG_PAD.test(pad)) throw new Fout(400, 'Ongeldig pad voor de mail.');
     const opslag = admin.storage.from('bijlagen');
     try {
+      const sleutel = typeof body.sleutel === 'string' ? body.sleutel : '';
+      if (!GELDIGE_SLEUTEL.test(sleutel)) throw new Fout(400, 'De mail heeft geen geldige sleutel. Er is niets verstuurd.', { onzeker: false });
+      // Al verstuurd of nu bezig (een ander toestel, een dubbele klik): meteen stoppen, zonder Google.
+      const al = await verzonden(sleutel);
+      if (al) throw dubbel(al);
       const a = await nodigApp();
       const k = await koppeling();
       if (!k) throw new Fout(409, 'Er is nog geen Gmail-adres gekoppeld. Remi moet eerst de koppellink openen.', { herkoppelen: true });
@@ -167,18 +208,27 @@ export function maakHandler(admin: Admin, env: Omgeving, fetchFn: Haal) {
       if (data.size > MAX_MAIL) throw new Fout(413, 'De mail is groter dan 35 MB. Maak de bijlagen kleiner; er is niets verstuurd.');
       const mime = new Uint8Array(await data.arrayBuffer());
       const token = await toegangstoken(a, k);
+      // Vlak voor het versturen vastleggen dat deze verzending bezig is; bestaat de sleutel al, dan was iemand ons voor.
+      const { error: eb } = await admin.from('gmail_verzonden').insert({ sleutel, status: 'bezig', door: door.email, aangemaakt_op: new Date(nu()).toISOString() });
+      if (eb) {
+        if ((eb as DbFout)?.code === '23505' || /duplicate/i.test(dbFout(eb))) throw dubbel(await verzonden(sleutel));
+        throw new Fout(500, 'De verzending kon niet vastgelegd worden. Er is niets verstuurd; probeer opnieuw.', { onzeker: false });
+      }
       let r: Response;
       try {
         r = await fetchFn(GMAIL_SEND, { method: 'POST', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'message/rfc822' }, body: mime });
       } catch {
+        // Onzeker: de rij blijft 'bezig', dus dezelfde sleutel vertrekt niet nog eens.
         throw new Fout(502, 'De verbinding met Gmail viel weg tijdens het versturen. Het is niet zeker of de mail vertrokken is. Kijk in Gmail bij Verzonden voor je opnieuw verstuurt.', { onzeker: true });
       }
       const j = await r.json().catch(() => ({}));
       if (!r.ok) {
         const google = String(j?.error?.message || '').slice(0, 300);
         const code = `code ${r.status}${google ? `: ${google}` : ''}`;
-        // Een storing bij Gmail zelf: misschien is de mail toch vertrokken.
+        // Een storing bij Gmail zelf: misschien is de mail toch vertrokken. De rij blijft 'bezig'.
         if (r.status >= 500) throw new Fout(502, `Gmail gaf een storing (${code}). Het is niet zeker of de mail vertrokken is. Kijk in Gmail bij Verzonden voor je opnieuw verstuurt.`, { onzeker: true });
+        // Gmail weigerde de mail: zeker niet verstuurd, dus dezelfde sleutel mag opnieuw.
+        await vrijgeven(sleutel);
         const reden = `${j?.error?.status || ''} ${google} ${(j?.error?.errors || []).map((e: { reason?: string }) => e?.reason || '').join(' ')}`;
         const uitleg = /failedPrecondition|mail service not enabled/i.test(reden) ? 'Dit Google-account heeft geen Gmail. '
           : r.status === 403 ? 'De toestemming om te versturen ontbreekt, of de Gmail API staat niet aan in het Google Cloud-project. '
@@ -186,7 +236,11 @@ export function maakHandler(admin: Admin, env: Omgeving, fetchFn: Haal) {
           : r.status === 429 ? 'Even te veel verzoeken bij Gmail; probeer over een minuut opnieuw. ' : '';
         throw new Fout(502, `Gmail weigerde de mail (${code}). ${uitleg}Er is niets verstuurd.`, { onzeker: false });
       }
-      return json(200, { id: String(j?.id || ''), threadId: String(j?.threadId || ''), van: k.email });
+      const id = String(j?.id || '');
+      const { error: ev } = await admin.from('gmail_verzonden').update({ status: 'verstuurd', gmail_id: id || null }).eq('sleutel', sleutel);
+      // De mail is vertrokken; lukt het bijwerken niet, dan blijft de rij 'bezig' en houdt ze een tweede verzending tegen.
+      if (ev) console.error('gmail_verzonden bijwerken:', dbFout(ev));
+      return json(200, { id, threadId: String(j?.threadId || ''), van: k.email });
     } finally {
       // De klaargezette mail wordt nooit opnieuw gebruikt (elke poging zet een nieuwe klaar): altijd opruimen.
       try { await opslag.remove([pad]); } catch { /* niet erg */ }
@@ -202,14 +256,20 @@ export function maakHandler(admin: Admin, env: Omgeving, fetchFn: Haal) {
   }
 
   // ---------- Pagina's voor de browser van Remi ----------
-  async function uitnodiging(state: string) {
+  async function uitnodiging(state: string): Promise<Uitnodiging | null> {
     if (state.length < 32 || state.length > 200) return null;
     const hash = await sha256(state);
-    const { data, error } = await admin.from('gmail_uitnodiging').select('state, aangemaakt_door, verloopt').eq('state', hash).maybeSingle();
-    if (error) throw new Error(`gmail_uitnodiging lezen: ${(error as { message?: string }).message || error}`);
+    const { data, error } = await admin.from('gmail_uitnodiging').select('state, aangemaakt_door, aangemaakt_door_id, verwacht_email, verloopt').eq('state', hash).maybeSingle();
+    if (error) throw new Error(`gmail_uitnodiging lezen: ${dbFout(error)}`);
     if (!data) return null;
-    if (!(Date.parse(data.verloopt) > nu())) { await admin.from('gmail_uitnodiging').delete().eq('state', hash); return null; }
-    return data as { state: string; aangemaakt_door: string; verloopt: string };
+    const weg = async () => { await admin.from('gmail_uitnodiging').delete().eq('state', hash); };
+    if (!(Date.parse(data.verloopt) > nu()) || !data.verwacht_email || !data.aangemaakt_door_id) { await weg(); return null; }
+    // Wie de link maakte, moet nog toegang hebben.
+    if (!(await heeftToegang(data.aangemaakt_door_id))) {
+      await weg();
+      throw new Fout(400, 'Deze link is niet meer geldig: wie hem maakte, heeft geen toegang meer tot de app. Vraag een nieuwe link.');
+    }
+    return data as Uitnodiging;
   }
   const nietIngesteld = () => new Fout(400, 'Gmail is nog niet ingesteld in de app: de Google client-ID ontbreekt. Vraag een nieuwe link als dat in orde is.');
 
@@ -262,8 +322,17 @@ export function maakHandler(admin: Admin, env: Omgeving, fetchFn: Haal) {
       throw new Fout(400, 'Het e-mailadres van het Google-account kon niet gelezen worden. Open de link opnieuw.');
     }
     const oud = await koppeling();
+    if (email !== u.verwacht_email) {
+      // Een ander Google-account dan gevraagd: niets koppelen en deze toestemming meteen intrekken. Behalve als het het
+      // al gekoppelde account is: dan zou Google ook die toestemming intrekken, en die blijft ongemoeid.
+      const ingetrokken = email !== oud?.email;
+      if (ingetrokken) await intrekken(String(t.refresh_token));
+      throw new Fout(403, `Dit is niet het verwachte Gmail-adres. Je koos ${email}, maar deze link is alleen voor ${verberg(u.verwacht_email)}. `
+        + `Er is niets gewijzigd: een bestaande koppeling blijft zoals ze was${ingetrokken ? ', en de toestemming van ' + email + ' is meteen weer ingetrokken' : ''}. `
+        + 'Open de link opnieuw en kies het juiste Gmail-account.');
+    }
     const { error } = await admin.from('gmail_koppeling').upsert({ id: 1, email, refresh_token: String(t.refresh_token), gekoppeld_op: new Date(nu()).toISOString(), gekoppeld_door: u.aangemaakt_door });
-    if (error) throw new Error(`gmail_koppeling bewaren: ${error.message || error}`);
+    if (error) throw new Error(`gmail_koppeling bewaren: ${dbFout(error)}`);
     // Een ander Google-account dan voorheen: de oude toestemming intrekken (bij hetzelfde account niet,
     // want dan trekt Google ook de nieuwe in).
     if (oud?.refresh_token && oud.email !== email) await intrekken(oud.refresh_token);
@@ -292,17 +361,25 @@ export function maakHandler(admin: Admin, env: Omgeving, fetchFn: Haal) {
       }
     }
     if (req.method !== 'POST') return json(405, { message: 'Niet toegestaan.' });
+    let versturen = false;
     try {
-      const door = await lid(req);
       const body = (await req.json().catch(() => null)) || {};
+      versturen = body.actie === 'verstuur';
+      const door = await lid(req);
       if (body.actie === 'status') return await status();
       if (body.actie === 'instellen') return await instellen(door, body);
-      if (body.actie === 'link') return await link(door);
-      if (body.actie === 'verstuur') return await verstuur(body);
+      if (body.actie === 'link') return await link(door, body);
+      if (body.actie === 'verstuur') return await verstuur(door, body);
       if (body.actie === 'ontkoppel') return await ontkoppel();
       throw new Fout(400, 'Onbekende actie.');
     } catch (e) {
-      if (e instanceof Fout) return json(e.status, { message: e.message, ...e.extra });
+      if (e instanceof Fout) {
+        // Bij versturen zegt elk antwoord of de mail misschien vertrok. Een fout zonder onzeker (niet aangemeld, geen
+        // toegang, toestemming of instellingen ontbreken, mail niet gevonden of te groot) valt altijd vóór de rij in
+        // gmail_verzonden en vóór Gmail: zeker niets verstuurd.
+        const zeker = versturen && e.extra.onzeker === undefined && !e.extra.dubbel ? { onzeker: false } : {};
+        return json(e.status, { message: e.message, ...zeker, ...e.extra });
+      }
       console.error(e);
       return json(500, { message: 'Er ging iets mis op de server.' });
     }

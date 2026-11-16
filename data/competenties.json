@@ -247,13 +247,13 @@
           },
           "vraag": "Beschrijf hoe je ooit informatie, beelden of werkzaamheden hebt vastgelegd zodat iemand anders ermee verder kon. Hoe pakte je het aan en wat was het resultaat?",
           "voorbeeld": {
-            "situatie": "Voor Willy Van de Perre bouwde ik tussen 2017 en 2018 een fotoarchief op met [aantal] beelden die verspreid lagen over [dozen, mappen of dragers].",
+            "situatie": "Voor [opdrachtgever] bouwde ik tussen 2017 en 2018 een fotoarchief op met [aantal] beelden die verspreid lagen over [dozen, mappen of dragers].",
             "taak": "Het archief moest geordend, gedigitaliseerd en beschreven worden, zodat beelden later snel terug te vinden waren.",
             "actie": "Ik legde een nummering en een vaste bestandsnaam vast, digitaliseerde de beelden in reeksen en beschreef ze met [datum, plaats, onderwerp] in [software of rekenblad]. Na elke reeks controleerde ik steekproefsgewijs of beeld, nummer en beschrijving overeenkwamen.",
             "resultaat": "Het archief telde [aantal] beschreven beelden, en een gezocht beeld was binnen [tijd] terug te vinden.",
             "reflectie": "Een vaste structuur vanaf de eerste dag bespaart later veel zoekwerk. Vandaag zou ik ook een erkende beschrijvingsstandaard gebruiken."
           },
-          "cvZin": "Ordening, digitalisering en beschrijving van een fotoarchief van [aantal] beelden voor Willy Van de Perre (2017 tot 2018).",
+          "cvZin": "Ordening, digitalisering en beschrijving van een fotoarchief van [aantal] beelden voor [opdrachtgever] (2017 tot 2018).",
           "gesprekVraag": "Hoe zorgt u ervoor dat de informatie die u vastlegt ook voor collega's bruikbaar en terugvindbaar is?",
           "relevantVoor": ["erfgoed", "cultuur", "geschiedenis", "reserve"]
         },

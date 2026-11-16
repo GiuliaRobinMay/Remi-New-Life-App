@@ -1,6 +1,6 @@
 # Onderzoek 4: van lasser naar erfgoed en restauratie, met inkomen tijdens de opleiding
 
-Status: onderzoek van 27 september 2026. Zoekbudget en netwerkbeperkingen lieten geen volledige paginalezing toe; BEVESTIGD betekent gelezen in zoekresultaten van de genoemde pagina, TE VERIFIËREN betekent achtergrondkennis of redenering die eerst bij VDAB, ACV of de instelling gecontroleerd moet worden.
+Status: onderzoek van 27 september 2026. Zoekbudget en netwerkbeperkingen lieten geen volledige paginalezing toe; BEVESTIGD betekent gelezen in zoekresultaten van de genoemde pagina, TE VERIFIËREN betekent achtergrondkennis of redenering die eerst bij VDAB, de uitbetalingsinstelling of de instelling gecontroleerd moet worden.
 
 ## 1. Uitkering en opleiding na de hervorming van 1 maart 2026
 
@@ -19,7 +19,7 @@ Status: onderzoek van 27 september 2026. Zoekbudget en netwerkbeperkingen lieten
 ### Wordt de limiet van 24 maanden verlengd tijdens een opleiding?
 - BEVESTIGD (algemene regel sinds 1 maart 2026): 12 maanden uitkering plus 1 maand per 104 gewerkte of gelijkgestelde dagen, maximum 24 maanden. Met vijf jaar voltijds werk haalt Remi vermoedelijk het maximum, op voorwaarde dat alle jaren als arbeidsdagen tellen (dagen onder een leerovereenkomst tellen mogelijk niet, TE VERIFIËREN).
 - BEVESTIGD (overgang): wie voor 1 januari 2026 een knelpuntopleiding startte, behoudt de uitkering tot het einde van de opleiding, uiterlijk 30 juni 2030.
-- Principe BEVESTIGD, detail TE VERIFIËREN: voor opleidingen gestart na 1 januari 2026 zou het maximum van 24 maanden verlengd worden met de duur van een door VDAB goedgekeurde knelpuntopleiding of OKOT die start voor het recht afloopt. Het exacte artikel, een eventueel plafond en of gewone universitaire studies (conservatie-restauratie) meetellen, is niet bevestigd. Vraag de schriftelijke regel aan VDAB of ACV voor de inschrijving.
+- Principe BEVESTIGD, detail TE VERIFIËREN: voor opleidingen gestart na 1 januari 2026 zou het maximum van 24 maanden verlengd worden met de duur van een door VDAB goedgekeurde knelpuntopleiding of OKOT die start voor het recht afloopt. Het exacte artikel, een eventueel plafond en of gewone universitaire studies (conservatie-restauratie) meetellen, is niet bevestigd. Vraag de schriftelijke regel aan VDAB of de uitbetalingsinstelling voor de inschrijving.
 - TE VERIFIËREN: berichten eind 2025 dat de Vlaamse regering een eigen vergoeding zou invoeren voor werkzoekenden van wie de federale uitkering stopt tijdens een VDAB-knelpuntopleiding.
 
 ### Premies

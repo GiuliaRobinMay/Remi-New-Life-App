@@ -21,7 +21,7 @@ Als technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in pla
 
 Het werk van een monumentenwachter vraagt wat mij het meest aanspreekt: nauwkeurig kijken, begrijpen hoe iets gebouwd is en dat helder vastleggen, zodat een eigenaar weet wat er moet gebeuren. Ik wil mijn vakmanschap inzetten voor erfgoed, en bij uw dienst gebeurt dat heel direct: op en in de gebouwen zelf.
 
-Ik breng drie dingen mee. Als tekenaar zet ik elke dag een vraag om in een tekening waarmee anderen kunnen werken; dat is ook de kern van een goed verslag. Doordat ik zelf plooi en las, weet ik hoe metalen onderdelen gemaakt en verbonden worden. En voor Willy Van de Perre bouwde ik een fotoarchief op, werk dat geduld en een vaste methode vraagt.
+Ik breng drie dingen mee. Als tekenaar zet ik elke dag een vraag om in een tekening waarmee anderen kunnen werken; dat is ook de kern van een goed verslag. Doordat ik zelf plooi en las, weet ik hoe metalen onderdelen gemaakt en verbonden worden. En ik bouwde een fotoarchief op, werk dat geduld en een vaste methode vraagt.
 
 [Eén zin over werken op hoogte en op ladders: ervaring of bereidheid tot opleiding bevestigen.] Ik zou graag in een kort infogesprek of tijdens een werkbezoek horen welke instapmogelijkheden er zijn voor iemand met een achtergrond in metaal en tekenen. Met mijn diploma secundair onderwijs Wetenschappen-Wiskunde kom ik in aanmerking voor functies op niveau C. Mag ik u ook vragen mij op de hoogte te houden van toekomstige selecties op niveau C bij Monumentenwacht Antwerpen?
 

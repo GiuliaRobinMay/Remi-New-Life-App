@@ -36,7 +36,7 @@
     {
       "periode": "2017 tot 2018",
       "functie": "Opbouw van een fotoarchief",
-      "werkgever": "Willy Van de Perre, [fotograaf of kunstenaar, plaats]",
+      "werkgever": "[Opdrachtgever, fotograaf of kunstenaar, plaats]",
       "taken": [
         "Ordenen, digitaliseren en beschrijven van een fotoarchief",
         "[Omvang: aantal beelden, gebruikte methode of software]"
@@ -45,7 +45,7 @@
     {
       "periode": "2017 tot 2018",
       "functie": "[Functie]",
-      "werkgever": "Katoen Natie, Antwerpen (ongeveer een jaar)",
+      "werkgever": "[Naam werkgever], Antwerpen (ongeveer een jaar)",
       "taken": [
         "[Taken en afdeling]"
       ]
@@ -84,7 +84,7 @@
     {
       "periode": "tot 2017",
       "titel": "Diploma secundair onderwijs, Wetenschappen-Wiskunde",
-      "instelling": "Sint-Lutgardis, [Merksem of Antwerpen, naam bevestigen]"
+      "instelling": "[Naam school, gemeente]"
     }
   ],
   "certificaten": [

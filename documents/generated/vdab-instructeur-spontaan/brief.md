@@ -19,7 +19,7 @@ Als technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in pla
 
 Een instructeur moet het vak kennen en het kunnen uitleggen. Vakkennis over het hele traject: ik teken uit, plooi, las en controleer de afwerking, bijvoorbeeld bij [concreet project en wat daar precies moest kloppen]. Begeleiden: als verantwoordelijke bereid ik het werk voor en verdeel ik het over [aantal] collega's, zodat iedereen weet wat er moet gebeuren, zoals bij [voorbeeld: een collega inwerken aan de kantbank of het lastoestel]. Zelf leren als volwassene: ik volg al jaren avondonderwijs naast mijn job en weet hoe het is om na een werkdag iets nieuws onder de knie te krijgen.
 
-Ik heb een diploma secundair onderwijs Wetenschappen-Wiskunde (Sint-Lutgardis, 2017). Ik zou het op prijs stellen als u mijn cv bijhoudt en mij op de hoogte brengt van toekomstige selecties voor instructeur lassen en metaal of een gelijkaardige functie op niveau C, in een van uw competentiecentra in de provincie Antwerpen. Ik kom ook graag kennismaken tijdens een kort werkbezoek aan een competentiecentrum.
+Ik heb een diploma secundair onderwijs Wetenschappen-Wiskunde (2017). Ik zou het op prijs stellen als u mijn cv bijhoudt en mij op de hoogte brengt van toekomstige selecties voor instructeur lassen en metaal of een gelijkaardige functie op niveau C, in een van uw competentiecentra in de provincie Antwerpen. Ik kom ook graag kennismaken tijdens een kort werkbezoek aan een competentiecentrum.
 
 Ik licht mijn kandidatuur graag toe in een gesprek. In bijlage vindt u mijn cv [en een beknopt portfolio, indien klaar].
 

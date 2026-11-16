@@ -36,7 +36,7 @@ export function overzicht() {
   const telling = (st) => soll.filter(s => s.status === st).length;
   const fase = huidigeFase();
   const body = content(
-    intro(ik ? `Dag ${NAMEN[ik]}` : 'Overzicht', `Vandaag ${fmtDate(t)}. ${daysUntil(ref.programma.einddatum_contract)} dagen tot 31 december 2026.`),
+    intro(ik ? `Dag ${NAMEN[ik]}` : 'Overzicht', `Vandaag ${fmtDate(t)}.${ref.programma?.einddatum_contract ? ` ${daysUntil(ref.programma.einddatum_contract)} dagen tot ${fmtDate(ref.programma.einddatum_contract)}.` : ''}`),
     !ik && h('section', { class: 'card card--pad callout' }, h('p', { class: 'row-title' }, 'Wie gebruikt dit toestel?'), h('p', null, 'Kies wie je bent. Dan toont de app eerst jouw stappen en wat jullie samen doen.'),
       h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--primary wie-knop wie-knop--remi', onClick: () => zetGebruiker('remi') }, 'Ik ben Remi'), h('button', { class: 'btn btn--primary wie-knop wie-knop--giulia', onClick: () => zetGebruiker('giulia') }, 'Ik ben Giulia'))),
     callout('red', 'shield', 'Eerst dit', h('p', null, ref.rechten.kern[0]), h('p', { class: 'small' }, h('a', { href: '#/rechten' }, 'Alle rechten en scenario\'s'))),
@@ -69,7 +69,7 @@ export function stappenplan(r) {
   const wieChips = h('div', { class: 'chips' }, [['', 'Iedereen'], ['remi', 'Remi'], ['giulia', 'Giulia'], ['samen', 'Samen']].map(([w, l]) => h('a', { class: 'chip' + (w ? ` chip--wie-${w}` : '') + (wie === w ? ' chip--active' : ''), href: wieLink(w) }, `${l}${w && w === ik ? ' (jij)' : ''} ${w ? naStatus.filter(s => voorVan(s) === w).length : naStatus.length}`)));
   const groepen = [...new Set(all('stappenplan').map(s => s.groep))];
   const body = content(
-    intro('Stappenplan', 'Alles wat te doen is, van de dokter en ACV tot VDAB, cv en hotlist. Vink af wat klaar is; voeg eigen stappen toe.'),
+    intro('Stappenplan', 'Alles wat te doen is, van afspraken en papieren tot VDAB, cv en hotlist. Vink af wat klaar is; voeg eigen stappen toe.'),
     wieChips,
     groepen.map(g => { const list = items.filter(s => s.groep === g); if (!list.length) return null; return titled(g, h('ul', { class: 'list' }, list.map(s => h('li', null,
       h('input', { type: 'checkbox', class: 'check', checked: s.status === 'klaar', onChange: (e) => upsert('stappenplan', { id: s.id, status: e.target.checked ? 'klaar' : 'open' }) }),
@@ -243,14 +243,14 @@ function kalender(m) {
 // ---------- Rechten ----------
 export function rechten(r) {
   const R = ref.rechten; const tab = r.tab || 'kern';
-  const tabs = [['kern', 'Kern'], ['verwittiging', 'Verwittiging'], ['gezondheid', 'Gezondheid en werk'], ['scenarios', 'Scenario\'s'], ['opzeg', 'Opzegtermijn'], ['werkloosheid', 'Werkloosheid 2026'], ['steun', 'ACV en VDAB'], ['check', 'Te verifiëren']].map(([k, l]) => ({ label: l, href: `#/rechten?tab=${k}`, active: tab === k }));
+  const tabs = [['kern', 'Kern'], ['verwittiging', 'Verwittiging'], ['gezondheid', 'Gezondheid en werk'], ['scenarios', 'Scenario\'s'], ['opzeg', 'Opzegtermijn'], ['werkloosheid', 'Werkloosheid 2026'], ['steun', 'Vakbond en VDAB'], ['check', 'Te verifiëren']].map(([k, l]) => ({ label: l, href: `#/rechten?tab=${k}`, active: tab === k }));
   let inhoud;
   if (tab === 'kern') inhoud = h('div', { class: 'stack' }, callout('red', 'shield', 'Wat je meteen moet weten', h('ul', { class: 'bullets' }, R.kern.map(k => h('li', null, k)))), h('p', { class: 'small muted' }, R.disclaimer));
   else if (tab === 'verwittiging') { const V = R.verwittiging; inhoud = h('div', { class: 'stack' },
     callout('red', 'shield', 'Wat een verwittiging betekent', h('p', null, V.wat)),
     h('div', { class: 'two-col' },
       titled('Wat nu doen', h('ol', { class: 'bullets' }, V.doen.map(k => h('li', null, k))), h('div', { class: 'form__actions' }, h('a', { class: 'btn btn--primary btn--sm', href: '#/communicatie' }, 'Naar de e-mails'))),
-      h('div', { class: 'stack' }, V.nooit && callout('red', 'shield', 'Nooit zeggen, schrijven of tekenen', h('p', { class: 'small' }, V.nooit.intro), h('ul', { class: 'bullets small' }, V.nooit.zinnen.map(z => h('li', null, z))), h('p', { class: 'small muted' }, V.nooit.zekerheid)), V.ergste && titled('Het ergste geval, stap voor stap', h('table', { class: 'table' }, h('tbody', null, V.ergste.map(x => h('tr', null, h('td', { style: 'width:34%;vertical-align:top' }, h('strong', null, x.wat)), h('td', null, x.gevolg)))))), titled('Waarom het ertoe doet', h('ul', { class: 'bullets' }, V.risico.map(k => h('li', null, k)))), titled('Regels die ACV kan nakijken', h('ul', { class: 'bullets' }, V.regels.map(k => h('li', null, k)))))),
+      h('div', { class: 'stack' }, V.nooit && callout('red', 'shield', 'Nooit zeggen, schrijven of tekenen', h('p', { class: 'small' }, V.nooit.intro), h('ul', { class: 'bullets small' }, V.nooit.zinnen.map(z => h('li', null, z))), h('p', { class: 'small muted' }, V.nooit.zekerheid)), V.ergste && titled('Het ergste geval, stap voor stap', h('table', { class: 'table' }, h('tbody', null, V.ergste.map(x => h('tr', null, h('td', { style: 'width:34%;vertical-align:top' }, h('strong', null, x.wat)), h('td', null, x.gevolg)))))), titled('Waarom het ertoe doet', h('ul', { class: 'bullets' }, V.risico.map(k => h('li', null, k)))), titled('Regels die een vakbond of een jurist kan nakijken', h('ul', { class: 'bullets' }, V.regels.map(k => h('li', null, k)))))),
     h('p', { class: 'small muted' }, V.bronnen, ' ', R.disclaimer)); }
   else if (tab === 'gezondheid' && R.gezondheid) { const G = R.gezondheid; inhoud = h('div', { class: 'stack' },
     h('p', { class: 'muted' }, G.intro),
@@ -261,10 +261,10 @@ export function rechten(r) {
     titled('Opzegtermijnen in weken', h('p', { class: 'small muted' }, R.opzegtabel.toelichting), h('table', { class: 'table' }, h('thead', null, h('tr', null, h('th', null, 'Anciënniteit'), h('th', null, 'Werkgever zegt op'), h('th', null, 'Werknemer zegt op'))), h('tbody', null, R.opzegtabel.rijen.map(x => h('tr', null, h('td', null, x.ancienniteit), h('td', null, `${x.werkgever} weken`), h('td', null, `${x.werknemer} weken`)))))),
     opzegCalculator(R.opzegtabel.rijen));
   else if (tab === 'werkloosheid') inhoud = h('div', { class: 'stack' }, titled('Regels sinds 1 maart 2026', h('ul', { class: 'bullets' }, R.werkloosheid2026.map(k => h('li', null, k)))), titled('Vakantiegeld en eindejaarspremie', h('p', null, R.vakantiegeld)));
-  else if (tab === 'steun') inhoud = h('div', { class: 'two-col' }, titled('Wat ACV-CSC METEA doet', h('ul', { class: 'bullets' }, R.acv.map(k => h('li', null, k)))), titled('Wat VDAB biedt', h('ul', { class: 'bullets' }, R.vdabsteun.map(k => h('li', null, k)))));
-  else inhoud = titled('Nog te bevestigen bij ACV, VDAB of de bron', h('ul', { class: 'bullets' }, R.teverifieren.map(k => h('li', null, k))), h('p', { class: 'small muted' }, `Peildatum ${fmtDate(R.peildatum)}. Bronnen in research/01-arbeidsrecht-uitstap.md.`));
-  const body = content(intro('Rechten', 'Belgisch arbeidsrecht toegepast op de uitstap van Remi. Informatie, geen juridisch advies.'), inhoud);
-  return { chrome: { where: 'Uitstap, uitkering, herstel', tabs, viewIcon: 'shield' }, body };
+  else if (tab === 'steun') inhoud = h('div', { class: 'two-col' }, titled('Wat een vakbond doet', h('ul', { class: 'bullets' }, R.acv.map(k => h('li', null, k)))), titled('Wat VDAB biedt', h('ul', { class: 'bullets' }, R.vdabsteun.map(k => h('li', null, k)))));
+  else inhoud = titled('Nog te bevestigen bij een vakbond, VDAB of de bron', h('ul', { class: 'bullets' }, R.teverifieren.map(k => h('li', null, k))), h('p', { class: 'small muted' }, `Peildatum ${fmtDate(R.peildatum)}. Bronnen in research/01-arbeidsrecht-uitstap.md.`));
+  const body = content(intro('Rechten', 'Belgisch arbeidsrecht bij een overstap naar ander werk. Informatie, geen juridisch advies.'), inhoud);
+  return { chrome: { where: 'Overstap en uitkering', tabs, viewIcon: 'shield' }, body };
 }
 function opzegCalculator(rijen) {
   const st = { rij: 2, wie: 'werkgever', datum: todayIso(), aangetekend: true };
@@ -277,7 +277,7 @@ function opzegCalculator(rijen) {
     const weken = rijen[st.rij][st.wie];
     const einde = new Date(start); einde.setDate(einde.getDate() + weken * 7 - 1);
     const iso = d => isoLocal(d);
-    out.replaceChildren(h('p', { class: 'row-title' }, `${weken} weken opzeg`), h('p', null, `Kennisgeving geldt op ${fmtDate(iso(kennis))}${st.aangetekend ? ' (derde werkdag na verzending)' : ''}. De termijn start maandag ${fmtDate(iso(start))} en eindigt zondag ${fmtDate(iso(einde))}.`), h('p', { class: 'small muted' }, 'Eigen berekening volgens de wettelijke regels; feestdagen niet meegeteld. Laat ACV de exacte datum bevestigen.'));
+    out.replaceChildren(h('p', { class: 'row-title' }, `${weken} weken opzeg`), h('p', null, `Kennisgeving geldt op ${fmtDate(iso(kennis))}${st.aangetekend ? ' (derde werkdag na verzending)' : ''}. De termijn start maandag ${fmtDate(iso(start))} en eindigt zondag ${fmtDate(iso(einde))}.`), h('p', { class: 'small muted' }, 'Eigen berekening volgens de wettelijke regels; feestdagen niet meegeteld. Laat een vakbond of een jurist de exacte datum bevestigen.'));
   };
   const sel = (opts, key, conv = x => x) => h('select', { class: 'field', onChange: e => { st[key] = conv(e.target.value); bereken(); } }, opts.map(([v, l]) => h('option', { value: v, selected: String(st[key]) === String(v) }, l)));
   bereken();
@@ -340,41 +340,100 @@ const MODUSTEKST = {
   controle: 'Toegang nakijken…', ophalen: 'Alles ophalen uit de database…',
 };
 const APP_URL = 'https://remi-new-life-app.vercel.app';
-let nieuweCode = null; // { wie, code, verloopt }: blijft zichtbaar tot het paneel sluit of een nieuwe code gemaakt wordt
+const geldigAdres = e => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+const tijdstip = iso => { const d = new Date(iso || ''); return isNaN(d) ? '' : d.toLocaleString('nl-BE', { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }); };
+// Toegangscodes: eerst het e-mailadres van die persoon. De code werkt alleen voor dat adres, één keer, 24 uur lang.
+let nieuweCode = null; // { wie, email, code, verloopt }: blijft zichtbaar tot het paneel sluit of een nieuwe code gemaakt wordt
 let codeBezig = '';
-async function maakCode(wie, herteken) {
+let codeVoor = '', codeAdres = '', codeFout = ''; // voor wie het formulier openstaat, het getypte adres en een foutmelding
+function kiesCodeVoor(wie, herteken) {
   if (codeBezig) return;
-  codeBezig = wie; herteken();
-  try { const r = await codeMaken(wie); nieuweCode = { wie, ...r }; }
-  catch (e) { toast(e.offline ? 'Geen verbinding. Probeer opnieuw.' : `De code kon niet gemaakt worden. ${e.message}`); }
+  codeVoor = codeVoor === wie ? '' : wie; codeAdres = ''; codeFout = '';
+  herteken();
+}
+async function maakCode(herteken) {
+  if (codeBezig || !codeVoor) return;
+  const wie = codeVoor, email = codeAdres.trim().toLowerCase();
+  if (!geldigAdres(email)) { codeFout = `Vul het e-mailadres van ${NAMEN[wie]} in, bijvoorbeeld naam@voorbeeld.be.`; herteken(); return; }
+  codeBezig = wie; codeFout = ''; herteken();
+  try {
+    const r = await codeMaken(wie, email);
+    if (!r?.code) throw new Error('De server gaf geen code terug. Probeer opnieuw.');
+    nieuweCode = { wie, email: r.email || email, code: r.code, verloopt: r.verloopt };
+    codeVoor = ''; codeAdres = '';
+  } catch (e) { codeFout = e.offline ? 'Geen verbinding. Probeer opnieuw.' : `De code kon niet gemaakt worden. ${e.message}`; }
   finally { codeBezig = ''; herteken(); }
 }
 function codeBericht(c) {
-  const tot = new Date(c.verloopt).toLocaleString('nl-BE', { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' });
-  return `Hallo ${NAMEN[c.wie]},\n\nZo maak je je account voor de app:\n1. Open ${APP_URL}\n2. Kies "Gebruik een toegangscode".\n3. Vul je e-mailadres in, deze code en een wachtwoord dat je zelf kiest.\n\nToegangscode: ${c.code}\n\nDe code werkt één keer en is geldig tot ${tot}. Daarna meld je altijd aan met je e-mailadres en wachtwoord.`;
+  const tot = tijdstip(c.verloopt);
+  return `Hallo ${NAMEN[c.wie]},\n\nZo krijg je toegang tot de app:\n1. Open ${APP_URL}\n2. Kies "Gebruik een toegangscode".\n3. Vul je e-mailadres ${c.email} in, deze code en een wachtwoord dat je zelf kiest.\nBen je al aangemeld en zie je "Nog geen toegang"? Vul dan alleen de code in.\n\nToegangscode: ${c.code}\n\nDe code werkt één keer en alleen met het e-mailadres ${c.email}. Ze is 24 uur geldig${tot ? `, tot ${tot}` : ''}. Daarna meld je altijd aan met je e-mailadres en wachtwoord.`;
 }
 function toegangBlok(herteken) {
-  const knop = wie => h('button', { class: 'btn btn--ghost btn--sm', disabled: !!codeBezig, 'data-actie': 'code-' + wie, onClick: () => maakCode(wie, herteken) }, codeBezig === wie ? 'Even geduld…' : `Code voor ${NAMEN[wie]}`);
+  const knop = wie => h('button', { class: 'btn btn--ghost btn--sm', type: 'button', disabled: !!codeBezig, 'aria-expanded': String(codeVoor === wie), 'data-actie': 'code-' + wie, onClick: () => kiesCodeVoor(wie, herteken) }, `Code voor ${NAMEN[wie]}`);
   return h('div', { class: 'stack', style: 'gap:8px' },
     h('p', { class: 'eyebrow', style: 'margin:0' }, 'Toegang geven'),
-    h('p', { class: 'small muted' }, 'Maak een toegangscode voor wie een account moet maken, of voor wie het wachtwoord vergeten is. Een code werkt één keer en blijft 7 dagen geldig.'),
+    h('p', { class: 'small muted' }, 'Maak een toegangscode voor wie een account moet maken, of voor wie het wachtwoord vergeten is. Een code hoort bij één e-mailadres, werkt één keer en is 24 uur geldig. Een nieuwe code voor hetzelfde adres maakt de vorige ongeldig.'),
     h('div', { class: 'form__actions' }, knop('remi'), knop('giulia')),
+    codeVoor && h('form', { class: 'form code-voor', 'data-code-voor': codeVoor, onSubmit: e => { e.preventDefault(); maakCode(herteken); } },
+      h('label', { class: 'small' }, `E-mailadres van ${NAMEN[codeVoor]}`,
+        h('input', { class: 'field', type: 'email', autocomplete: 'off', spellcheck: 'false', value: codeAdres, placeholder: 'naam@voorbeeld.be', 'data-fk': 'code-adres', onInput: e => { codeAdres = e.target.value; } })),
+      h('p', { class: 'small muted' }, `Het adres waarmee ${NAMEN[codeVoor]} zich aanmeldt. De code werkt alleen voor dit adres.`),
+      codeFout && h('p', { class: 'small mail-let', role: 'alert' }, codeFout),
+      h('div', { class: 'form__actions' },
+        h('button', { class: 'btn btn--primary btn--sm', type: 'submit', 'data-actie': 'code-maken', disabled: !!codeBezig }, codeBezig ? 'Even geduld…' : 'Code maken'),
+        h('button', { class: 'btn btn--quiet btn--sm', type: 'button', disabled: !!codeBezig, onClick: () => { codeVoor = ''; codeAdres = ''; codeFout = ''; herteken(); } }, 'Annuleren'))),
     nieuweCode && h('div', { class: 'card card--pad', role: 'status', 'data-nieuwe-code': nieuweCode.code },
-      h('p', { class: 'small', style: 'margin:0 0 6px' }, `Toegangscode voor ${NAMEN[nieuweCode.wie]}:`),
+      h('p', { class: 'small', style: 'margin:0 0 6px' }, `Toegangscode voor ${NAMEN[nieuweCode.wie]} (${nieuweCode.email}):`),
       h('p', { class: 'aanmeld-code', style: 'margin:0 0 8px;font-weight:600' }, nieuweCode.code),
+      h('p', { class: 'small muted', style: 'margin:0 0 8px', 'data-code-geldig': '' }, `24 uur geldig${tijdstip(nieuweCode.verloopt) ? `, tot ${tijdstip(nieuweCode.verloopt)}` : ''}. Werkt één keer en alleen met het adres ${nieuweCode.email}.`),
       h('div', { class: 'form__actions' },
         h('button', { class: 'btn btn--primary btn--sm', onClick: () => copyText(codeBericht(nieuweCode)) }, icon('copy', 12), 'Kopieer bericht met uitleg'),
         navigator.share && h('button', { class: 'btn btn--ghost btn--sm', onClick: () => navigator.share({ text: codeBericht(nieuweCode) }).catch(() => {}) }, 'Delen'))));
 }
-async function veiligAfmelden() {
-  const open = await nogNietVerstuurd();
-  const vraag = open
-    ? `${open} ${open === 1 ? 'wijziging is' : 'wijzigingen zijn'} nog niet naar de database gestuurd (geen verbinding?). Bij afmelden gaan die verloren. Toch afmelden?`
-    : 'Afmelden op dit toestel? De gegevens worden van dit toestel gewist. Ze blijven bewaard in de database; na opnieuw aanmelden staan ze er weer.';
-  if (!confirm(vraag)) return;
-  nieuweCode = null;
+
+// Afmelden: eerst nakijken wat nog niet in de database staat. De kopie op dit toestel gaat alleen weg na bevestiging
+// en als alles veilig in de database staat (afmelden({ wissen: true }) kijkt dat zelf nog eens na). Wacht er iets,
+// of kon iets niet bewaard worden, dan sluit afmelden alleen de sessie en blijft alles op dit toestel staan.
+let afmeld = null; // null, 'kijken', of { wacht, mislukt, geexporteerd } zolang de vraag over mislukte items openstaat
+const exporteer = () => download(`remi-app-${todayIso()}.json`, exportJson());
+const meervoud = (n, een, veel) => `${n} ${n === 1 ? een : veel}`;
+async function veiligAfmelden(herteken) {
+  if (afmeld === 'kijken') return;
+  afmeld = 'kijken'; herteken();
+  let open = null;
+  try { open = await nogNietVerstuurd(); } catch { open = null; }
+  afmeld = null;
+  if (!open) { herteken(); toast('Nakijken wat nog niet in de database staat, lukte niet. Probeer opnieuw.'); return; }
+  if (open.mislukt > 0) { afmeld = { wacht: open.wacht, mislukt: open.mislukt, geexporteerd: false }; herteken(); return; }
+  herteken();
+  if (open.wacht > 0) {
+    if (!confirm(`${meervoud(open.wacht, 'wijziging is', 'wijzigingen zijn')} nog niet naar de database gestuurd (geen verbinding?). Je kan toch afmelden: dan wordt er niets gewist. Alles blijft op dit toestel staan en gaat mee naar de database zodra je hier weer aanmeldt. Toch afmelden?`)) return;
+    await afmeldenNu(false);
+    return;
+  }
+  if (!confirm('Afmelden op dit toestel? De gegevens worden van dit toestel gewist. Ze blijven bewaard in de database; na opnieuw aanmelden staan ze er weer.')) return;
+  await afmeldenNu(true);
+}
+async function afmeldenNu(wissen) {
+  afmeld = null; nieuweCode = null; codeVoor = ''; codeAdres = ''; codeFout = '';
   closePeek();
-  await afmelden();
+  let r = null;
+  try { r = await afmelden({ wissen }); } catch (e) { toast(`Afmelden lukte niet. ${e?.message || ''}`.trim()); return; }
+  if (r && !r.gewist) toast(wissen ? 'Afgemeld. De gegevens bleven toch op dit toestel staan, want niet alles stond al in de database.' : 'Afgemeld. De gegevens blijven op dit toestel staan; er is niets gewist.');
+}
+// Er kon iets niet in de database bewaard worden: eerst een reservekopie aanbieden, en dan alleen afmelden zonder wissen.
+function afmeldVraag(herteken) {
+  const a = afmeld;
+  return h('div', { class: 'card card--pad afmeld-vraag', role: 'alert', 'data-afmeld-vraag': '' },
+    h('p', { class: 'row-title' }, 'Eerst een reservekopie'),
+    h('p', { class: 'small mail-let' }, `${meervoud(a.mislukt, 'wijziging kon', 'wijzigingen konden')} niet in de database bewaard worden. ${a.mislukt === 1 ? 'Ze staat' : 'Ze staan'} alleen op dit toestel.`),
+    a.wacht > 0 && h('p', { class: 'small' }, `${meervoud(a.wacht, 'andere wijziging wacht', 'andere wijzigingen wachten')} nog om naar de database te gaan.`),
+    h('p', { class: 'small' }, 'Exporteer eerst je gegevens, zodat je een reservekopie hebt (bijlagen zitten daar niet in). Afmelden wist daarna niets: alles blijft op dit toestel staan.'),
+    h('div', { class: 'form__actions' },
+      h('button', { class: 'btn btn--primary btn--sm', type: 'button', 'data-actie': 'afmelden-exporteer', onClick: () => { exporteer(); a.geexporteerd = true; herteken(); } }, icon('download', 12), 'Exporteer gegevens'),
+      h('button', { class: 'btn btn--ghost btn--sm', type: 'button', 'data-actie': 'afmelden-bewaren', onClick: () => afmeldenNu(false) }, 'Afmelden zonder te wissen'),
+      h('button', { class: 'btn btn--quiet btn--sm', type: 'button', onClick: () => { afmeld = null; herteken(); } }, 'Annuleren')),
+    a.geexporteerd && h('p', { class: 'small muted', role: 'status' }, 'Reservekopie gedownload.'));
 }
 function databaseBlok() {
   const s = syncStatus();
@@ -392,18 +451,19 @@ function databaseBlok() {
     h('p', { class: 'small muted' }, 'Giulia en Remi zien dezelfde gegevens op elk toestel: mails met bijlagen, planning, documenten, tests en het dagboek.'),
     h('div', { class: 'form__actions' },
       h('button', { class: 'btn btn--primary btn--sm', 'data-actie': 'sync-nu', onClick: () => syncNu().then(() => toast(syncStatus().modus === 'actief' ? 'Bijgewerkt' : 'Bijwerken lukte nog niet')) }, 'Nu bijwerken'),
-      s.email && h('button', { class: 'btn btn--quiet btn--sm', 'data-actie': 'afmelden', onClick: veiligAfmelden }, 'Afmelden')));
+      s.email && h('button', { class: 'btn btn--quiet btn--sm', 'data-actie': 'afmelden', disabled: afmeld === 'kijken', onClick: () => veiligAfmelden(vernieuw) }, afmeld === 'kijken' ? 'Even kijken…' : 'Afmelden')),
+    s.email && afmeld && afmeld !== 'kijken' && afmeldVraag(vernieuw));
 }
 
 export function instellingenPeek() {
-  nieuweCode = null;
+  nieuweCode = null; codeVoor = ''; codeAdres = ''; codeFout = ''; afmeld = null;
   openPeek('Instellingen en synchronisatie', () => h('div', { class: 'stack' },
     databaseBlok(),
     syncStatus().wie && [h('hr', { class: 'rule' }), toegangBlok(vernieuw)],
     h('hr', { class: 'rule' }),
     h('p', { class: 'small' }, syncStatus().modus === 'lokaal' ? 'Reservekopie: exporteer alles naar een bestand, of importeer een eerder bestand.' : 'Reservekopie: exporteer alles naar een bestand. Een geïmporteerd bestand gaat ook naar de database.'),
     h('div', { class: 'form__actions' },
-      h('button', { class: 'btn btn--primary', onClick: () => download(`remi-app-${todayIso()}.json`, exportJson()) }, icon('download', 14), 'Exporteer gegevens'),
+      h('button', { class: 'btn btn--primary', onClick: exporteer }, icon('download', 14), 'Exporteer gegevens'),
       h('label', { class: 'btn btn--ghost bestand-knop' }, icon('upload', 14), 'Importeer bestand', h('input', { type: 'file', accept: 'application/json', class: 'visueel-verborgen', 'aria-label': 'Importeer bestand', onChange: async e => { const f = e.target.files[0]; if (!f) return; try { importJson(await f.text()); toast('Geïmporteerd'); } catch { toast('Bestand niet herkend'); } } })),
       h('button', { class: 'btn btn--ghost', onClick: () => copyText(exportJson()) }, icon('copy', 14), 'Kopieer als JSON')),
     h('hr', { class: 'rule' }),

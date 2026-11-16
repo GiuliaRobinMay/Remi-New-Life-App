@@ -2,7 +2,7 @@
   "naam": "Remi",
   "leeftijd": null,
   "woonplaats": "Antwerpen",
-  "situatie": "Woont alleen in Antwerpen. Heeft een inkomen nodig.",
+  "situatie": "Woont in Antwerpen en zoekt een nieuwe richting met een stabiel inkomen.",
   "beroep": "Technisch tekenaar en verantwoordelijke atelier bij een metaalbewerkingsbedrijf (maatwerk in plaatmateriaal), sinds 2021; gestart als tekenaar en plooi- en lasoperator",
   "vaardigheden": [
     "Technisch tekenen van maatwerk in plaatmateriaal en werkvoorbereiding",
@@ -24,13 +24,12 @@
       "niveau": "functioneel"
     }
   ],
-  "vakbond": "ACV (Algemeen Christelijk Vakverbond), sector metaal: ACV-CSC METEA",
   "randvoorwaarden": [
     "Wil kunnen blijven studeren naast het werk",
     "Zoekt werk dat tegelijk moeilijk is en er echt toe doet",
     "Werkt het best in kleine, vertrouwde teams binnen een stabiele organisatie",
-    "Het huidige werk is fysiek te zwaar om op lange termijn vol te houden",
-    "Heeft na 31 december 2026 een of twee maanden herstel nodig voor een goede start"
+    "Zoekt op lange termijn werk dat fysiek minder zwaar is dan laswerk",
+    "Wil een rustige overgang en een goede start in de nieuwe job"
   ],
   "tests": {
     "mbti": {
@@ -91,7 +90,7 @@
       {
         "domein": "Neuroticisme",
         "niveau": "laag",
-        "toelichting": "Uitzonderlijk kalm en onverstoorbaar. Enige nuance: Onmatigheid 14 (hoog)."
+        "toelichting": "Uitzonderlijk kalm en onverstoorbaar."
       },
       {
         "domein": "Extraversie",
@@ -176,15 +175,15 @@
   "loopbaan": [
     {
       "periode": "tot 2017",
-      "wat": "Secundair onderwijs Wetenschappen-Wiskunde, Sint-Lutgardis (Merksem of Antwerpen, te bevestigen)"
+      "wat": "Secundair onderwijs Wetenschappen-Wiskunde in Antwerpen"
     },
     {
       "periode": "2017 tot 2018",
-      "wat": "Katoen Natie, Antwerpen, ongeveer een jaar (functie te bevestigen)"
+      "wat": "Eerste job bij een bedrijf in Antwerpen, ongeveer een jaar (functie te bevestigen)"
     },
     {
       "periode": "2017 tot 2018",
-      "wat": "Fotoarchief opgebouwd voor Willy Van de Perre"
+      "wat": "Fotoarchief opgebouwd voor een opdrachtgever"
     },
     {
       "periode": "2019",
@@ -204,8 +203,8 @@
     }
   ],
   "tebevestigen": [
-    "Leeftijd: de eerdere notities zeggen 20, maar een diploma secundair in 2017 wijst op ongeveer 27. Geboortejaar nodig.",
-    "Statuut op de loonfiche: arbeider of bediende. Een tekenaar en atelierverantwoordelijke is vaak bediende (PC 200 of 209); dan gelden andere regels voor gewaarborgd loon, vakantiegeld en eindejaarspremie dan de arbeidersregels op de pagina Rechten.",
+    "Geboortejaar en leeftijd.",
+    "Statuut op de loonfiche: arbeider of bediende, en welk paritair comité. Dat bepaalt onder meer gewaarborgd loon, vakantiegeld en eindejaarspremie (zie de pagina Rechten).",
     "Lasprocessen: halfautomaat (MIG/MAG) en elektrode zijn zeker; TIG te bevestigen.",
     "Naam van het huidige bedrijf, startdatum van het contract en het CAD-programma.",
     "Welke opleiding interieurvormgeving precies (hogeschool of academie, deeltijds kunstonderwijs)."

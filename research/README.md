@@ -4,7 +4,7 @@ Negen werkdocumenten van 27 september 2026. Onderzoek 1 (arbeidsrecht) en 3 (job
 
 | Nummer | Bestand | Taal | Inhoud |
 |---|---|---|---|
-| 1 | 01-arbeidsrecht-uitstap.md | Nederlands | Ontslag, onderling akkoord, opzegtermijnen, C4, werkloosheid 2026, ziekte en burn-out, ACV, VDAB-steun |
+| 1 | 01-arbeidsrecht-uitstap.md | Nederlands | Ontslag, onderling akkoord, opzegtermijnen, C4, werkloosheid 2026, ziekte, vakbonden, VDAB-steun |
 | 2 | 02-solliciteren-in-vlaanderen.md | Engels | Cv, motivatiebrief, spontaan solliciteren, opvolging, overheid, gesprek, loon, sjablonen |
 | 3 | 03-jobbronnen-en-hotlist.md | Engels | Jobsites met zoekpatronen en api, hotlist per spoor, instap onderwijs, knelpuntberoepen, netwerkmomenten |
 | 4 | 04-erfgoed-opleidingsroutes.md | Nederlands | Uitkering en opleiding na 1 maart 2026, OKOT, IBO, Vlaams opleidingsverlof, Conservatie-Restauratie, restauratieaannemers |

@@ -215,7 +215,7 @@ export function welzijn(r) {
   else if (tab === 'dagboek') {
     const dagen = all('dagboek').sort((a, b) => b.datum.localeCompare(a.datum));
     inhoud = h('div', { class: 'stack' },
-      callout('green', 'calendar', 'Elke dag twee minuten', h('p', null, 'Noteer tot de afspraak elke avond kort hoe je sliep, hoeveel energie je had en hoe je je voelde. Dat helpt de huisarts meer dan een herinnering achteraf. Kijk ook of het weekend anders aanvoelt.')),
+      callout('green', 'calendar', 'Elke dag twee minuten', h('p', null, 'Noteer elke avond kort hoe je sliep, hoeveel energie je had en hoe je je voelde. Dat helpt de huisarts meer dan een herinnering achteraf. Kijk ook of het weekend anders aanvoelt.')),
       dagen.length ? h('section', { class: 'card card--pad' }, h('ul', { class: 'list' }, dagen.map(d => h('li', null,
         h('span', { class: 'small muted', style: 'width:78px;flex:0 0 auto' }, fmtDate(d.datum)),
         h('div', { style: 'min-width:0' }, h('a', { href: '#', onClick: e => { e.preventDefault(); dagForm(d); } }, `Energie ${d.energieMiddag ?? '?'} en ${d.energieAvond ?? '?'}, stemming ${d.stemming ?? '?'}`), ' ', d.teLaat && badge('te laat', 'orange'), ' ', d.hoofdpijn && badge('hoofdpijn of duizelig', 'red'),

@@ -1,8 +1,8 @@
 {
-  "intro": "Vragenlijsten die artsen ook gebruiken, om voor het bezoek aan de huisarts een eerste beeld te krijgen. Ze stellen geen diagnose: een hoge score betekent 'bespreek dit met je arts', een lage score sluit niets uit. De CBI en de WHO-5 vul je hier in de app in. De BAT vul je in naast het officiële formulier, de 4DKL online. Alleen Giulia en Remi zien de antwoorden.",
+  "intro": "Vragenlijsten die artsen ook gebruiken, om voor een bezoek aan de huisarts een eerste beeld te krijgen. Ze stellen geen diagnose: een hoge score betekent 'bespreek dit met je arts', een lage score sluit niets uit. De CBI en de WHO-5 vul je hier in de app in. De BAT vul je in naast het officiële formulier, de 4DKL online. De antwoorden zijn alleen zichtbaar voor wie toegang heeft tot de app.",
   "veiligheid": {
     "titel": "Hulp nodig, nu meteen?",
-    "tekst": "Denk je aan de dood of eraan om jezelf iets aan te doen, of maakt iemand zich zorgen over je veiligheid: wacht niet tot de afspraak bij de dokter.",
+    "tekst": "Denk je aan de dood of eraan om jezelf iets aan te doen, of maakt iemand zich zorgen over je veiligheid: wacht niet tot een afspraak bij de dokter.",
     "lijnen": [
       {
         "naam": "Zelfmoordlijn",
@@ -208,7 +208,7 @@
       "kort": "Burn-out: algemeen en door het werk",
       "herkomst": "Denemarken, nationaal onderzoekscentrum voor arbeidsomstandigheden (NFA)",
       "meet": "Hoe uitgeput je je voelt, apart gemeten voor je leven in het algemeen en voor je werk. Is de uitputting door het werk veel hoger, dan wijst dat op het werk als oorzaak. Is ze overal even hoog, dan kijkt de arts ook naar andere oorzaken, zoals slaap, een lichamelijke ziekte of een depressie.",
-      "waarom": "Ontwikkeld met publiek geld in Denemarken en vrij beschikbaar voor iedereen. Wereldwijd gebruikt en in veel landen getoetst. Korte, concrete vragen, die ook passen bij lichamelijk zwaar werk. Het deel over klanten laten we weg: dat past niet bij werk in een atelier.",
+      "waarom": "Ontwikkeld met publiek geld in Denemarken en vrij beschikbaar voor iedereen. Wereldwijd gebruikt en in veel landen getoetst. Korte, concrete vragen, die ook passen bij lichamelijk zwaar werk. Het deel over klanten is weggelaten, omdat het niet bij elk werk past.",
       "minuten": 3,
       "instructie": "Kies bij elke vraag het antwoord dat het best bij je past. Denk niet te lang na: het eerste antwoord is meestal het beste.",
       "optieSets": {
@@ -546,17 +546,17 @@
   "dokter": {
     "voorbereiding": [
       "Vul de vragenlijsten zelf in, eerlijk en alleen, op een rustige dag voor de afspraak. Schrijf de datum erop en neem de ingevulde formulieren mee.",
-      "Hou tot de afspraak elke dag kort bij: slaap, energie en stemming, cafeïne en alcohol, werkuren en laswerk, hoofdpijn of duizeligheid, en of je te laat kwam. Dat kan bij Dagboek.",
-      "Schrijf op één blad: sinds wanneer de uitputting er is en hoe ze veranderde, wat helpt en wat het erger maakt, fouten of bijna-ongevallen aan de machines, gevolgen thuis en met vrienden, stemming en interesse, lichamelijke klachten, medicatie en ziektes in de familie.",
-      "Beschrijf je werk concreet: tekenen, lassen en plooien, het atelier leiden, uren en overuren, de lichamelijke belasting en de spanningen op het werk.",
-      "Beschrijf het laswerk: welke processen en metalen, of er afzuiging is, of je een masker draagt, of je in afgesloten ruimtes werkt, en of collega's dezelfde klachten hebben.",
+      "Hou tot de afspraak elke dag kort bij: slaap, energie en stemming, cafeïne en alcohol, werkuren, hoofdpijn of duizeligheid. Dat kan bij Dagboek.",
+      "Schrijf op één blad: sinds wanneer de klachten er zijn en hoe ze veranderden, wat helpt en wat het erger maakt, fouten of bijna-ongevallen op het werk, gevolgen thuis en met vrienden, stemming en interesse, lichamelijke klachten, medicatie en ziektes in de familie.",
+      "Beschrijf je werk concreet: taken, uren en overuren, verantwoordelijkheid, de lichamelijke belasting en de spanningen op het werk.",
+      "Werk je met lassen, dampen, stof of oplosmiddelen: beschrijf welke processen en materialen, of er afzuiging is, of je een masker draagt, of je in afgesloten ruimtes werkt, en of collega's dezelfde klachten hebben.",
       "Je beslist zelf of iemand meegaat. Een vertrouwd persoon helpt onthouden wat gezegd werd."
     ],
     "vragen": [
       "Is dit overspanning, burn-out, depressie of een mengeling?",
       "Welk bloedonderzoek raadt u aan, en waarom?",
       "Is een onderzoek van mijn slaap nodig?",
-      "Kan mijn werk, zoals laswerk en dampen, een rol spelen? Moet ik naar de arbeidsarts?",
+      "Kan mijn werk, zoals dampen, stof of lawaai, een rol spelen? Moet ik naar de arbeidsarts?",
       "Moet ik minder of tijdelijk niet werken, en hoelang?",
       "Is het veilig dat ik rijd en aan machines werk?",
       "Kan u mij doorverwijzen naar een geconventioneerde eerstelijnspsycholoog?",
@@ -565,7 +565,7 @@
     ],
     "lichamelijk": [
       "Bij langdurige vermoeidheid kijkt de huisarts vaak eerst naar bloedarmoede, ontsteking, suiker en schildklier. Andere waarden enkel als daar een reden voor is.",
-      "Slaapapneu, slapeloosheid en een verschoven slaapritme kunnen uitputting en te laat komen ook verklaren.",
+      "Slaapapneu, slapeloosheid en een verschoven slaapritme kunnen uitputting ook verklaren.",
       "Lasdampen en koolstofmonoxide kunnen vermoeidheid, hoofdpijn en duizeligheid geven. Een aanwijzing: klachten die op werkdagen erger zijn en in het weekend of op vakantie beter.",
       "Een normaal bloedonderzoek betekent niet dat er niets is. De meeste mensen met vermoeidheid hebben normale bloedwaarden."
     ],
@@ -576,7 +576,7 @@
       "Bezorg het attest dezelfde dag, ten laatste de volgende werkdag, tot je het arbeidsreglement hebt: de wettelijke termijn is 2 werkdagen, maar het arbeidsreglement kan korter zijn. Mail een foto of scan, en geef het origineel af tegen een gedateerd ontvangstbewijs of stuur het aangetekend. Versturen binnen de termijn volstaat.",
       "Vraag ook een attest voor één ziektedag. De vrijstelling voor de eerste ziektedag geldt niet in elke onderneming.",
       "Blijf bereikbaar voor een controlearts op het adres dat je opgaf. Is je ziekte langer dan 14 dagen, kijk dan na of het ziekenfonds het attest ontving.",
-      "Volg je avondlessen, vraag dan vooraf toestemming aan de adviserend arts van het ziekenfonds."
+      "Volg je lessen of een opleiding tijdens ziekteverlof, vraag dan vooraf toestemming aan de adviserend arts van het ziekenfonds."
     ]
   },
   "hulp": [

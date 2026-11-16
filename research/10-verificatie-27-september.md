@@ -18,11 +18,11 @@ Nagekeken via zoekresultaten van de officiële bronnen. Bevestigd betekent: de b
 | Erkenning metaaldetectorist | Minstens 18 jaar; geen veroordeling voor een erfgoedinbreuk in de laatste 5 jaar; basiskennis van de Code van Goede Praktijk; aanvraag via het e-loket met eID en een uittreksel uit het strafregister; legitimatiebewijs met QR-code binnen maximaal 90 dagen. | https://www.onroerenderfgoed.be/erkenningsvoorwaarden-metaaldetectorist ; https://www.onroerenderfgoed.be/een-erkenning-aanvragen-metaaldetectorist |
 
 ## Nog niet bevestigd
-- Eindejaarspremie PC 111, provincie Antwerpen, bij ontslagname versus ontslag: de zoekresultaten geven alleen de algemene regel (pro rata, afhankelijk van de provinciale cao). Navragen bij ACV-CSC METEA.
+- Eindejaarspremie bij ontslagname versus ontslag: de zoekresultaten geven alleen de algemene regel (pro rata, afhankelijk van de sectorale of provinciale cao). Navragen bij de vakbond of het sociaal secretariaat.
 - Statuut arbeider of bediende, en dus welk paritair comité: staat op de loonfiche.
 - Of een OKOT als "beroepsopleiding onder overeenkomst met VDAB" telt voor de verlenging met 12 maanden: navragen bij VDAB.
 
 ## Gevolgen voor de planning
-1. Een studie van twee tot drie jaar (graduaat, bachelor) verlengt de uitkering niet meer. Met 24 maanden recht vanaf ongeveer januari tot mei 2027 (na de opzegperiode) loopt de uitkering af rond eind 2028 tot voorjaar 2029. Een opleiding die in september 2027 start, moet dus binnen die periode passen of gecombineerd worden met werk.
+1. Een studie van twee tot drie jaar (graduaat, bachelor) verlengt de uitkering niet meer. Met 24 maanden recht loopt de uitkering twee jaar na de start af. Een opleiding die later start, moet dus binnen die periode passen of gecombineerd worden met werk.
 2. Een voltijdse VDAB-beroepsopleiding van minstens 3 maanden (bijvoorbeeld tekenaar CAD/BIM, lasinspectie, podiumtechniek) verlengt het recht wel, met maximaal 12 maanden. Dat pleit voor zo'n opleiding vroeg in de uitkeringsperiode.
-3. De restauratorroute (Conservatie-Restauratie, 3 plus 1 jaar) past niet volledig binnen een uitkering; haalbaar via deeltijds werk, het medische spoor of een jaar werken eerst.
+3. De restauratorroute (Conservatie-Restauratie, 3 plus 1 jaar) past niet volledig binnen een uitkering; haalbaar via deeltijds werk of een jaar werken eerst.

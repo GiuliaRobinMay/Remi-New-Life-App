@@ -111,12 +111,14 @@ try {
       await page.locator('[data-fk="vl-p01"]').fill('Test'); await page.keyboard.press('Tab');
       const vf = await page.evaluate(() => document.activeElement?.dataset?.fk);
       check('vragenlijst: tab naar volgende vraag', vf === 'vl-p02', vf);
-      // Kalender: maand oktober 2026 met de doktersafspraak op vrijdag 16
+      // Kalender: maand oktober 2026 met een afspraak op vrijdag 16. Persoonlijke afspraken staan niet meer in de seed
+      // (alleen in de database): de test zet zelf een algemene afspraak klaar, zoals de database ze zou aanleveren.
+      await page.evaluate(async () => { const st = await import('./js/store.js'); st.upsert('agenda', { id: 'ag-test-kalender', datum: '2026-10-16', tijd: '08:30', titel: 'Kalendertest' }, { silent: true }); });
       await page.goto(`${base}#/planning?tab=kalender&m=2026-10`, { waitUntil: 'networkidle' });
       const kal = await page.evaluate(() => ({ titel: document.querySelector('.cal__titel').textContent, cellen: document.querySelectorAll('.cal__day').length, eerste: document.querySelector('.cal__day .cal__num').textContent }));
       check('kalender oktober 2026 start op maandag 28 september', kal.titel === 'oktober 2026' && kal.cellen === 35 && kal.eerste === '28', JSON.stringify(kal));
       await page.click('.cal__day[aria-label^="16 okt"]');
-      check('dag openen toont de doktersafspraak', /Doktersafspraak/.test(await page.textContent('.peek__body')));
+      check('dag openen toont de afspraak van die dag', /08:30 Kalendertest/.test(await page.textContent('.peek__body')));
       await page.click('#peekClose');
       await page.click('a[aria-label="Volgende maand"]');
       await page.waitForFunction(() => document.querySelector('.cal__titel')?.textContent !== 'oktober 2026', null, { timeout: 3000 }).catch(() => {});
@@ -172,20 +174,27 @@ try {
       await page.click('#peekClose');
       await page.goto(`${base}#/planning?tab=kalender&m=2026-10`, { waitUntil: 'networkidle' });
       check('afspraak in de kalender', /10:00 Testafspraak/.test(await page.textContent('.cal')));
-      // Communicatie: tabel met alle e-mails, een mail openen, bewerken, bewaren en als verstuurd markeren
+      // Communicatie: tabel met alle e-mails, een mail openen, bewerken, bewaren en als verstuurd markeren.
+      // De persoonlijke mails en brieven staan niet meer in de seed (alleen in de database): de test zet zelf een
+      // algemene mail en brief klaar, zoals de database ze zou aanleveren.
+      await page.evaluate(async () => {
+        const st = await import('./js/store.js');
+        st.upsert('berichten', { id: 'msg-testmail', soort: 'mail', titel: 'Kopie van het contract vragen', onderwerp: 'Vraag om een kopie van mijn arbeidsovereenkomst', tekst: 'Beste [naam],\n\nMag ik een kopie van mijn arbeidsovereenkomst en van het arbeidsreglement?\n\nMet vriendelijke groeten\nRemi [achternaam]', status: 'concept' }, { silent: true });
+        st.upsert('berichten', { id: 'msg-testbrief', soort: 'brief', titel: 'Herinnering: kopie (testbrief)', onderwerp: 'Betreft: kopie', tekst: 'Testbrief', status: 'concept' }, { silent: true });
+      });
       await page.goto(`${base}#/communicatie`, { waitUntil: 'networkidle' });
       const tabsComm = await page.$$eval('.tabs__item', els => els.map(e => e.textContent.trim()));
       check('communicatie: alleen E-mails en Instellingen', tabsComm.length === 2 && tabsComm[0] === 'E-mails' && tabsComm[1] === 'Instellingen', tabsComm.join(' | '));
-      check('e-mails staan in een tabel', await page.locator('.grid2__table a[data-mail="msg-contract-mail"]').count() === 1 && !/Ziekmelding|Herinnering: kopie/.test(await page.textContent('.grid2__table')));
-      await page.click('a[data-mail="msg-contract-mail"]');
-      await page.waitForSelector('[data-fk="msg-msg-contract-mail"]', { timeout: 3000 }).catch(() => {});
-      check('mail opent op een eigen pagina', /#\/communicatie\/msg-contract-mail$/.test(page.url()) && /Alle e-mails/.test(await page.textContent('.content')));
-      const mail = page.locator('[data-fk="msg-msg-contract-mail"]');
+      check('e-mails staan in een tabel', await page.locator('.grid2__table a[data-mail="msg-testmail"]').count() === 1 && !/Ziekmelding|Herinnering: kopie/.test(await page.textContent('.grid2__table')));
+      await page.click('a[data-mail="msg-testmail"]');
+      await page.waitForSelector('[data-fk="msg-msg-testmail"]', { timeout: 3000 }).catch(() => {});
+      check('mail opent op een eigen pagina', /#\/communicatie\/msg-testmail$/.test(page.url()) && /Alle e-mails/.test(await page.textContent('.content')));
+      const mail = page.locator('[data-fk="msg-msg-testmail"]');
       check('contractmail staat klaar', /arbeidsovereenkomst/.test(await mail.inputValue()) && /arbeidsreglement/.test(await mail.inputValue()));
       await mail.fill((await mail.inputValue()).replace('[naam]', 'Jan'));
       await page.waitForTimeout(600);
       await page.goto(`${base}#/communicatie`, { waitUntil: 'networkidle' });
-      await page.goto(`${base}#/communicatie/msg-contract-mail`, { waitUntil: 'networkidle' });
+      await page.goto(`${base}#/communicatie/msg-testmail`, { waitUntil: 'networkidle' });
       check('aangepaste mail blijft bewaard', /Beste Jan,/.test(await mail.inputValue()));
       page.once('dialog', d => d.accept());
       await page.click('text=Markeer als verstuurd');
@@ -220,18 +229,18 @@ try {
         check('eigen e-mail verwijderen', /#\/communicatie$/.test(page.url()) && !/Testonderwerp nieuw/.test(await page.textContent('body')));
       }
       // Archiveren en terugzetten
-      await page.goto(`${base}#/communicatie/msg-contract-mail`, { waitUntil: 'networkidle' });
+      await page.goto(`${base}#/communicatie/msg-testmail`, { waitUntil: 'networkidle' });
       await page.click('[data-actie="archiveren"]');
       await page.waitForTimeout(200);
       await page.goto(`${base}#/communicatie`, { waitUntil: 'networkidle' });
       const metArchief = await page.textContent('.grid2__table');
       check('gearchiveerde mail staat bij ARCHIEF', /ARCHIEF/.test(metArchief) && /gearchiveerd/.test(metArchief), metArchief.slice(0, 200));
-      await page.click('a[data-mail="msg-contract-mail"]');
+      await page.click('a[data-mail="msg-testmail"]');
       await page.waitForSelector('[data-actie="terugzetten"]', { timeout: 3000 }).catch(() => {});
       await page.click('[data-actie="terugzetten"]');
       await page.waitForTimeout(200);
       await page.goto(`${base}#/communicatie`, { waitUntil: 'networkidle' });
-      check('mail terugzetten uit het archief', !/ARCHIEF/.test(await page.textContent('.grid2__table')) && await page.locator('a[data-mail="msg-contract-mail"]').count() === 1);
+      check('mail terugzetten uit het archief', !/ARCHIEF/.test(await page.textContent('.grid2__table')) && await page.locator('a[data-mail="msg-testmail"]').count() === 1);
       // Dossier: document toevoegen met een foto als bijlage
       await page.goto(`${base}#/documenten?tab=dossier`, { waitUntil: 'networkidle' });
       await page.click('text=Document toevoegen');
@@ -251,16 +260,16 @@ try {
       let aantalVerzonden = 0, dialogen = 0;
       await page.route('https://gmail.googleapis.com/**', async r => { aantalVerzonden++; verzonden = { url: r.request().url(), body: r.request().postData(), auth: r.request().headers().authorization }; await new Promise(z => setTimeout(z, 300)); r.fulfill({ contentType: 'application/json', body: JSON.stringify({ id: 'msg123', threadId: 't1' }) }); });
       await page.evaluate(() => localStorage.setItem('remi-gmail-client-id', '1234-test.apps.googleusercontent.com'));
-      await page.goto(`${base}#/communicatie/msg-contract-mail`, { waitUntil: 'networkidle' });
-      await page.fill('[data-fk="msg-msg-contract-mail-naar"]', 'werkgever@voorbeeld.be');
-      await page.setInputFiles('input[data-bijlage="msg-contract-mail"]', { name: 'Volmacht Remi é.pdf', mimeType: 'application/pdf', buffer: Buffer.from('%PDF-1.4 test') });
+      await page.goto(`${base}#/communicatie/msg-testmail`, { waitUntil: 'networkidle' });
+      await page.fill('[data-fk="msg-msg-testmail-naar"]', 'werkgever@voorbeeld.be');
+      await page.setInputFiles('input[data-bijlage="msg-testmail"]', { name: 'Volmacht Remi é.pdf', mimeType: 'application/pdf', buffer: Buffer.from('%PDF-1.4 test') });
       await page.waitForSelector('.mail-bijlagen li', { timeout: 3000 }).catch(() => {});
       await page.click('[data-actie="gmail"]');
       await page.waitForSelector('[data-actie="verstuur-nu"]', { timeout: 3000 }).catch(() => {});
       const geblokkeerd = await page.$eval('[data-actie="verstuur-nu"]', b => b.disabled).catch(() => null);
       check('versturen geblokkeerd zolang er velden tussen haken staan', geblokkeerd === true, String(geblokkeerd));
       await page.click('#peekClose');
-      await page.fill('[data-fk="msg-msg-contract-mail"]', 'Beste Jan,\n\nMag ik een kopie van mijn arbeidsovereenkomst? Dank je wel.\n\nRemi');
+      await page.fill('[data-fk="msg-msg-testmail"]', 'Beste Jan,\n\nMag ik een kopie van mijn arbeidsovereenkomst? Dank je wel.\n\nRemi');
       await page.waitForTimeout(600);
       await page.click('[data-actie="gmail"]');
       await page.waitForSelector('[data-actie="verstuur-nu"]:not([disabled])', { timeout: 3000 }).catch(() => {});

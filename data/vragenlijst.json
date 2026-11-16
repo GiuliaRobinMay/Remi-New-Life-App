@@ -64,7 +64,7 @@
         },
         {
           "id": "p12",
-          "vraag": "Katoen Natie: welke functie, welke afdeling, hoelang?",
+          "vraag": "Vorige jobs: bij welke werkgever, welke functie, welke afdeling, hoelang?",
           "type": "kort"
         },
         {
@@ -74,7 +74,7 @@
         },
         {
           "id": "p14",
-          "vraag": "Het fotoarchief voor Willy Van de Perre: wie is hij, hoeveel beelden, hoe heb je het aangepakt (ordenen, scannen, beschrijven, software)?",
+          "vraag": "Het fotoarchief dat je opbouwde: voor wie, hoeveel beelden, hoe heb je het aangepakt (ordenen, scannen, beschrijven, software)?",
           "type": "lang"
         },
         {
@@ -130,7 +130,6 @@
         {
           "id": "w06",
           "vraag": "Wat is fysiek het zwaarst, en waar voel je dat (rug, schouders, handen, ogen, ademhaling)?",
-          "hint": "Ook voor de huisarts.",
           "type": "kort"
         },
         {
@@ -262,12 +261,12 @@
         },
         {
           "id": "o04",
-          "vraag": "Hoe voel je je nu: energie van 1 tot 10, slaap, zin om dingen te doen? Wat helpt je herstellen?",
+          "vraag": "Hoe voel je je nu: energie van 1 tot 10, slaap, zin om dingen te doen? Wat geeft je energie?",
           "type": "kort"
         },
         {
           "id": "o05",
-          "vraag": "Hoeveel weken rust denk je nodig te hebben voor je ergens nieuw kunt beginnen?",
+          "vraag": "Hoeveel weken rust wil je nemen voor je ergens nieuw begint?",
           "type": "kort"
         },
         {
@@ -277,7 +276,7 @@
         },
         {
           "id": "o07",
-          "vraag": "Wat houdt je tegen om iets te tekenen bij je werkgever, en wat zou je willen dat er in de plaats gebeurt?",
+          "vraag": "Wat wil je dat er geregeld is voor je iets ondertekent over het einde van je huidige job?",
           "type": "lang"
         }
       ]
@@ -289,7 +288,7 @@
       "vragen": [
         {
           "id": "g01",
-          "vraag": "Hoe zeg je in twee zinnen waarom je weggaat, zonder het over vermoeidheid of je werkgever te hebben?",
+          "vraag": "Hoe zeg je in twee zinnen waarom je een nieuwe richting kiest, positief en zonder het over je huidige werkgever te hebben?",
           "hint": "Bijvoorbeeld: na vijf jaar plaatbewerking wil ik mijn vakmanschap inzetten voor werk dat blijft, zoals erfgoed of museumateliers.",
           "type": "lang"
         },

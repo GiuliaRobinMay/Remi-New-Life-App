@@ -56,7 +56,7 @@ export function communicatie(r) {
   }
   if (tab === 'instellingen') return { chrome, body: content(intro('Instellingen', 'Vanaf welk adres de mails vertrekken, en de handtekening onder nieuwe mails.'), instellingen()) };
 
-  if (!lijst.length && !gearchiveerd.length) return { chrome, body: content(intro('E-mails', 'Alle mails aan de werkgever, ACV en andere instanties.'), h('div', { class: 'card empty' }, 'Nog geen e-mails. Gebruik Nieuwe e-mail in de werkbalk.')) };
+  if (!lijst.length && !gearchiveerd.length) return { chrome, body: content(intro('E-mails', 'Alle mails aan werkgevers en andere instanties.'), h('div', { class: 'card empty' }, 'Nog geen e-mails. Gebruik Nieuwe e-mail in de werkbalk.')) };
   const sorteer = rows => rows.sort((a, b) => datumVan(b).localeCompare(datumVan(a)));
   const groups = [
     { key: 'mail-concept', label: 'CONCEPT', tone: 'violet', rows: sorteer(lijst.filter(b => b.status !== 'verstuurd')) },
@@ -153,7 +153,9 @@ function bewaarNu(id) {
   const w = wachtend[id];
   if (!w) return;
   clearTimeout(w.timer); delete wachtend[id];
-  upsert('berichten', { id, ...w.velden }, { silent: true });
+  // Intussen verwijderd (ook op een ander toestel): de store weigert de wijziging; melden in plaats van vastlopen.
+  try { upsert('berichten', { id, ...w.velden }, { silent: true }); }
+  catch (e) { if (!e?.verwijderd) throw e; toast(e.message); }
 }
 function bewaarAlles() { for (const id of Object.keys(wachtend)) bewaarNu(id); }
 addEventListener('pagehide', bewaarAlles);
@@ -270,14 +272,21 @@ function nietGekoppeld(st) {
     h('div', { class: 'form__actions' }, naarInstellingen('btn btn--primary'), h('button', { class: 'btn btn--ghost', onClick: closePeek }, 'Sluiten'))));
 }
 
-// Servermodus: of een fout betekent dat de mail misschien toch vertrok.
-// - de server zegt het zelf (onzeker), of
-// - de verbinding viel weg nadat de mail klaarstond (het verzoek kan de server bereikt hebben), of
-// - er kwam een fout zonder uitleg van de functie zelf (bijvoorbeeld een time-out onderweg).
-const klaarzettenMislukt = e => /^Mail klaarzetten/.test(String(e?.message || ''));
-const misschienVerstuurd = e => e?.onzeker === true
-  || (!!e?.offline && !klaarzettenMislukt(e))
-  || (e?.onzeker === undefined && !e?.herkoppelen && !e?.instellen && !e?.offline && /non-2xx/i.test(String(e?.message || '')));
+// Servermodus: of een fout betekent dat de mail misschien toch vertrok. Alleen als zeker is dat er niets vertrok,
+// is het antwoord nee: de server of de app zegt het uitdrukkelijk (onzeker: false, bijvoorbeeld als de mail nooit
+// klaargezet kon worden), of de server weigerde al vóór het versturen (toestemming ingetrokken, instellingen ontbreken).
+// Elke andere fout, ook een time-out onderweg of een fout van het platform zonder uitleg, telt als 'misschien verstuurd'.
+const misschienVerstuurd = e => e?.onzeker !== false && !e?.herkoppelen && !e?.instellen;
+
+// Elke verzending heeft een sleutel '<mail-id>:<poging>'. De server verstuurt dezelfde sleutel nooit twee keer
+// (ook niet vanaf twee toestellen tegelijk). De poging (veld verzendPoging, standaard 1) gaat alleen omhoog bij een
+// bewuste nieuwe verzending van een mail die al verstuurd is; een nieuwe poging na twijfel houdt dezelfde sleutel.
+const pogingVan = r => { const n = Math.floor(Number(r?.verzendPoging)); return n >= 1 && n <= 999_999_999 ? n : 1; };
+const verzendSleutel = (id, poging) => `${String(id).replace(/[\s\u0000-\u001f\u007f]/g, '_').slice(0, 200)}:${poging}`;
+const alVerstuurd = r => !!(r?.gmailId || r?.status === 'verstuurd');
+const TWIJFEL_SERVER = 'Bij een vorige poging is het niet zeker of deze mail vertrokken is. Kijk eerst in Gmail bij Verzonden.\n\nOpnieuw proberen? Was de mail toch al vertrokken, dan verstuurt de server ze niet nog eens.';
+const TWIJFEL_BROWSER = 'Het is niet zeker of de vorige poging vertrokken is. Heb je in Gmail bij Verzonden gekeken en wil je echt opnieuw versturen?';
+const DUBBEL = 'De server zegt dat deze mail al verstuurd is, of dat ze nu verstuurd wordt (bijvoorbeeld op een ander toestel). Ze is niet nog eens verstuurd. Kijk in Gmail bij Verzonden. Staat ze er niet, kies dan Toch opnieuw versturen.';
 
 function bevestigVersturen(c, naar, cc, bijlagen, sessie, eerdereMelding = '') {
   const messageId = mail.nieuwMessageId(); // dezelfde id bij elke poging vanuit dit paneel
@@ -287,16 +296,32 @@ function bevestigVersturen(c, naar, cc, bijlagen, sessie, eerdereMelding = '') {
   mijnPeek = openPeek('Mail versturen', () => {
     const al = get('berichten', c.id) || {};
     const bezig = bezigMet.has(c.id);
+    const twijfel = onzeker || !!al.twijfelOp;
     const open = haken(c.tekst) + haken(c.onderwerp);
     const zonderAfzender = !sessie.email;
     const rij = (k, v) => h('tr', null, h('td', { class: 'small muted', style: 'width:96px;vertical-align:top;padding:3px 8px 3px 0' }, k), h('td', { style: 'padding:3px 0;overflow-wrap:anywhere' }, v));
     const geenGmail = sessie.email && !/@(gmail|googlemail)\.com$/i.test(sessie.email);
     const knop = h('button', { class: 'btn btn--primary', 'data-actie': 'verstuur-nu', disabled: bezig || open > 0 || zonderAfzender, onClick: async () => {
       if (bezigMet.has(c.id)) return;
-      if (onzeker && !confirm('Het is niet zeker of de vorige poging vertrokken is. Heb je in Gmail bij Verzonden gekeken en wil je echt opnieuw versturen?')) return;
-      if ((al.gmailId || al.status === 'verstuurd') && !onzeker && !confirm('Deze mail werd al verstuurd. Echt nog eens versturen?')) return;
+      // De laatste versie van de mail: een ander toestel kan ze intussen verstuurd hebben.
+      const nu = get('berichten', c.id) || al;
+      let poging = pogingVan(nu);
+      if (onzeker || nu.twijfelOp) {
+        // Misschien vertrok een vorige poging toch: altijd eerst vragen. Via de server blijft de sleutel dezelfde,
+        // zodat een mail die toch vertrok niet nog eens vertrekt.
+        if (!confirm(server ? TWIJFEL_SERVER : TWIJFEL_BROWSER)) return;
+      } else if (alVerstuurd(nu)) {
+        if (!confirm('Deze mail werd al verstuurd. Echt nog eens versturen?')) return;
+        poging += 1; // een bewuste nieuwe verzending: een nieuwe sleutel
+      }
       // Meteen vergrendelen, nog voor er iets gewacht wordt: een dubbele klik verstuurt zo maar één keer.
-      bezigMet.add(c.id); melding = ''; naarInst = false; vernieuw();
+      bezigMet.add(c.id); melding = ''; naarInst = false;
+      if (poging !== pogingVan(nu)) {
+        // De nieuwe poging eerst bewaren: lukt het versturen half, dan gebruikt een volgende poging dezelfde sleutel.
+        try { upsert('berichten', { id: c.id, verzendPoging: poging }, { silent: true }); }
+        catch (e) { bezigMet.delete(c.id); melding = e.message; vernieuw(); return; }
+      }
+      vernieuw();
       // Dan de aanmelding nakijken (binnen de klik, zodat een aanmeldvenster niet geblokkeerd wordt).
       // Via de server is er geen aanmelding bij Google: de server gebruikt de toestemming van Remi.
       let s = sessie;
@@ -305,34 +330,59 @@ function bevestigVersturen(c, naar, cc, bijlagen, sessie, eerdereMelding = '') {
         if (sessie.email && s.email !== sessie.email) { bezigMet.delete(c.id); bevestigVersturen(c, naar, cc, bijlagen, s, 'Je bent aangemeld met een ander account. Kijk de afzender na voor je verstuurt.'); return; }
         sessie = s;
       }
+      let mime;
+      try { mime = await mail.bouwMail({ naar: naar.tekst, cc: cc.tekst, onderwerp: c.onderwerp, tekst: c.tekst, bijlagen: bijlagen.lijst, messageId }); }
+      catch (e) { bezigMet.delete(c.id); melding = `De mail kon niet klaargemaakt worden; er is niets verstuurd. ${e?.message || ''}`.trim(); vernieuw(); return; }
+      let res;
       try {
-        const mime = await mail.bouwMail({ naar: naar.tekst, cc: cc.tekst, onderwerp: c.onderwerp, tekst: c.tekst, bijlagen: bijlagen.lijst, messageId });
-        const res = server ? await gserver.verstuur(mime) : await mail.verstuur(mime, s);
-        const nogOpen = peekActief(mijnPeek);
-        upsert('communicatie', { id: 'com-' + uid(), datum: todayIso(), met: naar.tekst, kanaal: 'mail', richting: 'uit', onderwerp: c.onderwerp, samenvatting: `${c.titel}. Verstuurd met Gmail vanaf ${res.van || 'het Gmail-account'}${cc.lijst.length ? `, in kopie ${cc.tekst}` : ''}.${bijlagen.lijst.length ? ` Bijlagen: ${bijlagen.lijst.map(x => x.naam).join(', ')}.` : ''}` }, { silent: true });
-        bezigMet.delete(c.id);
-        upsert('berichten', { id: c.id, tekst: c.tekst, status: 'verstuurd', verstuurdOp: todayIso(), verstuurdVan: res.van || '', gmailId: res.id, twijfelOp: '' });
-        if (nogOpen) closePeek();
-        toast(`Verstuurd vanaf ${res.van || 'Gmail'}`);
+        res = server ? await gserver.verstuur(mime, verzendSleutel(c.id, poging)) : await mail.verstuur(mime, s);
       } catch (e) {
         bezigMet.delete(c.id);
-        const twijfel = server ? misschienVerstuurd(e) : !!e.onzeker;
-        if (twijfel) { onzeker = true; upsert('berichten', { id: c.id, twijfelOp: todayIso() }, { silent: true }); }
-        const uitleg = !server ? e.message
-          : twijfel && e.offline ? 'De verbinding met de server viel weg tijdens het versturen. Het is niet zeker of de mail vertrokken is.'
-          : twijfel && !e.onzeker ? 'De server gaf geen duidelijk antwoord. Het is niet zeker of de mail vertrokken is.'
-          : e.herkoppelen ? 'De toestemming van Remi om te versturen is ingetrokken of verlopen, dus er is niets verstuurd. Remi moet de koppellink opnieuw openen: maak er een bij Instellingen, stap 2.'
-          : e.instellen ? `${serverFout(e)} Dat kan bij Instellingen, stap 1.`
+        const twijfelNu = server ? misschienVerstuurd(e) : !!e?.onzeker;
+        if (twijfelNu) { onzeker = true; try { upsert('berichten', { id: c.id, twijfelOp: todayIso() }, { silent: true }); } catch { /* elders verwijderd */ } }
+        const uitleg = !server ? (e?.message || 'Versturen lukte niet.')
+          : twijfelNu && e?.offline ? 'De verbinding met de server viel weg tijdens het versturen. Het is niet zeker of de mail vertrokken is.'
+          : twijfelNu && e?.onzeker !== true ? `De server gaf geen duidelijk antwoord${e?.message ? ` (${e.message})` : ''}. Het is niet zeker of de mail vertrokken is.`
+          : e?.herkoppelen ? 'De toestemming van Remi om te versturen is ingetrokken of verlopen, dus er is niets verstuurd. Remi moet de koppellink opnieuw openen: maak er een bij Instellingen, stap 2.'
+          : e?.instellen ? `${serverFout(e)} Dat kan bij Instellingen, stap 1.`
           : serverFout(e);
-        naarInst = server && !twijfel && !!(e.herkoppelen || e.instellen);
-        melding = twijfel && !/Verzonden/.test(uitleg) ? `${uitleg} Kijk eerst in Gmail bij Verzonden voor je opnieuw verstuurt.` : uitleg;
+        naarInst = server && !twijfelNu && !!(e?.herkoppelen || e?.instellen);
+        melding = twijfelNu ? (/Verzonden/.test(uitleg) ? uitleg : `${uitleg} Kijk eerst in Gmail bij Verzonden voor je opnieuw verstuurt.`)
+          : server && !/niets verstuurd/i.test(uitleg) ? `${uitleg} Er is niets verstuurd.` : uitleg;
         vernieuw();
         if (!peekActief(mijnPeek)) toast(melding);
+        return;
       }
-    } }, bezig ? 'Bezig met versturen…' : onzeker ? 'Toch opnieuw versturen' : (al.gmailId || al.status === 'verstuurd') ? 'Toch opnieuw versturen' : 'Verstuur nu');
+      bezigMet.delete(c.id);
+      const nogOpen = peekActief(mijnPeek);
+      if (res?.dubbel) {
+        // De server kent deze sleutel al: de mail is al verstuurd (of vertrekt nu). Als verstuurd zetten, niets versturen.
+        onzeker = false;
+        const laatst = get('berichten', c.id) || {};
+        try {
+          if (laatst.twijfelOp && laatst.status !== 'verstuurd') upsert('communicatie', { id: 'com-' + uid(), datum: todayIso(), met: naar.tekst, kanaal: 'mail', richting: 'uit', onderwerp: c.onderwerp, samenvatting: `${c.titel || c.onderwerp || 'Mail'}. Verstuurd met Gmail vanaf ${laatst.verstuurdVan || sessie.email || 'het Gmail-account'}; de server bevestigde het bij een nieuwe poging.` }, { silent: true });
+          upsert('berichten', { id: c.id, status: 'verstuurd', verstuurdOp: laatst.verstuurdOp || todayIso(), verstuurdVan: laatst.verstuurdVan || sessie.email || '', gmailId: res.id || laatst.gmailId || '', twijfelOp: '' });
+        } catch { /* elders verwijderd */ }
+        melding = DUBBEL;
+        vernieuw();
+        if (!nogOpen) toast(melding);
+        return;
+      }
+      try {
+        upsert('communicatie', { id: 'com-' + uid(), datum: todayIso(), met: naar.tekst, kanaal: 'mail', richting: 'uit', onderwerp: c.onderwerp, samenvatting: `${c.titel}. Verstuurd met Gmail vanaf ${res.van || 'het Gmail-account'}${cc.lijst.length ? `, in kopie ${cc.tekst}` : ''}.${bijlagen.lijst.length ? ` Bijlagen: ${bijlagen.lijst.map(x => x.naam).join(', ')}.` : ''}` }, { silent: true });
+        upsert('berichten', { id: c.id, tekst: c.tekst, status: 'verstuurd', verstuurdOp: todayIso(), verstuurdVan: res.van || '', gmailId: res.id || '', twijfelOp: '' });
+      } catch (e) {
+        // Verstuurd, maar de mail kon hier niet bijgewerkt worden (bijvoorbeeld intussen verwijderd op een ander toestel).
+        if (nogOpen) closePeek();
+        toast(`Verstuurd vanaf ${res.van || 'Gmail'}. ${e?.message || ''}`.trim());
+        return;
+      }
+      if (nogOpen) closePeek();
+      toast(`Verstuurd vanaf ${res.van || 'Gmail'}`);
+    } }, bezig ? 'Bezig met versturen…' : twijfel ? 'Opnieuw proberen' : alVerstuurd(al) ? 'Toch opnieuw versturen' : 'Verstuur nu');
     return h('div', { class: 'stack' },
-      (al.gmailId || al.status === 'verstuurd') && h('p', { class: 'small mail-let' }, `Deze mail werd al verstuurd op ${fmtDate(al.verstuurdOp)}${al.verstuurdVan ? ` vanaf ${al.verstuurdVan}` : ''}. Wil je ze echt nog eens versturen?`),
-      al.twijfelOp && !onzeker && h('p', { class: 'small mail-let' }, `Bij een poging op ${fmtDate(al.twijfelOp)} is het niet zeker of de mail vertrok. Kijk eerst in Gmail bij Verzonden.`),
+      alVerstuurd(al) && h('p', { class: 'small mail-let' }, `Deze mail werd al verstuurd${al.verstuurdOp ? ` op ${fmtDate(al.verstuurdOp)}` : ''}${al.verstuurdVan ? ` vanaf ${al.verstuurdVan}` : ''}. Wil je ze echt nog eens versturen?`),
+      al.twijfelOp && !onzeker && h('p', { class: 'small mail-let', 'data-twijfel': '' }, `Bij een poging op ${fmtDate(al.twijfelOp)} is het niet zeker of de mail vertrok. Kijk eerst in Gmail bij Verzonden.${server ? ' Opnieuw proberen verstuurt ze niet nog eens als ze toch al vertrokken was.' : ''}`),
       server && h('p', { class: 'mail-vanaf', 'data-gmail-vanaf': '' }, 'Vertrekt vanaf ', h('strong', null, sessie.email), '.',
         h('span', { class: 'small muted' }, ' Met de toestemming die Remi gaf; aanmelden bij Google is niet nodig.')),
       h('table', { class: 'mail-overzicht' }, h('tbody', null,
@@ -435,10 +485,11 @@ function gmailBlok() {
 
 // ---------- Servermodus: Gmail koppelen via de server ----------
 // Stap 1 (Giulia, eenmalig): de client-ID en het clientgeheim van de app in Google Cloud naar de server.
-// Stap 2 (Remi, eenmalig): met een koppellink geeft Remi de server blijvende toestemming om te versturen.
+// Stap 2 (Remi, eenmalig): met een koppellink geeft Remi de server blijvende toestemming om te versturen. De link
+// hoort bij het Gmail-adres van Remi dat bij het maken ingevuld wordt: de server aanvaardt geen ander adres. 48 uur geldig.
 // De toestand komt van de server: één keer opgehaald per bezoek aan de tab, opnieuw na een actie of met
 // Opnieuw kijken. Elke andere herteken gebruikt wat al gekend is, zodat het scherm niet eindeloos opnieuw tekent.
-const srv = { nodig: true, laden: false, fout: '', vorige: null, melding: '', meldingFout: false, bezig: '', wijzigen: false, cid: '', geheim: '', link: null, handleiding: null };
+const srv = { nodig: true, laden: false, fout: '', vorige: null, melding: '', meldingFout: false, bezig: '', wijzigen: false, cid: '', geheim: '', link: null, handleiding: null, mail: null };
 const opGmailTab = () => {
   const [pad, q] = location.hash.replace(/^#\/?/, '').split('?');
   return pad === 'communicatie' && new URLSearchParams(q || '').get('tab') === 'instellingen';
@@ -446,7 +497,7 @@ const opGmailTab = () => {
 // De tab verlaten: bij het volgende bezoek opnieuw kijken. Een getypt geheim blijft niet in het geheugen.
 addEventListener('hashchange', () => {
   if (opGmailTab()) return;
-  Object.assign(srv, { nodig: true, vorige: null, fout: '', melding: '', meldingFout: false, wijzigen: false, cid: '', geheim: '' });
+  Object.assign(srv, { nodig: true, vorige: null, fout: '', melding: '', meldingFout: false, wijzigen: false, cid: '', geheim: '', mail: null });
 });
 
 function laadStatus() {
@@ -468,6 +519,8 @@ async function srvActie(naam, extra, gelukt) {
 }
 
 const datumVanIso = iso => { const d = new Date(iso || ''); return isNaN(d) ? '' : fmtDate(isoLocal(d)); };
+const tijdVanIso = iso => { const d = new Date(iso || ''); return isNaN(d) ? '' : d.toLocaleString('nl-BE', { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }); };
+const geldigAdres = e => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
 const codeVak = (tekst, actie) => h('span', { class: 'gmail-uri' }, h('code', { class: 'gmail-code' }, tekst),
   h('button', { class: 'btn btn--ghost btn--sm', type: 'button', 'data-actie': actie, onClick: () => copyText(tekst) }, icon('copy', 12), 'Kopieer'));
 
@@ -484,25 +537,26 @@ const SERVER_STAPPEN = uri => [
 ];
 
 // Het bericht dat Giulia naar Remi stuurt, met de koppellink erin.
-const berichtVoorRemi = (link, tot) => [
+const berichtVoorRemi = (link, tot, email) => [
   'Dag Remi,',
   '',
   'Wil je één keer toestemming geven, zodat de app mails kan versturen vanaf jouw Gmail-adres? Het duurt maar een minuutje.',
   '',
   `1. Open deze link: ${link}`,
-  '2. Meld je aan met je Gmail-account.',
+  `2. Meld je aan met je Gmail-account${email ? ` ${email}` : ''}. Een ander Google-account wordt geweigerd.`,
   '3. Google waarschuwt misschien dat de app niet geverifieerd is. Dat is normaal voor onze eigen app. Klik op Geavanceerd en dan op Doorgaan (er staat "onveilig" bij, dat mag je hier negeren).',
   '4. Vink het vakje aan bij "E-mail verzenden namens jou" en klik op Doorgaan.',
   '5. Je ziet daarna "Gelukt". Dan mag je het venster sluiten.',
   '',
-  `De link werkt één keer${tot ? `, tot ${tot}` : ''}. De app kan alleen mails versturen, niet je mails lezen.`,
+  `De link werkt één keer en is 48 uur geldig${tot ? `, tot ${tot}` : ''}. De app kan alleen mails versturen, niet je mails lezen.`,
 ].join('\n');
 
 function koppellinkBlok(l) {
-  const tot = datumVanIso(l.verloopt);
-  const bericht = berichtVoorRemi(l.link, tot);
+  const tot = tijdVanIso(l.verloopt);
+  const bericht = berichtVoorRemi(l.link, tot, l.email);
   return h('div', { class: 'gmail-link', 'data-gmail-link': '' },
-    h('p', { class: 'small' }, h('strong', null, 'Koppellink voor Remi'), tot ? `, geldig tot ${tot}. ` : '. ', 'De link werkt één keer.'),
+    h('p', { class: 'small' }, h('strong', null, 'Koppellink voor Remi'), l.email ? ` (${l.email})` : '', `, 48 uur geldig${tot ? `, tot ${tot}` : ''}. `,
+      `De link werkt één keer en alleen met ${l.email || 'het ingevulde Gmail-adres'}: een ander Google-account wordt geweigerd.`),
     h('code', { class: 'gmail-code' }, l.link),
     h('div', { class: 'form__actions' },
       h('button', { class: 'btn btn--primary btn--sm', type: 'button', 'data-actie': 'kopieer-link', onClick: () => copyText(l.link) }, icon('copy', 12), 'Kopieer'),
@@ -560,11 +614,17 @@ function serverGmailBlok() {
       h('summary', { class: 'small' }, 'Hoe kom ik aan de client-ID en het clientgeheim? (eenmalig, ongeveer een kwartier)'),
       h('ol', { class: 'bullets small' }, SERVER_STAPPEN(st.redirectUri).map(x => h('li', null, x)))));
 
-  const maakLink = () => srvActie('link', {}, r => {
-    if (!r?.link) throw new Error('De server gaf geen koppellink terug. Probeer opnieuw.');
-    srv.link = { link: r.link, verloopt: r.verloopt, sinds: st.gekoppeldOp || '' };
-    meld('Koppellink gemaakt. Kopieer of deel hem met Remi.');
-  });
+  // Het Gmail-adres van Remi: alleen dat adres aanvaardt de server bij de koppeling. Voorgevuld met het gekoppelde adres.
+  if (srv.mail === null) srv.mail = st.email || '';
+  const maakLink = () => {
+    const email = String(srv.mail || '').trim().toLowerCase();
+    if (!geldigAdres(email)) { meld('Vul eerst het Gmail-adres van Remi in. Alleen dat adres kan met de koppellink gekoppeld worden.', true); return; }
+    srvActie('link', { email }, r => {
+      if (!r?.link) throw new Error('De server gaf geen koppellink terug. Probeer opnieuw.');
+      srv.link = { link: r.link, verloopt: r.verloopt, sinds: st.gekoppeldOp || '', email: r.email || email };
+      meld(`Koppellink gemaakt voor ${r.email || email}. Kopieer of deel hem met Remi.`);
+    });
+  };
   const ontkoppel = () => {
     if (!confirm(`Gmail ontkoppelen? Daarna kan de app geen mails meer versturen vanaf ${st.email} tot Remi opnieuw een koppellink opent.`)) return;
     srvActie('ontkoppel', {}, () => {
@@ -577,8 +637,12 @@ function serverGmailBlok() {
     h('p', { class: 'gmail-stap__titel' }, h('span', { class: 'gmail-stap__nr' + (klaar2 ? ' is-klaar' : '') }, klaar2 ? '✓' : '2'), 'Toestemming van Remi', h('span', { class: 'gmail-stap__wie' }, 'eenmalig, door Remi')),
     h('p', { class: 'small', 'data-gmail-koppeling': '' }, klaar2 ? ['Gekoppeld met ', h('strong', null, st.email), sinds ? ` sinds ${sinds}` : '', '.'] : 'Nog niet gekoppeld.'),
     !klaar1 ? h('p', { class: 'small muted' }, 'Doe eerst stap 1.')
-      : !klaar2 ? h('p', { class: 'small' }, 'Maak een koppellink en stuur die naar Remi. Remi opent de link, meldt zich aan met zijn Gmail en geeft toestemming om e-mail te versturen. Daarna kunnen Giulia en Remi altijd versturen vanaf zijn adres, zonder telkens aan te melden. Klik op Opnieuw kijken als Remi klaar is.')
+      : !klaar2 ? h('p', { class: 'small' }, 'Vul het Gmail-adres van Remi in, maak een koppellink en stuur die naar Remi. Remi opent de link, meldt zich aan met dat Gmail-adres en geeft toestemming om e-mail te versturen. Daarna kunnen Giulia en Remi altijd versturen vanaf zijn adres, zonder telkens aan te melden. Klik op Opnieuw kijken als Remi klaar is.')
       : h('p', { class: 'small muted' }, 'Mails uit de app vertrekken vanaf dit adres, voor Giulia en voor Remi. Een nieuwe koppellink is alleen nodig als Remi een ander Gmail-adres wil gebruiken of als de toestemming ingetrokken werd.'),
+    klaar1 && h('form', { class: 'gmail-link-vraag', 'data-gmail-link-vraag': '', onSubmit: e => { e.preventDefault(); if (!srv.bezig) maakLink(); } },
+      h('label', { class: 'small' }, 'Gmail-adres van Remi',
+        h('input', { class: 'field', type: 'email', value: srv.mail, placeholder: 'naam@gmail.com', autocomplete: 'off', spellcheck: 'false', 'data-fk': 'gmail-srv-mail', onInput: e => { srv.mail = e.target.value; } })),
+      h('p', { class: 'small muted' }, 'Alleen dit adres wordt aanvaard. Meldt iemand zich met de link aan met een ander Google-account, dan wordt niets gekoppeld en blijft de huidige koppeling zoals ze is. De link is 48 uur geldig en werkt één keer.')),
     srv.link && koppellinkBlok(srv.link),
     h('div', { class: 'form__actions' },
       h('button', { class: `btn ${klaar2 ? 'btn--ghost' : 'btn--primary'} btn--sm`, type: 'button', 'data-actie': 'gmail-link', disabled: !klaar1 || !!srv.bezig, onClick: maakLink }, srv.bezig === 'link' ? 'Bezig…' : 'Maak koppellink'),

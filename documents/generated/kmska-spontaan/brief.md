@@ -20,7 +20,7 @@ Als technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in pla
 
 Ik wil mijn vakmanschap inzetten voor erfgoed en ontwerp. In uw team voor tentoonstellingsproductie en museumtechnieken komt mijn achtergrond het best van pas: wat in een museumzaal komt te staan, moet precies uitgetekend, degelijk gemaakt en met zorg rond de kunstwerken geplaatst worden.
 
-Ik breng drie dingen mee. Als tekenaar zet ik elke dag een vraag om in een werktekening waarmee het atelier verder kan, bijvoorbeeld bij [concreet project en wat daar precies moest kloppen]. Als verantwoordelijke van het atelier plan ik het werk en volg ik het op met mijn collega's, zodat een opdracht klaar is zoals afgesproken. En voor Willy Van de Perre bouwde ik een fotoarchief op, werk dat geduld en een vaste methode vraagt.
+Ik breng drie dingen mee. Als tekenaar zet ik elke dag een vraag om in een werktekening waarmee het atelier verder kan, bijvoorbeeld bij [concreet project en wat daar precies moest kloppen]. Als verantwoordelijke van het atelier plan ik het werk en volg ik het op met mijn collega's, zodat een opdracht klaar is zoals afgesproken. En ik bouwde een fotoarchief op, werk dat geduld en een vaste methode vraagt.
 
 Ik kom graag kennismaken tijdens een kort werkbezoek aan uw team en toon daarbij mijn werkstukken. Vanaf januari 2027 is ook een beroepsverkennende stage van enkele dagen via VDAB mogelijk. Mag ik u vragen mij op de hoogte te houden van toekomstige selecties voor een technische functie op niveau C in dat team?
 

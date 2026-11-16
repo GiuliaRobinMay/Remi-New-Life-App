@@ -40,13 +40,13 @@ Feiten die op een cv of in een dossier moeten kloppen.
 - Je opleidingen precies: secundair (richting, school, jaar), lasopleiding (waar, wanneer), academie (welke richtingen, welke jaren, getuigschrift of diploma)
   
 
-- Katoen Natie: welke functie, welke afdeling, hoelang?
+- Vorige jobs: bij welke werkgever, welke functie, welke afdeling, hoelang?
   
 
 - Het creatief fietsatelier: naam, wat je daar maakte of herstelde, een voorbeeld
   
 
-- Het fotoarchief voor Willy Van de Perre: wie is hij, hoeveel beelden, hoe heb je het aangepakt (ordenen, scannen, beschrijven, software)?
+- Het fotoarchief dat je opbouwde: voor wie, hoeveel beelden, hoe heb je het aangepakt (ordenen, scannen, beschrijven, software)?
   
 
 - Welke werkstukken bestaan er in foto's: meubels, constructies, fietsen, tekeningen? Waar staan die foto's?  
@@ -80,8 +80,7 @@ Concrete momenten zeggen meer dan eigenschappen.
 - Wat doe je het liefst in het atelier: tekenen, plooien, lassen, organiseren, uitleggen aan anderen? Zet ze in volgorde.
   
 
-- Wat is fysiek het zwaarst, en waar voel je dat (rug, schouders, handen, ogen, ademhaling)?  
-  (Ook voor de huisarts.)
+- Wat is fysiek het zwaarst, en waar voel je dat (rug, schouders, handen, ogen, ademhaling)?
   
 
 - Werk je liever alleen, met twee of drie, of in een grotere ploeg? Waarom?
@@ -160,23 +159,23 @@ Hier gaat het om keuzes voor de komende maanden.
 - Wil je opnieuw studeren? Zo ja: hoelang zou je dat volhouden (een jaar, twee, drie), overdag of in de avond, en wat trekt je: restauratie, tekenen, lesgeven, archief, iets anders?
   
 
-- Hoe voel je je nu: energie van 1 tot 10, slaap, zin om dingen te doen? Wat helpt je herstellen?
+- Hoe voel je je nu: energie van 1 tot 10, slaap, zin om dingen te doen? Wat geeft je energie?
   
 
-- Hoeveel weken rust denk je nodig te hebben voor je ergens nieuw kunt beginnen?
+- Hoeveel weken rust wil je nemen voor je ergens nieuw begint?
   
 
 - Wat wil je dat Giulia doet in dit traject, en wat wil je liever zelf doen?
   
 
-- Wat houdt je tegen om iets te tekenen bij je werkgever, en wat zou je willen dat er in de plaats gebeurt?
+- Wat wil je dat er geregeld is voor je iets ondertekent over het einde van je huidige job?
   
 
 ## Voor het gesprek
 
 Twee zinnen die je paraat wil hebben.
 
-- Hoe zeg je in twee zinnen waarom je weggaat, zonder het over vermoeidheid of je werkgever te hebben?  
+- Hoe zeg je in twee zinnen waarom je een nieuwe richting kiest, positief en zonder het over je huidige werkgever te hebben?  
   (Bijvoorbeeld: na vijf jaar plaatbewerking wil ik mijn vakmanschap inzetten voor werk dat blijft, zoals erfgoed of museumateliers.)
   
 

@@ -180,6 +180,9 @@ details.plain > summary::-webkit-details-marker { display: none; }
 .gmail-handleiding ol li + li { margin-top: 8px; }
 .mail-vanaf { margin: 0; }
 .mail-vanaf strong { overflow-wrap: anywhere; }
+/* Het Gmail-adres van Remi voor de koppellink */
+.gmail-link-vraag { display: flex; flex-direction: column; gap: 6px; }
+.gmail-link-vraag p { margin: 0; }
 @media (max-width: 720px) { .gmail-stap__titel { flex-wrap: wrap; } .gmail-stap__wie { margin-left: 30px; flex-basis: 100%; } }
 .visueel-verborgen { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .bestand-knop:focus-within { outline: 2px solid var(--brand-violet); outline-offset: 2px; }
@@ -344,6 +347,12 @@ li.is-klaar .agenda__naam, li.is-klaar .agenda__naam a { text-decoration: line-t
 .aanmeld-code { font-size: 18px; letter-spacing: .12em; text-transform: uppercase; max-width: 260px; font-variant-numeric: tabular-nums; }
 .linkknop { background: none; border: 0; padding: 0; font: inherit; color: var(--brand-violet); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
 .linkknop:hover { color: var(--brand-violet-deep); }
+/* Instellingen: een toegangscode voor één e-mailadres, en afmelden als iets niet in de database bewaard kon worden */
+.code-voor > * + * { margin-top: 8px; }
+.code-voor p { margin-bottom: 0; }
+.afmeld-vraag { border-left: 3px solid var(--brand-red); }
+.afmeld-vraag p { margin-bottom: 0; }
+.afmeld-vraag > :first-child { margin-top: 0; }
 .sidebar__sync { all: unset; cursor: pointer; display: block; width: 100%; font: inherit; color: inherit; text-align: left; }
 .sidebar__sync:focus-visible { outline: 2px solid var(--brand-violet); outline-offset: 2px; }
 .sidebar__sync--fout, .sidebar__sync--offline { color: var(--brand-red-deep); }

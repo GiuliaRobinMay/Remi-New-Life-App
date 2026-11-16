@@ -3,13 +3,13 @@
     "maand": "2026-10",
     "thema": "Administratie, strategie en cv",
     "focus": [
-      "Rechten veiligstellen: ACV (verwittiging, contract), dokter op 16 oktober, niets tekenen",
+      "Rechten kennen: lees de pagina Rechten en laat vragen nakijken door een vakbond of jurist, teken niets zonder advies",
       "Papieren op orde: kopie van het contract en het arbeidsreglement, startdatum en statuut, loonfiches",
-      "Strategie kiezen: uitstapscenario A, B of C met ACV, en de sporen waarop je solliciteert",
+      "Strategie kiezen: de sporen waarop je solliciteert en de timing van de overstap",
       "Cv-atelier afwerken: master-cv, portfolio, VDAB-profiel",
       "De twaalf concept-sollicitaties nalezen en aanvullen, nog niets versturen"
     ],
-    "klaar": "Dossier op orde, een gekozen scenario, een cv en portfolio die klaar zijn om te versturen.",
+    "klaar": "Papieren op orde, een gekozen richting, een cv en portfolio die klaar zijn om te versturen.",
     "sollicitaties": "Nog geen, alleen voorbereiden",
     "uren": [
       3,
@@ -35,14 +35,14 @@
   },
   {
     "maand": "2026-12",
-    "thema": "Opvolgen en het contract afronden",
+    "thema": "Opvolgen en administratie",
     "focus": [
       "Opvolgen, gesprekken plannen en voorbereiden",
-      "Einde contract correct: C4, vakantiegeld, eindejaarspremie, alleen tekenen voor ontvangst",
-      "VDAB-inschrijving en uitkeringsdossier bij ACV voorbereiden",
+      "Administratie voor de overstap: papieren nakijken, alleen tekenen voor ontvangst",
+      "VDAB-inschrijving voorbereiden als dat nodig is",
       "Rust inbouwen rond de feestdagen"
     ],
-    "klaar": "Alle papieren van het einde van het contract binnen, inschrijving klaar om in te dienen.",
+    "klaar": "Alle papieren binnen en nagekeken, klaar voor de volgende stap.",
     "sollicitaties": "2 tot 4, en opvolging",
     "uren": [
       3,
@@ -51,13 +51,13 @@
   },
   {
     "maand": "2027-01",
-    "thema": "Herstellen en inschrijven",
+    "thema": "Rustig ritme en inschrijven",
     "focus": [
-      "Inschrijven bij VDAB binnen 8 dagen, uitkeringsdossier via ACV",
-      "Rust staat centraal: één trajectdag per week",
+      "Inschrijven bij VDAB als dat nodig is",
+      "Een rustig ritme: één trajectdag per week",
       "Op de trajectdag: sollicitaties opvolgen en antwoorden noteren"
     ],
-    "klaar": "Ingeschreven, inkomen geregeld, een vast ritme van één trajectdag per week.",
+    "klaar": "Administratie geregeld, een vast ritme van één trajectdag per week.",
     "sollicitaties": "Alleen opvolging",
     "uren": [
       2,
@@ -115,7 +115,7 @@
     "focus": [
       "Antwerp Art Weekend van 6 tot 9 mei",
       "Inschrijvingen en toelatingsvoorwaarden van de gekozen opleiding nakijken",
-      "Gesprekken bij VDAB en ACV over het behoud van inkomen tijdens de opleiding"
+      "Bij VDAB navragen hoe het inkomen tijdens de opleiding geregeld kan worden"
     ],
     "klaar": "Een voorkeur voor job of opleiding, met een plan voor het inkomen.",
     "sollicitaties": "2 tot 4 gerichte",

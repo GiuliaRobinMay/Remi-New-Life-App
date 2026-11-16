@@ -1,85 +1,6 @@
-// Gegenereerd door scripts/build-data.mjs op 2026-11-16T16:06:24.730Z. Niet met de hand bewerken: pas data/*.json aan en draai npm run build:data.
+// Gegenereerd door scripts/build-data.mjs op 2026-11-16T17:17:46.820Z. Niet met de hand bewerken: pas data/*.json aan en draai npm run build:data.
 export const seed = {
- "berichten": [
-  {
-   "id": "msg-contract-mail",
-   "soort": "mail",
-   "titel": "Kopie van het arbeidscontract vragen",
-   "aan": "Werkgever (zaakvoerder of personeelsdienst)",
-   "wanneer": "Nu, zodat je de kopie hebt voor de ACV-afspraak van vrijdag 16 oktober.",
-   "onderwerp": "Vraag om een kopie van mijn arbeidsovereenkomst",
-   "tekst": "Beste [naam],\n\nIk vind mijn exemplaar van mijn arbeidsovereenkomst niet meer terug. Mag ik u vragen mij een kopie te bezorgen, samen met de bijlagen en eventuele wijzigingen sinds mijn indiensttreding? Graag ontvang ik ook een kopie van het arbeidsreglement.\n\nEen kopie per mail is voor mij prima. Zou dat lukken tegen woensdag 14 oktober?\n\nAlvast bedankt.\n\nMet vriendelijke groeten\n\nRemi [achternaam]",
-   "tips": [
-    "Stuur dit per mail, niet mondeling: zo heb je een spoor van je vraag. Bewaar de verzonden mail.",
-    "Geef geen reden op. Een uitleg is niet nodig en zegt niets over je plannen.",
-    "Zeg je 'je' tegen je baas, pas de mail dan gerust aan. De vraag zelf blijft dezelfde.",
-    "Een voltijds contract van onbepaalde duur moet niet altijd op papier staan. Is er geen geschreven contract, dan tonen je loonfiches (datum van indiensttreding, statuut, paritair comité) de belangrijkste gegevens. Neem ze mee naar ACV.",
-    "Komt er na een week geen antwoord, gebruik dan de brief bij Brieven en bespreek het eerst met ACV."
-   ],
-   "status": "concept"
-  },
-  {
-   "id": "msg-contract-brief",
-   "soort": "brief",
-   "titel": "Herinnering: kopie van het arbeidscontract",
-   "aan": "Werkgever (zaakvoerder of personeelsdienst)",
-   "wanneer": "Pas als de mail na een week geen antwoord kreeg, en na overleg met ACV.",
-   "onderwerp": "Betreft: kopie van mijn arbeidsovereenkomst",
-   "tekst": "Remi [achternaam]\n[straat en nummer]\n[postcode en gemeente]\n\n[naam van het bedrijf]\nt.a.v. [naam zaakvoerder of personeelsdienst]\n[straat en nummer]\n[postcode en gemeente]\n\nAntwerpen, [datum]\n\nBetreft: kopie van mijn arbeidsovereenkomst\n\nGeachte [heer of mevrouw] [naam],\n\nOp [datum van de mail] vroeg ik per mail een kopie van mijn arbeidsovereenkomst en van het arbeidsreglement. Omdat ik die nog niet ontving, herhaal ik mijn vraag met deze brief.\n\nIk vraag u mij een kopie te bezorgen van:\n- mijn arbeidsovereenkomst, met de bijlagen en eventuele wijzigingen sinds mijn indiensttreding;\n- het arbeidsreglement.\n\nU mag de documenten mailen naar [e-mailadres] of mij een papieren kopie geven.\n\nMet vriendelijke groeten\n\nRemi [achternaam]",
-   "tips": [
-    "Maak twee exemplaren. Geef er een af en laat het tweede dateren en tekenen voor ontvangst, of stuur de brief aangetekend.",
-    "Bespreek de brief eerst met ACV. Zij kunnen de vraag ook zelf aan de werkgever richten."
-   ],
-   "status": "concept"
-  },
-  {
-   "id": "msg-verwittiging-brief",
-   "soort": "brief",
-   "titel": "Reactie op de verwittiging",
-   "aan": "Werkgever (wie de verwittiging ondertekende)",
-   "wanneer": "Alleen na overleg met ACV. Bel ACV deze week.",
-   "onderwerp": "Betreft: uw verwittiging van [datum van de brief]",
-   "tekst": "Remi [achternaam]\n[straat en nummer]\n[postcode en gemeente]\n\n[naam van het bedrijf]\nt.a.v. [naam en functie van wie de brief ondertekende]\n[straat en nummer]\n[postcode en gemeente]\n\nAntwerpen, [datum]\n\nBetreft: uw aangetekende brief van [datum van de brief]\n\nGeachte [heer of mevrouw] [naam],\n\nIk heb uw aangetekende brief van [datum van de brief] goed ontvangen en neem kennis van de inhoud.\n\nIk begrijp dat mijn late aankomst de planning en mijn collega's belast. Vanaf nu begin ik elke dag op het afgesproken uur. Als ik toch verhinderd ben, verwittig ik u vooraf.\n\n[Enkel als ACV het aanraadt: De voorbije weken had ik gezondheidsklachten waarvoor ik onder medische opvolging sta. Dat maakte het begin van de dag zwaar. Ik schrijf dit niet om het goed te praten, maar zodat u de context kent.]\n\n[Enkel als een datum niet klopt: Volgens mijn eigen gegevens klopt (datum) niet, omdat (feitelijke uitleg).]\n\n[Enkel als ACV het aanraadt: Deze brief doet geen afbreuk aan mijn rechten, ook niet wat de geldigheid van de verwittiging betreft.]\n\nIk vraag u deze brief bij mijn personeelsdossier te voegen.\n\nMet vriendelijke groeten\n\nRemi [achternaam]",
-   "tips": [
-    "Stuur niets voor ACV de brief gezien heeft. Soms is zwijgen beter, soms is een antwoord nodig om je kant in het dossier te krijgen.",
-    "'Ik neem kennis van de inhoud' bevestigt dat je de brief kreeg, zonder elke datum toe te geven.",
-    "Kort en feitelijk: geen excuses voor dingen die niet kloppen, geen emotie, geen verwijten.",
-    "Over je gezondheid geef je geen details. Een zin over medische opvolging volstaat, en alleen als ACV het aanraadt.",
-    "Twee exemplaren: een afgeven en het tweede laten tekenen voor ontvangst, of aangetekend versturen."
-   ],
-   "status": "concept"
-  },
-  {
-   "id": "msg-later-sms",
-   "soort": "bericht",
-   "titel": "Verwittigen dat je later bent",
-   "aan": "Werkgever of je rechtstreekse chef",
-   "wanneer": "Vóór het beginuur, telkens als je weet dat je later zult zijn.",
-   "onderwerp": "Later vandaag",
-   "tekst": "Goedemorgen [naam], ik ben vandaag later. Ik verwacht om [uur] te beginnen. Mijn excuses. Remi",
-   "tips": [
-    "Stuur het vóór het beginuur, niet erna.",
-    "Per sms of mail, niet alleen telefonisch: zo is er een spoor. Bel je, stuur dan ook kort een bericht.",
-    "Noteer het daarna in het logboek."
-   ],
-   "status": "concept"
-  },
-  {
-   "id": "msg-ziek-sms",
-   "soort": "bericht",
-   "titel": "Ziekmelding",
-   "aan": "Werkgever of je rechtstreekse chef",
-   "wanneer": "Vóór het beginuur, op de eerste dag dat je niet kan werken.",
-   "onderwerp": "Ziek vandaag",
-   "tekst": "Goedemorgen [naam], ik ben ziek en kan vandaag niet komen werken. Ik ga naar de dokter en bezorg u het attest. Remi",
-   "tips": [
-    "Ga dezelfde dag naar de dokter of de huisartsenwachtpost en vraag een attest.",
-    "Bezorg het attest binnen de termijn van het arbeidsreglement, vaak 2 werkdagen. Hou een kopie of foto bij.",
-    "Je hoeft je werkgever niet te zeggen wat je hebt."
-   ],
-   "status": "concept"
-  }
- ],
+ "berichten": [],
  "competenties": {
   "inleiding": "Deze scan is voor jou, niet voor een werkgever: hij helpt je zien waar je sterk staat en voor welke competenties je al een goed voorbeeld hebt. Lees per competentie de vier gedragsindicatoren en geef jezelf een score van 1 tot 5, eerlijk en zonder je met anderen te vergelijken. Schrijf daarna één concreet voorbeeld volgens STARR: situatie, taak, actie, resultaat en reflectie. Het voorbeeld dat klaarstaat is een mogelijke situatie uit je loopbaan, geen verslag van wat echt gebeurde: gebruik het alleen als het zo gebeurd is, vul alles tussen vierkante haakjes in of schrijf een eigen voorbeeld, en lees de voorgestelde cv-zin na voordat je hem op je cv zet.",
   "bron": "Gebaseerd op algemene competentiekaders die in Vlaanderen gebruikt worden, zoals het competentiewoordenboek van de Vlaamse overheid en de beroepsprofielen van VDAB, waarop ook de beroepskwalificaties steunen, sterk vereenvoudigd. Dit is geen officiële test en levert geen attest op.",
@@ -364,13 +285,13 @@ export const seed = {
       },
       "vraag": "Beschrijf hoe je ooit informatie, beelden of werkzaamheden hebt vastgelegd zodat iemand anders ermee verder kon. Hoe pakte je het aan en wat was het resultaat?",
       "voorbeeld": {
-       "situatie": "Voor Willy Van de Perre bouwde ik tussen 2017 en 2018 een fotoarchief op met [aantal] beelden die verspreid lagen over [dozen, mappen of dragers].",
+       "situatie": "Voor [opdrachtgever] bouwde ik tussen 2017 en 2018 een fotoarchief op met [aantal] beelden die verspreid lagen over [dozen, mappen of dragers].",
        "taak": "Het archief moest geordend, gedigitaliseerd en beschreven worden, zodat beelden later snel terug te vinden waren.",
        "actie": "Ik legde een nummering en een vaste bestandsnaam vast, digitaliseerde de beelden in reeksen en beschreef ze met [datum, plaats, onderwerp] in [software of rekenblad]. Na elke reeks controleerde ik steekproefsgewijs of beeld, nummer en beschrijving overeenkwamen.",
        "resultaat": "Het archief telde [aantal] beschreven beelden, en een gezocht beeld was binnen [tijd] terug te vinden.",
        "reflectie": "Een vaste structuur vanaf de eerste dag bespaart later veel zoekwerk. Vandaag zou ik ook een erkende beschrijvingsstandaard gebruiken."
       },
-      "cvZin": "Ordening, digitalisering en beschrijving van een fotoarchief van [aantal] beelden voor Willy Van de Perre (2017 tot 2018).",
+      "cvZin": "Ordening, digitalisering en beschrijving van een fotoarchief van [aantal] beelden voor [opdrachtgever] (2017 tot 2018).",
       "gesprekVraag": "Hoe zorgt u ervoor dat de informatie die u vastlegt ook voor collega's bruikbaar en terugvindbaar is?",
       "relevantVoor": [
        "erfgoed",
@@ -961,7 +882,7 @@ export const seed = {
      "Uitleg over waarom je je huidige job verlaat",
      "Testresultaten zoals je MBTI-type of Holland-code; die helpen jou kiezen, maar zeggen een werkgever weinig"
     ],
-    "voorbeeldGoed": "Sinds 2021 werk ik in een bedrijf voor maatwerk in plaatmateriaal, eerst als technisch tekenaar en plooi- en lasoperator, nu als tekenaar en verantwoordelijke atelier. Ik teken werkstukken uit, plan het werk voor [aantal] collega's en controleer de maatvoering en de afwerking voordat een stuk het atelier verlaat. Daarnaast volg ik interieurvormgeving in het avondonderwijs aan de Academie in Antwerpen, na drie jaar meubel en interieur en een jaar grafiek. Samen met mijn broer ontwerp en bouw ik meubels, en eerder bouwde ik een fotoarchief op voor Willy Van de Perre. Die nauwkeurigheid en mijn ervaring met [materiaal of techniek uit de vacature] wil ik inzetten voor [werk dat blijft, bijvoorbeeld de restauratie van erfgoed of het atelier van uw museum].",
+    "voorbeeldGoed": "Sinds 2021 werk ik in een bedrijf voor maatwerk in plaatmateriaal, eerst als technisch tekenaar en plooi- en lasoperator, nu als tekenaar en verantwoordelijke atelier. Ik teken werkstukken uit, plan het werk voor [aantal] collega's en controleer de maatvoering en de afwerking voordat een stuk het atelier verlaat. Daarnaast volg ik interieurvormgeving in het avondonderwijs aan de Academie in Antwerpen, na drie jaar meubel en interieur en een jaar grafiek. Samen met mijn broer ontwerp en bouw ik meubels, en eerder bouwde ik een fotoarchief op voor [opdrachtgever]. Die nauwkeurigheid en mijn ervaring met [materiaal of techniek uit de vacature] wil ik inzetten voor [werk dat blijft, bijvoorbeeld de restauratie van erfgoed of het atelier van uw museum].",
     "voorbeeldZwak": "Gemotiveerde en flexibele teamplayer met een passie voor techniek en design. Ik ben stressbestendig, leergierig en heb oog voor detail. Op zoek naar een nieuwe uitdaging in een dynamische omgeving.",
     "vragenlijstIds": [
      "p07",
@@ -982,7 +903,7 @@ export const seed = {
      "Een halve regel over het bedrijf als de naam niets zegt, bijvoorbeeld maatwerk in plaatmateriaal",
      "Drie tot vijf regels per job: taken, en vooral realisaties",
      "Doorgroei binnen hetzelfde bedrijf, zoals van operator naar verantwoordelijke atelier",
-     "Oudere en kortere ervaring in één of twee regels: Katoen Natie (2017 tot 2018, [functie]), het fotoarchief, het fietsatelier en je meubelwerk"
+     "Oudere en kortere ervaring in één of twee regels: [vorige werkgever] (2017 tot 2018, [functie]), het fotoarchief, het fietsatelier en je meubelwerk"
     ],
     "doen": [
      "Begin elke regel met een actiewerkwoord: in de tegenwoordige tijd voor je huidige job (plan, teken uit), in de verleden tijd voor vroegere jobs (bouwde, ordende).",
@@ -1034,8 +955,8 @@ export const seed = {
      "Een getuigschrift of diploma dat je niet behaald hebt of niet kunt voorleggen",
      "Punten, graden of vakkenlijsten, tenzij de vacature erom vraagt"
     ],
-    "voorbeeldGoed": "[jaar] tot heden | Interieurvormgeving, avondonderwijs | [Academie, volledige naam], Antwerpen\n[jaar] | Grafiek, een jaar avondonderwijs | [Academie, volledige naam], Antwerpen\n[jaar] tot [jaar] | Meubel en interieur, drie jaar avondonderwijs, [getuigschrift ja of nee] | [Academie, volledige naam], Antwerpen\n[jaar, rond 2020] | Lasopleiding halfautomaat (MIG/MAG) en elektrode | [VDAB, SYNTRA of school], [gemeente]\n2017 | Diploma secundair onderwijs, ASO Wetenschappen-Wiskunde | Sint-Lutgardis, [Merksem of Antwerpen]",
-    "voorbeeldZwak": "Middelbare school: Sint-Lutgardis\nAcademie: meubels, grafiek, interieur\nLassen (cursus)",
+    "voorbeeldGoed": "[jaar] tot heden | Interieurvormgeving, avondonderwijs | [Academie, volledige naam], Antwerpen\n[jaar] | Grafiek, een jaar avondonderwijs | [Academie, volledige naam], Antwerpen\n[jaar] tot [jaar] | Meubel en interieur, drie jaar avondonderwijs, [getuigschrift ja of nee] | [Academie, volledige naam], Antwerpen\n[jaar, rond 2020] | Lasopleiding halfautomaat (MIG/MAG) en elektrode | [VDAB, SYNTRA of school], [gemeente]\n2017 | Diploma secundair onderwijs, ASO Wetenschappen-Wiskunde | [naam school], [gemeente]",
+    "voorbeeldZwak": "Middelbare school: [naam school]\nAcademie: meubels, grafiek, interieur\nLassen (cursus)",
     "vragenlijstIds": [
      "p11",
      "p16"
@@ -1173,7 +1094,7 @@ export const seed = {
      "Kies per vacature de volgorde: voor restauratie eerst precisiewerk en afwerking, voor tentoonstellingsbouw eerst constructies, voor lesgeven eerst tekeningen en werkvoorbereiding.",
      "Noem in je motivatiebrief één of twee stukken bij naam.",
      "Neem een geprinte versie mee naar het gesprek.",
-     "Vraag toestemming aan je werkgever, een klant of Willy Van de Perre voordat je foto's van hun werk of beelden uit het archief toont."
+     "Vraag toestemming aan je werkgever, een klant of de eigenaar van het archief voordat je foto's van hun werk of beelden uit het archief toont."
     ],
     "vermijden": [
      "Een link die vraagt om in te loggen, of een map losse foto's zonder uitleg",
@@ -1446,7 +1367,7 @@ export const seed = {
    },
    {
     "id": "verboden-woorden",
-    "regel": "Het cv bevat niets over gezondheid, vermoeidheid, burn-out, ziekteverlof of vakbond (ook niet ACV), geen uitroeptekens of emoji, en geen woorden uit Nederland zoals baan, salaris of middelbare school.",
+    "regel": "Het cv bevat niets over gezondheid, ziekteverlof of vakbondslidmaatschap, geen uitroeptekens of emoji, en geen woorden uit Nederland zoals baan, salaris of middelbare school.",
     "waarom": "Een werkgever mag niet naar gezondheid of vakbond vragen, dus het hoort niet op je cv; woorden uit Nederland klinken vreemd voor een Vlaamse lezer, en uitroeptekens en emoji passen niet in een zakelijk document."
    },
    {
@@ -1512,7 +1433,7 @@ export const seed = {
    {
     "periode": "2017 tot 2018",
     "functie": "Opbouw van een fotoarchief",
-    "werkgever": "Willy Van de Perre, [fotograaf of kunstenaar, plaats]",
+    "werkgever": "[Opdrachtgever, fotograaf of kunstenaar, plaats]",
     "taken": [
      "Ordenen, digitaliseren en beschrijven van een fotoarchief",
      "[Omvang: aantal beelden, gebruikte methode of software]"
@@ -1521,7 +1442,7 @@ export const seed = {
    {
     "periode": "2017 tot 2018",
     "functie": "[Functie]",
-    "werkgever": "Katoen Natie, Antwerpen (ongeveer een jaar)",
+    "werkgever": "[Naam werkgever], Antwerpen (ongeveer een jaar)",
     "taken": [
      "[Taken en afdeling]"
     ]
@@ -1560,7 +1481,7 @@ export const seed = {
    {
     "periode": "tot 2017",
     "titel": "Diploma secundair onderwijs, Wetenschappen-Wiskunde",
-    "instelling": "Sint-Lutgardis, [Merksem of Antwerpen, naam bevestigen]"
+    "instelling": "[Naam school, gemeente]"
    }
   ],
   "certificaten": [
@@ -2482,13 +2403,13 @@ export const seed = {
    "maand": "2026-10",
    "thema": "Administratie, strategie en cv",
    "focus": [
-    "Rechten veiligstellen: ACV (verwittiging, contract), dokter op 16 oktober, niets tekenen",
+    "Rechten kennen: lees de pagina Rechten en laat vragen nakijken door een vakbond of jurist, teken niets zonder advies",
     "Papieren op orde: kopie van het contract en het arbeidsreglement, startdatum en statuut, loonfiches",
-    "Strategie kiezen: uitstapscenario A, B of C met ACV, en de sporen waarop je solliciteert",
+    "Strategie kiezen: de sporen waarop je solliciteert en de timing van de overstap",
     "Cv-atelier afwerken: master-cv, portfolio, VDAB-profiel",
     "De twaalf concept-sollicitaties nalezen en aanvullen, nog niets versturen"
    ],
-   "klaar": "Dossier op orde, een gekozen scenario, een cv en portfolio die klaar zijn om te versturen.",
+   "klaar": "Papieren op orde, een gekozen richting, een cv en portfolio die klaar zijn om te versturen.",
    "sollicitaties": "Nog geen, alleen voorbereiden",
    "uren": [
     3,
@@ -2514,14 +2435,14 @@ export const seed = {
   },
   {
    "maand": "2026-12",
-   "thema": "Opvolgen en het contract afronden",
+   "thema": "Opvolgen en administratie",
    "focus": [
     "Opvolgen, gesprekken plannen en voorbereiden",
-    "Einde contract correct: C4, vakantiegeld, eindejaarspremie, alleen tekenen voor ontvangst",
-    "VDAB-inschrijving en uitkeringsdossier bij ACV voorbereiden",
+    "Administratie voor de overstap: papieren nakijken, alleen tekenen voor ontvangst",
+    "VDAB-inschrijving voorbereiden als dat nodig is",
     "Rust inbouwen rond de feestdagen"
    ],
-   "klaar": "Alle papieren van het einde van het contract binnen, inschrijving klaar om in te dienen.",
+   "klaar": "Alle papieren binnen en nagekeken, klaar voor de volgende stap.",
    "sollicitaties": "2 tot 4, en opvolging",
    "uren": [
     3,
@@ -2530,13 +2451,13 @@ export const seed = {
   },
   {
    "maand": "2027-01",
-   "thema": "Herstellen en inschrijven",
+   "thema": "Rustig ritme en inschrijven",
    "focus": [
-    "Inschrijven bij VDAB binnen 8 dagen, uitkeringsdossier via ACV",
-    "Rust staat centraal: één trajectdag per week",
+    "Inschrijven bij VDAB als dat nodig is",
+    "Een rustig ritme: één trajectdag per week",
     "Op de trajectdag: sollicitaties opvolgen en antwoorden noteren"
    ],
-   "klaar": "Ingeschreven, inkomen geregeld, een vast ritme van één trajectdag per week.",
+   "klaar": "Administratie geregeld, een vast ritme van één trajectdag per week.",
    "sollicitaties": "Alleen opvolging",
    "uren": [
     2,
@@ -2594,7 +2515,7 @@ export const seed = {
    "focus": [
     "Antwerp Art Weekend van 6 tot 9 mei",
     "Inschrijvingen en toelatingsvoorwaarden van de gekozen opleiding nakijken",
-    "Gesprekken bij VDAB en ACV over het behoud van inkomen tijdens de opleiding"
+    "Bij VDAB navragen hoe het inkomen tijdens de opleiding geregeld kan worden"
    ],
    "klaar": "Een voorkeur voor job of opleiding, met een plan voor het inkomen.",
    "sollicitaties": "2 tot 4 gerichte",
@@ -2722,22 +2643,6 @@ export const seed = {
    "toelichting": "Past bij plannen lezen en structureel denken; deelt vakken met interieurvormgeving. Minder fysiek werk.",
    "url": "https://www.ap.be/",
    "status": "kandidaat"
-  },
-  {
-   "id": "conservatie-restauratie",
-   "naam": "Bachelor en master Conservatie-Restauratie, specialisatie metaal",
-   "instelling": "Universiteit Antwerpen, Campus Mutsaard",
-   "duur": "3 jaar bachelor plus 1 tot 2 jaar master",
-   "formaat": "Voltijds overdag; werkstudent moeilijk in atelieropleiding",
-   "kost": "Ongeveer €1.240 per jaar",
-   "financiering": "Niet OKOT. Vrijstelling voor voltijdse studies mogelijk als VDAB oordeelt dat ze in je traject passen, maar studies verlengen de uitkering niet. Realistisch via deeltijds werk, het medische spoor of eerst een jaar werken.",
-   "knelpunt": "Niet",
-   "okot": false,
-   "spoor": "erfgoed",
-   "fit": 5,
-   "toelichting": "De echte restauratorroute; specialisaties glas, keramiek, hout, metaal, steen, textiel, papier. Toelating bevestigd: iedereen met een diploma secundair kan inschrijven, geen toelatingsproef vermeld. Zelfde campus als de Academie; studiepunten van de academie mogelijk als vrijstelling. Past niet volledig binnen 24 maanden uitkering.",
-   "url": "https://www.uantwerpen.be/nl/studeren/aanbod/alle-opleidingen/conservatie-restauratie/bachelor/",
-   "status": "langere termijn"
   },
   {
    "id": "podiumtechnieken-sense",
@@ -2872,7 +2777,7 @@ export const seed = {
   "naam": "Remi",
   "leeftijd": null,
   "woonplaats": "Antwerpen",
-  "situatie": "Woont alleen in Antwerpen. Heeft een inkomen nodig.",
+  "situatie": "Woont in Antwerpen en zoekt een nieuwe richting met een stabiel inkomen.",
   "beroep": "Technisch tekenaar en verantwoordelijke atelier bij een metaalbewerkingsbedrijf (maatwerk in plaatmateriaal), sinds 2021; gestart als tekenaar en plooi- en lasoperator",
   "vaardigheden": [
    "Technisch tekenen van maatwerk in plaatmateriaal en werkvoorbereiding",
@@ -2894,13 +2799,12 @@ export const seed = {
     "niveau": "functioneel"
    }
   ],
-  "vakbond": "ACV (Algemeen Christelijk Vakverbond), sector metaal: ACV-CSC METEA",
   "randvoorwaarden": [
    "Wil kunnen blijven studeren naast het werk",
    "Zoekt werk dat tegelijk moeilijk is en er echt toe doet",
    "Werkt het best in kleine, vertrouwde teams binnen een stabiele organisatie",
-   "Het huidige werk is fysiek te zwaar om op lange termijn vol te houden",
-   "Heeft na 31 december 2026 een of twee maanden herstel nodig voor een goede start"
+   "Zoekt op lange termijn werk dat fysiek minder zwaar is dan laswerk",
+   "Wil een rustige overgang en een goede start in de nieuwe job"
   ],
   "tests": {
    "mbti": {
@@ -2961,7 +2865,7 @@ export const seed = {
     {
      "domein": "Neuroticisme",
      "niveau": "laag",
-     "toelichting": "Uitzonderlijk kalm en onverstoorbaar. Enige nuance: Onmatigheid 14 (hoog)."
+     "toelichting": "Uitzonderlijk kalm en onverstoorbaar."
     },
     {
      "domein": "Extraversie",
@@ -3046,15 +2950,15 @@ export const seed = {
   "loopbaan": [
    {
     "periode": "tot 2017",
-    "wat": "Secundair onderwijs Wetenschappen-Wiskunde, Sint-Lutgardis (Merksem of Antwerpen, te bevestigen)"
+    "wat": "Secundair onderwijs Wetenschappen-Wiskunde in Antwerpen"
    },
    {
     "periode": "2017 tot 2018",
-    "wat": "Katoen Natie, Antwerpen, ongeveer een jaar (functie te bevestigen)"
+    "wat": "Eerste job bij een bedrijf in Antwerpen, ongeveer een jaar (functie te bevestigen)"
    },
    {
     "periode": "2017 tot 2018",
-    "wat": "Fotoarchief opgebouwd voor Willy Van de Perre"
+    "wat": "Fotoarchief opgebouwd voor een opdrachtgever"
    },
    {
     "periode": "2019",
@@ -3074,8 +2978,8 @@ export const seed = {
    }
   ],
   "tebevestigen": [
-   "Leeftijd: de eerdere notities zeggen 20, maar een diploma secundair in 2017 wijst op ongeveer 27. Geboortejaar nodig.",
-   "Statuut op de loonfiche: arbeider of bediende. Een tekenaar en atelierverantwoordelijke is vaak bediende (PC 200 of 209); dan gelden andere regels voor gewaarborgd loon, vakantiegeld en eindejaarspremie dan de arbeidersregels op de pagina Rechten.",
+   "Geboortejaar en leeftijd.",
+   "Statuut op de loonfiche: arbeider of bediende, en welk paritair comité. Dat bepaalt onder meer gewaarborgd loon, vakantiegeld en eindejaarspremie (zie de pagina Rechten).",
    "Lasprocessen: halfautomaat (MIG/MAG) en elektrode zijn zeker; TIG te bevestigen.",
    "Naam van het huidige bedrijf, startdatum van het contract en het CAD-programma.",
    "Welke opleiding interieurvormgeving precies (hogeschool of academie, deeltijds kunstonderwijs)."
@@ -3088,12 +2992,11 @@ export const seed = {
     "id": "f1",
     "naam": "Fase 1: Beschermen en beslissen",
     "periode": "28 september tot 31 oktober 2026",
-    "doel": "Rechten veiligstellen, gezondheid documenteren, uitstapscenario kiezen.",
+    "doel": "Rechten kennen, papieren op orde, een richting kiezen.",
     "acties": [
-     "ACV-afspraak en huisarts",
-     "Startdatum en opzegtermijn vaststellen",
-     "Gesprek met de werkgever met ACV",
-     "Beslissing scenario A, B of C",
+     "Rechten nalezen en vragen laten nakijken",
+     "Contract, loonfiches en statuut verzamelen",
+     "Sporen en timing van de overstap kiezen",
      "Master-cv, portfolio en VDAB-profiel klaar",
      "Hotlist prioriteren, jobalerts instellen"
     ]
@@ -3107,18 +3010,17 @@ export const seed = {
      "Zes tot tien spontane sollicitaties naar prioriteit 1 (erfgoed, musea, decorateliers)",
      "Twee netwerkmomenten (Dag van de Ambachten, Open restauratieatelier)",
      "VDAB-loopbaangesprek en schriftelijke antwoorden over vrijstelling en OKOT",
-     "Sollicitatieverlof gebruiken voor bezoeken",
-     "C4 en einde contract correct afhandelen"
+     "Bezoeken plannen bij organisaties uit de hotlist",
+     "Administratie van de overstap afronden"
     ]
    },
    {
     "id": "f3",
-    "naam": "Fase 3: Herstellen",
+    "naam": "Fase 3: Rust en oriëntatie",
     "periode": "1 januari tot 28 februari 2027",
-    "doel": "Rust met inkomen (opzegvergoeding, uitkering of ziekte-uitkering). Eén trajectdag per week.",
+    "doel": "Een rustig ritme met een inkomen. Eén trajectdag per week.",
     "acties": [
-     "Inschrijving VDAB binnen 8 dagen",
-     "Uitkeringsdossier via ACV",
+     "Inschrijving bij VDAB als dat nodig is",
      "Opvolging van verstuurde sollicitaties op de trajectdag",
      "Eventueel korte certificaten (VCA, IPAF)",
      "Infomomenten opleidingen noteren"
@@ -3190,23 +3092,23 @@ export const seed = {
  },
  "rechten": {
   "peildatum": "2026-09-27",
-  "disclaimer": "Dit is informatie, geen juridisch advies. De bronpagina's konden in deze omgeving niet volledig geladen worden; alles komt uit zoekresultaten van RVA, FOD Werkgelegenheid, VDAB, ACV en sociale secretariaten, gekruist waar mogelijk. Wat als 'te verifiëren' staat, laat je ACV-CSC METEA bevestigen voor je erop handelt.",
+  "disclaimer": "Dit is informatie, geen juridisch advies. De bronpagina's konden in deze omgeving niet volledig geladen worden; alles komt uit zoekresultaten van RVA, FOD Werkgelegenheid, VDAB, vakbonden en sociale secretariaten, gekruist waar mogelijk. Wat als 'te verifiëren' staat, laat je bevestigen door je vakbond, een arbeidsrechtjurist of het sociaal secretariaat voor je erop handelt.",
   "kern": [
-   "Teken niets. Een beëindiging in onderling akkoord is voor de RVA hetzelfde als zelf opzeggen: 4 tot 52 weken geen uitkering, en je geeft ook de opzegvergoeding op die de werkgever anders verschuldigd is.",
-   "Als de werkgever wil dat je vertrekt, moet de werkgever opzeggen (18 weken bij 5 jaar anciënniteit) of het equivalent betalen. Dat is hun kost, niet de jouwe.",
-   "Het beste scenario voor herstel met inkomen: ontslag door de werkgever met opzegtermijn en vrijstelling van prestaties. Loon tot het einde, daarna volledige uitkering.",
-   "Het nieuwe vangnet van 1 maart 2026 (zes maanden uitkering na eigen ontslag) vraagt 3.120 arbeidsdagen, ongeveer tien jaar. Met vijf jaar kom je er niet voor in aanmerking.",
+   "Teken geen beëindiging in onderling akkoord zonder advies. Voor de RVA is dat hetzelfde als zelf opzeggen: 4 tot 52 weken geen uitkering, en je geeft ook de opzegvergoeding op die de werkgever anders verschuldigd is.",
+   "Als de werkgever wil dat je vertrekt, moet de werkgever opzeggen of het equivalent betalen. Hoe lang de opzegtermijn is, hangt af van je anciënniteit (zie Opzegtermijn). Dat is hun kost, niet de jouwe.",
+   "Het gunstigste scenario voor wie met inkomen wil vertrekken: ontslag door de werkgever met opzegtermijn en vrijstelling van prestaties. Loon tot het einde, daarna volledige uitkering.",
+   "Het nieuwe vangnet van 1 maart 2026 (zes maanden uitkering na eigen ontslag) vraagt 3.120 arbeidsdagen, ongeveer tien jaar. Met een kortere loopbaan kom je er niet voor in aanmerking.",
    "Zelf opzeggen zonder sanctie kan alleen als er meteen een nieuwe job van minstens 13 weken volgt en je voor de tussenperiode geen uitkering vraagt.",
-   "Medisch gedocumenteerde ongeschiktheid voor het beroep is de enige 'wettige reden' die de RVA aanvaardt. Moe zijn is dat niet. Daarom de huisarts."
+   "Medisch gedocumenteerde ongeschiktheid voor het beroep is de enige 'wettige reden' die de RVA aanvaardt. Moe zijn op zich is dat niet; de vaststelling gebeurt door een arts."
   ],
   "scenarios": [
    {
     "id": "A",
     "naam": "Ontslag door de werkgever",
     "kleur": "green",
-    "oordeel": "Beste scenario",
+    "oordeel": "Gunstigste scenario",
     "punten": [
-     "Opzegtermijn 18 weken (5 tot 6 jaar anciënniteit) of 15 weken (4 tot 5 jaar), of verbrekingsvergoeding voor het niet-gepresteerde deel.",
+     "Opzegtermijn volgens je anciënniteit (zie Opzegtermijn), of een verbrekingsvergoeding voor het niet-gepresteerde deel.",
      "Vraag schriftelijk vrijstelling van prestaties: je komt niet meer werken en behoudt je loon. Schrijf je dan binnen een maand in bij VDAB.",
      "Sollicitatieverlof: een volledige dag per week, betaald.",
      "Geen RVA-sanctie. Uitkering 65 procent van het begrensde loon de eerste drie maanden, 60 procent tot maand 6, daarna degressief, maximaal 24 maanden.",
@@ -3220,11 +3122,11 @@ export const seed = {
     "kleur": "violet",
     "oordeel": "Goed voor herstel, opent herscholing",
     "punten": [
-     "Gewaarborgd loon door de werkgever: dag 1 tot 7: 100 procent; dag 8 tot 14: 85,88 procent; dag 15 tot 30: gedeeltelijk; daarna 60 procent van het begrensde loon via het ziekenfonds.",
+     "Gewaarborgd loon door de werkgever: voor arbeiders dag 1 tot 7: 100 procent; dag 8 tot 14: 85,88 procent; dag 15 tot 30: gedeeltelijk; daarna 60 procent van het begrensde loon via het ziekenfonds. Voor bedienden geldt een volledige maand gewaarborgd loon.",
      "De werkgever mag tijdens ziekte ontslaan met opzeg of vergoeding, maar niet omwille van de ziekte. De ziekte-uitkering loopt door na het einde van het contract.",
-     "De eerste zes maanden wordt de ongeschiktheid beoordeeld tegenover je eigen job (lasser), daarna tegenover de hele arbeidsmarkt. Daarom moet het dossier de fysieke belasting van het laswerk documenteren, niet alleen vermoeidheid.",
+     "De eerste zes maanden wordt de ongeschiktheid beoordeeld tegenover je eigen job, daarna tegenover de hele arbeidsmarkt.",
      "Herscholing via het ziekenfonds (socioprofessionele re-integratie): opleiding betaald, premie per lesuur, uitkering behouden tijdens de opleiding en zes maanden erna. Aanvragen via de adviserend arts en de Terug Naar Werk-coördinator.",
-     "Re-integratietraject bij de arbeidsarts kan je zelf aanvragen. Beslissing B (definitief ongeschikt voor het huidige werk) is het sterkste document.",
+     "Een re-integratietraject bij de arbeidsarts kan je zelf aanvragen. Beslissing B (definitief ongeschikt voor het huidige werk, ander werk mogelijk) is het sterkste document voor herscholing.",
      "Medische overmacht kan pas na zes maanden onafgebroken ziekte en beëindigt het contract zonder vergoeding; alleen zinvol als je dat zelf wil."
     ]
    },
@@ -3234,10 +3136,10 @@ export const seed = {
     "kleur": "red",
     "oordeel": "Alleen met nieuwe job klaar",
     "punten": [
-     "Opzegtermijn 9 weken (5 tot 6 jaar) of 7 weken (4 tot 5 jaar). Aangetekende brief geldt op de derde werkdag; de termijn start de maandag erna.",
+     "Opzegtermijn voor de werknemer volgens je anciënniteit, maximaal 13 weken. Een aangetekende brief geldt op de derde werkdag; de termijn start de maandag erna.",
      "Zonder nieuwe job: RVA-uitsluiting van 4 tot 52 weken. Onvoorspelbaar.",
      "Met nieuwe job van minstens 13 weken: geen sanctie, als je in de tussentijd geen uitkering vraagt.",
-     "Eindejaarspremie PC 111 kan wegvallen bij ontslagname (provinciale cao Antwerpen, te verifiëren bij ACV).",
+     "In sommige sectoren kan de eindejaarspremie wegvallen bij ontslagname; kijk de sectorale cao van je paritair comité na.",
      "Geen IBO mogelijk na zelf opzeggen.",
      "Ziekte tijdens je eigen opzeg schorst de termijn niet.",
      "Wie zonder opzeg wegblijft, betaalt zelf een verbrekingsvergoeding aan de werkgever."
@@ -3252,12 +3154,12 @@ export const seed = {
      "Voor de RVA gelijk aan zelf opzeggen: 4 tot 52 weken uitsluiting.",
      "Je geeft de opzegvergoeding op, tenzij het document een vergoeding toekent.",
      "Achteraf bijna niet te herroepen (dwang, bedrog of dwaling bewijzen).",
-     "Nooit ter plaatse tekenen. Kopie mee. ACV laten lezen. Alleen 'voor ontvangst', nooit 'voor akkoord'."
+     "Nooit ter plaatse tekenen. Kopie mee. Laten nalezen door je vakbond of een jurist. Alleen 'voor ontvangst', nooit 'voor akkoord'."
     ]
    }
   ],
   "opzegtabel": {
-   "toelichting": "Eenheidsstatuut, contract gestart tussen 1 januari 2014 en 1 juni 2026. Rijen uit de wet; laat ACV de exacte anciënniteit bevestigen. Boven 8 jaar komt er bij opzeg door de werkgever telkens 3 weken per jaar bij; bij opzeg door de werknemer blijft het maximum 13 weken.",
+   "toelichting": "Eenheidsstatuut, contract gestart tussen 1 januari 2014 en 1 juni 2026. Rijen uit de wet; laat de exacte anciënniteit bevestigen door je vakbond of het sociaal secretariaat. Boven 8 jaar komt er bij opzeg door de werkgever telkens 3 weken per jaar bij; bij opzeg door de werknemer blijft het maximum 13 weken.",
    "rijen": [
     {
      "ancienniteit": "3 tot minder dan 4 jaar",
@@ -3292,19 +3194,19 @@ export const seed = {
    ]
   },
   "werkloosheid2026": [
-   "Toelaatbaarheid: 312 arbeidsdagen in de laatste 36 maanden, ongeacht leeftijd. Remi voldoet ruim.",
-   "Duur: 12 maanden plus 1 maand per 4 extra maanden loopbaan, maximum 24 maanden. Met vijf jaar werk zit je aan het maximum.",
+   "Toelaatbaarheid: 312 arbeidsdagen in de laatste 36 maanden, ongeacht leeftijd.",
+   "Duur: 12 maanden plus 1 maand per 4 extra maanden loopbaan, maximum 24 maanden. Na ongeveer vijf jaar voltijds werk zit je aan het maximum.",
    "Bedrag: 65 procent van het begrensde brutoloon in maand 1 tot 3, 60 procent in maand 4 tot 6, daarna degressief. Het hoogste loonplafond is €4.182 bruto per maand, dus maximaal ongeveer €2.718 bruto per maand in de eerste drie maanden (bron: vakblad, RVA-bedrag nakijken).",
    "Verlenging (bevestigd, RVA): voor een opleiding gestart na 1 januari 2026 verlengt alleen een voltijdse beroepsopleiding van minstens 3 maanden onder overeenkomst met VDAB het recht, met maximaal 12 maanden en niet later dan 30 juni 2030. Gewone studies (graduaat, bachelor) verlengen de duur niet.",
    "Gevolg: een studie van twee of drie jaar moet binnen de 24 maanden passen of gecombineerd worden met werk. Start een lange opleiding dus vroeg, of kies eerst een VDAB-beroepsopleiding die het recht verlengt.",
-   "Inschrijven bij VDAB binnen 8 dagen na het einde van de opzegtermijn. Uitbetalingsinstelling: ACV.",
+   "Inschrijven bij VDAB binnen 8 dagen na het einde van de opzegtermijn. Uitbetalingsinstelling: een vakbond (ACV, ABVV of ACLVB) of de openbare HVW.",
    "Vrijstelling voor studies: minstens 20 uur per week overdag, minstens 27 nieuwe studiepunten, passend in je traject naar werk. Een avondopleiding geeft geen vrijstelling maar mag wel, met melding aan VDAB."
   ],
   "acv": [
-   "ACV-CSC METEA is de centrale voor metaal en metaalbouw.",
-   "Gratis juridische bijstand tot en met de arbeidsrechtbank na zes maanden aaneengesloten lidmaatschap op het moment van de feiten.",
-   "ACV is uitbetalingsinstelling: doet het volledige werkloosheidsdossier, controleert de C4, staat bij op een RVA-verhoor.",
-   "Syndicale premie tot ongeveer €145 per jaar. Dienstencentra in Antwerpen, afspraak via hetacv.be."
+   "Vakbonden (ACV, ABVV, ACLVB) hebben centrales per sector; die kennen de sectorale cao's, zoals de regels voor de eindejaarspremie.",
+   "Leden krijgen gratis juridische bijstand tot en met de arbeidsrechtbank, meestal na zes maanden aaneengesloten lidmaatschap op het moment van de feiten.",
+   "Een vakbond is ook uitbetalingsinstelling: doet het werkloosheidsdossier, controleert de C4 en staat bij op een RVA-verhoor. Wie geen lid is, gaat naar de HVW (openbaar en gratis).",
+   "Leden krijgen een syndicale premie (ongeveer €145 per jaar). Dienstencentra en afspraken via de website van de vakbond."
   ],
   "vdabsteun": [
    "Beroepsverkennende stage: maximaal 30 dagen bij een werkgever met behoud van uitkering. Ideaal om een museumatelier of restauratiebedrijf van binnen te zien.",
@@ -3312,29 +3214,29 @@ export const seed = {
    "Werkervaringsstage: tot 6 maanden met een premie van €200 per maand plus vervoer.",
    "OKOT: graduaat of bachelor voor een knelpuntberoep met behoud van uitkering en betaald inschrijvingsgeld. Bevestigd voor het graduaat bouwkundig tekenen; het educatief graduaat secundair onderwijs wordt als OKOT aangeboden (onder meer Erasmushogeschool). Wie na 2025 start, valt wel onder de beperking van 24 maanden.",
    "Knelpuntopleidingen zijn gratis met terugbetaling van vervoer.",
-   "Loopbaancheque: sinds 1 oktober 2025 (tijdelijke regeling tot eind 2026) één cheque van vier uur voor €90, alleen als je er nog nooit een gebruikte en met minstens zeven jaar werkervaring. Bij jou is dat nipt; VDAB toont het bij de aanvraag, die je doet zolang je nog werkt. Lukt het niet, dan krijg je als werkzoekende gratis loopbaanoriëntatie bij VDAB."
+   "Loopbaancheque: sinds 1 oktober 2025 (tijdelijke regeling tot eind 2026) één cheque van vier uur voor €90, alleen als je er nog nooit een gebruikte en met minstens zeven jaar werkervaring. VDAB toont bij de aanvraag of je in aanmerking komt; aanvragen kan alleen zolang je werkt. Lukt het niet, dan krijg je als werkzoekende gratis loopbaanoriëntatie bij VDAB."
   ],
-  "vakantiegeld": "Vakantiegeld van arbeiders wordt door de vakantiekas betaald tussen 2 mei en 30 juni 2027, wie ook het contract beëindigt: 15,38 procent van 108 procent van het brutoloon van 2026. Eindejaarspremie PC 111: pro rata, regels per provincie, mogelijk niet bij ontslagname; te verifiëren bij ACV METEA.",
+  "vakantiegeld": "Vakantiegeld van arbeiders wordt door de vakantiekas betaald in mei of juni van het jaar na het vertrek, wie ook het contract beëindigt: 15,38 procent van 108 procent van het brutoloon van het vorige jaar. Bedienden krijgen bij vertrek vertrekvakantiegeld van de werkgever. De eindejaarspremie hangt af van de sectorale cao: vaak pro rata, soms niet bij ontslagname. Kijk de regels van je paritair comité na.",
   "teverifieren": [
-   "Statuut: arbeider of bediende (zie loonfiche). De pagina gaat uit van arbeider (PC 111). Als bediende: gewaarborgd loon een volledige maand aan 100 procent, vakantiegeld en vertrekvakantiegeld door de werkgever, eindejaarspremie volgens PC 200 of 209. De opzegtermijnen zijn dezelfde.",
-   "Exacte anciënniteit en dus de rij in de opzegtabel (startdatum, leerovereenkomst).",
-   "Eindejaarspremie PC 111 provincie Antwerpen bij ontslagname versus ontslag.",
-   "OKOT: of het educatief graduaat ook in Antwerpen (AP, KdG) als OKOT loopt, en of een OKOT meetelt als beroepsopleiding voor de verlenging met 12 maanden.",
+   "Statuut: arbeider of bediende (zie loonfiche). Voor bedienden geldt een volledige maand gewaarborgd loon aan 100 procent en betaalt de werkgever het vakantiegeld en vertrekvakantiegeld; de eindejaarspremie volgt het paritair comité. De opzegtermijnen zijn dezelfde.",
+   "Exacte anciënniteit en dus de rij in de opzegtabel (startdatum, leerovereenkomst, interimperiodes).",
+   "Eindejaarspremie bij ontslagname versus ontslag, volgens de sectorale cao.",
+   "OKOT: welke opleidingen in de eigen regio als OKOT lopen, en of een OKOT meetelt als beroepsopleiding voor de verlenging met 12 maanden.",
    "Premies herscholing via het ziekenfonds in 2026.",
    "Of sollicitatieverlof ook geldt bij opzeg door de werknemer.",
-   "Verwittiging: werd ze tijdig meegedeeld (reeks of afzonderlijke feiten) en staat de sanctie in het arbeidsreglement? Is een schriftelijk antwoord nu aangewezen? Welk statuut en paritair comité geldt (eindejaarspremie bij ontslag om dringende reden)?"
+   "Bij een tuchtsanctie: werd ze tijdig meegedeeld en staat de sanctie in het arbeidsreglement? Is een schriftelijk antwoord aangewezen?"
   ],
   "verwittiging": {
-   "wat": "Een verwittiging is een tuchtsanctie: de werkgever legt schriftelijk vast dat je te laat kwam en vraagt dat het niet meer gebeurt. Het is nog geen ontslag. Als de brief een ontslag om dringende reden vermeldt, betekent dat: bij herhaling overweegt de werkgever je te ontslaan zonder opzegtermijn.",
+   "wat": "Een verwittiging is een tuchtsanctie: de werkgever legt schriftelijk een tekortkoming vast en vraagt dat ze niet meer gebeurt. Het is nog geen ontslag. Als de brief een ontslag om dringende reden vermeldt, betekent dat: bij herhaling overweegt de werkgever een ontslag zonder opzegtermijn.",
    "risico": [
     "Ontslag om dringende reden betekent: geen opzegtermijn en geen opzegvergoeding. De werkgever moet het ontslag geven binnen 3 werkdagen nadat hij de feiten voldoende kent, en de reden binnen 3 werkdagen daarna aangetekend meedelen.",
-    "Herhaald te laat komen na een schriftelijke verwittiging wordt door rechtbanken soms aanvaard als dringende reden. Een eerste verwittiging is een stap in een dossier: de volgende keer telt zwaarder.",
-    "Na zo'n ontslag kan de RVA oordelen dat je werkloos bent door eigen schuld. Gevolg: een verwittiging, of 4 tot 26 weken geen uitkering, eventueel (deels) met uitstel. De RVA beslist zelf, los van wat de werkgever op de C4 zet, en hoort je altijd eerst. ACV kan je bijstaan en je kan de beslissing aanvechten bij de arbeidsrechtbank.",
-    "Ook een gewoon ontslag met opzegtermijn kan bij de RVA tot een sanctie leiden als de werkgever op de C4 'herhaald te laat komen' als reden zet. De reden op de C4 wordt dus belangrijk: bespreek met ACV hoe je dat voorkomt.",
-    "Een dossier rond te laat komen kan ook gebruikt worden om druk te zetten om toch een onderling akkoord te tekenen. Teken niets zonder ACV."
+    "Herhaalde tekortkomingen na een schriftelijke verwittiging worden door rechtbanken soms aanvaard als dringende reden. Een eerste verwittiging is een stap in een dossier: de volgende keer telt zwaarder.",
+    "Na zo'n ontslag kan de RVA oordelen dat je werkloos bent door eigen schuld. Gevolg: een verwittiging, of 4 tot 26 weken geen uitkering, eventueel (deels) met uitstel. De RVA beslist zelf, los van wat de werkgever op de C4 zet, en hoort je altijd eerst. Een vakbond of advocaat kan je bijstaan en je kan de beslissing aanvechten bij de arbeidsrechtbank.",
+    "Ook een gewoon ontslag met opzegtermijn kan bij de RVA tot een sanctie leiden als de werkgever een fout als reden op de C4 zet. De reden op de C4 is dus belangrijk.",
+    "Een tuchtdossier kan ook gebruikt worden om druk te zetten om toch een onderling akkoord te tekenen. Teken niets zonder advies."
    ],
    "regels": [
-    "Een tuchtsanctie zoals een verwittiging moet in het arbeidsreglement staan en op straffe van nietigheid ten laatste de eerste werkdag na de vaststelling van de tekortkoming meegedeeld worden. De dag van de vaststelling is niet altijd de dag van de feiten, maar bij te laat komen ziet de werkgever het meestal meteen. Laat ACV de tijdigheid beoordelen.",
+    "Een tuchtsanctie zoals een verwittiging moet in het arbeidsreglement staan en op straffe van nietigheid ten laatste de eerste werkdag na de vaststelling van de tekortkoming meegedeeld worden. De dag van de vaststelling is niet altijd de dag van de feiten. Laat de tijdigheid beoordelen door je vakbond of een jurist.",
     "Het arbeidsreglement moet een beroepsmogelijkheid tegen sancties voorzien, en de werkgever moet elke sanctie in een register van sancties inschrijven.",
     "Een verwittiging die ook een ingebrekestelling is, legt vast dat je gewaarschuwd bent. Ze bewijst niet dat elke datum klopt: vergelijk de data met je eigen gegevens.",
     "Een sanctie die niet geldig is, verdwijnt niet uit het dossier: de brief blijft bewijzen dat je op de hoogte was. Bij een later ontslag om dringende reden mag de werkgever oudere feiten alleen gebruiken om een nieuw feit te verduidelijken; het nieuwe feit moet op zich ernstig zijn en binnen 3 werkdagen gevolgd worden door het ontslag.",
@@ -3345,17 +3247,17 @@ export const seed = {
    "doen": [
     "Teken de brief hoogstens 'voor ontvangst' met de datum, nooit 'akkoord'.",
     "Maak een foto of scan van de brief en bewaar het origineel met de envelop.",
-    "Bewaar de envelop, het ontvangstbewijs en het zendingsnummer van een aangetekende brief. De poststempel en de track and trace van bpost tonen wanneer de brief echt vertrok; dat kan verschillen van de datum op de brief. Schrijf ook op wanneer je te laat kwam en wanneer en hoe je ingelicht werd. Kwam de verwittiging later dan de eerste werkdag na de laatste keer, dan kan ze nietig zijn. Laat ACV dat beoordelen.",
-    "Ga na welke afspraken er waren over de werkuren, bijvoorbeeld na een verlofperiode. Schrijf op wat werd afgesproken, wanneer en met wie.",
-    "Kijk op de loonfiches na of de gemiste uren werden ingehouden. Niet gewerkte uren mogen ingehouden worden; een boete moet in het arbeidsreglement staan.",
-    "Stuur ACV vóór de afspraak van 16 oktober de mail met het hele verhaal, de twee brieven, de volmacht en een kopie van het paspoort (Communicatie, E-mails).",
-    "Vraag een spontane raadpleging bij de arbeidsarts van de externe preventiedienst als je denkt dat de vermoeidheid met het werk te maken heeft. Dat is je recht; de werkgever kan het niet weigeren.",
-    "Antwoord de werkgever niet zelf. ACV bekijkt de brieven en antwoordt namens Remi. Vraagt de werkgever intussen iets, zeg dan: 'Ik antwoord schriftelijk, na advies van mijn vakbond.'",
-    "Kom vanaf nu op tijd. Lukt het niet, verwittig dan vóór het beginuur per sms of mail, zodat er een spoor is.",
-    "Lukt werken niet meer door de vermoeidheid, ga dan vroeger naar de dokter dan 16 oktober. Met een attest ben je gewettigd afwezig.",
-    "Noteer elk te laat komen en elk gesprek erover: datum, hoeveel minuten, reden, met wie."
+    "Bewaar de envelop, het ontvangstbewijs en het zendingsnummer van een aangetekende brief. De poststempel en de track and trace van bpost tonen wanneer de brief echt vertrok; dat kan verschillen van de datum op de brief. Schrijf op wat er gebeurde en wanneer en hoe je ingelicht werd. Kwam de verwittiging later dan de eerste werkdag na de vaststelling, dan kan ze nietig zijn.",
+    "Ga na welke afspraken er waren, bijvoorbeeld over werkuren. Schrijf op wat werd afgesproken, wanneer en met wie.",
+    "Kijk op de loonfiches na of er iets werd ingehouden. Niet gewerkte uren mogen ingehouden worden; een boete moet in het arbeidsreglement staan.",
+    "Laat de brief nakijken door je vakbond of een arbeidsrechtjurist voor je antwoordt. Neem de brief, de envelop en je eigen notities mee.",
+    "Vraag een spontane raadpleging bij de arbeidsarts van de externe preventiedienst als je denkt dat gezondheidsklachten met het werk te maken hebben. Dat is je recht; de werkgever kan het niet weigeren.",
+    "Antwoord niet onder druk. Vraagt de werkgever iets, zeg dan: 'Ik antwoord schriftelijk, na advies.'",
+    "Vermijd een nieuwe tekortkoming. Ben je verhinderd, verwittig dan vooraf per sms of mail, zodat er een spoor is.",
+    "Ben je ziek, ga dan naar de dokter. Met een attest ben je gewettigd afwezig.",
+    "Noteer elk voorval en elk gesprek erover: datum, wat er gebeurde, met wie."
    ],
-   "bronnen": "Wet van 3 juli 1978, art. 35 (dringende reden); wet van 8 april 1965 op de arbeidsreglementen (sancties, boete hoogstens een vijfde van het dagloon); KB 25 november 1991, art. 51 en volgende (werkloos door eigen schuld); sectorale cao's eindejaarspremie PC 111. RVA, Securex Lex4You, Tilleman Van Hoogenbemt, GD&A Advocaten en Arbeidsrechtjournaal, geraadpleegd op 4 oktober 2026.",
+   "bronnen": "Wet van 3 juli 1978, art. 35 (dringende reden); wet van 8 april 1965 op de arbeidsreglementen (sancties, boete hoogstens een vijfde van het dagloon); KB 25 november 1991, art. 51 en volgende (werkloos door eigen schuld); sectorale cao's (eindejaarspremie). RVA, Securex Lex4You, Tilleman Van Hoogenbemt, GD&A Advocaten en Arbeidsrechtjournaal, geraadpleegd op 4 oktober 2026.",
    "ergste": [
     {
      "wat": "Nieuwe tuchtsanctie",
@@ -3363,11 +3265,11 @@ export const seed = {
     },
     {
      "wat": "Ontslag met opzegtermijn",
-     "gevolg": "De opzegtermijn of opzegvergoeding blijft verschuldigd. Zet de werkgever 'herhaald te laat komen' op de C4, dan kan de RVA toch een sanctie geven (zie onder)."
+     "gevolg": "De opzegtermijn of opzegvergoeding blijft verschuldigd. Zet de werkgever een fout als reden op de C4, dan kan de RVA toch een sanctie geven (zie onder)."
     },
     {
      "wat": "Ontslag om dringende reden, het ergste geval",
-     "gevolg": "Geen opzegtermijn en geen opzegvergoeding. In PC 111 (arbeiders) ook geen eindejaarspremie. Het vakantiegeld blijft. Met ACV kan je het ontslag aanvechten bij de arbeidsrechtbank; is de dringende reden niet bewezen, dan volgt alsnog een opzegvergoeding."
+     "gevolg": "Geen opzegtermijn en geen opzegvergoeding. In sommige sectoren ook geen eindejaarspremie. Het vakantiegeld blijft. Met juridische bijstand kan je het ontslag aanvechten bij de arbeidsrechtbank; is de dringende reden niet bewezen, dan volgt alsnog een opzegvergoeding."
     },
     {
      "wat": "RVA: werkloos door eigen schuld",
@@ -3389,20 +3291,20 @@ export const seed = {
    "nooit": {
     "intro": "Een voornemen om te vertrekken is geen ontslag. Een opzegging door de werknemer moet schriftelijk gebeuren, en een ontslag zonder opzeg vraagt een zekere en duidelijke wil. Het gevaar zit in wat je vanaf nu zegt, schrijft of tekent: dan kan een voornemen een ontslagname of een akkoord worden, met verlies van opzegvergoeding en een sanctie van de RVA.",
     "zinnen": [
-     "Niet bevestigen: 'mijn intentie blijft ongewijzigd', 'ja, dat blijft de planning', 'ik vertrek op 31 december' of eender welke einddatum of laatste werkdag.",
+     "Niet bevestigen dat je wil vertrekken, en geen einddatum of laatste werkdag noemen, ook niet als bevestiging van iets wat je eerder zei.",
      "Niet zeggen of schrijven: 'ik neem ontslag', 'ik zeg op', 'ik wil stoppen', 'ik ben uitgekeken op mijn functie'.",
      "Ook niet: 'mijn plannen zijn gewijzigd' of 'ik trek mijn intentie in'. Dat veronderstelt dat er al een vaste beslissing was.",
      "Niet akkoord gaan met een 'beëindiging in onderling akkoord of overleg', en niet vragen om ontslagen te worden: de RVA kan dat zien als een verdoken ontslagname.",
-     "Niet zelf besluiten 'ik kan deze job niet meer doen'. Medische conclusies trekken de huisarts en de arbeidsarts.",
-     "Niet zelf zeggen dat de werkgever je 'al ontslagen' heeft, tenzij ACV dat nagekeken heeft.",
+     "Niet zelf besluiten 'ik kan deze job niet meer doen'. Medische conclusies trekken je arts en de arbeidsarts.",
+     "Niet zelf zeggen dat de werkgever je 'al ontslagen' heeft, tenzij een jurist dat nagekeken heeft.",
      "Nooit tekenen met 'voor akkoord' of 'gelezen en goedgekeurd'. Hoogstens: 'Voor ontvangst op [datum], niet akkoord met de inhoud'.",
-     "In een gesprek is deze zin genoeg: 'Ik antwoord schriftelijk, na advies van mijn vakbond.'"
+     "In een gesprek is deze zin genoeg: 'Ik antwoord schriftelijk, na advies.'"
     ],
-    "zekerheid": "Algemene regels (art. 32, 37 en 39 Arbeidsovereenkomstenwet; art. 51 en volgende Werkloosheidsbesluit), opgezocht op 11 oktober 2026. Laat ACV ze toepassen op jouw situatie."
+    "zekerheid": "Algemene regels (art. 32, 37 en 39 Arbeidsovereenkomstenwet; art. 51 en volgende Werkloosheidsbesluit), opgezocht op 11 oktober 2026. Laat een vakbond of jurist ze toepassen op een concrete situatie."
    }
   },
   "gezondheid": {
-   "intro": "Wat er kan als het werk te zwaar wordt voor je gezondheid. Algemene regels, stand 2026; laat ACV ze toepassen op jouw situatie.",
+   "intro": "Wat er kan als het werk te zwaar wordt voor je gezondheid. Algemene regels, stand 2026; laat een vakbond of jurist ze toepassen op een concrete situatie.",
    "punten": [
     {
      "titel": "Spontane raadpleging bij de arbeidsarts",
@@ -3410,7 +3312,7 @@ export const seed = {
     },
     {
      "titel": "Evaluatie van je werkpost (nieuw sinds 2026)",
-     "tekst": "Wie een risico loopt om arbeidsongeschikt te worden, kan de werkgever vragen om de werkpost te laten evalueren, met het oog op aanpassingen of ander werk. Dat verloopt via de werkgever en de arbeidsarts en is dus niet vertrouwelijk. Bespreek eerst met ACV of dit in jouw situatie helpt."
+     "tekst": "Wie een risico loopt om arbeidsongeschikt te worden, kan de werkgever vragen om de werkpost te laten evalueren, met het oog op aanpassingen of ander werk. Dat verloopt via de werkgever en de arbeidsarts en is dus niet vertrouwelijk. Bespreek eerst met je vakbond of een jurist of dit in jouw situatie helpt."
     },
     {
      "titel": "Ziekteverlof",
@@ -3422,7 +3324,7 @@ export const seed = {
     },
     {
      "titel": "Zelf vertrekken om medische redenen",
-     "tekst": "Zelf ontslag nemen leidt normaal tot een RVA-sanctie. Er is geen sanctie als je een wettige reden had, zoals een ernstige medische reden die de arts van de RVA erkent, of werk dat niet meer passend is voor je gezondheid. De RVA laat je dan onderzoeken. Dit is onzeker: doe het nooit zonder ACV."
+     "tekst": "Zelf ontslag nemen leidt normaal tot een RVA-sanctie. Er is geen sanctie als je een wettige reden had, zoals een ernstige medische reden die de arts van de RVA erkent, of werk dat niet meer passend is voor je gezondheid. De RVA laat je dan onderzoeken. Dit is onzeker: doe het nooit zonder advies."
     },
     {
      "titel": "Opleiding tijdens ziekte",
@@ -3728,160 +3630,6 @@ export const seed = {
  ],
  "stappenplan": [
   {
-   "id": "s01",
-   "groep": "Eerst, deze week",
-   "titel": "Niets tekenen bij de werkgever",
-   "wat": "Geen document over beëindiging in onderling akkoord of ontslagname tekenen. Vraag een kopie mee naar huis. Zeg rustig: ik laat dit nakijken door mijn vakbond.",
-   "wie": "Remi",
-   "deadline": "2026-10-02",
-   "status": "open",
-   "bron": "rechten",
-   "voor": "remi"
-  },
-  {
-   "id": "s34",
-   "groep": "Eerst, deze week",
-   "titel": "ACV-afspraak boeken voor vrijdag 16 oktober",
-   "wat": "Geboekt: vrijdag 16 oktober om 10:30, na de doktersafspraak van 08:30.",
-   "wie": "Giulia",
-   "deadline": "2026-10-11",
-   "status": "klaar",
-   "bron": "rechten",
-   "voor": "giulia"
-  },
-  {
-   "id": "s02",
-   "groep": "Eerst, deze week",
-   "titel": "Telefonische afspraak met ACV, vrijdag 16 oktober om 10:30",
-   "wat": "Na de huisarts van 08:30. Stuur vooraf de mail aan ACV met het hele verhaal, de volmacht, de kopie van het identiteitsbewijs en de twee brieven (Communicatie, E-mails). Zorg dat Remi bereikbaar is en zet de telefoon op luidspreker, zodat Giulia kan meeluisteren. Hou bij de hand: de verwittiging met de envelop, de brief van 9 oktober, wat de huisarts die ochtend zegt of meegeeft, de data van de ziektedagen en wanneer het attest bezorgd werd, en de loonfiches die je vindt. Teken niets bij de werkgever tot na dit gesprek.",
-   "wie": "Remi, met Giulia",
-   "deadline": "2026-10-16",
-   "status": "open",
-   "bron": "rechten",
-   "voor": "samen"
-  },
-  {
-   "id": "s35",
-   "groep": "Eerst, deze week",
-   "titel": "Telefoon met ACV voorbereiden (maandag 5 oktober)",
-   "wat": "ACV belt maandag 5 oktober tussen 15:00 en 16:00; de details staan in de agenda. Zorg dat Remi erbij is, want ACV bespreekt zijn dossier normaal alleen met hemzelf of met zijn toestemming. Leg klaar: de verwittiging met envelop en ontvangstbewijs, de lijst met data, de loonfiches en de startdatum. Vragen: is de verwittiging tijdig en geldig, moet Remi antwoorden, hoe vraagt hij het contract en het arbeidsreglement op, welk statuut en welke opzegtermijn gelden, hoe bekomt hij een ontslag door de werkgever zonder 'fout' op de C4, wat bij druk om te tekenen, is zijn lidmaatschap in orde voor juridische bijstand, en kan er een afspraak ter plaatse volgen (bijvoorbeeld 16 oktober na de dokter). Teken niets behalve 'voor ontvangst'. Uitleg bij Rechten, Verwittiging.",
-   "wie": "Giulia en Remi (ACV belt naar Giulia)",
-   "deadline": "2026-10-05",
-   "status": "open",
-   "bron": "rechten",
-   "voor": "samen"
-  },
-  {
-   "id": "s36",
-   "groep": "Eerst, deze week",
-   "titel": "ACV antwoordt de werkgever",
-   "wat": "Remi antwoordt de werkgever niet zelf. ACV bekijkt de verwittiging en de brief van 9 oktober en antwoordt namens hem. Vraagt de werkgever intussen iets, zeg dan: 'Ik antwoord schriftelijk, na advies van mijn vakbond.' Teken niets, hoogstens 'voor ontvangst' met de datum.",
-   "wie": "ACV",
-   "deadline": "2026-10-16",
-   "status": "open",
-   "bron": "rechten",
-   "voor": "remi"
-  },
-  {
-   "id": "s37",
-   "groep": "Eerst, deze week",
-   "titel": "Op tijd, of vooraf verwittigen",
-   "wat": "Elke dag op tijd beginnen. Lukt het niet, verwittig dan vóór het beginuur per sms of mail en noteer het. Bij ziekte: dokter en attest, meteen melden.",
-   "wie": "Remi",
-   "deadline": "2026-10-05",
-   "status": "open",
-   "bron": "rechten",
-   "voor": "remi"
-  },
-  {
-   "id": "s03",
-   "groep": "Eerst, deze week",
-   "titel": "Doktersafspraak, vrijdag 16 oktober om 08:30",
-   "wat": "Afspraak in Deurne om 08:30; naam en adres staan in je agenda. Bespreek vermoeidheid, burn-outklachten en de fysieke belasting van het laswerk. Vraag om de klachten te documenteren in het dossier. Bespreek of ziekteverlof nu aangewezen is en wat een verwijzing naar een psycholoog kan betekenen. Vraag naar de mogelijkheid van een re-integratietraject via de arbeidsarts.",
-   "wie": "Remi",
-   "deadline": "2026-10-16",
-   "status": "open",
-   "bron": "herstel",
-   "voor": "remi"
-  },
-  {
-   "id": "s04",
-   "groep": "Eerst, deze week",
-   "titel": "Startdatum en statuut controleren",
-   "wat": "Zoek de exacte startdatum van het contract op (contract, eerste loonfiche, mijnloopbaan). De startdatum bepaalt de opzegtermijn: 15 of 18 weken bij opzeg door de werkgever, 7 of 9 weken bij opzeg door de werknemer. Controleer ook op de loonfiche het statuut (arbeider of bediende) en het paritair comité (111, 200 of 209): dat bepaalt het gewaarborgd loon bij ziekte, het vakantiegeld en de eindejaarspremie.",
-   "wie": "Remi en Giulia",
-   "deadline": "2026-10-04",
-   "status": "open",
-   "bron": "rechten",
-   "voor": "samen"
-  },
-  {
-   "id": "s05",
-   "groep": "Uitstap regelen",
-   "titel": "Gesprek met de werkgever voorbereiden",
-   "wat": "Doel: een ontslag door de werkgever met opzegtermijn, liefst met vrijstelling van prestaties, of met een verbrekingsvergoeding. Argument voor de werkgever: dat kost hen niet meer dan wat de wet toch voorziet, en het vermijdt een conflict. ACV kan het gesprek voorbereiden of erbij zijn. Niets mondeling toezeggen.",
-   "wie": "Remi met ACV",
-   "deadline": "2026-10-23",
-   "status": "open",
-   "bron": "rechten",
-   "voor": "remi"
-  },
-  {
-   "id": "s06",
-   "groep": "Uitstap regelen",
-   "titel": "Beslissing over het uitstapscenario",
-   "wat": "Kies met ACV tussen: A ontslag door de werkgever (beste), B ziekteverlof met herstel en mogelijk herscholing via het ziekenfonds, C zelf opzeggen alleen als er een nieuwe job van minstens 13 weken klaarstaat. Onderling akkoord is geen optie zonder vergoeding en RVA-garantie.",
-   "wie": "Remi, Giulia, ACV",
-   "deadline": "2026-10-31",
-   "status": "open",
-   "bron": "rechten",
-   "voor": "samen"
-  },
-  {
-   "id": "s07",
-   "groep": "Uitstap regelen",
-   "titel": "Sollicitatieverlof opnemen tijdens de opzeg",
-   "wat": "Tijdens een opzegtermijn van 26 weken of minder heb je recht op een volledige dag (of twee halve) betaald sollicitatieverlof per week. Plan die dagen voor gesprekken, atelierbezoeken en administratie.",
-   "wie": "Remi",
-   "deadline": "",
-   "status": "open",
-   "bron": "rechten",
-   "voor": "remi"
-  },
-  {
-   "id": "s08",
-   "groep": "Uitstap regelen",
-   "titel": "C4 controleren bij vertrek",
-   "wat": "De C4 moet de juiste reden vermelden (ontslag door de werkgever). Alleen tekenen voor ontvangst. Bij twijfel protest noteren en naar ACV.",
-   "wie": "Remi",
-   "deadline": "2026-12-31",
-   "status": "open",
-   "bron": "rechten",
-   "voor": "remi"
-  },
-  {
-   "id": "s09",
-   "groep": "VDAB",
-   "titel": "Inschrijven bij VDAB als werkzoekende",
-   "wat": "Binnen 8 dagen na het einde van de opzegtermijn, of binnen een maand na de start van een vrijstelling van prestaties. Kies bij de inschrijving: ik ben werkloos en vraag een uitkering. Uitbetalingsinstelling: ACV.",
-   "wie": "Remi",
-   "deadline": "2027-01-08",
-   "status": "open",
-   "bron": "vdab",
-   "voor": "remi"
-  },
-  {
-   "id": "s10",
-   "groep": "VDAB",
-   "titel": "Loopbaangesprek met een VDAB-bemiddelaar aanvragen",
-   "wat": "Al in het najaar, zodra het ontslag vaststaat. Vraag schriftelijk: (1) welke voltijdse VDAB-beroepsopleidingen van minstens 3 maanden passen (tekenaar CAD/BIM, podiumtechniek, lasinspectie), want alleen die verlengen de uitkering, met maximaal 12 maanden; (2) of het educatief graduaat secundair onderwijs in Antwerpen als OKOT loopt; (3) of een vrijstelling voor Conservatie-Restauratie kan; (4) beroepsverkennende stage en IBO. Onthoud: gewone studies verlengen de 24 maanden niet meer.",
-   "wie": "Remi (Giulia bereidt de vragen voor)",
-   "deadline": "2026-11-15",
-   "status": "open",
-   "bron": "vdab",
-   "voor": "samen"
-  },
-  {
    "id": "s11",
    "groep": "VDAB",
    "titel": "VDAB-profiel Mijn Loopbaan invullen",
@@ -3913,39 +3661,6 @@ export const seed = {
    "status": "klaar",
    "bron": "vdab",
    "voor": "giulia"
-  },
-  {
-   "id": "s13",
-   "groep": "Herstel en gezondheid",
-   "titel": "Re-integratietraject bij de arbeidsarts overwegen",
-   "wat": "Elke werknemer kan zelf een re-integratietraject aanvragen bij de arbeidsarts van de externe dienst van de werkgever. Een beslissing B (definitief ongeschikt voor het huidige werk, ander werk mogelijk) is het sterkste document voor herscholing via het ziekenfonds. Bespreek dit eerst met de huisarts en ACV.",
-   "wie": "Remi",
-   "deadline": "2026-11-30",
-   "status": "open",
-   "bron": "herstel",
-   "voor": "remi"
-  },
-  {
-   "id": "s14",
-   "groep": "Herstel en gezondheid",
-   "titel": "Ziekenfonds: Terug Naar Werk-coördinator en herscholing",
-   "wat": "Als het medische spoor gekozen wordt: contact met de Terug Naar Werk-coördinator van het ziekenfonds over een programma van socioprofessionele re-integratie (opleiding betaald, premie per lesuur, uitkering behouden).",
-   "wie": "Remi",
-   "deadline": "",
-   "status": "open",
-   "bron": "herstel",
-   "voor": "remi"
-  },
-  {
-   "id": "s15",
-   "groep": "Herstel en gezondheid",
-   "titel": "Herstelperiode inplannen",
-   "wat": "Januari en februari 2027 zijn voor herstel: slaap, beweging, weinig verplichtingen. Eén vaste dag per week voor het traject (sollicitaties, stages, administratie). De rest is rust.",
-   "wie": "Remi",
-   "deadline": "2027-01-05",
-   "status": "open",
-   "bron": "herstel",
-   "voor": "remi"
   },
   {
    "id": "s16",
@@ -4113,17 +3828,6 @@ export const seed = {
    "voor": "remi"
   },
   {
-   "id": "s31",
-   "groep": "Opleiding",
-   "titel": "Beslissing over het opleidingstraject",
-   "wat": "Kies uiterlijk in juni 2027. Let op de 24 maanden: een VDAB-beroepsopleiding van minstens 3 maanden verlengt ze, een graduaat of bachelor niet. Opties: VDAB-opleiding (tekenaar, podiumtechniek), educatief graduaat (lesgeven, OKOT), graduaat bouwkundig tekenen (OKOT), Conservatie-Restauratie (langer; via deeltijds werk of het medische spoor).",
-   "wie": "Remi en Giulia",
-   "deadline": "2027-06-30",
-   "status": "open",
-   "bron": "opleiding",
-   "voor": "samen"
-  },
-  {
    "id": "s32",
    "groep": "Opleiding",
    "titel": "Erkenning metaaldetectorist aanvragen (optioneel)",
@@ -4137,7 +3841,23 @@ export const seed = {
  ],
  "vacaturebronnen": {
   "versie": "2026-11-16",
-  "uitleg": "Bronnen voor de dagelijkse vacaturescan (scripts/vacaturescan.mjs). Alleen publieke werkgevers, non-profit en publieke of non-profit jobsites; geen privébedrijven of interimkantoren. soort: jobsite of organisatie. js: true als de lijst pas met JavaScript verschijnt. zoekparameters: extra lijst- of zoekpagina's die de scan ook opent (voor VDAB één zoek-URL per zoekterm, regio provincie Antwerpen).",
+  "uitleg": "Bronnen voor de dagelijkse vacaturescan (scripts/vacaturescan.mjs). Alleen publieke werkgevers, non-profit en publieke of non-profit jobsites; geen privébedrijven of interimkantoren. Gebruik: node scripts/vacaturescan.mjs <uitvoer.json>.",
+  "velden": {
+   "naam": "Naam van de jobsite of organisatie.",
+   "url": "Lijstpagina met vacatures (of de pagina waar die lijst te vinden is).",
+   "soort": "jobsite of organisatie.",
+   "sector": "Soort werkgever of sector.",
+   "js": "true als de lijst pas met JavaScript verschijnt; dan opent de scan de pagina meteen met Playwright.",
+   "zoekparameters": "Optioneel: extra lijst- of zoekpagina's [{zoekterm of label, url}]. Een zoekpagina mag eigen js/selector-velden hebben.",
+   "hoofdpaginaOverslaan": "Optioneel: alleen de zoekparameters openen, niet url.",
+   "selector": "Optioneel: CSS-selector van de vacaturelinks; zonder selector zoekt de scan zelf (heuristiek).",
+   "kaartSelector": "Optioneel: het element rond één vacature, voor de context.",
+   "werkgeverSelector": "Optioneel: element met de naam van de werkgever binnen het kaartje.",
+   "wachtOp": "Optioneel: CSS-selector waarop Playwright wacht.",
+   "wachtOpTekst": "Optioneel: reguliere expressie op de paginatekst waarop Playwright wacht.",
+   "filterInterim": "Optioneel: vacatures van interimkantoren (lijst uitsluiten, of het woord interim) weglaten.",
+   "volgLink": "Optioneel: open url, volg de eerste link die op dit patroon past en scan die pagina (bv. de nieuwste post met vacatures)."
+  },
   "zoektermen": [
    "technisch tekenaar",
    "werkvoorbereider metaal",
@@ -4214,13 +3934,9 @@ export const seed = {
    "synergie",
    "agilitas",
    "daoust",
-   "unique",
-   "trace",
    "konvert",
    "solvus",
-   "tower",
    "covebo",
-   "jobat",
    "house of hr",
    "hays",
    "robert half",
@@ -4237,8 +3953,20 @@ export const seed = {
    "talentus",
    "vivaldis",
    "sterk interim",
-   "ago jobs"
+   "ago jobs",
+   "trixxo",
+   "ago technics",
+   "ago construct",
+   "unique interim",
+   "tempo team",
+   "jobs herentals",
+   "bright plus",
+   "creyf",
+   "hudson",
+   "exaris",
+   "jobbridge"
   ],
+  "uitsluitenUitleg": "Namen van interimkantoren; alleen gebruikt bij bronnen met filterInterim (werkgever of contexttekst).",
   "bronnen": [
    {
     "id": "vdab",
@@ -4488,15 +4216,22 @@ export const seed = {
       "zoekterm": "lasersnijden",
       "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=lasersnijden&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
      }
-    ]
+    ],
+    "hoofdpaginaOverslaan": true,
+    "selector": "li.c-vacature h4 a",
+    "kaartSelector": "li.c-vacature",
+    "werkgeverSelector": ".c-vacature-meta.-location strong",
+    "wachtOpTekst": "Resultaten: \\d+ jobs? gevonden",
+    "filterInterim": true
    },
    {
     "id": "werken-voor-vlaanderen",
     "naam": "Werken voor Vlaanderen",
-    "url": "https://www.werkenvoorvlaanderen.be/",
+    "url": "https://www.vlaanderen.be/werken-voor-vlaanderen/vacatures?contentSubtypeData__internal=false&order_publicationdate=desc",
     "soort": "jobsite",
     "sector": "overheid (Vlaams)",
-    "js": false
+    "js": true,
+    "wachtOp": "a[href*=\"/Job/\"]"
    },
    {
     "id": "werkenvoor-be",
@@ -4507,7 +4242,7 @@ export const seed = {
     "js": false
    },
    {
-    "id": "jobs-bij-stad-antwerpen",
+    "id": "job-antwerpen",
     "naam": "Jobs bij Stad Antwerpen",
     "url": "https://job.antwerpen.be/go/Alle-vacatures/4474301/",
     "soort": "jobsite",
@@ -4515,12 +4250,12 @@ export const seed = {
     "js": false
    },
    {
-    "id": "jobs-bij-provincie-antwerpen",
+    "id": "jobs-provincie-antwerpen",
     "naam": "Jobs bij Provincie Antwerpen",
-    "url": "https://jobs.provincieantwerpen.be/",
+    "url": "https://jobs.provincieantwerpen.be/?lang=nl-BE&section=031fd048-4e1a-ffb7-fe1d-1417dc4088b1",
     "soort": "jobsite",
     "sector": "overheid (provincie)",
-    "js": false
+    "js": true
    },
    {
     "id": "cultuurjobs-be",
@@ -4575,7 +4310,7 @@ export const seed = {
    {
     "id": "cult-be-vacatures",
     "naam": "cult.be vacatures",
-    "url": "https://www.cult.be/zoek",
+    "url": "https://www.cult.be/vacatures",
     "soort": "jobsite",
     "sector": "cultuur",
     "js": false
@@ -4583,10 +4318,11 @@ export const seed = {
    {
     "id": "icom-belgium-flanders",
     "naam": "ICOM Belgium-Flanders, vacatures in de museumsector",
-    "url": "https://www.icom-belgium-flanders.be/2026/10/13/vacatures-in-de-museumsector/",
+    "url": "https://www.icom-belgium-flanders.be/?s=vacatures",
     "soort": "jobsite",
     "sector": "musea (overzichtslijst)",
-    "js": false
+    "js": false,
+    "volgLink": "/20\\d\\d/\\d\\d/\\d\\d/vacatures-in-de-museumsector"
    },
    {
     "id": "vvsg",
@@ -4631,7 +4367,7 @@ export const seed = {
    {
     "id": "groep-maatwerk",
     "naam": "Groep Maatwerk, overzicht maatwerkbedrijven",
-    "url": "https://www.groepmaatwerk.be/maatwerkbedrijven",
+    "url": "https://groepmaatwerk.be/maatwerkbedrijven/vind-een-maatwerkbedrijf",
     "soort": "jobsite",
     "sector": "sociale economie (gids, geen jobsite)",
     "js": false
@@ -4663,10 +4399,11 @@ export const seed = {
    {
     "id": "jobs-stedelijk-onderwijs-antwerpen",
     "naam": "Jobs Stedelijk Onderwijs Antwerpen",
-    "url": "https://jobs.stedelijkonderwijs.be/",
+    "url": "https://jobs.stedelijkonderwijs.be/vacatures",
     "soort": "jobsite",
     "sector": "onderwijs",
-    "js": false
+    "js": true,
+    "wachtOp": "a[href*=\"/vacatures/\"]"
    },
    {
     "id": "onderwijsvacatures-be",
@@ -4674,7 +4411,17 @@ export const seed = {
     "url": "https://www.onderwijsvacatures.be/",
     "soort": "jobsite",
     "sector": "onderwijs",
-    "js": false
+    "js": false,
+    "zoekparameters": [
+     {
+      "label": "Secundair onderwijs",
+      "url": "https://www.onderwijsvacatures.be/onderwijs-jobs/secundair-onderwijs/"
+     },
+     {
+      "label": "Volwassenenonderwijs",
+      "url": "https://www.onderwijsvacatures.be/onderwijs-jobs/vacatures-volwassenenonderwijs/"
+     }
+    ]
    },
    {
     "id": "syntra-ab-jobs",
@@ -4713,11 +4460,11 @@ export const seed = {
    {
     "id": "karel-de-grote-hogeschool",
     "naam": "Karel de Grote Hogeschool (incl. KdG FabLab)",
-    "url": "https://www.kdg.be/vacatures",
+    "url": "https://jobpage.cvwarehouse.com/?companyGuid=31cc51c0-57ab-4a88-ab90-260d3b213a21&lang=nl-BE",
     "soort": "organisatie",
     "sector": "hogeschool",
     "plaats": "Antwerpen",
-    "js": false
+    "js": true
    },
    {
     "id": "thomas-more",
@@ -4740,7 +4487,7 @@ export const seed = {
    {
     "id": "antwerp-maritime-academy",
     "naam": "Antwerp Maritime Academy (Hogere Zeevaartschool)",
-    "url": "https://amacademy.be/nl/vacancy/assistent-faculteit-scheepswerktuigkunde-0",
+    "url": "https://amacademy.be/nl/vacancies",
     "soort": "organisatie",
     "sector": "hogeschool",
     "plaats": "Noordkasteel Oost, Antwerpen",
@@ -4771,19 +4518,23 @@ export const seed = {
     "soort": "organisatie",
     "sector": "overheid (lokaal, zorg)",
     "plaats": "Antwerpen (woonzorgcentra van Berendrecht tot Wilrijk)",
-    "js": false
+    "js": false,
+    "selector": "a.product-link",
+    "kaartSelector": ".product-tile",
+    "werkgeverSelector": ".location-job strong",
+    "filterInterim": true
    },
    {
     "id": "ag-vespa",
     "naam": "AG Vespa (vastgoedbedrijf stad Antwerpen)",
-    "url": "https://www.agvespa.be/werken-bij-ag-vespa/vacatures",
+    "url": "https://www.agvespa.be/vacatures",
     "soort": "organisatie",
     "sector": "overheid (autonoom gemeentebedrijf)",
     "plaats": "Antwerpen",
     "js": false
    },
    {
-    "id": "stad-antwerpen",
+    "id": "stad-antwerpen-technisch",
     "naam": "Stad Antwerpen, technische diensten (Groen en Begraafplaatsen, districten, stadsgebouwen, Kunstenlab)",
     "url": "https://job.antwerpen.be/go/Alle-vacatures/4474301/",
     "soort": "organisatie",
@@ -4794,7 +4545,7 @@ export const seed = {
    {
     "id": "woonhaven-antwerpen",
     "naam": "Woonhaven Antwerpen",
-    "url": "https://woonhaven.be/jobs/",
+    "url": "https://woonhavenantwerpen.talentfinder.be/nl/index.aspx",
     "soort": "organisatie",
     "sector": "overheid (sociale huisvesting)",
     "plaats": "Antwerpen",
@@ -4821,20 +4572,20 @@ export const seed = {
    {
     "id": "provincie-antwerpen",
     "naam": "Provincie Antwerpen, provinciale groendomeinen en diensten",
-    "url": "https://jobs.provincieantwerpen.be/",
+    "url": "https://jobs.provincieantwerpen.be/?lang=nl-BE&section=031fd048-4e1a-ffb7-fe1d-1417dc4088b1",
     "soort": "organisatie",
     "sector": "overheid (provincie)",
     "plaats": "Rivierenhof (Deurne), Vrijbroekpark (Mechelen) en andere",
-    "js": false
+    "js": true
    },
    {
     "id": "provinciaal-onderwijs-antwerpen",
     "naam": "Provinciaal Onderwijs Antwerpen (o.a. PITO Stabroek, avAnt)",
-    "url": "https://www.provincieantwerpen.be/werken-bij-de-provincie/werken-in-het-provinciaal-onderwijs-/vacature-onderwijs.html",
+    "url": "https://jobpage.cvwarehouse.com/?companyGuid=e73935c9-46b4-4f23-9301-5f45abd52668&lang=nl-BE&section=5a89ab81-c74a-bc20-9123-f1f4fc81aca9",
     "soort": "organisatie",
     "sector": "onderwijs (provincie)",
     "plaats": "Stabroek, Antwerpen, Mechelen, Boom",
-    "js": false
+    "js": true
    },
    {
     "id": "go-scholengroep-antwerpen",
@@ -4852,7 +4603,18 @@ export const seed = {
     "soort": "organisatie",
     "sector": "onderwijs (volwassenen)",
     "plaats": "Antwerpen",
-    "js": false
+    "js": false,
+    "zoekparameters": [
+     {
+      "label": "VDAB: GO! CVO Antwerpen",
+      "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=GO!%20CVO%20Antwerpen&sort=standaard",
+      "js": true,
+      "selector": "li.c-vacature h4 a",
+      "kaartSelector": "li.c-vacature",
+      "werkgeverSelector": ".c-vacature-meta.-location strong",
+      "wachtOpTekst": "Resultaten: \\d+ jobs? gevonden"
+     }
+    ]
    },
    {
     "id": "don-bosco-technisch-instituut-hoboken",
@@ -4861,16 +4623,21 @@ export const seed = {
     "soort": "organisatie",
     "sector": "onderwijs (katholiek, vzw)",
     "plaats": "Salesianenlaan 1, Hoboken",
-    "js": false
+    "js": false,
+    "selector": "a.product-link",
+    "kaartSelector": ".product-tile",
+    "werkgeverSelector": ".location-job strong",
+    "filterInterim": true
    },
    {
-    "id": "fablab-en-technische-scholen-van-stedeli",
+    "id": "fablab-plus-stedelijk-onderwijs",
     "naam": "Fablab+ en technische scholen van Stedelijk Onderwijs (Technicum Noord-Antwerpen e.a.)",
-    "url": "https://jobs.stedelijkonderwijs.be/",
+    "url": "https://jobs.stedelijkonderwijs.be/vacatures",
     "soort": "organisatie",
     "sector": "onderwijs (stad Antwerpen) en makerspace",
     "plaats": "Lange Klarenstraat 17, Antwerpen (Fablab+)",
-    "js": false
+    "js": true,
+    "wachtOp": "a[href*=\"/vacatures/\"]"
    },
    {
     "id": "rising-you-vzw",
@@ -4884,7 +4651,7 @@ export const seed = {
    {
     "id": "stroom-maatwerk-vzw",
     "naam": "Stroom Maatwerk vzw",
-    "url": "https://www.stroommaatwerk.be/",
+    "url": "https://www.stroommaatwerk.be/werken-bij-stroom/",
     "soort": "organisatie",
     "sector": "sociale economie (maatwerkbedrijf)",
     "plaats": "Merksem (Antwerpen)",
@@ -4902,7 +4669,7 @@ export const seed = {
    {
     "id": "werkmmaat-vzw",
     "naam": "Werkmmaat vzw",
-    "url": "https://www.werkmmaat.be/",
+    "url": "https://www.werkmmaat.be/omkadering",
     "soort": "organisatie",
     "sector": "sociale economie (collectief maatwerkbedrijf)",
     "plaats": "Antwerpen (Deurne), Mortsel, Lier",
@@ -4920,7 +4687,7 @@ export const seed = {
    {
     "id": "port-of-antwerp-bruges",
     "naam": "Port of Antwerp-Bruges (havenbedrijf)",
-    "url": "https://portofantwerpbruges.com/jobs",
+    "url": "https://www.portofantwerpbruges.com/jobs/nl/vacatures",
     "soort": "organisatie",
     "sector": "overheidsbedrijf",
     "plaats": "Antwerpen (haven)",
@@ -4929,16 +4696,22 @@ export const seed = {
    {
     "id": "de-lijn",
     "naam": "De Lijn (onderhoudscentrum Noorderlaan, PAL)",
-    "url": "https://jobs.delijn.be/",
+    "url": "https://jobs.delijn.be/go/Technics/806102/",
     "soort": "organisatie",
     "sector": "overheidsbedrijf",
     "plaats": "Noorderlaan 63, Antwerpen",
-    "js": false
+    "js": false,
+    "zoekparameters": [
+     {
+      "label": "Andere diensten",
+      "url": "https://jobs.delijn.be/go/Vacatures/806202/"
+     }
+    ]
    },
    {
     "id": "nmbs",
     "naam": "NMBS (herstelwerkplaats goederenwagons Antwerpen-Noord)",
-    "url": "https://jobs.belgiantrain.be/",
+    "url": "https://jobs.belgiantrain.be/search/?q=&locationsearch=Antwerpen",
     "soort": "organisatie",
     "sector": "overheidsbedrijf",
     "plaats": "Noorderlaan 630, Antwerpen",
@@ -4947,7 +4720,7 @@ export const seed = {
    {
     "id": "de-vlaamse-waterweg",
     "naam": "De Vlaamse Waterweg",
-    "url": "https://www.vlaamsewaterweg.be/werkenbij",
+    "url": "https://www.vlaamsewaterweg.be/nl/vacatures",
     "soort": "organisatie",
     "sector": "overheidsbedrijf (Vlaams)",
     "plaats": "Willebroek, Antwerpen en langs de waterwegen",
@@ -4956,11 +4729,12 @@ export const seed = {
    {
     "id": "waterbouwkundig-laboratorium",
     "naam": "Waterbouwkundig Laboratorium (Departement MOW)",
-    "url": "https://www.werkenvoorvlaanderen.be/",
+    "url": "https://www.vlaanderen.be/werken-voor-vlaanderen/vacatures?contentSubtypeData__internal=false&order_publicationdate=desc",
     "soort": "organisatie",
     "sector": "overheid (Vlaams, onderzoek)",
     "plaats": "Berchemlei 115, Borgerhout",
-    "js": false
+    "js": true,
+    "wachtOp": "a[href*=\"/Job/\"]"
    },
    {
     "id": "agentschap-wegen-en-verkeer",
@@ -4972,7 +4746,7 @@ export const seed = {
     "js": false
    },
    {
-    "id": "departement-cultuur",
+    "id": "departement-cjm-depot",
     "naam": "Departement Cultuur, Jeugd en Media, depot Collectie Vlaamse Gemeenschap",
     "url": "https://faro.be/vacatures",
     "soort": "organisatie",
@@ -5028,11 +4802,11 @@ export const seed = {
    {
     "id": "monumentenwacht-antwerpen",
     "naam": "Monumentenwacht Antwerpen (Provincie Antwerpen, Dienst Erfgoed)",
-    "url": "https://jobs.provincieantwerpen.be/",
+    "url": "https://jobs.provincieantwerpen.be/?lang=nl-BE&section=031fd048-4e1a-ffb7-fe1d-1417dc4088b1",
     "soort": "organisatie",
     "sector": "overheid (provincie, erfgoed)",
     "plaats": "Ruggeveldlaan 99, Deurne",
-    "js": false
+    "js": true
    },
    {
     "id": "agentschap-onroerend-erfgoed",
@@ -5100,7 +4874,7 @@ export const seed = {
    {
     "id": "middelheimmuseum",
     "naam": "Middelheimmuseum",
-    "url": "https://job.antwerpen.be/",
+    "url": "https://job.antwerpen.be/go/Alle-vacatures/4474301/",
     "soort": "organisatie",
     "sector": "cultuur (stad Antwerpen)",
     "plaats": "Middelheimlaan 61, Antwerpen",
@@ -5109,14 +4883,14 @@ export const seed = {
    {
     "id": "mas",
     "naam": "MAS, Museum aan de Stroom",
-    "url": "https://job.antwerpen.be/",
+    "url": "https://job.antwerpen.be/go/Alle-vacatures/4474301/",
     "soort": "organisatie",
     "sector": "cultuur (stad Antwerpen)",
     "plaats": "Hanzestedenplaats 1, Antwerpen",
     "js": false
    },
    {
-    "id": "stad-antwerpen-2",
+    "id": "stad-antwerpen-musea",
     "naam": "Stad Antwerpen, Musea en Erfgoed (Plantin-Moretus, Rubenshuis, Red Star Line, Letterenhuis, FelixArchief)",
     "url": "https://job.antwerpen.be/go/Alle-vacatures/4474301/",
     "soort": "organisatie",
@@ -5217,11 +4991,12 @@ export const seed = {
    {
     "id": "cvo-encora",
     "naam": "CVO Encora (Stedelijk Onderwijs Antwerpen)",
-    "url": "https://jobs.stedelijkonderwijs.be/",
+    "url": "https://jobs.stedelijkonderwijs.be/vacatures",
     "soort": "organisatie",
     "sector": "onderwijs (stad)",
     "plaats": "Antwerpen",
-    "js": false
+    "js": true,
+    "wachtOp": "a[href*=\"/vacatures/\"]"
    },
    {
     "id": "cvo-vitant",
@@ -5239,16 +5014,21 @@ export const seed = {
     "soort": "organisatie",
     "sector": "overheid (Vlaams)",
     "plaats": "Antwerpen, Mechelen, Turnhout",
-    "js": false
+    "js": false,
+    "selector": "a.product-link",
+    "kaartSelector": ".product-tile",
+    "werkgeverSelector": ".location-job strong",
+    "filterInterim": true
    },
    {
     "id": "het-facilitair-bedrijf",
     "naam": "Het Facilitair Bedrijf (Vlaamse overheid)",
-    "url": "https://www.werkenvoorvlaanderen.be/",
+    "url": "https://www.vlaanderen.be/werken-voor-vlaanderen/vacatures?contentSubtypeData__internal=false&order_publicationdate=desc",
     "soort": "organisatie",
     "sector": "overheid (Vlaams)",
     "plaats": "Brussel en regionaal",
-    "js": false
+    "js": true,
+    "wachtOp": "a[href*=\"/Job/\"]"
    },
    {
     "id": "fod-justitie",
@@ -5824,7 +5604,7 @@ export const seed = {
     "id": "restauratie",
     "doel": "Restauratie en monumentenzorg",
     "stijl": "ik-vorm",
-    "tekst": "Sinds 2021 teken en maak ik maatwerk in plaatmateriaal, eerst als technisch tekenaar en plooi- en lasoperator, nu als verantwoordelijke atelier. Ik ben opgeleid in halfautomaat- en elektrodelassen en volg avondonderwijs aan de Academie in Antwerpen: na meubel en interieur en grafiek nu interieurvormgeving. Voor Willy Van de Perre bouwde ik een fotoarchief op, waarbij ik leerde ordenen en beschrijven. In restauratie wil ik die combinatie inzetten: begrijpen hoe iets gemaakt is, het nauwkeurig documenteren en pas dan ingrijpen, met respect voor [type erfgoed, bijvoorbeeld historisch metaalwerk of interieurerfgoed].",
+    "tekst": "Sinds 2021 teken en maak ik maatwerk in plaatmateriaal, eerst als technisch tekenaar en plooi- en lasoperator, nu als verantwoordelijke atelier. Ik ben opgeleid in halfautomaat- en elektrodelassen en volg avondonderwijs aan de Academie in Antwerpen: na meubel en interieur en grafiek nu interieurvormgeving. Voor [opdrachtgever] bouwde ik een fotoarchief op, waarbij ik leerde ordenen en beschrijven. In restauratie wil ik die combinatie inzetten: begrijpen hoe iets gemaakt is, het nauwkeurig documenteren en pas dan ingrijpen, met respect voor [type erfgoed, bijvoorbeeld historisch metaalwerk of interieurerfgoed].",
     "waarom": "Het verbindt je drie sporen, metaal, Academie en archief, met wat restauratie vraagt: eerst begrijpen en documenteren, dan pas handelen."
    },
    {
@@ -5845,7 +5625,7 @@ export const seed = {
     "id": "archief",
     "doel": "Archief en collectiezorg",
     "stijl": "ik-vorm",
-    "tekst": "In 2017 en 2018 bouwde ik een fotoarchief op voor [fotograaf of kunstenaar] Willy Van de Perre: [aantal] beelden ordenen, digitaliseren en beschrijven zodat ze terug te vinden zijn. Sinds 2021 werk ik in maatwerk in plaatmateriaal, eerst als technisch tekenaar, nu als verantwoordelijke atelier: ik controleer de stukken op maat en afwerking voor ze vertrekken. Aan de Academie in Antwerpen volg ik avondonderwijs, na onder meer een jaar grafiek. In archief- of collectiezorg wil ik die zorg voor ordening en detail inzetten voor stukken die bewaard moeten blijven.",
+    "tekst": "In 2017 en 2018 bouwde ik een fotoarchief op voor [opdrachtgever, bijvoorbeeld een fotograaf of kunstenaar]: [aantal] beelden ordenen, digitaliseren en beschrijven zodat ze terug te vinden zijn. Sinds 2021 werk ik in maatwerk in plaatmateriaal, eerst als technisch tekenaar, nu als verantwoordelijke atelier: ik controleer de stukken op maat en afwerking voor ze vertrekken. Aan de Academie in Antwerpen volg ik avondonderwijs, na onder meer een jaar grafiek. In archief- of collectiezorg wil ik die zorg voor ordening en detail inzetten voor stukken die bewaard moeten blijven.",
     "waarom": "Het opent met je meest relevante ervaring voor dit werkveld, ook al is die niet de recentste, en toont met één concreet detail hoe zorgvuldig je werkt."
    },
    {
@@ -5896,7 +5676,7 @@ export const seed = {
     "sterk": [
      "Ik controleer elk plooistuk op maat en haaksheid voor het naar de lastafel gaat.",
      "Bij het uittekenen in [CAD-programma] reken ik de uitslag en de plooivolgorde na voor er iets gesneden wordt.",
-     "In het fotoarchief voor Willy Van de Perre beschreef ik elk beeld volgens [een vast systeem, bijvoorbeeld jaar, plaats en onderwerp], zodat [aantal] foto's terug te vinden zijn."
+     "In het fotoarchief voor [opdrachtgever] beschreef ik elk beeld volgens [een vast systeem, bijvoorbeeld jaar, plaats en onderwerp], zodat [aantal] foto's terug te vinden zijn."
     ],
     "cliche": [
      "Ik ben zeer nauwkeurig en heb oog voor detail.",
@@ -5979,7 +5759,7 @@ export const seed = {
     "thema": "Motivatie voor erfgoed",
     "sterk": [
      "Wat mij aantrekt in erfgoed, is dat ik eerst moet begrijpen hoe iets gemaakt is voor ik eraan mag werken.",
-     "Door het fotoarchief voor Willy Van de Perre zag ik wat het betekent om iets zorgvuldig te bewaren en te beschrijven voor wie na mij komt.",
+     "Door het fotoarchief voor [opdrachtgever] zag ik wat het betekent om iets zorgvuldig te bewaren en te beschrijven voor wie na mij komt.",
      "[Gebouw, object of museum] raakte mij omdat [reden], en aan dat soort werk wil ik bijdragen."
     ],
     "cliche": [
@@ -6009,7 +5789,7 @@ export const seed = {
    {
     "duur": "60 seconden",
     "context": "Bij de openingsvraag van een sollicitatiegesprek voor restauratie, een museumatelier of een decoratelier.",
-    "tekst": "Ik ben technisch tekenaar en verantwoordelijke atelier bij een bedrijf in maatwerk in plaatmateriaal. Ik begon daar in 2021 als tekenaar en plooi- en lasoperator, dus ik ken het werk van tekening tot afgewerkt stuk. Sinds [jaar] stuur ik het atelier aan: ik maak de planning, verdeel het werk over [aantal] collega's en controleer de kwaliteit. Daarvoor bouwde ik een fotoarchief op voor Willy Van de Perre. Naast mijn werk volg ik [op welke avonden] interieurvormgeving aan de Academie in Antwerpen, en met mijn broer ontwerp en bouw ik meubels. Wat al die dingen verbindt, is dat ik graag begrijp hoe iets gemaakt is en het dan zorgvuldig maak of bewaar. Daarom solliciteer ik bij [organisatie]: hier kan ik dat vakmanschap inzetten voor [de collectie, de gebouwen of de decors]."
+    "tekst": "Ik ben technisch tekenaar en verantwoordelijke atelier bij een bedrijf in maatwerk in plaatmateriaal. Ik begon daar in 2021 als tekenaar en plooi- en lasoperator, dus ik ken het werk van tekening tot afgewerkt stuk. Sinds [jaar] stuur ik het atelier aan: ik maak de planning, verdeel het werk over [aantal] collega's en controleer de kwaliteit. Daarvoor bouwde ik een fotoarchief op voor [opdrachtgever]. Naast mijn werk volg ik [op welke avonden] interieurvormgeving aan de Academie in Antwerpen, en met mijn broer ontwerp en bouw ik meubels. Wat al die dingen verbindt, is dat ik graag begrijp hoe iets gemaakt is en het dan zorgvuldig maak of bewaar. Daarom solliciteer ik bij [organisatie]: hier kan ik dat vakmanschap inzetten voor [de collectie, de gebouwen of de decors]."
    },
    {
     "duur": "60 seconden",
@@ -6035,7 +5815,7 @@ export const seed = {
    },
    {
     "vraag": "U hebt nog geen ervaring in [erfgoed, een museum of een theater]. Waarom zouden wij u kiezen?",
-    "antwoord": "Het klopt dat ik nog niet in [sector] gewerkt heb. Wat ik wel meebreng, is ervaring sinds 2021 met tekenen, plooien en lassen van maatwerk, en de gewoonte om een stuk eerst te begrijpen voor ik eraan begin. Het fotoarchief voor Willy Van de Perre leerde mij zorgvuldig ordenen en beschrijven, en aan de Academie werk ik al jaren met ontwerp en materiaal. Wat ik nog moet leren over [bijvoorbeeld conservatienormen of het werken met collectiestukken], leer ik graag van ervaren collega's, en ik ben gewend om naast mijn werk te studeren.",
+    "antwoord": "Het klopt dat ik nog niet in [sector] gewerkt heb. Wat ik wel meebreng, is ervaring sinds 2021 met tekenen, plooien en lassen van maatwerk, en de gewoonte om een stuk eerst te begrijpen voor ik eraan begin. Het fotoarchief voor [opdrachtgever] leerde mij zorgvuldig ordenen en beschrijven, en aan de Academie werk ik al jaren met ontwerp en materiaal. Wat ik nog moet leren over [bijvoorbeeld conservatienormen of het werken met collectiestukken], leer ik graag van ervaren collega's, en ik ben gewend om naast mijn werk te studeren.",
     "waarom": "Je erkent het gat zonder je te verontschuldigen, zet er drie concrete troeven tegenover en toont dat je weet wat je nog moet leren."
    }
   ],
@@ -6071,8 +5851,8 @@ export const seed = {
     ]
    },
    {
-    "titel": "Het fotoarchief voor Willy Van de Perre",
-    "situatie": "In 2017 en 2018 bouwde ik een fotoarchief op voor Willy Van de Perre, [wie hij is, bijvoorbeeld fotograaf of kunstenaar]. Er waren [aantal] beelden, [in welke vorm, bijvoorbeeld negatieven, afdrukken of digitale bestanden], en [hoe ze bij de start bewaard werden].",
+    "titel": "Het fotoarchief",
+    "situatie": "In 2017 en 2018 bouwde ik een fotoarchief op voor [opdrachtgever, bijvoorbeeld een fotograaf of kunstenaar]. Er waren [aantal] beelden, [in welke vorm, bijvoorbeeld negatieven, afdrukken of digitale bestanden], en [hoe ze bij de start bewaard werden].",
     "taak": "Ik moest de beelden ordenen, digitaliseren en beschrijven, zodat ze terug te vinden en bruikbaar zouden zijn [voor wie of waarvoor].",
     "actie": "Ik bedacht [een ordening, bijvoorbeeld per jaar en onderwerp] en hield die consequent aan. Ik [scande of fotografeerde] de beelden met [toestel of software] en gaf elk beeld een beschrijving met [welke gegevens, bijvoorbeeld datum, plaats en onderwerp]. Kwetsbare stukken behandelde ik [hoe, bijvoorbeeld met handschoenen of in aangepaste hoezen].",
     "resultaat": "[Resultaat, bijvoorbeeld een doorzoekbaar archief van zoveel beelden, gebruikt voor een publicatie, een tentoonstelling of verder beheer.]",
@@ -6133,7 +5913,7 @@ export const seed = {
     "Tekenen, plooien en lassen van maatwerk | meubelontwerp | interieurvormgeving aan de Academie in Antwerpen",
     "Van tekening tot afgewerkt stuk | plaatbewerking, meubelontwerp en archief | interesse in restauratie en collectiezorg"
    ],
-   "info": "Ik wil begrijpen hoe iets gemaakt is voor ik eraan werk, of het nu een plooistuk, een meubel of een fotoarchief is. Sinds 2021 werk ik bij een bedrijf in maatwerk in plaatmateriaal, waar ik begon als technisch tekenaar en plooi- en lasoperator en nu verantwoordelijke atelier ben. Daarvoor bouwde ik een fotoarchief op voor [fotograaf of kunstenaar] Willy Van de Perre [naam alleen gebruiken als hij akkoord is] en werkte ik in een creatief fietsatelier. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen, nu interieurvormgeving na meubel en interieur en grafiek, en ontwerp en bouw ik meubels met mijn broer. Wat mij het meest boeit, is hoe vakmanschap en zorgvuldigheid bijdragen aan wat blijft: in restauratie en erfgoed, in museum- en theaterateliers, in archief en collecties, en in het doorgeven van het vak. Een selectie van mijn werk staat op [link naar portfolio]."
+   "info": "Ik wil begrijpen hoe iets gemaakt is voor ik eraan werk, of het nu een plooistuk, een meubel of een fotoarchief is. Sinds 2021 werk ik bij een bedrijf in maatwerk in plaatmateriaal, waar ik begon als technisch tekenaar en plooi- en lasoperator en nu verantwoordelijke atelier ben. Daarvoor bouwde ik een fotoarchief op voor [opdrachtgever, naam alleen gebruiken als die akkoord is] en werkte ik in een creatief fietsatelier. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen, nu interieurvormgeving na meubel en interieur en grafiek, en ontwerp en bouw ik meubels met mijn broer. Wat mij het meest boeit, is hoe vakmanschap en zorgvuldigheid bijdragen aan wat blijft: in restauratie en erfgoed, in museum- en theaterateliers, in archief en collecties, en in het doorgeven van het vak. Een selectie van mijn werk staat op [link naar portfolio]."
   }
  },
  "vragenlijst": {
@@ -6202,7 +5982,7 @@ export const seed = {
      },
      {
       "id": "p12",
-      "vraag": "Katoen Natie: welke functie, welke afdeling, hoelang?",
+      "vraag": "Vorige jobs: bij welke werkgever, welke functie, welke afdeling, hoelang?",
       "type": "kort"
      },
      {
@@ -6212,7 +5992,7 @@ export const seed = {
      },
      {
       "id": "p14",
-      "vraag": "Het fotoarchief voor Willy Van de Perre: wie is hij, hoeveel beelden, hoe heb je het aangepakt (ordenen, scannen, beschrijven, software)?",
+      "vraag": "Het fotoarchief dat je opbouwde: voor wie, hoeveel beelden, hoe heb je het aangepakt (ordenen, scannen, beschrijven, software)?",
       "type": "lang"
      },
      {
@@ -6268,7 +6048,6 @@ export const seed = {
      {
       "id": "w06",
       "vraag": "Wat is fysiek het zwaarst, en waar voel je dat (rug, schouders, handen, ogen, ademhaling)?",
-      "hint": "Ook voor de huisarts.",
       "type": "kort"
      },
      {
@@ -6400,12 +6179,12 @@ export const seed = {
      },
      {
       "id": "o04",
-      "vraag": "Hoe voel je je nu: energie van 1 tot 10, slaap, zin om dingen te doen? Wat helpt je herstellen?",
+      "vraag": "Hoe voel je je nu: energie van 1 tot 10, slaap, zin om dingen te doen? Wat geeft je energie?",
       "type": "kort"
      },
      {
       "id": "o05",
-      "vraag": "Hoeveel weken rust denk je nodig te hebben voor je ergens nieuw kunt beginnen?",
+      "vraag": "Hoeveel weken rust wil je nemen voor je ergens nieuw begint?",
       "type": "kort"
      },
      {
@@ -6415,7 +6194,7 @@ export const seed = {
      },
      {
       "id": "o07",
-      "vraag": "Wat houdt je tegen om iets te tekenen bij je werkgever, en wat zou je willen dat er in de plaats gebeurt?",
+      "vraag": "Wat wil je dat er geregeld is voor je iets ondertekent over het einde van je huidige job?",
       "type": "lang"
      }
     ]
@@ -6427,7 +6206,7 @@ export const seed = {
     "vragen": [
      {
       "id": "g01",
-      "vraag": "Hoe zeg je in twee zinnen waarom je weggaat, zonder het over vermoeidheid of je werkgever te hebben?",
+      "vraag": "Hoe zeg je in twee zinnen waarom je een nieuwe richting kiest, positief en zonder het over je huidige werkgever te hebben?",
       "hint": "Bijvoorbeeld: na vijf jaar plaatbewerking wil ik mijn vakmanschap inzetten voor werk dat blijft, zoals erfgoed of museumateliers.",
       "type": "lang"
      },
@@ -6446,10 +6225,10 @@ export const seed = {
   ]
  },
  "welzijn": {
-  "intro": "Vragenlijsten die artsen ook gebruiken, om voor het bezoek aan de huisarts een eerste beeld te krijgen. Ze stellen geen diagnose: een hoge score betekent 'bespreek dit met je arts', een lage score sluit niets uit. De CBI en de WHO-5 vul je hier in de app in. De BAT vul je in naast het officiële formulier, de 4DKL online. Alleen Giulia en Remi zien de antwoorden.",
+  "intro": "Vragenlijsten die artsen ook gebruiken, om voor een bezoek aan de huisarts een eerste beeld te krijgen. Ze stellen geen diagnose: een hoge score betekent 'bespreek dit met je arts', een lage score sluit niets uit. De CBI en de WHO-5 vul je hier in de app in. De BAT vul je in naast het officiële formulier, de 4DKL online. De antwoorden zijn alleen zichtbaar voor wie toegang heeft tot de app.",
   "veiligheid": {
    "titel": "Hulp nodig, nu meteen?",
-   "tekst": "Denk je aan de dood of eraan om jezelf iets aan te doen, of maakt iemand zich zorgen over je veiligheid: wacht niet tot de afspraak bij de dokter.",
+   "tekst": "Denk je aan de dood of eraan om jezelf iets aan te doen, of maakt iemand zich zorgen over je veiligheid: wacht niet tot een afspraak bij de dokter.",
    "lijnen": [
     {
      "naam": "Zelfmoordlijn",
@@ -6655,7 +6434,7 @@ export const seed = {
     "kort": "Burn-out: algemeen en door het werk",
     "herkomst": "Denemarken, nationaal onderzoekscentrum voor arbeidsomstandigheden (NFA)",
     "meet": "Hoe uitgeput je je voelt, apart gemeten voor je leven in het algemeen en voor je werk. Is de uitputting door het werk veel hoger, dan wijst dat op het werk als oorzaak. Is ze overal even hoog, dan kijkt de arts ook naar andere oorzaken, zoals slaap, een lichamelijke ziekte of een depressie.",
-    "waarom": "Ontwikkeld met publiek geld in Denemarken en vrij beschikbaar voor iedereen. Wereldwijd gebruikt en in veel landen getoetst. Korte, concrete vragen, die ook passen bij lichamelijk zwaar werk. Het deel over klanten laten we weg: dat past niet bij werk in een atelier.",
+    "waarom": "Ontwikkeld met publiek geld in Denemarken en vrij beschikbaar voor iedereen. Wereldwijd gebruikt en in veel landen getoetst. Korte, concrete vragen, die ook passen bij lichamelijk zwaar werk. Het deel over klanten is weggelaten, omdat het niet bij elk werk past.",
     "minuten": 3,
     "instructie": "Kies bij elke vraag het antwoord dat het best bij je past. Denk niet te lang na: het eerste antwoord is meestal het beste.",
     "optieSets": {
@@ -6993,17 +6772,17 @@ export const seed = {
   "dokter": {
    "voorbereiding": [
     "Vul de vragenlijsten zelf in, eerlijk en alleen, op een rustige dag voor de afspraak. Schrijf de datum erop en neem de ingevulde formulieren mee.",
-    "Hou tot de afspraak elke dag kort bij: slaap, energie en stemming, cafeïne en alcohol, werkuren en laswerk, hoofdpijn of duizeligheid, en of je te laat kwam. Dat kan bij Dagboek.",
-    "Schrijf op één blad: sinds wanneer de uitputting er is en hoe ze veranderde, wat helpt en wat het erger maakt, fouten of bijna-ongevallen aan de machines, gevolgen thuis en met vrienden, stemming en interesse, lichamelijke klachten, medicatie en ziektes in de familie.",
-    "Beschrijf je werk concreet: tekenen, lassen en plooien, het atelier leiden, uren en overuren, de lichamelijke belasting en de spanningen op het werk.",
-    "Beschrijf het laswerk: welke processen en metalen, of er afzuiging is, of je een masker draagt, of je in afgesloten ruimtes werkt, en of collega's dezelfde klachten hebben.",
+    "Hou tot de afspraak elke dag kort bij: slaap, energie en stemming, cafeïne en alcohol, werkuren, hoofdpijn of duizeligheid. Dat kan bij Dagboek.",
+    "Schrijf op één blad: sinds wanneer de klachten er zijn en hoe ze veranderden, wat helpt en wat het erger maakt, fouten of bijna-ongevallen op het werk, gevolgen thuis en met vrienden, stemming en interesse, lichamelijke klachten, medicatie en ziektes in de familie.",
+    "Beschrijf je werk concreet: taken, uren en overuren, verantwoordelijkheid, de lichamelijke belasting en de spanningen op het werk.",
+    "Werk je met lassen, dampen, stof of oplosmiddelen: beschrijf welke processen en materialen, of er afzuiging is, of je een masker draagt, of je in afgesloten ruimtes werkt, en of collega's dezelfde klachten hebben.",
     "Je beslist zelf of iemand meegaat. Een vertrouwd persoon helpt onthouden wat gezegd werd."
    ],
    "vragen": [
     "Is dit overspanning, burn-out, depressie of een mengeling?",
     "Welk bloedonderzoek raadt u aan, en waarom?",
     "Is een onderzoek van mijn slaap nodig?",
-    "Kan mijn werk, zoals laswerk en dampen, een rol spelen? Moet ik naar de arbeidsarts?",
+    "Kan mijn werk, zoals dampen, stof of lawaai, een rol spelen? Moet ik naar de arbeidsarts?",
     "Moet ik minder of tijdelijk niet werken, en hoelang?",
     "Is het veilig dat ik rijd en aan machines werk?",
     "Kan u mij doorverwijzen naar een geconventioneerde eerstelijnspsycholoog?",
@@ -7012,7 +6791,7 @@ export const seed = {
    ],
    "lichamelijk": [
     "Bij langdurige vermoeidheid kijkt de huisarts vaak eerst naar bloedarmoede, ontsteking, suiker en schildklier. Andere waarden enkel als daar een reden voor is.",
-    "Slaapapneu, slapeloosheid en een verschoven slaapritme kunnen uitputting en te laat komen ook verklaren.",
+    "Slaapapneu, slapeloosheid en een verschoven slaapritme kunnen uitputting ook verklaren.",
     "Lasdampen en koolstofmonoxide kunnen vermoeidheid, hoofdpijn en duizeligheid geven. Een aanwijzing: klachten die op werkdagen erger zijn en in het weekend of op vakantie beter.",
     "Een normaal bloedonderzoek betekent niet dat er niets is. De meeste mensen met vermoeidheid hebben normale bloedwaarden."
    ],
@@ -7023,7 +6802,7 @@ export const seed = {
     "Bezorg het attest dezelfde dag, ten laatste de volgende werkdag, tot je het arbeidsreglement hebt: de wettelijke termijn is 2 werkdagen, maar het arbeidsreglement kan korter zijn. Mail een foto of scan, en geef het origineel af tegen een gedateerd ontvangstbewijs of stuur het aangetekend. Versturen binnen de termijn volstaat.",
     "Vraag ook een attest voor één ziektedag. De vrijstelling voor de eerste ziektedag geldt niet in elke onderneming.",
     "Blijf bereikbaar voor een controlearts op het adres dat je opgaf. Is je ziekte langer dan 14 dagen, kijk dan na of het ziekenfonds het attest ontving.",
-    "Volg je avondlessen, vraag dan vooraf toestemming aan de adviserend arts van het ziekenfonds."
+    "Volg je lessen of een opleiding tijdens ziekteverlof, vraag dan vooraf toestemming aan de adviserend arts van het ziekenfonds."
    ]
   },
   "hulp": [
@@ -7568,7 +7347,7 @@ export const seed = {
    "slug": "kmska-spontaan",
    "cv": {
     "titel": "Technisch tekenaar en atelierverantwoordelijke in de plaatbewerking, meubelmaker, student interieurvormgeving",
-    "profiel": "Ik ben sinds 2021 technisch tekenaar bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal; ik begon als tekenaar en plooi- en lasoperator en ben nu verantwoordelijke van het atelier. Ik teken werkstukken uit, bereid het werk voor, plooi en las (halfautomaat en elektrode) en sta in voor afwerking en kwaliteitscontrole. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen: eerst drie jaar meubel en interieur en een jaar grafiek, nu interieurvormgeving; met mijn broer bouw ik meubels. Voor Willy Van de Perre bouwde ik een fotoarchief op, werk dat geduld en een vaste methode vraagt. In het team tentoonstellingsproductie en museumtechnieken van het KMSKA wil ik die combinatie van tekenen, maken en zorgvuldig werken inzetten voor de collectie en de tentoonstellingen van het museum.",
+    "profiel": "Ik ben sinds 2021 technisch tekenaar bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal; ik begon als tekenaar en plooi- en lasoperator en ben nu verantwoordelijke van het atelier. Ik teken werkstukken uit, bereid het werk voor, plooi en las (halfautomaat en elektrode) en sta in voor afwerking en kwaliteitscontrole. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen: eerst drie jaar meubel en interieur en een jaar grafiek, nu interieurvormgeving; met mijn broer bouw ik meubels. Ik bouwde ook een fotoarchief op, werk dat geduld en een vaste methode vraagt. In het team tentoonstellingsproductie en museumtechnieken van het KMSKA wil ik die combinatie van tekenen, maken en zorgvuldig werken inzetten voor de collectie en de tentoonstellingen van het museum.",
     "vaardigheden": [
      "Technisch tekenen van maatwerk in plaatmateriaal ([CAD-programma])",
      "Meubelontwerp en -bouw [materialen bevestigen: metaal en hout]",
@@ -7579,7 +7358,7 @@ export const seed = {
      "Fietstechniek: bouw en herstel"
     ]
    },
-   "brief": "Remi [Achternaam]\n[Straat nummer]\n[postcode] Antwerpen\n[gsm] · [e-mail]\n\nKMSKA, Koninklijk Museum voor Schone Kunsten Antwerpen\nT.a.v. [naam contactpersoon], [functie]\nLeopold De Waelplaats [huisnummer]\n2000 Antwerpen\n\nAntwerpen, [dag maand jaar]\n\nBetreft: spontane sollicitatie als technisch medewerker tentoonstellingsproductie en museumtechnieken\n\nGeachte mevrouw, geachte heer,\n\n[Eén zin over hoe Remi het KMSKA leerde kennen, bijvoorbeeld een bezoek aan het Open restauratieatelier of aan de tentoonstelling of het project dat hij zag, en welk detail hem aansprak.] Het KMSKA heeft sinds 1999 een eigen restauratieatelier en een eigen team voor tentoonstellingsproductie en museumtechnieken. In zo'n huis komen vakmanschap en zorg voor de collectie samen. Daarom schrijf ik u spontaan aan.\n\nAls technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal ken ik het werk van tekening tot afwerking. Ik begon er in 2021 als tekenaar en plooi- en lasoperator, met een opleiding in halfautomaat- en elektrodelassen, en stuur nu het atelier aan. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen: eerst drie jaar meubel en interieur en een jaar grafiek, nu interieurvormgeving. Met mijn broer bouw ik meubels.\n\nIk wil mijn vakmanschap inzetten voor erfgoed en ontwerp. In uw team voor tentoonstellingsproductie en museumtechnieken komt mijn achtergrond het best van pas: wat in een museumzaal komt te staan, moet precies uitgetekend, degelijk gemaakt en met zorg rond de kunstwerken geplaatst worden.\n\nIk breng drie dingen mee. Als tekenaar zet ik elke dag een vraag om in een werktekening waarmee het atelier verder kan, bijvoorbeeld bij [concreet project en wat daar precies moest kloppen]. Als verantwoordelijke van het atelier plan ik het werk en volg ik het op met mijn collega's, zodat een opdracht klaar is zoals afgesproken. En voor Willy Van de Perre bouwde ik een fotoarchief op, werk dat geduld en een vaste methode vraagt.\n\nIk kom graag kennismaken tijdens een kort werkbezoek aan uw team en toon daarbij mijn werkstukken. Vanaf januari 2027 is ook een beroepsverkennende stage van enkele dagen via VDAB mogelijk. Mag ik u vragen mij op de hoogte te houden van toekomstige selecties voor een technische functie op niveau C in dat team?\n\nIk licht mijn kandidatuur graag toe in een gesprek. In bijlage vindt u mijn cv [en een beknopt portfolio, indien klaar].\n\nMet vriendelijke groeten\n\nRemi [Achternaam]\n\nBijlagen: cv[, portfolio]\n",
+   "brief": "Remi [Achternaam]\n[Straat nummer]\n[postcode] Antwerpen\n[gsm] · [e-mail]\n\nKMSKA, Koninklijk Museum voor Schone Kunsten Antwerpen\nT.a.v. [naam contactpersoon], [functie]\nLeopold De Waelplaats [huisnummer]\n2000 Antwerpen\n\nAntwerpen, [dag maand jaar]\n\nBetreft: spontane sollicitatie als technisch medewerker tentoonstellingsproductie en museumtechnieken\n\nGeachte mevrouw, geachte heer,\n\n[Eén zin over hoe Remi het KMSKA leerde kennen, bijvoorbeeld een bezoek aan het Open restauratieatelier of aan de tentoonstelling of het project dat hij zag, en welk detail hem aansprak.] Het KMSKA heeft sinds 1999 een eigen restauratieatelier en een eigen team voor tentoonstellingsproductie en museumtechnieken. In zo'n huis komen vakmanschap en zorg voor de collectie samen. Daarom schrijf ik u spontaan aan.\n\nAls technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal ken ik het werk van tekening tot afwerking. Ik begon er in 2021 als tekenaar en plooi- en lasoperator, met een opleiding in halfautomaat- en elektrodelassen, en stuur nu het atelier aan. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen: eerst drie jaar meubel en interieur en een jaar grafiek, nu interieurvormgeving. Met mijn broer bouw ik meubels.\n\nIk wil mijn vakmanschap inzetten voor erfgoed en ontwerp. In uw team voor tentoonstellingsproductie en museumtechnieken komt mijn achtergrond het best van pas: wat in een museumzaal komt te staan, moet precies uitgetekend, degelijk gemaakt en met zorg rond de kunstwerken geplaatst worden.\n\nIk breng drie dingen mee. Als tekenaar zet ik elke dag een vraag om in een werktekening waarmee het atelier verder kan, bijvoorbeeld bij [concreet project en wat daar precies moest kloppen]. Als verantwoordelijke van het atelier plan ik het werk en volg ik het op met mijn collega's, zodat een opdracht klaar is zoals afgesproken. En ik bouwde een fotoarchief op, werk dat geduld en een vaste methode vraagt.\n\nIk kom graag kennismaken tijdens een kort werkbezoek aan uw team en toon daarbij mijn werkstukken. Vanaf januari 2027 is ook een beroepsverkennende stage van enkele dagen via VDAB mogelijk. Mag ik u vragen mij op de hoogte te houden van toekomstige selecties voor een technische functie op niveau C in dat team?\n\nIk licht mijn kandidatuur graag toe in een gesprek. In bijlage vindt u mijn cv [en een beknopt portfolio, indien klaar].\n\nMet vriendelijke groeten\n\nRemi [Achternaam]\n\nBijlagen: cv[, portfolio]\n",
    "mail": "Aan: sollicitaties@kmska.be\n\nOnderwerp: Spontane sollicitatie - technisch medewerker tentoonstellingsproductie en museumtechnieken - Remi [Achternaam]\n\nGeachte mevrouw, geachte heer,\n\nIk ben technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal, met een opleiding in halfautomaat- en elektrodelassen, en ik volg avondonderwijs interieurvormgeving aan de Academie in Antwerpen. Ik wil mijn vakmanschap inzetten voor erfgoed en ontwerp, en schrijf u daarom spontaan aan voor een functie als technisch medewerker in uw team tentoonstellingsproductie en museumtechnieken.\n\nIn bijlage vindt u mijn motivatiebrief en mijn cv [en een beknopt portfolio, indien klaar]. Ik kom graag kennismaken tijdens een kort werkbezoek aan uw team. Vanaf januari 2027 is ook een beroepsverkennende stage van enkele dagen via VDAB mogelijk.\n\nMet vriendelijke groeten\nRemi [Achternaam]\n[gsm] | [e-mail] | [portfolio-link]\n\nBijlagen: Remi_[Achternaam]_Motivatiebrief.pdf, Remi_[Achternaam]_CV.pdf[, portfolio (pdf)]\n",
    "meta": {
     "organisatie": "KMSKA, Koninklijk Museum voor Schone Kunsten Antwerpen",
@@ -7595,7 +7374,7 @@ export const seed = {
    "slug": "mhka-spontaan",
    "cv": {
     "titel": "Technisch tekenaar en atelierverantwoordelijke in de plaatbewerking, maker, student interieurvormgeving",
-    "profiel": "Sinds 2021 werk ik bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal, eerst als technisch tekenaar en plooi- en lasoperator, nu als technisch tekenaar en verantwoordelijke van het atelier. Ik teken werkstukken uit, bereid het werk voor, plooi en las (halfautomaat en elektrode) en sta in voor afwerking en kwaliteitscontrole, zodat ik een stuk ken van tekening tot afwerking. Naast mijn werk volg ik interieurvormgeving in het avondonderwijs aan de Academie in Antwerpen, na drie jaar meubel en interieur en een jaar grafiek; met mijn broer bouw ik meubels. Voor Willy Van de Perre bouwde ik een fotoarchief op, werk dat geduld, een vaste methode en zorg voor beeld vraagt. In het productieteam van het M HKA wil ik die combinatie van tekenen, maken en zorgvuldigheid inzetten voor de opbouw van tentoonstellingen.",
+    "profiel": "Sinds 2021 werk ik bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal, eerst als technisch tekenaar en plooi- en lasoperator, nu als technisch tekenaar en verantwoordelijke van het atelier. Ik teken werkstukken uit, bereid het werk voor, plooi en las (halfautomaat en elektrode) en sta in voor afwerking en kwaliteitscontrole, zodat ik een stuk ken van tekening tot afwerking. Naast mijn werk volg ik interieurvormgeving in het avondonderwijs aan de Academie in Antwerpen, na drie jaar meubel en interieur en een jaar grafiek; met mijn broer bouw ik meubels. Ik bouwde ook een fotoarchief op, werk dat geduld, een vaste methode en zorg voor beeld vraagt. In het productieteam van het M HKA wil ik die combinatie van tekenen, maken en zorgvuldigheid inzetten voor de opbouw van tentoonstellingen.",
     "vaardigheden": [
      "Technisch tekenen van maatwerk in plaatmateriaal ([CAD-programma])",
      "Plooien op de kantbank, halfautomaat- en elektrodelassen, plaatwerk",
@@ -7606,7 +7385,7 @@ export const seed = {
      "Ruimtelijk en structureel denken, sterk in wiskunde"
     ]
    },
-   "brief": "Remi [Achternaam]\n[Straat nummer]\n[postcode] Antwerpen\n[gsm] · [e-mail]\n\nM HKA, Museum van Hedendaagse Kunst Antwerpen\nT.a.v. mevrouw Katrien Geets, HR\nLeuvenstraat 32\n2000 Antwerpen\n\nAntwerpen, [dag maand jaar]\n\nBetreft: spontane sollicitatie als technisch medewerker productie\n\nGeachte mevrouw Geets,\n\n[Alleen als Remi het echt zag: In het M HKA zag ik [tentoonstelling of project dat Remi zag]; daarbij viel mij op [hoe een werk getoond, opgehangen of opgebouwd was]. Anders: In het M HKA werken productie- en AV-techniekers aan de opbouw van tentoonstellingen.] Als maker kijk ik in een museum ook naar wat de bezoeker niet ziet: de sokkels, de wanden en de constructies die een werk laten staan zoals de kunstenaar het bedoelt. Aan dat werk wil ik meebouwen. Daarom stel ik mij spontaan kandidaat als technisch medewerker productie.\n\nAls technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal ken ik het werk van tekening tot afwerking. Ik begon er in 2021 als tekenaar en plooi- en lasoperator, met een opleiding in halfautomaat- en elektrodelassen, en stuur nu het atelier aan. Naast mijn werk volg ik interieurvormgeving in het avondonderwijs aan de Academie in Antwerpen, na drie jaar meubel en interieur en een jaar grafiek. Met mijn broer bouw ik meubels.\n\nVoor uw productieteam breng ik drie dingen mee. Ik zet een vraag om in een werktekening en een planning waarmee een atelier verder kan, bijvoorbeeld bij [concreet project en wat daar precies moest kloppen]. Ik maak zelf: ik plooi, las en werk af, en ik weet uit het atelier hoe plaatmateriaal zich gedraagt als een stuk stevig en strak afgewerkt moet zijn. En ik ga zorgvuldig om met beeld: voor Willy Van de Perre bouwde ik een fotoarchief op, werk dat geduld en een vaste methode vraagt.\n\nIk stel voor om kort kennis te maken tijdens een werkbezoek, of om enkele dagen mee te helpen bij de opbouw van een tentoonstelling via een beroepsverkennende stage van VDAB. Een start in januari of februari 2027 is voor mij mogelijk. Mag ik u ook vragen mij op de hoogte te houden van selecties voor technische functies op niveau C in productie of tentoonstellingsopbouw?\n\nIk licht mijn kandidatuur graag toe in een gesprek. In bijlage vindt u mijn cv [en een beknopt portfolio, indien klaar].\n\nMet vriendelijke groeten\n\nRemi [Achternaam]\n\nBijlagen: cv[, portfolio]\n",
+   "brief": "Remi [Achternaam]\n[Straat nummer]\n[postcode] Antwerpen\n[gsm] · [e-mail]\n\nM HKA, Museum van Hedendaagse Kunst Antwerpen\nT.a.v. mevrouw Katrien Geets, HR\nLeuvenstraat 32\n2000 Antwerpen\n\nAntwerpen, [dag maand jaar]\n\nBetreft: spontane sollicitatie als technisch medewerker productie\n\nGeachte mevrouw Geets,\n\n[Alleen als Remi het echt zag: In het M HKA zag ik [tentoonstelling of project dat Remi zag]; daarbij viel mij op [hoe een werk getoond, opgehangen of opgebouwd was]. Anders: In het M HKA werken productie- en AV-techniekers aan de opbouw van tentoonstellingen.] Als maker kijk ik in een museum ook naar wat de bezoeker niet ziet: de sokkels, de wanden en de constructies die een werk laten staan zoals de kunstenaar het bedoelt. Aan dat werk wil ik meebouwen. Daarom stel ik mij spontaan kandidaat als technisch medewerker productie.\n\nAls technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal ken ik het werk van tekening tot afwerking. Ik begon er in 2021 als tekenaar en plooi- en lasoperator, met een opleiding in halfautomaat- en elektrodelassen, en stuur nu het atelier aan. Naast mijn werk volg ik interieurvormgeving in het avondonderwijs aan de Academie in Antwerpen, na drie jaar meubel en interieur en een jaar grafiek. Met mijn broer bouw ik meubels.\n\nVoor uw productieteam breng ik drie dingen mee. Ik zet een vraag om in een werktekening en een planning waarmee een atelier verder kan, bijvoorbeeld bij [concreet project en wat daar precies moest kloppen]. Ik maak zelf: ik plooi, las en werk af, en ik weet uit het atelier hoe plaatmateriaal zich gedraagt als een stuk stevig en strak afgewerkt moet zijn. En ik ga zorgvuldig om met beeld: ik bouwde een fotoarchief op, werk dat geduld en een vaste methode vraagt.\n\nIk stel voor om kort kennis te maken tijdens een werkbezoek, of om enkele dagen mee te helpen bij de opbouw van een tentoonstelling via een beroepsverkennende stage van VDAB. Een start in januari of februari 2027 is voor mij mogelijk. Mag ik u ook vragen mij op de hoogte te houden van selecties voor technische functies op niveau C in productie of tentoonstellingsopbouw?\n\nIk licht mijn kandidatuur graag toe in een gesprek. In bijlage vindt u mijn cv [en een beknopt portfolio, indien klaar].\n\nMet vriendelijke groeten\n\nRemi [Achternaam]\n\nBijlagen: cv[, portfolio]\n",
    "mail": "Aan: katrien.geets@muhka.be (of via de spontane sollicitatie op https://muhka.careersite.be/nl)\n\nOnderwerp: Spontane sollicitatie - technisch medewerker productie - Remi [Achternaam]\n\nGeachte mevrouw Geets,\n\nIk ben technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal, met een opleiding in halfautomaat- en elektrodelassen, en ik volg avondonderwijs interieurvormgeving aan de Academie in Antwerpen. De opbouw van tentoonstellingen in het M HKA sluit aan bij wat ik wil doen: tekenen, maken en zorgvuldig werken in dienst van de kunst. Daarom stel ik mij spontaan kandidaat als technisch medewerker productie.\n\nIn bijlage vindt u mijn motivatiebrief en mijn cv [en een beknopt portfolio, indien klaar]. Graag kom ik kennismaken tijdens een kort werkbezoek, of help ik enkele dagen mee bij de opbouw van een tentoonstelling via een beroepsverkennende stage van VDAB. Een start in januari of februari 2027 is voor mij mogelijk.\n\nMet vriendelijke groeten\nRemi [Achternaam]\n[gsm] | [e-mail] | [portfolio-link]\n\nBijlagen: Remi_[Achternaam]_Motivatiebrief.pdf, Remi_[Achternaam]_CV.pdf[, portfolio (pdf)]\n",
    "meta": {
     "organisatie": "M HKA, Museum van Hedendaagse Kunst Antwerpen",
@@ -7622,7 +7401,7 @@ export const seed = {
    "slug": "middelheim-spontaan",
    "cv": {
     "titel": "Technisch tekenaar en atelierverantwoordelijke in de plaatbewerking, maker in metaal, student interieurvormgeving",
-    "profiel": "Ik ben sinds 2021 technisch tekenaar bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal; ik begon als tekenaar en plooi- en lasoperator en ben nu verantwoordelijke van het atelier. Ik teken werkstukken uit, bereid het werk voor, plooi en las (halfautomaat en elektrode) en sta in voor afwerking en kwaliteitscontrole. Naast mijn werk studeer ik in het avondonderwijs aan de Academie in Antwerpen: na drie jaar meubel en interieur en een jaar grafiek volg ik nu interieurvormgeving; met mijn broer bouw ik meubels. Eerder ordende en digitaliseerde ik een fotoarchief voor Willy Van de Perre. Bij het Middelheimmuseum wil ik mijn kennis van metaal en mijn zorgvuldigheid inzetten voor het technische onderhoud van de sculpturen in de buitenlucht.",
+    "profiel": "Ik ben sinds 2021 technisch tekenaar bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal; ik begon als tekenaar en plooi- en lasoperator en ben nu verantwoordelijke van het atelier. Ik teken werkstukken uit, bereid het werk voor, plooi en las (halfautomaat en elektrode) en sta in voor afwerking en kwaliteitscontrole. Naast mijn werk studeer ik in het avondonderwijs aan de Academie in Antwerpen: na drie jaar meubel en interieur en een jaar grafiek volg ik nu interieurvormgeving; met mijn broer bouw ik meubels. Eerder ordende en digitaliseerde ik een fotoarchief. Bij het Middelheimmuseum wil ik mijn kennis van metaal en mijn zorgvuldigheid inzetten voor het technische onderhoud van de sculpturen in de buitenlucht.",
     "vaardigheden": [
      "Plooien op de kantbank, halfautomaat- en elektrodelassen, plaatwerk",
      "Technisch tekenen van maatwerk in plaatmateriaal ([CAD-programma])",
@@ -7633,7 +7412,7 @@ export const seed = {
      "Fietstechniek: bouw en herstel"
     ]
    },
-   "brief": "Remi [Achternaam]\n[Straat nummer]\n[postcode] Antwerpen\n[gsm] · [e-mail]\n\nMiddelheimmuseum\nT.a.v. [naam contactpersoon], [collectie- of technische dienst]\nMiddelheimlaan 61\n2020 Antwerpen\n\nAntwerpen, [dag maand jaar]\n\nBetreft: spontane sollicitatie als technisch assistent (niveau C) voor het onderhoud van de sculpturen\n\nGeachte mevrouw, geachte heer,\n\nHet Middelheimmuseum toont beeldhouwkunst in de open lucht. [Concreet beeld of tentoonstelling in het park dat Remi zag, en wat hem daarin aansprak.] Metalen sculpturen die buiten staan, vragen voortdurend onderhoud en conservatie. Aan dat technische onderhoud wil ik mijn vakmanschap bijdragen, en daarom schrijf ik u spontaan aan.\n\nAls technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal ken ik metaal van tekening tot afwerking. Ik begon er in 2021 als tekenaar en plooi- en lasoperator, met een opleiding in halfautomaat- en elektrodelassen [TIG bevestigen]; nu stuur ik het atelier aan. Naast mijn werk studeer ik in het avondonderwijs aan de Academie in Antwerpen: na drie jaar meubel en interieur en een jaar grafiek volg ik nu interieurvormgeving. Met mijn broer bouw ik meubels.\n\nVoor uw collectie- of technische ploeg breng ik drie troeven mee. Materiaalkennis: ik weet hoe metaal zich gedraagt bij plooien en lassen en welke afwerking het vraagt, bijvoorbeeld bij [concreet project en wat daar precies moest kloppen]. Zorgvuldigheid: ik sta in voor afwerking en kwaliteitscontrole en werk graag aan stukken die lang moeten meegaan. Ordening: voor Willy Van de Perre bouwde ik een fotoarchief op, en als tekenaar werk ik dagelijks met precieze tekeningen en maten.\n\nIk heb een diploma secundair onderwijs Wetenschappen-Wiskunde (Sint-Lutgardis, 2017). Ik weet dat de vacatures van de stad via job.antwerpen.be verlopen. Ik zou het op prijs stellen als u mijn kandidatuur bijhoudt en mij op de hoogte brengt van toekomstige selecties voor een technische functie op niveau C in het Middelheimmuseum of een ander stedelijk museum. Graag kom ik ook kennismaken in een kort gesprek met de collectie- of technische ploeg over het onderhoud van de sculpturen, of tijdens een werkbezoek.\n\nIn bijlage vindt u mijn cv [en een beknopt portfolio, indien klaar].\n\nMet vriendelijke groeten\n\nRemi [Achternaam]\n\nBijlagen: cv[, portfolio]\n",
+   "brief": "Remi [Achternaam]\n[Straat nummer]\n[postcode] Antwerpen\n[gsm] · [e-mail]\n\nMiddelheimmuseum\nT.a.v. [naam contactpersoon], [collectie- of technische dienst]\nMiddelheimlaan 61\n2020 Antwerpen\n\nAntwerpen, [dag maand jaar]\n\nBetreft: spontane sollicitatie als technisch assistent (niveau C) voor het onderhoud van de sculpturen\n\nGeachte mevrouw, geachte heer,\n\nHet Middelheimmuseum toont beeldhouwkunst in de open lucht. [Concreet beeld of tentoonstelling in het park dat Remi zag, en wat hem daarin aansprak.] Metalen sculpturen die buiten staan, vragen voortdurend onderhoud en conservatie. Aan dat technische onderhoud wil ik mijn vakmanschap bijdragen, en daarom schrijf ik u spontaan aan.\n\nAls technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal ken ik metaal van tekening tot afwerking. Ik begon er in 2021 als tekenaar en plooi- en lasoperator, met een opleiding in halfautomaat- en elektrodelassen [TIG bevestigen]; nu stuur ik het atelier aan. Naast mijn werk studeer ik in het avondonderwijs aan de Academie in Antwerpen: na drie jaar meubel en interieur en een jaar grafiek volg ik nu interieurvormgeving. Met mijn broer bouw ik meubels.\n\nVoor uw collectie- of technische ploeg breng ik drie troeven mee. Materiaalkennis: ik weet hoe metaal zich gedraagt bij plooien en lassen en welke afwerking het vraagt, bijvoorbeeld bij [concreet project en wat daar precies moest kloppen]. Zorgvuldigheid: ik sta in voor afwerking en kwaliteitscontrole en werk graag aan stukken die lang moeten meegaan. Ordening: ik bouwde een fotoarchief op, en als tekenaar werk ik dagelijks met precieze tekeningen en maten.\n\nIk heb een diploma secundair onderwijs Wetenschappen-Wiskunde (2017). Ik weet dat de vacatures van de stad via job.antwerpen.be verlopen. Ik zou het op prijs stellen als u mijn kandidatuur bijhoudt en mij op de hoogte brengt van toekomstige selecties voor een technische functie op niveau C in het Middelheimmuseum of een ander stedelijk museum. Graag kom ik ook kennismaken in een kort gesprek met de collectie- of technische ploeg over het onderhoud van de sculpturen, of tijdens een werkbezoek.\n\nIn bijlage vindt u mijn cv [en een beknopt portfolio, indien klaar].\n\nMet vriendelijke groeten\n\nRemi [Achternaam]\n\nBijlagen: cv[, portfolio]\n",
    "mail": "Aan: middelheimmuseum@antwerpen.be\n\nOnderwerp: Spontane sollicitatie - technisch assistent (niveau C), onderhoud van de sculpturen - Remi [Achternaam]\n\nGeachte mevrouw, geachte heer,\n\nMetalen sculpturen in de buitenlucht vragen voortdurend onderhoud en conservatie, en aan dat technische onderhoud wil ik mijn vakmanschap bijdragen. Als technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal, met ervaring in plooien en lassen (halfautomaat en elektrode), en als student interieurvormgeving aan de Academie in Antwerpen, stel ik mij kandidaat voor een technische functie in het Middelheimmuseum.\n\nIk heb een diploma secundair onderwijs en weet dat de vacatures van de stad via job.antwerpen.be verlopen. Ik zou het op prijs stellen als u mijn kandidatuur aan de collectie- of technische ploeg bezorgt en mij op de hoogte brengt van toekomstige selecties op niveau C. Graag kom ik ook kennismaken in een kort gesprek of tijdens een werkbezoek.\n\nIn bijlage vindt u mijn motivatiebrief en mijn cv [en een beknopt portfolio, indien klaar].\n\nMet vriendelijke groeten\nRemi [Achternaam]\n[gsm] | [e-mail]\n\nBijlagen: Remi_[Achternaam]_Motivatiebrief.pdf, Remi_[Achternaam]_CV.pdf[, portfolio (pdf)]\n",
    "meta": {
     "organisatie": "Middelheimmuseum",
@@ -7649,7 +7428,7 @@ export const seed = {
    "slug": "monumentenwacht-antwerpen-spontaan",
    "cv": {
     "titel": "Technisch tekenaar en atelierverantwoordelijke in de plaatbewerking, student interieurvormgeving",
-    "profiel": "Ik ben sinds 2021 technisch tekenaar bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal. Ik begon als tekenaar en plooi- en lasoperator en ben nu verantwoordelijke van het atelier. Ik teken werkstukken uit, plooi en las (halfautomaat en elektrode) en weet daardoor hoe metalen onderdelen gemaakt en verbonden worden. Voor Willy Van de Perre bouwde ik een fotoarchief op, en naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen: drie jaar meubel en interieur, een jaar grafiek en nu interieurvormgeving. Die combinatie van nauwkeurig tekenen, materiaalkennis en systematisch vastleggen wil ik inzetten als monumentenwachter: historische gebouwen inspecteren, hun toestand helder beschrijven en eigenaars goed adviseren.",
+    "profiel": "Ik ben sinds 2021 technisch tekenaar bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal. Ik begon als tekenaar en plooi- en lasoperator en ben nu verantwoordelijke van het atelier. Ik teken werkstukken uit, plooi en las (halfautomaat en elektrode) en weet daardoor hoe metalen onderdelen gemaakt en verbonden worden. Ik bouwde ook een fotoarchief op, en naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen: drie jaar meubel en interieur, een jaar grafiek en nu interieurvormgeving. Die combinatie van nauwkeurig tekenen, materiaalkennis en systematisch vastleggen wil ik inzetten als monumentenwachter: historische gebouwen inspecteren, hun toestand helder beschrijven en eigenaars goed adviseren.",
     "vaardigheden": [
      "Technisch tekenen van maatwerk in plaatmateriaal ([CAD-programma])",
      "Archiveren en digitaliseren van beeldmateriaal",
@@ -7660,7 +7439,7 @@ export const seed = {
      "Fietstechniek: bouw en herstel"
     ]
    },
-   "brief": "Remi [Achternaam]\n[Straat nummer]\n[postcode] Antwerpen\n[gsm] · [e-mail]\n\nMonumentenwacht Antwerpen\nProvincie Antwerpen, Dienst Erfgoed\nT.a.v. [naam contactpersoon], [functie]\nRuggeveldlaan 99\n2100 Deurne\n\nAntwerpen, [dag maand jaar]\n\nBetreft: spontane sollicitatie als monumentenwachter\n\nGeachte mevrouw, geachte heer,\n\n[Eén zin over hoe Remi Monumentenwacht Antwerpen leerde kennen: een gebouw, een inspectie die hij zag of een gesprek.] Uw monumentenwachters inspecteren historische gebouwen, leggen hun toestand vast in verslagen met tekeningen en adviseren de eigenaars. Uw vacature voor een monumentenwachter duurzaamheid, met een praktijkproef ter plaatse, toonde mij bovendien dat u het vak in de praktijk toetst, en dat spreekt mij aan. Daarom schrijf ik u spontaan aan.\n\nAls technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal ken ik het werk van tekening tot afwerking. Ik teken uit, plooi en las (halfautomaat en elektrode) en stuur het atelier aan. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen: drie jaar meubel en interieur, een jaar grafiek en nu interieurvormgeving. Samen met mijn broer bouw ik meubels.\n\nHet werk van een monumentenwachter vraagt wat mij het meest aanspreekt: nauwkeurig kijken, begrijpen hoe iets gebouwd is en dat helder vastleggen, zodat een eigenaar weet wat er moet gebeuren. Ik wil mijn vakmanschap inzetten voor erfgoed, en bij uw dienst gebeurt dat heel direct: op en in de gebouwen zelf.\n\nIk breng drie dingen mee. Als tekenaar zet ik elke dag een vraag om in een tekening waarmee anderen kunnen werken; dat is ook de kern van een goed verslag. Doordat ik zelf plooi en las, weet ik hoe metalen onderdelen gemaakt en verbonden worden. En voor Willy Van de Perre bouwde ik een fotoarchief op, werk dat geduld en een vaste methode vraagt.\n\n[Eén zin over werken op hoogte en op ladders: ervaring of bereidheid tot opleiding bevestigen.] Ik zou graag in een kort infogesprek of tijdens een werkbezoek horen welke instapmogelijkheden er zijn voor iemand met een achtergrond in metaal en tekenen. Met mijn diploma secundair onderwijs Wetenschappen-Wiskunde kom ik in aanmerking voor functies op niveau C. Mag ik u ook vragen mij op de hoogte te houden van toekomstige selecties op niveau C bij Monumentenwacht Antwerpen?\n\nIn bijlage vindt u mijn cv en een beknopt portfolio.\n\nMet vriendelijke groeten\n\nRemi [Achternaam]\n\nBijlagen: cv, portfolio\n",
+   "brief": "Remi [Achternaam]\n[Straat nummer]\n[postcode] Antwerpen\n[gsm] · [e-mail]\n\nMonumentenwacht Antwerpen\nProvincie Antwerpen, Dienst Erfgoed\nT.a.v. [naam contactpersoon], [functie]\nRuggeveldlaan 99\n2100 Deurne\n\nAntwerpen, [dag maand jaar]\n\nBetreft: spontane sollicitatie als monumentenwachter\n\nGeachte mevrouw, geachte heer,\n\n[Eén zin over hoe Remi Monumentenwacht Antwerpen leerde kennen: een gebouw, een inspectie die hij zag of een gesprek.] Uw monumentenwachters inspecteren historische gebouwen, leggen hun toestand vast in verslagen met tekeningen en adviseren de eigenaars. Uw vacature voor een monumentenwachter duurzaamheid, met een praktijkproef ter plaatse, toonde mij bovendien dat u het vak in de praktijk toetst, en dat spreekt mij aan. Daarom schrijf ik u spontaan aan.\n\nAls technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal ken ik het werk van tekening tot afwerking. Ik teken uit, plooi en las (halfautomaat en elektrode) en stuur het atelier aan. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen: drie jaar meubel en interieur, een jaar grafiek en nu interieurvormgeving. Samen met mijn broer bouw ik meubels.\n\nHet werk van een monumentenwachter vraagt wat mij het meest aanspreekt: nauwkeurig kijken, begrijpen hoe iets gebouwd is en dat helder vastleggen, zodat een eigenaar weet wat er moet gebeuren. Ik wil mijn vakmanschap inzetten voor erfgoed, en bij uw dienst gebeurt dat heel direct: op en in de gebouwen zelf.\n\nIk breng drie dingen mee. Als tekenaar zet ik elke dag een vraag om in een tekening waarmee anderen kunnen werken; dat is ook de kern van een goed verslag. Doordat ik zelf plooi en las, weet ik hoe metalen onderdelen gemaakt en verbonden worden. En ik bouwde een fotoarchief op, werk dat geduld en een vaste methode vraagt.\n\n[Eén zin over werken op hoogte en op ladders: ervaring of bereidheid tot opleiding bevestigen.] Ik zou graag in een kort infogesprek of tijdens een werkbezoek horen welke instapmogelijkheden er zijn voor iemand met een achtergrond in metaal en tekenen. Met mijn diploma secundair onderwijs Wetenschappen-Wiskunde kom ik in aanmerking voor functies op niveau C. Mag ik u ook vragen mij op de hoogte te houden van toekomstige selecties op niveau C bij Monumentenwacht Antwerpen?\n\nIn bijlage vindt u mijn cv en een beknopt portfolio.\n\nMet vriendelijke groeten\n\nRemi [Achternaam]\n\nBijlagen: cv, portfolio\n",
    "mail": "Aan: monumentenwacht@provincieantwerpen.be\n\nOnderwerp: Spontane sollicitatie - monumentenwachter - Remi [Achternaam]\n\nGeachte mevrouw, geachte heer,\n\nIk ben technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal, en ik volg avondonderwijs interieurvormgeving aan de Academie in Antwerpen. Ik wil mijn vakmanschap inzetten voor erfgoed en schrijf u daarom spontaan aan voor een functie als monumentenwachter bij Monumentenwacht Antwerpen.\n\nIn bijlage vindt u mijn motivatiebrief, mijn cv en een beknopt portfolio. Ik zou graag in een kort infogesprek of tijdens een werkbezoek horen welke instapmogelijkheden er zijn voor iemand met een achtergrond in metaal en tekenen. Mag ik u ook vragen mij op de hoogte te houden van toekomstige selecties op niveau C?\n\nMet vriendelijke groeten\nRemi [Achternaam]\n[gsm] | [e-mail] | [portfolio-link]\n\nBijlagen: motivatiebrief (pdf), cv (pdf), portfolio (pdf)\n",
    "meta": {
     "organisatie": "Monumentenwacht Antwerpen",
@@ -7676,7 +7455,7 @@ export const seed = {
    "slug": "onroerend-erfgoed-spontaan",
    "cv": {
     "titel": "Technisch tekenaar en atelierverantwoordelijke, met ervaring in archivering en maatwerk",
-    "profiel": "Ik ben technisch tekenaar en verantwoordelijke van het atelier bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal, sinds 2021; ik begon er als tekenaar en plooi- en lasoperator. Ik teken werkstukken uit, bereid het werk voor en sta in voor afwerking en kwaliteitscontrole. Eerder bouwde ik een fotoarchief op voor Willy Van de Perre, waarvoor ik beelden ordende en digitaliseerde. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen (drie jaar meubel en interieur, een jaar grafiek, nu interieurvormgeving) en bouw ik meubels met mijn broer. Als depotmedewerker bij het Agentschap Onroerend Erfgoed wil ik die zorgvuldigheid, materiaalkennis en zin voor ordening inzetten voor het bewaren van erfgoed.",
+    "profiel": "Ik ben technisch tekenaar en verantwoordelijke van het atelier bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal, sinds 2021; ik begon er als tekenaar en plooi- en lasoperator. Ik teken werkstukken uit, bereid het werk voor en sta in voor afwerking en kwaliteitscontrole. Eerder bouwde ik een fotoarchief op, waarvoor ik beelden ordende en digitaliseerde. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen (drie jaar meubel en interieur, een jaar grafiek, nu interieurvormgeving) en bouw ik meubels met mijn broer. Als depotmedewerker bij het Agentschap Onroerend Erfgoed wil ik die zorgvuldigheid, materiaalkennis en zin voor ordening inzetten voor het bewaren van erfgoed.",
     "vaardigheden": [
      "Archiveren en digitaliseren van beeldmateriaal",
      "Sterk in wiskunde en structureel denken; nauwkeurig, geduldig en betrouwbaar",
@@ -7687,7 +7466,7 @@ export const seed = {
      "Fietstechniek: bouw en herstel"
     ]
    },
-   "brief": "Remi [Achternaam]\n[Straat nummer]\n[postcode] Antwerpen\n[gsm] · [e-mail]\n\nAgentschap Onroerend Erfgoed\nT.a.v. [naam contactpersoon], [dienst of functie]\n[Adres]\n\nAntwerpen, [dag maand jaar]\n\nBetreft: spontane sollicitatie als depotmedewerker (niveau C)\n\nGeachte mevrouw, geachte heer,\n\nIk las dat het Agentschap Onroerend Erfgoed spontane kandidaturen verwelkomt. [Concrete haak: een monument, project of publicatie van het agentschap dat Remi kent of bezocht, en wat hem daarin aansprak.] Ik zoek werk waarin vakmanschap, nauwkeurigheid en betekenis samenkomen. In de zorg voor erfgoed vind ik die drie terug. Daarom stel ik mij kandidaat als depotmedewerker.\n\nAls technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal ken ik het werk van tekening tot afwerking. Ik begon er in 2021 als tekenaar en plooi- en lasoperator, met een opleiding in halfautomaat- en elektrodelassen, en stuur nu het atelier aan. Eerder bouwde ik een fotoarchief op voor Willy Van de Perre. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen: drie jaar meubel en interieur, een jaar grafiek en nu interieurvormgeving. Met mijn broer bouw ik meubels.\n\nIn een depot telt wat ook in mijn atelier telt: nauwkeurig werken, alles terugvindbaar houden en zorgvuldig omgaan met materiaal. Ik noem drie troeven. Zorgvuldigheid: in het atelier sta ik in voor afwerking en kwaliteitscontrole, bijvoorbeeld bij [concreet project en wat daar precies moest kloppen]. Plannen en organiseren: ik bereid het werk voor en verdeel het over [aantal] collega's. Ordening: voor het fotoarchief ordende en digitaliseerde ik [omvang: aantal beelden en werkwijze].\n\nMet mijn diploma secundair onderwijs Wetenschappen-Wiskunde (Sint-Lutgardis, 2017) kom ik in aanmerking voor functies op niveau C. Ik begrijp dat uw selecties via werkenvoorvlaanderen.be verlopen. Ik zou het op prijs stellen als u mijn cv bijhoudt en mij op de hoogte brengt van toekomstige selecties voor depotmedewerker of een gelijkaardige functie op dat niveau. Ik kom ook graag kennismaken in een kort gesprek of tijdens een werkbezoek.\n\nIn bijlage vindt u mijn cv [en een beknopt portfolio, indien klaar].\n\nMet vriendelijke groeten\n\nRemi [Achternaam]\n\nBijlagen: cv[, portfolio]\n",
+   "brief": "Remi [Achternaam]\n[Straat nummer]\n[postcode] Antwerpen\n[gsm] · [e-mail]\n\nAgentschap Onroerend Erfgoed\nT.a.v. [naam contactpersoon], [dienst of functie]\n[Adres]\n\nAntwerpen, [dag maand jaar]\n\nBetreft: spontane sollicitatie als depotmedewerker (niveau C)\n\nGeachte mevrouw, geachte heer,\n\nIk las dat het Agentschap Onroerend Erfgoed spontane kandidaturen verwelkomt. [Concrete haak: een monument, project of publicatie van het agentschap dat Remi kent of bezocht, en wat hem daarin aansprak.] Ik zoek werk waarin vakmanschap, nauwkeurigheid en betekenis samenkomen. In de zorg voor erfgoed vind ik die drie terug. Daarom stel ik mij kandidaat als depotmedewerker.\n\nAls technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal ken ik het werk van tekening tot afwerking. Ik begon er in 2021 als tekenaar en plooi- en lasoperator, met een opleiding in halfautomaat- en elektrodelassen, en stuur nu het atelier aan. Eerder bouwde ik een fotoarchief op. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen: drie jaar meubel en interieur, een jaar grafiek en nu interieurvormgeving. Met mijn broer bouw ik meubels.\n\nIn een depot telt wat ook in mijn atelier telt: nauwkeurig werken, alles terugvindbaar houden en zorgvuldig omgaan met materiaal. Ik noem drie troeven. Zorgvuldigheid: in het atelier sta ik in voor afwerking en kwaliteitscontrole, bijvoorbeeld bij [concreet project en wat daar precies moest kloppen]. Plannen en organiseren: ik bereid het werk voor en verdeel het over [aantal] collega's. Ordening: voor het fotoarchief ordende en digitaliseerde ik [omvang: aantal beelden en werkwijze].\n\nMet mijn diploma secundair onderwijs Wetenschappen-Wiskunde (2017) kom ik in aanmerking voor functies op niveau C. Ik begrijp dat uw selecties via werkenvoorvlaanderen.be verlopen. Ik zou het op prijs stellen als u mijn cv bijhoudt en mij op de hoogte brengt van toekomstige selecties voor depotmedewerker of een gelijkaardige functie op dat niveau. Ik kom ook graag kennismaken in een kort gesprek of tijdens een werkbezoek.\n\nIn bijlage vindt u mijn cv [en een beknopt portfolio, indien klaar].\n\nMet vriendelijke groeten\n\nRemi [Achternaam]\n\nBijlagen: cv[, portfolio]\n",
    "mail": "Aan: vacatures@onroerenderfgoed.be\n\nOnderwerp: Spontane sollicitatie - depotmedewerker (niveau C) - Remi [Achternaam]\n\nGeachte mevrouw, geachte heer,\n\nIk las dat het Agentschap Onroerend Erfgoed spontane kandidaturen verwelkomt. Als technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal, met ervaring in het opbouwen van een fotoarchief en als student interieurvormgeving aan de Academie in Antwerpen, stel ik mij kandidaat als depotmedewerker.\n\nMet mijn diploma secundair onderwijs kom ik in aanmerking voor functies op niveau C. Ik begrijp dat uw selecties via werkenvoorvlaanderen.be verlopen. Ik zou het op prijs stellen als u mijn cv bijhoudt en mij op de hoogte brengt van toekomstige selecties voor depotmedewerker of een gelijkaardige functie op dat niveau.\n\nIn bijlage vindt u mijn motivatiebrief en mijn cv [en een beknopt portfolio, indien klaar]. Ik licht mijn kandidatuur graag toe in een kort gesprek.\n\nMet vriendelijke groeten\nRemi [Achternaam]\n[gsm] | [e-mail]\n\nBijlagen: Remi_[Achternaam]_Motivatiebrief.pdf, Remi_[Achternaam]_CV.pdf[, portfolio (pdf)]\n",
    "meta": {
     "organisatie": "Agentschap Onroerend Erfgoed",
@@ -7730,7 +7509,7 @@ export const seed = {
    "slug": "smego-spontaan",
    "cv": {
     "titel": "Technisch tekenaar en atelierverantwoordelijke in de plaatbewerking, lasser en meubelmaker",
-    "profiel": "Ik ben sinds 2021 technisch tekenaar bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal; ik begon als tekenaar en plooi- en lasoperator en ben nu verantwoordelijke van het atelier. Ik teken werkstukken uit, bereid het werk voor, plooi en las (halfautomaat en elektrode) en sta in voor afwerking en kwaliteitscontrole. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen, nu interieurvormgeving, na drie jaar meubel en interieur en een jaar grafiek; met mijn broer bouw ik meubels. Voor Willy Van de Perre bouwde ik een fotoarchief op, werk dat geduld en een vaste methode vraagt. Bij Smego Metaalwerken wil ik die kennis van metaal, tekening en afwerking inzetten voor de restauratie van historisch metaalwerk en het restauratievak in de praktijk leren.",
+    "profiel": "Ik ben sinds 2021 technisch tekenaar bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal; ik begon als tekenaar en plooi- en lasoperator en ben nu verantwoordelijke van het atelier. Ik teken werkstukken uit, bereid het werk voor, plooi en las (halfautomaat en elektrode) en sta in voor afwerking en kwaliteitscontrole. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen, nu interieurvormgeving, na drie jaar meubel en interieur en een jaar grafiek; met mijn broer bouw ik meubels. Ik bouwde ook een fotoarchief op, werk dat geduld en een vaste methode vraagt. Bij Smego Metaalwerken wil ik die kennis van metaal, tekening en afwerking inzetten voor de restauratie van historisch metaalwerk en het restauratievak in de praktijk leren.",
     "vaardigheden": [
      "Plooien op de kantbank, halfautomaat- en elektrodelassen [TIG bevestigen], plaatwerk",
      "Technisch tekenen van maatwerk in plaatmateriaal ([CAD-programma])",
@@ -7741,7 +7520,7 @@ export const seed = {
      "Fietstechniek: bouw en herstel"
     ]
    },
-   "brief": "Remi [Achternaam]\n[Straat nummer]\n[postcode] Antwerpen\n[gsm] · [e-mail]\n\nSmego Metaalwerken\nT.a.v. [naam contactpersoon], [functie]\nHoge Mauw 500\n2370 Arendonk\n\nAntwerpen, [dag maand jaar]\n\nBetreft: spontane sollicitatie als restauratiemedewerker metaal\n\nGeachte mevrouw, geachte heer,\n\nSmego Metaalwerken restaureert historisch metaalwerk; tot uw projecten behoort de restauratie van de poort aan het Falconplein in Antwerpen. [Concrete haak: wat Remi van die restauratie of van een ander project op smego.be zag, en welk detail hem aansprak.] Ik wil mijn vakmanschap in metaal inzetten voor erfgoed, en in uw atelier komen die twee samen. Daarom schrijf ik u spontaan aan.\n\nAls technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal ken ik het werk van tekening tot afwerking. Ik begon er in 2021 als tekenaar en plooi- en lasoperator, met een opleiding in halfautomaat- en elektrodelassen [TIG bevestigen], en stuur nu het atelier aan. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen, nu interieurvormgeving, na drie jaar meubel en interieur en een jaar grafiek. Met mijn broer bouw ik meubels.\n\nIk breng drie dingen mee. Als tekenaar zet ik de vraag van een klant om in een werktekening waarmee het atelier verder kan, bijvoorbeeld bij [concreet project en wat daar precies moest kloppen]. Doordat ik zelf plooi en las, weet ik hoe metalen onderdelen gemaakt en verbonden worden, en dat helpt om te begrijpen hoe een bestaand stuk in elkaar zit. En voor Willy Van de Perre bouwde ik een fotoarchief op, werk dat geduld en een vaste methode vraagt.\n\nRestauratie is een vak apart. Ik wil het in de praktijk leren, in een klein team waar zorgvuldigheid telt. [Eén zin over de verplaatsing naar Arendonk: rijbewijs B en vervoer bevestigen.]\n\nIk stel voor om een proefdag in uw atelier mee te draaien[ en daarbij een beknopt portfolio van mijn werkstukken mee te brengen]. Een start in januari of februari 2027 is mogelijk, eventueel via een individuele beroepsopleiding (IBO) van VDAB.\n\nIk licht mijn kandidatuur graag toe in een gesprek. In bijlage vindt u mijn cv [en een beknopt portfolio, indien klaar].\n\nMet vriendelijke groeten\n\nRemi [Achternaam]\n\nBijlagen: cv[, portfolio]\n",
+   "brief": "Remi [Achternaam]\n[Straat nummer]\n[postcode] Antwerpen\n[gsm] · [e-mail]\n\nSmego Metaalwerken\nT.a.v. [naam contactpersoon], [functie]\nHoge Mauw 500\n2370 Arendonk\n\nAntwerpen, [dag maand jaar]\n\nBetreft: spontane sollicitatie als restauratiemedewerker metaal\n\nGeachte mevrouw, geachte heer,\n\nSmego Metaalwerken restaureert historisch metaalwerk; tot uw projecten behoort de restauratie van de poort aan het Falconplein in Antwerpen. [Concrete haak: wat Remi van die restauratie of van een ander project op smego.be zag, en welk detail hem aansprak.] Ik wil mijn vakmanschap in metaal inzetten voor erfgoed, en in uw atelier komen die twee samen. Daarom schrijf ik u spontaan aan.\n\nAls technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal ken ik het werk van tekening tot afwerking. Ik begon er in 2021 als tekenaar en plooi- en lasoperator, met een opleiding in halfautomaat- en elektrodelassen [TIG bevestigen], en stuur nu het atelier aan. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen, nu interieurvormgeving, na drie jaar meubel en interieur en een jaar grafiek. Met mijn broer bouw ik meubels.\n\nIk breng drie dingen mee. Als tekenaar zet ik de vraag van een klant om in een werktekening waarmee het atelier verder kan, bijvoorbeeld bij [concreet project en wat daar precies moest kloppen]. Doordat ik zelf plooi en las, weet ik hoe metalen onderdelen gemaakt en verbonden worden, en dat helpt om te begrijpen hoe een bestaand stuk in elkaar zit. En ik bouwde een fotoarchief op, werk dat geduld en een vaste methode vraagt.\n\nRestauratie is een vak apart. Ik wil het in de praktijk leren, in een klein team waar zorgvuldigheid telt. [Eén zin over de verplaatsing naar Arendonk: rijbewijs B en vervoer bevestigen.]\n\nIk stel voor om een proefdag in uw atelier mee te draaien[ en daarbij een beknopt portfolio van mijn werkstukken mee te brengen]. Een start in januari of februari 2027 is mogelijk, eventueel via een individuele beroepsopleiding (IBO) van VDAB.\n\nIk licht mijn kandidatuur graag toe in een gesprek. In bijlage vindt u mijn cv [en een beknopt portfolio, indien klaar].\n\nMet vriendelijke groeten\n\nRemi [Achternaam]\n\nBijlagen: cv[, portfolio]\n",
    "mail": "Aan: [e-mailadres of contactformulier via https://smego.be/contact]\n\nOnderwerp: Spontane sollicitatie - restauratiemedewerker metaal - Remi [Achternaam]\n\nGeachte mevrouw, geachte heer,\n\nIk ben technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal, met een opleiding in halfautomaat- en elektrodelassen, en ik volg avondonderwijs interieurvormgeving aan de Academie in Antwerpen. Het restauratiewerk van Smego Metaalwerken, waaronder de poort aan het Falconplein in Antwerpen, sluit aan bij wat ik wil doen: mijn vakmanschap in metaal inzetten voor erfgoed. Daarom schrijf ik u spontaan aan voor een functie als restauratiemedewerker metaal.\n\nIn bijlage vindt u mijn motivatiebrief en mijn cv [en een beknopt portfolio, indien klaar]. Ik stel voor om een proefdag in uw atelier mee te draaien. Een start in januari of februari 2027 is mogelijk, eventueel via een individuele beroepsopleiding (IBO) van VDAB.\n\nMet vriendelijke groeten\nRemi [Achternaam]\n[gsm] | [e-mail] | [portfolio-link]\n\nBijlagen: Remi_[Achternaam]_Motivatiebrief.pdf, Remi_[Achternaam]_CV.pdf[, portfolio (pdf)]\n",
    "meta": {
     "organisatie": "Smego Metaalwerken",
@@ -7757,7 +7536,7 @@ export const seed = {
    "slug": "stad-antwerpen-musea-spontaan",
    "cv": {
     "titel": "Technisch tekenaar en atelierverantwoordelijke, met ervaring in maatwerk, meubelbouw en archivering",
-    "profiel": "Sinds 2021 werk ik bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal: ik begon er als tekenaar en plooi- en lasoperator en ben nu technisch tekenaar en verantwoordelijke van het atelier. Ik teken werkstukken uit, bereid het werk voor, plooi en las (halfautomaat en elektrode) en sta in voor afwerking en kwaliteitscontrole. Eerder bouwde ik een fotoarchief op voor Willy Van de Perre, waarvoor ik beelden ordende en digitaliseerde. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen (na meubel en interieur en grafiek nu interieurvormgeving) en bouw ik met mijn broer meubels. Als technisch assistent bij Musea en Erfgoed van Stad Antwerpen wil ik mijn nauwkeurigheid en materiaalkennis inzetten voor tentoonstellingsbouw, depot en collectiezorg.",
+    "profiel": "Sinds 2021 werk ik bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal: ik begon er als tekenaar en plooi- en lasoperator en ben nu technisch tekenaar en verantwoordelijke van het atelier. Ik teken werkstukken uit, bereid het werk voor, plooi en las (halfautomaat en elektrode) en sta in voor afwerking en kwaliteitscontrole. Eerder bouwde ik een fotoarchief op, waarvoor ik beelden ordende en digitaliseerde. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen (na meubel en interieur en grafiek nu interieurvormgeving) en bouw ik met mijn broer meubels. Als technisch assistent bij Musea en Erfgoed van Stad Antwerpen wil ik mijn nauwkeurigheid en materiaalkennis inzetten voor tentoonstellingsbouw, depot en collectiezorg.",
     "vaardigheden": [
      "Technisch tekenen van maatwerk in plaatmateriaal ([CAD-programma])",
      "Meubelontwerp en -bouw, samen met mijn broer [in metaal en hout bevestigen]",
@@ -7768,8 +7547,8 @@ export const seed = {
      "Fietstechniek: bouw en herstel"
     ]
    },
-   "brief": "Remi [Achternaam]\n[Straat nummer]\n[postcode] Antwerpen\n[gsm] · [e-mail]\n\nStad Antwerpen, Musea en Erfgoed\nT.a.v. [naam contactpersoon], [dienst of functie]\n[Adres]\n\nAntwerpen, [dag maand jaar]\n\nBetreft: spontane sollicitatie als technisch assistent (niveau C1) voor tentoonstellingsbouw, depot of collectiezorg\n\nGeachte mevrouw, geachte heer,\n\n[Concrete haak, hoogstens 25 woorden: een tentoonstelling of project in een van de stadsmusea dat Remi zag, en wat hem daarin aansprak.] Met Musea en Erfgoed zorgt Stad Antwerpen onder meer voor het Museum Plantin-Moretus, het Rubenshuis, het Red Star Line Museum, het Letterenhuis en het FelixArchief. Ik wil mijn vakmanschap inzetten voor erfgoed en ontwerp, en daarom stel ik mij kandidaat als technisch assistent voor tentoonstellingsbouw, depot of collectiezorg.\n\nAls technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal ken ik het werk van tekening tot afwerking. Ik begon er in 2021 als tekenaar en plooi- en lasoperator, met een opleiding in halfautomaat- en elektrodelassen. Eerder bouwde ik een fotoarchief op voor Willy Van de Perre. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen: na drie jaar meubel en interieur en een jaar grafiek nu interieurvormgeving. Met mijn broer bouw ik meubels.\n\nEen sokkel, een vitrine of een opstelling in een museumzaal moet precies uitgetekend, degelijk gemaakt en met zorg geplaatst worden. Dat vraagt dezelfde precisie als het maatwerk dat ik nu uitteken en maak. Zorgvuldigheid: in het atelier sta ik in voor afwerking en kwaliteitscontrole, bijvoorbeeld bij [concreet project en wat daar precies moest kloppen]. Plannen en organiseren: ik bereid het werk voor en verdeel het over [aantal] collega's, zodat een opdracht klaar is zoals afgesproken. Ordening: voor het fotoarchief ordende en digitaliseerde ik [omvang: aantal beelden en werkwijze].\n\nIk heb een diploma secundair onderwijs Wetenschappen-Wiskunde (Sint-Lutgardis, 2017). Ik weet dat de stad selecteert via job.antwerpen.be, met een competentiegesprek en vaak een praktische proef. Ik zou het op prijs stellen als u mijn cv bijhoudt en mij op de hoogte brengt van toekomstige selecties voor technisch assistent of een gelijkaardige functie op niveau C. Ik kom ook graag kennismaken tijdens een kort werkbezoek, waarbij ik mijn werkstukken kan tonen.\n\nIk licht mijn kandidatuur graag toe in een gesprek. In bijlage vindt u mijn cv [en een beknopt portfolio, indien klaar].\n\nMet vriendelijke groeten\n\nRemi [Achternaam]\n\nBijlagen: cv[, portfolio]\n",
-   "mail": "Aan: [e-mailadres of formulier via job.antwerpen.be]\n\nOnderwerp: Spontane sollicitatie - technisch assistent (niveau C1) Musea en Erfgoed - Remi [Achternaam]\n\nGeachte mevrouw, geachte heer,\n\nIk ben technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal, met een opleiding in halfautomaat- en elektrodelassen, en ik volg avondonderwijs interieurvormgeving aan de Academie in Antwerpen. Eerder bouwde ik een fotoarchief op voor Willy Van de Perre. Ik wil mijn vakmanschap inzetten voor erfgoed en ontwerp, en stel mij daarom spontaan kandidaat als technisch assistent voor tentoonstellingsbouw, depot of collectiezorg bij Musea en Erfgoed van Stad Antwerpen.\n\nIk heb een diploma secundair onderwijs. Ik zou het op prijs stellen als u mijn cv bijhoudt en mij op de hoogte brengt van toekomstige selecties voor technisch assistent of een gelijkaardige functie op niveau C.\n\nIn bijlage vindt u mijn motivatiebrief en mijn cv [en een beknopt portfolio, indien klaar]. Ik licht mijn kandidatuur graag toe in een kort gesprek.\n\nMet vriendelijke groeten\nRemi [Achternaam]\n[gsm] | [e-mail]\n\nBijlagen: Remi_[Achternaam]_Motivatiebrief.pdf, Remi_[Achternaam]_CV.pdf[, portfolio (pdf)]\n",
+   "brief": "Remi [Achternaam]\n[Straat nummer]\n[postcode] Antwerpen\n[gsm] · [e-mail]\n\nStad Antwerpen, Musea en Erfgoed\nT.a.v. [naam contactpersoon], [dienst of functie]\n[Adres]\n\nAntwerpen, [dag maand jaar]\n\nBetreft: spontane sollicitatie als technisch assistent (niveau C1) voor tentoonstellingsbouw, depot of collectiezorg\n\nGeachte mevrouw, geachte heer,\n\n[Concrete haak, hoogstens 25 woorden: een tentoonstelling of project in een van de stadsmusea dat Remi zag, en wat hem daarin aansprak.] Met Musea en Erfgoed zorgt Stad Antwerpen onder meer voor het Museum Plantin-Moretus, het Rubenshuis, het Red Star Line Museum, het Letterenhuis en het FelixArchief. Ik wil mijn vakmanschap inzetten voor erfgoed en ontwerp, en daarom stel ik mij kandidaat als technisch assistent voor tentoonstellingsbouw, depot of collectiezorg.\n\nAls technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal ken ik het werk van tekening tot afwerking. Ik begon er in 2021 als tekenaar en plooi- en lasoperator, met een opleiding in halfautomaat- en elektrodelassen. Eerder bouwde ik een fotoarchief op. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen: na drie jaar meubel en interieur en een jaar grafiek nu interieurvormgeving. Met mijn broer bouw ik meubels.\n\nEen sokkel, een vitrine of een opstelling in een museumzaal moet precies uitgetekend, degelijk gemaakt en met zorg geplaatst worden. Dat vraagt dezelfde precisie als het maatwerk dat ik nu uitteken en maak. Zorgvuldigheid: in het atelier sta ik in voor afwerking en kwaliteitscontrole, bijvoorbeeld bij [concreet project en wat daar precies moest kloppen]. Plannen en organiseren: ik bereid het werk voor en verdeel het over [aantal] collega's, zodat een opdracht klaar is zoals afgesproken. Ordening: voor het fotoarchief ordende en digitaliseerde ik [omvang: aantal beelden en werkwijze].\n\nIk heb een diploma secundair onderwijs Wetenschappen-Wiskunde (2017). Ik weet dat de stad selecteert via job.antwerpen.be, met een competentiegesprek en vaak een praktische proef. Ik zou het op prijs stellen als u mijn cv bijhoudt en mij op de hoogte brengt van toekomstige selecties voor technisch assistent of een gelijkaardige functie op niveau C. Ik kom ook graag kennismaken tijdens een kort werkbezoek, waarbij ik mijn werkstukken kan tonen.\n\nIk licht mijn kandidatuur graag toe in een gesprek. In bijlage vindt u mijn cv [en een beknopt portfolio, indien klaar].\n\nMet vriendelijke groeten\n\nRemi [Achternaam]\n\nBijlagen: cv[, portfolio]\n",
+   "mail": "Aan: [e-mailadres of formulier via job.antwerpen.be]\n\nOnderwerp: Spontane sollicitatie - technisch assistent (niveau C1) Musea en Erfgoed - Remi [Achternaam]\n\nGeachte mevrouw, geachte heer,\n\nIk ben technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal, met een opleiding in halfautomaat- en elektrodelassen, en ik volg avondonderwijs interieurvormgeving aan de Academie in Antwerpen. Eerder bouwde ik een fotoarchief op. Ik wil mijn vakmanschap inzetten voor erfgoed en ontwerp, en stel mij daarom spontaan kandidaat als technisch assistent voor tentoonstellingsbouw, depot of collectiezorg bij Musea en Erfgoed van Stad Antwerpen.\n\nIk heb een diploma secundair onderwijs. Ik zou het op prijs stellen als u mijn cv bijhoudt en mij op de hoogte brengt van toekomstige selecties voor technisch assistent of een gelijkaardige functie op niveau C.\n\nIn bijlage vindt u mijn motivatiebrief en mijn cv [en een beknopt portfolio, indien klaar]. Ik licht mijn kandidatuur graag toe in een kort gesprek.\n\nMet vriendelijke groeten\nRemi [Achternaam]\n[gsm] | [e-mail]\n\nBijlagen: Remi_[Achternaam]_Motivatiebrief.pdf, Remi_[Achternaam]_CV.pdf[, portfolio (pdf)]\n",
    "meta": {
     "organisatie": "Stad Antwerpen, Musea en Erfgoed",
     "functie": "Technisch assistent C1, musea en erfgoed (tentoonstellingsbouw, depot en collectiezorg)",
@@ -7849,7 +7628,7 @@ export const seed = {
      "Archiveren en digitaliseren van beeldmateriaal"
     ]
    },
-   "brief": "Remi [Achternaam]\n[Straat nummer]\n[postcode] Antwerpen\n[gsm] · [e-mail]\n\nVDAB, competentiecentrum [Antwerpen, Mechelen of Turnhout]\nT.a.v. [naam contactpersoon], [dienst of functie]\n[Adres]\n\nAntwerpen, [dag maand jaar]\n\nBetreft: spontane sollicitatie als instructeur lassen en metaal (niveau C)\n\nGeachte mevrouw, geachte heer,\n\n[Concrete haak: hoe Remi de competentiecentra leerde kennen, bijvoorbeeld een infosessie of een gesprek met een instructeur.] In uw competentiecentra leren volwassenen in kleine groepen het vak van lasser en metaalbewerker. Ik las dat u nieuwe instructeurs intern opleidt. Ik wil mijn vakmanschap inzetten om het vak door te geven, en daarom stel ik mij kandidaat als instructeur lassen en metaal.\n\nAls technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal ken ik het werk van tekening tot afwerking. Ik begon er in 2021 als tekenaar en plooi- en lasoperator, met een opleiding in halfautomaatlassen (MIG/MAG) en elektrodelassen [TIG bevestigen], en stuur nu het atelier aan. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen: na drie jaar meubel en interieur en een jaar grafiek nu interieurvormgeving. Met mijn broer bouw ik meubels.\n\nEen instructeur moet het vak kennen en het kunnen uitleggen. Vakkennis over het hele traject: ik teken uit, plooi, las en controleer de afwerking, bijvoorbeeld bij [concreet project en wat daar precies moest kloppen]. Begeleiden: als verantwoordelijke bereid ik het werk voor en verdeel ik het over [aantal] collega's, zodat iedereen weet wat er moet gebeuren, zoals bij [voorbeeld: een collega inwerken aan de kantbank of het lastoestel]. Zelf leren als volwassene: ik volg al jaren avondonderwijs naast mijn job en weet hoe het is om na een werkdag iets nieuws onder de knie te krijgen.\n\nIk heb een diploma secundair onderwijs Wetenschappen-Wiskunde (Sint-Lutgardis, 2017). Ik zou het op prijs stellen als u mijn cv bijhoudt en mij op de hoogte brengt van toekomstige selecties voor instructeur lassen en metaal of een gelijkaardige functie op niveau C, in een van uw competentiecentra in de provincie Antwerpen. Ik kom ook graag kennismaken tijdens een kort werkbezoek aan een competentiecentrum.\n\nIk licht mijn kandidatuur graag toe in een gesprek. In bijlage vindt u mijn cv [en een beknopt portfolio, indien klaar].\n\nMet vriendelijke groeten\n\nRemi [Achternaam]\n\nBijlagen: cv[, portfolio]\n",
+   "brief": "Remi [Achternaam]\n[Straat nummer]\n[postcode] Antwerpen\n[gsm] · [e-mail]\n\nVDAB, competentiecentrum [Antwerpen, Mechelen of Turnhout]\nT.a.v. [naam contactpersoon], [dienst of functie]\n[Adres]\n\nAntwerpen, [dag maand jaar]\n\nBetreft: spontane sollicitatie als instructeur lassen en metaal (niveau C)\n\nGeachte mevrouw, geachte heer,\n\n[Concrete haak: hoe Remi de competentiecentra leerde kennen, bijvoorbeeld een infosessie of een gesprek met een instructeur.] In uw competentiecentra leren volwassenen in kleine groepen het vak van lasser en metaalbewerker. Ik las dat u nieuwe instructeurs intern opleidt. Ik wil mijn vakmanschap inzetten om het vak door te geven, en daarom stel ik mij kandidaat als instructeur lassen en metaal.\n\nAls technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal ken ik het werk van tekening tot afwerking. Ik begon er in 2021 als tekenaar en plooi- en lasoperator, met een opleiding in halfautomaatlassen (MIG/MAG) en elektrodelassen [TIG bevestigen], en stuur nu het atelier aan. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen: na drie jaar meubel en interieur en een jaar grafiek nu interieurvormgeving. Met mijn broer bouw ik meubels.\n\nEen instructeur moet het vak kennen en het kunnen uitleggen. Vakkennis over het hele traject: ik teken uit, plooi, las en controleer de afwerking, bijvoorbeeld bij [concreet project en wat daar precies moest kloppen]. Begeleiden: als verantwoordelijke bereid ik het werk voor en verdeel ik het over [aantal] collega's, zodat iedereen weet wat er moet gebeuren, zoals bij [voorbeeld: een collega inwerken aan de kantbank of het lastoestel]. Zelf leren als volwassene: ik volg al jaren avondonderwijs naast mijn job en weet hoe het is om na een werkdag iets nieuws onder de knie te krijgen.\n\nIk heb een diploma secundair onderwijs Wetenschappen-Wiskunde (2017). Ik zou het op prijs stellen als u mijn cv bijhoudt en mij op de hoogte brengt van toekomstige selecties voor instructeur lassen en metaal of een gelijkaardige functie op niveau C, in een van uw competentiecentra in de provincie Antwerpen. Ik kom ook graag kennismaken tijdens een kort werkbezoek aan een competentiecentrum.\n\nIk licht mijn kandidatuur graag toe in een gesprek. In bijlage vindt u mijn cv [en een beknopt portfolio, indien klaar].\n\nMet vriendelijke groeten\n\nRemi [Achternaam]\n\nBijlagen: cv[, portfolio]\n",
    "mail": "Aan: [e-mailadres van het competentiecentrum of van de dienst werving van VDAB; bij een openstaande vacature solliciteert Remi via het online sollicitatieformulier bij de vacature (vdab.be of werkenvoorvlaanderen.be) en niet met deze mail]\n\nOnderwerp: Spontane sollicitatie - instructeur lassen en metaal (niveau C) - Remi [Achternaam]\n\nGeachte mevrouw, geachte heer,\n\nIk ben technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal, met een opleiding in halfautomaat- en elektrodelassen, en ik volg avondonderwijs interieurvormgeving aan de Academie in Antwerpen. Ik wil mijn vakmanschap inzetten om het vak door te geven, en stel mij daarom spontaan kandidaat als instructeur lassen en metaal in een van uw competentiecentra.\n\nIk heb een diploma secundair onderwijs. Ik zou het op prijs stellen als u mijn cv bijhoudt en mij op de hoogte brengt van toekomstige selecties voor instructeur lassen en metaal of een gelijkaardige functie op niveau C.\n\nIn bijlage vindt u mijn motivatiebrief en mijn cv [en een beknopt portfolio, indien klaar]. Ik licht mijn kandidatuur graag toe in een kort gesprek of tijdens een werkbezoek.\n\nMet vriendelijke groeten\nRemi [Achternaam]\n[gsm] | [e-mail]\n\nBijlagen: Remi_[Achternaam]_Motivatiebrief.pdf, Remi_[Achternaam]_CV.pdf[, portfolio (pdf)]\n",
    "meta": {
     "organisatie": "VDAB competentiecentra",
@@ -7865,7 +7644,7 @@ export const seed = {
    "slug": "verstraete-vanhecke-spontaan",
    "cv": {
     "titel": "Technisch tekenaar en atelierverantwoordelijke in de plaatbewerking, plooier en lasser (halfautomaat en elektrode)",
-    "profiel": "Ik ben sinds 2021 technisch tekenaar bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal; ik begon er als tekenaar en plooi- en lasoperator en ben nu verantwoordelijke van het atelier. Ik teken werkstukken uit, plooi en las zelf (halfautomaat en elektrode) en stuur het atelier aan, zodat ik het werk ken van tekening tot afwerking. Voor Willy Van de Perre bouwde ik een fotoarchief op, werk dat geduld en een vaste methode vraagt, en samen met mijn broer bouw ik meubels. Naast mijn werk volg ik avondonderwijs interieurvormgeving aan de Academie in Antwerpen, na drie jaar meubel en interieur en een jaar grafiek. Bij Verstraete & Vanhecke wil ik die combinatie van tekenen, metaalbewerking en zorg voor materiaal inzetten voor het metaalwerk in de restauratie van monumenten.",
+    "profiel": "Ik ben sinds 2021 technisch tekenaar bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal; ik begon er als tekenaar en plooi- en lasoperator en ben nu verantwoordelijke van het atelier. Ik teken werkstukken uit, plooi en las zelf (halfautomaat en elektrode) en stuur het atelier aan, zodat ik het werk ken van tekening tot afwerking. Ik bouwde ook een fotoarchief op, werk dat geduld en een vaste methode vraagt, en samen met mijn broer bouw ik meubels. Naast mijn werk volg ik avondonderwijs interieurvormgeving aan de Academie in Antwerpen, na drie jaar meubel en interieur en een jaar grafiek. Bij Verstraete & Vanhecke wil ik die combinatie van tekenen, metaalbewerking en zorg voor materiaal inzetten voor het metaalwerk in de restauratie van monumenten.",
     "vaardigheden": [
      "Plooien op de kantbank, halfautomaat- en elektrodelassen, plaatwerk",
      "Technisch tekenen van maatwerk in plaatmateriaal ([CAD-programma])",
@@ -7876,7 +7655,7 @@ export const seed = {
      "Fietstechniek: bouw en herstel"
     ]
    },
-   "brief": "Remi [Achternaam]\n[Straat nummer]\n[postcode] Antwerpen\n[gsm] · [e-mail]\n\nVerstraete & Vanhecke NV\nT.a.v. [naam contactpersoon], [functie]\n[Straat nummer]\n[postcode] Wilrijk\n\nAntwerpen, [dag maand jaar]\n\nBetreft: spontane sollicitatie als restauratiemedewerker metaalwerk\n\nGeachte mevrouw, geachte heer,\n\n[Eén zin over hoe Remi Verstraete & Vanhecke leerde kennen: een monument in restauratie of een werf die hij zag.] Uw bedrijf is al meer dan tweehonderd jaar actief en restaureert monumenten. Bij zo'n restauratie komt ook metaalwerk kijken, zoals [concreet voorbeeld van metaalwerk in een project van Verstraete & Vanhecke, na te gaan op v-v.be; niets gevonden: schrap dit zinsdeel]. Daar wil ik bijdragen; daarom schrijf ik u spontaan aan.\n\nSinds 2021 werk ik bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal. Ik begon er als technisch tekenaar en plooi- en lasoperator en ben nu verantwoordelijke van het atelier. Ik teken uit, plooi en las (halfautomaat en elektrode) en stuur het atelier aan. Naast mijn werk volg ik avondonderwijs interieurvormgeving aan de Academie in Antwerpen, na drie jaar meubel en interieur en een jaar grafiek.\n\nIk wil mijn vakmanschap inzetten voor erfgoed. Wat mij in restauratie aanspreekt, is dat het vertrekt van wat er al is: een hersteld of nieuw stuk moet passen bij het gebouw en opnieuw lang meegaan. Dat vraagt geduld en nauwkeurigheid, en daar ligt mijn sterkte.\n\nIk breng drie dingen mee. Als tekenaar zet ik een maat of een vraag om in een tekening waarmee het atelier kan werken, zoals bij [concreet project: wat, welk materiaal, welke moeilijkheid]; bij restauratie komt daar het opmeten van bestaand werk bij, en dat wil ik grondig leren. Doordat ik zelf plooi en las en een atelier aanstuur, weet ik hoe metalen onderdelen gemaakt en verbonden worden. En voor Willy Van de Perre bouwde ik een fotoarchief op, werk dat een vaste methode vraagt.\n\nIk stel voor om kennis te maken tijdens een kort werkbezoek of een proefdag in uw Antwerpse vestiging. Een start via een individuele beroepsopleiding (IBO) met VDAB in januari of februari 2027 is voor mij mogelijk. Zo leer ik het vak onder begeleiding van uw mensen en kunt u mijn werk in de praktijk beoordelen. Ik licht mijn kandidatuur graag toe in een gesprek.\n\nIn bijlage vindt u mijn cv en een beknopt portfolio.\n\nMet vriendelijke groeten\n\nRemi [Achternaam]\n\nBijlagen: cv, portfolio\n",
+   "brief": "Remi [Achternaam]\n[Straat nummer]\n[postcode] Antwerpen\n[gsm] · [e-mail]\n\nVerstraete & Vanhecke NV\nT.a.v. [naam contactpersoon], [functie]\n[Straat nummer]\n[postcode] Wilrijk\n\nAntwerpen, [dag maand jaar]\n\nBetreft: spontane sollicitatie als restauratiemedewerker metaalwerk\n\nGeachte mevrouw, geachte heer,\n\n[Eén zin over hoe Remi Verstraete & Vanhecke leerde kennen: een monument in restauratie of een werf die hij zag.] Uw bedrijf is al meer dan tweehonderd jaar actief en restaureert monumenten. Bij zo'n restauratie komt ook metaalwerk kijken, zoals [concreet voorbeeld van metaalwerk in een project van Verstraete & Vanhecke, na te gaan op v-v.be; niets gevonden: schrap dit zinsdeel]. Daar wil ik bijdragen; daarom schrijf ik u spontaan aan.\n\nSinds 2021 werk ik bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal. Ik begon er als technisch tekenaar en plooi- en lasoperator en ben nu verantwoordelijke van het atelier. Ik teken uit, plooi en las (halfautomaat en elektrode) en stuur het atelier aan. Naast mijn werk volg ik avondonderwijs interieurvormgeving aan de Academie in Antwerpen, na drie jaar meubel en interieur en een jaar grafiek.\n\nIk wil mijn vakmanschap inzetten voor erfgoed. Wat mij in restauratie aanspreekt, is dat het vertrekt van wat er al is: een hersteld of nieuw stuk moet passen bij het gebouw en opnieuw lang meegaan. Dat vraagt geduld en nauwkeurigheid, en daar ligt mijn sterkte.\n\nIk breng drie dingen mee. Als tekenaar zet ik een maat of een vraag om in een tekening waarmee het atelier kan werken, zoals bij [concreet project: wat, welk materiaal, welke moeilijkheid]; bij restauratie komt daar het opmeten van bestaand werk bij, en dat wil ik grondig leren. Doordat ik zelf plooi en las en een atelier aanstuur, weet ik hoe metalen onderdelen gemaakt en verbonden worden. En ik bouwde een fotoarchief op, werk dat een vaste methode vraagt.\n\nIk stel voor om kennis te maken tijdens een kort werkbezoek of een proefdag in uw Antwerpse vestiging. Een start via een individuele beroepsopleiding (IBO) met VDAB in januari of februari 2027 is voor mij mogelijk. Zo leer ik het vak onder begeleiding van uw mensen en kunt u mijn werk in de praktijk beoordelen. Ik licht mijn kandidatuur graag toe in een gesprek.\n\nIn bijlage vindt u mijn cv en een beknopt portfolio.\n\nMet vriendelijke groeten\n\nRemi [Achternaam]\n\nBijlagen: cv, portfolio\n",
    "mail": "Aan: [e-mailadres of contactformulier, na te gaan via https://v-v.be/vacatures/]\n\nOnderwerp: Spontane sollicitatie - restauratiemedewerker metaalwerk - Remi [Achternaam]\n\nGeachte mevrouw, geachte heer,\n\nIk ben technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal, met ervaring in plooien en lassen (halfautomaat en elektrode), en ik volg avondonderwijs interieurvormgeving aan de Academie in Antwerpen. Ik wil mijn vakmanschap inzetten voor erfgoed en schrijf u daarom spontaan aan voor een functie als restauratiemedewerker metaalwerk bij Verstraete & Vanhecke.\n\nIn bijlage vindt u mijn motivatiebrief, mijn cv en een beknopt portfolio. Graag maak ik kennis tijdens een kort werkbezoek of een proefdag. Een start via een individuele beroepsopleiding (IBO) met VDAB in januari of februari 2027 is voor mij mogelijk.\n\nMet vriendelijke groeten\nRemi [Achternaam]\n[gsm] | [e-mail] | [portfolio-link]\n\nBijlagen: motivatiebrief (pdf), cv (pdf), portfolio (pdf)\n",
    "meta": {
     "organisatie": "Verstraete & Vanhecke",
@@ -7892,8 +7671,8 @@ export const seed = {
  "sjablonen": {
   "mails.md": "# Mailsjablonen (Nederlands, \"u\" tegenover de werkgever)\n\n## Sollicitatiemail\nOnderwerp: Sollicitatie [functietitel] - Remi [Achternaam] (ref. [nummer])\n\nGeachte mevrouw [Naam], / Geachte heer [Naam], (onbekend: Geachte mevrouw, geachte heer,)\n\nMet veel interesse las ik uw vacature voor [functietitel] op [vdab.be / cultuurjobs.be / uw website]. Als technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal, met ervaring in plooien en lassen (halfautomaat en elektrode [TIG bevestigen]), en als student interieurvormgeving aan de Academie in Antwerpen, herken ik mij sterk in het profiel dat u zoekt.\n\nIn bijlage vindt u mijn cv, mijn motivatiebrief en een beknopt portfolio van mijn werkstukken. Ik licht mijn kandidatuur graag toe in een persoonlijk gesprek.\n\nMet vriendelijke groeten\nRemi [Achternaam]\n[gsm] | [e-mail] | [portfolio-link]\nBijlagen: cv, motivatiebrief, portfolio (pdf)\n\n## Spontane sollicitatie\nOnderwerp: Spontane sollicitatie - technisch tekenaar en maker in metaal - Remi [Achternaam]\n\nGeachte mevrouw [Naam], / Geachte heer [Naam],\n\nTijdens [een bezoek aan uw atelier / de tentoonstelling ... / mijn opleiding aan de Academie] leerde ik het werk van [organisatie] kennen. De zorg waarmee u [historisch metaalwerk restaureert / decors bouwt / collectiestukken bewaart] sluit nauw aan bij wat ik zelf doe: maatwerk in metaal uittekenen, plooien en lassen, en dat combineren met ontwerp en meubelbouw. Daarom schrijf ik u spontaan aan. Ik zou graag als [technisch medewerker / ateliermedewerker metaal / restauratiemedewerker] bijdragen aan uw projecten en stel voor om mijn werkstukken tijdens een kort werkbezoek of een proefdag te tonen. [Optioneel: Een start via een individuele beroepsopleiding (IBO) met VDAB in januari of februari 2027 is voor mij mogelijk.]\n\nIn bijlage vindt u mijn cv en portfolio.\n\nMet vriendelijke groeten\nRemi [Achternaam]\n[gsm] | [e-mail]\n\n## Opvolgmail (10 tot 14 dagen na verzending)\nOnderwerp: Opvolging sollicitatie [functietitel] - Remi [Achternaam]\n\nGeachte mevrouw [Naam], / Geachte heer [Naam],\n\nOp [datum] solliciteerde ik voor de functie van [functietitel]. Omdat ik nog geen nieuws ontving, wil ik graag nagaan of u mijn kandidatuur goed hebt ontvangen en of u al een zicht hebt op het verdere verloop van de procedure. Mijn interesse in de functie en in [organisatie] is onverminderd groot. Mocht u aanvullende informatie of referenties wensen, dan bezorg ik u die graag.\n\nMet vriendelijke groeten\nRemi [Achternaam], [gsm]\n\n## Bedankmail (binnen 24 tot 48 uur na het gesprek)\nOnderwerp: Bedankt voor het gesprek - [functietitel] - Remi [Achternaam]\n\nGeachte mevrouw [Naam], / Geachte heer [Naam],\n\nHartelijk dank voor het aangename gesprek van [dag]. Uw toelichting over [concreet project of werking van het atelier] heeft mijn interesse in de functie alleen maar versterkt. Vooral [de combinatie van restauratie en eigen ontwerp / het werken in een klein team] spreekt mij aan. Ik ben ervan overtuigd dat ik met mijn ervaring in tekenen, plooien en lassen van maatwerk en mijn ontwerpachtergrond een concrete bijdrage kan leveren. Ik kijk uit naar uw antwoord en blijf beschikbaar voor bijkomende vragen.\n\nMet vriendelijke groeten\nRemi [Achternaam]\n\n## Reactie op een afwijzing met vraag om feedback\nOnderwerp: Sollicitatie [functietitel] - vraag om feedback\n\nGeachte mevrouw [Naam], / Geachte heer [Naam],\n\nBedankt voor uw bericht en voor de tijd die u in mijn kandidatuur hebt geïnvesteerd. Het spijt me dat ik niet de weerhouden kandidaat ben, maar ik respecteer uw beslissing. Om mij verder te ontwikkelen zou ik het erg waarderen als u mij kort kunt meegeven welke punten de doorslag hebben gegeven en waar u mijn sterktes zag. Mag ik u ook vragen mijn kandidatuur in gedachten te houden voor gelijkaardige vacatures of een toekomstige werfreserve? Ik wens u en uw team veel succes met de nieuwe collega.\n\nMet vriendelijke groeten\nRemi [Achternaam], [gsm]\n\n## Vraag om een werkbezoek of beroepsverkennende stage\nOnderwerp: Vraag om een kort werkbezoek - Remi [Achternaam], technisch tekenaar en maker in metaal\n\nGeachte mevrouw [Naam], / Geachte heer [Naam],\n\nIk ben technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal, en student interieurvormgeving, en ik oriënteer mij naar werk in [erfgoed en restauratie / museum- en theaterateliers]. Het werk van [organisatie] volg ik met veel interesse. Mag ik u vragen of een kort werkbezoek aan [het atelier / het depot] mogelijk is, of een beroepsverkennende stage van enkele dagen via VDAB? Ik kom graag kijken, luisteren en meehelpen waar dat kan.\n\nMet vriendelijke groeten\nRemi [Achternaam], [gsm]\n",
   "motivatiebrief-basis.md": "# Motivatiebrief, basisversie (aan te passen per organisatie)\n\nGebruik \"u\" tegenover de werkgever. Eén A4. Ik-vorm, korte zinnen. Geen uitroeptekens. De tekst tussen vierkante haken wordt per sollicitatie ingevuld met de werkwijze in .claude/skills/sollicitatie.\n\n---\n\nRemi [Achternaam]\n[Straat nummer]\n[postcode] Antwerpen\n[gsm] · [e-mail]\n\n[Organisatie]\nT.a.v. [mevrouw/heer Voornaam Achternaam], [functie]\n[Adres]\n\nAntwerpen, [dag maand jaar]\n\nBetreft: sollicitatie [functietitel] [(ref. nummer)] / spontane sollicitatie als [functie]\n\nGeachte mevrouw [Naam], / Geachte heer [Naam], / Geachte mevrouw, geachte heer,\n\n[Inleiding met haak: hoe ik de vacature of organisatie ken, één concreet detail over hun werk dat mij aanspreekt.]\n\nAls technisch tekenaar en verantwoordelijke van een atelier voor maatwerk in plaatmateriaal ken ik het werk van tekening tot afwerking. Ik teken uit, plooi en las (halfautomaat en elektrode [TIG bevestigen]), stuur het atelier aan en werk graag aan stukken die precies moeten zijn en lang moeten meegaan. Daarvoor bouwde ik een fotoarchief op en werkte ik in een creatief fietsatelier. Naast mijn werk volg ik avondonderwijs aan de Academie in Antwerpen, eerst meubel en interieur, nu interieurvormgeving, en bouw ik meubels. Die combinatie van ambacht en ontwerp wil ik inzetten voor [erfgoed en restauratie / de ateliers van uw huis / het doorgeven van het vak].\n\n[Waarom deze organisatie: twee of drie zinnen die tonen dat ik weet wat zij doen en waarom dat bij mij past.]\n\n[Waarom ik: twee of drie troeven met een concreet voorbeeld. Bijvoorbeeld: een project waar zorgvuldigheid het verschil maakte; iets over samenwerken in een klein team; iets over materiaalkennis.]\n\n[Concreet voorstel: een gesprek, een werkbezoek, een proefdag, een stage of een IBO-start in januari of februari 2027.]\n\nIk licht mijn kandidatuur graag toe in een gesprek. In bijlage vindt u mijn cv en een beknopt portfolio.\n\nMet vriendelijke groeten\n\nRemi [Achternaam]\n\nBijlagen: cv, portfolio\n",
-  "vdab-profiel.md": "# VDAB-profiel (Mijn Loopbaan): tekst voor Remi\n\nDoel: gevonden worden door werkgevers en bemiddelaars die zoeken op erfgoed, restauratie, museum, decor, atelier, instructeur en lassen. VDAB-profielen zijn kort en zakelijk. Zet het profiel op zichtbaar voor werkgevers en vul de rubrieken hieronder letterlijk over.\n\n## Titel (functietitel bovenaan)\nTechnisch tekenaar en atelierverantwoordelijke plaatbewerking, lasser en meubelmaker, op zoek naar werk in erfgoed, restauratie, archief en cultuurateliers\n\n## Korte voorstelling (maximaal 5 zinnen)\nTechnisch tekenaar en verantwoordelijke atelier bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal, sinds 2021. Ik teken werkstukken uit, bereid het werk voor, plooi en las zelf (halfautomaat en elektrode) en stuur het atelier aan. Daarvoor werkte ik in een creatief fietsatelier en bouwde ik een fotoarchief op; daarnaast volg ik interieurvormgeving aan de Academie in Antwerpen en bouw ik meubels. Ik zoek werk waarin vakmanschap en zorgvuldigheid ergens toe dienen: restauratie van historisch metaalwerk, museum- of theaterateliers, archief en collectiezorg, tentoonstellingsbouw, of het doorgeven van het vak. Ik werk het best in een klein team en ben beschikbaar vanaf [datum].\n\n## Gewenste functies (kies er tot vijf in de VDAB-lijst)\n- Technisch tekenaar of werkvoorbereider metaal en plaatbewerking\n- Decorbouwer, ateliermedewerker metaal of vitrinebouwer\n- Technisch medewerker museum, depot of tentoonstellingsbouw\n- Restauratiemedewerker metaal (monumentenzorg)\n- Instructeur of praktijkbegeleider lassen en metaal\n\n## Gewenste sectoren\nCultuur en erfgoed; bouw en restauratie; metaal; onderwijs en opleiding; sociale economie\n\n## Competenties (vinkjes en vrije tekst)\n- Technisch tekenen van maatwerk in plaatmateriaal ([CAD-programma])\n- Werkvoorbereiding, planning en aansturing van een atelier\n- Plooien op de kantbank, MIG/MAG-lassen (135) en elektrodelassen (111) [TIG bevestigen]\n- Plaatwerk: snijden, plooien, afwerken, kwaliteitscontrole\n- Opmeten en uittekenen op maat, montage\n- Meubelontwerp en -bouw [in metaal en hout, materiaal bevestigen]\n- Fietsbouw en -herstel\n- Archiveren en digitaliseren van beeldmateriaal\n- Veiligheid: VCA-basis [geldig tot]\n- Rijbewijs B [indien van toepassing]\n\n## Talen\nNederlands moedertaal; Engels goed; Frans [niveau]\n\n## Opleiding\n- Interieurvormgeving, avondonderwijs aan de Academie in Antwerpen, lopend [precieze opleiding bevestigen]\n- Meubel en interieur (drie jaar) en grafiek (een jaar), avondonderwijs aan de Academie in Antwerpen\n- Lasopleiding halfautomaat en elektrodelassen, [instelling], [jaar]\n- Diploma secundair onderwijs Wetenschappen-Wiskunde, Sint-Lutgardis, 2017\n\n## Werkervaring\n2021 tot heden: technisch tekenaar en verantwoordelijke atelier, [bedrijf], [gemeente]. Gestart als tekenaar en plooi- en lasoperator. Maatwerk in plaatmateriaal van tekening tot afwerking.\n2019: medewerker creatief fietsatelier, Antwerpen.\n2017 tot 2018: opbouw van een fotoarchief voor Willy Van de Perre.\n2017 tot 2018: [functie], Katoen Natie, Antwerpen.\n[jaar] tot heden: meubelmaker in eigen beheer, samen met mijn broer, Antwerpen.\n\n## Mobiliteit en beschikbaarheid\nAntwerpen en omgeving, bereikbaar met openbaar vervoer [en fiets/wagen]. Voltijds of deeltijds. Beschikbaar vanaf [datum]. Open voor een individuele beroepsopleiding (IBO) of een beroepsverkennende stage.\n\n## Trefwoorden om zeker in de vrije tekst te zetten\nerfgoed, restauratie, monumentenzorg, museum, depot, archief, decoratelier, decorbouw, tentoonstellingsbouw, atelier, technisch tekenaar, werkvoorbereider, plaatbewerking, plooien, kantbank, MIG/MAG, elektrodelassen, plannen lezen, meubelmaker, interieurvormgeving, instructeur lassen\n",
-  "vragenlijst-remi.md": "# Vragenlijst voor Remi\n\nDeze vragen zijn voor jou, Remi. Niets hoeft in één keer. Korte antwoorden zijn goed; een voorbeeld is beter dan een omschrijving. Alles wat je invult blijft op dit toestel tot je het exporteert of kopieert voor Giulia. Uit je antwoorden komen het cv, de brieven, de tekst voor VDAB en de keuzes voor de volgende stap.\n\n## Praktisch, voor het cv\n\nFeiten die op een cv of in een dossier moeten kloppen.\n\n- Volledige naam, geboortedatum en geboorteplaats\n  \n\n- Adres, gsm-nummer en e-mailadres dat je voor sollicitaties wil gebruiken\n  \n\n- Rijbewijs (B, ja of nee) en hoe je je verplaatst: fiets, openbaar vervoer, auto. Tot hoeveel minuten pendelen is haalbaar?\n  \n\n- Talen en niveau: Nederlands, Frans, Engels, andere\n  \n\n- Naam van je huidige werkgever, gemeente, en de startdatum van je contract (staat op het contract of de eerste loonfiche)\n  \n\n- Wat staat er op je loonfiche: arbeider of bediende, en welk paritair comité (bijvoorbeeld 111, 200, 209)?  \n  (Dit bepaalt gewaarborgd loon, vakantiegeld en eindejaarspremie.)\n  \n\n- Je functietitel volgens het contract, en wat je vandaag echt doet (tekenen, plooien, lassen, atelier aansturen, hoeveel collega's)\n  \n\n- Welk tekenprogramma gebruik je (bijvoorbeeld SolidWorks, AutoCAD, Inventor, Tekla) en hoe goed?\n  \n\n- Welke lasprocessen beheers je: halfautomaat (MIG/MAG), elektrode, TIG? Welke certificaten heb je, met norm en geldigheid?\n  \n\n- Andere attesten: VCA, heftruck, hoogtewerker, EHBO, kantbank, andere\n  \n\n- Je opleidingen precies: secundair (richting, school, jaar), lasopleiding (waar, wanneer), academie (welke richtingen, welke jaren, getuigschrift of diploma)\n  \n\n- Katoen Natie: welke functie, welke afdeling, hoelang?\n  \n\n- Het creatief fietsatelier: naam, wat je daar maakte of herstelde, een voorbeeld\n  \n\n- Het fotoarchief voor Willy Van de Perre: wie is hij, hoeveel beelden, hoe heb je het aangepakt (ordenen, scannen, beschrijven, software)?\n  \n\n- Welke werkstukken bestaan er in foto's: meubels, constructies, fietsen, tekeningen? Waar staan die foto's?  \n  (Voor het portfolio: 6 tot 10 stukken met titel, jaar, materiaal, techniek.)\n  \n\n- Vanaf wanneer ben je beschikbaar, voltijds of deeltijds, en welke dagen of avonden zijn bezet door de academie?\n  \n\n- Wat is je huidige brutoloon per maand, en wat heb je netto minimaal nodig om rond te komen?  \n  (Dit is voor de keuze tussen uitkering, opleiding en werk, niet voor een cv.)\n  \n\n## Werk dat bij je past\n\nConcrete momenten zeggen meer dan eigenschappen.\n\n- Drie momenten op het werk waarop je dacht: dit is goed. Wat deed je precies?\n  \n\n- Drie momenten waarop het echt niet ging. Wat gebeurde er?\n  \n\n- Een project waar je trots op bent: wat, voor wie, wat was moeilijk, hoe heb je het opgelost?  \n  (Dit wordt een regel op het cv en een voorbeeld in het gesprek.)\n  \n\n- Nog een project, liefst iets helemaal anders\n  \n\n- Wat doe je het liefst in het atelier: tekenen, plooien, lassen, organiseren, uitleggen aan anderen? Zet ze in volgorde.\n  \n\n- Wat is fysiek het zwaarst, en waar voel je dat (rug, schouders, handen, ogen, ademhaling)?  \n  (Ook voor de huisarts.)\n  \n\n- Werk je liever alleen, met twee of drie, of in een grotere ploeg? Waarom?\n  \n\n- Liever een klein bedrijf, een grote organisatie, een overheid, een vzw? Wat trekt je aan en wat schrikt af?\n  \n\n- Wat zouden je collega's zeggen als iemand vraagt hoe het is om met jou te werken?\n  \n\n- Wat heb je nodig van een baas of ploegbaas om goed te werken? En wat verdraag je niet?\n  \n\n## Sterktes en werkpunten\n\nEerlijk en met een voorbeeld; dit is geen sollicitatiegesprek.\n\n- Drie dingen waar je goed in bent, telkens met een voorbeeld\n  \n\n- Drie dingen die je wil verbeteren of die je moeilijk vindt\n  \n\n- Waarvoor komen mensen bij jou om hulp?\n  \n\n- Hoe leer je het liefst: door te doen, te kijken, te lezen, uitleg te krijgen?\n  \n\n- Hoe reageer je als er druk of stress is? Wat helpt dan?\n  \n\n- Wanneer zeg je te weinig, en wanneer had je liever iets gezegd?  \n  (De tests zeggen dat je niet snel op de voorgrond treedt; dit is om te weten waar dat je iets kost.)\n  \n\n- Wat weet je over jezelf dat niet in een test staat?\n  \n\n## Passies en interesses\n\nWat je doet als niemand het vraagt.\n\n- Waar gaat je aandacht naartoe buiten het werk: maken, lezen, kijken, sporten, mensen, plekken?\n  \n\n- Welke gebouwen, objecten, musea of ateliers hebben je ooit geraakt, en waarom?\n  \n\n- Als geld geen rol speelde: wat zou je een jaar lang maken of leren?\n  \n\n- Van de sporen in de app (erfgoed en restauratie, culturele instellingen, lesgeven, sociaal en ecologisch, archief en archeologie): welke trekt het meest, welke het minst, en waarom?\n  \n\n- Welk werkveld in de Verkenning verraste je positief, en welk zou je meteen schrappen?\n  \n\n- Heb je ooit vrijwilligerswerk gedaan of iemand iets aangeleerd? Hoe was dat?\n  \n\n- Wat zou je op de academie het liefst verder doen: meubel, interieur, grafiek, iets anders?\n  \n\n## De overstap\n\nHier gaat het om keuzes voor de komende maanden.\n\n- Drie dingen die de volgende job zeker moet hebben\n  \n\n- Drie dingen die je in de volgende job wil vermijden\n  \n\n- Wil je opnieuw studeren? Zo ja: hoelang zou je dat volhouden (een jaar, twee, drie), overdag of in de avond, en wat trekt je: restauratie, tekenen, lesgeven, archief, iets anders?\n  \n\n- Hoe voel je je nu: energie van 1 tot 10, slaap, zin om dingen te doen? Wat helpt je herstellen?\n  \n\n- Hoeveel weken rust denk je nodig te hebben voor je ergens nieuw kunt beginnen?\n  \n\n- Wat wil je dat Giulia doet in dit traject, en wat wil je liever zelf doen?\n  \n\n- Wat houdt je tegen om iets te tekenen bij je werkgever, en wat zou je willen dat er in de plaats gebeurt?\n  \n\n## Voor het gesprek\n\nTwee zinnen die je paraat wil hebben.\n\n- Hoe zeg je in twee zinnen waarom je weggaat, zonder het over vermoeidheid of je werkgever te hebben?  \n  (Bijvoorbeeld: na vijf jaar plaatbewerking wil ik mijn vakmanschap inzetten voor werk dat blijft, zoals erfgoed of museumateliers.)\n  \n\n- Welke vraag zou jij aan een werkgever stellen om te weten of je er past?\n  \n\n- Wie kan als referentie dienen (een collega, een klant, een docent) en mag je die naam gebruiken?\n  \n"
+  "vdab-profiel.md": "# VDAB-profiel (Mijn Loopbaan): tekst voor Remi\n\nDoel: gevonden worden door werkgevers en bemiddelaars die zoeken op erfgoed, restauratie, museum, decor, atelier, instructeur en lassen. VDAB-profielen zijn kort en zakelijk. Zet het profiel op zichtbaar voor werkgevers en vul de rubrieken hieronder letterlijk over.\n\n## Titel (functietitel bovenaan)\nTechnisch tekenaar en atelierverantwoordelijke plaatbewerking, lasser en meubelmaker, op zoek naar werk in erfgoed, restauratie, archief en cultuurateliers\n\n## Korte voorstelling (maximaal 5 zinnen)\nTechnisch tekenaar en verantwoordelijke atelier bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal, sinds 2021. Ik teken werkstukken uit, bereid het werk voor, plooi en las zelf (halfautomaat en elektrode) en stuur het atelier aan. Daarvoor werkte ik in een creatief fietsatelier en bouwde ik een fotoarchief op; daarnaast volg ik interieurvormgeving aan de Academie in Antwerpen en bouw ik meubels. Ik zoek werk waarin vakmanschap en zorgvuldigheid ergens toe dienen: restauratie van historisch metaalwerk, museum- of theaterateliers, archief en collectiezorg, tentoonstellingsbouw, of het doorgeven van het vak. Ik werk het best in een klein team en ben beschikbaar vanaf [datum].\n\n## Gewenste functies (kies er tot vijf in de VDAB-lijst)\n- Technisch tekenaar of werkvoorbereider metaal en plaatbewerking\n- Decorbouwer, ateliermedewerker metaal of vitrinebouwer\n- Technisch medewerker museum, depot of tentoonstellingsbouw\n- Restauratiemedewerker metaal (monumentenzorg)\n- Instructeur of praktijkbegeleider lassen en metaal\n\n## Gewenste sectoren\nCultuur en erfgoed; bouw en restauratie; metaal; onderwijs en opleiding; sociale economie\n\n## Competenties (vinkjes en vrije tekst)\n- Technisch tekenen van maatwerk in plaatmateriaal ([CAD-programma])\n- Werkvoorbereiding, planning en aansturing van een atelier\n- Plooien op de kantbank, MIG/MAG-lassen (135) en elektrodelassen (111) [TIG bevestigen]\n- Plaatwerk: snijden, plooien, afwerken, kwaliteitscontrole\n- Opmeten en uittekenen op maat, montage\n- Meubelontwerp en -bouw [in metaal en hout, materiaal bevestigen]\n- Fietsbouw en -herstel\n- Archiveren en digitaliseren van beeldmateriaal\n- Veiligheid: VCA-basis [geldig tot]\n- Rijbewijs B [indien van toepassing]\n\n## Talen\nNederlands moedertaal; Engels goed; Frans [niveau]\n\n## Opleiding\n- Interieurvormgeving, avondonderwijs aan de Academie in Antwerpen, lopend [precieze opleiding bevestigen]\n- Meubel en interieur (drie jaar) en grafiek (een jaar), avondonderwijs aan de Academie in Antwerpen\n- Lasopleiding halfautomaat en elektrodelassen, [instelling], [jaar]\n- Diploma secundair onderwijs Wetenschappen-Wiskunde, [naam school], 2017\n\n## Werkervaring\n2021 tot heden: technisch tekenaar en verantwoordelijke atelier, [bedrijf], [gemeente]. Gestart als tekenaar en plooi- en lasoperator. Maatwerk in plaatmateriaal van tekening tot afwerking.\n2019: medewerker creatief fietsatelier, Antwerpen.\n2017 tot 2018: opbouw van een fotoarchief voor [opdrachtgever].\n2017 tot 2018: [functie], [werkgever], Antwerpen.\n[jaar] tot heden: meubelmaker in eigen beheer, samen met mijn broer, Antwerpen.\n\n## Mobiliteit en beschikbaarheid\nAntwerpen en omgeving, bereikbaar met openbaar vervoer [en fiets/wagen]. Voltijds of deeltijds. Beschikbaar vanaf [datum]. Open voor een individuele beroepsopleiding (IBO) of een beroepsverkennende stage.\n\n## Trefwoorden om zeker in de vrije tekst te zetten\nerfgoed, restauratie, monumentenzorg, museum, depot, archief, decoratelier, decorbouw, tentoonstellingsbouw, atelier, technisch tekenaar, werkvoorbereider, plaatbewerking, plooien, kantbank, MIG/MAG, elektrodelassen, plannen lezen, meubelmaker, interieurvormgeving, instructeur lassen\n",
+  "vragenlijst-remi.md": "# Vragenlijst voor Remi\n\nDeze vragen zijn voor jou, Remi. Niets hoeft in één keer. Korte antwoorden zijn goed; een voorbeeld is beter dan een omschrijving. Alles wat je invult blijft op dit toestel tot je het exporteert of kopieert voor Giulia. Uit je antwoorden komen het cv, de brieven, de tekst voor VDAB en de keuzes voor de volgende stap.\n\n## Praktisch, voor het cv\n\nFeiten die op een cv of in een dossier moeten kloppen.\n\n- Volledige naam, geboortedatum en geboorteplaats\n  \n\n- Adres, gsm-nummer en e-mailadres dat je voor sollicitaties wil gebruiken\n  \n\n- Rijbewijs (B, ja of nee) en hoe je je verplaatst: fiets, openbaar vervoer, auto. Tot hoeveel minuten pendelen is haalbaar?\n  \n\n- Talen en niveau: Nederlands, Frans, Engels, andere\n  \n\n- Naam van je huidige werkgever, gemeente, en de startdatum van je contract (staat op het contract of de eerste loonfiche)\n  \n\n- Wat staat er op je loonfiche: arbeider of bediende, en welk paritair comité (bijvoorbeeld 111, 200, 209)?  \n  (Dit bepaalt gewaarborgd loon, vakantiegeld en eindejaarspremie.)\n  \n\n- Je functietitel volgens het contract, en wat je vandaag echt doet (tekenen, plooien, lassen, atelier aansturen, hoeveel collega's)\n  \n\n- Welk tekenprogramma gebruik je (bijvoorbeeld SolidWorks, AutoCAD, Inventor, Tekla) en hoe goed?\n  \n\n- Welke lasprocessen beheers je: halfautomaat (MIG/MAG), elektrode, TIG? Welke certificaten heb je, met norm en geldigheid?\n  \n\n- Andere attesten: VCA, heftruck, hoogtewerker, EHBO, kantbank, andere\n  \n\n- Je opleidingen precies: secundair (richting, school, jaar), lasopleiding (waar, wanneer), academie (welke richtingen, welke jaren, getuigschrift of diploma)\n  \n\n- Vorige jobs: bij welke werkgever, welke functie, welke afdeling, hoelang?\n  \n\n- Het creatief fietsatelier: naam, wat je daar maakte of herstelde, een voorbeeld\n  \n\n- Het fotoarchief dat je opbouwde: voor wie, hoeveel beelden, hoe heb je het aangepakt (ordenen, scannen, beschrijven, software)?\n  \n\n- Welke werkstukken bestaan er in foto's: meubels, constructies, fietsen, tekeningen? Waar staan die foto's?  \n  (Voor het portfolio: 6 tot 10 stukken met titel, jaar, materiaal, techniek.)\n  \n\n- Vanaf wanneer ben je beschikbaar, voltijds of deeltijds, en welke dagen of avonden zijn bezet door de academie?\n  \n\n- Wat is je huidige brutoloon per maand, en wat heb je netto minimaal nodig om rond te komen?  \n  (Dit is voor de keuze tussen uitkering, opleiding en werk, niet voor een cv.)\n  \n\n## Werk dat bij je past\n\nConcrete momenten zeggen meer dan eigenschappen.\n\n- Drie momenten op het werk waarop je dacht: dit is goed. Wat deed je precies?\n  \n\n- Drie momenten waarop het echt niet ging. Wat gebeurde er?\n  \n\n- Een project waar je trots op bent: wat, voor wie, wat was moeilijk, hoe heb je het opgelost?  \n  (Dit wordt een regel op het cv en een voorbeeld in het gesprek.)\n  \n\n- Nog een project, liefst iets helemaal anders\n  \n\n- Wat doe je het liefst in het atelier: tekenen, plooien, lassen, organiseren, uitleggen aan anderen? Zet ze in volgorde.\n  \n\n- Wat is fysiek het zwaarst, en waar voel je dat (rug, schouders, handen, ogen, ademhaling)?\n  \n\n- Werk je liever alleen, met twee of drie, of in een grotere ploeg? Waarom?\n  \n\n- Liever een klein bedrijf, een grote organisatie, een overheid, een vzw? Wat trekt je aan en wat schrikt af?\n  \n\n- Wat zouden je collega's zeggen als iemand vraagt hoe het is om met jou te werken?\n  \n\n- Wat heb je nodig van een baas of ploegbaas om goed te werken? En wat verdraag je niet?\n  \n\n## Sterktes en werkpunten\n\nEerlijk en met een voorbeeld; dit is geen sollicitatiegesprek.\n\n- Drie dingen waar je goed in bent, telkens met een voorbeeld\n  \n\n- Drie dingen die je wil verbeteren of die je moeilijk vindt\n  \n\n- Waarvoor komen mensen bij jou om hulp?\n  \n\n- Hoe leer je het liefst: door te doen, te kijken, te lezen, uitleg te krijgen?\n  \n\n- Hoe reageer je als er druk of stress is? Wat helpt dan?\n  \n\n- Wanneer zeg je te weinig, en wanneer had je liever iets gezegd?  \n  (De tests zeggen dat je niet snel op de voorgrond treedt; dit is om te weten waar dat je iets kost.)\n  \n\n- Wat weet je over jezelf dat niet in een test staat?\n  \n\n## Passies en interesses\n\nWat je doet als niemand het vraagt.\n\n- Waar gaat je aandacht naartoe buiten het werk: maken, lezen, kijken, sporten, mensen, plekken?\n  \n\n- Welke gebouwen, objecten, musea of ateliers hebben je ooit geraakt, en waarom?\n  \n\n- Als geld geen rol speelde: wat zou je een jaar lang maken of leren?\n  \n\n- Van de sporen in de app (erfgoed en restauratie, culturele instellingen, lesgeven, sociaal en ecologisch, archief en archeologie): welke trekt het meest, welke het minst, en waarom?\n  \n\n- Welk werkveld in de Verkenning verraste je positief, en welk zou je meteen schrappen?\n  \n\n- Heb je ooit vrijwilligerswerk gedaan of iemand iets aangeleerd? Hoe was dat?\n  \n\n- Wat zou je op de academie het liefst verder doen: meubel, interieur, grafiek, iets anders?\n  \n\n## De overstap\n\nHier gaat het om keuzes voor de komende maanden.\n\n- Drie dingen die de volgende job zeker moet hebben\n  \n\n- Drie dingen die je in de volgende job wil vermijden\n  \n\n- Wil je opnieuw studeren? Zo ja: hoelang zou je dat volhouden (een jaar, twee, drie), overdag of in de avond, en wat trekt je: restauratie, tekenen, lesgeven, archief, iets anders?\n  \n\n- Hoe voel je je nu: energie van 1 tot 10, slaap, zin om dingen te doen? Wat geeft je energie?\n  \n\n- Hoeveel weken rust wil je nemen voor je ergens nieuw begint?\n  \n\n- Wat wil je dat Giulia doet in dit traject, en wat wil je liever zelf doen?\n  \n\n- Wat wil je dat er geregeld is voor je iets ondertekent over het einde van je huidige job?\n  \n\n## Voor het gesprek\n\nTwee zinnen die je paraat wil hebben.\n\n- Hoe zeg je in twee zinnen waarom je een nieuwe richting kiest, positief en zonder het over je huidige werkgever te hebben?  \n  (Bijvoorbeeld: na vijf jaar plaatbewerking wil ik mijn vakmanschap inzetten voor werk dat blijft, zoals erfgoed of museumateliers.)\n  \n\n- Welke vraag zou jij aan een werkgever stellen om te weten of je er past?\n  \n\n- Wie kan als referentie dienen (een collega, een klant, een docent) en mag je die naam gebruiken?\n  \n"
  },
- "gebouwdOp": "2026-11-16T16:06:24.730Z"
+ "gebouwdOp": "2026-11-16T17:17:46.820Z"
 };

@@ -37,13 +37,13 @@ Nederlands moedertaal; Engels goed; Frans [niveau]
 - Interieurvormgeving, avondonderwijs aan de Academie in Antwerpen, lopend [precieze opleiding bevestigen]
 - Meubel en interieur (drie jaar) en grafiek (een jaar), avondonderwijs aan de Academie in Antwerpen
 - Lasopleiding halfautomaat en elektrodelassen, [instelling], [jaar]
-- Diploma secundair onderwijs Wetenschappen-Wiskunde, Sint-Lutgardis, 2017
+- Diploma secundair onderwijs Wetenschappen-Wiskunde, [naam school], 2017
 
 ## Werkervaring
 2021 tot heden: technisch tekenaar en verantwoordelijke atelier, [bedrijf], [gemeente]. Gestart als tekenaar en plooi- en lasoperator. Maatwerk in plaatmateriaal van tekening tot afwerking.
 2019: medewerker creatief fietsatelier, Antwerpen.
-2017 tot 2018: opbouw van een fotoarchief voor Willy Van de Perre.
-2017 tot 2018: [functie], Katoen Natie, Antwerpen.
+2017 tot 2018: opbouw van een fotoarchief voor [opdrachtgever].
+2017 tot 2018: [functie], [werkgever], Antwerpen.
 [jaar] tot heden: meubelmaker in eigen beheer, samen met mijn broer, Antwerpen.
 
 ## Mobiliteit en beschikbaarheid

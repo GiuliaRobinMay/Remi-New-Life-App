@@ -1,6 +1,23 @@
 {
   "versie": "2026-11-16",
-  "uitleg": "Bronnen voor de dagelijkse vacaturescan (scripts/vacaturescan.mjs). Alleen publieke werkgevers, non-profit en publieke of non-profit jobsites; geen privébedrijven of interimkantoren. soort: jobsite of organisatie. js: true als de lijst pas met JavaScript verschijnt. zoekparameters: extra lijst- of zoekpagina's die de scan ook opent (voor VDAB één zoek-URL per zoekterm, regio provincie Antwerpen).",
+  "uitleg": "Bronnen voor de dagelijkse vacaturescan (scripts/vacaturescan.mjs). Alleen publieke werkgevers, non-profit en publieke of non-profit jobsites; geen privébedrijven of interimkantoren. Gebruik: node scripts/vacaturescan.mjs <uitvoer.json>.",
+  "velden": {
+    "naam": "Naam van de jobsite of organisatie.",
+    "url": "Lijstpagina met vacatures (of de pagina waar die lijst te vinden is).",
+    "soort": "jobsite of organisatie.",
+    "sector": "Soort werkgever of sector.",
+    "js": "true als de lijst pas met JavaScript verschijnt; dan opent de scan de pagina meteen met Playwright.",
+    "geenBrowser": "Optioneel: nooit Playwright gebruiken (statische pagina; spaart de site).",
+    "zoekparameters": "Optioneel: extra lijst- of zoekpagina's [{zoekterm of label, url}]. Een zoekpagina mag eigen js/selector-velden hebben.",
+    "hoofdpaginaOverslaan": "Optioneel: alleen de zoekparameters openen, niet url.",
+    "selector": "Optioneel: CSS-selector van de vacaturelinks; zonder selector zoekt de scan zelf (heuristiek).",
+    "kaartSelector": "Optioneel: het element rond één vacature, voor de context.",
+    "werkgeverSelector": "Optioneel: element met de naam van de werkgever binnen het kaartje.",
+    "wachtOp": "Optioneel: CSS-selector waarop Playwright wacht.",
+    "wachtOpTekst": "Optioneel: reguliere expressie op de paginatekst waarop Playwright wacht.",
+    "filterInterim": "Optioneel: vacatures van interimkantoren (lijst uitsluiten, of het woord interim) weglaten.",
+    "volgLink": "Optioneel: open url, volg de eerste link die op dit patroon past en scan die pagina (bv. de nieuwste post met vacatures)."
+  },
   "zoektermen": [
     "technisch tekenaar",
     "werkvoorbereider metaal",
@@ -77,13 +94,9 @@
     "synergie",
     "agilitas",
     "daoust",
-    "unique",
-    "trace",
     "konvert",
     "solvus",
-    "tower",
     "covebo",
-    "jobat",
     "house of hr",
     "hays",
     "robert half",
@@ -100,8 +113,20 @@
     "talentus",
     "vivaldis",
     "sterk interim",
-    "ago jobs"
+    "ago jobs",
+    "trixxo",
+    "ago technics",
+    "ago construct",
+    "unique interim",
+    "tempo team",
+    "jobs herentals",
+    "bright plus",
+    "creyf",
+    "hudson",
+    "exaris",
+    "jobbridge"
   ],
+  "uitsluitenUitleg": "Namen van interimkantoren; alleen gebruikt bij bronnen met filterInterim (werkgever of contexttekst).",
   "bronnen": [
     {
       "id": "vdab",
@@ -351,15 +376,22 @@
           "zoekterm": "lasersnijden",
           "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=lasersnijden&locatie=Antwerpen%20(Provincie)&locatieCode=BE21&sort=standaard"
         }
-      ]
+      ],
+      "hoofdpaginaOverslaan": true,
+      "selector": "li.c-vacature h4 a",
+      "kaartSelector": "li.c-vacature",
+      "werkgeverSelector": ".c-vacature-meta.-location strong",
+      "wachtOpTekst": "Resultaten: \\d+ jobs? gevonden",
+      "filterInterim": true
     },
     {
       "id": "werken-voor-vlaanderen",
       "naam": "Werken voor Vlaanderen",
-      "url": "https://www.werkenvoorvlaanderen.be/",
+      "url": "https://www.vlaanderen.be/werken-voor-vlaanderen/vacatures?contentSubtypeData__internal=false&order_publicationdate=desc",
       "soort": "jobsite",
       "sector": "overheid (Vlaams)",
-      "js": false
+      "js": true,
+      "wachtOp": "a[href*=\"/Job/\"]"
     },
     {
       "id": "werkenvoor-be",
@@ -370,7 +402,7 @@
       "js": false
     },
     {
-      "id": "jobs-bij-stad-antwerpen",
+      "id": "job-antwerpen",
       "naam": "Jobs bij Stad Antwerpen",
       "url": "https://job.antwerpen.be/go/Alle-vacatures/4474301/",
       "soort": "jobsite",
@@ -378,12 +410,12 @@
       "js": false
     },
     {
-      "id": "jobs-bij-provincie-antwerpen",
+      "id": "jobs-provincie-antwerpen",
       "naam": "Jobs bij Provincie Antwerpen",
-      "url": "https://jobs.provincieantwerpen.be/",
+      "url": "https://jobs.provincieantwerpen.be/?lang=nl-BE&section=031fd048-4e1a-ffb7-fe1d-1417dc4088b1",
       "soort": "jobsite",
       "sector": "overheid (provincie)",
-      "js": false
+      "js": true
     },
     {
       "id": "cultuurjobs-be",
@@ -438,7 +470,7 @@
     {
       "id": "cult-be-vacatures",
       "naam": "cult.be vacatures",
-      "url": "https://www.cult.be/zoek",
+      "url": "https://www.cult.be/vacatures",
       "soort": "jobsite",
       "sector": "cultuur",
       "js": false
@@ -446,10 +478,11 @@
     {
       "id": "icom-belgium-flanders",
       "naam": "ICOM Belgium-Flanders, vacatures in de museumsector",
-      "url": "https://www.icom-belgium-flanders.be/2026/10/13/vacatures-in-de-museumsector/",
+      "url": "https://www.icom-belgium-flanders.be/?s=vacatures",
       "soort": "jobsite",
       "sector": "musea (overzichtslijst)",
-      "js": false
+      "js": false,
+      "volgLink": "/20\\d\\d/\\d\\d/\\d\\d/vacatures-in-de-museumsector"
     },
     {
       "id": "vvsg",
@@ -494,7 +527,7 @@
     {
       "id": "groep-maatwerk",
       "naam": "Groep Maatwerk, overzicht maatwerkbedrijven",
-      "url": "https://www.groepmaatwerk.be/maatwerkbedrijven",
+      "url": "https://groepmaatwerk.be/maatwerkbedrijven/vind-een-maatwerkbedrijf",
       "soort": "jobsite",
       "sector": "sociale economie (gids, geen jobsite)",
       "js": false
@@ -526,10 +559,11 @@
     {
       "id": "jobs-stedelijk-onderwijs-antwerpen",
       "naam": "Jobs Stedelijk Onderwijs Antwerpen",
-      "url": "https://jobs.stedelijkonderwijs.be/",
+      "url": "https://jobs.stedelijkonderwijs.be/vacatures",
       "soort": "jobsite",
       "sector": "onderwijs",
-      "js": false
+      "js": true,
+      "wachtOp": "a[href*=\"/vacatures/\"]"
     },
     {
       "id": "onderwijsvacatures-be",
@@ -537,7 +571,17 @@
       "url": "https://www.onderwijsvacatures.be/",
       "soort": "jobsite",
       "sector": "onderwijs",
-      "js": false
+      "js": false,
+      "zoekparameters": [
+        {
+          "label": "Secundair onderwijs",
+          "url": "https://www.onderwijsvacatures.be/onderwijs-jobs/secundair-onderwijs/"
+        },
+        {
+          "label": "Volwassenenonderwijs",
+          "url": "https://www.onderwijsvacatures.be/onderwijs-jobs/vacatures-volwassenenonderwijs/"
+        }
+      ]
     },
     {
       "id": "syntra-ab-jobs",
@@ -576,11 +620,11 @@
     {
       "id": "karel-de-grote-hogeschool",
       "naam": "Karel de Grote Hogeschool (incl. KdG FabLab)",
-      "url": "https://www.kdg.be/vacatures",
+      "url": "https://jobpage.cvwarehouse.com/?companyGuid=31cc51c0-57ab-4a88-ab90-260d3b213a21&lang=nl-BE",
       "soort": "organisatie",
       "sector": "hogeschool",
       "plaats": "Antwerpen",
-      "js": false
+      "js": true
     },
     {
       "id": "thomas-more",
@@ -603,7 +647,7 @@
     {
       "id": "antwerp-maritime-academy",
       "naam": "Antwerp Maritime Academy (Hogere Zeevaartschool)",
-      "url": "https://amacademy.be/nl/vacancy/assistent-faculteit-scheepswerktuigkunde-0",
+      "url": "https://amacademy.be/nl/vacancies",
       "soort": "organisatie",
       "sector": "hogeschool",
       "plaats": "Noordkasteel Oost, Antwerpen",
@@ -634,19 +678,23 @@
       "soort": "organisatie",
       "sector": "overheid (lokaal, zorg)",
       "plaats": "Antwerpen (woonzorgcentra van Berendrecht tot Wilrijk)",
-      "js": false
+      "js": false,
+      "selector": "a.product-link",
+      "kaartSelector": ".product-tile",
+      "werkgeverSelector": ".location-job strong",
+      "filterInterim": true
     },
     {
       "id": "ag-vespa",
       "naam": "AG Vespa (vastgoedbedrijf stad Antwerpen)",
-      "url": "https://www.agvespa.be/werken-bij-ag-vespa/vacatures",
+      "url": "https://www.agvespa.be/vacatures",
       "soort": "organisatie",
       "sector": "overheid (autonoom gemeentebedrijf)",
       "plaats": "Antwerpen",
       "js": false
     },
     {
-      "id": "stad-antwerpen",
+      "id": "stad-antwerpen-technisch",
       "naam": "Stad Antwerpen, technische diensten (Groen en Begraafplaatsen, districten, stadsgebouwen, Kunstenlab)",
       "url": "https://job.antwerpen.be/go/Alle-vacatures/4474301/",
       "soort": "organisatie",
@@ -657,7 +705,7 @@
     {
       "id": "woonhaven-antwerpen",
       "naam": "Woonhaven Antwerpen",
-      "url": "https://woonhaven.be/jobs/",
+      "url": "https://woonhavenantwerpen.talentfinder.be/nl/index.aspx",
       "soort": "organisatie",
       "sector": "overheid (sociale huisvesting)",
       "plaats": "Antwerpen",
@@ -684,20 +732,20 @@
     {
       "id": "provincie-antwerpen",
       "naam": "Provincie Antwerpen, provinciale groendomeinen en diensten",
-      "url": "https://jobs.provincieantwerpen.be/",
+      "url": "https://jobs.provincieantwerpen.be/?lang=nl-BE&section=031fd048-4e1a-ffb7-fe1d-1417dc4088b1",
       "soort": "organisatie",
       "sector": "overheid (provincie)",
       "plaats": "Rivierenhof (Deurne), Vrijbroekpark (Mechelen) en andere",
-      "js": false
+      "js": true
     },
     {
       "id": "provinciaal-onderwijs-antwerpen",
       "naam": "Provinciaal Onderwijs Antwerpen (o.a. PITO Stabroek, avAnt)",
-      "url": "https://www.provincieantwerpen.be/werken-bij-de-provincie/werken-in-het-provinciaal-onderwijs-/vacature-onderwijs.html",
+      "url": "https://jobpage.cvwarehouse.com/?companyGuid=e73935c9-46b4-4f23-9301-5f45abd52668&lang=nl-BE&section=5a89ab81-c74a-bc20-9123-f1f4fc81aca9",
       "soort": "organisatie",
       "sector": "onderwijs (provincie)",
       "plaats": "Stabroek, Antwerpen, Mechelen, Boom",
-      "js": false
+      "js": true
     },
     {
       "id": "go-scholengroep-antwerpen",
@@ -715,7 +763,18 @@
       "soort": "organisatie",
       "sector": "onderwijs (volwassenen)",
       "plaats": "Antwerpen",
-      "js": false
+      "js": false,
+      "zoekparameters": [
+        {
+          "label": "VDAB: GO! CVO Antwerpen",
+          "url": "https://www.vdab.be/vindeenjob/vacatures?trefwoord=GO!%20CVO%20Antwerpen&sort=standaard",
+          "js": true,
+          "selector": "li.c-vacature h4 a",
+          "kaartSelector": "li.c-vacature",
+          "werkgeverSelector": ".c-vacature-meta.-location strong",
+          "wachtOpTekst": "Resultaten: \\d+ jobs? gevonden"
+        }
+      ]
     },
     {
       "id": "don-bosco-technisch-instituut-hoboken",
@@ -724,16 +783,21 @@
       "soort": "organisatie",
       "sector": "onderwijs (katholiek, vzw)",
       "plaats": "Salesianenlaan 1, Hoboken",
-      "js": false
+      "js": false,
+      "selector": "a.product-link",
+      "kaartSelector": ".product-tile",
+      "werkgeverSelector": ".location-job strong",
+      "filterInterim": true
     },
     {
-      "id": "fablab-en-technische-scholen-van-stedeli",
+      "id": "fablab-plus-stedelijk-onderwijs",
       "naam": "Fablab+ en technische scholen van Stedelijk Onderwijs (Technicum Noord-Antwerpen e.a.)",
-      "url": "https://jobs.stedelijkonderwijs.be/",
+      "url": "https://jobs.stedelijkonderwijs.be/vacatures",
       "soort": "organisatie",
       "sector": "onderwijs (stad Antwerpen) en makerspace",
       "plaats": "Lange Klarenstraat 17, Antwerpen (Fablab+)",
-      "js": false
+      "js": true,
+      "wachtOp": "a[href*=\"/vacatures/\"]"
     },
     {
       "id": "rising-you-vzw",
@@ -747,7 +811,7 @@
     {
       "id": "stroom-maatwerk-vzw",
       "naam": "Stroom Maatwerk vzw",
-      "url": "https://www.stroommaatwerk.be/",
+      "url": "https://www.stroommaatwerk.be/werken-bij-stroom/",
       "soort": "organisatie",
       "sector": "sociale economie (maatwerkbedrijf)",
       "plaats": "Merksem (Antwerpen)",
@@ -765,7 +829,7 @@
     {
       "id": "werkmmaat-vzw",
       "naam": "Werkmmaat vzw",
-      "url": "https://www.werkmmaat.be/",
+      "url": "https://www.werkmmaat.be/omkadering",
       "soort": "organisatie",
       "sector": "sociale economie (collectief maatwerkbedrijf)",
       "plaats": "Antwerpen (Deurne), Mortsel, Lier",
@@ -783,7 +847,7 @@
     {
       "id": "port-of-antwerp-bruges",
       "naam": "Port of Antwerp-Bruges (havenbedrijf)",
-      "url": "https://portofantwerpbruges.com/jobs",
+      "url": "https://www.portofantwerpbruges.com/jobs/nl/vacatures",
       "soort": "organisatie",
       "sector": "overheidsbedrijf",
       "plaats": "Antwerpen (haven)",
@@ -792,16 +856,22 @@
     {
       "id": "de-lijn",
       "naam": "De Lijn (onderhoudscentrum Noorderlaan, PAL)",
-      "url": "https://jobs.delijn.be/",
+      "url": "https://jobs.delijn.be/go/Technics/806102/",
       "soort": "organisatie",
       "sector": "overheidsbedrijf",
       "plaats": "Noorderlaan 63, Antwerpen",
-      "js": false
+      "js": false,
+      "zoekparameters": [
+        {
+          "label": "Andere diensten",
+          "url": "https://jobs.delijn.be/go/Vacatures/806202/"
+        }
+      ]
     },
     {
       "id": "nmbs",
       "naam": "NMBS (herstelwerkplaats goederenwagons Antwerpen-Noord)",
-      "url": "https://jobs.belgiantrain.be/",
+      "url": "https://jobs.belgiantrain.be/search/?q=&locationsearch=Antwerpen",
       "soort": "organisatie",
       "sector": "overheidsbedrijf",
       "plaats": "Noorderlaan 630, Antwerpen",
@@ -810,7 +880,7 @@
     {
       "id": "de-vlaamse-waterweg",
       "naam": "De Vlaamse Waterweg",
-      "url": "https://www.vlaamsewaterweg.be/werkenbij",
+      "url": "https://www.vlaamsewaterweg.be/nl/vacatures",
       "soort": "organisatie",
       "sector": "overheidsbedrijf (Vlaams)",
       "plaats": "Willebroek, Antwerpen en langs de waterwegen",
@@ -819,11 +889,12 @@
     {
       "id": "waterbouwkundig-laboratorium",
       "naam": "Waterbouwkundig Laboratorium (Departement MOW)",
-      "url": "https://www.werkenvoorvlaanderen.be/",
+      "url": "https://www.vlaanderen.be/werken-voor-vlaanderen/vacatures?contentSubtypeData__internal=false&order_publicationdate=desc",
       "soort": "organisatie",
       "sector": "overheid (Vlaams, onderzoek)",
       "plaats": "Berchemlei 115, Borgerhout",
-      "js": false
+      "js": true,
+      "wachtOp": "a[href*=\"/Job/\"]"
     },
     {
       "id": "agentschap-wegen-en-verkeer",
@@ -835,7 +906,7 @@
       "js": false
     },
     {
-      "id": "departement-cultuur",
+      "id": "departement-cjm-depot",
       "naam": "Departement Cultuur, Jeugd en Media, depot Collectie Vlaamse Gemeenschap",
       "url": "https://faro.be/vacatures",
       "soort": "organisatie",
@@ -859,7 +930,8 @@
       "soort": "organisatie",
       "sector": "overheid (federaal, erfgoed)",
       "plaats": "Brussel (Jubelpark)",
-      "js": false
+      "js": false,
+      "geenBrowser": true
     },
     {
       "id": "rijksarchief",
@@ -891,11 +963,11 @@
     {
       "id": "monumentenwacht-antwerpen",
       "naam": "Monumentenwacht Antwerpen (Provincie Antwerpen, Dienst Erfgoed)",
-      "url": "https://jobs.provincieantwerpen.be/",
+      "url": "https://jobs.provincieantwerpen.be/?lang=nl-BE&section=031fd048-4e1a-ffb7-fe1d-1417dc4088b1",
       "soort": "organisatie",
       "sector": "overheid (provincie, erfgoed)",
       "plaats": "Ruggeveldlaan 99, Deurne",
-      "js": false
+      "js": true
     },
     {
       "id": "agentschap-onroerend-erfgoed",
@@ -963,7 +1035,7 @@
     {
       "id": "middelheimmuseum",
       "naam": "Middelheimmuseum",
-      "url": "https://job.antwerpen.be/",
+      "url": "https://job.antwerpen.be/go/Alle-vacatures/4474301/",
       "soort": "organisatie",
       "sector": "cultuur (stad Antwerpen)",
       "plaats": "Middelheimlaan 61, Antwerpen",
@@ -972,14 +1044,14 @@
     {
       "id": "mas",
       "naam": "MAS, Museum aan de Stroom",
-      "url": "https://job.antwerpen.be/",
+      "url": "https://job.antwerpen.be/go/Alle-vacatures/4474301/",
       "soort": "organisatie",
       "sector": "cultuur (stad Antwerpen)",
       "plaats": "Hanzestedenplaats 1, Antwerpen",
       "js": false
     },
     {
-      "id": "stad-antwerpen-2",
+      "id": "stad-antwerpen-musea",
       "naam": "Stad Antwerpen, Musea en Erfgoed (Plantin-Moretus, Rubenshuis, Red Star Line, Letterenhuis, FelixArchief)",
       "url": "https://job.antwerpen.be/go/Alle-vacatures/4474301/",
       "soort": "organisatie",
@@ -1003,7 +1075,8 @@
       "soort": "organisatie",
       "sector": "cultuur (Vlaamse instelling)",
       "plaats": "Desguinlei 25, Antwerpen",
-      "js": false
+      "js": false,
+      "geenBrowser": true
     },
     {
       "id": "opera-ballet-vlaanderen",
@@ -1039,7 +1112,8 @@
       "soort": "organisatie",
       "sector": "cultuur (vzw)",
       "plaats": "Turnhoutsebaan, Borgerhout",
-      "js": false
+      "js": false,
+      "geenBrowser": true
     },
     {
       "id": "antwerp-symphony-orchestra",
@@ -1048,7 +1122,8 @@
       "soort": "organisatie",
       "sector": "cultuur (vzw)",
       "plaats": "Koningin Elisabethzaal, Antwerpen",
-      "js": false
+      "js": false,
+      "geenBrowser": true
     },
     {
       "id": "zomer-van-antwerpen",
@@ -1080,11 +1155,12 @@
     {
       "id": "cvo-encora",
       "naam": "CVO Encora (Stedelijk Onderwijs Antwerpen)",
-      "url": "https://jobs.stedelijkonderwijs.be/",
+      "url": "https://jobs.stedelijkonderwijs.be/vacatures",
       "soort": "organisatie",
       "sector": "onderwijs (stad)",
       "plaats": "Antwerpen",
-      "js": false
+      "js": true,
+      "wachtOp": "a[href*=\"/vacatures/\"]"
     },
     {
       "id": "cvo-vitant",
@@ -1102,16 +1178,21 @@
       "soort": "organisatie",
       "sector": "overheid (Vlaams)",
       "plaats": "Antwerpen, Mechelen, Turnhout",
-      "js": false
+      "js": false,
+      "selector": "a.product-link",
+      "kaartSelector": ".product-tile",
+      "werkgeverSelector": ".location-job strong",
+      "filterInterim": true
     },
     {
       "id": "het-facilitair-bedrijf",
       "naam": "Het Facilitair Bedrijf (Vlaamse overheid)",
-      "url": "https://www.werkenvoorvlaanderen.be/",
+      "url": "https://www.vlaanderen.be/werken-voor-vlaanderen/vacatures?contentSubtypeData__internal=false&order_publicationdate=desc",
       "soort": "organisatie",
       "sector": "overheid (Vlaams)",
       "plaats": "Brussel en regionaal",
-      "js": false
+      "js": true,
+      "wachtOp": "a[href*=\"/Job/\"]"
     },
     {
       "id": "fod-justitie",

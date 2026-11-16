@@ -20,7 +20,7 @@ Sinds 2021 werk ik bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateria
 
 Ik wil mijn vakmanschap inzetten voor erfgoed. Wat mij in restauratie aanspreekt, is dat het vertrekt van wat er al is: een hersteld of nieuw stuk moet passen bij het gebouw en opnieuw lang meegaan. Dat vraagt geduld en nauwkeurigheid, en daar ligt mijn sterkte.
 
-Ik breng drie dingen mee. Als tekenaar zet ik een maat of een vraag om in een tekening waarmee het atelier kan werken, zoals bij [concreet project: wat, welk materiaal, welke moeilijkheid]; bij restauratie komt daar het opmeten van bestaand werk bij, en dat wil ik grondig leren. Doordat ik zelf plooi en las en een atelier aanstuur, weet ik hoe metalen onderdelen gemaakt en verbonden worden. En voor Willy Van de Perre bouwde ik een fotoarchief op, werk dat een vaste methode vraagt.
+Ik breng drie dingen mee. Als tekenaar zet ik een maat of een vraag om in een tekening waarmee het atelier kan werken, zoals bij [concreet project: wat, welk materiaal, welke moeilijkheid]; bij restauratie komt daar het opmeten van bestaand werk bij, en dat wil ik grondig leren. Doordat ik zelf plooi en las en een atelier aanstuur, weet ik hoe metalen onderdelen gemaakt en verbonden worden. En ik bouwde een fotoarchief op, werk dat een vaste methode vraagt.
 
 Ik stel voor om kennis te maken tijdens een kort werkbezoek of een proefdag in uw Antwerpse vestiging. Een start via een individuele beroepsopleiding (IBO) met VDAB in januari of februari 2027 is voor mij mogelijk. Zo leer ik het vak onder begeleiding van uw mensen en kunt u mijn werk in de praktijk beoordelen. Ik licht mijn kandidatuur graag toe in een gesprek.
 

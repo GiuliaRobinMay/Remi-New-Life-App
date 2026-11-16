@@ -58,7 +58,7 @@ Titles to search: technisch begeleider, werkvloerbegeleider, atelierbegeleider, 
 - Bachelor Ergotherapie (AP): 3 years day; opens atelier leadership in psychiatry and VAPH.
 - Fietshersteller (VDAB): weeks to months, free for jobseekers, knelpunt.
 - Natuurbeheer courses (Inverde). Bio-ecologisch bouwen (VIBE, SYNTRA). Monitor sociale economie (Herwin, Groep Maatwerk, VIVO).
-Reminder: any VDAB-funded route presumes dismissal by the employer and VDAB registration first (onderzoek 1).
+Reminder: any VDAB-funded route presumes registration with VDAB as a jobseeker first (onderzoek 1).
 
 ## 6. Job boards for this domain
 Verso (verso-net.be, jobs URL UNVERIFIED); Sociare (sociare.be/nl/vacatures); Socius (socius.be/vacatures); 11.be/vacatures; Kif Kif (kifkif.be); Herwin; Groep Maatwerk; De Ambrassade (ambrassade.be/nl/vacatures); Uit De Marge; Formaat; Natuurpunt; Vlaanderen Circulair; Vlaams Welzijnsverbond, SOM, Zorgnet-Icuro; Onderwijstalent (filter BuSO and praktijkvakken); VDAB Vind een job (sector sociale economie; keywords werkvloerbegeleider, monitor, instructeur). "duurzamejobs.be", "Goodwork", "Goodjobs": existence as Belgian boards not confirmed.

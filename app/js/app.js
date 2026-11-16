@@ -237,6 +237,11 @@ export function vernieuw() { render(); if (peekRerender) peekRerender(); }
 document.getElementById('peekClose').addEventListener('click', closePeek);
 peekBackdrop.addEventListener('click', closePeek);
 window.addEventListener('keydown', e => { if (e.key === 'Escape') { closePeek(); setNav(false); } });
+// Een bewerking van iets dat intussen verwijderd werd (ook op een ander toestel) weigert de store met een fout
+// met .verwijderd: die tonen in plaats van ze stil in de console te laten.
+const meldVerwijderd = e => { if (!e?.verwijderd) return false; toast(e.message); return true; };
+window.addEventListener('error', e => { if (meldVerwijderd(e.error)) e.preventDefault(); });
+window.addEventListener('unhandledrejection', e => { if (meldVerwijderd(e.reason)) e.preventDefault(); });
 
 toonGebruiker();
 render();

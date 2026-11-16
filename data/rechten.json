@@ -1,22 +1,22 @@
 {
   "peildatum": "2026-09-27",
-  "disclaimer": "Dit is informatie, geen juridisch advies. De bronpagina's konden in deze omgeving niet volledig geladen worden; alles komt uit zoekresultaten van RVA, FOD Werkgelegenheid, VDAB, ACV en sociale secretariaten, gekruist waar mogelijk. Wat als 'te verifiëren' staat, laat je ACV-CSC METEA bevestigen voor je erop handelt.",
+  "disclaimer": "Dit is informatie, geen juridisch advies. De bronpagina's konden in deze omgeving niet volledig geladen worden; alles komt uit zoekresultaten van RVA, FOD Werkgelegenheid, VDAB, vakbonden en sociale secretariaten, gekruist waar mogelijk. Wat als 'te verifiëren' staat, laat je bevestigen door je vakbond, een arbeidsrechtjurist of het sociaal secretariaat voor je erop handelt.",
   "kern": [
-    "Teken niets. Een beëindiging in onderling akkoord is voor de RVA hetzelfde als zelf opzeggen: 4 tot 52 weken geen uitkering, en je geeft ook de opzegvergoeding op die de werkgever anders verschuldigd is.",
-    "Als de werkgever wil dat je vertrekt, moet de werkgever opzeggen (18 weken bij 5 jaar anciënniteit) of het equivalent betalen. Dat is hun kost, niet de jouwe.",
-    "Het beste scenario voor herstel met inkomen: ontslag door de werkgever met opzegtermijn en vrijstelling van prestaties. Loon tot het einde, daarna volledige uitkering.",
-    "Het nieuwe vangnet van 1 maart 2026 (zes maanden uitkering na eigen ontslag) vraagt 3.120 arbeidsdagen, ongeveer tien jaar. Met vijf jaar kom je er niet voor in aanmerking.",
+    "Teken geen beëindiging in onderling akkoord zonder advies. Voor de RVA is dat hetzelfde als zelf opzeggen: 4 tot 52 weken geen uitkering, en je geeft ook de opzegvergoeding op die de werkgever anders verschuldigd is.",
+    "Als de werkgever wil dat je vertrekt, moet de werkgever opzeggen of het equivalent betalen. Hoe lang de opzegtermijn is, hangt af van je anciënniteit (zie Opzegtermijn). Dat is hun kost, niet de jouwe.",
+    "Het gunstigste scenario voor wie met inkomen wil vertrekken: ontslag door de werkgever met opzegtermijn en vrijstelling van prestaties. Loon tot het einde, daarna volledige uitkering.",
+    "Het nieuwe vangnet van 1 maart 2026 (zes maanden uitkering na eigen ontslag) vraagt 3.120 arbeidsdagen, ongeveer tien jaar. Met een kortere loopbaan kom je er niet voor in aanmerking.",
     "Zelf opzeggen zonder sanctie kan alleen als er meteen een nieuwe job van minstens 13 weken volgt en je voor de tussenperiode geen uitkering vraagt.",
-    "Medisch gedocumenteerde ongeschiktheid voor het beroep is de enige 'wettige reden' die de RVA aanvaardt. Moe zijn is dat niet. Daarom de huisarts."
+    "Medisch gedocumenteerde ongeschiktheid voor het beroep is de enige 'wettige reden' die de RVA aanvaardt. Moe zijn op zich is dat niet; de vaststelling gebeurt door een arts."
   ],
   "scenarios": [
     {
       "id": "A",
       "naam": "Ontslag door de werkgever",
       "kleur": "green",
-      "oordeel": "Beste scenario",
+      "oordeel": "Gunstigste scenario",
       "punten": [
-        "Opzegtermijn 18 weken (5 tot 6 jaar anciënniteit) of 15 weken (4 tot 5 jaar), of verbrekingsvergoeding voor het niet-gepresteerde deel.",
+        "Opzegtermijn volgens je anciënniteit (zie Opzegtermijn), of een verbrekingsvergoeding voor het niet-gepresteerde deel.",
         "Vraag schriftelijk vrijstelling van prestaties: je komt niet meer werken en behoudt je loon. Schrijf je dan binnen een maand in bij VDAB.",
         "Sollicitatieverlof: een volledige dag per week, betaald.",
         "Geen RVA-sanctie. Uitkering 65 procent van het begrensde loon de eerste drie maanden, 60 procent tot maand 6, daarna degressief, maximaal 24 maanden.",
@@ -30,11 +30,11 @@
       "kleur": "violet",
       "oordeel": "Goed voor herstel, opent herscholing",
       "punten": [
-        "Gewaarborgd loon door de werkgever: dag 1 tot 7: 100 procent; dag 8 tot 14: 85,88 procent; dag 15 tot 30: gedeeltelijk; daarna 60 procent van het begrensde loon via het ziekenfonds.",
+        "Gewaarborgd loon door de werkgever: voor arbeiders dag 1 tot 7: 100 procent; dag 8 tot 14: 85,88 procent; dag 15 tot 30: gedeeltelijk; daarna 60 procent van het begrensde loon via het ziekenfonds. Voor bedienden geldt een volledige maand gewaarborgd loon.",
         "De werkgever mag tijdens ziekte ontslaan met opzeg of vergoeding, maar niet omwille van de ziekte. De ziekte-uitkering loopt door na het einde van het contract.",
-        "De eerste zes maanden wordt de ongeschiktheid beoordeeld tegenover je eigen job (lasser), daarna tegenover de hele arbeidsmarkt. Daarom moet het dossier de fysieke belasting van het laswerk documenteren, niet alleen vermoeidheid.",
+        "De eerste zes maanden wordt de ongeschiktheid beoordeeld tegenover je eigen job, daarna tegenover de hele arbeidsmarkt.",
         "Herscholing via het ziekenfonds (socioprofessionele re-integratie): opleiding betaald, premie per lesuur, uitkering behouden tijdens de opleiding en zes maanden erna. Aanvragen via de adviserend arts en de Terug Naar Werk-coördinator.",
-        "Re-integratietraject bij de arbeidsarts kan je zelf aanvragen. Beslissing B (definitief ongeschikt voor het huidige werk) is het sterkste document.",
+        "Een re-integratietraject bij de arbeidsarts kan je zelf aanvragen. Beslissing B (definitief ongeschikt voor het huidige werk, ander werk mogelijk) is het sterkste document voor herscholing.",
         "Medische overmacht kan pas na zes maanden onafgebroken ziekte en beëindigt het contract zonder vergoeding; alleen zinvol als je dat zelf wil."
       ]
     },
@@ -44,10 +44,10 @@
       "kleur": "red",
       "oordeel": "Alleen met nieuwe job klaar",
       "punten": [
-        "Opzegtermijn 9 weken (5 tot 6 jaar) of 7 weken (4 tot 5 jaar). Aangetekende brief geldt op de derde werkdag; de termijn start de maandag erna.",
+        "Opzegtermijn voor de werknemer volgens je anciënniteit, maximaal 13 weken. Een aangetekende brief geldt op de derde werkdag; de termijn start de maandag erna.",
         "Zonder nieuwe job: RVA-uitsluiting van 4 tot 52 weken. Onvoorspelbaar.",
         "Met nieuwe job van minstens 13 weken: geen sanctie, als je in de tussentijd geen uitkering vraagt.",
-        "Eindejaarspremie PC 111 kan wegvallen bij ontslagname (provinciale cao Antwerpen, te verifiëren bij ACV).",
+        "In sommige sectoren kan de eindejaarspremie wegvallen bij ontslagname; kijk de sectorale cao van je paritair comité na.",
         "Geen IBO mogelijk na zelf opzeggen.",
         "Ziekte tijdens je eigen opzeg schorst de termijn niet.",
         "Wie zonder opzeg wegblijft, betaalt zelf een verbrekingsvergoeding aan de werkgever."
@@ -62,12 +62,12 @@
         "Voor de RVA gelijk aan zelf opzeggen: 4 tot 52 weken uitsluiting.",
         "Je geeft de opzegvergoeding op, tenzij het document een vergoeding toekent.",
         "Achteraf bijna niet te herroepen (dwang, bedrog of dwaling bewijzen).",
-        "Nooit ter plaatse tekenen. Kopie mee. ACV laten lezen. Alleen 'voor ontvangst', nooit 'voor akkoord'."
+        "Nooit ter plaatse tekenen. Kopie mee. Laten nalezen door je vakbond of een jurist. Alleen 'voor ontvangst', nooit 'voor akkoord'."
       ]
     }
   ],
   "opzegtabel": {
-    "toelichting": "Eenheidsstatuut, contract gestart tussen 1 januari 2014 en 1 juni 2026. Rijen uit de wet; laat ACV de exacte anciënniteit bevestigen. Boven 8 jaar komt er bij opzeg door de werkgever telkens 3 weken per jaar bij; bij opzeg door de werknemer blijft het maximum 13 weken.",
+    "toelichting": "Eenheidsstatuut, contract gestart tussen 1 januari 2014 en 1 juni 2026. Rijen uit de wet; laat de exacte anciënniteit bevestigen door je vakbond of het sociaal secretariaat. Boven 8 jaar komt er bij opzeg door de werkgever telkens 3 weken per jaar bij; bij opzeg door de werknemer blijft het maximum 13 weken.",
     "rijen": [
       {
         "ancienniteit": "3 tot minder dan 4 jaar",
@@ -102,19 +102,19 @@
     ]
   },
   "werkloosheid2026": [
-    "Toelaatbaarheid: 312 arbeidsdagen in de laatste 36 maanden, ongeacht leeftijd. Remi voldoet ruim.",
-    "Duur: 12 maanden plus 1 maand per 4 extra maanden loopbaan, maximum 24 maanden. Met vijf jaar werk zit je aan het maximum.",
+    "Toelaatbaarheid: 312 arbeidsdagen in de laatste 36 maanden, ongeacht leeftijd.",
+    "Duur: 12 maanden plus 1 maand per 4 extra maanden loopbaan, maximum 24 maanden. Na ongeveer vijf jaar voltijds werk zit je aan het maximum.",
     "Bedrag: 65 procent van het begrensde brutoloon in maand 1 tot 3, 60 procent in maand 4 tot 6, daarna degressief. Het hoogste loonplafond is €4.182 bruto per maand, dus maximaal ongeveer €2.718 bruto per maand in de eerste drie maanden (bron: vakblad, RVA-bedrag nakijken).",
     "Verlenging (bevestigd, RVA): voor een opleiding gestart na 1 januari 2026 verlengt alleen een voltijdse beroepsopleiding van minstens 3 maanden onder overeenkomst met VDAB het recht, met maximaal 12 maanden en niet later dan 30 juni 2030. Gewone studies (graduaat, bachelor) verlengen de duur niet.",
     "Gevolg: een studie van twee of drie jaar moet binnen de 24 maanden passen of gecombineerd worden met werk. Start een lange opleiding dus vroeg, of kies eerst een VDAB-beroepsopleiding die het recht verlengt.",
-    "Inschrijven bij VDAB binnen 8 dagen na het einde van de opzegtermijn. Uitbetalingsinstelling: ACV.",
+    "Inschrijven bij VDAB binnen 8 dagen na het einde van de opzegtermijn. Uitbetalingsinstelling: een vakbond (ACV, ABVV of ACLVB) of de openbare HVW.",
     "Vrijstelling voor studies: minstens 20 uur per week overdag, minstens 27 nieuwe studiepunten, passend in je traject naar werk. Een avondopleiding geeft geen vrijstelling maar mag wel, met melding aan VDAB."
   ],
   "acv": [
-    "ACV-CSC METEA is de centrale voor metaal en metaalbouw.",
-    "Gratis juridische bijstand tot en met de arbeidsrechtbank na zes maanden aaneengesloten lidmaatschap op het moment van de feiten.",
-    "ACV is uitbetalingsinstelling: doet het volledige werkloosheidsdossier, controleert de C4, staat bij op een RVA-verhoor.",
-    "Syndicale premie tot ongeveer €145 per jaar. Dienstencentra in Antwerpen, afspraak via hetacv.be."
+    "Vakbonden (ACV, ABVV, ACLVB) hebben centrales per sector; die kennen de sectorale cao's, zoals de regels voor de eindejaarspremie.",
+    "Leden krijgen gratis juridische bijstand tot en met de arbeidsrechtbank, meestal na zes maanden aaneengesloten lidmaatschap op het moment van de feiten.",
+    "Een vakbond is ook uitbetalingsinstelling: doet het werkloosheidsdossier, controleert de C4 en staat bij op een RVA-verhoor. Wie geen lid is, gaat naar de HVW (openbaar en gratis).",
+    "Leden krijgen een syndicale premie (ongeveer €145 per jaar). Dienstencentra en afspraken via de website van de vakbond."
   ],
   "vdabsteun": [
     "Beroepsverkennende stage: maximaal 30 dagen bij een werkgever met behoud van uitkering. Ideaal om een museumatelier of restauratiebedrijf van binnen te zien.",
@@ -122,29 +122,29 @@
     "Werkervaringsstage: tot 6 maanden met een premie van €200 per maand plus vervoer.",
     "OKOT: graduaat of bachelor voor een knelpuntberoep met behoud van uitkering en betaald inschrijvingsgeld. Bevestigd voor het graduaat bouwkundig tekenen; het educatief graduaat secundair onderwijs wordt als OKOT aangeboden (onder meer Erasmushogeschool). Wie na 2025 start, valt wel onder de beperking van 24 maanden.",
     "Knelpuntopleidingen zijn gratis met terugbetaling van vervoer.",
-    "Loopbaancheque: sinds 1 oktober 2025 (tijdelijke regeling tot eind 2026) één cheque van vier uur voor €90, alleen als je er nog nooit een gebruikte en met minstens zeven jaar werkervaring. Bij jou is dat nipt; VDAB toont het bij de aanvraag, die je doet zolang je nog werkt. Lukt het niet, dan krijg je als werkzoekende gratis loopbaanoriëntatie bij VDAB."
+    "Loopbaancheque: sinds 1 oktober 2025 (tijdelijke regeling tot eind 2026) één cheque van vier uur voor €90, alleen als je er nog nooit een gebruikte en met minstens zeven jaar werkervaring. VDAB toont bij de aanvraag of je in aanmerking komt; aanvragen kan alleen zolang je werkt. Lukt het niet, dan krijg je als werkzoekende gratis loopbaanoriëntatie bij VDAB."
   ],
-  "vakantiegeld": "Vakantiegeld van arbeiders wordt door de vakantiekas betaald tussen 2 mei en 30 juni 2027, wie ook het contract beëindigt: 15,38 procent van 108 procent van het brutoloon van 2026. Eindejaarspremie PC 111: pro rata, regels per provincie, mogelijk niet bij ontslagname; te verifiëren bij ACV METEA.",
+  "vakantiegeld": "Vakantiegeld van arbeiders wordt door de vakantiekas betaald in mei of juni van het jaar na het vertrek, wie ook het contract beëindigt: 15,38 procent van 108 procent van het brutoloon van het vorige jaar. Bedienden krijgen bij vertrek vertrekvakantiegeld van de werkgever. De eindejaarspremie hangt af van de sectorale cao: vaak pro rata, soms niet bij ontslagname. Kijk de regels van je paritair comité na.",
   "teverifieren": [
-    "Statuut: arbeider of bediende (zie loonfiche). De pagina gaat uit van arbeider (PC 111). Als bediende: gewaarborgd loon een volledige maand aan 100 procent, vakantiegeld en vertrekvakantiegeld door de werkgever, eindejaarspremie volgens PC 200 of 209. De opzegtermijnen zijn dezelfde.",
-    "Exacte anciënniteit en dus de rij in de opzegtabel (startdatum, leerovereenkomst).",
-    "Eindejaarspremie PC 111 provincie Antwerpen bij ontslagname versus ontslag.",
-    "OKOT: of het educatief graduaat ook in Antwerpen (AP, KdG) als OKOT loopt, en of een OKOT meetelt als beroepsopleiding voor de verlenging met 12 maanden.",
+    "Statuut: arbeider of bediende (zie loonfiche). Voor bedienden geldt een volledige maand gewaarborgd loon aan 100 procent en betaalt de werkgever het vakantiegeld en vertrekvakantiegeld; de eindejaarspremie volgt het paritair comité. De opzegtermijnen zijn dezelfde.",
+    "Exacte anciënniteit en dus de rij in de opzegtabel (startdatum, leerovereenkomst, interimperiodes).",
+    "Eindejaarspremie bij ontslagname versus ontslag, volgens de sectorale cao.",
+    "OKOT: welke opleidingen in de eigen regio als OKOT lopen, en of een OKOT meetelt als beroepsopleiding voor de verlenging met 12 maanden.",
     "Premies herscholing via het ziekenfonds in 2026.",
     "Of sollicitatieverlof ook geldt bij opzeg door de werknemer.",
-    "Verwittiging: werd ze tijdig meegedeeld (reeks of afzonderlijke feiten) en staat de sanctie in het arbeidsreglement? Is een schriftelijk antwoord nu aangewezen? Welk statuut en paritair comité geldt (eindejaarspremie bij ontslag om dringende reden)?"
+    "Bij een tuchtsanctie: werd ze tijdig meegedeeld en staat de sanctie in het arbeidsreglement? Is een schriftelijk antwoord aangewezen?"
   ],
   "verwittiging": {
-    "wat": "Een verwittiging is een tuchtsanctie: de werkgever legt schriftelijk vast dat je te laat kwam en vraagt dat het niet meer gebeurt. Het is nog geen ontslag. Als de brief een ontslag om dringende reden vermeldt, betekent dat: bij herhaling overweegt de werkgever je te ontslaan zonder opzegtermijn.",
+    "wat": "Een verwittiging is een tuchtsanctie: de werkgever legt schriftelijk een tekortkoming vast en vraagt dat ze niet meer gebeurt. Het is nog geen ontslag. Als de brief een ontslag om dringende reden vermeldt, betekent dat: bij herhaling overweegt de werkgever een ontslag zonder opzegtermijn.",
     "risico": [
       "Ontslag om dringende reden betekent: geen opzegtermijn en geen opzegvergoeding. De werkgever moet het ontslag geven binnen 3 werkdagen nadat hij de feiten voldoende kent, en de reden binnen 3 werkdagen daarna aangetekend meedelen.",
-      "Herhaald te laat komen na een schriftelijke verwittiging wordt door rechtbanken soms aanvaard als dringende reden. Een eerste verwittiging is een stap in een dossier: de volgende keer telt zwaarder.",
-      "Na zo'n ontslag kan de RVA oordelen dat je werkloos bent door eigen schuld. Gevolg: een verwittiging, of 4 tot 26 weken geen uitkering, eventueel (deels) met uitstel. De RVA beslist zelf, los van wat de werkgever op de C4 zet, en hoort je altijd eerst. ACV kan je bijstaan en je kan de beslissing aanvechten bij de arbeidsrechtbank.",
-      "Ook een gewoon ontslag met opzegtermijn kan bij de RVA tot een sanctie leiden als de werkgever op de C4 'herhaald te laat komen' als reden zet. De reden op de C4 wordt dus belangrijk: bespreek met ACV hoe je dat voorkomt.",
-      "Een dossier rond te laat komen kan ook gebruikt worden om druk te zetten om toch een onderling akkoord te tekenen. Teken niets zonder ACV."
+      "Herhaalde tekortkomingen na een schriftelijke verwittiging worden door rechtbanken soms aanvaard als dringende reden. Een eerste verwittiging is een stap in een dossier: de volgende keer telt zwaarder.",
+      "Na zo'n ontslag kan de RVA oordelen dat je werkloos bent door eigen schuld. Gevolg: een verwittiging, of 4 tot 26 weken geen uitkering, eventueel (deels) met uitstel. De RVA beslist zelf, los van wat de werkgever op de C4 zet, en hoort je altijd eerst. Een vakbond of advocaat kan je bijstaan en je kan de beslissing aanvechten bij de arbeidsrechtbank.",
+      "Ook een gewoon ontslag met opzegtermijn kan bij de RVA tot een sanctie leiden als de werkgever een fout als reden op de C4 zet. De reden op de C4 is dus belangrijk.",
+      "Een tuchtdossier kan ook gebruikt worden om druk te zetten om toch een onderling akkoord te tekenen. Teken niets zonder advies."
     ],
     "regels": [
-      "Een tuchtsanctie zoals een verwittiging moet in het arbeidsreglement staan en op straffe van nietigheid ten laatste de eerste werkdag na de vaststelling van de tekortkoming meegedeeld worden. De dag van de vaststelling is niet altijd de dag van de feiten, maar bij te laat komen ziet de werkgever het meestal meteen. Laat ACV de tijdigheid beoordelen.",
+      "Een tuchtsanctie zoals een verwittiging moet in het arbeidsreglement staan en op straffe van nietigheid ten laatste de eerste werkdag na de vaststelling van de tekortkoming meegedeeld worden. De dag van de vaststelling is niet altijd de dag van de feiten. Laat de tijdigheid beoordelen door je vakbond of een jurist.",
       "Het arbeidsreglement moet een beroepsmogelijkheid tegen sancties voorzien, en de werkgever moet elke sanctie in een register van sancties inschrijven.",
       "Een verwittiging die ook een ingebrekestelling is, legt vast dat je gewaarschuwd bent. Ze bewijst niet dat elke datum klopt: vergelijk de data met je eigen gegevens.",
       "Een sanctie die niet geldig is, verdwijnt niet uit het dossier: de brief blijft bewijzen dat je op de hoogte was. Bij een later ontslag om dringende reden mag de werkgever oudere feiten alleen gebruiken om een nieuw feit te verduidelijken; het nieuwe feit moet op zich ernstig zijn en binnen 3 werkdagen gevolgd worden door het ontslag.",
@@ -155,17 +155,17 @@
     "doen": [
       "Teken de brief hoogstens 'voor ontvangst' met de datum, nooit 'akkoord'.",
       "Maak een foto of scan van de brief en bewaar het origineel met de envelop.",
-      "Bewaar de envelop, het ontvangstbewijs en het zendingsnummer van een aangetekende brief. De poststempel en de track and trace van bpost tonen wanneer de brief echt vertrok; dat kan verschillen van de datum op de brief. Schrijf ook op wanneer je te laat kwam en wanneer en hoe je ingelicht werd. Kwam de verwittiging later dan de eerste werkdag na de laatste keer, dan kan ze nietig zijn. Laat ACV dat beoordelen.",
-      "Ga na welke afspraken er waren over de werkuren, bijvoorbeeld na een verlofperiode. Schrijf op wat werd afgesproken, wanneer en met wie.",
-      "Kijk op de loonfiches na of de gemiste uren werden ingehouden. Niet gewerkte uren mogen ingehouden worden; een boete moet in het arbeidsreglement staan.",
-      "Stuur ACV vóór de afspraak van 16 oktober de mail met het hele verhaal, de twee brieven, de volmacht en een kopie van het paspoort (Communicatie, E-mails).",
-      "Vraag een spontane raadpleging bij de arbeidsarts van de externe preventiedienst als je denkt dat de vermoeidheid met het werk te maken heeft. Dat is je recht; de werkgever kan het niet weigeren.",
-      "Antwoord de werkgever niet zelf. ACV bekijkt de brieven en antwoordt namens Remi. Vraagt de werkgever intussen iets, zeg dan: 'Ik antwoord schriftelijk, na advies van mijn vakbond.'",
-      "Kom vanaf nu op tijd. Lukt het niet, verwittig dan vóór het beginuur per sms of mail, zodat er een spoor is.",
-      "Lukt werken niet meer door de vermoeidheid, ga dan vroeger naar de dokter dan 16 oktober. Met een attest ben je gewettigd afwezig.",
-      "Noteer elk te laat komen en elk gesprek erover: datum, hoeveel minuten, reden, met wie."
+      "Bewaar de envelop, het ontvangstbewijs en het zendingsnummer van een aangetekende brief. De poststempel en de track and trace van bpost tonen wanneer de brief echt vertrok; dat kan verschillen van de datum op de brief. Schrijf op wat er gebeurde en wanneer en hoe je ingelicht werd. Kwam de verwittiging later dan de eerste werkdag na de vaststelling, dan kan ze nietig zijn.",
+      "Ga na welke afspraken er waren, bijvoorbeeld over werkuren. Schrijf op wat werd afgesproken, wanneer en met wie.",
+      "Kijk op de loonfiches na of er iets werd ingehouden. Niet gewerkte uren mogen ingehouden worden; een boete moet in het arbeidsreglement staan.",
+      "Laat de brief nakijken door je vakbond of een arbeidsrechtjurist voor je antwoordt. Neem de brief, de envelop en je eigen notities mee.",
+      "Vraag een spontane raadpleging bij de arbeidsarts van de externe preventiedienst als je denkt dat gezondheidsklachten met het werk te maken hebben. Dat is je recht; de werkgever kan het niet weigeren.",
+      "Antwoord niet onder druk. Vraagt de werkgever iets, zeg dan: 'Ik antwoord schriftelijk, na advies.'",
+      "Vermijd een nieuwe tekortkoming. Ben je verhinderd, verwittig dan vooraf per sms of mail, zodat er een spoor is.",
+      "Ben je ziek, ga dan naar de dokter. Met een attest ben je gewettigd afwezig.",
+      "Noteer elk voorval en elk gesprek erover: datum, wat er gebeurde, met wie."
     ],
-    "bronnen": "Wet van 3 juli 1978, art. 35 (dringende reden); wet van 8 april 1965 op de arbeidsreglementen (sancties, boete hoogstens een vijfde van het dagloon); KB 25 november 1991, art. 51 en volgende (werkloos door eigen schuld); sectorale cao's eindejaarspremie PC 111. RVA, Securex Lex4You, Tilleman Van Hoogenbemt, GD&A Advocaten en Arbeidsrechtjournaal, geraadpleegd op 4 oktober 2026.",
+    "bronnen": "Wet van 3 juli 1978, art. 35 (dringende reden); wet van 8 april 1965 op de arbeidsreglementen (sancties, boete hoogstens een vijfde van het dagloon); KB 25 november 1991, art. 51 en volgende (werkloos door eigen schuld); sectorale cao's (eindejaarspremie). RVA, Securex Lex4You, Tilleman Van Hoogenbemt, GD&A Advocaten en Arbeidsrechtjournaal, geraadpleegd op 4 oktober 2026.",
     "ergste": [
       {
         "wat": "Nieuwe tuchtsanctie",
@@ -173,11 +173,11 @@
       },
       {
         "wat": "Ontslag met opzegtermijn",
-        "gevolg": "De opzegtermijn of opzegvergoeding blijft verschuldigd. Zet de werkgever 'herhaald te laat komen' op de C4, dan kan de RVA toch een sanctie geven (zie onder)."
+        "gevolg": "De opzegtermijn of opzegvergoeding blijft verschuldigd. Zet de werkgever een fout als reden op de C4, dan kan de RVA toch een sanctie geven (zie onder)."
       },
       {
         "wat": "Ontslag om dringende reden, het ergste geval",
-        "gevolg": "Geen opzegtermijn en geen opzegvergoeding. In PC 111 (arbeiders) ook geen eindejaarspremie. Het vakantiegeld blijft. Met ACV kan je het ontslag aanvechten bij de arbeidsrechtbank; is de dringende reden niet bewezen, dan volgt alsnog een opzegvergoeding."
+        "gevolg": "Geen opzegtermijn en geen opzegvergoeding. In sommige sectoren ook geen eindejaarspremie. Het vakantiegeld blijft. Met juridische bijstand kan je het ontslag aanvechten bij de arbeidsrechtbank; is de dringende reden niet bewezen, dan volgt alsnog een opzegvergoeding."
       },
       {
         "wat": "RVA: werkloos door eigen schuld",
@@ -199,20 +199,20 @@
     "nooit": {
       "intro": "Een voornemen om te vertrekken is geen ontslag. Een opzegging door de werknemer moet schriftelijk gebeuren, en een ontslag zonder opzeg vraagt een zekere en duidelijke wil. Het gevaar zit in wat je vanaf nu zegt, schrijft of tekent: dan kan een voornemen een ontslagname of een akkoord worden, met verlies van opzegvergoeding en een sanctie van de RVA.",
       "zinnen": [
-        "Niet bevestigen: 'mijn intentie blijft ongewijzigd', 'ja, dat blijft de planning', 'ik vertrek op 31 december' of eender welke einddatum of laatste werkdag.",
+        "Niet bevestigen dat je wil vertrekken, en geen einddatum of laatste werkdag noemen, ook niet als bevestiging van iets wat je eerder zei.",
         "Niet zeggen of schrijven: 'ik neem ontslag', 'ik zeg op', 'ik wil stoppen', 'ik ben uitgekeken op mijn functie'.",
         "Ook niet: 'mijn plannen zijn gewijzigd' of 'ik trek mijn intentie in'. Dat veronderstelt dat er al een vaste beslissing was.",
         "Niet akkoord gaan met een 'beëindiging in onderling akkoord of overleg', en niet vragen om ontslagen te worden: de RVA kan dat zien als een verdoken ontslagname.",
-        "Niet zelf besluiten 'ik kan deze job niet meer doen'. Medische conclusies trekken de huisarts en de arbeidsarts.",
-        "Niet zelf zeggen dat de werkgever je 'al ontslagen' heeft, tenzij ACV dat nagekeken heeft.",
+        "Niet zelf besluiten 'ik kan deze job niet meer doen'. Medische conclusies trekken je arts en de arbeidsarts.",
+        "Niet zelf zeggen dat de werkgever je 'al ontslagen' heeft, tenzij een jurist dat nagekeken heeft.",
         "Nooit tekenen met 'voor akkoord' of 'gelezen en goedgekeurd'. Hoogstens: 'Voor ontvangst op [datum], niet akkoord met de inhoud'.",
-        "In een gesprek is deze zin genoeg: 'Ik antwoord schriftelijk, na advies van mijn vakbond.'"
+        "In een gesprek is deze zin genoeg: 'Ik antwoord schriftelijk, na advies.'"
       ],
-      "zekerheid": "Algemene regels (art. 32, 37 en 39 Arbeidsovereenkomstenwet; art. 51 en volgende Werkloosheidsbesluit), opgezocht op 11 oktober 2026. Laat ACV ze toepassen op jouw situatie."
+      "zekerheid": "Algemene regels (art. 32, 37 en 39 Arbeidsovereenkomstenwet; art. 51 en volgende Werkloosheidsbesluit), opgezocht op 11 oktober 2026. Laat een vakbond of jurist ze toepassen op een concrete situatie."
     }
   },
   "gezondheid": {
-    "intro": "Wat er kan als het werk te zwaar wordt voor je gezondheid. Algemene regels, stand 2026; laat ACV ze toepassen op jouw situatie.",
+    "intro": "Wat er kan als het werk te zwaar wordt voor je gezondheid. Algemene regels, stand 2026; laat een vakbond of jurist ze toepassen op een concrete situatie.",
     "punten": [
       {
         "titel": "Spontane raadpleging bij de arbeidsarts",
@@ -220,7 +220,7 @@
       },
       {
         "titel": "Evaluatie van je werkpost (nieuw sinds 2026)",
-        "tekst": "Wie een risico loopt om arbeidsongeschikt te worden, kan de werkgever vragen om de werkpost te laten evalueren, met het oog op aanpassingen of ander werk. Dat verloopt via de werkgever en de arbeidsarts en is dus niet vertrouwelijk. Bespreek eerst met ACV of dit in jouw situatie helpt."
+        "tekst": "Wie een risico loopt om arbeidsongeschikt te worden, kan de werkgever vragen om de werkpost te laten evalueren, met het oog op aanpassingen of ander werk. Dat verloopt via de werkgever en de arbeidsarts en is dus niet vertrouwelijk. Bespreek eerst met je vakbond of een jurist of dit in jouw situatie helpt."
       },
       {
         "titel": "Ziekteverlof",
@@ -232,7 +232,7 @@
       },
       {
         "titel": "Zelf vertrekken om medische redenen",
-        "tekst": "Zelf ontslag nemen leidt normaal tot een RVA-sanctie. Er is geen sanctie als je een wettige reden had, zoals een ernstige medische reden die de arts van de RVA erkent, of werk dat niet meer passend is voor je gezondheid. De RVA laat je dan onderzoeken. Dit is onzeker: doe het nooit zonder ACV."
+        "tekst": "Zelf ontslag nemen leidt normaal tot een RVA-sanctie. Er is geen sanctie als je een wettige reden had, zoals een ernstige medische reden die de arts van de RVA erkent, of werk dat niet meer passend is voor je gezondheid. De RVA laat je dan onderzoeken. Dit is onzeker: doe het nooit zonder advies."
       },
       {
         "titel": "Opleiding tijdens ziekte",

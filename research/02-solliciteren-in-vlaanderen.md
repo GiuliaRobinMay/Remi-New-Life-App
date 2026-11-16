@@ -1,6 +1,6 @@
 # Onderzoek 2: Solliciteren in Vlaanderen (2026)
 
-Language note: this file is in English because it is internal working material; everything that goes out to employers is in Dutch and uses "u". Source pages of VDAB, antwerpen.be, werkenvoor.be, ACV and Sociare could not be loaded directly in this environment; their content comes from search-result extracts. The Vlaamse overheid selection regulations (selectiereglementen 2024-2026) were read in full. Salary figures marked "indicative" must be verified before the app shows them as fact.
+Language note: this file is in English because it is internal working material; everything that goes out to employers is in Dutch and uses "u". Source pages of VDAB, antwerpen.be, werkenvoor.be, union sites and Sociare could not be loaded directly in this environment; their content comes from search-result extracts. The Vlaamse overheid selection regulations (selectiereglementen 2024-2026) were read in full. Salary figures marked "indicative" must be verified before the app shows them as fact.
 
 ## 1. CV conventions in Flanders
 
@@ -56,7 +56,7 @@ Federal (werkenvoor.be; KIK-IRPA is federal): online CV on werkenvoor.be; niveau
 - STARR (Situatie, Taak, Actie, Resultaat, Reflectie) is the standard technique. Expect: "Waarom deze switch?", "Wat weet u over onze organisatie?", "Hoe combineert u werk en studie?", "Waar ziet u zichzelf over vijf jaar?".
 - Dress: neat, matching the workplace; ateliers and museums smart-casual; never work clothes. Arrive 5 to 10 minutes early.
 - Salary: do not raise it in the first interview; if asked, give a bruto maandloon range. Government pay is on fixed scales, so ask how prior experience will be valorised.
-- Leaving because of fatigue: no obligation to disclose; health questions are not allowed. Safe framing: "Na vijf jaar industrieel laswerk ben ik toe aan een nieuwe uitdaging waarin ik mijn vakmanschap kan inzetten voor erfgoed en ontwerp." Never use the word burn-out. If pressed: "Ik heb bewust de tijd genomen om mijn richting te bepalen en ben volledig klaar om te starten."
+- Reasons for leaving: no obligation to disclose; health questions are not allowed. Safe framing: "Na vijf jaar industrieel laswerk ben ik toe aan een nieuwe uitdaging waarin ik mijn vakmanschap kan inzetten voor erfgoed en ontwerp." Never bring up health. If pressed: "Ik heb bewust de tijd genomen om mijn richting te bepalen en ben volledig klaar om te starten."
 - Studying alongside work is normal and seen positively; state it upfront with the concrete schedule and show how it feeds the job.
 
 ## 7. Portfolio for ateliers and museums
@@ -144,7 +144,6 @@ Met vriendelijke groeten
 - https://www.walterspeople.be/nl/carriere-advies/het-nut-van-een-bedankmail-na-je-sollicitatiegesprek.html
 - https://www.roberthalf.com/be/nl/inzichten/solliciteren/follow-up-na-een-sollicitatiegesprek
 - https://www.roberthalf.com/be/nl/inzichten/solliciteren/hoe-te-antwoorden-op-de-vraag-naar-je-gewenste-loon
-- https://www.robertwalters.be/nl/insights/carriere-advies/blog/Solliciteren-na-een-burn-out.html
 - https://www.robertwalters.be/nl/insights/carriere-advies/blog/Studeren-en-werken-combineren.html
 - https://www.recrewtment.be/blog/afwijzing-na-sollicitatie
 - https://www.kuleuven.be/stuvo/werkervaring/arbeidsmarkt/toolbox-2/sollicitatiegesprek

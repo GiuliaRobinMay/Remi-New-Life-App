@@ -20,8 +20,9 @@ export async function status({ vers = false } = {}) {
 export async function actie(naam, extra) { const B = await backend(); const r = await B.gmail(naam, extra); laatste = null; return r; }
 
 // Versturen met een sleutel '<mail-id>:<poging>': de server verstuurt dezelfde sleutel nooit twee keer.
-// Geeft { id, threadId, van } terug, of { dubbel: true, id } als de server deze sleutel al kent (al verstuurd, of nu
-// bezig op een ander toestel). Een fout vóór de server iets kreeg (de mail klaarzetten), krijgt onzeker: false.
+// Geeft { id, threadId, van } terug, of { dubbel: true, id, status } als de server deze sleutel al kent: status
+// 'verstuurd' (Gmail bevestigde het) of 'bezig' (niet bevestigd: loopt nog op een ander toestel, of een vorige poging
+// liep onzeker af). Een fout vóór de server iets kreeg (de mail klaarzetten), krijgt onzeker: false.
 export async function verstuur(mime, sleutel) {
   let B, pad;
   try {
@@ -32,7 +33,7 @@ export async function verstuur(mime, sleutel) {
   }
   try { return await B.gmail('verstuur', { pad, sleutel }); }
   catch (e) {
-    if (e?.dubbel === true) return { dubbel: true, id: e.gmailId || '', van: '' };
+    if (e?.dubbel === true) return { dubbel: true, id: e.gmailId || '', van: '', status: e.verzendStatus === 'verstuurd' ? 'verstuurd' : 'bezig' };
     throw e;
   }
 }

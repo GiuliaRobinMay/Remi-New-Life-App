@@ -1,7 +1,7 @@
 // Dossier: ontvangen en verstuurde brieven, attesten en andere documenten, met foto's als bijlage.
 // De tekst staat in de app-gegevens, de bestanden in bijlagen.js. Met de centrale database zien Giulia en Remi beide.
 import { h, icon, badge, fmtDate, todayIso, uid, md, toast } from './ui.js';
-import { all, get, upsert, remove } from './store.js';
+import { all, get, upsert, remove, gewijzigdeVelden, items, itemErbij, itemWeg } from './store.js';
 import { openPeek, closePeek } from './app.js';
 import { bewaarBijlage, leesBijlage, wisBijlage } from './bijlagen.js';
 
@@ -21,7 +21,7 @@ export function dossierTab() {
       h('p', { class: 'row-title' }, d.titel),
       d.van && h('p', { class: 'small muted' }, d.van),
       d.samenvatting && h('p', { class: 'small' }, d.samenvatting),
-      h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--ghost btn--sm', onClick: () => dossierPeek(d.id) }, 'Openen'), h('span', { class: 'small muted' }, `${(d.bijlagen || []).length} ${(d.bijlagen || []).length === 1 ? 'bijlage' : 'bijlagen'}`)))))
+      h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--ghost btn--sm', onClick: () => dossierPeek(d.id) }, 'Openen'), h('span', { class: 'small muted' }, `${items(d, 'bijlagen').length} ${items(d, 'bijlagen').length === 1 ? 'bijlage' : 'bijlagen'}`)))))
       : h('div', { class: 'card empty' }, 'Nog geen documenten. Voeg er een toe met de knop hierboven, of importeer een bestand via Instellingen.'));
 }
 
@@ -29,12 +29,13 @@ export function dossierTab() {
 // webpagina binnen de app kan draaien.
 const TOONBAAR = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'application/pdf'];
 // Een bijlage die ook in een mail zit, blijft bewaard als ze uit het dossier verdwijnt.
-const inMail = id => all('berichten').some(m => (m.bijlagen || []).some(x => x.id === id));
+// De bijlagen staan per item in het record (store.items), zodat twee toestellen tegelijk iets kunnen toevoegen.
+const inMail = id => all('berichten').some(m => items(m, 'bijlagen').some(x => x.id === id));
 async function wisAlsVrij(id) { if (!inMail(id)) await wisBijlage(id).catch(() => {}); }
 
 function bijlagenBlok(d) {
   const lijst = h('div', { class: 'bijlagen' });
-  for (const b of d.bijlagen || []) {
+  for (const b of items(d, 'bijlagen')) {
     const vak = h('figure', { class: 'bijlage' }, h('span', { class: 'small muted' }, 'Laden…'));
     lijst.append(vak);
     leesBijlage(b.id).then(blob => {
@@ -45,18 +46,18 @@ function bijlagenBlok(d) {
       const beeld = toonbaar && type.startsWith('image/') ? h('img', { src: url, alt: b.naam }) : h('span', { class: 'bijlage__pdf' }, icon('doc', 20));
       const link = toonbaar ? h('a', { href: url, target: '_blank', rel: 'noopener' }, beeld) : h('a', { href: url, download: b.naam || 'bijlage' }, beeld);
       vak.replaceChildren(link, h('figcaption', { class: 'small' }, b.naam, ' ',
-        h('button', { class: 'btn btn--quiet btn--sm', type: 'button', 'aria-label': `${b.naam} verwijderen`, onClick: async () => { if (!confirm(`${b.naam} verwijderen?`)) return; upsert('dossier', { id: d.id, bijlagen: (get('dossier', d.id).bijlagen || []).filter(x => x.id !== b.id) }); await wisAlsVrij(b.id); } }, 'Verwijderen')));
+        h('button', { class: 'btn btn--quiet btn--sm', type: 'button', 'aria-label': `${b.naam} verwijderen`, onClick: async () => { if (!confirm(`${b.naam} verwijderen?`)) return; upsert('dossier', { id: d.id, ...itemWeg(get('dossier', d.id), 'bijlagen', b.id) }); await wisAlsVrij(b.id); } }, 'Verwijderen')));
     }).catch(() => vak.replaceChildren(h('span', { class: 'small muted' }, 'Bijlage kon niet geladen worden.')));
   }
   const kies = h('input', { type: 'file', accept: 'image/*,application/pdf', multiple: true, class: 'visueel-verborgen', 'aria-label': 'Foto of pdf toevoegen', onChange: async e => {
     const nieuw = [];
     for (const f of e.target.files) { const id = `${d.id}/${uid()}`; try { await bewaarBijlage(id, f); nieuw.push({ id, naam: f.name, type: f.type }); } catch { toast(`${f.name} kon niet bewaard worden`); } }
     e.target.value = '';
-    if (nieuw.length) { upsert('dossier', { id: d.id, bijlagen: [...(get('dossier', d.id).bijlagen || []), ...nieuw] }); toast(nieuw.length === 1 ? 'Foto toegevoegd' : `${nieuw.length} bestanden toegevoegd`); }
+    if (nieuw.length) { upsert('dossier', { id: d.id, ...itemErbij('bijlagen', nieuw) }); toast(nieuw.length === 1 ? 'Foto toegevoegd' : `${nieuw.length} bestanden toegevoegd`); }
   } });
   return h('section', { class: 'stack', style: 'gap:8px' },
     h('p', { class: 'eyebrow' }, 'Foto\'s en bestanden'),
-    (d.bijlagen || []).length ? lijst : h('p', { class: 'small muted' }, 'Nog geen foto. Neem een foto van elke pagina.'),
+    items(d, 'bijlagen').length ? lijst : h('p', { class: 'small muted' }, 'Nog geen foto. Neem een foto van elke pagina.'),
     h('label', { class: 'btn btn--ghost btn--sm bestand-knop', style: 'align-self:flex-start' }, icon('upload', 12), 'Foto of pdf toevoegen', kies));
 }
 
@@ -73,16 +74,17 @@ export function dossierPeek(id) {
       d.analyse && h('section', { class: 'stack', style: 'gap:6px' }, h('p', { class: 'eyebrow' }, 'Analyse'), md(d.analyse)),
       d.tekst && h('details', null, h('summary', null, 'Volledige tekst'), h('div', { class: 'small', style: 'white-space:pre-wrap;margin-top:8px' }, d.tekst)),
       d.notities && h('section', null, h('p', { class: 'eyebrow' }, 'Notities'), h('p', { style: 'white-space:pre-wrap' }, d.notities)),
-      h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--ghost btn--sm', onClick: () => dossierForm(d) }, 'Bewerken'), d.link && h('a', { class: 'btn btn--ghost btn--sm', href: d.link }, d.linkLabel || 'Verder')));
+      h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--ghost btn--sm', onClick: () => dossierForm(get('dossier', id) || d) }, 'Bewerken'), d.link && h('a', { class: 'btn btn--ghost btn--sm', href: d.link }, d.linkLabel || 'Verder')));
   });
 }
 
 function dossierForm(init = {}) {
   const d = { id: init.id, titel: init.titel || '', datum: init.datum || todayIso(), ontvangen: init.ontvangen || '', van: init.van || '', aan: init.aan || '', soort: init.soort || 'brief-in', aangetekend: !!init.aangetekend, samenvatting: init.samenvatting || '', tekst: init.tekst || '', notities: init.notities || '' };
+  const begin = init; // bewerken bewaart alleen wat in het formulier gewijzigd werd (tegenover het record bij het openen)
   openPeek(d.id ? 'Document bewerken' : 'Document toevoegen', () => {
     const inp = (k, type = 'text') => h('input', { class: 'field', type, value: d[k], onInput: e => d[k] = e.target.value });
     const area = (k, min = 120) => h('textarea', { class: 'field', style: `min-height:${min}px`, value: d[k], onInput: e => d[k] = e.target.value });
-    return h('form', { class: 'form', onSubmit: e => { e.preventDefault(); if (!d.titel) return; const nieuw = !d.id; const saved = upsert('dossier', { ...d, id: d.id || 'dos-' + uid() }); toast('Bewaard'); if (nieuw) dossierPeek(saved.id); else closePeek(); } },
+    return h('form', { class: 'form', onSubmit: e => { e.preventDefault(); if (!d.titel) return; const nieuw = !d.id; const saved = upsert('dossier', d.id ? { id: d.id, ...gewijzigdeVelden(begin, d) } : { ...d, id: 'dos-' + uid() }); toast('Bewaard'); if (nieuw) dossierPeek(saved.id); else closePeek(); } },
       h('label', null, 'Titel', inp('titel')),
       h('div', { class: 'form__row' }, h('label', null, 'Soort', h('select', { class: 'field', onChange: e => d.soort = e.target.value }, SOORTEN.map(([v, l]) => h('option', { value: v, selected: d.soort === v }, l)))), h('label', { class: 'inline-check' }, h('input', { type: 'checkbox', checked: d.aangetekend, onChange: e => d.aangetekend = e.target.checked }), 'Aangetekend')),
       h('div', { class: 'form__row' }, h('label', null, 'Datum op het document', inp('datum', 'date')), h('label', null, 'Ontvangen of verstuurd op', inp('ontvangen', 'date'))),
@@ -92,7 +94,7 @@ function dossierForm(init = {}) {
       h('label', null, 'Notities', area('notities', 80)),
       h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--primary', type: 'submit' }, 'Bewaren'), d.id && h('button', { class: 'btn btn--danger', type: 'button', onClick: async () => {
         if (!confirm('Dit document en zijn foto\'s verwijderen?')) return;
-        const weg = get('dossier', d.id)?.bijlagen || [];
+        const weg = items(get('dossier', d.id), 'bijlagen');
         remove('dossier', d.id); closePeek();
         for (const b of weg) await wisAlsVrij(b.id);
       } }, 'Verwijderen')));

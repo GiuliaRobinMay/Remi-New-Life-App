@@ -3,7 +3,7 @@
 // Met de centrale database verstuurt de server (functie 'gmail') vanaf het gekoppelde adres van Remi;
 // zonder database meldt de browser zich zelf aan bij Google.
 import { h, icon, badge, fmtDate, todayIso, isoLocal, uid, copyText, toast } from './ui.js';
-import { all, get, upsert, remove } from './store.js';
+import { all, get, upsert, remove, items, itemErbij, itemWeg } from './store.js';
 import { openPeek, closePeek, peekActief, vernieuw, go } from './app.js';
 import { content, intro, callout } from './views-core.js';
 import { grid } from './views-werk.js';
@@ -33,7 +33,7 @@ let htTimer = null;
 function zetHandtekening(v) {
   try { localStorage.setItem(HT, v); } catch { /* privévenster */ }
   clearTimeout(htTimer);
-  htTimer = setTimeout(() => upsert('instellingen', { id: 'mail', handtekening: v }, { silent: true }), 400);
+  htTimer = setTimeout(() => upsert('instellingen', { id: 'mail', handtekening: v }, { silent: true, herstel: true }), 400);
 }
 
 export function communicatie(r) {
@@ -67,7 +67,7 @@ export function communicatie(r) {
   const cols = [
     { label: 'E-mail', width: 300, render: b => h('a', { href: `#/communicatie/${encodeURIComponent(b.id)}`, 'data-mail': b.id }, titelVan(b)) },
     { label: 'Aan', width: 230, render: b => b.naar || b.aan || leeg() },
-    { label: 'Bijlagen', width: 90, render: b => (b.bijlagen || []).length ? h('span', null, icon('doc', 12), ` ${(b.bijlagen || []).length}`) : leeg() },
+    { label: 'Bijlagen', width: 90, render: b => items(b, 'bijlagen').length ? h('span', null, icon('doc', 12), ` ${items(b, 'bijlagen').length}`) : leeg() },
     { label: 'Status', width: 190, render: b => b.soort === 'archief' ? badge('gearchiveerd', 'grey') : bezigMet.has(b.id) ? badge('bezig met versturen', 'orange') : b.status === 'verstuurd' ? badge(`verstuurd${b.verstuurdVan ? ' met Gmail' : ''}`, 'green') : b.twijfelOp ? badge('misschien verstuurd', 'red') : badge('concept', 'grey') },
     { label: 'Datum', width: 110, render: b => datumVan(b) ? fmtDate(datumVan(b)) : leeg() },
   ];
@@ -100,7 +100,7 @@ function mailKaart(b) {
   const tekst = () => veld.value;
   const verstuurd = b.status === 'verstuurd';
   const bezig = bezigMet.has(b.id);
-  const heeftBijlagen = (b.bijlagen || []).length > 0;
+  const heeftBijlagen = items(b, 'bijlagen').length > 0;
   const ht = handtekening().trim();
   const gearchiveerd = b.soort === 'archief';
   const zetSoort = soort => { bewaarNu(b.id); upsert('berichten', { id: b.id, soort }); toast(soort === 'mail' ? 'Teruggezet bij de e-mails' : 'Gearchiveerd. Je vindt de mail onderaan de lijst bij Archief.'); };
@@ -118,9 +118,11 @@ function mailKaart(b) {
       h('button', { class: `btn ${verstuurd ? 'btn--ghost' : 'btn--primary'} btn--sm`, 'data-actie': 'gmail', disabled: bezig, onClick: () => versturenMetGmail(b, tekst()) }, icon('mail', 12), h('span', { class: 'btn__label' }, bezig ? 'Bezig met versturen…' : verstuurd ? 'Opnieuw versturen met Gmail' : 'Versturen met Gmail')),
       typeof navigator.share === 'function' && h('button', { class: 'btn btn--ghost btn--sm', onClick: () => delen(b, tekst()) }, icon('external', 12), h('span', { class: 'btn__label' }, 'Delen met een app')),
       h('button', { class: 'btn btn--ghost btn--sm', onClick: () => copyText(tekst()) }, icon('copy', 12), h('span', { class: 'btn__label' }, 'Kopieer tekst')),
-      h('a', { class: 'btn btn--ghost btn--sm', href: '#', onClick: e => { const c = { ...(get('berichten', b.id) || {}), ...b }; if ((c.bijlagen || []).length) toast(`Voeg in je mail-app zelf de bijlagen toe: ${c.bijlagen.map(x => x.naam).join(', ')}`); e.currentTarget.href = `mailto:${encodeURIComponent(mail.adressen(c.naar).tekst)}?${new URLSearchParams({ ...(c.cc ? { cc: mail.adressen(c.cc).tekst } : {}), subject: c.onderwerp || '', body: tekst() }).toString().replace(/\+/g, '%20')}`; } }, icon('external', 12), h('span', { class: 'btn__label' }, 'Open in mailprogramma')),
+      h('a', { class: 'btn btn--ghost btn--sm', href: '#', onClick: e => { const c = { ...(get('berichten', b.id) || {}), ...b }; if (items(c, 'bijlagen').length) toast(`Voeg in je mail-app zelf de bijlagen toe: ${items(c, 'bijlagen').map(x => x.naam).join(', ')}`); e.currentTarget.href = `mailto:${encodeURIComponent(mail.adressen(c.naar).tekst)}?${new URLSearchParams({ ...(c.cc ? { cc: mail.adressen(c.cc).tekst } : {}), subject: c.onderwerp || '', body: tekst() }).toString().replace(/\+/g, '%20')}`; } }, icon('external', 12), h('span', { class: 'btn__label' }, 'Open in mailprogramma')),
       verstuurd
-        ? h('button', { class: 'btn btn--quiet btn--sm', onClick: () => { bewaarNu(b.id); upsert('berichten', { id: b.id, status: 'concept', verstuurdOp: '', verstuurdVan: '', gmailId: '' }); } }, 'Terug naar concept')
+        // Terug naar concept: een volgende verzending is bewust een nieuwe, dus een nieuwe poging (een nieuwe sleutel).
+        // Met dezelfde sleutel zou de server antwoorden dat de mail al verstuurd is, en vertrok de verbeterde mail niet.
+        ? h('button', { class: 'btn btn--quiet btn--sm', 'data-actie': 'terug-naar-concept', onClick: () => { bewaarNu(b.id); const nu = get('berichten', b.id) || b; upsert('berichten', { id: b.id, status: 'concept', verstuurdOp: '', verstuurdVan: '', gmailId: '', verzendPoging: pogingVan(nu) + 1 }); } }, 'Terug naar concept')
         : h('button', { class: 'btn btn--ghost btn--sm', onClick: () => {
           bewaarNu(b.id);
           if (haken(tekst()) && !confirm('Er staan nog velden tussen haken. Toch als verstuurd markeren?')) return;
@@ -132,7 +134,7 @@ function mailKaart(b) {
       !gearchiveerd && !bezig && h('button', { class: 'btn btn--quiet btn--sm', 'data-actie': 'archiveren', onClick: () => zetSoort('archief') }, 'Archiveren'),
       b.eigen && h('button', { class: 'btn btn--quiet btn--sm', disabled: bezig, onClick: async () => {
         if (!confirm('Deze e-mail verwijderen?')) return;
-        for (const x of get('berichten', b.id)?.bijlagen || []) if (x.bron !== 'dossier') await wisBijlage(x.id).catch(() => {});
+        for (const x of items(get('berichten', b.id), 'bijlagen')) if (x.bron !== 'dossier') await wisBijlage(x.id).catch(() => {});
         clearTimeout(wachtend[b.id]?.timer); delete wachtend[b.id]; remove('berichten', b.id); go('communicatie');
       } }, 'Verwijderen')),
     heeftBijlagen && h('p', { class: 'small muted' }, 'Alleen Versturen met Gmail neemt de bijlagen zeker mee. Bij Open in mailprogramma, Kopieer tekst en Delen voeg je ze zelf toe in je mail-app.'),
@@ -175,7 +177,7 @@ function mailVelden(b) {
 }
 
 function bijlagenBlok(b) {
-  const lijst = b.bijlagen || [];
+  const lijst = items(b, 'bijlagen');
   const kies = h('input', { type: 'file', multiple: true, class: 'visueel-verborgen', 'data-bijlage': b.id, 'aria-label': 'Bestand toevoegen als bijlage', onChange: async e => {
     const nieuw = [];
     for (const f of e.target.files) {
@@ -184,7 +186,7 @@ function bijlagenBlok(b) {
     }
     e.target.value = '';
     bewaarNu(b.id);
-    if (nieuw.length) upsert('berichten', { id: b.id, bijlagen: [...(get('berichten', b.id)?.bijlagen || []), ...nieuw] });
+    if (nieuw.length) upsert('berichten', { id: b.id, ...itemErbij('bijlagen', nieuw) });
   } });
   return h('div', { class: 'mail-bijlagen' },
     h('p', { class: 'small muted' }, 'Bijlagen'),
@@ -193,7 +195,7 @@ function bijlagenBlok(b) {
       h('button', { class: 'btn btn--quiet btn--sm', type: 'button', 'aria-label': `${x.naam} verwijderen`, disabled: bezigMet.has(b.id), onClick: async () => {
         if (x.bron !== 'dossier') await wisBijlage(x.id).catch(() => {});
         bewaarNu(b.id);
-        upsert('berichten', { id: b.id, bijlagen: (get('berichten', b.id)?.bijlagen || []).filter(y => y.id !== x.id) });
+        upsert('berichten', { id: b.id, ...itemWeg(get('berichten', b.id), 'bijlagen', x.id) });
       } }, 'Verwijderen')))) : h('p', { class: 'small muted' }, 'Nog geen bijlagen. Voeg bijvoorbeeld de ondertekende volmacht of een foto van een brief toe.'),
     h('div', { class: 'form__actions' },
       h('label', { class: 'btn btn--ghost btn--sm bestand-knop' }, icon('upload', 12), 'Bestand toevoegen', kies),
@@ -202,15 +204,15 @@ function bijlagenBlok(b) {
 
 function uitDossier(b) {
   openPeek('Bijlage uit het dossier', () => {
-    const al = new Set((get('berichten', b.id)?.bijlagen || []).map(x => x.id));
-    const docs = all('dossier').filter(d => (d.bijlagen || []).length);
+    const al = new Set(items(get('berichten', b.id), 'bijlagen').map(x => x.id));
+    const docs = all('dossier').filter(d => items(d, 'bijlagen').length);
     if (!docs.length) return h('p', { class: 'muted' }, 'Er staan nog geen foto\'s of pdf\'s in het dossier. Voeg ze toe bij Documenten, Dossier.');
     return h('div', { class: 'stack' }, docs.map(d => h('section', { class: 'card card--pad' },
       h('p', { class: 'row-title' }, d.titel), d.datum && h('p', { class: 'small muted' }, fmtDate(d.datum)),
-      h('ul', { class: 'list list--tight' }, d.bijlagen.map(x => h('li', null, h('span', { style: 'flex:1;min-width:0;overflow-wrap:anywhere' }, x.naam),
+      h('ul', { class: 'list list--tight' }, items(d, 'bijlagen').map(x => h('li', null, h('span', { style: 'flex:1;min-width:0;overflow-wrap:anywhere' }, x.naam),
         al.has(x.id) ? badge('toegevoegd', 'green') : h('button', { class: 'btn btn--ghost btn--sm', 'aria-label': `${x.naam} toevoegen`, onClick: () => {
           bewaarNu(b.id);
-          upsert('berichten', { id: b.id, bijlagen: [...(get('berichten', b.id)?.bijlagen || []), { id: x.id, naam: x.naam, type: x.type, bron: 'dossier' }] });
+          upsert('berichten', { id: b.id, ...itemErbij('bijlagen', { id: x.id, naam: x.naam, type: x.type, bron: 'dossier' }) });
           toast('Bijlage toegevoegd');
         } }, 'Toevoegen')))))));
   });
@@ -218,7 +220,7 @@ function uitDossier(b) {
 
 async function laadBijlagen(c) {
   const out = []; let totaal = 0;
-  for (const x of c.bijlagen || []) {
+  for (const x of items(c, 'bijlagen')) {
     const blob = await leesBijlage(x.id).catch(() => null);
     if (!blob) throw new Error(`De bijlage ${x.naam} kon niet geladen worden. Kijk of er verbinding is, of voeg ze opnieuw toe.`);
     totaal += blob.size; out.push({ ...x, blob });
@@ -280,18 +282,24 @@ const misschienVerstuurd = e => e?.onzeker !== false && !e?.herkoppelen && !e?.i
 
 // Elke verzending heeft een sleutel '<mail-id>:<poging>'. De server verstuurt dezelfde sleutel nooit twee keer
 // (ook niet vanaf twee toestellen tegelijk). De poging (veld verzendPoging, standaard 1) gaat alleen omhoog bij een
-// bewuste nieuwe verzending van een mail die al verstuurd is; een nieuwe poging na twijfel houdt dezelfde sleutel.
+// bewuste nieuwe verzending: een mail die al verstuurd is (status, gmailId of verstuurdOp), Terug naar concept, of
+// na een dubbel-antwoord dat deze mail niet bevestigt. Een nieuwe poging na twijfel houdt dezelfde sleutel.
 const pogingVan = r => { const n = Math.floor(Number(r?.verzendPoging)); return n >= 1 && n <= 999_999_999 ? n : 1; };
 const verzendSleutel = (id, poging) => `${String(id).replace(/[\s\u0000-\u001f\u007f]/g, '_').slice(0, 200)}:${poging}`;
 const alVerstuurd = r => !!(r?.gmailId || r?.status === 'verstuurd');
 const TWIJFEL_SERVER = 'Bij een vorige poging is het niet zeker of deze mail vertrokken is. Kijk eerst in Gmail bij Verzonden.\n\nOpnieuw proberen? Was de mail toch al vertrokken, dan verstuurt de server ze niet nog eens.';
 const TWIJFEL_BROWSER = 'Het is niet zeker of de vorige poging vertrokken is. Heb je in Gmail bij Verzonden gekeken en wil je echt opnieuw versturen?';
-const DUBBEL = 'De server zegt dat deze mail al verstuurd is, of dat ze nu verstuurd wordt (bijvoorbeeld op een ander toestel). Ze is niet nog eens verstuurd. Kijk in Gmail bij Verzonden. Staat ze er niet, kies dan Toch opnieuw versturen.';
+const DUBBEL = 'De server bevestigt dat deze mail al verstuurd is. Ze is niet nog eens verstuurd. Kijk in Gmail bij Verzonden.';
+const DUBBEL_BEZIG = 'De server kent deze verzending al, maar bevestigde niet dat ze vertrok: ze loopt nog (bijvoorbeeld op een ander toestel), of een vorige poging liep onzeker af. Er is nu niets verstuurd. Kijk in Gmail bij Verzonden. Staat ze er niet, kies dan Toch opnieuw versturen.';
+const DUBBEL_ANDERE = 'De server zegt dat een mail met deze sleutel al verstuurd werd (bijvoorbeeld op een ander toestel, of een eerdere versie van deze mail). Er is nu niets verstuurd. Kijk in Gmail bij Verzonden. Wil je deze versie toch versturen, kies dan Toch opnieuw versturen.';
+const NIEUWE_POGING = 'De server kent deze verzending al. Kijk eerst in Gmail bij Verzonden: was de mail toch vertrokken, dan komt ze zo twee keer aan.\n\nToch opnieuw versturen?';
 
 function bevestigVersturen(c, naar, cc, bijlagen, sessie, eerdereMelding = '') {
   const messageId = mail.nieuwMessageId(); // dezelfde id bij elke poging vanuit dit paneel
   const server = !!sessie.server;
-  let melding = eerdereMelding, naarInst = false, onzeker = false, mijnPeek = 0;
+  // dubbelGezien: de server antwoordde 'al gekend' zonder dat deze mail daarmee bevestigd is; de volgende klik is dan
+  // alleen na bevestiging een nieuwe verzending (nieuwe sleutel).
+  let melding = eerdereMelding, naarInst = false, onzeker = false, dubbelGezien = false, mijnPeek = 0;
   const herteken = () => { if (peekActief(mijnPeek)) vernieuw(); };
   mijnPeek = openPeek('Mail versturen', () => {
     const al = get('berichten', c.id) || {};
@@ -306,16 +314,21 @@ function bevestigVersturen(c, naar, cc, bijlagen, sessie, eerdereMelding = '') {
       // De laatste versie van de mail: een ander toestel kan ze intussen verstuurd hebben.
       const nu = get('berichten', c.id) || al;
       let poging = pogingVan(nu);
-      if (onzeker || nu.twijfelOp) {
+      if (dubbelGezien) {
+        // De server kent de sleutel al, maar bevestigde niet dat deze mail (zoals ze nu is) vertrok. Opnieuw met dezelfde
+        // sleutel geeft weer hetzelfde antwoord: alleen een bewuste nieuwe verzending (nieuwe sleutel) verstuurt ze.
+        if (!confirm(NIEUWE_POGING)) return;
+        poging += 1;
+      } else if (onzeker || nu.twijfelOp) {
         // Misschien vertrok een vorige poging toch: altijd eerst vragen. Via de server blijft de sleutel dezelfde,
         // zodat een mail die toch vertrok niet nog eens vertrekt.
         if (!confirm(server ? TWIJFEL_SERVER : TWIJFEL_BROWSER)) return;
-      } else if (alVerstuurd(nu)) {
+      } else if (alVerstuurd(nu) || nu.verstuurdOp) {
         if (!confirm('Deze mail werd al verstuurd. Echt nog eens versturen?')) return;
         poging += 1; // een bewuste nieuwe verzending: een nieuwe sleutel
       }
       // Meteen vergrendelen, nog voor er iets gewacht wordt: een dubbele klik verstuurt zo maar één keer.
-      bezigMet.add(c.id); melding = ''; naarInst = false;
+      bezigMet.add(c.id); melding = ''; naarInst = false; dubbelGezien = false;
       if (poging !== pogingVan(nu)) {
         // De nieuwe poging eerst bewaren: lukt het versturen half, dan gebruikt een volgende poging dezelfde sleutel.
         try { upsert('berichten', { id: c.id, verzendPoging: poging }, { silent: true }); }
@@ -356,14 +369,25 @@ function bevestigVersturen(c, naar, cc, bijlagen, sessie, eerdereMelding = '') {
       bezigMet.delete(c.id);
       const nogOpen = peekActief(mijnPeek);
       if (res?.dubbel) {
-        // De server kent deze sleutel al: de mail is al verstuurd (of vertrekt nu). Als verstuurd zetten, niets versturen.
-        onzeker = false;
+        // De server kent deze sleutel al en verstuurde niets. Alleen als hij bevestigt dat de mail met deze sleutel
+        // vertrok (status 'verstuurd' of een id van Gmail), en het record nog bij deze poging hoort en een eerdere
+        // poging van deze mail was (twijfel) of al als verstuurd staat, zetten we de mail op verstuurd. Bij 'bezig' is
+        // niets bevestigd: de twijfel blijft. Werd de mail intussen een concept met een andere poging (Terug naar
+        // concept), of kent de server de sleutel van een eerdere versie, dan blijft het concept een concept.
         const laatst = get('berichten', c.id) || {};
-        try {
-          if (laatst.twijfelOp && laatst.status !== 'verstuurd') upsert('communicatie', { id: 'com-' + uid(), datum: todayIso(), met: naar.tekst, kanaal: 'mail', richting: 'uit', onderwerp: c.onderwerp, samenvatting: `${c.titel || c.onderwerp || 'Mail'}. Verstuurd met Gmail vanaf ${laatst.verstuurdVan || sessie.email || 'het Gmail-account'}; de server bevestigde het bij een nieuwe poging.` }, { silent: true });
-          upsert('berichten', { id: c.id, status: 'verstuurd', verstuurdOp: laatst.verstuurdOp || todayIso(), verstuurdVan: laatst.verstuurdVan || sessie.email || '', gmailId: res.id || laatst.gmailId || '', twijfelOp: '' });
-        } catch { /* elders verwijderd */ }
-        melding = DUBBEL;
+        const bevestigd = res.status === 'verstuurd' || !!res.id;
+        const dezePoging = pogingVan(laatst) === poging && (!!laatst.twijfelOp || laatst.status === 'verstuurd');
+        if (bevestigd && dezePoging) {
+          onzeker = false;
+          try {
+            if (laatst.twijfelOp && laatst.status !== 'verstuurd') upsert('communicatie', { id: 'com-' + uid(), datum: todayIso(), met: naar.tekst, kanaal: 'mail', richting: 'uit', onderwerp: c.onderwerp, samenvatting: `${c.titel || c.onderwerp || 'Mail'}. Verstuurd met Gmail vanaf ${laatst.verstuurdVan || sessie.email || 'het Gmail-account'}; de server bevestigde het bij een nieuwe poging.` }, { silent: true });
+            upsert('berichten', { id: c.id, status: 'verstuurd', verstuurdOp: laatst.verstuurdOp || todayIso(), verstuurdVan: laatst.verstuurdVan || sessie.email || '', gmailId: res.id || laatst.gmailId || '', twijfelOp: '' });
+          } catch { /* elders verwijderd */ }
+          melding = DUBBEL;
+        } else {
+          dubbelGezien = true;
+          melding = bevestigd ? DUBBEL_ANDERE : DUBBEL_BEZIG;
+        }
         vernieuw();
         if (!nogOpen) toast(melding);
         return;
@@ -379,7 +403,7 @@ function bevestigVersturen(c, naar, cc, bijlagen, sessie, eerdereMelding = '') {
       }
       if (nogOpen) closePeek();
       toast(`Verstuurd vanaf ${res.van || 'Gmail'}`);
-    } }, bezig ? 'Bezig met versturen…' : twijfel ? 'Opnieuw proberen' : alVerstuurd(al) ? 'Toch opnieuw versturen' : 'Verstuur nu');
+    } }, bezig ? 'Bezig met versturen…' : dubbelGezien ? 'Toch opnieuw versturen' : twijfel ? 'Opnieuw proberen' : alVerstuurd(al) ? 'Toch opnieuw versturen' : 'Verstuur nu');
     return h('div', { class: 'stack' },
       alVerstuurd(al) && h('p', { class: 'small mail-let' }, `Deze mail werd al verstuurd${al.verstuurdOp ? ` op ${fmtDate(al.verstuurdOp)}` : ''}${al.verstuurdVan ? ` vanaf ${al.verstuurdVan}` : ''}. Wil je ze echt nog eens versturen?`),
       al.twijfelOp && !onzeker && h('p', { class: 'small mail-let', 'data-twijfel': '' }, `Bij een poging op ${fmtDate(al.twijfelOp)} is het niet zeker of de mail vertrok. Kijk eerst in Gmail bij Verzonden.${server ? ' Opnieuw proberen verstuurt ze niet nog eens als ze toch al vertrokken was.' : ''}`),

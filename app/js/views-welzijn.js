@@ -1,13 +1,15 @@
 // View: welzijn. Gevalideerde vragenlijsten om in de app in te vullen (of, voor de BAT, met het officiële
 // formulier ernaast), een kort dagboek en voorbereiding voor de huisarts. Antwoorden staan in de gegevens van de app (met de centrale database: voor Giulia en Remi).
 import { h, icon, badge, fmtDate, todayIso, uid, copyText, toast } from './ui.js';
-import { all, get, upsert, remove, ref } from './store.js';
+import { all, get, upsert, remove, ref, gewijzigdeVelden } from './store.js';
 import { openPeek, closePeek } from './app.js';
 import { content, intro, callout } from './views-core.js';
 
 const titled = (title, ...c) => h('section', { class: 'card card--pad' }, h('p', { class: 'eyebrow' }, title), ...c);
 const ext = (href, label) => h('a', { href, target: '_blank', rel: 'noopener' }, label, ' ', icon('external', 12));
 const W = () => ref.welzijn || { tests: [], dokter: {}, hulp: [], veiligheid: { lijnen: [] } };
+// Een test heeft een vaste id (test-<id>): bewaren laat die altijd bewust herleven, ook als ze ooit verwijderd werd.
+const bewaarTest = (patch, opties = {}) => upsert('welzijn', patch, { ...opties, herstel: true });
 
 // Twee soorten tests. Met vragen op het scherm (t.vragen): per vraag wordt de gekozen optie bewaard (keuzes,
 // als volgnummer), want soms geven twee opties dezelfde waarde. Zonder vragen (alleen het officiële formulier):
@@ -82,14 +84,14 @@ function uitslag(t, s) {
 
 // Scores invullen van een test die elders werd afgenomen, plus de veiligheidsvraag.
 function scoresInvoer(t, rec) {
-  const zet = (patch) => upsert('welzijn', { id: rec.id, datum: todayIso(), ...patch });
+  const zet = (patch) => bewaarTest({ id: rec.id, datum: todayIso(), ...patch });
   return h('div', { class: 'stack', style: 'gap:10px;margin-top:10px' },
     h('div', { class: 'welzijn-scores' }, t.schalen.map(x => h('label', { class: 'welzijn-scoreveld' },
       h('span', { class: 'small' }, h('strong', null, x.naam), ` (${x.min ?? 0} tot ${x.max})`),
       h('input', { class: 'field', type: 'number', inputmode: 'numeric', min: x.min ?? 0, max: x.max, step: 1, value: rec.scores?.[x.id] ?? '', 'data-score': `${t.id}-${x.id}`, onInput: e => {
         // Stil bewaren tijdens het typen (zonder de pagina te hertekenen), zodat niets verloren gaat.
         const v = e.target.value.trim();
-        if (v !== '' && geldigeScore(x, v)) { rec.scores = { ...(rec.scores || {}), [x.id]: Number(v) }; upsert('welzijn', { id: rec.id, datum: todayIso(), scores: rec.scores }, { silent: true }); }
+        if (v !== '' && geldigeScore(x, v)) { rec.scores = { ...(rec.scores || {}), [x.id]: Number(v) }; bewaarTest({ id: rec.id, datum: todayIso(), scores: rec.scores }, { silent: true }); }
       }, onChange: e => {
         const v = e.target.value.trim();
         if (v !== '' && !geldigeScore(x, v)) { toast(`${x.naam}: kies een getal van ${x.min ?? 0} tot ${x.max}.`); e.target.value = rec.scores?.[x.id] ?? ''; return; }
@@ -107,7 +109,7 @@ function vragenLijst(t, rec, s) {
     const n = Array.from({ length: t.vragen.length }, (_, j) => rec.keuzes?.[j] ?? null);
     n[i] = n[i] === k ? null : k;
     const wordtKlaar = !s.klaar && n.every(x => x !== null);
-    upsert('welzijn', { id: rec.id, keuzes: n, datum: todayIso() });
+    bewaarTest({ id: rec.id, keuzes: n, datum: todayIso() });
     if (wordtKlaar) setTimeout(() => document.getElementById(`test-${t.id}`)?.scrollIntoView({ block: 'start', behavior: 'smooth' }), 60);
   };
   return h('ol', { class: 'welzijn-vragen' }, t.vragen.map((q, i) => [
@@ -123,7 +125,7 @@ function vragenLijst(t, rec, s) {
 // Oudere werkwijze: het officiële formulier invullen en hier per vraag de waarde aantikken.
 function waardenRaster(t, rec) {
   const antw = Array.from({ length: t.aantal }, (_, i) => rec.antwoorden?.[i] ?? null);
-  const zet = (i, v) => { const n = antw.slice(); n[i] = n[i] === v ? null : v; upsert('welzijn', { id: rec.id, antwoorden: n, datum: todayIso() }); };
+  const zet = (i, v) => { const n = antw.slice(); n[i] = n[i] === v ? null : v; bewaarTest({ id: rec.id, antwoorden: n, datum: todayIso() }); };
   return h('div', { class: 'welzijn-grid' }, antw.map((v, i) => h('div', { class: 'welzijn-vraag' + (t.alarmVraag === i + 1 ? ' welzijn-vraag--alarm' : '') },
     h('span', { class: 'welzijn-nr', title: t.alarmVraag === i + 1 ? t.alarmLabel : '' }, `${i + 1}`),
     h('div', { class: 'welzijn-keuze', role: 'group', 'aria-label': `${t.kort}, vraag ${i + 1}` }, t.waarden.map((w, k) => h('button', { type: 'button', class: 'welzijn-optie' + (v === w ? ' is-gekozen' : ''), title: t.labels[k], 'aria-pressed': v === w ? 'true' : 'false', 'data-test': t.id, 'data-vraag': i + 1, 'data-waarde': w, onClick: () => zet(i, w) }, t.score === 'gemiddelde' ? t.labels[k] : String(w)))))));
@@ -152,9 +154,9 @@ function testKaart(t) {
     t.alarmVraag && !scherm && h('p', { class: 'small muted' }, `${t.alarmLabel} Elk antwoord boven 0 toont meteen waar je hulp vindt.`),
     t.alarmLabel && scherm && h('p', { class: 'small muted' }, t.alarmLabel),
     t.extraVraag && h('label', { class: 'small', style: 'display:block;margin-top:8px' }, t.extraVraag.label, ' ',
-      h('select', { class: 'field', style: 'max-width:280px', onChange: e => upsert('welzijn', { id: rec.id, extra: e.target.value }) }, [h('option', { value: '' }, 'Kies'), ...t.extraVraag.opties.map(o => h('option', { value: o, selected: rec.extra === o }, o))])),
+      h('select', { class: 'field', style: 'max-width:280px', onChange: e => bewaarTest({ id: rec.id, extra: e.target.value }) }, [h('option', { value: '' }, 'Kies'), ...t.extraVraag.opties.map(o => h('option', { value: o, selected: rec.extra === o }, o))])),
     h('details', { style: 'margin-top:8px' }, h('summary', { class: 'small' }, 'Hoe lees je de score'), h('p', { class: 'small' }, t.bandenTekst), t.opgelet && h('p', { class: 'small muted' }, t.opgelet), h('p', { class: 'small muted' }, t.bron)),
-    h('div', { class: 'form__actions' }, (s.ingevuld > 0) && h('button', { class: 'btn btn--quiet btn--sm', onClick: () => { if (confirm(`Alle antwoorden van de ${t.naam} wissen?`)) upsert('welzijn', { id: rec.id, antwoorden: [], keuzes: [], scores: {}, veilig: '', datum: '', extra: '' }); } }, 'Opnieuw beginnen')));
+    h('div', { class: 'form__actions' }, (s.ingevuld > 0) && h('button', { class: 'btn btn--quiet btn--sm', onClick: () => { if (confirm(`Alle antwoorden van de ${t.naam} wissen?`)) bewaarTest({ id: rec.id, antwoorden: [], keuzes: [], scores: {}, veilig: '', datum: '', extra: '' }); } }, 'Opnieuw beginnen')));
 }
 
 // Tekst om mee te nemen naar de huisarts.
@@ -183,10 +185,11 @@ function samenvatting() {
 const DAGVELDEN = [['bed', 'Naar bed', 'time'], ['op', 'Opgestaan', 'time'], ['energieMiddag', 'Energie middag (0-10)', 'number'], ['energieAvond', 'Energie avond (0-10)', 'number'], ['stemming', 'Stemming (0-10)', 'number'], ['werkuren', 'Werkuren', 'number']];
 function dagForm(init = {}) {
   const d = { id: init.id, datum: init.datum || todayIso(), bed: init.bed || '', op: init.op || '', energieMiddag: init.energieMiddag ?? '', energieAvond: init.energieAvond ?? '', stemming: init.stemming ?? '', werkuren: init.werkuren ?? '', cafeine: init.cafeine || '', laswerk: init.laswerk || '', hoofdpijn: !!init.hoofdpijn, teLaat: !!init.teLaat, notitie: init.notitie || '' };
+  const begin = init; // bewerken bewaart alleen wat in het formulier gewijzigd werd (tegenover het record bij het openen)
   openPeek(d.id ? 'Dag bewerken' : 'Dag toevoegen', () => {
     const inp = (k, type = 'text', extra = {}) => h('input', { class: 'field', type, value: d[k], onInput: e => d[k] = e.target.value, ...extra });
     const vink = (k, l) => h('label', { class: 'inline-check' }, h('input', { type: 'checkbox', checked: d[k], onChange: e => d[k] = e.target.checked }), l);
-    return h('form', { class: 'form', onSubmit: e => { e.preventDefault(); if (!d.datum) return; upsert('dagboek', { ...d, id: d.id || 'dag-' + uid() }); closePeek(); toast('Bewaard'); } },
+    return h('form', { class: 'form', onSubmit: e => { e.preventDefault(); if (!d.datum) return; upsert('dagboek', d.id ? { id: d.id, ...gewijzigdeVelden(begin, d) } : { ...d, id: 'dag-' + uid() }); closePeek(); toast('Bewaard'); } },
       h('label', null, 'Datum', inp('datum', 'date')),
       h('div', { class: 'form__row' }, ...DAGVELDEN.slice(0, 2).map(([k, l, t]) => h('label', null, l, inp(k, t)))),
       h('div', { class: 'form__row' }, ...DAGVELDEN.slice(2, 4).map(([k, l, t]) => h('label', null, l, inp(k, t, { min: 0, max: 10 })))),
@@ -218,7 +221,7 @@ export function welzijn(r) {
       callout('green', 'calendar', 'Elke dag twee minuten', h('p', null, 'Noteer elke avond kort hoe je sliep, hoeveel energie je had en hoe je je voelde. Dat helpt de huisarts meer dan een herinnering achteraf. Kijk ook of het weekend anders aanvoelt.')),
       dagen.length ? h('section', { class: 'card card--pad' }, h('ul', { class: 'list' }, dagen.map(d => h('li', null,
         h('span', { class: 'small muted', style: 'width:78px;flex:0 0 auto' }, fmtDate(d.datum)),
-        h('div', { style: 'min-width:0' }, h('a', { href: '#', onClick: e => { e.preventDefault(); dagForm(d); } }, `Energie ${d.energieMiddag ?? '?'} en ${d.energieAvond ?? '?'}, stemming ${d.stemming ?? '?'}`), ' ', d.teLaat && badge('te laat', 'orange'), ' ', d.hoofdpijn && badge('hoofdpijn of duizelig', 'red'),
+        h('div', { style: 'min-width:0' }, h('a', { href: '#', onClick: e => { e.preventDefault(); dagForm(get('dagboek', d.id) || d); } }, `Energie ${d.energieMiddag ?? '?'} en ${d.energieAvond ?? '?'}, stemming ${d.stemming ?? '?'}`), ' ', d.teLaat && badge('te laat', 'orange'), ' ', d.hoofdpijn && badge('hoofdpijn of duizelig', 'red'),
           h('p', { class: 'small muted' }, [d.bed && `bed ${d.bed}`, d.op && `op ${d.op}`, d.werkuren && `${d.werkuren} u gewerkt`, d.cafeine, d.laswerk].filter(Boolean).join(', ')), d.notitie && h('p', { class: 'small' }, d.notitie)))))) : h('div', { class: 'card empty' }, 'Nog geen dagen. Gebruik de knop in de werkbalk.'));
   } else if (tab === 'dokter') {
     const D = W().dokter;

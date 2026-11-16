@@ -263,8 +263,40 @@ grant execute on function public.trek_sessies_in(uuid) to service_role;
 --    Wijzigen gebeurt in de app: die voegt elke bewerking veld per veld samen en stuurt ze naar het andere toestel.
 --    Een kolom weghalen of hernoemen kan niet met create or replace view: dan eerst drop view.
 
--- Sollicitaties: recentst verstuurd (of aangemaakt) bovenaan.
-create or replace view public.sollicitaties with (security_invoker = true) as
+-- Lijsten waar beide toestellen tegelijk aan toevoegen (het logboek van een sollicitatie, de bijlagen van een
+--    document of mail): de app bewaart elk nieuw item in een eigen veld '<lijst>_<item-id>' (verwijderd: null), naast
+--    de oude lijst '<lijst>' zelf, zodat het samenvoegen per veld er geen verliest. lijst_items geeft de volledige
+--    lijst zoals de app ze toont (store.items in app/js/store.js): eerst de oude lijst, dan de items uit eigen velden
+--    in de volgorde van toevoegen (veld op, dan id).
+create or replace function public.lijst_items(data jsonb, lijst text) returns jsonb
+language sql immutable set search_path = '' as $$
+  with oud as (
+    select e.waarde, e.nr
+    from jsonb_array_elements(case when jsonb_typeof(data -> lijst) = 'array' then data -> lijst else '[]'::jsonb end)
+      with ordinality as e(waarde, nr)
+    where jsonb_typeof(e.waarde) = 'object'
+  ),
+  eigen as (
+    select distinct on (x.item_id) x.item_id, x.waarde
+    from (
+      select coalesce(v.value ->> 'id', substr(v.key, length(lijst) + 2)) as item_id, v.value as waarde, v.key
+      from jsonb_each(case when jsonb_typeof(data) = 'object' then data else '{}'::jsonb end) as v
+      where left(v.key, length(lijst) + 1) = lijst || '_' and jsonb_typeof(v.value) = 'object'
+    ) x
+    where not exists (select 1 from oud o where o.waarde ->> 'id' = x.item_id)
+    order by x.item_id, x.key
+  )
+  select coalesce((select jsonb_agg(o.waarde order by o.nr) from oud o), '[]'::jsonb)
+    || coalesce((select jsonb_agg(case when e.waarde ->> 'id' is null then e.waarde || jsonb_build_object('id', e.item_id) else e.waarde end
+                                  order by coalesce(e.waarde ->> 'op', '') collate "C", e.item_id collate "C") from eigen e), '[]'::jsonb)
+$$;
+revoke all on function public.lijst_items(jsonb, text) from public, anon;
+grant execute on function public.lijst_items(jsonb, text) to authenticated, service_role;
+
+-- Sollicitaties: recentst verstuurd (of aangemaakt) bovenaan. De kolom logboek kwam in het midden bij: daarom drop
+--    view en opnieuw create.
+drop view if exists public.sollicitaties;
+create view public.sollicitaties with (security_invoker = true) as
 select
   r.id,
   r.data ->> 'organisatie' as organisatie,
@@ -280,13 +312,14 @@ select
   r.data ->> 'bronUrl' as vacature_link,
   r.data ->> 'notities' as notities,
   r.data ->> 'aangemaakt' as aangemaakt,
+  public.lijst_items(r.data, 'logboek') as logboek,
   r.bijgewerkt,
   r.gewijzigd_door,
   r.data - '_t' as data
 from public.records r
 where r.collectie = 'sollicitaties' and not r.verwijderd
 order by coalesce(nullif(r.data ->> 'datumVerstuurd', ''), nullif(r.data ->> 'aangemaakt', '')) desc nulls last, r.data ->> 'organisatie';
-comment on view public.sollicitaties is 'Sollicitaties van Remi, zoals in de app (Werk, Sollicitaties). Alleen lezen: wijzigen gebeurt in de app. De kolom data bevat het volledige record, ook het logboek.';
+comment on view public.sollicitaties is 'Sollicitaties van Remi, zoals in de app (Werk, Sollicitaties). Alleen lezen: wijzigen gebeurt in de app. De kolom logboek is het volledige logboek in volgorde (de oude lijst logboek en de regels uit de velden logboek_<id>). De kolom data bevat het volledige record.';
 
 -- Vacatures: recentst gevonden bovenaan (oudere records zonder gevonden: op de datum van toevoegen).
 --    De dagelijkse scan zet gevonden, score (A, B of C), sector, waarom en aandachtspunt; status_datum is de dag
@@ -396,7 +429,7 @@ select
   r.data ->> 'aan' as aan,
   r.data ->> 'aangetekend' as aangetekend,
   r.data ->> 'samenvatting' as samenvatting,
-  case when jsonb_typeof(r.data -> 'bijlagen') = 'array' then jsonb_array_length(r.data -> 'bijlagen') else 0 end as aantal_bijlagen,
+  jsonb_array_length(public.lijst_items(r.data, 'bijlagen')) as aantal_bijlagen,
   r.data ->> 'notities' as notities,
   r.bijgewerkt,
   r.gewijzigd_door,
@@ -417,7 +450,7 @@ select
   case when r.data ->> 'soort' = 'archief' then 'gearchiveerd' else r.data ->> 'status' end as status,
   r.data ->> 'verstuurdOp' as verstuurd_op,
   r.data ->> 'verstuurdVan' as verstuurd_van,
-  case when jsonb_typeof(r.data -> 'bijlagen') = 'array' then jsonb_array_length(r.data -> 'bijlagen') else 0 end as aantal_bijlagen,
+  jsonb_array_length(public.lijst_items(r.data, 'bijlagen')) as aantal_bijlagen,
   r.data ->> 'tekst' as tekst,
   r.bijgewerkt,
   r.gewijzigd_door,
@@ -531,7 +564,7 @@ select
   case when o.metadata ->> 'size' ~ '^[0-9]{1,18}$' then (o.metadata ->> 'size')::bigint end as grootte_bytes,
   coalesce(o.updated_at, o.created_at) as opgeladen_op
 from public.records r
-cross join lateral jsonb_array_elements(case when jsonb_typeof(r.data -> 'bijlagen') = 'array' then r.data -> 'bijlagen' else '[]'::jsonb end) as e(bijlage)
+cross join lateral jsonb_array_elements(public.lijst_items(r.data, 'bijlagen')) as e(bijlage)
 left join lateral (
   select s.id, s.metadata, s.created_at, s.updated_at
   from storage.objects s
@@ -551,9 +584,16 @@ grant select on public.sollicitaties, public.vacatures, public.hotlist, public.s
 -- 7. Toegang geven gebeurt alleen nog met een toegangscode, via de serverfunctie account: wie al toegang heeft, maakt
 --    in de app een code voor een e-mailadres; de ontvanger maakt daarmee een account met dat adres, of koppelt het
 --    account waarmee hij al aangemeld is. Zet dus geen adressen rechtstreeks in toegang: toegang hangt aan het account
---    (user_id), en dat vult alleen de functie account in.
---    Zet in Supabase bij Authentication 'Allow new users to sign up' uit, en laat 'Confirm email' en 'Secure email
---    change' aan. De functie account gebruikt de admin-API en werkt ook zonder open aanmelding.
+--    (user_id), en dat vult alleen de functie account in. De functie account gebruikt de admin-API en werkt ook
+--    zonder open aanmelding.
+--
+--    Vaste controle bij elke uitrol (Supabase, Authentication, Sign In / Providers):
+--      [ ] 'Allow new users to sign up' staat UIT (een account maken kan dan alleen met een toegangscode);
+--      [ ] 'Confirm email' staat AAN;
+--      [ ] 'Secure email change' staat AAN.
+--    Zo kan niemand vooraf een account maken met het adres van iemand die een code krijgt. Gebeurt dat toch, dan
+--    neemt de functie account zo'n account (zonder toegang) niet over, maar vervangt ze het door een nieuw account.
+--
 --    Alleen de allereerste code (zolang nog niemand toegang heeft) zet je hier klaar: met de hash van de code in
 --    hoofdletters zonder streepje (de code zelf nooit in de repository) en het adres in kleine letters.
 -- insert into public.account_code (code_hash, wie, email, verloopt)

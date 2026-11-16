@@ -20,7 +20,7 @@ export function clientId() {
 export function zetClientId(v) {
   const schoon = String(v || '').trim();
   try { if (schoon) localStorage.setItem(CID_KEY, schoon); else localStorage.removeItem(CID_KEY); } catch { /* geen opslag */ }
-  upsert('instellingen', { id: 'mail', clientId: schoon }, { silent: true });
+  upsert('instellingen', { id: 'mail', clientId: schoon }, { silent: true, herstel: true }); // vaste id: altijd bewust herleven
   sessie = null;
 }
 export const geldigeClientId = v => /^[\w-]+\.apps\.googleusercontent\.com$/.test(String(v || '').trim());

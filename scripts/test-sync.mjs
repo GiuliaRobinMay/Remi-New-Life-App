@@ -48,6 +48,7 @@ const stuurFout = new Map();   // label -> { status, message, code, keer }: vers
 const haalFout = new Map();    // label -> status: ophalen faalt zo
 const netUitNa = new Map();    // label -> aantal: na zoveel verzoeken om te versturen valt de verbinding weg
 const bestandStoring = new Set(); // bijlagen waarvan het opladen telkens wegvalt
+const bestandPauze = new Map();   // bijlage -> belofte: het opladen wacht tot ze vervuld is (een trage upload)
 const tel = {};                // label -> { stuur, haal, bestand }: aantal verzoeken
 const inVlucht = {};           // label -> { nu, max }: gelijktijdige verzoeken om op te halen
 const toestellen = [];
@@ -159,7 +160,7 @@ async function nepDatabase(route, label) {
   if (pad === 'bestand') {
     if (!toegang[email]) return json(403, { message: 'permission denied' });
     const id = u.searchParams.get('id');
-    if (req.method() === 'POST') { telOp(label, 'bestand'); if (bestandStoring.has(id)) return route.abort('timedout'); bestanden.set(id, body); return json(200, {}); }
+    if (req.method() === 'POST') { telOp(label, 'bestand'); if (bestandStoring.has(id)) return route.abort('timedout'); if (bestandPauze.has(id)) await bestandPauze.get(id); bestanden.set(id, body); return json(200, {}); }
     if (req.method() === 'DELETE') { bestanden.delete(id); return json(200, {}); }
     return bestanden.has(id) ? json(200, bestanden.get(id)) : json(404, { message: 'Object not found' });
   }
@@ -329,8 +330,9 @@ try {
     await page.click('.aanmelden button[type=submit]');
   };
   const status = page => page.evaluate(async () => (await import('./js/sync.js')).syncStatus());
-  // Twee keer: loopt er al een ronde, dan haalt de tweede ook op wat daarna nog bijkwam.
-  const syncNu = page => page.evaluate(async () => { const s = await import('./js/sync.js'); await s.syncNu(); await s.syncNu(); return s.syncStatus(); });
+  // Twee keer: loopt er al een ronde, dan haalt de tweede ook op wat daarna nog bijkwam. Daarna wachten op de
+  // bijlagen, die in hun eigen lus lopen.
+  const syncNu = page => page.evaluate(async () => { const s = await import('./js/sync.js'); await s.syncNu(); await s.syncNu(); await s.bijlagenKlaar(); return s.syncStatus(); });
   const lokaal = (page, c, id) => page.evaluate(async ([c, id]) => (await import('./js/store.js')).lokaalRecord(c, id), [c, id]);
   const record = (page, c, id) => page.evaluate(async ([c, id]) => (await import('./js/store.js')).get(c, id) || null, [c, id]);
   const zetRecord = (page, c, rec, opties) => page.evaluate(async ([c, rec, opties]) => (await import('./js/store.js')).upsert(c, rec, opties), [c, rec, opties || {}]);
@@ -685,17 +687,285 @@ try {
     await s.syncNu(); // wat nog liep, eerst afwerken
     for (const id of ['test-traag', 'test-snel-1', 'test-snel-2']) await b.bewaarBijlage(id, new Blob([id], { type: 'text/plain' }));
     store.upsert('notities', { id: 'not-van-remi-bijlage', titel: 'Van Remi terwijl een bijlage faalt' }, { silent: true });
-    await s.syncNu();
+    await s.syncNu(); await s.bijlagenKlaar();
     return { s: s.syncStatus(), rij: Object.keys(JSON.parse(localStorage.getItem('remi-sync-v2')).bestanden), giulia: !!store.get('notities', 'not-tijdens-bijlage') };
   });
   check('een falende bijlage houdt records niet tegen (versturen en ophalen gebeuren eerst)', rijen.has('notities|not-van-remi-bijlage') && sBijlage.giulia && tel.remi.haal > 0
     && sBijlage.s.open && sBijlage.s.modus === 'actief' && sBijlage.s.wachtend === 3, JSON.stringify(sBijlage));
   check('de falende bijlage schuift achteraan', sBijlage.rij.join() === 'test-snel-1,test-snel-2,test-traag', sBijlage.rij.join());
-  await B.page.evaluate(async () => { await (await import('./js/sync.js')).syncNu(); });
+  await B.page.evaluate(async () => { const s = await import('./js/sync.js'); await s.syncNu(); await s.bijlagenKlaar(); });
   check('de volgende ronde begint met de andere bijlagen', bestanden.has('test-snel-1') && bestanden.has('test-snel-2') && !bestanden.has('test-traag') && (await status(B.page)).wachtend === 1);
   bestandStoring.delete('test-traag');
   await syncNu(B.page);
   check('de trage bijlage gaat door zodra het lukt', bestanden.has('test-traag') && (await status(B.page)).wachtend === 0);
+
+  // Een trage upload (niet falend) houdt de records niet tegen: de bijlagen lopen in een eigen lus. Een volgende
+  // ronde verstuurt en haalt meteen op, en nogNietVerstuurd wacht niet op de upload (die telt wel mee als 'wacht').
+  await syncNu(B.page);
+  let losUpload = () => {};
+  bestandPauze.set('test-groot', new Promise(r => { losUpload = r; }));
+  const uploadsVoor = tel.remi?.bestand || 0;
+  await B.page.evaluate(async () => { const b = await import('./js/bijlagen.js'), s = await import('./js/sync.js'); await b.bewaarBijlage('test-groot', new Blob(['een groot bestand'], { type: 'application/pdf' })); await s.syncNu(); });
+  const uploadLoopt = await wachtTot(() => (tel.remi?.bestand || 0) > uploadsVoor, 5000);
+  await zetRecord(A.page, 'notities', { id: 'not-giulia-tijdens-upload', titel: 'Van Giulia tijdens de upload van Remi' });
+  await A.page.evaluate(async () => { await (await import('./js/sync.js')).syncNu(); });
+  const traag = await B.page.evaluate(async () => {
+    const st = await import('./js/store.js'), s = await import('./js/sync.js');
+    st.upsert('notities', { id: 'not-tijdens-upload', titel: 'Van Remi tijdens een trage upload' }, { silent: true });
+    // Met een grens: zou de ronde op de upload wachten, dan blijft ze hangen (tot de upload klaar is).
+    const binnen = (p, ms) => Promise.race([p.then(x => ({ x })), new Promise(r => setTimeout(() => r(null), ms))]);
+    const t0 = performance.now(); const r1 = await binnen(s.syncNu(), 4000); const tSync = r1 ? performance.now() - t0 : Infinity;
+    const t1 = performance.now(); const r2 = await binnen(s.nogNietVerstuurd(), 4000); const tOpen = r2 ? performance.now() - t1 : Infinity;
+    return { tSync, tOpen, open: r2?.x || {}, giulia: !!st.get('notities', 'not-giulia-tijdens-upload'), status: s.syncStatus() };
+  });
+  check('een trage upload houdt de volgende ronde niet tegen: records vertrekken en komen binnen', uploadLoopt && rijen.has('notities|not-tijdens-upload') && traag.giulia
+    && !bestanden.has('test-groot') && traag.tSync < 3000 && traag.status.modus === 'actief', JSON.stringify(traag));
+  check('nogNietVerstuurd wacht niet op een lopende upload (die telt als wacht)', traag.tOpen < 3000 && traag.open.wacht === 1 && traag.open.mislukt === 0, JSON.stringify(traag.open));
+  losUpload(); bestandPauze.delete('test-groot');
+  await syncNu(B.page);
+  check('de trage upload komt daarna gewoon aan', bestanden.has('test-groot') && (await status(B.page)).wachtend === 0, JSON.stringify(await status(B.page)));
+
+  // ---- Herreview: formulieren met een oude kopie en logboeken van twee toestellen ----
+  const sollRij = (page, org) => page.locator('tr', { hasText: org });
+  const toastTekst = page => page.textContent('#toast').catch(() => '');
+  await zetRecord(A.page, 'sollicitaties', { id: 'sol-form', organisatie: 'Formuliermuseum', functie: 'Atelier', status: 'te doen' });
+  await syncNu(A.page); await syncNu(B.page);
+  // Giulia opent Bewerken; intussen zet Remi de status op verstuurd (met een logboekregel).
+  await A.page.goto(`${base}#/sollicitaties`, { waitUntil: 'networkidle' });
+  await sollRij(A.page, 'Formuliermuseum').locator('.grid2__open').click();
+  await A.page.click('[data-actie="sollicitatie-bewerken"]');
+  await A.page.waitForSelector('.peek form.form textarea', { timeout: 3000 }).catch(() => {});
+  await B.page.goto(`${base}#/sollicitaties`, { waitUntil: 'networkidle' });
+  await sollRij(B.page, 'Formuliermuseum').locator('select.status--select').selectOption('verstuurd');
+  await syncNu(B.page); await syncNu(A.page);
+  const ontvangen = await record(A.page, 'sollicitaties', 'sol-form');
+  // Giulia past in het (oude) formulier alleen de notities aan en bewaart.
+  await A.page.fill('.peek form.form textarea', 'Notitie van Giulia');
+  await A.page.click('.peek form.form button[type=submit]');
+  await syncNu(A.page); await syncNu(B.page);
+  const logVan = (page, id) => page.evaluate(async id => { const st = await import('./js/store.js'); return st.items(st.get('sollicitaties', id), 'logboek').map(l => l.tekst); }, id);
+  const formDb = rijen.get('sollicitaties|sol-form')?.data, formA = await record(A.page, 'sollicitaties', 'sol-form'), formB = await record(B.page, 'sollicitaties', 'sol-form');
+  const logA = await logVan(A.page, 'sol-form'), logB = await logVan(B.page, 'sol-form');
+  check('formulier met een oude kopie: de status en de logboekregel van het andere toestel blijven', ontvangen?.status === 'verstuurd'
+    && formDb?.status === 'verstuurd' && formDb.notities === 'Notitie van Giulia' && formA?.status === 'verstuurd' && formB?.status === 'verstuurd' && formB?.notities === 'Notitie van Giulia'
+    && logA.includes('Status naar verstuurd') && logB.includes('Status naar verstuurd'), JSON.stringify({ formDb, logA, logB }));
+  check('formulier met een oude kopie: alleen de gewijzigde velden kregen een nieuwe stempel', formDb?._t?.notities > formDb?._t?.status && formDb?._t?.organisatie < formDb?._t?.status, JSON.stringify(formDb?._t));
+  // Op één toestel: notities typen in het paneel (stil bewaard) en meteen Bewerken; de status wijzigen en bewaren.
+  await A.page.click('#peekClose').catch(() => {});
+  await A.page.goto(`${base}#/sollicitaties`, { waitUntil: 'networkidle' });
+  await sollRij(A.page, 'Formuliermuseum').locator('.grid2__open').click();
+  await A.page.fill('[data-fk="sn-sol-form"]', 'Net getypt in het paneel');
+  await A.page.click('[data-actie="sollicitatie-bewerken"]');
+  await A.page.selectOption('.peek form.form label:has-text("Status") select', 'gesprek');
+  await A.page.click('.peek form.form button[type=submit]');
+  const eenToestel = await record(A.page, 'sollicitaties', 'sol-form');
+  check('één toestel: getypte notities blijven na Bewerken en een andere status', eenToestel?.status === 'gesprek' && eenToestel?.notities === 'Net getypt in het paneel', JSON.stringify(eenToestel));
+  // Logboekregels tegelijk op twee toestellen (zonder verbinding): ze blijven allebei.
+  await syncNu(A.page); await syncNu(B.page);
+  await A.page.click('#peekClose').catch(() => {});
+  await A.page.goto(`${base}#/sollicitaties`, { waitUntil: 'networkidle' });
+  await B.page.goto(`${base}#/sollicitaties`, { waitUntil: 'networkidle' });
+  await sollRij(A.page, 'Formuliermuseum').locator('.grid2__open').click();
+  await sollRij(B.page, 'Formuliermuseum').locator('.grid2__open').click();
+  netUit.add('giulia'); netUit.add('remi');
+  for (const [page, regel] of [[A.page, 'Gebeld door Giulia'], [B.page, 'Mail van Remi beantwoord']]) {
+    await page.fill('[data-logboek="sol-form"] input', regel);
+    await page.click('[data-logboek="sol-form"] button[type=submit]');
+    await page.evaluate(() => document.activeElement?.blur()); // niet meer aan het typen: wat binnenkomt, wordt meteen getoond
+  }
+  netUit.delete('giulia'); netUit.delete('remi');
+  await syncNu(A.page); await syncNu(B.page); await syncNu(A.page);
+  await wacht(400);
+  const dbLog = (() => { const d = rijen.get('sollicitaties|sol-form')?.data || {}; return Object.entries(d).filter(([k, v]) => k.startsWith('logboek_') && v).map(([, v]) => v.tekst); })();
+  const tegelijkA = await logVan(A.page, 'sol-form'), tegelijkB = await logVan(B.page, 'sol-form');
+  const zichtbaarA = await tekst(A.page, '.peek .log'), zichtbaarB = await tekst(B.page, '.peek .log');
+  check('logboekregels van twee toestellen tegelijk: allebei bewaard (database en beide toestellen)', ['Gebeld door Giulia', 'Mail van Remi beantwoord', 'Status naar verstuurd'].every(t => dbLog.includes(t) && tegelijkA.includes(t) && tegelijkB.includes(t))
+    && /Gebeld door Giulia/.test(zichtbaarA) && /Mail van Remi beantwoord/.test(zichtbaarA) && /Gebeld door Giulia/.test(zichtbaarB) && /Mail van Remi beantwoord/.test(zichtbaarB), JSON.stringify({ dbLog, tegelijkA, tegelijkB }));
+  // Een bestaand logboek (één veld, uit de seed) blijft getoond; een nieuwe regel komt erachter.
+  const seedLog = seedInfo.sol.logboek || [];
+  await A.page.click('#peekClose').catch(() => {});
+  await zetRecord(A.page, 'sollicitaties', { id: seedInfo.sol.id, ...(await A.page.evaluate(async () => (await import('./js/store.js')).itemErbij('logboek', { datum: '2026-11-16', tekst: 'Nieuwe regel bij een oud logboek' }))) });
+  const metOud = await logVan(A.page, seedInfo.sol.id);
+  check('een bestaand logboek blijft zichtbaar, nieuwe regels komen erachter', seedLog.length > 0 && seedLog.every((l, i) => metOud[i] === l.tekst) && metOud.at(-1) === 'Nieuwe regel bij een oud logboek', JSON.stringify({ seedLog, metOud }));
+  // Bijlagen van twee toestellen tegelijk aan dezelfde mail: allebei bewaard.
+  await zetRecord(A.page, 'berichten', { id: 'msg-twee-bijlagen', soort: 'mail', titel: 'Twee bijlagen', onderwerp: 'Twee bijlagen', status: 'concept', eigen: true });
+  await syncNu(A.page); await syncNu(B.page);
+  netUit.add('giulia'); netUit.add('remi');
+  for (const [page, naam] of [[A.page, 'Van Giulia.pdf'], [B.page, 'Van Remi.pdf']]) {
+    await page.goto(`${base}#/communicatie/msg-twee-bijlagen`, { waitUntil: 'networkidle' });
+    await page.setInputFiles('input[data-bijlage="msg-twee-bijlagen"]', { name: naam, mimeType: 'application/pdf', buffer: PDF });
+    await page.waitForFunction(n => document.querySelector('.mail-bijlagen')?.textContent.includes(n), naam, { timeout: 3000 }).catch(() => {});
+  }
+  netUit.delete('giulia'); netUit.delete('remi');
+  await syncNu(A.page); await syncNu(B.page); await syncNu(A.page);
+  const bijlA = await A.page.evaluate(async () => { const st = await import('./js/store.js'); return st.items(st.get('berichten', 'msg-twee-bijlagen'), 'bijlagen').map(x => x.naam); });
+  const bijlB = await B.page.evaluate(async () => { const st = await import('./js/store.js'); return st.items(st.get('berichten', 'msg-twee-bijlagen'), 'bijlagen').map(x => x.naam); });
+  check('bijlagen van twee toestellen tegelijk aan dezelfde mail: allebei bewaard', ['Van Giulia.pdf', 'Van Remi.pdf'].every(n => bijlA.includes(n) && bijlB.includes(n)), JSON.stringify({ bijlA, bijlB }));
+  await B.page.goto(`${base}#/communicatie/msg-twee-bijlagen`, { waitUntil: 'networkidle' });
+  await B.page.click('.mail-bijlagen button[aria-label="Van Giulia.pdf verwijderen"]');
+  await syncNu(B.page); await syncNu(A.page);
+  const naWeg = await A.page.evaluate(async () => { const st = await import('./js/store.js'); return st.items(st.get('berichten', 'msg-twee-bijlagen'), 'bijlagen').map(x => x.naam); });
+  check('een bijlage verwijderen haalt alleen die ene weg (ook op het andere toestel)', naWeg.join() === 'Van Remi.pdf', naWeg.join());
+
+  // ---- Herreview: 'Terug naar master-cv' mag het cv niet blokkeren ----
+  const cvLokaal = page => page.evaluate(async () => { const st = await import('./js/store.js'), cv = await import('./js/cvdata.js'); return { rec: st.lokaalRecord('cvdoc', 'remi'), profiel: cv.getCv().profiel, master: st.ref.cvMaster.profiel }; });
+  await A.page.goto(`${base}#/cv?tab=profiel`, { waitUntil: 'networkidle' });
+  await A.page.fill('[data-fk="cv-profiel"]', 'Profiel van Remi in de test');
+  await wacht(500);
+  await A.page.goto(`${base}#/cv?tab=afdrukken`, { waitUntil: 'networkidle' });
+  A.page.once('dialog', d => d.accept());
+  await A.page.click('button:has-text("Terug naar master-cv")');
+  const naReset = await cvLokaal(A.page);
+  check('terug naar master-cv: geen grafsteentje, de velden zijn gewist en het master-cv geldt', naReset.rec && !naReset.rec.verwijderd && naReset.rec.profiel === null && naReset.profiel === naReset.master, JSON.stringify({ rec: naReset.rec && { verwijderd: naReset.rec.verwijderd, profiel: naReset.rec.profiel } }));
+  await A.page.goto(`${base}#/cv?tab=profiel`, { waitUntil: 'networkidle' });
+  await A.page.fill('[data-fk="cv-profiel"]', 'Na de reset opnieuw getypt');
+  await wacht(500);
+  await syncNu(A.page);
+  check('na terug naar master-cv kan het cv gewoon verder bewaard worden (ook in de database)', (await cvLokaal(A.page)).profiel === 'Na de reset opnieuw getypt' && rijen.get('cvdoc|remi')?.verwijderd === false
+    && rijen.get('cvdoc|remi')?.data?.profiel === 'Na de reset opnieuw getypt' && !/verwijderd/.test(await toastTekst(A.page)), JSON.stringify(rijen.get('cvdoc|remi')?.data?.profiel));
+  // Een grafsteentje van vroeger (een oudere versie van de app): een bewerking laat het cv bewust herleven.
+  await A.page.goto(`${base}#/`, { waitUntil: 'networkidle' }); // eerst weg uit het cv (een open veld bewaart bij het verlaten)
+  await A.page.evaluate(async () => (await import('./js/store.js')).remove('cvdoc', 'remi'));
+  await syncNu(A.page); await syncNu(B.page);
+  const grafCv = rijen.get('cvdoc|remi')?.verwijderd === true && (await lokaal(B.page, 'cvdoc', 'remi'))?.verwijderd === true;
+  await B.page.goto(`${base}#/cv?tab=profiel`, { waitUntil: 'networkidle' });
+  await B.page.fill('[data-fk="cv-profiel"]', 'Herleefd op het toestel van Remi');
+  await wacht(500);
+  await syncNu(B.page); await syncNu(A.page);
+  check('een oud grafsteentje op het cv herleeft bij de volgende bewerking (overal)', grafCv && rijen.get('cvdoc|remi')?.verwijderd === false && (await cvLokaal(A.page)).profiel === 'Herleefd op het toestel van Remi'
+    && !/verwijderd/.test(await toastTekst(B.page)), JSON.stringify({ grafCv, db: rijen.get('cvdoc|remi')?.data, toast: await toastTekst(B.page) }));
+
+  // ---- Herreview: 'Opnieuw ophalen uit de database' met wat nog niet in de database staat ----
+  await zetRecord(B.page, 'notities', { id: 'not-reset-slecht', titel: 'Geweigerd voor de reset', slecht: true });
+  await syncNu(B.page);
+  netUit.add('remi');
+  await zetRecord(B.page, 'notities', { id: 'not-reset-wacht', titel: 'Wacht nog bij de reset' });
+  await instellingen(B.page);
+  await B.page.click('[data-actie="opnieuw-ophalen"]');
+  const vraagOphalen = await wachtTot(async () => await aantal(B.page, '[data-ophaal-vraag]') > 0, 5000);
+  const vraagTekst = await tekst(B.page, '[data-ophaal-vraag]');
+  check('opnieuw ophalen met wachtende en geweigerde wijzigingen: eerst een vraag met exporteren', vraagOphalen && /1 wijziging kon niet/.test(vraagTekst) && /1 wijziging wacht/.test(vraagTekst)
+    && await aantal(B.page, '[data-actie="ophalen-exporteer"]') === 1, vraagTekst);
+  await B.page.click('[data-actie="ophalen-bewaren"]');
+  await wacht(200);
+  const naOphalen = await B.page.evaluate(async () => { const st = await import('./js/store.js'), s = await import('./js/sync.js'); return { wacht: !!st.lokaalRecord('notities', 'not-reset-wacht'), slecht: !!st.lokaalRecord('notities', 'not-reset-slecht'), andere: !!st.lokaalRecord('notities', 'not-p1'), mislukt: s.mislukteLijst().map(m => m.wat), status: s.syncStatus() }; });
+  check('opnieuw ophalen houdt wat nog wacht en wat geweigerd werd (ook de melding)', naOphalen.wacht && naOphalen.slecht && !naOphalen.andere && naOphalen.status.mislukt === 1
+    && naOphalen.mislukt.some(w => /Geweigerd voor de reset/.test(w)), JSON.stringify(naOphalen));
+  netUit.delete('remi');
+  await syncNu(B.page);
+  check('daarna: de wachtende wijziging gaat alsnog naar de database en de rest komt terug', rijen.get('notities|not-reset-wacht')?.data?.titel === 'Wacht nog bij de reset'
+    && !!(await lokaal(B.page, 'notities', 'not-p1')) && (await status(B.page)).mislukt === 1, JSON.stringify(await status(B.page)));
+  // Uitdrukkelijk ook wissen: alleen na een tweede bevestiging.
+  netUit.add('remi');
+  await zetRecord(B.page, 'notities', { id: 'not-reset-weg', titel: 'Bewust gewist' });
+  await B.page.click('#peekClose').catch(() => {});
+  await instellingen(B.page);
+  await B.page.click('[data-actie="opnieuw-ophalen"]');
+  await wachtTot(async () => await aantal(B.page, '[data-ophaal-vraag]') > 0, 5000);
+  let tweedeVraag = '';
+  B.page.once('dialog', d => { tweedeVraag = d.message(); d.accept(); });
+  await B.page.click('[data-actie="ophalen-alles-wissen"]');
+  await wacht(200);
+  netUit.delete('remi');
+  await syncNu(B.page);
+  check('alles wissen na een tweede bevestiging: ook wat niet verstuurd was, is weg', /niet ongedaan/.test(tweedeVraag) && !(await lokaal(B.page, 'notities', 'not-reset-weg')) && !rijen.has('notities|not-reset-weg')
+    && !(await lokaal(B.page, 'notities', 'not-reset-slecht')) && (await status(B.page)).mislukt === 0, tweedeVraag);
+  await B.page.click('#peekClose').catch(() => {});
+
+  // ---- Herreview: versturen via de server (Gmail nagebootst in de pagina) ----
+  await A.page.evaluate(() => {
+    const B = globalThis.__nieuweStartBackend;
+    globalThis.__gmail = { verzonden: new Map(), sleutels: [], modus: 'normaal' };
+    B.mailKlaarzetten = async () => 'uitgaand/test.eml';
+    const oud = B.gmail;
+    B.gmail = async (actie, extra = {}) => {
+      if (actie === 'status') return { ingesteld: true, gekoppeld: true, email: 'remi.test@gmail.com' };
+      if (actie !== 'verstuur') return oud(actie, extra);
+      const g = globalThis.__gmail, k = extra.sleutel;
+      g.sleutels.push(k);
+      const al = g.verzonden.get(k);
+      if (al) throw Object.assign(new Error('Deze mail is al verstuurd of wordt nu verstuurd.'), { status: 409, dubbel: true, gmailId: al.id, verzendStatus: al.status });
+      if (g.modus === 'onzeker') { g.verzonden.set(k, { status: 'bezig', id: null }); throw Object.assign(new Error('Gmail antwoordde niet.'), { status: 502, onzeker: true }); }
+      g.verzonden.set(k, { status: 'verstuurd', id: 'g-' + k });
+      return { id: 'g-' + k, threadId: 't', van: 'remi.test@gmail.com' };
+    };
+  });
+  const gmail = () => A.page.evaluate(() => ({ sleutels: globalThis.__gmail.sleutels.slice(), verzonden: Object.fromEntries(globalThis.__gmail.verzonden) }));
+  const zetGmail = (k, v) => A.page.evaluate(([k, v]) => { if (k === 'modus') globalThis.__gmail.modus = v; else globalThis.__gmail.verzonden.set(k, v); }, [k, v]);
+  const nieuweTestMail = id => zetRecord(A.page, 'berichten', { id, soort: 'mail', titel: id, onderwerp: 'Test ' + id, naar: 'werkgever@voorbeeld.be', tekst: 'Beste,\n\nTest.\n\nRemi', status: 'concept', eigen: true });
+  // Op Verstuur nu klikken en wachten tot de (nagebootste) server het verzoek kreeg en de app het antwoord verwerkte.
+  const klikVerstuur = async () => {
+    const n = (await gmail()).sleutels.length;
+    await A.page.click('[data-actie="verstuur-nu"]');
+    await wachtTot(async () => (await gmail()).sleutels.length > n, 3000);
+    await wacht(250);
+  };
+  const versturen = async id => {
+    await A.page.goto(`${base}#/communicatie/${id}`, { waitUntil: 'networkidle' });
+    await A.page.click('[data-actie="gmail"]');
+    await A.page.waitForSelector('[data-actie="verstuur-nu"]', { timeout: 3000 }).catch(() => {});
+    await klikVerstuur();
+  };
+  const dialogen = [];
+  const opDialoogGmail = d => { dialogen.push(d.message()); d.accept(); };
+  A.page.on('dialog', opDialoogGmail);
+  // Terug naar concept, verbeteren en opnieuw versturen: een nieuwe poging, de verbeterde mail vertrekt echt.
+  await nieuweTestMail('mail-gmail-a');
+  await versturen('mail-gmail-a');
+  const eerste = await record(A.page, 'berichten', 'mail-gmail-a');
+  await A.page.goto(`${base}#/communicatie/mail-gmail-a`, { waitUntil: 'networkidle' });
+  await A.page.click('[data-actie="terug-naar-concept"]');
+  const concept = await record(A.page, 'berichten', 'mail-gmail-a');
+  await versturen('mail-gmail-a');
+  const tweede = await record(A.page, 'berichten', 'mail-gmail-a');
+  check('Terug naar concept verhoogt de poging; de verbeterde mail vertrekt met een nieuwe sleutel', eerste?.status === 'verstuurd' && eerste.gmailId === 'g-mail-gmail-a:1'
+    && concept?.status === 'concept' && concept.verzendPoging === 2 && tweede?.status === 'verstuurd' && tweede.gmailId === 'g-mail-gmail-a:2'
+    && (await gmail()).sleutels.join() === 'mail-gmail-a:1,mail-gmail-a:2', JSON.stringify({ eerste, concept, tweede, g: await gmail() }));
+  await A.page.click('#peekClose').catch(() => {});
+  // Een concept met een gmailId (van vroeger): versturen vraagt bevestiging en gebruikt een nieuwe poging.
+  await zetRecord(A.page, 'berichten', { id: 'mail-gmail-a', status: 'concept', gmailId: 'g-oud' });
+  dialogen.length = 0;
+  await versturen('mail-gmail-a');
+  check('een concept met een gmailId van vroeger: bevestigen en een nieuwe poging', dialogen.some(t => /al verstuurd/.test(t)) && (await gmail()).sleutels.at(-1) === 'mail-gmail-a:3'
+    && (await record(A.page, 'berichten', 'mail-gmail-a'))?.gmailId === 'g-mail-gmail-a:3', JSON.stringify({ dialogen, g: (await gmail()).sleutels }));
+  await A.page.click('#peekClose').catch(() => {});
+  // Onzeker, dan opnieuw proberen: de server zegt 'bezig' (niet bevestigd). Geen 'verstuurd', de twijfel blijft,
+  // en geen bevestiging in het contactlog.
+  const contactVoor = (await A.page.evaluate(async () => (await import('./js/store.js')).all('communicatie').length));
+  await nieuweTestMail('mail-gmail-b');
+  await zetGmail('modus', 'onzeker');
+  await versturen('mail-gmail-b');
+  const naOnzeker = await record(A.page, 'berichten', 'mail-gmail-b');
+  await zetGmail('modus', 'normaal');
+  await klikVerstuur();
+  const naBezig = await record(A.page, 'berichten', 'mail-gmail-b');
+  const meldingBezig = await tekst(A.page, '.peek [role=alert]');
+  const contactNaBezig = await A.page.evaluate(async () => (await import('./js/store.js')).all('communicatie').filter(c => /bevestigde/.test(c.samenvatting || '')).length);
+  check('dubbel met status bezig: niet op verstuurd, de twijfel blijft, geen bevestiging in het contactlog', !!naOnzeker?.twijfelOp && naBezig?.status !== 'verstuurd' && !!naBezig?.twijfelOp
+    && contactNaBezig === 0 && /bevestigde niet/.test(meldingBezig) && /Toch opnieuw versturen/.test(await tekst(A.page, '[data-actie="verstuur-nu"]')), JSON.stringify({ naBezig, meldingBezig }));
+  // De server bevestigt later dat dezelfde sleutel vertrok: opnieuw proberen zet de mail op verstuurd, met de bevestiging.
+  await zetGmail('mail-gmail-b:1', { status: 'verstuurd', id: 'g-later-bevestigd' });
+  await A.page.click('#peekClose').catch(() => {});
+  await versturen('mail-gmail-b');
+  const naBevestigd = await record(A.page, 'berichten', 'mail-gmail-b');
+  const contactNa = await A.page.evaluate(async () => (await import('./js/store.js')).all('communicatie').filter(c => /bevestigde/.test(c.samenvatting || '')).length);
+  check('dubbel met status verstuurd na twijfel: verstuurd, met bevestiging in het contactlog', naBevestigd?.status === 'verstuurd' && naBevestigd.gmailId === 'g-later-bevestigd' && !naBevestigd.twijfelOp
+    && contactNa === 1 && (await gmail()).sleutels.filter(k => k.startsWith('mail-gmail-b')).every(k => k === 'mail-gmail-b:1'), JSON.stringify({ naBevestigd, contactVoor, contactNa }));
+  await A.page.click('#peekClose').catch(() => {});
+  // Een concept waarvan de sleutel al gekend is (bijvoorbeeld een oude 'Terug naar concept'): het concept blijft een
+  // concept; alleen een bewuste nieuwe verzending (nieuwe sleutel) verstuurt het.
+  await nieuweTestMail('mail-gmail-c');
+  await zetGmail('mail-gmail-c:1', { status: 'verstuurd', id: 'g-eerdere-versie' });
+  await versturen('mail-gmail-c');
+  const naDubbelConcept = await record(A.page, 'berichten', 'mail-gmail-c');
+  dialogen.length = 0;
+  await klikVerstuur();
+  const naNieuw = await record(A.page, 'berichten', 'mail-gmail-c');
+  check('dubbel op een concept: het blijft een concept, daarna bewust een nieuwe poging', naDubbelConcept?.status === 'concept' && !naDubbelConcept.gmailId
+    && dialogen.some(t => /kent deze verzending al/.test(t)) && naNieuw?.status === 'verstuurd' && naNieuw.gmailId === 'g-mail-gmail-c:2', JSON.stringify({ naDubbelConcept, naNieuw, dialogen }));
+  A.page.off('dialog', opDialoogGmail);
+  await A.page.click('#peekClose').catch(() => {});
+  await syncNu(A.page); await syncNu(B.page);
 
   // Twee tabbladen op hetzelfde toestel: ze volgen elkaar, en maar één synchroniseert tegelijk.
   const B2 = await tabblad(B);

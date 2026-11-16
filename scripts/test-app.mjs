@@ -368,6 +368,35 @@ try {
       const zoekUitleg = await page.textContent('.callout');
       check('zoeken: uitleg over de dagelijkse scan', /Elke ochtend zoekt een scan op deze sites en bij de organisaties uit de hotlist/.test(zoekUitleg) && /komt bij Gevonden en Remi krijgt het per mail/.test(zoekUitleg) && !/niet automatisch gelezen/.test(zoekUitleg), zoekUitleg.slice(0, 160));
       check('vacatures: geen consolefouten', consoleErr.length === foutenVoorVacatures, consoleErr.slice(foutenVoorVacatures).join(' | '));
+      // Hulpfuncties uit de herreview: formulieren bewaren alleen wat gewijzigd is, lijsten per item, cv terug naar master.
+      const hulp = await page.evaluate(async () => {
+        const st = await import('./js/store.js'), cv = await import('./js/cvdata.js');
+        const patch = st.gewijzigdeVelden({ id: 'x', titel: 'Oud', status: 'open', notities: undefined, klaar: undefined }, { id: 'x', titel: 'Nieuw', status: 'open', notities: '', klaar: false, spoor: 'erfgoed' });
+        const rec = { id: 'y', logboek: [{ datum: '2026-10-01', tekst: 'oud' }], ...st.itemErbij('logboek', { datum: '2026-11-01', tekst: 'een' }, { datum: '2026-11-01', tekst: 'twee' }) };
+        const lijst = st.items(rec, 'logboek').map(l => l.tekst);
+        const b = { id: 'z', bijlagen: [{ id: 'b1', naam: 'oud.pdf' }], ...st.itemErbij('bijlagen', { id: 'b2', naam: 'nieuw.pdf' }) };
+        const wegOud = st.itemWeg(b, 'bijlagen', 'b1'), wegNieuw = st.itemWeg(b, 'bijlagen', 'b2');
+        st.upsert('cvdoc', { id: 'remi', profiel: 'Eigen profiel' }, { silent: true, herstel: true });
+        const eigen = cv.getCv().profiel;
+        st.upsert('cvdoc', { id: 'remi', profiel: undefined }, { silent: true, herstel: true });
+        return { patch, lijst, wegOud: JSON.stringify(wegOud), wegNieuw: JSON.stringify(wegNieuw), eigen, master: cv.getCv().profiel === st.ref.cvMaster.profiel, graf: !!st.lokaalRecord('cvdoc', 'remi')?.verwijderd };
+      });
+      check('gewijzigdeVelden: alleen echt gewijzigde velden (leeg blijft leeg, een standaardwaarde telt)', JSON.stringify(hulp.patch) === JSON.stringify({ titel: 'Nieuw', spoor: 'erfgoed' }), JSON.stringify(hulp.patch));
+      check('lijst per item: het oude logboek eerst, nieuwe regels in volgorde erachter', hulp.lijst.join() === 'oud,een,twee', hulp.lijst.join());
+      check('lijst per item: verwijderen haalt een item uit de oude lijst of zet zijn veld op null', hulp.wegOud === '{"bijlagen":[]}' && hulp.wegNieuw === '{"bijlagen_b2":null}', `${hulp.wegOud} ${hulp.wegNieuw}`);
+      check('cv: een gewist veld valt terug op het master-cv, zonder grafsteentje', hulp.eigen === 'Eigen profiel' && hulp.master && !hulp.graf, JSON.stringify(hulp));
+      // Profiel, Testresultaten: geen uitslagen of vaste duiding in de openbare gegevens of de code. Zonder record een
+      // lege toestand met een verwijzing naar Zelftests; met een (algemeen) testrecord, zoals de database het zou
+      // aanleveren, de uitslag uit Tests elders.
+      await page.goto(`${base}#/profiel?tab=tests`, { waitUntil: 'networkidle' });
+      const leegProfiel = await page.evaluate(() => ({ leeg: !!document.querySelector('[data-geen-uitslagen]'), link: !!document.querySelector('.content a[href="#/cv?tab=zelftests"]'), tekst: document.querySelector('.content').textContent }));
+      check('profiel tests: lege toestand met een link naar Zelftests', leegProfiel.leeg && leegProfiel.link, JSON.stringify({ leeg: leegProfiel.leeg, link: leegProfiel.link }));
+      check('profiel tests: geen vaste duiding en geen lege koppen', !/dominante paar|Holland-code:|MBTI:/.test(leegProfiel.tekst), leegProfiel.tekst.slice(0, 160));
+      await page.evaluate(async () => { const st = await import('./js/store.js'); st.upsert('zelftests', { id: 'extern', resultaten: { schein: 'Testuitslag voor de controle' } }, { herstel: true }); });
+      await page.waitForTimeout(100);
+      const metUitslag = await page.evaluate(() => ({ leeg: !!document.querySelector('[data-geen-uitslagen]'), lijst: document.querySelector('[data-uitslagen]')?.textContent || '' }));
+      check('profiel tests: uitslag uit Tests elders verschijnt', !metUitslag.leeg && /Loopbaanankers van Schein/.test(metUitslag.lijst) && /Testuitslag voor de controle/.test(metUitslag.lijst), JSON.stringify(metUitslag));
+      await page.evaluate(async () => { const st = await import('./js/store.js'); st.upsert('zelftests', { id: 'extern', resultaten: {} }, { silent: true, herstel: true }); });
     }
     await ctx.close();
   }

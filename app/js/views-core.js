@@ -1,9 +1,9 @@
 // Views: overzicht, stappenplan, planning, rechten, profiel, documenten, instellingen.
 import { h, icon, badge, fit, fmtDate, todayIso, addDays, daysUntil, uid, md, copyText, download, toast, isoLocal } from './ui.js';
-import { all, get, upsert, remove, ref, exportJson, importJson, resetLocal, localSize } from './store.js';
+import { all, get, upsert, remove, ref, exportJson, importJson, resetLocal, localSize, gewijzigdeVelden } from './store.js';
 import { openPeek, closePeek, go, gebruiker, kiesGebruiker, zetGebruiker, NAMEN, vernieuw } from './app.js';
 import { dossierTab } from './views-dossier.js';
-import { syncStatus, syncNu, afmelden, nogNietVerstuurd, codeMaken, mislukteLijst, mislukteOpnieuw } from './sync.js';
+import { syncStatus, syncNu, afmelden, nogNietVerstuurd, codeMaken, mislukteLijst, mislukteOpnieuw, opnieuwOphalen } from './sync.js';
 
 const SPOORKLEUR = { erfgoed: 'orange', cultuur: 'violet', onderwijs: 'green', overheid: 'grey', sociaal: 'red', ecologisch: 'green', geschiedenis: 'orange', reserve: 'grey' };
 // Wie doet het: Remi, Giulia of samen. Afgeleid uit 'wie' als 'voor' ontbreekt (eigen stappen).
@@ -76,17 +76,19 @@ export function stappenplan(r) {
       h('div', { style: 'flex:1;min-width:0' },
         h('p', { class: 'row-title' + (s.status === 'klaar' ? ' done' : '') }, s.titel),
         h('p', { class: 'small', style: 'margin-top:2px' }, s.wat),
-        h('p', { class: 'meta', style: 'margin-top:4px' }, voorBadge(s), s.wie && s.wie !== VOOR[voorVan(s)][0] && h('span', null, s.wie), s.deadline && h('span', { class: s.status !== 'klaar' && daysUntil(s.deadline) < 0 ? 'overdue' : '' }, `deadline ${fmtDate(s.deadline)}`), s.bron && badge(s.bron, 'grey'), h('button', { class: 'btn btn--quiet btn--sm', onClick: () => stapForm(s) }, 'Bewerken'))))))); }),
+        h('p', { class: 'meta', style: 'margin-top:4px' }, voorBadge(s), s.wie && s.wie !== VOOR[voorVan(s)][0] && h('span', null, s.wie), s.deadline && h('span', { class: s.status !== 'klaar' && daysUntil(s.deadline) < 0 ? 'overdue' : '' }, `deadline ${fmtDate(s.deadline)}`), s.bron && badge(s.bron, 'grey'), h('button', { class: 'btn btn--quiet btn--sm', onClick: () => stapForm(get('stappenplan', s.id) || s) }, 'Bewerken'))))))); }),
   );
   const tabs = [['open', 'Open'], ['klaar', 'Klaar'], ['alles', 'Alles']].map(([k, l]) => ({ label: l, href: `#/stappenplan?tab=${k}${wie ? '&wie=' + wie : ''}`, active: filter === k }));
   const tool = [h('button', { class: 'btn btn--primary', onClick: () => stapForm() }, icon('plus', 14), 'Stap toevoegen')];
   return { chrome: { where: 'Te doen', tabs, tool, view: `${items.length} stappen`, viewIcon: 'check' }, body };
 }
+// Bewerken bewaart alleen wat in het formulier gewijzigd werd (nooit de status van bij het openen).
 function stapForm(s = {}) {
+  const f = { titel: s.titel || '', wat: s.wat || '', wie: s.wie || 'Remi', voor: voorVan(s), deadline: s.deadline || '', groep: s.groep || 'Eigen stappen' };
+  const begin = s; // het record zoals het was bij het openen
   openPeek(s.id ? 'Stap bewerken' : 'Nieuwe stap', () => {
-    const f = { titel: s.titel || '', wat: s.wat || '', wie: s.wie || 'Remi', voor: voorVan(s), deadline: s.deadline || '', groep: s.groep || 'Eigen stappen' };
     const inp = (k, type = 'text') => h('input', { class: 'field', type, value: f[k], onInput: e => f[k] = e.target.value });
-    return h('form', { class: 'form', onSubmit: e => { e.preventDefault(); if (!f.titel) return; upsert('stappenplan', { id: s.id || 's-' + uid(), status: s.status || 'open', ...f }); closePeek(); toast('Bewaard'); } },
+    return h('form', { class: 'form', onSubmit: e => { e.preventDefault(); if (!f.titel) return; upsert('stappenplan', s.id ? { id: s.id, ...gewijzigdeVelden(begin, f) } : { id: 's-' + uid(), status: 'open', ...f }); closePeek(); toast('Bewaard'); } },
       h('label', null, 'Titel', inp('titel')), h('label', null, 'Wat precies', h('textarea', { class: 'field', value: f.wat, onInput: e => f.wat = e.target.value })),
       h('div', { class: 'form__row' }, h('label', null, 'Voor wie', h('select', { class: 'field', onChange: e => f.voor = e.target.value }, Object.entries(VOOR).map(([k, [l]]) => h('option', { value: k, selected: f.voor === k }, l)))), h('label', null, 'Deadline', inp('deadline', 'date'))),
       h('label', null, 'Wie precies (optioneel)', inp('wie')),
@@ -132,14 +134,15 @@ export function afspraakPeek(id) {
       h('div', { class: 'meta' }, badge('afspraak', 'red'), VOOR[x.voor] && badge(VOOR[x.voor][0], VOOR[x.voor][1]), h('span', null, fmtDate(x.datum)), x.tijd && h('span', null, x.tijd)),
       x.plaats && h('p', null, h('strong', null, 'Waar: '), x.plaats),
       x.notitie && md(x.notitie),
-      h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--ghost btn--sm', onClick: () => upsert('agenda', { id: x.id, status: x.status === 'klaar' ? 'open' : 'klaar' }) }, x.status === 'klaar' ? 'Terug open zetten' : 'Afvinken als gebeurd'), h('button', { class: 'btn btn--ghost btn--sm', onClick: () => afspraakForm(x) }, 'Bewerken'), h('a', { class: 'btn btn--quiet btn--sm', href: `#/planning?tab=kalender&m=${x.datum.slice(0, 7)}` }, 'In de kalender')));
+      h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--ghost btn--sm', onClick: () => upsert('agenda', { id: x.id, status: x.status === 'klaar' ? 'open' : 'klaar' }) }, x.status === 'klaar' ? 'Terug open zetten' : 'Afvinken als gebeurd'), h('button', { class: 'btn btn--ghost btn--sm', onClick: () => afspraakForm(get('agenda', id) || x) }, 'Bewerken'), h('a', { class: 'btn btn--quiet btn--sm', href: `#/planning?tab=kalender&m=${x.datum.slice(0, 7)}` }, 'In de kalender')));
   });
 }
 function afspraakForm(init = {}) {
   const x = { id: init.id, datum: init.datum || todayIso(), tijd: init.tijd || '', titel: init.titel || '', voor: init.voor || 'remi', plaats: init.plaats || '', notitie: init.notitie || '' };
+  const begin = init;
   openPeek(x.id ? 'Afspraak bewerken' : 'Afspraak toevoegen', () => {
     const inp = (k, type = 'text', ph = '') => h('input', { class: 'field', type, value: x[k], placeholder: ph, onInput: e => x[k] = e.target.value });
-    return h('form', { class: 'form', onSubmit: e => { e.preventDefault(); if (!x.titel || !x.datum) return; const s = upsert('agenda', { ...x, id: x.id || 'ag-' + uid() }); toast('Bewaard'); afspraakPeek(s.id); } },
+    return h('form', { class: 'form', onSubmit: e => { e.preventDefault(); if (!x.titel || !x.datum) return; const s = upsert('agenda', x.id ? { id: x.id, ...gewijzigdeVelden(begin, x) } : { ...x, id: 'ag-' + uid() }); toast('Bewaard'); afspraakPeek(s.id); } },
       h('label', null, 'Wat', inp('titel')),
       h('div', { class: 'form__row' }, h('label', null, 'Datum', inp('datum', 'date')), h('label', null, 'Uur', inp('tijd', 'text', 'bijvoorbeeld 15:00 tot 16:00'))),
       h('div', { class: 'form__row' }, h('label', null, 'Voor wie', h('select', { class: 'field', onChange: e => x.voor = e.target.value }, Object.entries(VOOR).map(([k, [l]]) => h('option', { value: k, selected: x.voor === k }, l)))), h('label', null, 'Waar of hoe', inp('plaats'))),
@@ -302,15 +305,26 @@ export function profiel(r) {
     titled('Randvoorwaarden', h('ul', { class: 'bullets' }, P.randvoorwaarden.map(v => h('li', null, v)))),
     P.loopbaan && titled('Loopbaan tot nu toe', h('ul', { class: 'list list--tight' }, P.loopbaan.map(l => h('li', null, h('span', { class: 'small muted', style: 'width:110px;flex:none' }, l.periode), h('span', null, l.wat))))),
     callout('orange', 'clock', 'Te bevestigen', h('ul', { class: 'bullets small' }, (P.tebevestigen || []).map(t => h('li', null, t)))));
-  else if (tab === 'tests') inhoud = h('div', { class: 'stack' },
-    titled('Loopbaanankers (Schein)', P.tests.loopbaanankers.map(a => bar(a.anker, a.score, 100, a.rol === 'dominant')), h('p', { class: 'small muted' }, 'Zuivere uitdaging en dienstbaarheid vormen het dominante paar: werk moet echt moeilijk zijn en er echt toe doen.')),
-    h('div', { class: 'two-col' },
-      titled('Holland-code: ' + P.tests.holland.code, P.tests.holland.scores.map((s, i) => bar(s.type, s.score, P.tests.holland.max, i < 3))),
-      titled('Big Five', h('ul', { class: 'list list--tight' }, P.tests.bigfive.map(b => h('li', null, h('div', null, h('p', { class: 'row-title' }, `${b.domein}: ${b.niveau}`), h('p', { class: 'small muted' }, b.toelichting)))))),
-    ),
-    titled('MBTI: ' + P.tests.mbti.type, h('p', null, P.tests.mbti.toelichting)));
-  else inhoud = h('div', { class: 'grid-cards grid-cards--wide' }, P.herzieningen.map(x => h('div', { class: 'card card--pad' }, h('p', { class: 'row-title' }, x.onderwerp), badge(x.status, x.status.includes('niet') ? 'red' : x.status.includes('hoofd') ? 'orange' : 'grey'), h('p', { class: 'small', style: 'margin-top:8px' }, x.toelichting))));
-  const body = content(intro('Profiel', 'Wie Remi is volgens vier tests en de gesprekken tot nu toe.'), inhoud);
+  else if (tab === 'tests') {
+    // De uitslagen staan niet in de openbare gegevens (data/profiel.json houdt alleen de lege vorm). Ze komen uit het
+    // Cv-atelier (Zelftests, Tests elders): een record in de database, alleen voor wie toegang heeft. Staat er toch
+    // iets in de vorm van profiel.json (bijvoorbeeld lokaal), dan wordt dat ook getoond, zonder vaste duiding.
+    const T = P.tests || {}, ankers = T.loopbaanankers || [], holland = T.holland || {}, hScores = holland.scores || [], bigfive = T.bigfive || [];
+    const exRes = get('zelftests', 'extern')?.resultaten || {};
+    const extern = (ref.zelftests?.externeTests || []).filter(t => String(exRes[t.id] || '').trim());
+    const blokken = [
+      extern.length && titled('Uitslagen van tests elders', h('ul', { class: 'list list--tight', 'data-uitslagen': '' }, extern.map(t => h('li', null, h('div', null, h('p', { class: 'row-title' }, t.naam), h('p', { class: 'small', style: 'white-space:pre-wrap' }, String(exRes[t.id]).trim())))))),
+      ankers.length && titled('Loopbaanankers (Schein)', ankers.map(a => bar(a.anker, a.score, 100, a.rol === 'dominant'))),
+      (hScores.length || bigfive.length) && h('div', { class: 'two-col' },
+        hScores.length && titled('Holland-code' + (holland.code ? ': ' + holland.code : ''), hScores.map((s, i) => bar(s.type, s.score, holland.max || 32, i < 3))),
+        bigfive.length && titled('Big Five', h('ul', { class: 'list list--tight' }, bigfive.map(b => h('li', null, h('div', null, h('p', { class: 'row-title' }, `${b.domein}: ${b.niveau}`), h('p', { class: 'small muted' }, b.toelichting))))))),
+      T.mbti?.type && titled('MBTI: ' + T.mbti.type, h('p', null, T.mbti.toelichting || '')),
+    ].filter(Boolean);
+    inhoud = h('div', { class: 'stack' },
+      ...(blokken.length ? blokken : [callout('violet', 'list', 'Nog geen uitslagen', h('p', { 'data-geen-uitslagen': '' }, 'De uitslagen van de tests staan niet in de openbare gegevens van de app. Vul ze in bij het Cv-atelier, Zelftests, onder Tests elders. Ze worden alleen in de database bewaard (voor wie toegang heeft) en verschijnen dan hier.'))]),
+      h('div', { class: 'form__actions' }, h('a', { class: 'btn btn--ghost btn--sm', href: '#/cv?tab=zelftests' }, 'Naar Zelftests in het Cv-atelier')));
+  } else inhoud = h('div', { class: 'grid-cards grid-cards--wide' }, P.herzieningen.map(x => h('div', { class: 'card card--pad' }, h('p', { class: 'row-title' }, x.onderwerp), badge(x.status, x.status.includes('niet') ? 'red' : x.status.includes('hoofd') ? 'orange' : 'grey'), h('p', { class: 'small', style: 'margin-top:8px' }, x.toelichting))));
+  const body = content(intro('Profiel', 'Wie Remi is: achtergrond, randvoorwaarden en wat de gesprekken tot nu toe opleverden. De testuitslagen zelf staan alleen in de database.'), inhoud);
   return { chrome: { where: 'Wie Remi is', tabs, viewIcon: 'user' }, body };
 }
 
@@ -435,6 +449,44 @@ function afmeldVraag(herteken) {
       h('button', { class: 'btn btn--quiet btn--sm', type: 'button', onClick: () => { afmeld = null; herteken(); } }, 'Annuleren')),
     a.geexporteerd && h('p', { class: 'small muted', role: 'status' }, 'Reservekopie gedownload.'));
 }
+// Opnieuw ophalen uit de database: eerst nakijken wat nog niet in de database staat. Staat alles er, dan een gewone
+// bevestiging. Anders een vraag zoals bij afmelden: eerst een reservekopie aanbieden, dan bewust kiezen. Gewoon
+// doorgaan houdt de niet verstuurde wijzigingen op dit toestel; ze ook wissen vraagt een aparte bevestiging.
+let ophaal = null; // null, 'kijken', of { wacht, mislukt, geexporteerd } zolang de vraag openstaat
+async function veiligOpnieuwOphalen(herteken) {
+  if (ophaal === 'kijken') return;
+  ophaal = 'kijken'; herteken();
+  let open = null;
+  try { open = await nogNietVerstuurd(); } catch { open = null; }
+  ophaal = null;
+  if (!open) { herteken(); toast('Nakijken wat nog niet in de database staat, lukte niet. Probeer opnieuw.'); return; }
+  if (open.totaal > 0) { ophaal = { wacht: open.wacht, mislukt: open.mislukt, geexporteerd: false }; herteken(); return; }
+  herteken();
+  if (!confirm('De kopie op dit toestel wissen en alles opnieuw ophalen uit de database? Alles van dit toestel staat al in de database.')) return;
+  ophalenNu(false);
+}
+function ophalenNu(ookOnverstuurd) {
+  ophaal = null;
+  opnieuwOphalen({ ookOnverstuurd });
+  closePeek();
+  toast(ookOnverstuurd ? 'De kopie op dit toestel is gewist. Alles wordt opnieuw opgehaald.' : 'Alles wordt opnieuw opgehaald. Wat nog niet in de database stond, bleef op dit toestel.');
+}
+function ophaalVraag(herteken) {
+  const a = ophaal;
+  const totaal = a.wacht + a.mislukt;
+  return h('div', { class: 'card card--pad afmeld-vraag', role: 'alert', 'data-ophaal-vraag': '' },
+    h('p', { class: 'row-title' }, 'Nog niet alles staat in de database'),
+    a.mislukt > 0 && h('p', { class: 'small mail-let' }, `${meervoud(a.mislukt, 'wijziging kon', 'wijzigingen konden')} niet in de database bewaard worden. ${a.mislukt === 1 ? 'Ze staat' : 'Ze staan'} alleen op dit toestel.`),
+    a.wacht > 0 && h('p', { class: 'small' }, `${meervoud(a.wacht, 'wijziging wacht', 'wijzigingen wachten')} nog om naar de database te gaan (geen verbinding?).`),
+    h('p', { class: 'small' }, 'Exporteer eerst je gegevens, zodat je een reservekopie hebt (bijlagen zitten daar niet in). Opnieuw ophalen houdt daarna wat nog niet in de database staat op dit toestel; de rest komt opnieuw uit de database.'),
+    h('div', { class: 'form__actions' },
+      h('button', { class: 'btn btn--primary btn--sm', type: 'button', 'data-actie': 'ophalen-exporteer', onClick: () => { exporteer(); a.geexporteerd = true; herteken(); } }, icon('download', 12), 'Exporteer gegevens'),
+      h('button', { class: 'btn btn--ghost btn--sm', type: 'button', 'data-actie': 'ophalen-bewaren', onClick: () => ophalenNu(false) }, 'Opnieuw ophalen, niet verstuurde wijzigingen houden'),
+      h('button', { class: 'btn btn--quiet btn--sm', type: 'button', onClick: () => { ophaal = null; herteken(); } }, 'Annuleren')),
+    h('div', { class: 'form__actions' },
+      h('button', { class: 'btn btn--danger btn--sm', type: 'button', 'data-actie': 'ophalen-alles-wissen', onClick: () => { if (confirm(`Ook ${totaal === 1 ? 'de wijziging die niet in de database staat' : `de ${totaal} wijzigingen die niet in de database staan`} van dit toestel wissen? Dat kan niet ongedaan gemaakt worden.`)) ophalenNu(true); } }, 'Alles wissen, ook wat niet verstuurd is')),
+    a.geexporteerd && h('p', { class: 'small muted', role: 'status' }, 'Reservekopie gedownload.'));
+}
 function databaseBlok() {
   const s = syncStatus();
   if (s.modus === 'lokaal') return h('p', { class: 'small' }, `Alles wat je invult staat in deze browser (${Math.round(localSize() / 1024)} kB). Er is nog geen centrale database ingesteld.`);
@@ -456,7 +508,7 @@ function databaseBlok() {
 }
 
 export function instellingenPeek() {
-  nieuweCode = null; codeVoor = ''; codeAdres = ''; codeFout = ''; afmeld = null;
+  nieuweCode = null; codeVoor = ''; codeAdres = ''; codeFout = ''; afmeld = null; ophaal = null;
   openPeek('Instellingen en synchronisatie', () => h('div', { class: 'stack' },
     databaseBlok(),
     syncStatus().wie && [h('hr', { class: 'rule' }), toegangBlok(vernieuw)],
@@ -473,8 +525,9 @@ export function instellingenPeek() {
     syncStatus().modus === 'lokaal'
       ? [h('p', { class: 'small muted' }, 'Wis alle lokale wijzigingen en val terug op de seed uit de repository.'),
         h('button', { class: 'btn btn--danger', onClick: () => { if (confirm('Alle lokale wijzigingen wissen?')) { resetLocal(); closePeek(); } } }, 'Lokale gegevens wissen')]
-      : [h('p', { class: 'small muted' }, 'Klopt er iets niet op dit toestel? Wis de kopie hier en haal alles opnieuw op uit de database. Wat nog niet doorgestuurd is, gaat dan verloren.'),
-        h('button', { class: 'btn btn--ghost', onClick: () => { if (confirm('De kopie op dit toestel wissen en alles opnieuw ophalen uit de database?')) { resetLocal(); closePeek(); } } }, 'Opnieuw ophalen uit de database')],
+      : [h('p', { class: 'small muted' }, 'Klopt er iets niet op dit toestel? Wis de kopie hier en haal alles opnieuw op uit de database. Wat nog niet doorgestuurd is, blijft op dit toestel staan.'),
+        h('button', { class: 'btn btn--ghost', 'data-actie': 'opnieuw-ophalen', disabled: ophaal === 'kijken', onClick: () => veiligOpnieuwOphalen(vernieuw) }, ophaal === 'kijken' ? 'Even kijken…' : 'Opnieuw ophalen uit de database'),
+        ophaal && ophaal !== 'kijken' && ophaalVraag(vernieuw)],
   ));
 }
 
@@ -494,7 +547,7 @@ export function vragenlijst(r) {
     h('div', { class: 'card card--pad' }, h('div', { class: 'meta' }, h('span', { class: 'progress', style: 'width:160px;display:inline-block' }, balk), teller)),
     h('section', { class: 'card card--pad' }, h('p', { class: 'eyebrow' }, sec.titel), h('p', { class: 'muted' }, sec.intro),
       h('div', { class: 'form', style: 'margin-top:12px' }, sec.vragen.map((q, i) => h('label', null, `${i + 1}. ${q.vraag}`, q.hint && h('span', { class: 'muted', style: 'display:block;font-weight:400;margin-top:2px' }, q.hint),
-        h('textarea', { class: 'field', dataset: { fk: 'vl-' + q.id }, style: q.type === 'kort' ? 'min-height:56px' : 'min-height:110px', value: antw[q.id] || '', placeholder: 'Je antwoord', onInput: e => { antw[q.id] = e.target.value; upsert('antwoorden', { id: q.id, tekst: e.target.value }, { silent: true }); telOp(); } }))))),
+        h('textarea', { class: 'field', dataset: { fk: 'vl-' + q.id }, style: q.type === 'kort' ? 'min-height:56px' : 'min-height:110px', value: antw[q.id] || '', placeholder: 'Je antwoord', onInput: e => { antw[q.id] = e.target.value; upsert('antwoorden', { id: q.id, tekst: e.target.value }, { silent: true, herstel: true }); telOp(); } }))))),
   );
   const tool = [h('button', { class: 'btn btn--ghost', onClick: () => copyText(alsTekst()) }, icon('copy', 14), 'Kopieer alle antwoorden'), h('button', { class: 'btn btn--primary', onClick: () => download(`antwoorden-remi-${todayIso()}.md`, alsTekst(), 'text/markdown') }, icon('download', 14), 'Download')];
   return { chrome: { where: 'Vertel wat meer', tabs, view: `${klaar} van ${totaal}`, viewIcon: 'list', tool }, body };

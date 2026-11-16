@@ -3,7 +3,7 @@
 // 'competentiescores' (per competentie) en 'zelftests' (werkwaarden, kernkwadranten, energie, feedback, extern).
 // Tekstvelden bewaren stil (zonder herteken), zodat de focus en de open uitklapblokken blijven staan.
 import { h, icon, badge, copyText, download, toast, todayIso, md } from './ui.js';
-import { all, get, upsert, remove, ref } from './store.js';
+import { all, get, upsert, ref } from './store.js';
 import { getCv, CVID } from './cvdata.js';
 export { getCv };
 import { content, intro, callout } from './views-core.js';
@@ -16,13 +16,23 @@ const WERKWOORDEN = ['tekende', 'ontwierp', 'bouwde', 'maakte', 'plooide', 'last
 
 // ---------- Gegevens ----------
 const lines = v => Array.isArray(v) ? v.map(x => String(x).trim()).filter(Boolean) : String(v || '').split('\n').map(x => x.trim()).filter(Boolean);
-const save = (patch, silent = true) => upsert('cvdoc', { id: CVID, ...patch }, { silent });
+// Het cv, de scores en de tests hebben een vaste id: bewaren laat ze altijd (bewust) herleven, ook als een oudere
+// versie van de app ze ooit verwijderde. Alleen de gewijzigde velden gaan mee, nooit een volledige kopie.
+const save = (patch, silent = true) => upsert('cvdoc', { id: CVID, ...patch }, { silent, herstel: true });
 const timers = {};
 const later = (key, fn, ms = 350) => { clearTimeout(timers[key]); timers[key] = setTimeout(fn, ms); };
 const antwoorden = () => Object.fromEntries(all('antwoorden').map(a => [a.id, a.tekst || '']));
 const score = id => get('competentiescores', id) || { id };
 const test = id => get('zelftests', id) || { id };
-const saveTest = (id, patch, silent = true) => upsert('zelftests', { id, ...(get('zelftests', id) || {}), ...patch }, { silent });
+const saveTest = (id, patch, silent = true) => upsert('zelftests', { id, ...patch }, { silent, herstel: true });
+// Terug naar het master-cv: de eigen velden wissen (null), niet verwijderen. Een grafsteentje op de vaste id 'remi'
+// zou elke latere bewerking weigeren.
+function terugNaarMaster() {
+  const eigen = get('cvdoc', CVID);
+  const patch = { id: CVID };
+  for (const k of Object.keys(eigen || {})) if (!['id', 'bijgewerkt', 'verwijderd'].includes(k)) patch[k] = undefined;
+  upsert('cvdoc', patch, { herstel: true });
+}
 
 // ---------- Bouwstenen ----------
 function veld(label, value, onSave, o = {}) {
@@ -285,7 +295,7 @@ function tabCompetenties(cv) {
   };
   vatSamen();
   const syncCv = () => { const lijstOpCv = alle.filter(c => score(c.id).opCv).map(c => ({ id: c.id, tekst: score(c.id).cvZin || c.cvZin })); save({ competenties: lijstOpCv }); vatSamen(); };
-  const bewaarScore = (id, patch) => { upsert('competentiescores', { ...score(id), id, ...patch }, { silent: true }); };
+  const bewaarScore = (id, patch) => { upsert('competentiescores', { id, ...patch }, { silent: true, herstel: true }); };
   const schaal = C.schaal || [1, 2, 3, 4, 5].map(w => ({ waarde: w, label: String(w) }));
   const blok = (c) => {
     const s = score(c.id);
@@ -444,7 +454,7 @@ function tabAfdrukken(cv) {
       h('button', { class: 'btn btn--ghost', type: 'button', onClick: () => copyText(cvTekst(cv)) }, icon('copy', 14), 'Kopieer als platte tekst'),
       h('button', { class: 'btn btn--ghost', type: 'button', onClick: () => copyText(voorClaude()) }, icon('copy', 14), 'Kopieer voor Claude'),
       h('button', { class: 'btn btn--ghost', type: 'button', onClick: () => download(`cv-gegevens-remi-${todayIso()}.json`, voorClaude()) }, icon('download', 14), 'Download gegevens'),
-      h('button', { class: 'btn btn--danger', type: 'button', onClick: () => { if (confirm('Al je lokale wijzigingen aan het cv wissen en terugvallen op het master-cv?')) remove('cvdoc', CVID); } }, 'Terug naar master-cv')),
+      h('button', { class: 'btn btn--danger', type: 'button', onClick: () => { if (confirm('Al je wijzigingen aan het cv wissen en terugvallen op het master-cv?')) terugNaarMaster(); } }, 'Terug naar master-cv')),
     h('p', { class: 'small muted' }, 'Platte tekst is handig voor online formulieren die geen pdf lezen. "Kopieer voor Claude" neemt je cv, competentiescan, zelftests en vragenlijst mee, zodat het master-cv en de versies per vacature bijgewerkt kunnen worden.'),
     h('iframe', { class: 'cv-frame', src: 'cv.html?embed=1', title: 'Voorbeeld van het cv' }),
   ];

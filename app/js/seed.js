@@ -1,4 +1,4 @@
-// Gegenereerd door scripts/build-data.mjs op 2026-11-16T17:17:46.820Z. Niet met de hand bewerken: pas data/*.json aan en draai npm run build:data.
+// Gegenereerd door scripts/build-data.mjs op 2026-11-16T18:50:16.028Z. Niet met de hand bewerken: pas data/*.json aan en draai npm run build:data.
 export const seed = {
  "berichten": [],
  "competenties": {
@@ -1034,7 +1034,7 @@ export const seed = {
      "Een verwijzing naar een project in je werkervaring of portfolio waar de competentie zichtbaar is"
     ],
     "doen": [
-     "Kies competenties die door je werk gestaafd worden en die bij je testresultaten passen: zorgvuldigheid, betrouwbaarheid, samenwerken en kennis doorgeven sluiten aan bij je hoge scores op plichtsbesef en behoedzaamheid en bij de S (Sociaal) in je Holland-code.",
+     "Kies competenties die door je werk gestaafd worden en die bij jou passen, bijvoorbeeld zorgvuldigheid, betrouwbaarheid, samenwerken en kennis doorgeven.",
      "Geef bij elke competentie een bewijs uit je werk, je opleiding of je meubelwerk.",
      "Werk voor elke competentie op je cv een STARR-voorbeeld uit dat je in het gesprek kunt vertellen: Situatie, Taak, Actie, Resultaat, Reflectie.",
      "Neem de woorden van de vacature over; een selectiecommissie scoort letterlijk op die competenties."
@@ -2808,143 +2808,43 @@ export const seed = {
   ],
   "tests": {
    "mbti": {
-    "type": "INFJ",
-    "toelichting": "Ziet patronen en richting voordat anderen ze zien (Ni), leest de emotionele temperatuur van een groep (Fe), zoekt logische samenhang (Ti), waardeert materiaal en ambacht (Se)."
+    "type": "",
+    "toelichting": "De testuitslagen staan niet in de openbare gegevens van de app, maar in het Cv-atelier, bij Zelftests, onder Tests elders."
    },
-   "loopbaanankers": [
-    {
-     "anker": "Zuivere uitdaging",
-     "score": 83,
-     "niveau": "zeer hoog",
-     "rol": "dominant"
-    },
-    {
-     "anker": "Dienstbaarheid en toewijding aan een zaak",
-     "score": 80,
-     "niveau": "zeer hoog",
-     "rol": "dominant"
-    },
-    {
-     "anker": "Levensstijl",
-     "score": 70,
-     "niveau": "hoog",
-     "rol": "ondersteunend"
-    },
-    {
-     "anker": "Technische en functionele competentie",
-     "score": 66,
-     "niveau": "hoog",
-     "rol": "ondersteunend"
-    },
-    {
-     "anker": "Zekerheid en stabiliteit",
-     "score": 63,
-     "niveau": "hoog",
-     "rol": "ondersteunend"
-    },
-    {
-     "anker": "Ondernemende creativiteit",
-     "score": 60,
-     "niveau": "hoog",
-     "rol": "ondersteunend"
-    },
-    {
-     "anker": "Algemeen management",
-     "score": 43,
-     "niveau": "gemiddeld",
-     "rol": "geen trekkracht"
-    },
-    {
-     "anker": "Autonomie en onafhankelijkheid",
-     "score": 40,
-     "niveau": "gemiddeld",
-     "rol": "geen trekkracht"
-    }
-   ],
-   "bigfive": [
-    {
-     "domein": "Neuroticisme",
-     "niveau": "laag",
-     "toelichting": "Uitzonderlijk kalm en onverstoorbaar."
-    },
-    {
-     "domein": "Extraversie",
-     "niveau": "laag",
-     "toelichting": "Gereserveerd en rustig. Assertiviteit 7 en Spanningsbehoefte 7 zijn zeer laag."
-    },
-    {
-     "domein": "Openheid",
-     "niveau": "hoog",
-     "toelichting": "Verbeelding 16, Artistieke interesse 19, Intellect 18."
-    },
-    {
-     "domein": "Vriendelijkheid",
-     "niveau": "hoog",
-     "toelichting": "Vertrouwen 18, Moraliteit 18, Samenwerking 17, Altruïsme 16."
-    },
-    {
-     "domein": "Zorgvuldigheid",
-     "niveau": "hoog",
-     "toelichting": "Plichtsbesef 20 en Behoedzaamheid 20 zijn maximaal. Ordelijkheid 9 is laag."
-    }
-   ],
+   "loopbaanankers": [],
+   "bigfive": [],
    "holland": {
-    "code": "ISA",
-    "scores": [
-     {
-      "type": "Onderzoekend (Investigative)",
-      "score": 23
-     },
-     {
-      "type": "Sociaal (Social)",
-      "score": 19
-     },
-     {
-      "type": "Artistiek (Artistic)",
-      "score": 17
-     },
-     {
-      "type": "Realistisch (Realistic)",
-      "score": 13
-     },
-     {
-      "type": "Conventioneel (Conventional)",
-      "score": 10
-     },
-     {
-      "type": "Ondernemend (Enterprising)",
-      "score": 7
-     }
-    ],
+    "code": "",
+    "scores": [],
     "max": 32
    }
   },
-  "synthese": "Remi bloeit op bij echt moeilijke problemen die ondubbelzinnig van belang zijn voor echte mensen, aangepakt via diep vakmanschap, vanuit een stabiele en gestructureerde omgeving die ruimte laat voor een volwaardig persoonlijk leven, met op lange termijn de mogelijkheid om iets eigen en zinvol op te bouwen. Hij werkt het best in kleine vertrouwde teams, met betekenis als kompas en intuïtie als motor.",
+  "synthese": "Remi zoekt werk dat moeilijk is en er echt toe doet, met ruimte voor vakmanschap, in een kleine, vertrouwde ploeg binnen een stabiele organisatie, en met tijd om naast het werk te blijven studeren.",
   "herzieningen": [
    {
     "onderwerp": "Brandweer",
     "status": "definitief niet",
-    "toelichting": "Op basis van de loopbaanankers leek brandweer een sterke match. De Big Five (zeer lage assertiviteit en spanningsbehoefte, maximale behoedzaamheid) en de Holland-code (onderzoekend, niet situationeel) wijzen ervan weg. Beslissing september 2026: deze piste is gesloten."
+    "toelichting": "Leek eerst een sterke match, maar na de tests en de gesprekken bleek het minder goed te passen. Beslissing september 2026: deze piste is gesloten."
    },
    {
     "onderwerp": "Zelfstandig ontwerper-maker",
     "status": "geparkeerd, tien tot vijftien jaar",
-    "toelichting": "Vijf onafhankelijke signalen wijzen weg van het solo-ondernemerschap als volgende stap: Ondernemend 7, Assertiviteit 7, Autonomie 40 procent, Zekerheid 63 procent en de INFJ-afkeer van zelfpromotie."
+    "toelichting": "Niet als volgende stap: een stabiel inkomen bij een vaste werkgever gaat nu voor. Op lange termijn blijft het een mogelijkheid."
    },
    {
     "onderwerp": "Onderwijs",
     "status": "nu al, deeltijds",
-    "toelichting": "Sociaal 19, Altruïsme 16, Plichtsbesef 20 en het dienstbaarheidsanker van 80 procent maken lesgeven een piste om nu al deeltijds te testen, niet pas op 35 of 40."
+    "toelichting": "Lesgeven sluit aan bij de wens om werk te doen dat er echt toe doet en om kennis door te geven. Het is een piste om nu al deeltijds te testen, niet pas op 35 of 40."
    },
    {
     "onderwerp": "Erfgoed en restauratie",
     "status": "hoofdspoor",
-    "toelichting": "Past op alle vier de lenzen: onderzoekend, dienstbaar aan cultureel erfgoed, esthetisch, behoedzaam en plichtsbewust, en institutioneel stabiel. Sinds september 2026 het eerste spoor."
+    "toelichting": "Combineert onderzoekend en precies vakwerk met betekenis voor cultureel erfgoed en een stabiele, institutionele werkgever. Sinds september 2026 het eerste spoor."
    },
    {
     "onderwerp": "Culturele instellingen",
     "status": "hoofdspoor",
-    "toelichting": "Museumateliers, theaterwerkplaatsen en tentoonstellingsbouw combineren onderzoekend, artistiek, sociaal en realistisch werk met betekenis en stabiliteit."
+    "toelichting": "Museumateliers, theaterwerkplaatsen en tentoonstellingsbouw combineren vakmanschap en vormgeving met betekenis en stabiliteit."
    }
   ],
   "loopbaan": [
@@ -3848,6 +3748,7 @@ export const seed = {
    "soort": "jobsite of organisatie.",
    "sector": "Soort werkgever of sector.",
    "js": "true als de lijst pas met JavaScript verschijnt; dan opent de scan de pagina meteen met Playwright.",
+   "geenBrowser": "Optioneel: nooit Playwright gebruiken (statische pagina; spaart de site).",
    "zoekparameters": "Optioneel: extra lijst- of zoekpagina's [{zoekterm of label, url}]. Een zoekpagina mag eigen js/selector-velden hebben.",
    "hoofdpaginaOverslaan": "Optioneel: alleen de zoekparameters openen, niet url.",
    "selector": "Optioneel: CSS-selector van de vacaturelinks; zonder selector zoekt de scan zelf (heuristiek).",
@@ -4770,7 +4671,8 @@ export const seed = {
     "soort": "organisatie",
     "sector": "overheid (federaal, erfgoed)",
     "plaats": "Brussel (Jubelpark)",
-    "js": false
+    "js": false,
+    "geenBrowser": true
    },
    {
     "id": "rijksarchief",
@@ -4914,7 +4816,8 @@ export const seed = {
     "soort": "organisatie",
     "sector": "cultuur (Vlaamse instelling)",
     "plaats": "Desguinlei 25, Antwerpen",
-    "js": false
+    "js": false,
+    "geenBrowser": true
    },
    {
     "id": "opera-ballet-vlaanderen",
@@ -4950,7 +4853,8 @@ export const seed = {
     "soort": "organisatie",
     "sector": "cultuur (vzw)",
     "plaats": "Turnhoutsebaan, Borgerhout",
-    "js": false
+    "js": false,
+    "geenBrowser": true
    },
    {
     "id": "antwerp-symphony-orchestra",
@@ -4959,7 +4863,8 @@ export const seed = {
     "soort": "organisatie",
     "sector": "cultuur (vzw)",
     "plaats": "Koningin Elisabethzaal, Antwerpen",
-    "js": false
+    "js": false,
+    "geenBrowser": true
    },
    {
     "id": "zomer-van-antwerpen",
@@ -5226,7 +5131,7 @@ export const seed = {
    "knelpunt": "Niet als zodanig",
    "loon": "PC 329.01 ongeveer €2.500 tot €2.900",
    "fit": 5,
-   "waarom": "Dienstbaarheid en sociaal profiel, kleine groepen, structuur; zijn lasvak is zeldzaam in deze sector.",
+   "waarom": "Dienstbaar werk met jongeren in kleine groepen, met structuur; zijn lasvak is zeldzaam in deze sector.",
    "status": "verkennen"
   },
   {
@@ -5425,7 +5330,7 @@ export const seed = {
    "knelpunt": "Niet",
    "loon": "Federaal C ongeveer €2.600 tot €2.900 plus premies",
    "fit": 4,
-   "waarom": "Metaalwerk aanleren aan gedetineerden: diep zinvol, weekdagen, statuut. Vraagteken: gezag met lage assertiviteit.",
+   "waarom": "Metaalwerk aanleren aan gedetineerden: diep zinvol, weekdagen, statuut. Vraagteken: de rol vraagt gezag in een groep.",
    "status": "verkennen"
   },
   {
@@ -5593,7 +5498,7 @@ export const seed = {
    "knelpunt": "Niet",
    "loon": "Wisselend",
    "fit": 2,
-   "waarom": "Onregelmatige uren en prikkelcultuur botsen met het profiel. Attractieonderhoud bij Bobbejaanland is de stabiele uitzondering.",
+   "waarom": "Onregelmatige uren en een drukke eventcultuur botsen met de avondstudie en de wens naar stabiliteit. Attractieonderhoud bij Bobbejaanland is de stabiele uitzondering.",
    "status": "laag"
   }
  ],
@@ -5806,7 +5711,7 @@ export const seed = {
    {
     "vraag": "Wat is een werkpunt voor u?",
     "antwoord": "Ik ben van nature bescheiden en neem in een groep niet snel als eerste het woord. Vroeger betekende dat soms dat ik een goed idee of een bedenking voor mij hield. Nu [wat je er concreet aan doet, bijvoorbeeld: voor een overleg noteer ik de twee of drie punten die ik zeker wil aankaarten, en als iets mij dwarszit, spreek ik de persoon nadien apart aan]. Als verantwoordelijke atelier heb ik ook geleerd om duidelijk te zeggen wat er moet gebeuren, bijvoorbeeld [bij de planning of bij een kwaliteitsprobleem].",
-    "waarom": "Het is een eerlijk werkpunt dat bij je testresultaten past (lage assertiviteit), en je eindigt bij wat je eraan doet in plaats van bij het probleem."
+    "waarom": "Het is een eerlijk werkpunt dat geen kernvereiste van de functie raakt, en je eindigt bij wat je eraan doet in plaats van bij het probleem."
    },
    {
     "vraag": "Hoe zouden uw collega's u omschrijven?",
@@ -6958,7 +6863,7 @@ export const seed = {
    ]
   },
   "kernkwadranten": {
-   "inleiding": "Het kernkwadrant is een model van de Nederlandse organisatieadviseur Daniel Ofman. Het vertrekt van een kernkwaliteit: iets wat zo vanzelf bij je hoort dat je het zelf nauwelijks opmerkt, maar dat anderen wel in je zien. Elke kwaliteit heeft een keerzijde als je ze overdrijft, en de vier hoeken samen tonen waar je sterk bent, waarin je doorslaat, waarin je kunt groeien en wat je bij anderen stoort. De drie voorbeelden hieronder zijn vermoedens op basis van je tests; jij beslist of ze kloppen, en je past ze aan of vervangt ze door je eigen kwadranten.",
+   "inleiding": "Het kernkwadrant is een model van de Nederlandse organisatieadviseur Daniel Ofman. Het vertrekt van een kernkwaliteit: iets wat zo vanzelf bij je hoort dat je het zelf nauwelijks opmerkt, maar dat anderen wel in je zien. Elke kwaliteit heeft een keerzijde als je ze overdrijft, en de vier hoeken samen tonen waar je sterk bent, waarin je doorslaat, waarin je kunt groeien en wat je bij anderen stoort. De drie voorbeelden hieronder tonen hoe een kwadrant werkt; jij beslist of ze bij je passen, en je past ze aan of vervangt ze door je eigen kwadranten.",
    "uitleg": {
     "kwaliteit": "Een eigenschap die typisch voor jou is en die anderen in je waarderen, bijvoorbeeld zorgvuldigheid.",
     "valkuil": "Wat er gebeurt als je die kwaliteit overdrijft, te veel van het goede, bijvoorbeeld perfectionisme.",
@@ -6971,25 +6876,25 @@ export const seed = {
      "valkuil": "Perfectionisme, blijven nakijken en lang twijfelen voor je iets vrijgeeft",
      "uitdaging": "Flexibiliteit: op tijd beslissen met wat je weet en aanvaarden dat goed genoeg soms volstaat",
      "allergie": "Slordigheid en afgeraffeld werk",
-     "toelichting": "Hypothese, na te gaan door jou: in je Big Five staan plichtsbesef en behoedzaamheid op het maximum (20). Je ordelijkheid is laag (9), dus je zorgvuldigheid zit waarschijnlijk in het werkstuk zelf en niet in een opgeruimde werkbank. Herken je dat je een stuk liever nog eens nakijkt dan dat je het te vroeg doorgeeft, en dat werk dat half af is je stoort?"
+     "toelichting": "Toets het aan jezelf: herken je dat je een stuk liever nog eens nakijkt dan dat je het te vroeg doorgeeft, en dat werk dat half af is je stoort?"
     },
     {
      "kwaliteit": "Bescheidenheid",
      "valkuil": "Te weinig zeggen, je eigen werk en je mening wegcijferen",
      "uitdaging": "Zelfbewustheid: rustig en duidelijk zeggen wat je kunt, wat je denkt en wat je nodig hebt",
      "allergie": "Opschepperij en haantjesgedrag",
-     "toelichting": "Hypothese, na te gaan door jou: je assertiviteit is zeer laag (7) en je scoort hoog op samenwerking, vertrouwen en altruïsme. Herken je dat je zwijgt in een overleg terwijl je het antwoord weet, en dat luide of opschepperige collega's je irriteren? De uitdaging is niet luider worden, maar je punt één keer helder maken."
+     "toelichting": "Toets het aan jezelf: herken je dat je zwijgt in een overleg terwijl je het antwoord weet, en dat luide of opschepperige collega's je irriteren? De uitdaging is niet luider worden, maar je punt één keer helder maken."
     },
     {
      "kwaliteit": "Verbeeldingskracht",
      "valkuil": "Zweverigheid: in je hoofd al verder zijn dan anderen kunnen volgen, zodat een idee vaag blijft voor wie mee moet werken",
      "uitdaging": "Realiteitszin: een idee vroeg concreet maken in een schets, tekening of maquette, zodat anderen kunnen meedenken",
      "allergie": "Bekrompenheid, 'dat hebben we altijd zo gedaan'",
-     "toelichting": "Hypothese, na te gaan door jou: je openheid is hoog (artistieke interesse 19, intellect 18, verbeelding 16) en je INFJ-uitslag wijst op iemand die mogelijkheden en patronen ziet. Herken je dat je een idee al helemaal ziet voordat je het met iemand deelt, en dat vastgeroeste gewoontes je storen?"
+     "toelichting": "Toets het aan jezelf: herken je dat je een idee al helemaal ziet voordat je het met iemand deelt, en dat vastgeroeste gewoontes je storen?"
     }
    ],
    "aantalInvullen": 3,
-   "gesprekTip": "Op de vraag naar een werkpunt noem je een echte valkuil met een concreet voorbeeld en wat je eraan doet, bijvoorbeeld uit je kwadrant over bescheidenheid: 'Ik neem in een overleg niet snel als eerste het woord. Daarom noteer ik vooraf de twee of drie punten die ik zeker wil aankaarten.' Kies een valkuil die geen kernvereiste van de functie raakt, en vermijd perfectionisme als werkpunt: veel werkgevers horen daarin een verkapte sterkte."
+   "gesprekTip": "Op de vraag naar een werkpunt noem je een echte valkuil met een concreet voorbeeld en wat je eraan doet, bijvoorbeeld uit een kwadrant over bescheidenheid: 'Ik neem in een overleg niet snel als eerste het woord. Daarom noteer ik vooraf de twee of drie punten die ik zeker wil aankaarten.' Kies een valkuil die geen kernvereiste van de functie raakt, en vermijd perfectionisme als werkpunt: veel werkgevers horen daarin een verkapte sterkte."
   },
   "energie": {
    "inleiding": "Niet alles wat je goed kunt, geeft je ook energie. Geef bij elke activiteit aan wat ze met je doet: kost ze energie of krijg je er net energie van? Denk aan echte werkdagen en avonden, niet aan hoe het zou moeten zijn. Het resultaat helpt je kiezen welke taken in je volgende job de hoofdmoot mogen zijn en welke hooguit een klein deel.",
@@ -7217,7 +7122,7 @@ export const seed = {
     "url": "https://www.16personalities.com/",
     "status": "gedaan",
     "verificatie": "bevestigd",
-    "waarom": "Je uitslag INFJ geeft woorden voor hoe je patronen ziet en aanvoelt wat een groep nodig heeft; gebruik die uitslag als taal voor jezelf, niet als argument op een cv."
+    "waarom": "Het type geeft woorden voor hoe je denkt en met anderen omgaat; gebruik je uitslag als taal voor jezelf, niet als argument op een cv."
    },
    {
     "id": "schein",
@@ -7228,7 +7133,7 @@ export const seed = {
     "url": "",
     "status": "gedaan",
     "verificatie": "te verifiëren",
-    "waarom": "Je dominante ankers, zuivere uitdaging (83) en dienstbaarheid (80), zijn het kompas om vacatures te schiften: moeilijk werk dat er echt toe doet."
+    "waarom": "De twee of drie hoogste ankers tonen wat je in je loopbaan niet wil opgeven, en zijn zo een kompas om vacatures te schiften."
    },
    {
     "id": "bigfive",
@@ -7239,7 +7144,7 @@ export const seed = {
     "url": "https://bigfive-test.com/",
     "status": "gedaan",
     "verificatie": "bevestigd",
-    "waarom": "Dit is de best onderbouwde van je tests; plichtsbesef en behoedzaamheid (20) en assertiviteit (7) verklaren waarom brandweer afviel en erfgoedwerk goed past."
+    "waarom": "Dit is de best onderbouwde van deze tests; de facetten, zoals behoedzaamheid, plichtsbesef en assertiviteit, helpen om werkvelden af te wegen."
    },
    {
     "id": "holland",
@@ -7250,7 +7155,7 @@ export const seed = {
     "url": "https://openpsychometrics.org/tests/RIASEC/",
     "status": "gedaan",
     "verificatie": "bevestigd",
-    "waarom": "Je code ISA wijst naar onderzoekend werk met een sociale en artistieke kant, en Ondernemend 7 verklaart waarom verkoop en zelfstandig ondernemen nu niet trekken."
+    "waarom": "De drie letters met de hoogste score wijzen naar het soort werk dat je boeit, en een lage score verklaart waarom sommige richtingen niet trekken."
    },
    {
     "id": "via",
@@ -7261,7 +7166,7 @@ export const seed = {
     "url": "https://www.viacharacter.org/",
     "status": "aanbevolen",
     "verificatie": "bevestigd",
-    "waarom": "Je ziet of voorzichtigheid, liefde voor leren en oog voor schoonheid bovenaan staan, zoals je Big Five doet vermoeden, en die woorden kun je gebruiken voor je kernkwadranten en je profieltekst."
+    "waarom": "Je ziet welke karaktersterktes bovenaan staan, zoals voorzichtigheid, liefde voor leren of oog voor schoonheid, en die woorden kun je gebruiken voor je kernkwadranten en je profieltekst."
    },
    {
     "id": "vdab-interessetest",
@@ -7674,5 +7579,5 @@ export const seed = {
   "vdab-profiel.md": "# VDAB-profiel (Mijn Loopbaan): tekst voor Remi\n\nDoel: gevonden worden door werkgevers en bemiddelaars die zoeken op erfgoed, restauratie, museum, decor, atelier, instructeur en lassen. VDAB-profielen zijn kort en zakelijk. Zet het profiel op zichtbaar voor werkgevers en vul de rubrieken hieronder letterlijk over.\n\n## Titel (functietitel bovenaan)\nTechnisch tekenaar en atelierverantwoordelijke plaatbewerking, lasser en meubelmaker, op zoek naar werk in erfgoed, restauratie, archief en cultuurateliers\n\n## Korte voorstelling (maximaal 5 zinnen)\nTechnisch tekenaar en verantwoordelijke atelier bij een metaalbewerkingsbedrijf voor maatwerk in plaatmateriaal, sinds 2021. Ik teken werkstukken uit, bereid het werk voor, plooi en las zelf (halfautomaat en elektrode) en stuur het atelier aan. Daarvoor werkte ik in een creatief fietsatelier en bouwde ik een fotoarchief op; daarnaast volg ik interieurvormgeving aan de Academie in Antwerpen en bouw ik meubels. Ik zoek werk waarin vakmanschap en zorgvuldigheid ergens toe dienen: restauratie van historisch metaalwerk, museum- of theaterateliers, archief en collectiezorg, tentoonstellingsbouw, of het doorgeven van het vak. Ik werk het best in een klein team en ben beschikbaar vanaf [datum].\n\n## Gewenste functies (kies er tot vijf in de VDAB-lijst)\n- Technisch tekenaar of werkvoorbereider metaal en plaatbewerking\n- Decorbouwer, ateliermedewerker metaal of vitrinebouwer\n- Technisch medewerker museum, depot of tentoonstellingsbouw\n- Restauratiemedewerker metaal (monumentenzorg)\n- Instructeur of praktijkbegeleider lassen en metaal\n\n## Gewenste sectoren\nCultuur en erfgoed; bouw en restauratie; metaal; onderwijs en opleiding; sociale economie\n\n## Competenties (vinkjes en vrije tekst)\n- Technisch tekenen van maatwerk in plaatmateriaal ([CAD-programma])\n- Werkvoorbereiding, planning en aansturing van een atelier\n- Plooien op de kantbank, MIG/MAG-lassen (135) en elektrodelassen (111) [TIG bevestigen]\n- Plaatwerk: snijden, plooien, afwerken, kwaliteitscontrole\n- Opmeten en uittekenen op maat, montage\n- Meubelontwerp en -bouw [in metaal en hout, materiaal bevestigen]\n- Fietsbouw en -herstel\n- Archiveren en digitaliseren van beeldmateriaal\n- Veiligheid: VCA-basis [geldig tot]\n- Rijbewijs B [indien van toepassing]\n\n## Talen\nNederlands moedertaal; Engels goed; Frans [niveau]\n\n## Opleiding\n- Interieurvormgeving, avondonderwijs aan de Academie in Antwerpen, lopend [precieze opleiding bevestigen]\n- Meubel en interieur (drie jaar) en grafiek (een jaar), avondonderwijs aan de Academie in Antwerpen\n- Lasopleiding halfautomaat en elektrodelassen, [instelling], [jaar]\n- Diploma secundair onderwijs Wetenschappen-Wiskunde, [naam school], 2017\n\n## Werkervaring\n2021 tot heden: technisch tekenaar en verantwoordelijke atelier, [bedrijf], [gemeente]. Gestart als tekenaar en plooi- en lasoperator. Maatwerk in plaatmateriaal van tekening tot afwerking.\n2019: medewerker creatief fietsatelier, Antwerpen.\n2017 tot 2018: opbouw van een fotoarchief voor [opdrachtgever].\n2017 tot 2018: [functie], [werkgever], Antwerpen.\n[jaar] tot heden: meubelmaker in eigen beheer, samen met mijn broer, Antwerpen.\n\n## Mobiliteit en beschikbaarheid\nAntwerpen en omgeving, bereikbaar met openbaar vervoer [en fiets/wagen]. Voltijds of deeltijds. Beschikbaar vanaf [datum]. Open voor een individuele beroepsopleiding (IBO) of een beroepsverkennende stage.\n\n## Trefwoorden om zeker in de vrije tekst te zetten\nerfgoed, restauratie, monumentenzorg, museum, depot, archief, decoratelier, decorbouw, tentoonstellingsbouw, atelier, technisch tekenaar, werkvoorbereider, plaatbewerking, plooien, kantbank, MIG/MAG, elektrodelassen, plannen lezen, meubelmaker, interieurvormgeving, instructeur lassen\n",
   "vragenlijst-remi.md": "# Vragenlijst voor Remi\n\nDeze vragen zijn voor jou, Remi. Niets hoeft in één keer. Korte antwoorden zijn goed; een voorbeeld is beter dan een omschrijving. Alles wat je invult blijft op dit toestel tot je het exporteert of kopieert voor Giulia. Uit je antwoorden komen het cv, de brieven, de tekst voor VDAB en de keuzes voor de volgende stap.\n\n## Praktisch, voor het cv\n\nFeiten die op een cv of in een dossier moeten kloppen.\n\n- Volledige naam, geboortedatum en geboorteplaats\n  \n\n- Adres, gsm-nummer en e-mailadres dat je voor sollicitaties wil gebruiken\n  \n\n- Rijbewijs (B, ja of nee) en hoe je je verplaatst: fiets, openbaar vervoer, auto. Tot hoeveel minuten pendelen is haalbaar?\n  \n\n- Talen en niveau: Nederlands, Frans, Engels, andere\n  \n\n- Naam van je huidige werkgever, gemeente, en de startdatum van je contract (staat op het contract of de eerste loonfiche)\n  \n\n- Wat staat er op je loonfiche: arbeider of bediende, en welk paritair comité (bijvoorbeeld 111, 200, 209)?  \n  (Dit bepaalt gewaarborgd loon, vakantiegeld en eindejaarspremie.)\n  \n\n- Je functietitel volgens het contract, en wat je vandaag echt doet (tekenen, plooien, lassen, atelier aansturen, hoeveel collega's)\n  \n\n- Welk tekenprogramma gebruik je (bijvoorbeeld SolidWorks, AutoCAD, Inventor, Tekla) en hoe goed?\n  \n\n- Welke lasprocessen beheers je: halfautomaat (MIG/MAG), elektrode, TIG? Welke certificaten heb je, met norm en geldigheid?\n  \n\n- Andere attesten: VCA, heftruck, hoogtewerker, EHBO, kantbank, andere\n  \n\n- Je opleidingen precies: secundair (richting, school, jaar), lasopleiding (waar, wanneer), academie (welke richtingen, welke jaren, getuigschrift of diploma)\n  \n\n- Vorige jobs: bij welke werkgever, welke functie, welke afdeling, hoelang?\n  \n\n- Het creatief fietsatelier: naam, wat je daar maakte of herstelde, een voorbeeld\n  \n\n- Het fotoarchief dat je opbouwde: voor wie, hoeveel beelden, hoe heb je het aangepakt (ordenen, scannen, beschrijven, software)?\n  \n\n- Welke werkstukken bestaan er in foto's: meubels, constructies, fietsen, tekeningen? Waar staan die foto's?  \n  (Voor het portfolio: 6 tot 10 stukken met titel, jaar, materiaal, techniek.)\n  \n\n- Vanaf wanneer ben je beschikbaar, voltijds of deeltijds, en welke dagen of avonden zijn bezet door de academie?\n  \n\n- Wat is je huidige brutoloon per maand, en wat heb je netto minimaal nodig om rond te komen?  \n  (Dit is voor de keuze tussen uitkering, opleiding en werk, niet voor een cv.)\n  \n\n## Werk dat bij je past\n\nConcrete momenten zeggen meer dan eigenschappen.\n\n- Drie momenten op het werk waarop je dacht: dit is goed. Wat deed je precies?\n  \n\n- Drie momenten waarop het echt niet ging. Wat gebeurde er?\n  \n\n- Een project waar je trots op bent: wat, voor wie, wat was moeilijk, hoe heb je het opgelost?  \n  (Dit wordt een regel op het cv en een voorbeeld in het gesprek.)\n  \n\n- Nog een project, liefst iets helemaal anders\n  \n\n- Wat doe je het liefst in het atelier: tekenen, plooien, lassen, organiseren, uitleggen aan anderen? Zet ze in volgorde.\n  \n\n- Wat is fysiek het zwaarst, en waar voel je dat (rug, schouders, handen, ogen, ademhaling)?\n  \n\n- Werk je liever alleen, met twee of drie, of in een grotere ploeg? Waarom?\n  \n\n- Liever een klein bedrijf, een grote organisatie, een overheid, een vzw? Wat trekt je aan en wat schrikt af?\n  \n\n- Wat zouden je collega's zeggen als iemand vraagt hoe het is om met jou te werken?\n  \n\n- Wat heb je nodig van een baas of ploegbaas om goed te werken? En wat verdraag je niet?\n  \n\n## Sterktes en werkpunten\n\nEerlijk en met een voorbeeld; dit is geen sollicitatiegesprek.\n\n- Drie dingen waar je goed in bent, telkens met een voorbeeld\n  \n\n- Drie dingen die je wil verbeteren of die je moeilijk vindt\n  \n\n- Waarvoor komen mensen bij jou om hulp?\n  \n\n- Hoe leer je het liefst: door te doen, te kijken, te lezen, uitleg te krijgen?\n  \n\n- Hoe reageer je als er druk of stress is? Wat helpt dan?\n  \n\n- Wanneer zeg je te weinig, en wanneer had je liever iets gezegd?  \n  (De tests zeggen dat je niet snel op de voorgrond treedt; dit is om te weten waar dat je iets kost.)\n  \n\n- Wat weet je over jezelf dat niet in een test staat?\n  \n\n## Passies en interesses\n\nWat je doet als niemand het vraagt.\n\n- Waar gaat je aandacht naartoe buiten het werk: maken, lezen, kijken, sporten, mensen, plekken?\n  \n\n- Welke gebouwen, objecten, musea of ateliers hebben je ooit geraakt, en waarom?\n  \n\n- Als geld geen rol speelde: wat zou je een jaar lang maken of leren?\n  \n\n- Van de sporen in de app (erfgoed en restauratie, culturele instellingen, lesgeven, sociaal en ecologisch, archief en archeologie): welke trekt het meest, welke het minst, en waarom?\n  \n\n- Welk werkveld in de Verkenning verraste je positief, en welk zou je meteen schrappen?\n  \n\n- Heb je ooit vrijwilligerswerk gedaan of iemand iets aangeleerd? Hoe was dat?\n  \n\n- Wat zou je op de academie het liefst verder doen: meubel, interieur, grafiek, iets anders?\n  \n\n## De overstap\n\nHier gaat het om keuzes voor de komende maanden.\n\n- Drie dingen die de volgende job zeker moet hebben\n  \n\n- Drie dingen die je in de volgende job wil vermijden\n  \n\n- Wil je opnieuw studeren? Zo ja: hoelang zou je dat volhouden (een jaar, twee, drie), overdag of in de avond, en wat trekt je: restauratie, tekenen, lesgeven, archief, iets anders?\n  \n\n- Hoe voel je je nu: energie van 1 tot 10, slaap, zin om dingen te doen? Wat geeft je energie?\n  \n\n- Hoeveel weken rust wil je nemen voor je ergens nieuw begint?\n  \n\n- Wat wil je dat Giulia doet in dit traject, en wat wil je liever zelf doen?\n  \n\n- Wat wil je dat er geregeld is voor je iets ondertekent over het einde van je huidige job?\n  \n\n## Voor het gesprek\n\nTwee zinnen die je paraat wil hebben.\n\n- Hoe zeg je in twee zinnen waarom je een nieuwe richting kiest, positief en zonder het over je huidige werkgever te hebben?  \n  (Bijvoorbeeld: na vijf jaar plaatbewerking wil ik mijn vakmanschap inzetten voor werk dat blijft, zoals erfgoed of museumateliers.)\n  \n\n- Welke vraag zou jij aan een werkgever stellen om te weten of je er past?\n  \n\n- Wie kan als referentie dienen (een collega, een klant, een docent) en mag je die naam gebruiken?\n  \n"
  },
- "gebouwdOp": "2026-11-16T17:17:46.820Z"
+ "gebouwdOp": "2026-11-16T18:50:16.028Z"
 };

@@ -7,7 +7,10 @@
 //        en alleen voor dit Gmail-adres: kiest wie de link opent een ander Google-account, dan wordt niets gekoppeld
 //   POST {actie:'verstuur', pad, sleutel}            -> { id, threadId, van }  pad = uitgaand/<id>.eml in de opslag;
 //        sleutel = '<mail-id>:<poging>'. Dezelfde sleutel vertrekt nooit twee keer: een tweede verzoek krijgt
-//        409 { dubbel: true, gmailId } (tabel gmail_verzonden, rij 'bezig' vóór het versturen)
+//        409 { dubbel: true, gmailId, verzendStatus } (tabel gmail_verzonden, rij 'bezig' vóór het versturen).
+//        verzendStatus 'verstuurd': Gmail bevestigde de verzending. 'bezig': niet bevestigd (de verzending loopt nog,
+//        of een vorige poging liep onzeker af); dan is niet zeker dat de mail vertrok. Het veld heet niet 'status',
+//        omdat de app (backend.js) daar de HTTP-status in zet.
 //   POST {actie:'ontkoppel'}                         -> { ok }
 // Pagina's voor de browser van Remi (zonder aanmelding, beveiligd met de state uit de koppellink):
 //   GET ?actie=start&state=...  -> door naar Google
@@ -180,7 +183,10 @@ export function maakHandler(admin: Admin, env: Omgeving, fetchFn: Haal) {
     if (error) throw new Error(`gmail_verzonden lezen: ${dbFout(error)}`);
     return data || null;
   }
-  const dubbel = (v: { gmail_id?: string | null } | null) => new Fout(409, DUBBEL, { dubbel: true, gmailId: v?.gmail_id || null });
+  // Zonder rij (net vrijgegeven na een geweigerde poging) of met een rij 'bezig' is niets bevestigd: 'bezig'.
+  const dubbel = (v: { status?: string; gmail_id?: string | null } | null) => new Fout(409, DUBBEL, {
+    dubbel: true, gmailId: v?.gmail_id || null, verzendStatus: v?.status === 'verstuurd' ? 'verstuurd' : 'bezig',
+  });
   // Zeker niet verstuurd: de rij weg, zodat dezelfde sleutel opnieuw mag. Lukt dat niet, dan blijft de sleutel geblokkeerd
   // (veilig: de app verhoogt de poging pas bij een bewuste nieuwe verzending).
   async function vrijgeven(sleutel: string) {

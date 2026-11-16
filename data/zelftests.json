@@ -27,7 +27,7 @@
     ]
   },
   "kernkwadranten": {
-    "inleiding": "Het kernkwadrant is een model van de Nederlandse organisatieadviseur Daniel Ofman. Het vertrekt van een kernkwaliteit: iets wat zo vanzelf bij je hoort dat je het zelf nauwelijks opmerkt, maar dat anderen wel in je zien. Elke kwaliteit heeft een keerzijde als je ze overdrijft, en de vier hoeken samen tonen waar je sterk bent, waarin je doorslaat, waarin je kunt groeien en wat je bij anderen stoort. De drie voorbeelden hieronder zijn vermoedens op basis van je tests; jij beslist of ze kloppen, en je past ze aan of vervangt ze door je eigen kwadranten.",
+    "inleiding": "Het kernkwadrant is een model van de Nederlandse organisatieadviseur Daniel Ofman. Het vertrekt van een kernkwaliteit: iets wat zo vanzelf bij je hoort dat je het zelf nauwelijks opmerkt, maar dat anderen wel in je zien. Elke kwaliteit heeft een keerzijde als je ze overdrijft, en de vier hoeken samen tonen waar je sterk bent, waarin je doorslaat, waarin je kunt groeien en wat je bij anderen stoort. De drie voorbeelden hieronder tonen hoe een kwadrant werkt; jij beslist of ze bij je passen, en je past ze aan of vervangt ze door je eigen kwadranten.",
     "uitleg": {
       "kwaliteit": "Een eigenschap die typisch voor jou is en die anderen in je waarderen, bijvoorbeeld zorgvuldigheid.",
       "valkuil": "Wat er gebeurt als je die kwaliteit overdrijft, te veel van het goede, bijvoorbeeld perfectionisme.",
@@ -40,25 +40,25 @@
         "valkuil": "Perfectionisme, blijven nakijken en lang twijfelen voor je iets vrijgeeft",
         "uitdaging": "Flexibiliteit: op tijd beslissen met wat je weet en aanvaarden dat goed genoeg soms volstaat",
         "allergie": "Slordigheid en afgeraffeld werk",
-        "toelichting": "Hypothese, na te gaan door jou: in je Big Five staan plichtsbesef en behoedzaamheid op het maximum (20). Je ordelijkheid is laag (9), dus je zorgvuldigheid zit waarschijnlijk in het werkstuk zelf en niet in een opgeruimde werkbank. Herken je dat je een stuk liever nog eens nakijkt dan dat je het te vroeg doorgeeft, en dat werk dat half af is je stoort?"
+        "toelichting": "Toets het aan jezelf: herken je dat je een stuk liever nog eens nakijkt dan dat je het te vroeg doorgeeft, en dat werk dat half af is je stoort?"
       },
       {
         "kwaliteit": "Bescheidenheid",
         "valkuil": "Te weinig zeggen, je eigen werk en je mening wegcijferen",
         "uitdaging": "Zelfbewustheid: rustig en duidelijk zeggen wat je kunt, wat je denkt en wat je nodig hebt",
         "allergie": "Opschepperij en haantjesgedrag",
-        "toelichting": "Hypothese, na te gaan door jou: je assertiviteit is zeer laag (7) en je scoort hoog op samenwerking, vertrouwen en altruïsme. Herken je dat je zwijgt in een overleg terwijl je het antwoord weet, en dat luide of opschepperige collega's je irriteren? De uitdaging is niet luider worden, maar je punt één keer helder maken."
+        "toelichting": "Toets het aan jezelf: herken je dat je zwijgt in een overleg terwijl je het antwoord weet, en dat luide of opschepperige collega's je irriteren? De uitdaging is niet luider worden, maar je punt één keer helder maken."
       },
       {
         "kwaliteit": "Verbeeldingskracht",
         "valkuil": "Zweverigheid: in je hoofd al verder zijn dan anderen kunnen volgen, zodat een idee vaag blijft voor wie mee moet werken",
         "uitdaging": "Realiteitszin: een idee vroeg concreet maken in een schets, tekening of maquette, zodat anderen kunnen meedenken",
         "allergie": "Bekrompenheid, 'dat hebben we altijd zo gedaan'",
-        "toelichting": "Hypothese, na te gaan door jou: je openheid is hoog (artistieke interesse 19, intellect 18, verbeelding 16) en je INFJ-uitslag wijst op iemand die mogelijkheden en patronen ziet. Herken je dat je een idee al helemaal ziet voordat je het met iemand deelt, en dat vastgeroeste gewoontes je storen?"
+        "toelichting": "Toets het aan jezelf: herken je dat je een idee al helemaal ziet voordat je het met iemand deelt, en dat vastgeroeste gewoontes je storen?"
       }
     ],
     "aantalInvullen": 3,
-    "gesprekTip": "Op de vraag naar een werkpunt noem je een echte valkuil met een concreet voorbeeld en wat je eraan doet, bijvoorbeeld uit je kwadrant over bescheidenheid: 'Ik neem in een overleg niet snel als eerste het woord. Daarom noteer ik vooraf de twee of drie punten die ik zeker wil aankaarten.' Kies een valkuil die geen kernvereiste van de functie raakt, en vermijd perfectionisme als werkpunt: veel werkgevers horen daarin een verkapte sterkte."
+    "gesprekTip": "Op de vraag naar een werkpunt noem je een echte valkuil met een concreet voorbeeld en wat je eraan doet, bijvoorbeeld uit een kwadrant over bescheidenheid: 'Ik neem in een overleg niet snel als eerste het woord. Daarom noteer ik vooraf de twee of drie punten die ik zeker wil aankaarten.' Kies een valkuil die geen kernvereiste van de functie raakt, en vermijd perfectionisme als werkpunt: veel werkgevers horen daarin een verkapte sterkte."
   },
   "energie": {
     "inleiding": "Niet alles wat je goed kunt, geeft je ook energie. Geef bij elke activiteit aan wat ze met je doet: kost ze energie of krijg je er net energie van? Denk aan echte werkdagen en avonden, niet aan hoe het zou moeten zijn. Het resultaat helpt je kiezen welke taken in je volgende job de hoofdmoot mogen zijn en welke hooguit een klein deel.",
@@ -187,7 +187,7 @@
       "url": "https://www.16personalities.com/",
       "status": "gedaan",
       "verificatie": "bevestigd",
-      "waarom": "Je uitslag INFJ geeft woorden voor hoe je patronen ziet en aanvoelt wat een groep nodig heeft; gebruik die uitslag als taal voor jezelf, niet als argument op een cv."
+      "waarom": "Het type geeft woorden voor hoe je denkt en met anderen omgaat; gebruik je uitslag als taal voor jezelf, niet als argument op een cv."
     },
     {
       "id": "schein",
@@ -198,7 +198,7 @@
       "url": "",
       "status": "gedaan",
       "verificatie": "te verifiëren",
-      "waarom": "Je dominante ankers, zuivere uitdaging (83) en dienstbaarheid (80), zijn het kompas om vacatures te schiften: moeilijk werk dat er echt toe doet."
+      "waarom": "De twee of drie hoogste ankers tonen wat je in je loopbaan niet wil opgeven, en zijn zo een kompas om vacatures te schiften."
     },
     {
       "id": "bigfive",
@@ -209,7 +209,7 @@
       "url": "https://bigfive-test.com/",
       "status": "gedaan",
       "verificatie": "bevestigd",
-      "waarom": "Dit is de best onderbouwde van je tests; plichtsbesef en behoedzaamheid (20) en assertiviteit (7) verklaren waarom brandweer afviel en erfgoedwerk goed past."
+      "waarom": "Dit is de best onderbouwde van deze tests; de facetten, zoals behoedzaamheid, plichtsbesef en assertiviteit, helpen om werkvelden af te wegen."
     },
     {
       "id": "holland",
@@ -220,7 +220,7 @@
       "url": "https://openpsychometrics.org/tests/RIASEC/",
       "status": "gedaan",
       "verificatie": "bevestigd",
-      "waarom": "Je code ISA wijst naar onderzoekend werk met een sociale en artistieke kant, en Ondernemend 7 verklaart waarom verkoop en zelfstandig ondernemen nu niet trekken."
+      "waarom": "De drie letters met de hoogste score wijzen naar het soort werk dat je boeit, en een lage score verklaart waarom sommige richtingen niet trekken."
     },
     {
       "id": "via",
@@ -231,7 +231,7 @@
       "url": "https://www.viacharacter.org/",
       "status": "aanbevolen",
       "verificatie": "bevestigd",
-      "waarom": "Je ziet of voorzichtigheid, liefde voor leren en oog voor schoonheid bovenaan staan, zoals je Big Five doet vermoeden, en die woorden kun je gebruiken voor je kernkwadranten en je profieltekst."
+      "waarom": "Je ziet welke karaktersterktes bovenaan staan, zoals voorzichtigheid, liefde voor leren of oog voor schoonheid, en die woorden kun je gebruiken voor je kernkwadranten en je profieltekst."
     },
     {
       "id": "vdab-interessetest",

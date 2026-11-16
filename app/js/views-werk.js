@@ -1,6 +1,6 @@
 // Views: sollicitaties, vacatures, hotlist, verkenning, opleidingen.
 import { h, icon, badge, fit, fmtDate, todayIso, addDays, daysUntil, uid, slugify, copyText, toast } from './ui.js';
-import { all, get, upsert, remove, ref } from './store.js';
+import { all, get, upsert, remove, ref, gewijzigdeVelden, items as itemsVan, itemErbij } from './store.js';
 import { openPeek, closePeek, go } from './app.js';
 import { spoorBadge, content, intro, callout } from './views-core.js';
 
@@ -41,23 +41,33 @@ export function sollicitaties(r) {
     { label: 'Spoor', width: 120, render: s => spoorBadge(s.spoor) },
     { label: 'Verstuurd', width: 110, render: s => s.datumVerstuurd ? fmtDate(s.datumVerstuurd) : h('span', { class: 'grid2__dash' }, '—') },
     { label: 'Opvolgen', width: 120, render: s => s.opvolgdatum && s.status === 'verstuurd' ? h('span', { class: daysUntil(s.opvolgdatum) <= 0 ? 'overdue' : '' }, fmtDate(s.opvolgdatum)) : h('span', { class: 'grid2__dash' }, '—') },
-    { label: 'Status', width: 150, render: s => sel(STATUSSEN, s.status, v => zetStatus(s, v), `status status--${STATUSKLEUR[s.status] || 'grey'} status--select`) },
+    { label: 'Status', width: 150, render: s => sel(STATUSSEN, s.status, v => zetStatus(s.id, v), `status status--${STATUSKLEUR[s.status] || 'grey'} status--select`) },
   ];
   const body = items.length ? grid(cols, groups, s => sollicitatiePeek(s.id)) : content(intro('Sollicitaties', 'Elke sollicitatie met status, opvolgdatum, contact en documenten. Opvolgen gebeurt één keer, 10 tot 14 dagen na verzending.'), h('div', { class: 'card empty' }, 'Nog geen sollicitaties. Start vanuit een vacature, vanuit de hotlist (spontaan) of met de knop in de werkbalk.'));
   const tool = [h('label', { class: 'zonesearch' }, icon('search', 14), h('input', { placeholder: 'Zoek organisatie of functie', value: r.q, dataset: { fk: 'zoek-sollicitaties' }, onInput: e => { history.replaceState(null, '', `#/sollicitaties${e.target.value ? '?q=' + encodeURIComponent(e.target.value) : ''}`); window.dispatchEvent(new HashChangeEvent('hashchange')); } })), h('button', { class: 'btn btn--primary', onClick: () => sollicitatieForm() }, icon('plus', 14), 'Nieuwe sollicitatie')];
   return { chrome: { where: 'Alle sollicitaties', tool, tabLabel: 'Alle sollicitaties', view: `${items.length} sollicitaties`, viewIcon: 'mail' }, body };
 }
-function zetStatus(s, status) {
-  const patch = { id: s.id, status };
+// Een statuswijziging: altijd op de laatste versie van het record (niet op een kopie van bij het tekenen), met een
+// eigen logboekregel (per item bewaard, zodat regels van twee toestellen tegelijk allebei blijven).
+function zetStatus(id, status) {
+  const s = get('sollicitaties', id);
+  if (!s) return;
+  const patch = { id, status };
   if (status === 'verstuurd') { const verzonden = s.datumVerstuurd || todayIso(); if (!s.datumVerstuurd) patch.datumVerstuurd = verzonden; if (!s.opvolgdatum) patch.opvolgdatum = addDays(verzonden, 12); }
-  patch.logboek = [...(s.logboek || []), { datum: todayIso(), tekst: `Status naar ${status}` }];
-  upsert('sollicitaties', patch);
+  upsert('sollicitaties', { ...patch, ...itemErbij('logboek', { datum: todayIso(), tekst: `Status naar ${status}` }) });
 }
+// Bewerken bewaart alleen wat in het formulier gewijzigd werd; een nieuwe sollicitatie bewaart alles.
 export function sollicitatieForm(init = {}) {
   const s = { id: init.id, organisatie: init.organisatie || '', functie: init.functie || '', spoor: init.spoor || 'erfgoed', type: init.type || 'vacature', bronUrl: init.bronUrl || '', contactpersoon: init.contactpersoon || '', contactEmail: init.contactEmail || '', notities: init.notities || '', hotlistId: init.hotlistId, vacatureId: init.vacatureId, status: init.status || 'te doen', datumVerstuurd: init.datumVerstuurd || '', opvolgdatum: init.opvolgdatum || '', gesprekDatum: init.gesprekDatum || '', documentSlug: init.documentSlug || '' };
+  const begin = init; // het record zoals het was bij het openen
+  const bewaar = () => {
+    if (s.status === 'verstuurd' && s.datumVerstuurd && !s.opvolgdatum) s.opvolgdatum = addDays(s.datumVerstuurd, 12);
+    if (s.id) return upsert('sollicitaties', { id: s.id, ...gewijzigdeVelden(begin, s) });
+    return upsert('sollicitaties', { ...s, id: 'sol-' + uid(), aangemaakt: todayIso(), ...itemErbij('logboek', { datum: todayIso(), tekst: 'Aangemaakt' }) });
+  };
   openPeek(s.id ? 'Sollicitatie bewerken' : 'Nieuwe sollicitatie', () => {
     const inp = (k, type = 'text', ph = '') => h('input', { class: 'field', type, value: s[k], placeholder: ph, onInput: e => s[k] = e.target.value });
-    return h('form', { class: 'form', onSubmit: e => { e.preventDefault(); if (!s.organisatie) return; if (s.status === 'verstuurd' && s.datumVerstuurd && !s.opvolgdatum) s.opvolgdatum = addDays(s.datumVerstuurd, 12); const saved = upsert('sollicitaties', { ...s, id: s.id || 'sol-' + uid(), aangemaakt: init.aangemaakt || todayIso(), logboek: init.logboek || [{ datum: todayIso(), tekst: 'Aangemaakt' }] }); if (s.vacatureId) { const vac = get('vacatures', s.vacatureId); if (vac && (vac.status !== 'omgezet' || vac.sollicitatieId !== saved.id)) upsert('vacatures', { id: s.vacatureId, status: 'omgezet', sollicitatieId: saved.id, ...(vac.status !== 'omgezet' ? { statusDatum: todayIso() } : {}) }); } if (s.hotlistId && get('hotlist', s.hotlistId)?.status === 'nog niet benaderd') upsert('hotlist', { id: s.hotlistId, status: 'in voorbereiding' }); closePeek(); toast('Bewaard'); sollicitatiePeek(saved.id); } },
+    return h('form', { class: 'form', onSubmit: e => { e.preventDefault(); if (!s.organisatie) return; const saved = bewaar(); if (s.vacatureId) { const vac = get('vacatures', s.vacatureId); if (vac && (vac.status !== 'omgezet' || vac.sollicitatieId !== saved.id)) upsert('vacatures', { id: s.vacatureId, status: 'omgezet', sollicitatieId: saved.id, ...(vac.status !== 'omgezet' ? { statusDatum: todayIso() } : {}) }); } if (s.hotlistId && get('hotlist', s.hotlistId)?.status === 'nog niet benaderd') upsert('hotlist', { id: s.hotlistId, status: 'in voorbereiding' }); closePeek(); toast('Bewaard'); sollicitatiePeek(saved.id); } },
       h('div', { class: 'form__row' }, h('label', null, 'Organisatie', inp('organisatie')), h('label', null, 'Functie', inp('functie', 'text', 'bijvoorbeeld technisch medewerker atelier'))),
       h('div', { class: 'form__row' }, h('label', null, 'Spoor', sel(SPOREN, s.spoor, v => s.spoor = v)), h('label', null, 'Soort', sel([['vacature', 'Vacature'], ['spontaan', 'Spontane sollicitatie'], ['stage', 'Stage of werkbezoek']], s.type, v => s.type = v))),
       h('label', null, 'Link naar vacature of organisatie', inp('bronUrl', 'url', 'https://')),
@@ -78,14 +88,14 @@ function sollicitatiePeek(id) {
     const opvolgTekst = (ref.sjablonen['mails.md'] || '').split('## Opvolgmail')[1]?.split('## ')[0] || '';
     return h('div', { class: 'stack' },
       h('div', null, h('p', { class: 'muted small' }, `${s.type} · ${fmtDate(s.aangemaakt)}`), h('h2', { class: 'section-title' }, s.organisatie), h('p', null, s.functie), h('div', { class: 'meta', style: 'margin-top:6px' }, spoorBadge(s.spoor), badge(s.status, STATUSKLEUR[s.status]))),
-      titled('Status', h('div', { class: 'form__actions' }, ...[['verstuurd', 'Verstuurd'], ['opgevolgd', 'Opgevolgd'], ['gesprek', 'Gesprek'], ['aanbod', 'Aanbod'], ['afgewezen', 'Afgewezen']].map(([v, l]) => h('button', { class: 'chip' + (s.status === v ? ' chip--active' : ''), onClick: () => zetStatus(s, v) }, l))),
+      titled('Status', h('div', { class: 'form__actions' }, ...[['verstuurd', 'Verstuurd'], ['opgevolgd', 'Opgevolgd'], ['gesprek', 'Gesprek'], ['aanbod', 'Aanbod'], ['afgewezen', 'Afgewezen']].map(([v, l]) => h('button', { class: 'chip' + (s.status === v ? ' chip--active' : ''), onClick: () => zetStatus(s.id, v) }, l))),
         s.datumVerstuurd && h('p', { class: 'small' }, `Verstuurd ${fmtDate(s.datumVerstuurd)}.`), s.opvolgdatum && s.status === 'verstuurd' && h('p', { class: 'small ' + (daysUntil(s.opvolgdatum) <= 0 ? 'overdue' : '') }, `Opvolgen op ${fmtDate(s.opvolgdatum)} (${daysUntil(s.opvolgdatum)} dagen).`), s.gesprekDatum && h('p', { class: 'small' }, `Gesprek: ${fmtDate(s.gesprekDatum)}${s.gesprekDatum.length > 10 ? ' om ' + s.gesprekDatum.slice(11, 16) : ''}.`)),
       titled('Contact', s.contactpersoon && h('p', null, s.contactpersoon), s.contactEmail && h('p', null, h('a', { href: `mailto:${s.contactEmail}?subject=${encodeURIComponent((s.status === 'verstuurd' ? 'Opvolging sollicitatie ' : 'Sollicitatie ') + (s.functie || '') + ' - Remi')}` }, s.contactEmail)), s.bronUrl && h('p', null, ext(s.bronUrl)), hot && h('p', { class: 'small' }, 'Hotlist: ', h('a', { href: '#/hotlist', onClick: () => hotlistPeek(hot.id) }, hot.naam)), !s.contactpersoon && !s.contactEmail && !s.bronUrl && h('p', { class: 'muted small' }, 'Nog geen contactgegevens.')),
       titled('Documenten', doc ? h('div', { class: 'link-list' }, doc.cv && h('a', { class: 'btn btn--ghost btn--sm', href: `cv.html?variant=${encodeURIComponent(doc.slug)}`, target: '_blank' }, icon('print', 12), 'Cv-variant'), doc.brief && h('button', { class: 'btn btn--ghost btn--sm', onClick: () => copyText(doc.brief) }, icon('copy', 12), 'Brief kopiëren'), doc.mail && h('button', { class: 'btn btn--ghost btn--sm', onClick: () => copyText(doc.mail) }, icon('copy', 12), 'Mail kopiëren')) : h('p', { class: 'small muted' }, `Geen aangepaste documenten gevonden voor map "${s.documentSlug || slugify(s.organisatie)}". Vraag Claude om ze te maken met de sollicitatie-werkwijze; ze verschijnen na npm run build:data.`),
         opvolgTekst && ['verstuurd'].includes(s.status) && h('button', { class: 'btn btn--quiet btn--sm', onClick: () => copyText(opvolgTekst.trim()) }, icon('copy', 12), 'Kopieer opvolgmail-sjabloon')),
       titled('Notities', h('textarea', { class: 'field', value: s.notities || '', dataset: { fk: 'sn-' + s.id }, onInput: e => upsert('sollicitaties', { id: s.id, notities: e.target.value }, { silent: true }) })),
-      titled('Logboek', h('form', { class: 'form__actions', onSubmit: e => { e.preventDefault(); if (!logInput.value) return; upsert('sollicitaties', { id: s.id, logboek: [...(s.logboek || []), { datum: todayIso(), tekst: logInput.value }] }); } }, logInput, h('button', { class: 'btn btn--ghost', type: 'submit' }, 'Noteer')), h('ul', { class: 'log list' }, [...(s.logboek || [])].reverse().map(l => h('li', null, h('time', null, fmtDate(l.datum)), l.tekst)))),
-      h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--ghost', onClick: () => sollicitatieForm(s) }, icon('edit', 14), 'Bewerken')),
+      titled('Logboek', h('form', { class: 'form__actions', 'data-logboek': s.id, onSubmit: e => { e.preventDefault(); if (!logInput.value) return; upsert('sollicitaties', { id: s.id, ...itemErbij('logboek', { datum: todayIso(), tekst: logInput.value }) }); } }, logInput, h('button', { class: 'btn btn--ghost', type: 'submit' }, 'Noteer')), h('ul', { class: 'log list' }, itemsVan(s, 'logboek').reverse().map(l => h('li', null, h('time', null, fmtDate(l.datum)), l.tekst)))),
+      h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--ghost', 'data-actie': 'sollicitatie-bewerken', onClick: () => sollicitatieForm(get('sollicitaties', id) || s) }, icon('edit', 14), 'Bewerken')),
     );
   });
 }
@@ -188,20 +198,22 @@ function vacaturePeek(id) {
       v.tekst && titled('Vacaturetekst', h('p', { class: 'small vac-tekst' }, v.tekst)),
       titled('Notities', h('textarea', { class: 'field', placeholder: 'Wat Remi ervan vindt, wat nog na te vragen is', value: v.notities || '', dataset: { fk: 'vn-' + v.id }, onInput: e => upsert('vacatures', { id: v.id, notities: e.target.value }, { silent: true }) })),
       h('div', { class: 'form__actions' },
-        h('button', { class: 'btn btn--ghost', onClick: () => vacatureForm(v) }, icon('edit', 14), 'Bewerken'),
+        h('button', { class: 'btn btn--ghost', onClick: () => vacatureForm(get('vacatures', id) || v) }, icon('edit', 14), 'Bewerken'),
         h('button', { class: 'btn btn--danger', 'data-actie': 'vacature-verwijderen', onClick: () => { if (confirm('Deze vacature verwijderen?')) { remove('vacatures', v.id); closePeek(); } } }, 'Verwijderen')),
     );
   });
 }
 function vacatureForm(init = {}) {
   const v = { id: init.id, titel: init.titel || '', organisatie: init.organisatie || '', sector: init.sector || '', plaats: init.plaats || 'Antwerpen', bron: init.bron || 'VDAB', url: init.url || '', gevonden: gevondenOp(init) || todayIso(), deadline: init.deadline || '', contract: init.contract || '', score: scoreVan(init), status: init.id ? vacStatus(init) : 'nieuw', spoor: init.spoor || SECTORSPOOR[init.sector] || 'erfgoed', inhoud: init.inhoud || '', waarom: init.waarom || '', aandachtspunt: init.aandachtspunt || '', tekst: init.tekst || '' };
+  const begin = init;
   openPeek(v.id ? 'Vacature bewerken' : 'Vacature toevoegen', () => {
     const inp = (k, type = 'text', ph = '') => h('input', { class: 'field', type, value: v[k], placeholder: ph, onInput: e => v[k] = e.target.value });
     const vak = (k, ph = '') => h('textarea', { class: 'field', style: 'min-height:72px', value: v[k], placeholder: ph, onInput: e => v[k] = e.target.value });
     return h('form', { class: 'form', onSubmit: e => {
       e.preventDefault(); if (!v.titel || !v.organisatie) return;
-      const rec = { ...v, id: v.id || 'vac-' + uid(), toegevoegd: init.toegevoegd || todayIso() };
-      if (v.status !== init.status) rec.statusDatum = todayIso();
+      // Bewerken: alleen wat in het formulier gewijzigd werd. Nieuw: alles.
+      const rec = v.id ? { id: v.id, ...gewijzigdeVelden(begin, v) } : { ...v, id: 'vac-' + uid(), toegevoegd: todayIso(), statusDatum: todayIso() };
+      if (v.id && 'status' in rec) rec.statusDatum = todayIso();
       upsert('vacatures', rec); closePeek(); toast('Bewaard'); vacaturePeek(rec.id);
     } },
       h('div', { class: 'form__row' }, h('label', null, 'Functietitel', inp('titel')), h('label', null, 'Organisatie', inp('organisatie'))),
@@ -246,15 +258,16 @@ export function hotlistPeek(id) {
       titled('Wat ze doen', h('p', null, x.rollen)), titled('Hoe instappen', h('p', null, x.instap)),
       titled('Status', sel(HOTSTATUS, x.status, v => upsert('hotlist', { id: x.id, status: v })), h('textarea', { class: 'field', placeholder: 'Notities (contacten, data, indrukken)', value: x.notities || '', dataset: { fk: 'hn-' + x.id }, onInput: e => upsert('hotlist', { id: x.id, notities: e.target.value }, { silent: true }) })),
       sols.length ? titled('Sollicitaties', h('ul', { class: 'list list--tight' }, sols.map(s => h('li', null, h('a', { href: '#/sollicitaties' }, s.functie || s.type), ' ', badge(s.status, STATUSKLEUR[s.status]))))) : null,
-      h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--primary', onClick: () => sollicitatieForm({ organisatie: x.naam, spoor: x.spoor, type: 'spontaan', bronUrl: x.vacatures || x.website, hotlistId: x.id, contactEmail: (x.contact || '').match(/[\w.+-]+@[\w-]+\.[\w.]+/)?.[0] || '' }) }, icon('mail', 14), 'Spontane sollicitatie starten'), h('button', { class: 'btn btn--ghost', onClick: () => hotlistForm(x) }, icon('edit', 14), 'Bewerken')),
+      h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--primary', onClick: () => sollicitatieForm({ organisatie: x.naam, spoor: x.spoor, type: 'spontaan', bronUrl: x.vacatures || x.website, hotlistId: x.id, contactEmail: (x.contact || '').match(/[\w.+-]+@[\w-]+\.[\w.]+/)?.[0] || '' }) }, icon('mail', 14), 'Spontane sollicitatie starten'), h('button', { class: 'btn btn--ghost', onClick: () => hotlistForm(get('hotlist', id) || x) }, icon('edit', 14), 'Bewerken')),
     );
   });
 }
 function hotlistForm(init = {}) {
   const x = { id: init.id, naam: init.naam || '', spoor: init.spoor || 'erfgoed', type: init.type || '', plaats: init.plaats || '', website: init.website || '', vacatures: init.vacatures || '', contact: init.contact || '', rollen: init.rollen || '', instap: init.instap || '', prioriteit: init.prioriteit || 2, status: init.status || 'nog niet benaderd', notities: init.notities || '' };
+  const begin = init;
   openPeek(x.id ? 'Organisatie bewerken' : 'Organisatie toevoegen', () => {
     const inp = (k, type = 'text') => h('input', { class: 'field', type, value: x[k], onInput: e => x[k] = type === 'number' ? Number(e.target.value) : e.target.value });
-    return h('form', { class: 'form', onSubmit: e => { e.preventDefault(); if (!x.naam) return; upsert('hotlist', { ...x, id: x.id || 'hot-' + uid() }); closePeek(); toast('Bewaard'); } },
+    return h('form', { class: 'form', onSubmit: e => { e.preventDefault(); if (!x.naam) return; upsert('hotlist', x.id ? { id: x.id, ...gewijzigdeVelden(begin, x) } : { ...x, id: 'hot-' + uid() }); closePeek(); toast('Bewaard'); } },
       h('label', null, 'Naam', inp('naam')), h('div', { class: 'form__row' }, h('label', null, 'Spoor', sel(SPOREN, x.spoor, v => x.spoor = v)), h('label', null, 'Prioriteit (1 hoog, 3 laag)', inp('prioriteit', 'number'))),
       h('div', { class: 'form__row' }, h('label', null, 'Type', inp('type')), h('label', null, 'Plaats', inp('plaats'))),
       h('div', { class: 'form__row' }, h('label', null, 'Website', inp('website', 'url')), h('label', null, 'Vacaturepagina', inp('vacatures', 'url'))),

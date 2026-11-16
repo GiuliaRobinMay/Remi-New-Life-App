@@ -252,10 +252,13 @@ export function get(name, id) { return all(name).find(x => x.id === id); }
 function verwijderdFout(name, id) {
   return Object.assign(new Error('Dit werd intussen verwijderd, misschien op een ander toestel. De wijziging is niet bewaard.'), { verwijderd: true, collectie: name, id });
 }
-// Bewaren: alleen de velden in item. Elk veld dat echt verandert, krijgt een nieuwe stempel; velden met dezelfde
-// waarde houden hun stempel, zodat een volledig record uit een formulier geen nieuwere wijziging van het andere
-// toestel overschrijft. De eerste bewerking van een seed-record bewaart het volledige record (seed-velden zonder
-// stempel). Een record dat verwijderd werd, herleeft alleen met { herstel: true }; anders volgt een fout.
+// Bewaren: alleen de velden in item. Elk veld dat verschilt van wat hier nu staat, krijgt een nieuwe stempel;
+// velden met dezelfde waarde houden hun stempel. Let op: een veld met een oude waarde (uit een kopie van vroeger)
+// verschilt van wat hier nu staat en overschrijft dus wat intussen veranderde. Formulieren sturen daarom alleen
+// de velden die in het formulier gewijzigd zijn (gewijzigdeVelden), en lijsten waar meerdere toestellen aan
+// toevoegen, gaan per item (itemErbij). De eerste bewerking van een seed-record bewaart het volledige record
+// (seed-velden zonder stempel). Een record dat verwijderd werd, herleeft alleen met { herstel: true }; anders volgt
+// een fout. Records met een vaste id (cv, instellingen, antwoorden, testen) bewaren altijd met { herstel: true }.
 export function upsert(name, item, { silent = false, herstel = false } = {}) {
   if (!MERGED.includes(name)) throw new Error('Onbekende collectie ' + name);
   if (!item || item.id === undefined || item.id === null || item.id === '') throw new Error('Record zonder id in ' + name);
@@ -285,8 +288,75 @@ export function upsert(name, item, { silent = false, herstel = false } = {}) {
   if (!silent) emit();
   return get(name, id);
 }
+// Formulieren: alleen de velden van nu die verschillen van het record zoals het was bij het openen (begin). Een
+// formulier dat een oude kopie toont, bewaart zo nooit een oude waarde terug over een wijziging die intussen elders
+// gebeurde (op een ander toestel, of hier stil, zoals notities die al getypt waren). Leeg ('' , null, false of
+// ontbrekend) telt als gelijk: een leeg vak dat niemand aanraakte, wist niets. Een standaardwaarde die het formulier
+// invulde voor een ontbrekend veld (bijvoorbeeld een spoor of een datum), wordt wel bewaard, zoals voorheen.
+const leeg = v => v === undefined || v === null || v === '' || v === false;
+export function gewijzigdeVelden(begin, nu) {
+  const uit = {};
+  for (const [k, v] of Object.entries(nu || {})) {
+    if (typeof v === 'function' || GEEN_VELD.has(k)) continue;
+    const was = begin?.[k];
+    if (leeg(v) && leeg(was)) continue;
+    if (jsonTekst(v ?? null) !== jsonTekst(was ?? null)) uit[k] = v;
+  }
+  return uit;
+}
+
+// ---------- Lijsten waar meerdere toestellen tegelijk aan toevoegen (logboek, bijlagen) ----------
+// Samenvoegen gebeurt per veld: een lijst die als één veld bewaard wordt, verliest bij twee toevoegingen tegelijk
+// er één. Daarom krijgt elk nieuw item een eigen veld '<lijst>_<item-id>' met een eigen stempel; verwijderen zet
+// dat veld op null. Een bestaande lijst (het veld '<lijst>' zelf, van vroeger of uit de seed) blijft gelden: die
+// items komen eerst, daarna de items uit eigen velden in de volgorde van toevoegen (veld op, dan id). Dezelfde regels
+// staan in de functie lijst_items van de database (supabase/schema.sql), voor de overzichten daar. De volgorde is
+// bytegewijs (zoals collate "C"), niet volgens de taal van de browser, zodat elk toestel dezelfde volgorde toont.
+const itemVeld = (lijst, id) => `${lijst}_${id}`;
+const bytegewijs = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
+export function items(rec, lijst) {
+  if (!rec) return [];
+  const oud = Array.isArray(rec[lijst]) ? rec[lijst].filter(x => x && typeof x === 'object' && !Array.isArray(x)) : [];
+  const gezien = new Set(oud.map(x => x.id).filter(x => x !== undefined && x !== null));
+  const pre = lijst + '_', nieuw = [];
+  for (const [k, v] of Object.entries(rec)) {
+    if (!k.startsWith(pre) || !v || typeof v !== 'object' || Array.isArray(v)) continue;
+    const id = v.id ?? k.slice(pre.length);
+    if (gezien.has(id)) continue;
+    gezien.add(id);
+    nieuw.push({ ...v, id });
+  }
+  nieuw.sort((a, b) => bytegewijs(String(a.op || ''), String(b.op || '')) || bytegewijs(String(a.id), String(b.id)));
+  return [...oud, ...nieuw];
+}
+// Het tijdstip van toevoegen: loopt in dit tabblad altijd op, zodat items die samen toegevoegd worden hun volgorde houden.
+let laatsteOp = '';
+function opNu() {
+  let t = new Date().toISOString();
+  if (t <= laatsteOp) t = iso(Date.parse(laatsteOp) + 1) || t;
+  laatsteOp = t;
+  return t;
+}
+// Patch die items toevoegt (elk krijgt een id als het er nog geen heeft, en het tijdstip van toevoegen).
+export function itemErbij(lijst, ...nieuw) {
+  const patch = {};
+  for (const item of nieuw.flat()) {
+    const id = item.id ?? (Date.now().toString(36) + Math.random().toString(36).slice(2, 7));
+    patch[itemVeld(lijst, id)] = { ...item, id, op: item.op || opNu() };
+  }
+  return patch;
+}
+// Patch die een item weghaalt: uit de bestaande lijst, of het eigen veld op null.
+export function itemWeg(rec, lijst, id) {
+  const patch = {};
+  if (Array.isArray(rec?.[lijst]) && rec[lijst].some(x => x?.id === id)) patch[lijst] = rec[lijst].filter(x => x?.id !== id);
+  if (rec?.[itemVeld(lijst, id)]) patch[itemVeld(lijst, id)] = null;
+  return patch;
+}
+
 // Verwijderen: het record wordt een leeg grafsteentje (alleen id, datum en de vlag), zodat de inhoud
-// ook uit de database en van het andere toestel verdwijnt.
+// ook uit de database en van het andere toestel verdwijnt. Niet voor een record met een vaste id (zoals het cv):
+// dat zet je terug door de velden te wissen met upsert (waarde undefined), anders weigert elke latere bewerking.
 export function remove(name, id) {
   if (!MERGED.includes(name)) throw new Error('Onbekende collectie ' + name);
   const oud = vind(name, id);
@@ -355,8 +425,14 @@ export function importJson(text, { vervang = false } = {}) {
   for (const [k, r] of gewijzigd) meldWijziging(k, r);
   emit();
 }
-export function resetLocal() {
-  vervangLocal({ _meta: { tijdperk: nieuwTijdperk(), klok: local._meta.klok } });
+// Opnieuw beginnen: de kopie op dit toestel wissen (de database blijft wat ze is). Met behoud(collectie, record)
+// blijven de records staan waarvoor dat waar is: sync.js houdt zo wat nog niet in de database staat.
+export function resetLocal({ behoud = null } = {}) {
+  const nieuw = { _meta: { tijdperk: nieuwTijdperk(), klok: local._meta.klok } };
+  if (typeof behoud === 'function') {
+    for (const c of MERGED) { const l = lijst(c).filter(r => behoud(c, r)); if (l.length) nieuw[c] = l; }
+  }
+  vervangLocal(nieuw);
   persist();
   try { wisHaak?.(); } catch (e) { console.warn(e); }
   emit();

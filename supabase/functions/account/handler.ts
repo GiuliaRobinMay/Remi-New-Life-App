@@ -2,8 +2,10 @@
 // Zo hoeft niemand iets in te stellen in Supabase en komen er geen aanmeldmails aan te pas:
 //   POST {actie:'code', wie, email}  (aangemeld, met toegang) -> { code, verloopt, email }: 24 uur geldig, alleen
 //        voor dat adres; oudere ongebruikte codes voor hetzelfde adres vervallen meteen
-//   POST {actie:'maak', email, wachtwoord, code}  -> een nieuw account met dit wachtwoord, of een nieuw wachtwoord
-//        voor het bestaande account met dit adres (dan vervallen al zijn aanmeldingen), en toegang als 'remi' of 'giulia'
+//   POST {actie:'maak', email, wachtwoord, code}  -> een nieuw account met dit wachtwoord, en toegang als 'remi' of
+//        'giulia'. Heeft het account met dit adres al toegang (wachtwoord vergeten), dan krijgt het een nieuw wachtwoord
+//        en vervallen al zijn aanmeldingen. Een account met dit adres zonder toegang wordt nooit overgenomen: het wordt
+//        verwijderd en vervangen door een nieuw account (nieuw id, dus elk oud toegangstoken is waardeloos)
 //   POST {actie:'koppel', code}  (aangemeld, nog zonder toegang) -> toegang voor dit account, zonder wachtwoord
 // Toegang hangt aan het account (toegang.user_id), niet aan het e-mailadres. Een bestaande toegang krijgt nooit een
 // andere 'wie'. De codes staan alleen als hash in de database (tabel account_code, niet leesbaar voor de app).
@@ -19,6 +21,7 @@ export type Admin = {
       listUsers(o: { page: number; perPage: number }): Promise<{ data: { users: Gebruiker[] }; error: unknown }>;
       createUser(o: Record<string, unknown>): Promise<{ data: { user: Gebruiker | null } | null; error: DbFout }>;
       updateUserById(id: string, o: Record<string, unknown>): Promise<{ data: unknown; error: DbFout }>;
+      deleteUser(id: string): Promise<{ data: unknown; error: DbFout }>;
     };
   };
 };
@@ -84,15 +87,16 @@ export function maakHandler(admin: Admin, env: Omgeving = {}) {
   }
 
   // Een bestaande toegang krijgt nooit een andere 'wie', en een account hoort bij één adres in toegang.
+  // Geeft de rij in toegang van dit account terug (altijd met dit adres), of null als het account nog geen toegang heeft.
   async function nakijkenToegang(email: string, wie: string, userId?: string) {
     const perAdres = await leesToegang('email', email);
     if (perAdres && perAdres.wie !== wie) {
       throw new Fout(409, `Dit e-mailadres heeft al toegang als ${NAAM[perAdres.wie] || perAdres.wie}. Deze code is voor ${NAAM[wie] || wie}: vraag een nieuwe code voor de juiste persoon.`);
     }
-    if (userId) {
-      const perAccount = await leesToegang('user_id', userId);
-      if (perAccount && perAccount.email !== email) throw new Fout(409, 'Dit account heeft al toegang met een ander e-mailadres.');
-    }
+    if (!userId) return null;
+    const perAccount = await leesToegang('user_id', userId);
+    if (perAccount && perAccount.email !== email) throw new Fout(409, 'Dit account heeft al toegang met een ander e-mailadres.');
+    return perAccount;
   }
 
   // De code atomair inwisselen: dit lukt maar één keer, ook bij twee verzoeken tegelijk (update ... where gebruikt_op
@@ -142,19 +146,30 @@ export function maakHandler(admin: Admin, env: Omgeving = {}) {
     if (code.length < 8) throw new Fout(400, 'Vul de toegangscode in.');
     const { hash, wie: codeWie } = await nakijkenCode(code, email);
     const bestaand = await zoekAccount(email);
-    await nakijkenToegang(email, codeWie, bestaand?.id);
+    // Alleen een account dat al toegang heeft met dit adres, krijgt een nieuw wachtwoord (wachtwoord vergeten).
+    const metToegang = await nakijkenToegang(email, codeWie, bestaand?.id);
+    const vergeten = bestaand && metToegang ? bestaand : null;
     const { stempel, wie } = await inwisselen(hash, email);
     try {
       let id: string;
-      if (bestaand) {
-        // Wachtwoord vergeten: het bestaande account krijgt het nieuwe wachtwoord, en elke bestaande aanmelding
-        // vervalt (ook die van wie het oude wachtwoord kende).
-        const r = await admin.auth.admin.updateUserById(bestaand.id, { password: wachtwoord, email_confirm: true });
+      if (vergeten) {
+        // Wachtwoord vergeten: het account heeft al toegang met dit adres. Het krijgt het nieuwe wachtwoord, en elke
+        // bestaande aanmelding vervalt (ook die van wie het oude wachtwoord kende).
+        const r = await admin.auth.admin.updateUserById(vergeten.id, { password: wachtwoord, email_confirm: true });
         if (r.error) throw wachtwoordFout(r.error, 'Het nieuwe wachtwoord kon niet ingesteld worden');
-        id = bestaand.id;
+        id = vergeten.id;
         const { error } = await admin.rpc('trek_sessies_in', { uid: id });
         if (error) throw new Fout(500, 'De andere aanmeldingen van dit account konden niet afgemeld worden. Probeer opnieuw met dezelfde code.');
       } else {
+        if (bestaand) {
+          // Een account met dit adres zonder toegang (bijvoorbeeld gemaakt via een open aanmelding, door wie dan ook):
+          // niet overnemen, want een toegangstoken dat de maker al had, zou dan meteen toegang geven. Eerst verwijderen,
+          // dan een nieuw account maken: de toegang hangt aan het nieuwe id, dus elk oud token is waardeloos.
+          const { error } = await admin.auth.admin.deleteUser(bestaand.id);
+          if (error && !/user.?not.?found/i.test(`${error.code || ''} ${error.message}`)) {
+            throw new Fout(500, 'Er bestond al een account met dit e-mailadres, zonder toegang, en dat kon niet vervangen worden. Probeer opnieuw met dezelfde code.');
+          }
+        }
         const r = await admin.auth.admin.createUser({ email, password: wachtwoord, email_confirm: true });
         if (r.error) throw wachtwoordFout(r.error, 'Het account kon niet gemaakt worden');
         const nieuwId = r.data?.user?.id;
@@ -162,7 +177,7 @@ export function maakHandler(admin: Admin, env: Omgeving = {}) {
         id = nieuwId;
       }
       await geefToegang(email, wie, id);
-      return json(200, { ok: true, wie, nieuw: !bestaand });
+      return json(200, { ok: true, wie, nieuw: !vergeten });
     } catch (e) {
       await vrijgeven(hash, stempel); // de code blijft bruikbaar om het opnieuw te proberen
       throw e;

@@ -7,8 +7,9 @@
 // - Elke lokale wijziging gaat (na een korte pauze) naar de database. Wat het andere toestel wijzigt, komt binnen
 //   via een live verbinding en bij elke synchronisatie.
 // - Samenvoegen gebeurt veld per veld met stempels (store.samenvoegen), hier en in de database (trigger).
-// - Volgorde: eerst records versturen, dan ophalen, dan pas de bijlagen (die kunnen traag zijn). Een bijlage die
-//   blijft falen, schuift achteraan.
+// - Volgorde: eerst records versturen, dan ophalen. De bijlagen (die kunnen traag zijn) lopen daarna in een eigen
+//   lus met een eigen slot, los van de rondes voor de records: een trage upload houdt nooit een volgende ronde of
+//   nogNietVerstuurd() tegen. Een bijlage die blijft falen, schuift achteraan.
 // - Een tijdelijke fout (geen verbinding, server even weg) laat alles wachten. Alleen wat de database echt weigert,
 //   komt bij 'mislukt'; dat blijft op dit toestel staan tot het opnieuw lukt.
 // - Met meerdere tabbladen synchroniseert er maar één tegelijk (navigator.locks), en elk tabblad volgt wat de
@@ -47,6 +48,7 @@ let nagekeken = '';     // e-mail waarvoor de toegang in deze sessie bevestigd i
 let status = { modus: ingesteld() ? 'laden' : 'lokaal', open: !ingesteld(), email: '', wie: '', laatste: st.laatsteSync || '', fout: '', wachtend: 0, mislukt: 0, opslagVol: false };
 const luisteraars = new Set();
 let bezig = null, opnieuw = false, timer = null, herstartTimer = null, stopLuister = null, gestart = false, foutTeller = 0, luistertOpslag = false;
+let bijlagenBezig = null, bijlagenOpnieuw = false, bijlagenTimer = null, bijlagenFouten = 0; // de eigen lus voor bijlagen
 
 function normaal(ruw) {
   const s = { ...leeg(), ...(ruw && typeof ruw === 'object' ? ruw : {}) };
@@ -173,10 +175,10 @@ function ontvang(rijen) {
 }
 
 // ---------- Eén synchronisatieronde ----------
-// Met meerdere tabbladen: één tegelijk. Zonder navigator.locks gewoon meteen.
-function metSlot(fn) {
+// Met meerdere tabbladen: één tegelijk (per slot: records en bijlagen elk apart). Zonder navigator.locks gewoon meteen.
+function metSlot(fn, naam = SLOT) {
   const locks = typeof navigator !== 'undefined' ? navigator.locks : null;
-  return locks?.request ? locks.request(SLOT, () => fn()) : fn();
+  return locks?.request ? locks.request(naam, () => fn()) : fn();
 }
 export async function syncNu() {
   if (!B || !nagekeken) return;
@@ -228,10 +230,8 @@ async function ronde(geldig) {
     if (st.klaar !== st.email) { st.klaar = st.email; migreerInstellingen(); }
   }
   bewaar();
-  // 3. Bijlagen, in een eigen lus: een trage of falende bijlage houdt de records niet tegen.
-  let bijlageFout = null;
-  if (!stop) { bijlageFout = await bijlagen(geldig); if (!geldig()) return; }
-  bewaar();
+  // 3. Bijlagen: in hun eigen lus (niet afwachten), zodat een trage upload deze en volgende rondes niet tegenhoudt.
+  if (!stop) startBijlagen();
   if (stop) {
     foutTeller++;
     zet({ modus: stop.offline ? 'offline' : 'fout', fout: stop.message || String(stop) });
@@ -242,12 +242,6 @@ async function ronde(geldig) {
   if (opslagProbleem || !store.opslagOk() || !opslagGelukt) {
     foutTeller++;
     zet({ modus: 'fout', laatste: st.laatsteSync, fout: OPSLAG_VOL });
-    later(Math.min(300_000, 5000 * 2 ** Math.min(foutTeller, 6)));
-    return;
-  }
-  if (bijlageFout) {
-    foutTeller++;
-    zet({ modus: 'actief', laatste: st.laatsteSync, fout: bijlageFout.message || String(bijlageFout) });
     later(Math.min(300_000, 5000 * 2 ** Math.min(foutTeller, 6)));
     return;
   }
@@ -314,6 +308,37 @@ async function verstuur(geldig) {
   }
   return null;
 }
+// ---------- Bijlagen: een eigen lus ----------
+// Los van de rondes voor de records, met een eigen slot (één tabblad tegelijk) en een eigen 'bezig'. Een volgende
+// ronde verstuurt en haalt dus altijd meteen op, ook terwijl een grote upload loopt; nogNietVerstuurd() wacht er
+// niet op (wat nog op te laden is, telt wel mee als 'wacht'). Stopt de lus op een tijdelijke fout, dan probeert ze
+// het later opnieuw (steeds wat later), of bij de volgende ronde.
+function startBijlagen() {
+  if (!B || !nagekeken) return Promise.resolve();
+  if (bijlagenBezig) { bijlagenOpnieuw = true; return bijlagenBezig; }
+  herlaadSync();
+  if (!Object.keys(st.bestanden).length) return Promise.resolve();
+  clearTimeout(bijlagenTimer);
+  const mijnGen = gen;
+  const geldig = () => mijnGen === gen && !!nagekeken;
+  bijlagenBezig = Promise.resolve(metSlot(() => (geldig() ? (herlaadSync(), bijlagen(geldig)) : null), SLOT + '-bijlagen'))
+    .then(fout => {
+      if (!geldig()) return;
+      if (!fout) { bijlagenFouten = 0; return; }
+      bijlagenFouten++;
+      clearTimeout(bijlagenTimer);
+      bijlagenTimer = setTimeout(() => { startBijlagen(); }, Math.min(300_000, 5000 * 2 ** Math.min(bijlagenFouten, 6)));
+    })
+    .catch(e => { console.warn(e); })
+    .finally(() => {
+      bijlagenBezig = null;
+      if (bijlagenOpnieuw) { bijlagenOpnieuw = false; startBijlagen(); } // startBijlagen kijkt zelf of er nog iemand aangemeld is
+    });
+  return bijlagenBezig;
+}
+// Wacht tot de lopende bijlagenlus klaar is (voor wie het echt moet weten, zoals de tests). Start er geen nieuwe.
+export async function bijlagenKlaar() { while (bijlagenBezig) await bijlagenBezig; }
+
 // Bijlagen opladen of verwijderen. Geeft de fout terug waarop de lus stopte, of null.
 async function bijlagen(geldig) {
   const achteraan = (id, op) => { if (st.bestanden[id] === op) { delete st.bestanden[id]; st.bestanden[id] = op; } };
@@ -359,7 +384,7 @@ function migreerInstellingen() {
     const cid = localStorage.getItem('remi-gmail-client-id'), ht = localStorage.getItem('remi-mail-handtekening');
     if (cid && typeof gedeeld.clientId !== 'string') patch.clientId = cid;
     if (ht && typeof gedeeld.handtekening !== 'string') patch.handtekening = ht;
-    if (Object.keys(patch).length > 1) store.upsert('instellingen', patch, { silent: true });
+    if (Object.keys(patch).length > 1) store.upsert('instellingen', patch, { silent: true, herstel: true });
   } catch { /* niet erg */ }
 }
 
@@ -459,10 +484,12 @@ export async function start() {
   store.zetHaken({
     wijziging: markeer,
     // De kopie op dit toestel werd gewist (opnieuw ophalen): alles opnieuw ophalen. De database blijft wat ze is.
+    // Wat niet bewaard kon worden, blijft gemeld zolang het record nog op dit toestel staat (opnieuwOphalen houdt
+    // het); alleen wat echt weg is (uitdrukkelijk bevestigd), verdwijnt uit de lijst. Mislukte bijlagen blijven.
     wis: () => {
       gen++;
-      const bijlagenMislukt = Object.fromEntries(Object.entries(st.mislukt).filter(([k]) => k.startsWith('bestand:')));
-      st = { ...st, laatst: BEGIN, mislukt: bijlagenMislukt, misluktTijdperk: nieuwTijdperk() };
+      st = { ...st, laatst: BEGIN, mislukt: { ...st.mislukt }, misluktTijdperk: nieuwTijdperk() };
+      ruimMisluktOp(st);
       bewaar(); herbereken(); opnieuw = false; zet({}); plan(0);
     },
     opslag: () => zet({}),
@@ -538,7 +565,17 @@ export async function koppelCode(code) {
 // Een toegangscode voor Remi of Giulia, gebonden aan hun e-mailadres.
 export async function codeMaken(wie, email) { if (!B) throw new Error('Geen database ingesteld.'); return B.codeMaken(wie, String(email || '').trim().toLowerCase()); }
 
-// Hoeveel nog niet in de database staat: { wacht, mislukt, totaal }. Eerst nog proberen door te sturen.
+// 'Opnieuw ophalen uit de database': de kopie op dit toestel wissen en alles opnieuw ophalen. Records die nog
+// wachten of die de database weigerde, blijven staan (en gaan later alsnog mee, of blijven gemeld), tenzij
+// ookOnverstuurd uitdrukkelijk gevraagd wordt. Bijlagen op dit toestel blijven altijd staan.
+export function opnieuwOphalen({ ookOnverstuurd = false } = {}) {
+  store.herlaad(); herlaadSync(); herbereken();
+  const houd = new Set([...Object.keys(wacht), ...Object.keys(st.mislukt)]);
+  store.resetLocal(ookOnverstuurd ? {} : { behoud: (c, r) => houd.has(sleutel(c, r.id)) });
+}
+
+// Hoeveel nog niet in de database staat: { wacht, mislukt, totaal }. Eerst nog proberen door te sturen (alleen de
+// records; op lopende uploads van bijlagen wordt niet gewacht, die tellen mee als 'wacht').
 export async function nogNietVerstuurd() {
   store.herlaad(); herlaadSync(); // wat een ander tabblad net wegschreef, telt mee
   if (nagekeken) {
@@ -556,7 +593,7 @@ export async function afmelden({ wissen = false } = {}) {
   const open = telOpen();
   const wis = wissen === true && !!st.email && st.klaar === st.email && open.totaal === 0;
   gen++; nagekeken = '';
-  clearTimeout(timer); clearTimeout(herstartTimer); opnieuw = false;
+  clearTimeout(timer); clearTimeout(herstartTimer); clearTimeout(bijlagenTimer); opnieuw = false; bijlagenOpnieuw = false;
   stopLuister?.(); stopLuister = null;
   if (B) await Promise.resolve().then(() => B.afmelden()).catch(() => {});
   if (wis) {

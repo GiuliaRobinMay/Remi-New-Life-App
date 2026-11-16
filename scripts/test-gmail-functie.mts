@@ -476,6 +476,7 @@ try {
   zetGoogle();
   x = await lees(await post(h, { actie: 'verstuur', pad: PAD, sleutel: S1 }, 'jwt-remi'));
   check('zelfde sleutel: 409 dubbel met het id van Gmail', x.status === 409 && x.j.message === DUBBEL && x.j.dubbel === true && x.j.gmailId === '18c0test' && x.j.onzeker === undefined, x.t);
+  check('zelfde sleutel: verzendStatus verstuurd (bevestigd door Gmail)', x.j.verzendStatus === 'verstuurd' && !('status' in x.j), x.t);
   check('zelfde sleutel: niets naar Google, bestand opgeruimd, rij ongewijzigd', !oproepen.length && !A.opslag.has(PAD) && A.db.gmail_verzonden.length === 1 && v1?.status === 'verstuurd');
   // Een bewuste nieuwe verzending (poging 2) mag wel.
   A.opslag.set(PAD, new Blob([mime]));
@@ -495,6 +496,7 @@ try {
     const dub = a.status === 409 ? a : b;
     check('tegelijk: beide voorbij de eerste controle', aantal === 2, String(aantal));
     check('tegelijk: één verstuurd, het andere 409 dubbel', [a.status, b.status].sort().join(',') === '200,409' && dub.j.dubbel === true && dub.j.message === DUBBEL, `${a.t} | ${b.t}`);
+    check('tegelijk: het dubbel-antwoord zegt bezig of verstuurd', ['bezig', 'verstuurd'].includes(dub.j.verzendStatus) && (dub.j.verzendStatus === 'verstuurd') === (dub.j.gmailId === '18c0een'), dub.t);
     check('tegelijk: maar één keer naar Gmail', naar(SEND).length === 1 && A.db.gmail_verzonden.filter(v => v.sleutel === S).length === 1, String(naar(SEND).length));
     check('tegelijk: beide bestanden opgeruimd', !A.opslag.has('uitgaand/een.eml') && !A.opslag.has('uitgaand/twee.eml'));
   }
@@ -528,6 +530,38 @@ try {
   zetGoogle();
   x = await lees(await post(h, { actie: 'verstuur', pad: PAD, sleutel: S }));
   check('onzeker, dan dezelfde sleutel: 409 dubbel zonder id, niets naar Google', x.status === 409 && x.j.dubbel === true && x.j.gmailId === null && !oproepen.length, x.t);
+  check('onzeker, dan dezelfde sleutel: verzendStatus bezig (niet bevestigd), geen onzeker-veld', x.j.verzendStatus === 'bezig' && x.j.onzeker === undefined, x.t);
+
+  // ---- Verstuur: 409 dubbel zegt altijd of Gmail de verzending bevestigde ----
+  {
+    // Verstuurd, maar Gmail gaf geen id: toch bevestigd.
+    const S = nieuweSleutel();
+    A.db.gmail_verzonden.push({ sleutel: S, status: 'verstuurd', gmail_id: null, door: 'remi@test.be', aangemaakt_op: new Date(klok).toISOString() });
+    A.opslag.set(PAD, new Blob([mime]));
+    zetGoogle();
+    x = await lees(await post(h, { actie: 'verstuur', pad: PAD, sleutel: S }));
+    check('dubbel, verstuurd zonder id van Gmail: verzendStatus verstuurd', x.status === 409 && x.j.dubbel === true && x.j.gmailId === null && x.j.verzendStatus === 'verstuurd' && !oproepen.length && !A.opslag.has(PAD), x.t);
+  }
+  {
+    // Net vóór ons vastleggen verstuurde een ander toestel dezelfde sleutel: de botsing geeft de status van die rij.
+    const S = nieuweSleutel();
+    A.opslag.set(PAD, new Blob([mime]));
+    zetGoogle({ token: () => { A.db.gmail_verzonden.push({ sleutel: S, status: 'verstuurd', gmail_id: '18c0ander', door: 'remi@test.be' }); return antw(200, { access_token: 'ya29.y' }); } });
+    x = await lees(await post(h, { actie: 'verstuur', pad: PAD, sleutel: S }));
+    check('botsing bij vastleggen met een verstuurde rij: 409 verstuurd met het id, niets naar Gmail', x.status === 409 && x.j.dubbel === true && x.j.gmailId === '18c0ander'
+      && x.j.verzendStatus === 'verstuurd' && x.j.onzeker === undefined && naar(SEND).length === 0 && !A.opslag.has(PAD), x.t);
+  }
+  {
+    // Botsing bij het vastleggen, maar de rij is meteen weer weg (de andere poging werd geweigerd): niet bevestigd.
+    const S = nieuweSleutel();
+    A.opslag.set(PAD, new Blob([mime]));
+    A.storing['gmail_verzonden.insert'] = { message: 'duplicate key value violates unique constraint "gmail_verzonden_pkey"', code: '23505' };
+    zetGoogle({ token: () => antw(200, { access_token: 'ya29.y' }) });
+    x = await lees(await post(h, { actie: 'verstuur', pad: PAD, sleutel: S }));
+    A.storing['gmail_verzonden.insert'] = null;
+    check('botsing zonder rij: 409 bezig zonder id, niets naar Gmail', x.status === 409 && x.j.dubbel === true && x.j.gmailId === null && x.j.verzendStatus === 'bezig'
+      && naar(SEND).length === 0 && !A.db.gmail_verzonden.some(v => v.sleutel === S), x.t);
+  }
 
   // ---- Verstuur: HTTP-fout van Gmail (zeker niet verstuurd): de rij gaat weg ----
   S = nieuweSleutel();
@@ -589,6 +623,7 @@ try {
   zetGoogle();
   x = await lees(await post(h, { actie: 'verstuur', pad: PAD, sleutel: S }));
   check('daarna dezelfde sleutel: 409 dubbel', x.status === 409 && x.j.dubbel === true && !oproepen.length, x.t);
+  check('daarna dezelfde sleutel: verzendStatus bezig, want de rij werd niet bijgewerkt', x.j.verzendStatus === 'bezig' && x.j.gmailId === null, x.t);
 
   // ---- Verstuur: andere fouten (vóór het versturen: niets vastgelegd) ----
   S = nieuweSleutel();

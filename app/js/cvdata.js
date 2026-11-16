@@ -11,7 +11,8 @@ export function getCv(base = ref.cvMaster) {
   const loc = get('cvdoc', CVID) || {};
   const cv = { ...cvBase };
   for (const [k, v] of Object.entries(loc)) {
-    if (['id', 'bijgewerkt', 'verwijderd'].includes(k)) continue;
+    // Een gewist veld (null, na 'Terug naar master-cv') valt terug op het master-cv.
+    if (['id', 'bijgewerkt', 'verwijderd'].includes(k) || v === null || v === undefined) continue;
     cv[k] = (k === 'persoonlijk' || k === 'instellingen') ? { ...(cvBase[k] || {}), ...v } : v;
   }
   return normaliseer(cv);

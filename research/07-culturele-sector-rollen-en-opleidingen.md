@@ -18,7 +18,7 @@ The handover says Remi follows a "Bachelor Interieurvormgeving at KASKA (AP Hoge
 | Mount maker, vitrinebouwer | Brass, steel and acrylic mounts and showcase interiors; bending, soldering, TIG | No diploma; fine metalwork | Not listed | Private about €2.600 to €3.200 | Very high: a real niche for a TIG welder |
 | Tentoonstellingsbouwer, standenbouwer | Exhibitions and stands, workshop plus on-site assembly, travel | No diploma; wood, metal, finishing | Under schrijnwerker or meubelmaker | about €2.500 to €3.000 | High technically; commercial firms less stable |
 | Restauratiemedewerker (metaal, meubel) | Assist a restorer or contractor: historic ironwork, gates, railings, furniture | Restorers need the UAntwerpen degree; contractors hire craftsmen | Not separately listed | about €2.500 to €3.000 | High: bridge from welding to heritage |
-| Monumentenwachter | Inspect historic buildings on ropes and ladders, condition reports with drawings, advise owners | Technical secundair or bachelor bouw; climbing fitness | Not listed | Provincial C/B about €2.500 to €3.000 | Very high for an investigative, careful profile |
+| Monumentenwachter | Inspect historic buildings on ropes and ladders, condition reports with drawings, advise owners | Technical secundair or bachelor bouw; climbing fitness | Not listed | Provincial C/B about €2.500 to €3.000 | Very high: investigative, careful work |
 | Bouwkundig erfgoedconsulent, exhibition designer, scenograaf | Advice and design roles | Bachelor or master, portfolio | | | Later |
 
 Boards: vdab.be; stepp.be (stage technicians); faro.be/vacatures (heritage and museums); kunsten.be; cultuurloket.be; podiumkunsten.be (Sociaal Fonds Podiumkunsten); werkenvoorvlaanderen.be; job.antwerpen.be; jobs.gent.be; werkenvoor.be (Bozar, De Munt, KMKG, KIK-IRPA).
@@ -53,7 +53,7 @@ Warning repeated from onderzoek 1: the VDAB instruments require a registered job
 
 Support organisations: Cultuurloket (free advice on contracts, statutes, BIS), Kunstenpunt, oKo (CAO Podiumkunsten), Sociare (329.01 scales), Sociaal Fonds Podiumkunsten (training catalogue, subsidies, loopbaanbegeleiding for PC 304), STEPP (technicians' network, jobs, courses), FARO, Herita.
 
-Volunteering as door opener: Erfgoeddag (18 April 2027, confirmed in onderzoek 3), Open Monumentendag (12 September 2027), Museumnacht Antwerpen, Zomer van Antwerpen seasonal technical crews, Het Theaterfestival (early September), Kunstendag voor Kinderen (Sunday 15 November 2026). Museum vrienden associations and Middelheimmuseum installation days suit an introvert better than front-of-house shifts.
+Volunteering as door opener: Erfgoeddag (18 April 2027, confirmed in onderzoek 3), Open Monumentendag (12 September 2027), Museumnacht Antwerpen, Zomer van Antwerpen seasonal technical crews, Het Theaterfestival (early September), Kunstendag voor Kinderen (Sunday 15 November 2026). Museum vrienden associations and Middelheimmuseum installation days are quieter, behind-the-scenes alternatives to front-of-house shifts.
 
 ## 5. Suggested sequence
 1. Now to December 2026 (while employed): VCA-basis and IPAF certificates; join STEPP; register for a FARO basiscursus in spring 2027; visit one season opening; write to the Opera Ballet ateliers and Meyvaert asking for a visit or a BVS.

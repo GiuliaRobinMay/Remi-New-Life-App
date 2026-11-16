@@ -115,7 +115,7 @@ Eerlijk en met een voorbeeld; dit is geen sollicitatiegesprek.
   
 
 - Wanneer zeg je te weinig, en wanneer had je liever iets gezegd?  
-  (De tests zeggen dat je niet snel op de voorgrond treedt; dit is om te weten waar dat je iets kost.)
+  (Denk aan een overleg waarin je iets niet gezegd hebt: wat hield je tegen?)
   
 
 - Wat weet je over jezelf dat niet in een test staat?

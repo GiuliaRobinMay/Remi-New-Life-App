@@ -388,7 +388,8 @@ function tabZelftests() {
   const gevers = Z.energie.activiteiten.filter(a => scores[a.id] >= 1).map(a => a.naam), vreters = Z.energie.activiteiten.filter(a => scores[a.id] <= -1).map(a => a.naam);
   // Feedback
   const fb = test('feedback'); const fbAntw = Array.from({ length: 5 }, (_, i) => ({ naam: '', tekst: '', ...((fb.antwoorden || [])[i] || {}) }));
-  // Extern
+  // Extern (de uitslagen staan alleen in de database, niet in de openbare gegevens). Bewaren vertrekt van wat nu
+  // bewaard is, niet van de kopie bij het tekenen: een uitslag die intussen op het andere toestel bijkwam, blijft.
   const ex = test('extern'); const exRes = { ...(ex.resultaten || {}) };
   return [
     intro('Zelftests', 'Korte oefeningen om te zien wat je drijft, wat je energie geeft en hoe anderen je zien. De uitkomsten helpen bij je profiel, je keuzes en je gesprekken.'),
@@ -409,7 +410,7 @@ function tabZelftests() {
         h('div', { class: 'meta' }, badge(t.status, t.status === 'gedaan' ? 'green' : t.status === 'aanbevolen' ? 'orange' : 'grey'), t.verificatie === 'te verifiëren' && badge('link te verifiëren', 'grey'), h('span', null, [t.duur, t.kost].filter(Boolean).join(', '))),
         h('p', { class: 'row-title', style: 'margin-top:4px' }, t.url ? h('a', { href: t.url, target: '_blank', rel: 'noopener' }, t.naam) : t.naam),
         h('p', { class: 'small' }, t.wat), h('p', { class: 'small muted' }, t.waarom),
-        h('div', { class: 'form', style: 'margin-top:8px' }, veld('Jouw uitslag', exRes[t.id], v => { exRes[t.id] = v; saveTest('extern', { resultaten: exRes }); }, { fk: `ex-${t.id}` }))))))),
+        h('div', { class: 'form', style: 'margin-top:8px' }, veld('Jouw uitslag', exRes[t.id], v => { exRes[t.id] = v; saveTest('extern', { resultaten: { ...(test('extern').resultaten || {}), [t.id]: v } }); }, { fk: `ex-${t.id}` }))))))),
   ];
 }
 

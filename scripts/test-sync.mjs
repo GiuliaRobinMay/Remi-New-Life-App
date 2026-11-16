@@ -1131,8 +1131,8 @@ try {
     await b.koppel('ABCDE-FGH23');
     await b.codeMaken('remi', 'remi@test.be');
     uit.verzoeken = verzoeken;
-    invoke = { data: null, error: { name: 'FunctionsHttpError', message: 'Edge Function returned a non-2xx status code', context: { status: 409, json: async () => ({ message: 'Deze mail is al verstuurd of wordt nu verstuurd.', dubbel: true, gmailId: 'g1' }) } } };
-    try { await b.gmail('verstuur', { pad: 'uitgaand/x.eml', sleutel: 'mail-1:1' }); } catch (e) { uit.dubbel = { status: e.status, dubbel: e.dubbel, gmailId: e.gmailId, message: e.message }; }
+    invoke = { data: null, error: { name: 'FunctionsHttpError', message: 'Edge Function returned a non-2xx status code', context: { status: 409, json: async () => ({ message: 'Deze mail is al verstuurd of wordt nu verstuurd.', dubbel: true, gmailId: 'g1', verzendStatus: 'verstuurd' }) } } };
+    try { await b.gmail('verstuur', { pad: 'uitgaand/x.eml', sleutel: 'mail-1:1' }); } catch (e) { uit.dubbel = { status: e.status, dubbel: e.dubbel, gmailId: e.gmailId, verzendStatus: e.verzendStatus, message: e.message }; }
     uit.gmailBody = verzoeken.at(-1)?.body;
     localStorage.setItem('remi-aanmelding', '{"test":1}');
     signOut = { error: { message: 'Failed to fetch' } };
@@ -1147,7 +1147,8 @@ try {
   check('backend: 400 is ongeldig, 403 toegang, 404 een andere fout', be.s400 === 'ongeldig/false' && be.s403 === 'toegang/false' && be.s404 === 'fout/false' && be.opslag === 'ongeldig', JSON.stringify(be));
   check('backend: koppel en code sturen de juiste actie', vast(be.verzoeken[0]) === vast({ naam: 'account', body: { actie: 'koppel', code: 'ABCDE-FGH23' } })
     && vast(be.verzoeken[1]) === vast({ naam: 'account', body: { actie: 'code', wie: 'remi', email: 'remi@test.be' } }), JSON.stringify(be.verzoeken));
-  check('backend: een dubbele verzending geeft status 409 en de velden van het antwoord', be.dubbel?.status === 409 && be.dubbel?.dubbel === true && be.dubbel?.gmailId === 'g1' && /al verstuurd/.test(be.dubbel?.message)
+  // De status van de verzending heet in het antwoord verzendStatus: status is de HTTP-status (409) en wordt overschreven.
+  check('backend: een dubbele verzending geeft status 409 en de velden van het antwoord (ook verzendStatus)', be.dubbel?.status === 409 && be.dubbel?.dubbel === true && be.dubbel?.gmailId === 'g1' && be.dubbel?.verzendStatus === 'verstuurd' && /al verstuurd/.test(be.dubbel?.message)
     && vast(be.gmailBody) === vast({ actie: 'verstuur', pad: 'uitgaand/x.eml', sleutel: 'mail-1:1' }), JSON.stringify(be.dubbel));
   check('backend: afmelden zonder verbinding haalt de sessie toch van het toestel', be.afmeldenZonderNet.gelukt === false && be.afmeldenZonderNet.sessieWeg && be.afmeldenMetNet.gelukt === true && be.afmeldenMetNet.sessieBlijft, JSON.stringify([be.afmeldenZonderNet, be.afmeldenMetNet]));
 

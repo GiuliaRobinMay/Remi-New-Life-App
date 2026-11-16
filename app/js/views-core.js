@@ -313,12 +313,12 @@ export function profiel(r) {
     const exRes = get('zelftests', 'extern')?.resultaten || {};
     const extern = (ref.zelftests?.externeTests || []).filter(t => String(exRes[t.id] || '').trim());
     const blokken = [
-      extern.length && titled('Uitslagen van tests elders', h('ul', { class: 'list list--tight', 'data-uitslagen': '' }, extern.map(t => h('li', null, h('div', null, h('p', { class: 'row-title' }, t.naam), h('p', { class: 'small', style: 'white-space:pre-wrap' }, String(exRes[t.id]).trim())))))),
-      ankers.length && titled('Loopbaanankers (Schein)', ankers.map(a => bar(a.anker, a.score, 100, a.rol === 'dominant'))),
-      (hScores.length || bigfive.length) && h('div', { class: 'two-col' },
-        hScores.length && titled('Holland-code' + (holland.code ? ': ' + holland.code : ''), hScores.map((s, i) => bar(s.type, s.score, holland.max || 32, i < 3))),
-        bigfive.length && titled('Big Five', h('ul', { class: 'list list--tight' }, bigfive.map(b => h('li', null, h('div', null, h('p', { class: 'row-title' }, `${b.domein}: ${b.niveau}`), h('p', { class: 'small muted' }, b.toelichting))))))),
-      T.mbti?.type && titled('MBTI: ' + T.mbti.type, h('p', null, T.mbti.toelichting || '')),
+      extern.length > 0 && titled('Uitslagen van tests elders', h('ul', { class: 'list list--tight', 'data-uitslagen': '' }, extern.map(t => h('li', null, h('div', null, h('p', { class: 'row-title' }, t.naam), h('p', { class: 'small', style: 'white-space:pre-wrap' }, String(exRes[t.id]).trim())))))),
+      ankers.length > 0 && titled('Loopbaanankers (Schein)', ankers.map(a => bar(a.anker, a.score, 100, a.rol === 'dominant'))),
+      (hScores.length > 0 || bigfive.length > 0) && h('div', { class: 'two-col' },
+        hScores.length > 0 && titled('Holland-code' + (holland.code ? ': ' + holland.code : ''), hScores.map((s, i) => bar(s.type, s.score, holland.max || 32, i < 3))),
+        bigfive.length > 0 && titled('Big Five', h('ul', { class: 'list list--tight' }, bigfive.map(b => h('li', null, h('div', null, h('p', { class: 'row-title' }, `${b.domein}: ${b.niveau}`), h('p', { class: 'small muted' }, b.toelichting))))))),
+      !!T.mbti?.type && titled('MBTI: ' + T.mbti.type, h('p', null, T.mbti.toelichting || '')),
     ].filter(Boolean);
     inhoud = h('div', { class: 'stack' },
       ...(blokken.length ? blokken : [callout('violet', 'list', 'Nog geen uitslagen', h('p', { 'data-geen-uitslagen': '' }, 'De uitslagen van de tests staan niet in de openbare gegevens van de app. Vul ze in bij het Cv-atelier, Zelftests, onder Tests elders. Ze worden alleen in de database bewaard (voor wie toegang heeft) en verschijnen dan hier.'))]),

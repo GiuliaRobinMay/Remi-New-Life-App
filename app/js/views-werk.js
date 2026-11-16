@@ -57,7 +57,7 @@ export function sollicitatieForm(init = {}) {
   const s = { id: init.id, organisatie: init.organisatie || '', functie: init.functie || '', spoor: init.spoor || 'erfgoed', type: init.type || 'vacature', bronUrl: init.bronUrl || '', contactpersoon: init.contactpersoon || '', contactEmail: init.contactEmail || '', notities: init.notities || '', hotlistId: init.hotlistId, vacatureId: init.vacatureId, status: init.status || 'te doen', datumVerstuurd: init.datumVerstuurd || '', opvolgdatum: init.opvolgdatum || '', gesprekDatum: init.gesprekDatum || '', documentSlug: init.documentSlug || '' };
   openPeek(s.id ? 'Sollicitatie bewerken' : 'Nieuwe sollicitatie', () => {
     const inp = (k, type = 'text', ph = '') => h('input', { class: 'field', type, value: s[k], placeholder: ph, onInput: e => s[k] = e.target.value });
-    return h('form', { class: 'form', onSubmit: e => { e.preventDefault(); if (!s.organisatie) return; if (s.status === 'verstuurd' && s.datumVerstuurd && !s.opvolgdatum) s.opvolgdatum = addDays(s.datumVerstuurd, 12); const saved = upsert('sollicitaties', { ...s, id: s.id || 'sol-' + uid(), aangemaakt: init.aangemaakt || todayIso(), logboek: init.logboek || [{ datum: todayIso(), tekst: 'Aangemaakt' }] }); if (s.vacatureId) upsert('vacatures', { id: s.vacatureId, status: 'omgezet' }); if (s.hotlistId && get('hotlist', s.hotlistId)?.status === 'nog niet benaderd') upsert('hotlist', { id: s.hotlistId, status: 'in voorbereiding' }); closePeek(); toast('Bewaard'); sollicitatiePeek(saved.id); } },
+    return h('form', { class: 'form', onSubmit: e => { e.preventDefault(); if (!s.organisatie) return; if (s.status === 'verstuurd' && s.datumVerstuurd && !s.opvolgdatum) s.opvolgdatum = addDays(s.datumVerstuurd, 12); const saved = upsert('sollicitaties', { ...s, id: s.id || 'sol-' + uid(), aangemaakt: init.aangemaakt || todayIso(), logboek: init.logboek || [{ datum: todayIso(), tekst: 'Aangemaakt' }] }); if (s.vacatureId) { const vac = get('vacatures', s.vacatureId); if (vac && (vac.status !== 'omgezet' || vac.sollicitatieId !== saved.id)) upsert('vacatures', { id: s.vacatureId, status: 'omgezet', sollicitatieId: saved.id, ...(vac.status !== 'omgezet' ? { statusDatum: todayIso() } : {}) }); } if (s.hotlistId && get('hotlist', s.hotlistId)?.status === 'nog niet benaderd') upsert('hotlist', { id: s.hotlistId, status: 'in voorbereiding' }); closePeek(); toast('Bewaard'); sollicitatiePeek(saved.id); } },
       h('div', { class: 'form__row' }, h('label', null, 'Organisatie', inp('organisatie')), h('label', null, 'Functie', inp('functie', 'text', 'bijvoorbeeld technisch medewerker atelier'))),
       h('div', { class: 'form__row' }, h('label', null, 'Spoor', sel(SPOREN, s.spoor, v => s.spoor = v)), h('label', null, 'Soort', sel([['vacature', 'Vacature'], ['spontaan', 'Spontane sollicitatie'], ['stage', 'Stage of werkbezoek']], s.type, v => s.type = v))),
       h('label', null, 'Link naar vacature of organisatie', inp('bronUrl', 'url', 'https://')),
@@ -91,36 +91,130 @@ function sollicitatiePeek(id) {
 }
 
 // ---------- Vacatures ----------
+// Een dagelijkse scan zet nieuwe vacatures (publieke sector en non-profit) in deze collectie met status 'nieuw'.
+// Remi krijgt ze per mail; zegt hij ja, dan wordt de vacature een sollicitatie (status 'omgezet').
+const VACSTATUS = [['nieuw', 'Nieuw'], ['voorgelegd', 'Voorgelegd aan Remi'], ['interessant', 'Interessant'], ['omgezet', 'Omgezet naar sollicitatie'], ['niet', 'Niet voor Remi'], ['verlopen', 'Verlopen']];
+const VACKLEUR = { nieuw: 'violet', voorgelegd: 'orange', interessant: 'green', omgezet: 'green', niet: 'grey', verlopen: 'grey' };
+const VACTOON = { nieuw: 'violet', voorgelegd: 'orange', interessant: 'green', omgezet: 'grey', niet: 'grey', verlopen: 'grey' };
+const VACKNOPPEN = [['voorgelegd', 'Voorgelegd aan Remi'], ['interessant', 'Interessant'], ['niet', 'Niet voor Remi'], ['verlopen', 'Verlopen']];
+const SECTOREN = [['overheid', 'Overheid'], ['onderwijs', 'Onderwijs'], ['cultuur', 'Cultuur'], ['erfgoed', 'Erfgoed'], ['zorg', 'Zorg'], ['onderzoek', 'Onderzoek'], ['sociale economie', 'Sociale economie'], ['vzw', 'Vzw']];
+// Het spoor van een sollicitatie, afgeleid uit de sector van de vacature (aan te passen in het formulier).
+const SECTORSPOOR = { overheid: 'overheid', onderwijs: 'onderwijs', cultuur: 'cultuur', erfgoed: 'erfgoed', zorg: 'sociaal', onderzoek: 'onderwijs', 'sociale economie': 'sociaal', vzw: 'sociaal' };
+const SCOREKLEUR = { A: 'green', B: 'orange', C: 'grey' };
+const SCOREORDE = { A: 0, B: 1, C: 2 };
+const vacLabel = Object.fromEntries(VACSTATUS);
+// Oude records zonder (geldige) status tellen als nieuw.
+const vacStatus = v => (vacLabel[v.status] ? v.status : 'nieuw');
+const scoreVan = v => { const s = String(v.score || '').trim().toUpperCase(); return SCOREORDE[s] === undefined ? '' : s; };
+const isoDag = d => (/^\d{4}-\d{2}-\d{2}/.test(d || '') ? d.slice(0, 10) : '');
+const gevondenOp = v => v.gevonden || v.toegevoegd || '';
+const dash = () => h('span', { class: 'grid2__dash' }, '—');
+const scoreBadge = v => { const s = scoreVan(v); return s ? h('span', { class: `badge badge--${SCOREKLEUR[s]} vac-score`, title: `Score ${s}` }, s) : null; };
+// Binnen een groep: score A, B, C (zonder score achteraan), dan de vroegste deadline, dan recentst gevonden.
+const vacVolgorde = (a, b) => ((SCOREORDE[scoreVan(a)] ?? 3) - (SCOREORDE[scoreVan(b)] ?? 3))
+  || (isoDag(a.deadline) || '9999').localeCompare(isoDag(b.deadline) || '9999')
+  || gevondenOp(b).localeCompare(gevondenOp(a))
+  || (a.titel || '').localeCompare(b.titel || '');
+// Elke statuswijziging krijgt de datum van vandaag.
+function zetVacStatus(v, status) {
+  if (v.status === status) return;
+  upsert('vacatures', { id: v.id, status, statusDatum: todayIso() });
+}
+// Remi wil solliciteren: het sollicitatieformulier, voorgevuld. Bij bewaren zet sollicitatieForm de vacature op 'omgezet'.
+function solliciteer(v) {
+  sollicitatieForm({ organisatie: v.organisatie, functie: v.titel, bronUrl: v.url, spoor: v.spoor || SECTORSPOOR[v.sector] || 'erfgoed', vacatureId: v.id, notities: (v.inhoud || v.tekst || '').slice(0, 500) });
+}
+const heeftSollicitatie = v => !!(v.sollicitatieId && get('sollicitaties', v.sollicitatieId));
+function kiesVacStatus(v, status) {
+  if (status === 'omgezet' && !heeftSollicitatie(v)) solliciteer(v); else zetVacStatus(v, status);
+}
+
 export function vacatures(r) {
-  const tab = r.tab || 'bewaard'; const J = ref.jobbronnen;
-  const tabs = [['bewaard', 'Bewaard'], ['zoeken', 'Zoeken'], ['bronnen', 'Bronnen']].map(([k, l]) => ({ label: l, href: `#/vacatures?tab=${k}`, active: tab === k }));
+  const tab = !r.tab || r.tab === 'bewaard' ? 'gevonden' : r.tab; const J = ref.jobbronnen; // 'bewaard': oude links
+  const tabs = [['gevonden', 'Gevonden'], ['zoeken', 'Zoeken'], ['bronnen', 'Bronnen']].map(([k, l]) => ({ label: l, href: `#/vacatures?tab=${k}`, active: tab === k }));
+  const alle = all('vacatures');
+  const teBekijken = alle.filter(v => ['nieuw', 'voorgelegd'].includes(vacStatus(v))).length;
+  const tool = [h('button', { class: 'btn btn--primary', onClick: () => vacatureForm() }, icon('plus', 14), 'Vacature toevoegen')];
+  const chrome = { where: tab === 'gevonden' ? 'Score A eerst, pijl opent de vacature' : 'Zoeken en bewaren', tabs, tool, view: `${teBekijken} nieuw of voorgelegd`, viewIcon: 'search' };
+  const kop = intro('Vacatures', 'Elke ochtend nieuwe vacatures in de publieke sector en non-profit, met een score van A tot C. Wat Remi wil, wordt een sollicitatie.');
+  if (tab === 'gevonden') {
+    if (!alle.length) return { chrome, body: content(kop, h('div', { class: 'card empty' }, 'Nog geen gevonden vacatures. De scan zet ze hier elke ochtend; je kunt er ook zelf een toevoegen met de knop in de werkbalk.')) };
+    const items = alle.sort(vacVolgorde);
+    const groups = VACSTATUS.map(([k, l]) => ({ key: 'vac-' + k, label: l.toUpperCase(), tone: VACTOON[k], rows: items.filter(v => vacStatus(v) === k), hideEmpty: true }));
+    const cols = [
+      { label: 'Score', width: 104, render: v => scoreBadge(v) || dash() },
+      { label: 'Functie en organisatie', width: 360, render: v => h('span', null, h('a', { href: '#', 'data-vacature': v.id, onClick: e => { e.preventDefault(); vacaturePeek(v.id); } }, v.titel || 'Vacature'), v.organisatie && h('span', { class: 'vac-org' }, ` · ${v.organisatie}`)) },
+      { label: 'Plaats', width: 150, render: v => v.plaats || dash() },
+      { label: 'Deadline', width: 120, render: v => v.deadline ? h('span', { class: ['nieuw', 'voorgelegd', 'interessant'].includes(vacStatus(v)) && daysUntil(v.deadline) < 3 ? 'overdue' : '' }, fmtDate(v.deadline)) : dash() },
+      { label: 'Gevonden', width: 120, render: v => gevondenOp(v) ? fmtDate(gevondenOp(v)) : dash() },
+      { label: 'Status', width: 210, render: v => h('select', { class: `status status--${VACKLEUR[vacStatus(v)]} status--select`, 'data-vacstatus': v.id, 'aria-label': 'Status', onChange: e => { const k = e.target.value; e.target.value = vacStatus(v); kiesVacStatus(v, k); } }, VACSTATUS.map(([k, l]) => h('option', { value: k, selected: vacStatus(v) === k }, l))) },
+    ];
+    return { chrome, body: grid(cols, groups, v => vacaturePeek(v.id)) };
+  }
   let inhoud;
-  if (tab === 'bewaard') { const items = all('vacatures').sort((a, b) => (b.toegevoegd || '').localeCompare(a.toegevoegd || ''));
-    inhoud = items.length ? h('div', { class: 'grid-cards grid-cards--wide' }, items.map(v => h('div', { class: 'card card--pad' + (v.status === 'niet' ? ' muted' : '') },
-      h('div', { class: 'meta' }, badge(v.status, v.status === 'omgezet' ? 'green' : v.status === 'interessant' ? 'orange' : 'grey'), v.bron && h('span', null, v.bron), v.deadline && h('span', { class: daysUntil(v.deadline) < 3 ? 'overdue' : '' }, `deadline ${fmtDate(v.deadline)}`)),
-      h('p', { class: 'row-title' }, v.titel), h('p', null, v.organisatie, v.plaats ? `, ${v.plaats}` : ''), v.url && h('p', { class: 'small' }, ext(v.url)), v.tekst && h('p', { class: 'small muted', style: 'max-height:80px;overflow:hidden' }, v.tekst.slice(0, 260) + (v.tekst.length > 260 ? '…' : '')),
-      h('div', { class: 'form__actions' }, v.status !== 'omgezet' && h('button', { class: 'btn btn--primary btn--sm', onClick: () => sollicitatieForm({ organisatie: v.organisatie, functie: v.titel, bronUrl: v.url, spoor: v.spoor || 'erfgoed', vacatureId: v.id, notities: v.tekst ? v.tekst.slice(0, 500) : '' }) }, 'Maak sollicitatie'), h('button', { class: 'btn btn--ghost btn--sm', onClick: () => vacatureForm(v) }, 'Bewerken'), v.status !== 'niet' && h('button', { class: 'btn btn--quiet btn--sm', onClick: () => upsert('vacatures', { id: v.id, status: 'niet' }) }, 'Niet interessant'))))) : h('div', { class: 'card empty' }, 'Nog geen bewaarde vacatures. Zoek via het tabblad Zoeken en plak een vacature met de knop in de werkbalk.');
-  } else if (tab === 'zoeken') inhoud = h('div', { class: 'stack' },
-    callout('violet', 'search', 'Zo werkt zoeken', h('p', null, 'De sites zelf kunnen vanuit deze app niet automatisch gelezen worden (dat vraagt een server met netwerktoegang, zie README). Deze knoppen openen de juiste zoekopdracht; wat interessant is, plak je hier terug als vacature.')),
+  if (tab === 'zoeken') inhoud = h('div', { class: 'stack' },
+    callout('violet', 'search', 'Zo werkt zoeken', h('p', null, 'Elke ochtend zoekt een scan op deze sites en bij de organisaties uit de hotlist naar nieuwe vacatures in de publieke sector en non-profit. Wat past, komt bij Gevonden en Remi krijgt het per mail. Deze knoppen openen de juiste zoekopdracht; wat interessant is, plak je hier terug als vacature.')),
     titled('VDAB, zoekopdrachten', h('div', { class: 'link-list' }, J.zoektermen.map(t => h('a', { class: 'btn btn--ghost btn--sm', href: `https://www.vdab.be/vindeenjob/jobs/${slugify(t)}-antwerpen-provincie`, target: '_blank', rel: 'noopener' }, t, icon('external', 12))))),
     ...J.bronnen.filter(b => b.zoeklinks?.length).map(b => titled(b.naam, h('div', { class: 'link-list' }, b.zoeklinks.map(z => h('a', { class: 'btn btn--ghost btn--sm', href: z.url, target: '_blank', rel: 'noopener' }, z.label, icon('external', 12)))))),
   );
   else inhoud = h('div', { class: 'grid-cards' }, J.bronnen.map(b => h('div', { class: 'card card--pad' }, h('div', { class: 'meta' }, badge(b.type, b.type === 'primair' ? 'green' : b.type === 'cultuur' || b.type === 'erfgoed' ? 'orange' : 'grey')), h('p', { class: 'row-title' }, b.naam), h('p', { class: 'small' }, ext(b.url)), b.opmerking && h('p', { class: 'small muted' }, b.opmerking), b.api && h('p', { class: 'small muted' }, b.api))));
-  const body = content(intro('Vacatures', 'Zoeken op de Vlaamse jobsites, bewaren wat past, omzetten naar een sollicitatie.'), inhoud);
-  const tool = [h('button', { class: 'btn btn--primary', onClick: () => vacatureForm() }, icon('plus', 14), 'Vacature toevoegen')];
-  return { chrome: { where: 'Zoeken en bewaren', tabs, tool, view: `${all('vacatures').filter(v => v.status !== 'niet').length} bewaard`, viewIcon: 'search' }, body };
+  return { chrome, body: content(kop, inhoud) };
+}
+function vacaturePeek(id) {
+  openPeek(() => get('vacatures', id)?.titel || 'Vacature', () => {
+    const v = get('vacatures', id); if (!v) return h('p', null, 'Verwijderd.');
+    const st = vacStatus(v);
+    const sol = v.sollicitatieId && get('sollicitaties', v.sollicitatieId);
+    const rij = (label, waarde) => h('tr', null, h('th', { scope: 'row' }, label), h('td', null, waarde || dash()));
+    return h('div', { class: 'stack' },
+      h('div', null,
+        h('div', { class: 'meta' }, scoreBadge(v), badge(vacLabel[st], VACKLEUR[st]), v.sector && badge(v.sector, 'grey')),
+        h('h2', { class: 'section-title', style: 'margin-top:6px' }, v.titel || 'Vacature'),
+        h('p', null, v.organisatie, v.plaats ? `, ${v.plaats}` : ''),
+        v.url ? h('p', { class: 'small' }, ext(v.url, 'Naar de vacature')) : h('p', { class: 'small muted' }, 'Nog geen link naar de vacature.')),
+      v.waarom && callout('green', 'check', 'Waarom dit past', h('p', { class: 'vac-tekst' }, v.waarom)),
+      v.aandachtspunt && callout('orange', 'shield', 'Aandachtspunt', h('p', { class: 'vac-tekst' }, v.aandachtspunt)),
+      titled('Status', h('div', { class: 'form__actions' },
+        st !== 'omgezet' || !sol ? h('button', { class: 'btn btn--primary btn--sm', 'data-actie': 'solliciteren', onClick: () => solliciteer(v) }, icon('mail', 14), 'Remi wil solliciteren') : null,
+        sol ? h('button', { class: 'btn btn--ghost btn--sm', onClick: () => sollicitatiePeek(sol.id) }, icon('arrow', 14), 'Naar de sollicitatie') : null,
+        ...VACKNOPPEN.map(([k, l]) => h('button', { class: 'chip' + (st === k ? ' chip--active' : ''), 'data-vacknop': k, onClick: () => zetVacStatus(v, k) }, l))),
+        h('p', { class: 'small muted' }, `${vacLabel[st]}${v.statusDatum ? ` sinds ${fmtDate(v.statusDatum)}` : ''}.`)),
+      v.inhoud && titled('Inhoud', h('p', { class: 'vac-tekst' }, v.inhoud)),
+      titled('Gegevens', h('table', { class: 'table vac-gegevens' }, h('tbody', null,
+        rij('Functie', v.titel), rij('Organisatie', v.organisatie), rij('Sector', v.sector), rij('Plaats', v.plaats), rij('Contract', v.contract),
+        rij('Deadline', v.deadline && fmtDate(v.deadline)), rij('Gevonden', gevondenOp(v) && fmtDate(gevondenOp(v))), rij('Score', scoreVan(v)), rij('Bron', v.bron), rij('Link', v.url && ext(v.url)),
+        rij('Spoor', v.spoor && spoorBadge(v.spoor)), rij('Status', `${vacLabel[st]}${v.statusDatum ? `, ${fmtDate(v.statusDatum)}` : ''}`),
+        rij('Sollicitatie', sol ? h('a', { href: '#', onClick: e => { e.preventDefault(); sollicitatiePeek(sol.id); } }, `${sol.organisatie}${sol.functie ? `, ${sol.functie}` : ''}`) : null)))),
+      v.tekst && titled('Vacaturetekst', h('p', { class: 'small vac-tekst' }, v.tekst)),
+      titled('Notities', h('textarea', { class: 'field', placeholder: 'Wat Remi ervan vindt, wat nog na te vragen is', value: v.notities || '', dataset: { fk: 'vn-' + v.id }, onInput: e => upsert('vacatures', { id: v.id, notities: e.target.value }, { silent: true }) })),
+      h('div', { class: 'form__actions' },
+        h('button', { class: 'btn btn--ghost', onClick: () => vacatureForm(v) }, icon('edit', 14), 'Bewerken'),
+        h('button', { class: 'btn btn--danger', 'data-actie': 'vacature-verwijderen', onClick: () => { if (confirm('Deze vacature verwijderen?')) { remove('vacatures', v.id); closePeek(); } } }, 'Verwijderen')),
+    );
+  });
 }
 function vacatureForm(init = {}) {
-  const v = { id: init.id, titel: init.titel || '', organisatie: init.organisatie || '', plaats: init.plaats || 'Antwerpen', bron: init.bron || 'VDAB', url: init.url || '', deadline: init.deadline || '', spoor: init.spoor || 'erfgoed', tekst: init.tekst || '', status: init.status || 'interessant' };
+  const v = { id: init.id, titel: init.titel || '', organisatie: init.organisatie || '', sector: init.sector || '', plaats: init.plaats || 'Antwerpen', bron: init.bron || 'VDAB', url: init.url || '', gevonden: gevondenOp(init) || todayIso(), deadline: init.deadline || '', contract: init.contract || '', score: scoreVan(init), status: init.id ? vacStatus(init) : 'nieuw', spoor: init.spoor || SECTORSPOOR[init.sector] || 'erfgoed', inhoud: init.inhoud || '', waarom: init.waarom || '', aandachtspunt: init.aandachtspunt || '', tekst: init.tekst || '' };
   openPeek(v.id ? 'Vacature bewerken' : 'Vacature toevoegen', () => {
-    const inp = (k, type = 'text') => h('input', { class: 'field', type, value: v[k], onInput: e => v[k] = e.target.value });
-    return h('form', { class: 'form', onSubmit: e => { e.preventDefault(); if (!v.titel || !v.organisatie) return; upsert('vacatures', { ...v, id: v.id || 'vac-' + uid(), toegevoegd: init.toegevoegd || todayIso() }); closePeek(); toast('Bewaard'); } },
+    const inp = (k, type = 'text', ph = '') => h('input', { class: 'field', type, value: v[k], placeholder: ph, onInput: e => v[k] = e.target.value });
+    const vak = (k, ph = '') => h('textarea', { class: 'field', style: 'min-height:72px', value: v[k], placeholder: ph, onInput: e => v[k] = e.target.value });
+    return h('form', { class: 'form', onSubmit: e => {
+      e.preventDefault(); if (!v.titel || !v.organisatie) return;
+      const rec = { ...v, id: v.id || 'vac-' + uid(), toegevoegd: init.toegevoegd || todayIso() };
+      if (v.status !== init.status) rec.statusDatum = todayIso();
+      upsert('vacatures', rec); closePeek(); toast('Bewaard'); vacaturePeek(rec.id);
+    } },
       h('div', { class: 'form__row' }, h('label', null, 'Functietitel', inp('titel')), h('label', null, 'Organisatie', inp('organisatie'))),
-      h('div', { class: 'form__row' }, h('label', null, 'Plaats', inp('plaats')), h('label', null, 'Bron', inp('bron'))),
-      h('div', { class: 'form__row' }, h('label', null, 'Link', inp('url', 'url')), h('label', null, 'Deadline', inp('deadline', 'date'))),
-      h('label', null, 'Spoor', sel(SPOREN, v.spoor, x => v.spoor = x)),
+      h('div', { class: 'form__row' }, h('label', null, 'Sector', sel([['', 'Kies een sector'], ...SECTOREN], v.sector, x => v.sector = x)), h('label', null, 'Plaats', inp('plaats'))),
+      h('div', { class: 'form__row' }, h('label', null, 'Score', sel([['', 'Geen score'], ['A', 'A'], ['B', 'B'], ['C', 'C']], v.score, x => v.score = x)), h('label', null, 'Status', sel(VACSTATUS, v.status, x => v.status = x))),
+      h('div', { class: 'form__row' }, h('label', null, 'Gevonden', inp('gevonden', 'date')), h('label', null, 'Deadline', inp('deadline', 'date'))),
+      h('div', { class: 'form__row' }, h('label', null, 'Contract', inp('contract', 'text', 'bijvoorbeeld voltijds, onbepaalde duur')), h('label', null, 'Bron', inp('bron'))),
+      h('div', { class: 'form__row' }, h('label', null, 'Link', inp('url', 'url', 'https://')), h('label', null, 'Spoor', sel(SPOREN, v.spoor, x => v.spoor = x))),
+      h('label', null, 'Inhoud (kort)', vak('inhoud')),
+      h('label', null, 'Waarom dit past', vak('waarom')),
+      h('label', null, 'Aandachtspunt', vak('aandachtspunt')),
       h('label', null, 'Vacaturetekst (plakken)', h('textarea', { class: 'field', style: 'min-height:160px', value: v.tekst, onInput: e => v.tekst = e.target.value })),
-      h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--primary', type: 'submit' }, 'Bewaren'), v.id && h('button', { class: 'btn btn--danger', type: 'button', onClick: () => { remove('vacatures', v.id); closePeek(); } }, 'Verwijderen')));
+      h('div', { class: 'form__actions' }, h('button', { class: 'btn btn--primary', type: 'submit' }, 'Bewaren'), v.id && h('button', { class: 'btn btn--danger', type: 'button', onClick: () => { if (confirm('Deze vacature verwijderen?')) { remove('vacatures', v.id); closePeek(); } } }, 'Verwijderen')));
   });
 }
 

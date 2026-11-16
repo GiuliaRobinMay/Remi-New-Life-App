@@ -347,3 +347,11 @@ li.is-klaar .agenda__naam, li.is-klaar .agenda__naam a { text-decoration: line-t
 .sidebar__sync { all: unset; cursor: pointer; display: block; width: 100%; font: inherit; color: inherit; text-align: left; }
 .sidebar__sync:focus-visible { outline: 2px solid var(--brand-violet); outline-offset: 2px; }
 .sidebar__sync--fout, .sidebar__sync--offline { color: var(--brand-red-deep); }
+
+/* Vacatures: score A, B, C als badge, en de fiche in het zijpaneel */
+.vac-score { justify-content: center; min-width: 26px; padding: 2px 8px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.vac-org { color: var(--muted); }
+.vac-tekst { white-space: pre-wrap; }
+.vac-gegevens th { width: 32%; white-space: nowrap; }
+.vac-gegevens td { overflow-wrap: anywhere; }
+.vac-gegevens tr:last-child th, .vac-gegevens tr:last-child td { border-bottom: 0; }

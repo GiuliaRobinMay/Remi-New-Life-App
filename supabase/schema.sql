@@ -181,18 +181,27 @@ where r.collectie = 'sollicitaties' and not r.verwijderd
 order by coalesce(nullif(r.data ->> 'datumVerstuurd', ''), nullif(r.data ->> 'aangemaakt', '')) desc nulls last, r.data ->> 'organisatie';
 comment on view public.sollicitaties is 'Sollicitaties van Remi, zoals in de app (Werk, Sollicitaties). Alleen lezen: wijzigen gebeurt in de app. De kolom data bevat het volledige record, ook het logboek.';
 
--- Vacatures: recentst toegevoegd bovenaan.
-create or replace view public.vacatures with (security_invoker = true) as
+-- Vacatures: recentst gevonden bovenaan (oudere records zonder gevonden: op de datum van toevoegen).
+--    De dagelijkse scan zet gevonden, score (A, B of C), sector, waarom en aandachtspunt; status_datum is de dag
+--    van de laatste statuswijziging. Er kwamen kolommen in het midden bij: daarom drop view en opnieuw create.
+drop view if exists public.vacatures;
+create view public.vacatures with (security_invoker = true) as
 select
   r.id,
   r.data ->> 'titel' as titel,
   r.data ->> 'organisatie' as organisatie,
+  r.data ->> 'sector' as sector,
   r.data ->> 'plaats' as plaats,
+  r.data ->> 'score' as score,
+  r.data ->> 'status' as status,
+  r.data ->> 'statusDatum' as status_datum,
+  r.data ->> 'gevonden' as gevonden,
+  r.data ->> 'deadline' as deadline,
+  r.data ->> 'waarom' as waarom,
+  r.data ->> 'aandachtspunt' as aandachtspunt,
   r.data ->> 'bron' as bron,
   r.data ->> 'url' as url,
-  r.data ->> 'deadline' as deadline,
   r.data ->> 'spoor' as spoor,
-  r.data ->> 'status' as status,
   r.data ->> 'toegevoegd' as toegevoegd,
   r.data ->> 'tekst' as tekst,
   r.bijgewerkt,
@@ -200,8 +209,12 @@ select
   r.data
 from public.records r
 where r.collectie = 'vacatures' and not r.verwijderd
-order by nullif(r.data ->> 'toegevoegd', '') desc nulls last, r.data ->> 'titel';
-comment on view public.vacatures is 'Bewaarde vacatures, zoals in de app (Werk, Vacatures). Alleen lezen: wijzigen gebeurt in de app. De kolom data bevat het volledige record.';
+order by coalesce(nullif(r.data ->> 'gevonden', ''), nullif(r.data ->> 'toegevoegd', '')) desc nulls last, r.data ->> 'score' nulls last, r.data ->> 'titel';
+comment on view public.vacatures is 'Vacatures die de dagelijkse scan vond of die in de app bewaard werden (Werk, Vacatures, Gevonden), met score A, B of C en status (nieuw, voorgelegd, interessant, omgezet, niet, verlopen). Alleen lezen: wijzigen gebeurt in de app. De kolom data bevat het volledige record.';
+-- Een nieuwe view krijgt in Supabase standaard rechten voor anon: meteen weer alleen lezen voor wie aangemeld is
+-- (zoals onderaan voor alle views).
+revoke all on public.vacatures from anon, authenticated;
+grant select on public.vacatures to authenticated;
 
 -- Hotlist: hoogste prioriteit (1) bovenaan.
 create or replace view public.hotlist with (security_invoker = true) as

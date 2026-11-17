@@ -126,13 +126,33 @@
     "lector",
     "instructeur",
     "onderwijzer",
-    "talent developer",
     "praktijkleraar",
     "lasinstructeur",
     "opleider",
-    "trainer"
+    "trainer",
+    "schrijnwerker",
+    "elektricien",
+    "elektrotechnicus"
   ],
-  "uitsluitenTitelsUitleg": "Lesgevende functies: Remi is geen leerkracht. Een kandidaat met een van deze woorden in de titel wordt overgeslagen.",
+  "uitsluitenTitelsUitleg": "Functies die niet bij Remi passen: lesgeven (hij is geen leerkracht), schrijnwerker en elektricien. Een kandidaat met een van deze woorden in de titel wordt overgeslagen.",
+  "uitsluitenContext": [
+    "nachtwerk",
+    "nachtdienst",
+    "nachtploeg",
+    "nachtshift",
+    "nachtploegen"
+  ],
+  "beoordeling": {
+    "alleen": "publieke werkgevers, onderwijsinstellingen als werkgever (niet als leerkracht), vzw en sociale economie; geen privébedrijven of interimkantoren",
+    "nooit": [
+      "lesgevende functies (leraar, docent, instructeur, lesgever)",
+      "schrijnwerker",
+      "elektricien of een job waarvan de kern elektriciteit is",
+      "nachtwerk of nachtdiensten"
+    ],
+    "watJeDoet": "Per vacature een korte, concrete uitleg in gewone woorden van wat je er elke dag doet (veld inhoud), zonder vakjargon.",
+    "letOp": "Alleen harde feiten die tellen: rijbewijs vereist, gevraagd diploma, ploegen- of weekendwerk, tijdelijk contract, verre werkplek, deadline. Geen verwijzingen naar de academie of avondlessen."
+  },
   "bronnen": [
     {
       "id": "vdab",

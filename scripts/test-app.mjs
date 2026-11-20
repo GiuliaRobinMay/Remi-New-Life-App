@@ -20,6 +20,8 @@ try {
     const ctx = await browser.newContext({ viewport, timezoneId: 'Europe/Brussels', locale: 'nl-BE' });
     // Externe verzoeken (Google Fonts) blokkeren: offline hangen ze tot een time-out en vertragen networkidle.
     await ctx.route(url => !url.href.startsWith(base), r => r.abort());
+    // Deze test bekijkt de app zonder centrale database (alleen op dit toestel); de verbinding test test-sync.mjs.
+    await ctx.route(url => url.pathname.endsWith('/js/config.js'), r => r.fulfill({ contentType: 'text/javascript', body: "export const SUPABASE_URL = ''; export const SUPABASE_ANON_KEY = '';" }));
     const page = await ctx.newPage();
     const consoleErr = [];
     page.on('pageerror', e => consoleErr.push(e.message));
